@@ -1,0 +1,652 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: hello@opal.dev
+    name: Opal Team
+    url: https://www.opal.dev/
+  description: Your Home For Developer Resources.
+  title: Opal API
+  version: "1.0"
+servers:
+  - description: Production
+    url: https://api.opal.dev/v1
+paths:
+  /events:
+    get:
+      description: Returns a list of `Event` objects.
+      operationId: events
+      parameters:
+        - description: A start date filter for the events.
+          example: 2021/11/01
+          explode: true
+          in: query
+          name: start_date_filter
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: An end date filter for the events.
+          example: 2021-11-12
+          explode: true
+          in: query
+          name: end_date_filter
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: An actor filter for the events. Supply the ID of the actor.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: true
+          in: query
+          name: actor_filter
+          required: false
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: An object filter for the events. Supply the ID of the object.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: true
+          in: query
+          name: object_filter
+          required: false
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: An event type filter for the events.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: true
+          in: query
+          name: event_type_filter
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedEventList"
+          description: One page worth of events with the appropriate filters applied.
+      security:
+        - BearerAuth: []
+      tags:
+        - events
+  /resource-users:
+    get:
+      description: Returns a list of `ResourceUser` objects.
+      operationId: resource_users
+      parameters:
+        - description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: true
+          in: query
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.
+          example: arn:aws:iam::590304332660:role/AdministratorAccess
+          explode: true
+          in: query
+          name: access_level_remote_id
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResourceUserList"
+          description: One page worth of users with access to this resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resource-user-access-status/{resource_id}/{user_id}:
+    get:
+      description: Get user's access status to a resource.
+      operationId: resource_user_access_status_retrieve
+      parameters:
+        - description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: false
+          in: path
+          name: user_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.
+          example: arn:aws:iam::590304332660:role/AdministratorAccess
+          explode: true
+          in: query
+          name: access_level_remote_id
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceUserAccessStatus"
+          description: The access status reflecting the user's access to the resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /sessions:
+    get:
+      description: Returns a list of `Session` objects.
+      operationId: sessions
+      parameters:
+        - description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: true
+          in: query
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: The ID of the user you wish to query sessions for.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: query
+          name: user_id
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionsList"
+          description: The sessions associated with a resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - sessions
+  /user:
+    get:
+      description: Returns a `User` object.
+      operationId: user
+      parameters:
+        - description: The user ID of the user.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: query
+          name: user_id
+          required: false
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.
+          example: johndoe@domain.org
+          explode: true
+          in: query
+          name: email
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: The user object associated with the passed-in email or ID.
+      security:
+        - BearerAuth: []
+      tags:
+        - users
+components:
+  schemas:
+    Event:
+      description: |-
+        # Event Object
+        ### Description
+        The `Event` object is used to represent an event.
+
+        ### Usage Example
+        Fetch from the `LIST Events` endpoint.
+      example:
+        event_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        actor_user_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        created_at: 2022-01-23T04:56:07Z
+        event_type: USERS_CREATED
+      properties:
+        event_id:
+          description: The ID of the event.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        actor_user_id:
+          description: The ID of the actor user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          format: uuid
+          type: string
+        event_type:
+          description: The event type.
+          example: USERS_CREATED
+          type: string
+        created_at:
+          description: The day and time the event was created.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          type: string
+      required:
+        - event_id
+        - actor_user_id
+        - event_type
+        - created_at
+      type: object
+    PaginatedEventList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+          - event_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+            actor_user_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            created_at: 2022-01-23T04:56:07Z
+            event_type: USERS_CREATED
+          - event_id: 7646aa9a-e2ee-4eb5-8c62-91f29038a373
+            actor_user_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            created_at: 2022-02-03T12:33:02Z
+            event_type: USER_TEAM_UPDATED
+      properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/Event"
+          type: array
+      type: object
+    PaginatedResourceUserList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+          - full_name: Jake Barnes
+            user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+            resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            expiration_date: 2022-01-23T04:56:07Z
+            email: jake@company.dev
+          - full_name: Brett Ashley
+            user_id: 7646aa9a-e2ee-4eb5-8c62-91f29038a373
+            resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            expiration_date: 2022-02-03T12:33:02Z
+            email: brett@company.dev
+      properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/ResourceUser"
+          type: array
+      type: object
+    ResourceAccessLevel:
+      description: |-
+        # Access Level Object
+        ### Description
+        The `ResourceAccessLevel` object is used to represent the level of access that a user has to a resource or a resource has to a group. The "default" access
+        level is a `ResourceAccessLevel` object whose fields are all empty strings.
+
+        ### Usage Example
+        View the `ResourceAccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
+      example:
+        access_level_name: AdminRole
+        access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
+      properties:
+        access_level_name:
+          description: The human-readable name of the access level.
+          example: AdminRole
+          type: string
+        access_level_remote_id:
+          description: The machine-readable identifier of the access level.
+          example: arn:aws:iam::590304332660:role/AdministratorAccess
+          type: string
+      required:
+        - access_level_name
+        - access_level_remote_id
+      type: object
+    ResourceUserAccessStatus:
+      description: |-
+        # AccessStatus Object
+        ### Description
+        The `AccessStatus` object is used to represent the user's access to the resource.
+
+        ### Usage Example
+        View the `AccessStatus` for a resource/user pair to determine if the user has access to the resource.
+      example:
+        user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        expiration_date: 2022-01-23T04:56:07Z
+        status: AUTHORIZED
+      properties:
+        resource_id:
+          description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        user_id:
+          description: The ID of the user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          format: uuid
+          type: string
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        status:
+          $ref: "#/components/schemas/ResourceUserAccessStatusEnum"
+        expiration_date:
+          description: The day and time the user's access will expire.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          nullable: true
+          type: string
+      required:
+        - expiration_date
+        - resource_id
+        - status
+        - user_id
+      type: object
+    ResourceUserAccessStatusEnum:
+      description: The status of the user's access to the resource.
+      enum:
+        - UNAUTHORIZED
+        - REQUESTED
+        - AUTHORIZED
+      example: AUTHORIZED
+      type: string
+    ResourceUser:
+      description: |-
+        # Resource User Object
+        ### Description
+        The `ResourceUser` object is used to represent a user with access to a resource.
+
+        ### Usage Example
+        Fetch from the `LIST ResourceUsers` endpoint.
+      example:
+        full_name: Jake Barnes
+        user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        expiration_date: 2022-01-23T04:56:07Z
+        email: jake@company.dev
+      properties:
+        resource_id:
+          description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        user_id:
+          description: The ID of the user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          format: uuid
+          type: string
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        full_name:
+          description: The user's full name.
+          example: Jake Barnes
+          type: string
+        email:
+          description: The user's email.
+          example: jake@company.dev
+          format: email
+          type: string
+        expiration_date:
+          description: The day and time the user's access will expire.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          nullable: true
+          type: string
+      required:
+        - email
+        - expiration_date
+        - full_name
+        - resource_id
+        - user_id
+        - access_level
+      type: object
+    SessionsList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+          - connection_id: h0z968412-2451-4bbd-42h4-057l715d917m
+            user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+            resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            expiration_date: 2022-01-23T04:56:07Z
+          - connection_id: 6e6b5597-bd36-4f4c-a629-01e3fa791932
+            user_id: b031c922-b84f-4424-9f4f-c49c05871bfe
+            resource_id: 77eb1ab7-2c27-4fc4-afdb-137e1265cddd
+            expiration_date: 2022-03-12T07:22:18Z
+      properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/Session"
+          type: array
+      type: object
+    Session:
+      description: |-
+        # Session Object
+        ### Description
+        The `Session` object is used to represent an access session. Some resources can be accessed temporarily via a time-bounded session.
+
+        ### Usage Example
+        Fetch from the `LIST Sessions` endpoint.
+      example:
+        connection_id: h0z968412-2451-4bbd-42h4-057l715d917m
+        user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        expiration_date: 2022-01-23T04:56:07Z
+      properties:
+        connection_id:
+          description: The ID of the connection.
+          example: h0z968412-2451-4bbd-42h4-057l715d917m
+          format: uuid
+          type: string
+        user_id:
+          description: The ID of the user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          format: uuid
+          type: string
+        resource_id:
+          description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        expiration_date:
+          description: The day and time the user's access will expire.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          nullable: false
+          type: string
+      required:
+        - connection_id
+        - user_id
+        - resource_id
+        - access_level
+        - expiration_date
+      type: object
+    UsersList:
+      example:
+        results:
+          - user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+            email: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            full_name: John Doe
+            team_id: 659eeec6-7d77-42c1-add2-b41243c618fd
+            position: Senior Engineer
+          - user_id: e8581682-04f7-473a-a419-472f0fb26d46
+            email: 186511e5-5b5a-4ad7-a4ad-b6c8694a544a
+            full_name: Jane Smith
+            team_id: 02cc7531-ebce-4cc1-88a3-35ce8bfadf39
+            position: Product Marketing Lead
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/User"
+          type: array
+      type: object
+    User:
+      description: |-
+        # User Object
+        ### Description
+        The `User` object is used to represent a user.
+
+        ### Usage Example
+        Fetch from the `LIST Sessions` endpoint.
+      example:
+        user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        email: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        full_name: John Doe
+        team_id: 659eeec6-7d77-42c1-add2-b41243c618fd
+        position: Engineer
+      properties:
+        user_id:
+          description: The ID of the user.
+          example: h0z968412-2451-4bbd-42h4-057l715d917m
+          format: uuid
+          type: string
+        email:
+          description: The email of the user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          format: uuid
+          type: string
+        full_name:
+          description: The full name of the user.
+          example: John Doe
+          type: string
+        team_id:
+          description: The ID of the user's team.
+          example: 659eeec6-7d77-42c1-add2-b41243c618fd
+          nullable: true
+          format: uuid
+          type: string
+        position:
+          description: The user's position.
+          example: Senior Engineer
+          type: string
+      required:
+        - user_id
+        - email
+        - full_name
+        - team_id
+        - position
+      type: object
+  securitySchemes:
+    BearerAuth:
+      scheme: bearer
+      type: http
