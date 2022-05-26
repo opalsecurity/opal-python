@@ -72,7 +72,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Number of results to return per page.
+        - description: Number of results to return per page. Default is 200.
           example: 200
           explode: true
           in: query
@@ -80,6 +80,7 @@ paths:
           required: false
           schema:
             type: integer
+            maximum: 1000
           style: form
       responses:
         "200":
@@ -92,6 +93,518 @@ paths:
         - BearerAuth: []
       tags:
         - events
+  /groups:
+    get:
+      description: Returns a list of groups for your organization.
+      operationId: getGroups
+      parameters:
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page. Default is 200.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+            maximum: 1000
+          style: form
+        - description: The group function to filter by.
+          example: REGULAR
+          explode: true
+          in: query
+          name: group_function_filter
+          required: false
+          schema:
+            $ref: "#/components/schemas/GroupFunctionEnum"
+          style: form
+        - description: The group type to filter by.
+          example: OPAL_GROUP
+          explode: true
+          in: query
+          name: group_type_filter
+          required: false
+          schema:
+            $ref: "#/components/schemas/GroupTypeEnum"
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedGroupsList"
+          description: One page worth groups associated with your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+    put:
+      description: Bulk updates a list of groups.
+      operationId: updateGroups
+      requestBody:
+        description: Groups to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupInfoList'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateGroupInfoList"
+          description: The resulting updated group infos.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /groups/{group_id}:
+    delete:
+      description: Deletes a group.
+      operationId: delete_group
+      parameters:
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The group was successfully deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /groups/{group_id}/convert:
+    put:
+      description: Updates a groups function.
+      operationId: convert_group
+      parameters:
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The group function to convert to.
+          example: TEAM
+          explode: false
+          in: query
+          name: group_function
+          required: true
+          schema:
+            $ref: "#/components/schemas/GroupFunctionEnum"
+          style: form
+        - description: The ID of the owning team of the group. Required when converting from Team to Group.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          explode: false
+          in: query
+          name: owner_team_id
+          required: false
+          schema:
+            format: uuid
+            type: string
+          style: form      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewAdminIDList" 
+      responses:
+        "200":
+          description: The converted group.
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Group"
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /groups/{group_id}/message-channels:
+    get: 
+      description: Gets the list of message channels attached to a group.
+      operationId: get_group_message_channels
+      parameters:
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageChannelList"
+          description: The message channels attached to the group.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+    put:
+      description: Sets the list of message channels attached to a group.
+      operationId: set_group_message_channels
+      parameters:
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageChannelIDList"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+                  format: uuid
+                  type: string
+                type: array
+          description: The updated message channel IDs for the group.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /groups/{group_id}/reviewers:
+    get: 
+      description: Gets the list of team/user IDs of the reviewers for a group.
+      operationId: get_group_reviewers
+      parameters:
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+                  format: uuid
+                  type: string
+                type: array
+          description: The IDs of teams/users that are reviewers for this group.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+    put:
+      description: Sets the list of reviewers for a group.
+      operationId: set_group_reviewers
+      parameters:
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewerIDList"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+                  format: uuid
+                  type: string
+                type: array
+          description: The updated IDs of teams/users that are reviewers for this group
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /groups/{group_id}/tags:
+    get:
+      description: Returns all tags applied to the group.
+      operationId: get_group_tags
+      parameters:
+        - description: The ID of the group whose tags to return.
+          name: group_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/TagsList"
+          description: The tags applied to the group.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /resources:
+    get:
+      description: Returns a list of resources for your organization.
+      operationId: getResources
+      parameters:
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page. Default is 200.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+            maximum: 1000
+          style: form
+        - description: The resource type to filter by.
+          example: AWS_IAM_ROLE
+          explode: true
+          in: query
+          name: resource_type_filter
+          required: false
+          schema:
+            $ref: "#/components/schemas/ResourceTypeEnum"
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResourcesList"
+          description: One page worth resources associated with your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+    put:
+      description: Bulk updates a list of resources.
+      operationId: updateResources
+      requestBody:
+        description: Resources to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResourceInfoList'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResourceInfoList"
+          description: The resulting updated resource infos.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resources/{resource_id}:
+    delete:
+      description: Deletes a resource.
+      operationId: delete_resource
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The resource was successfully deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resources/{resource_id}/message-channels:
+    get: 
+      description: Gets the list of message channels attached to a resource.
+      operationId: get_resource_message_channels
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageChannelList"
+          description: The message channels attached to the resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+    put:
+      description: Sets the list of message channels attached to a resource.
+      operationId: set_resource_message_channels
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageChannelIDList"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+                  format: uuid
+                  type: string
+                type: array
+          description: The updated message channel IDs for the resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resources/{resource_id}/reviewers:
+    get: 
+      description: Gets the list of team/user IDs of the reviewers for a resource.
+      operationId: get_resource_reviewers
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+                  format: uuid
+                  type: string
+                type: array
+          description: The IDs of teams that are reviewers for this resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+    put:
+      description: Sets the list of reviewers for a resource.
+      operationId: set_resource_reviewers
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewerIDList"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+                  format: uuid
+                  type: string
+                type: array
+          description: The updated IDs of teams that are reviewers for this resource
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
   /resource-users:
     get:
       description: Returns a list of `ResourceUser` objects.
@@ -125,7 +638,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Number of results to return per page.
+        - description: Number of results to return per page. Default is 200.
           example: 200
           explode: true
           in: query
@@ -133,6 +646,7 @@ paths:
           required: false
           schema:
             type: integer
+            maximum: 1000
           style: form
       responses:
         "200":
@@ -188,7 +702,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Number of results to return per page.
+        - description: Number of results to return per page. Default is 200.
           example: 200
           explode: true
           in: query
@@ -196,6 +710,7 @@ paths:
           required: false
           schema:
             type: integer
+            maximum: 1000
           style: form
       responses:
         "200":
@@ -204,6 +719,32 @@ paths:
               schema:
                 $ref: "#/components/schemas/ResourceUserAccessStatus"
           description: The access status reflecting the user's access to the resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resources/{resource_id}/tags:
+    get:
+      description: Returns all tags applied to the resource.
+      operationId: get_resource_tags
+      parameters:
+        - description: The ID of the resource whose tags to return.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/TagsList"
+          description: The tags applied to the resource.
       security:
         - BearerAuth: []
       tags:
@@ -278,8 +819,308 @@ paths:
         - BearerAuth: []
       tags:
         - users
+  /users/{user_id}/tags:
+    get:
+      description: Returns all tags applied to the user.
+      operationId: get_user_tags
+      parameters:
+        - description: The ID of the user whose tags to return.
+          name: user_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/TagsList"
+          description: The tags applied to the user.
+      security:
+        - BearerAuth: []
+      tags:
+        - users
+  /tag:
+    get:
+      description: Gets a tag with the given key and value.
+      operationId: get_tag
+      parameters:
+        - description: The key of the tag to get.
+          example: api-scope
+          explode: false
+          in: query
+          name: tag_key
+          required: true
+          schema:
+            type: string
+          style: form
+        - description: The value of the tag to get.
+          example: production
+          explode: false
+          in: query
+          name: tag_value
+          required: true
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tag"
+          description: The tag requested.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+    post:
+      description: Creates a tag with the given key and value.
+      operationId: create_tag
+      parameters:
+        - description: The key of the tag to create.
+          example: api-scope
+          explode: false
+          in: query
+          name: tag_key
+          required: true
+          schema:
+            type: string
+          style: form
+        - description: The value of the tag to create.
+          example: production
+          explode: false
+          in: query
+          name: tag_value
+          required: true
+          schema:
+            type: string
+          style: form
+        - description: The ID of the team that owns the tag.
+          example: f92aa855-cea9-4814-b9d8-f2a60d3e4a06
+          explode: false
+          in: query
+          name: tag_owner_team_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tag"
+          description: The tag that was created.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+  /tags/{tag_id}/users/{user_id}:
+    post:
+      description: Applies a tag to a user.
+      operationId: add_user_tag
+      parameters:
+        - description: The ID of the tag to apply.
+          name: tag_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the user to apply the tag to.
+          name: user_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Tag applied to user successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+    delete:
+      description: Removes a tag from a user.
+      operationId: remove_user_tag
+      parameters:
+        - description: The ID of the tag to remove.
+          name: tag_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the user to remove the tag from.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          name: user_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Tag removed from user successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+  /tags/{tag_id}/groups/{group_id}:
+    post:
+      description: Applies a tag to a group.
+      operationId: add_group_tag
+      parameters:
+        - description: The ID of the tag to apply.
+          name: tag_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the group to apply the tag to.
+          name: group_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Tag applied to group successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+    delete:
+      description: Removes a tag from a group.
+      operationId: remove_group_tag
+      parameters:
+        - description: The ID of the tag to remove.
+          name: tag_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the group to remove the tag from.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Tag removed from group successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+  /tags/{tag_id}/resources/{resource_id}:
+    post:
+      description: Applies a tag to a resource.
+      operationId: add_resource_tag
+      parameters:
+        - description: The ID of the tag to apply.
+          name: tag_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the resource to apply the tag to.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Tag applied to resource successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+    delete:
+      description: Removes a tag from a resource.
+      operationId: remove_resource_tag
+      parameters:
+        - description: The ID of the tag to remove.
+          name: tag_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the resource to remove the tag from.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Tag removed from resource successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
 components:
   schemas:
+    EntityTypeEnum:
+      description: The type of an entity.
+      enum:
+        - GROUP
+        - RESOURCE
+        - USER
+      example: GROUP
+      type: string
     Event:
       description: |-
         # Event Object
@@ -646,6 +1487,628 @@ components:
         - team_id
         - position
       type: object
+    PaginatedGroupsList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+          - group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+            description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+            owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            visibility: Global
+            max_duration: 120
+            require_manager_approval: False
+            require_support_ticket: False
+          - group_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
+            description: Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.
+            owner_team_id: 4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3
+            visibility: Team
+            max_duration: 360
+            require_manager_approval: False
+            require_support_ticket: True
+      properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/Group"
+          type: array
+      type: object
+      required:
+        - results
+    Group:
+      description: |-
+        # Group Object
+        ### Description
+        The `Group` object is used to represent a group.
+
+        ### Usage Example
+        Update from the `UPDATE Groups` endpoint.
+      example:
+        group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+        description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+        owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        visibility: Global
+        max_duration: 120
+        require_manager_approval: False
+        require_support_ticket: False
+      properties:
+        group_id:
+          description: The ID of the group.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        name:
+          description: The name of the group.
+          example: API Group
+          type: string
+        description:
+          description: A description of the group.
+          example: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+          type: string
+        owner_team_id:
+          description: The ID of the owning team of the group.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        group_function:
+          $ref: "#/components/schemas/GroupFunctionEnum"
+        group_type:
+          $ref: "#/components/schemas/GroupTypeEnum"
+        visibility:
+          $ref: "#/components/schemas/VisibilityEnum"
+        max_duration:
+          description: The maximum duration access to the group can be requested for (in minutes).
+          type: integer
+          example: 120
+        require_manager_approval:
+          description: A bool representing whether or not access requests to the group require manager approval.
+          example: False
+          type: boolean
+        require_support_ticket:
+          description: A bool representing whether or not access requests to the group require a support ticket.
+          example: False
+          type: boolean
+        folder_id:
+          description: The ID of the folder that the group is located in.
+          example: e27cb7b0-98e2-4555-9916-9e6d8ca6b079
+          format: uuid
+          type: string
+      required:
+        - group_id
+      type: object
+    UpdateGroupInfoList:
+      example:
+        groups:
+          - group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+            description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+            name: api-group
+            owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            visibility: Global
+            max_duration: 120
+            require_manager_approval: False
+            require_support_ticket: False
+          - group_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
+            description: Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.
+            name: on-call-integrations
+            owner_team_id: 4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3
+            visibility: Team
+            max_duration: 360
+            require_manager_approval: False
+            require_support_ticket: True
+      properties:
+        groups:
+          description: A list of groups with information to update.
+          items:
+            $ref: "#/components/schemas/UpdateGroupInfo"
+          type: array
+      type: object
+      required:
+        - groups
+    UpdateGroupInfo:
+      description: |-
+        # UpdateGroupInfo Object
+        ### Description
+        The `UpdateGroupInfo` object is used as an input to the UpdateGroup API.
+      example:
+        group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+        description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+        name: api-group
+        owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        visibility: Global
+        max_duration: 120
+        require_manager_approval: False
+        require_support_ticket: False
+      properties:
+        group_id:
+          description: The ID of the group.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        name:
+          description: The name of the group.
+          example: api-group
+          type: string
+        description:
+          description: A description of the group.
+          example: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+          type: string
+        owner_team_id:
+          description: The ID of the owning team of the group. Use empty string to remove owner. Required when converting from Team to Group.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        visibility:
+          $ref: "#/components/schemas/VisibilityEnum"
+        max_duration:
+          description: The maximum duration access to the group can be requested for (in minutes). Use 0 to set to indefinite.
+          type: integer
+          example: 120
+        require_manager_approval:
+          description: A bool representing whether or not access requests to the group require manager approval.
+          example: False
+          type: boolean
+        require_support_ticket:
+          description: A bool representing whether or not access requests to the group require a support ticket.
+          example: False
+          type: boolean
+        folder_id:
+          description: The ID of the folder that the group is located in.
+          example: e27cb7b0-98e2-4555-9916-9e6d8ca6b079
+          format: uuid
+          type: string
+      required:
+        - group_id
+      type: object
+    GroupTypeEnum:
+      description: The type of the group.
+      enum:
+        - ACTIVE_DIRECTORY_GROUP
+        - DUO_GROUP
+        - GIT_HUB_TEAM
+        - GOOGLE_GROUPS_GROUP
+        - LDAP_GROUP
+        - OKTA_GROUP
+        - OPAL_GROUP
+      example: OPAL_GROUP
+      type: string
+    GroupFunctionEnum:
+      description: The function type of the group.
+      enum:
+        - REGULAR
+        - ON_CALL
+        - TEAM
+        - UNKNOWN
+      example: REGULAR
+      type: string
+    ResourceTypeEnum:
+      description: The type of the resource.
+      enum:
+        - AWS_IAM_ROLE
+        - AWS_EC2_INSTANCE
+        - AWS_EKS_CLUSTER
+        - AWS_RDS_POSTGRES_INSTANCE
+        - AWS_RDS_MYSQL_INSTANCE
+        - CUSTOM
+        - GCP_BUCKET
+        - GCP_COMPUTE_INSTANCE
+        - GCP_FOLDER
+        - GCP_GKE_CLUSTER
+        - GCP_PROJECT
+        - GCP_CLOUD_SQL_POSTGRES_INSTANCE
+        - GCP_CLOUD_SQL_MYSQL_INSTANCE
+        - GIT_HUB_REPO
+        - GOOGLE_WORKSPACE_ROLE
+        - MONGO_INSTANCE
+        - MONGO_ATLAS_INSTANCE
+        - OKTA_APP
+        - OKTA_ROLE
+        - OPAL_ROLE
+        - PAGERDUTY_ROLE
+        - SALESFORCE_PERMISSION_SET
+        - SALESFORCE_PROFILE
+        - SALESFORCE_ROLE
+        - WORKDAY_ROLE
+        - MYSQL_INSTANCE
+        - MARIADB_INSTANCE
+      example: AWS_IAM_ROLE
+      type: string
+    VisibilityEnum:
+      description: The visibility level of the entity.
+      enum:
+        - GLOBAL
+        - TEAM
+      example: GLOBAL
+      type: string
+    MessageChannelList:
+      example:
+        channels:
+          - message_channel_id: 7870617d-e72a-47f5-a84c-693817ab4567
+            third_party_provider: SLACK
+            remote_id: C03FJR97276
+            name: api-team-audit-channel
+            message_channel_type: AUDIT
+            is_private: False
+          - message_channel_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
+            third_party_provider: SLACK
+            remote_id: A4FJR97365D
+            name: api-team-monitor-channel
+            message_channel_type: MONITOR
+            is_private: False
+      properties:
+        channels:
+          items:
+            $ref: "#/components/schemas/MessageChannel"
+          type: array
+      type: object
+      required:
+        - channels
+    MessageChannelIDList:
+      description: A list of message channel IDs.
+      example:
+        message_channel_ids:
+          - 7870617d-e72a-47f5-a84c-693817ab4567
+          - 1520617d-e72a-47f5-a84c-693817ab48ad2
+      properties:
+        message_channel_ids:
+          items:
+            type: string
+            format: uuid
+          type: array
+      type: object
+      required:
+        - message_channel_ids
+    ReviewerIDList:
+      description: A list of reviewer IDs.
+      example:
+        reviewer_ids:
+          - 7870617d-e72a-47f5-a84c-693817ab4567
+          - 1520617d-e72a-47f5-a84c-693817ab48ad2
+      properties:
+        reviewer_ids:
+          items:
+            type: string
+            format: uuid
+          type: array
+      type: object
+      required:
+        - reviewer_ids
+    NewAdminIDList:
+      example:
+        admin_ids:
+          - 7870617d-e72a-47f5-a84c-693817ab4567
+          - 1520617d-e72a-47f5-a84c-693817ab48ad2
+      properties:
+        admin_ids:
+          description: The IDs of admins to set for the group if converting to a team. Required when converting from Group to Team.
+          items:
+            type: string
+            format: uuid
+          type: array
+      type: object
+    MessageChannel:
+      description: |-
+        # MessageChannel Object
+        ### Description
+        The `MessageChannel` object is used to represent a message channel.
+
+        ### Usage Example
+        Update a groups message channel from the `UPDATE Groups` endpoint.
+      example:
+        message_channel_id: 6670617d-e72a-47f5-a84c-693817ab4860
+        third_party_provider: SLACK
+        remote_id: C03FJR97276
+        name: api-team-audit-channel
+        message_channel_type: AUDIT
+        is_private: False
+      properties:
+        message_channel_id:
+          description: The ID of the message channel.
+          example: 6670617d-e72a-47f5-a84c-693817ab4860
+          format: uuid
+          type: string
+        third_party_provider:
+          $ref: "#/components/schemas/MessageChannelProviderEnum"
+        remote_id:
+          description: The remote ID of the message channel
+          example: C03FJR97276
+          type: string
+        name:
+          description: The name of the message channel.
+          example: api-team-audit-channel
+          type: string
+        message_channel_type:
+          $ref: "#/components/schemas/MessageChannelTypeEnum"
+        is_private:
+          description: A bool representing whether or not the message channel is private.
+          example: False
+          type: boolean
+      type: object
+      required:
+        - message_channel_id
+    MessageChannelTypeEnum:
+      description: The type of the message channel.
+      enum:
+        - AUDIT
+        - REVIEWER
+        - MONITOR
+      example: AUDIT
+      type: string
+    MessageChannelProviderEnum:
+      description: The third party provider of the message channel.
+      enum:
+        - SLACK
+      example: SLACK
+      type: string
+    PaginatedResourcesList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+          - resource_id: f454d283-ca67-4a8a-bdbb-df212eca5353
+            description: This resource represents AWS IAM role "SupportUser".
+            owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            visibility: Global
+            max_duration: 120
+            require_manager_approval: False
+            require_support_ticket: False
+          - resource_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
+            description: This resource represents GCP project "app-demo".
+            owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            visibility: Team
+            max_duration: 360
+            require_manager_approval: False
+            require_support_ticket: True
+      properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/Resource"
+          type: array
+      type: object
+      required:
+        - results
+    Resource:
+      description: |-
+        # Resource Object
+        ### Description
+        The `Resource` object is used to represent a resource.
+
+        ### Usage Example
+        Update from the `UPDATE Resources` endpoint.
+      example:
+        resource_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+        description: This resource represents AWS IAM role "SupportUser".
+        owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        visibility: Global
+        max_duration: 120
+        require_manager_approval: False
+        require_support_ticket: False
+      properties:
+        resource_id:
+          description: The ID of the resource.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        name:
+          description: The name of the resource.
+          example: mongo-db-prod
+          type: string
+        description:
+          description: A description of the resource.
+          example: This resource represents AWS IAM role "SupportUser".
+          type: string
+        owner_team_id:
+          description: The ID of the owning team of the resource.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        visibility:
+          $ref: "#/components/schemas/VisibilityEnum"
+        resource_type:
+          $ref: "#/components/schemas/ResourceTypeEnum"
+        max_duration:
+          description: The maximum duration access to the resource can be requested for (in minutes).
+          type: integer
+          example: 120
+        require_manager_approval:
+          description: A bool representing whether or not access requests to the resource require manager approval.
+          example: False
+          type: boolean
+        require_support_ticket:
+          description: A bool representing whether or not access requests to the resource require a support ticket.
+          example: False
+          type: boolean
+        folder_id:
+          description: The ID of the folder that the resource is located in.
+          example: e27cb7b0-98e2-4555-9916-9e6d8ca6b079
+          format: uuid
+          type: string
+      required:
+        - resource_id
+      type: object
+    UpdateResourceInfoList:
+      example:
+        resources:
+          - resource_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+            name: my-mongo-db
+            description: This resource represents AWS IAM role "SupportUser".
+            owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            visibility: Global
+            max_duration: 120
+            require_manager_approval: False
+            require_support_ticket: False
+          - resource_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
+            name: Admin Role
+            description: This resource represents GCP project "app-demo".
+            owner_team_id: 4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3
+            visibility: Team
+            max_duration: 360
+            require_manager_approval: False
+            require_support_ticket: True
+      properties:
+        resources:
+          description: A list of resources with information to update.
+          items:
+            $ref: "#/components/schemas/UpdateResourceInfo"
+          type: array
+      type: object
+      required:
+        - resources
+    UpdateResourceInfo:
+      description: |-
+        # UpdateResourceInfo Object
+        ### Description
+        The `UpdateResourceInfo` object is used as an input to the UpdateResource API.
+      example:
+        resource_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+        name: my-mongo-db
+        description: This resource represents AWS IAM role "SupportUser".
+        owner_team_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        visibility: Global
+        max_duration: 120
+        require_manager_approval: False
+        require_support_ticket: False
+      properties:
+        resource_id:
+          description: The ID of the resource.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        name:
+          description: The name of the resource.
+          example: my-mongo-db
+          type: string
+        description:
+          description: A description of the resource.
+          example: This resource represents AWS IAM role "SupportUser".
+          type: string
+        owner_team_id:
+          description: The ID of the owning team of the resource.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        visibility:
+          $ref: "#/components/schemas/VisibilityEnum"
+        max_duration:
+          description: The maximum duration access to the resource can be requested for (in minutes). Use 0 to set to indefinite.
+          type: integer
+          example: 120
+        require_manager_approval:
+          description: A bool representing whether or not access requests to the resource require manager approval.
+          example: False
+          type: boolean
+        require_support_ticket:
+          description: A bool representing whether or not access requests to the resource require a support ticket.
+          example: False
+          type: boolean
+        folder_id:
+          description: The ID of the folder that the resource is located in.
+          example: e27cb7b0-98e2-4555-9916-9e6d8ca6b079
+          format: uuid
+          type: string
+      required:
+        - resource_id
+      type: object
+    TagsList:
+      example:
+        results:
+          - tag_id: f290a738-5f9f-43c2-ad67-fa31ff0eb946
+            created_at: 2022-01-23T04:56:07Z
+            updated_at: 2022-02-23T01:34:07Z
+            user_creator_id: d4a7d928-783e-4599-8ec6-088d635a5bcc
+            owner_team_id: bfb518b1-3f5b-4e3b-8eb8-3b3fabd4ea2b
+            key: database-name
+            value: redis_db
+          - tag_id: 92f0a738-5f9f-43c2-ad67-fa31ff0eb052
+            created_at: 2022-03-23T04:56:07Z
+            updated_at: 2022-04-23T01:34:07Z
+            user_creator_id: a4d7d928-783e-4599-8ec6-088d635af4ac
+            owner_team_id: gtg418b1-3f5b-4e3b-8eb8-3b3fabd4eaa1
+            key: database-type
+            value: sql
+      properties:
+        tags:
+          items:
+            $ref: "#/components/schemas/Tag"
+          type: array
+      required:
+        - tags
+      type: object
+    Tag:
+      description: |-
+        # Tag Object
+        ### Description
+        The `Tag` object is used to represent a tag.
+
+        ### Usage Example
+        Get tags from the `GET Tag` endpoint.
+      example:
+        tag_id: f290a738-5f9f-43c2-ad67-fa31ff0eb946
+        created_at: 2022-01-23T04:56:07Z
+        updated_at: 2022-02-23T01:34:07Z
+        user_creator_id: d4a7d928-783e-4599-8ec6-088d635a5bcc
+        owner_team_id: bfb518b1-3f5b-4e3b-8eb8-3b3fabd4ea2b
+        key: database-name
+        value: redis_db
+      properties:
+        tag_id:
+          description: The ID of the tag.
+          example: f290a738-5f9f-43c2-ad67-fa31ff0eb946
+          format: uuid
+          type: string
+        created_at:
+          description: The date the tag was created.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          type: string
+        updated_at:
+          description: The date the tag was last updated.
+          example: 2022-02-23T01:34:07Z
+          format: date-time
+          type: string
+        user_creator_id:
+          description: The ID of the user that created the tag.
+          example: d4a7d928-783e-4599-8ec6-088d635a5bcc
+          format: uuid
+          type: string
+        owner_team_id:
+          description: The ID of the team that owns the tag.
+          example: bfb518b1-3f5b-4e3b-8eb8-3b3fabd4ea2b
+          format: uuid
+          type: string
+        key:
+          description: The key of the tag.
+          example: database-name
+          type: string
+        value:
+          description: The value of the tag.
+          example: redis_db
+          type: string 
+      type: object
+      required:
+        - tag_id
   securitySchemes:
     BearerAuth:
       scheme: bearer
