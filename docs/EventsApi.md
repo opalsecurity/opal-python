@@ -50,7 +50,7 @@ with opal.ApiClient(configuration) as api_client:
     object_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An object filter for the events. Supply the ID of the object. (optional)
     event_type_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An event type filter for the events. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    page_size = 200 # int | Number of results to return per page. (optional)
+    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
  **object_filter** | **str**| An object filter for the events. Supply the ID of the object. | [optional]
  **event_type_filter** | **str**| An event type filter for the events. | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
- **page_size** | **int**| Number of results to return per page. | [optional]
+ **page_size** | **int**| Number of results to return per page. Default is 200. | [optional]
 
 ### Return type
 

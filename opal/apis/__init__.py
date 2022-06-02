@@ -15,6 +15,8 @@
 
 # Import APIs into API package:
 from opal.api.events_api import EventsApi
+from opal.api.groups_api import GroupsApi
 from opal.api.resources_api import ResourcesApi
 from opal.api.sessions_api import SessionsApi
+from opal.api.tags_api import TagsApi
 from opal.api.users_api import UsersApi

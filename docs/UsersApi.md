@@ -4,8 +4,85 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_user_tags**](UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
 [**user**](UsersApi.md#user) | **GET** /user | 
 
+
+# **get_user_tags**
+> TagsList get_user_tags(user_id)
+
+
+
+Returns all tags applied to the user.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import time
+import opal
+from opal.api import users_api
+from opal.model.tags_list import TagsList
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with opal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = users_api.UsersApi(api_client)
+    user_id = "1b978423-db0a-4037-a4cf-f79c60cb67b3" # str | The ID of the user whose tags to return.
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_user_tags(user_id)
+        pprint(api_response)
+    except opal.ApiException as e:
+        print("Exception when calling UsersApi->get_user_tags: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| The ID of the user whose tags to return. |
+
+### Return type
+
+[**TagsList**](TagsList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tags applied to the user. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user**
 > User user()

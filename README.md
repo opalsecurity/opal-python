@@ -10,7 +10,7 @@ For more information, please visit [https://www.opal.dev/](https://www.opal.dev/
 
 ## Requirements.
 
-Python >= 3.6
+Python >=3.6
 
 ## Installation & Usage
 ### pip install
@@ -79,7 +79,7 @@ actor_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An actor filter fo
 object_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An object filter for the events. Supply the ID of the object. (optional)
 event_type_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An event type filter for the events. (optional)
 cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-page_size = 200 # int | Number of results to return per page. (optional)
+page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
     try:
         api_response = api_instance.events(start_date_filter=start_date_filter, end_date_filter=end_date_filter, actor_filter=actor_filter, object_filter=object_filter, event_type_filter=event_type_filter, cursor=cursor, page_size=page_size)
@@ -95,25 +95,73 @@ All URIs are relative to *https://api.opal.dev/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *EventsApi* | [**events**](docs/EventsApi.md#events) | **GET** /events | 
+*GroupsApi* | [**convert_group**](docs/GroupsApi.md#convert_group) | **PUT** /groups/{group_id}/convert | 
+*GroupsApi* | [**delete_group**](docs/GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
+*GroupsApi* | [**get_group_message_channels**](docs/GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
+*GroupsApi* | [**get_group_reviewers**](docs/GroupsApi.md#get_group_reviewers) | **GET** /groups/{group_id}/reviewers | 
+*GroupsApi* | [**get_group_tags**](docs/GroupsApi.md#get_group_tags) | **GET** /groups/{group_id}/tags | 
+*GroupsApi* | [**get_groups**](docs/GroupsApi.md#get_groups) | **GET** /groups | 
+*GroupsApi* | [**set_group_message_channels**](docs/GroupsApi.md#set_group_message_channels) | **PUT** /groups/{group_id}/message-channels | 
+*GroupsApi* | [**set_group_reviewers**](docs/GroupsApi.md#set_group_reviewers) | **PUT** /groups/{group_id}/reviewers | 
+*GroupsApi* | [**update_groups**](docs/GroupsApi.md#update_groups) | **PUT** /groups | 
+*ResourcesApi* | [**delete_resource**](docs/ResourcesApi.md#delete_resource) | **DELETE** /resources/{resource_id} | 
+*ResourcesApi* | [**get_resource_message_channels**](docs/ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
+*ResourcesApi* | [**get_resource_reviewers**](docs/ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
+*ResourcesApi* | [**get_resource_tags**](docs/ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
+*ResourcesApi* | [**get_resources**](docs/ResourcesApi.md#get_resources) | **GET** /resources | 
 *ResourcesApi* | [**resource_user_access_status_retrieve**](docs/ResourcesApi.md#resource_user_access_status_retrieve) | **GET** /resource-user-access-status/{resource_id}/{user_id} | 
 *ResourcesApi* | [**resource_users**](docs/ResourcesApi.md#resource_users) | **GET** /resource-users | 
+*ResourcesApi* | [**set_resource_message_channels**](docs/ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
+*ResourcesApi* | [**set_resource_reviewers**](docs/ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
+*ResourcesApi* | [**update_resources**](docs/ResourcesApi.md#update_resources) | **PUT** /resources | 
 *SessionsApi* | [**sessions**](docs/SessionsApi.md#sessions) | **GET** /sessions | 
+*TagsApi* | [**add_group_tag**](docs/TagsApi.md#add_group_tag) | **POST** /tags/{tag_id}/groups/{group_id} | 
+*TagsApi* | [**add_resource_tag**](docs/TagsApi.md#add_resource_tag) | **POST** /tags/{tag_id}/resources/{resource_id} | 
+*TagsApi* | [**add_user_tag**](docs/TagsApi.md#add_user_tag) | **POST** /tags/{tag_id}/users/{user_id} | 
+*TagsApi* | [**create_tag**](docs/TagsApi.md#create_tag) | **POST** /tag | 
+*TagsApi* | [**get_tag**](docs/TagsApi.md#get_tag) | **GET** /tag | 
+*TagsApi* | [**remove_group_tag**](docs/TagsApi.md#remove_group_tag) | **DELETE** /tags/{tag_id}/groups/{group_id} | 
+*TagsApi* | [**remove_resource_tag**](docs/TagsApi.md#remove_resource_tag) | **DELETE** /tags/{tag_id}/resources/{resource_id} | 
+*TagsApi* | [**remove_user_tag**](docs/TagsApi.md#remove_user_tag) | **DELETE** /tags/{tag_id}/users/{user_id} | 
+*UsersApi* | [**get_user_tags**](docs/UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
 *UsersApi* | [**user**](docs/UsersApi.md#user) | **GET** /user | 
 
 
 ## Documentation For Models
 
+ - [EntityTypeEnum](docs/EntityTypeEnum.md)
  - [Event](docs/Event.md)
+ - [Group](docs/Group.md)
+ - [GroupFunctionEnum](docs/GroupFunctionEnum.md)
+ - [GroupTypeEnum](docs/GroupTypeEnum.md)
+ - [MessageChannel](docs/MessageChannel.md)
+ - [MessageChannelIDList](docs/MessageChannelIDList.md)
+ - [MessageChannelList](docs/MessageChannelList.md)
+ - [MessageChannelProviderEnum](docs/MessageChannelProviderEnum.md)
+ - [MessageChannelTypeEnum](docs/MessageChannelTypeEnum.md)
+ - [NewAdminIDList](docs/NewAdminIDList.md)
  - [PaginatedEventList](docs/PaginatedEventList.md)
+ - [PaginatedGroupsList](docs/PaginatedGroupsList.md)
  - [PaginatedResourceUserList](docs/PaginatedResourceUserList.md)
+ - [PaginatedResourcesList](docs/PaginatedResourcesList.md)
+ - [Resource](docs/Resource.md)
  - [ResourceAccessLevel](docs/ResourceAccessLevel.md)
+ - [ResourceTypeEnum](docs/ResourceTypeEnum.md)
  - [ResourceUser](docs/ResourceUser.md)
  - [ResourceUserAccessStatus](docs/ResourceUserAccessStatus.md)
  - [ResourceUserAccessStatusEnum](docs/ResourceUserAccessStatusEnum.md)
+ - [ReviewerIDList](docs/ReviewerIDList.md)
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
+ - [Tag](docs/Tag.md)
+ - [TagsList](docs/TagsList.md)
+ - [UpdateGroupInfo](docs/UpdateGroupInfo.md)
+ - [UpdateGroupInfoList](docs/UpdateGroupInfoList.md)
+ - [UpdateResourceInfo](docs/UpdateResourceInfo.md)
+ - [UpdateResourceInfoList](docs/UpdateResourceInfoList.md)
  - [User](docs/User.md)
  - [UsersList](docs/UsersList.md)
+ - [VisibilityEnum](docs/VisibilityEnum.md)
 
 
 ## Documentation For Authorization
