@@ -1,0 +1,33 @@
+# ResourceRemoteInfoAwsRdsInstance
+
+Remote info for AWS RDS instance.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**instance_id** | **str** | The instanceId of the RDS instance. | 
+**region** | **str** | The region of the RDS instance. | 
+**resource_id** | **str** | The resourceId of the RDS instance. | 
+**account_id** | **str** | The id of the AWS account. Required for AWS Organizations. | [optional] 
+
+## Example
+
+```python
+from opal.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ResourceRemoteInfoAwsRdsInstance from a JSON string
+resource_remote_info_aws_rds_instance_instance = ResourceRemoteInfoAwsRdsInstance.from_json(json)
+# print the JSON string representation of the object
+print(ResourceRemoteInfoAwsRdsInstance.to_json())
+
+# convert the object into a dict
+resource_remote_info_aws_rds_instance_dict = resource_remote_info_aws_rds_instance_instance.to_dict()
+# create an instance of ResourceRemoteInfoAwsRdsInstance from a dict
+resource_remote_info_aws_rds_instance_form_dict = resource_remote_info_aws_rds_instance.from_dict(resource_remote_info_aws_rds_instance_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

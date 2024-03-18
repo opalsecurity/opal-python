@@ -1,6 +1,7 @@
-SHELL := /bin/bash
+SHELL:=/bin/bash
+PYTHON_POST_PROCESS_FILE=python -m black
 
-OPENAPI_GEN=openapi-generator generate -i api/openapi.yaml -g python -o . -c config.json
+OPENAPI_GEN=openapi-generator generate --enable-post-process-file -i api/openapi.yaml -g python -o . -c config.json -t .openapi-generator/templates
 
 gen-openapi:
 	$(OPENAPI_GEN)

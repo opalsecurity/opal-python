@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **sessions**
-> SessionsList sessions(resource_id)
+> SessionsList sessions(resource_id, user_id=user_id)
 
 
 
@@ -19,11 +19,11 @@ Returns a list of `Session` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import time
 import opal
-from opal.api import sessions_api
-from opal.model.sessions_list import SessionsList
+from opal.models.sessions_list import SessionsList
+from opal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = opal.Configuration(
@@ -37,39 +37,33 @@ configuration = opal.Configuration(
 
 # Configure Bearer authorization: BearerAuth
 configuration = opal.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with opal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = sessions_api.SessionsApi(api_client)
-    resource_id = "1b978423-db0a-4037-a4cf-f79c60cb67b3" # str | The ID of the resource.
-    user_id = "32acc112-21ff-4669-91c2-21e27683eaa1" # str | The ID of the user you wish to query sessions for. (optional)
+    api_instance = opal.SessionsApi(api_client)
+    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource.
+    user_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the user you wish to query sessions for. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.sessions(resource_id)
-        pprint(api_response)
-    except opal.ApiException as e:
-        print("Exception when calling SessionsApi->sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.sessions(resource_id, user_id=user_id)
+        print("The response of SessionsApi->sessions:\n")
         pprint(api_response)
-    except opal.ApiException as e:
+    except Exception as e:
         print("Exception when calling SessionsApi->sessions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. |
- **user_id** | **str**| The ID of the user you wish to query sessions for. | [optional]
+ **resource_id** | **str**| The ID of the resource. | 
+ **user_id** | **str**| The ID of the user you wish to query sessions for. | [optional] 
 
 ### Return type
 
@@ -83,7 +77,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
