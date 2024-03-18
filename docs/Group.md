@@ -3,21 +3,50 @@
 # Group Object ### Description The `Group` object is used to represent a group.  ### Usage Example Update from the `UPDATE Groups` endpoint.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group_id** | **str** | The ID of the group. | 
+**app_id** | **str** | The ID of the group&#39;s app. | [optional] 
 **name** | **str** | The name of the group. | [optional] 
 **description** | **str** | A description of the group. | [optional] 
-**owner_team_id** | **str** | The ID of the owning team of the group. | [optional] 
-**group_function** | [**GroupFunctionEnum**](GroupFunctionEnum.md) |  | [optional] 
+**admin_owner_id** | **str** | The ID of the owner of the group. | [optional] 
+**remote_id** | **str** | The ID of the remote. | [optional] 
+**remote_name** | **str** | The name of the remote. | [optional] 
 **group_type** | [**GroupTypeEnum**](GroupTypeEnum.md) |  | [optional] 
-**visibility** | [**VisibilityEnum**](VisibilityEnum.md) |  | [optional] 
-**max_duration** | **int** | The maximum duration access to the group can be requested for (in minutes). | [optional] 
+**max_duration** | **int** | The maximum duration for which the group can be requested (in minutes). | [optional] 
+**recommended_duration** | **int** | The recommended duration for which the group should be requested (in minutes). -1 represents an indefinite duration. | [optional] 
 **require_manager_approval** | **bool** | A bool representing whether or not access requests to the group require manager approval. | [optional] 
-**require_support_ticket** | **bool** | A bool representing whether or not access requests to the group require a support ticket. | [optional] 
-**folder_id** | **str** | The ID of the folder that the group is located in. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**require_support_ticket** | **bool** | A bool representing whether or not access requests to the group require an access ticket. | [optional] 
+**require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this group. | [optional] 
+**require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this group. | [optional] 
+**auto_approval** | **bool** | A bool representing whether or not to automatically approve requests to this group. | [optional] 
+**request_template_id** | **str** | The ID of the associated request template. | [optional] 
+**configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
+**group_binding_id** | **str** | The ID of the associated group binding. | [optional] 
+**is_requestable** | **bool** | A bool representing whether or not to allow access requests to this group. | [optional] 
+**request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of request configurations for this group. | [optional] 
+**request_configuration_list** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of request configurations for this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
+**metadata** | **str** | JSON metadata about the remote group. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details. | [optional] 
+**remote_info** | [**GroupRemoteInfo**](GroupRemoteInfo.md) |  | [optional] 
 
+## Example
+
+```python
+from opal.models.group import Group
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of Group from a JSON string
+group_instance = Group.from_json(json)
+# print the JSON string representation of the object
+print Group.to_json()
+
+# convert the object into a dict
+group_dict = group_instance.to_dict()
+# create an instance of Group from a dict
+group_form_dict = group.from_dict(group_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

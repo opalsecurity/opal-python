@@ -2,13 +2,30 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**results** | [**[Group]**](Group.md) |  | 
-**next** | **str, none_type** | The cursor with which to continue pagination if additional result pages exist. | [optional] 
-**previous** | **str, none_type** | The cursor used to obtain the current result page. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**next** | **str** | The cursor with which to continue pagination if additional result pages exist. | [optional] 
+**previous** | **str** | The cursor used to obtain the current result page. | [optional] 
+**results** | [**List[Group]**](Group.md) |  | 
 
+## Example
+
+```python
+from opal.models.paginated_groups_list import PaginatedGroupsList
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PaginatedGroupsList from a JSON string
+paginated_groups_list_instance = PaginatedGroupsList.from_json(json)
+# print the JSON string representation of the object
+print PaginatedGroupsList.to_json()
+
+# convert the object into a dict
+paginated_groups_list_dict = paginated_groups_list_instance.to_dict()
+# create an instance of PaginatedGroupsList from a dict
+paginated_groups_list_form_dict = paginated_groups_list.from_dict(paginated_groups_list_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -10,7 +10,7 @@ For more information, please visit [https://www.opal.dev/](https://www.opal.dev/
 
 ## Requirements.
 
-Python >=3.6
+Python 3.7+
 
 ## Installation & Usage
 ### pip install
@@ -18,9 +18,9 @@ Python >=3.6
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/opalsecurity/opal-python.git
+pip install git+https://github.com/opalsecurity/opal-go.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/opalsecurity/opal-pythong.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/opalsecurity/opal-go.git`)
 
 Then import the package:
 ```python
@@ -41,17 +41,20 @@ Then import the package:
 import opal
 ```
 
+### Tests
+
+Execute `pytest` to run the tests.
+
 ## Getting Started
 
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
 
-import time
 import opal
+from opal.rest import ApiException
 from pprint import pprint
-from opal.api import events_api
-from opal.model.paginated_event_list import PaginatedEventList
+
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = opal.Configuration(
@@ -65,27 +68,23 @@ configuration = opal.Configuration(
 
 # Configure Bearer authorization: BearerAuth
 configuration = opal.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 
 # Enter a context with an instance of the API client
 with opal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    start_date_filter = "2021/11/01" # str | A start date filter for the events. (optional)
-end_date_filter = "2021-11-12" # str | An end date filter for the events. (optional)
-actor_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An actor filter for the events. Supply the ID of the actor. (optional)
-object_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An object filter for the events. Supply the ID of the object. (optional)
-event_type_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An event type filter for the events. (optional)
-cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
+    api_instance = opal.AppsApi(api_client)
+    app_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the app.
 
     try:
-        api_response = api_instance.events(start_date_filter=start_date_filter, end_date_filter=end_date_filter, actor_filter=actor_filter, object_filter=object_filter, event_type_filter=event_type_filter, cursor=cursor, page_size=page_size)
+        api_response = api_instance.get_app(app_id)
+        print("The response of AppsApi->get_app:\n")
         pprint(api_response)
-    except opal.ApiException as e:
-        print("Exception when calling EventsApi->events: %s\n" % e)
+    except ApiException as e:
+        print("Exception when calling AppsApi->get_app: %s\n" % e)
+
 ```
 
 ## Documentation for API Endpoints
@@ -94,25 +93,71 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /apps/{app_id} | 
+*AppsApi* | [**get_apps**](docs/AppsApi.md#get_apps) | **GET** /apps | 
+*ConfigurationTemplatesApi* | [**create_configuration_template**](docs/ConfigurationTemplatesApi.md#create_configuration_template) | **POST** /configuration-templates | 
+*ConfigurationTemplatesApi* | [**get_configuration_templates**](docs/ConfigurationTemplatesApi.md#get_configuration_templates) | **GET** /configuration-templates | 
+*ConfigurationTemplatesApi* | [**update_configuration_template**](docs/ConfigurationTemplatesApi.md#update_configuration_template) | **PUT** /configuration-templates | 
 *EventsApi* | [**events**](docs/EventsApi.md#events) | **GET** /events | 
-*GroupsApi* | [**convert_group**](docs/GroupsApi.md#convert_group) | **PUT** /groups/{group_id}/convert | 
+*GroupBindingsApi* | [**create_group_binding**](docs/GroupBindingsApi.md#create_group_binding) | **POST** /group-bindings | 
+*GroupBindingsApi* | [**delete_group_binding**](docs/GroupBindingsApi.md#delete_group_binding) | **DELETE** /group-bindings/{group_binding_id} | 
+*GroupBindingsApi* | [**get_group_binding**](docs/GroupBindingsApi.md#get_group_binding) | **GET** /group-bindings/{group_binding_id} | 
+*GroupBindingsApi* | [**get_group_bindings**](docs/GroupBindingsApi.md#get_group_bindings) | **GET** /group-bindings | 
+*GroupBindingsApi* | [**update_group_bindings**](docs/GroupBindingsApi.md#update_group_bindings) | **PUT** /group-bindings | 
+*GroupsApi* | [**add_group_resource**](docs/GroupsApi.md#add_group_resource) | **POST** /groups/{group_id}/resources/{resource_id} | 
+*GroupsApi* | [**add_group_user**](docs/GroupsApi.md#add_group_user) | **POST** /groups/{group_id}/users/{user_id} | 
+*GroupsApi* | [**create_group**](docs/GroupsApi.md#create_group) | **POST** /groups | 
 *GroupsApi* | [**delete_group**](docs/GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
+*GroupsApi* | [**delete_group_user**](docs/GroupsApi.md#delete_group_user) | **DELETE** /groups/{group_id}/users/{user_id} | 
+*GroupsApi* | [**get_group**](docs/GroupsApi.md#get_group) | **GET** /groups/{group_id} | 
 *GroupsApi* | [**get_group_message_channels**](docs/GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
+*GroupsApi* | [**get_group_on_call_schedules**](docs/GroupsApi.md#get_group_on_call_schedules) | **GET** /groups/{group_id}/on-call-schedules | 
+*GroupsApi* | [**get_group_resources**](docs/GroupsApi.md#get_group_resources) | **GET** /groups/{group_id}/resources | 
+*GroupsApi* | [**get_group_reviewer_stages**](docs/GroupsApi.md#get_group_reviewer_stages) | **GET** /groups/{group_id}/reviewer-stages | 
 *GroupsApi* | [**get_group_reviewers**](docs/GroupsApi.md#get_group_reviewers) | **GET** /groups/{group_id}/reviewers | 
 *GroupsApi* | [**get_group_tags**](docs/GroupsApi.md#get_group_tags) | **GET** /groups/{group_id}/tags | 
+*GroupsApi* | [**get_group_users**](docs/GroupsApi.md#get_group_users) | **GET** /groups/{group_id}/users | 
+*GroupsApi* | [**get_group_visibility**](docs/GroupsApi.md#get_group_visibility) | **GET** /groups/{group_id}/visibility | 
 *GroupsApi* | [**get_groups**](docs/GroupsApi.md#get_groups) | **GET** /groups | 
 *GroupsApi* | [**set_group_message_channels**](docs/GroupsApi.md#set_group_message_channels) | **PUT** /groups/{group_id}/message-channels | 
+*GroupsApi* | [**set_group_on_call_schedules**](docs/GroupsApi.md#set_group_on_call_schedules) | **PUT** /groups/{group_id}/on-call-schedules | 
+*GroupsApi* | [**set_group_resources**](docs/GroupsApi.md#set_group_resources) | **PUT** /groups/{group_id}/resources | 
+*GroupsApi* | [**set_group_reviewer_stages**](docs/GroupsApi.md#set_group_reviewer_stages) | **PUT** /groups/{group_id}/reviewer-stages | 
 *GroupsApi* | [**set_group_reviewers**](docs/GroupsApi.md#set_group_reviewers) | **PUT** /groups/{group_id}/reviewers | 
+*GroupsApi* | [**set_group_visibility**](docs/GroupsApi.md#set_group_visibility) | **PUT** /groups/{group_id}/visibility | 
 *GroupsApi* | [**update_groups**](docs/GroupsApi.md#update_groups) | **PUT** /groups | 
+*MessageChannelsApi* | [**create_message_channel**](docs/MessageChannelsApi.md#create_message_channel) | **POST** /message-channels | 
+*MessageChannelsApi* | [**get_message_channel**](docs/MessageChannelsApi.md#get_message_channel) | **GET** /message-channels/{message_channel_id} | 
+*MessageChannelsApi* | [**get_message_channels**](docs/MessageChannelsApi.md#get_message_channels) | **GET** /message-channels | 
+*OnCallSchedulesApi* | [**create_on_call_schedule**](docs/OnCallSchedulesApi.md#create_on_call_schedule) | **POST** /on-call-schedules | 
+*OnCallSchedulesApi* | [**get_on_call_schedule**](docs/OnCallSchedulesApi.md#get_on_call_schedule) | **GET** /on-call-schedules/{on_call_schedule_id} | 
+*OnCallSchedulesApi* | [**get_on_call_schedules**](docs/OnCallSchedulesApi.md#get_on_call_schedules) | **GET** /on-call-schedules | 
+*OwnersApi* | [**create_owner**](docs/OwnersApi.md#create_owner) | **POST** /owners | 
+*OwnersApi* | [**delete_owner**](docs/OwnersApi.md#delete_owner) | **DELETE** /owners/{owner_id} | 
+*OwnersApi* | [**get_owner**](docs/OwnersApi.md#get_owner) | **GET** /owners/{owner_id} | 
+*OwnersApi* | [**get_owner_from_name**](docs/OwnersApi.md#get_owner_from_name) | **GET** /owners/name/{owner_name} | 
+*OwnersApi* | [**get_owner_users**](docs/OwnersApi.md#get_owner_users) | **GET** /owners/{owner_id}/users | 
+*OwnersApi* | [**get_owners**](docs/OwnersApi.md#get_owners) | **GET** /owners | 
+*OwnersApi* | [**set_owner_users**](docs/OwnersApi.md#set_owner_users) | **PUT** /owners/{owner_id}/users | 
+*OwnersApi* | [**update_owners**](docs/OwnersApi.md#update_owners) | **PUT** /owners | 
+*RequestsApi* | [**get_requests**](docs/RequestsApi.md#get_requests) | **GET** /requests | 
+*ResourcesApi* | [**add_resource_user**](docs/ResourcesApi.md#add_resource_user) | **POST** /resources/{resource_id}/users/{user_id} | 
+*ResourcesApi* | [**create_resource**](docs/ResourcesApi.md#create_resource) | **POST** /resources | 
 *ResourcesApi* | [**delete_resource**](docs/ResourcesApi.md#delete_resource) | **DELETE** /resources/{resource_id} | 
+*ResourcesApi* | [**delete_resource_user**](docs/ResourcesApi.md#delete_resource_user) | **DELETE** /resources/{resource_id}/users/{user_id} | 
+*ResourcesApi* | [**get_resource**](docs/ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | 
 *ResourcesApi* | [**get_resource_message_channels**](docs/ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
+*ResourcesApi* | [**get_resource_reviewer_stages**](docs/ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 *ResourcesApi* | [**get_resource_reviewers**](docs/ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
 *ResourcesApi* | [**get_resource_tags**](docs/ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
+*ResourcesApi* | [**get_resource_users**](docs/ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
+*ResourcesApi* | [**get_resource_visibility**](docs/ResourcesApi.md#get_resource_visibility) | **GET** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**get_resources**](docs/ResourcesApi.md#get_resources) | **GET** /resources | 
 *ResourcesApi* | [**resource_user_access_status_retrieve**](docs/ResourcesApi.md#resource_user_access_status_retrieve) | **GET** /resource-user-access-status/{resource_id}/{user_id} | 
-*ResourcesApi* | [**resource_users**](docs/ResourcesApi.md#resource_users) | **GET** /resource-users | 
 *ResourcesApi* | [**set_resource_message_channels**](docs/ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
+*ResourcesApi* | [**set_resource_reviewer_stages**](docs/ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
 *ResourcesApi* | [**set_resource_reviewers**](docs/ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
+*ResourcesApi* | [**set_resource_visibility**](docs/ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**update_resources**](docs/ResourcesApi.md#update_resources) | **PUT** /resources | 
 *SessionsApi* | [**sessions**](docs/SessionsApi.md#sessions) | **GET** /sessions | 
 *TagsApi* | [**add_group_tag**](docs/TagsApi.md#add_group_tag) | **POST** /tags/{tag_id}/groups/{group_id} | 
@@ -120,54 +165,160 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**add_user_tag**](docs/TagsApi.md#add_user_tag) | **POST** /tags/{tag_id}/users/{user_id} | 
 *TagsApi* | [**create_tag**](docs/TagsApi.md#create_tag) | **POST** /tag | 
 *TagsApi* | [**get_tag**](docs/TagsApi.md#get_tag) | **GET** /tag | 
+*TagsApi* | [**get_tags**](docs/TagsApi.md#get_tags) | **GET** /tags | 
 *TagsApi* | [**remove_group_tag**](docs/TagsApi.md#remove_group_tag) | **DELETE** /tags/{tag_id}/groups/{group_id} | 
 *TagsApi* | [**remove_resource_tag**](docs/TagsApi.md#remove_resource_tag) | **DELETE** /tags/{tag_id}/resources/{resource_id} | 
 *TagsApi* | [**remove_user_tag**](docs/TagsApi.md#remove_user_tag) | **DELETE** /tags/{tag_id}/users/{user_id} | 
+*UarsApi* | [**create_uar**](docs/UarsApi.md#create_uar) | **POST** /uar | 
+*UarsApi* | [**get_uar**](docs/UarsApi.md#get_uar) | **GET** /uar/{uar_id} | 
+*UarsApi* | [**get_uars**](docs/UarsApi.md#get_uars) | **GET** /uars | 
 *UsersApi* | [**get_user_tags**](docs/UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
+*UsersApi* | [**get_users**](docs/UsersApi.md#get_users) | **GET** /users | 
 *UsersApi* | [**user**](docs/UsersApi.md#user) | **GET** /user | 
 
 
 ## Documentation For Models
 
+ - [AddGroupResourceRequest](docs/AddGroupResourceRequest.md)
+ - [AddGroupUserRequest](docs/AddGroupUserRequest.md)
+ - [AddResourceUserRequest](docs/AddResourceUserRequest.md)
+ - [App](docs/App.md)
+ - [AppTypeEnum](docs/AppTypeEnum.md)
+ - [AppsList](docs/AppsList.md)
+ - [AwsPermissionSetMetadata](docs/AwsPermissionSetMetadata.md)
+ - [AwsPermissionSetMetadataAwsPermissionSet](docs/AwsPermissionSetMetadataAwsPermissionSet.md)
+ - [Condition](docs/Condition.md)
+ - [ConfigurationTemplate](docs/ConfigurationTemplate.md)
+ - [CreateConfigurationTemplateInfo](docs/CreateConfigurationTemplateInfo.md)
+ - [CreateGroupBindingInfo](docs/CreateGroupBindingInfo.md)
+ - [CreateGroupBindingInfoGroupsInner](docs/CreateGroupBindingInfoGroupsInner.md)
+ - [CreateGroupInfo](docs/CreateGroupInfo.md)
+ - [CreateMessageChannelInfo](docs/CreateMessageChannelInfo.md)
+ - [CreateOnCallScheduleInfo](docs/CreateOnCallScheduleInfo.md)
+ - [CreateOwnerInfo](docs/CreateOwnerInfo.md)
+ - [CreateRequestConfigurationInfoList](docs/CreateRequestConfigurationInfoList.md)
+ - [CreateResourceInfo](docs/CreateResourceInfo.md)
+ - [CreateTagInfo](docs/CreateTagInfo.md)
+ - [CreateUARInfo](docs/CreateUARInfo.md)
  - [EntityTypeEnum](docs/EntityTypeEnum.md)
  - [Event](docs/Event.md)
  - [Group](docs/Group.md)
- - [GroupFunctionEnum](docs/GroupFunctionEnum.md)
+ - [GroupAccessLevel](docs/GroupAccessLevel.md)
+ - [GroupBinding](docs/GroupBinding.md)
+ - [GroupBindingGroup](docs/GroupBindingGroup.md)
+ - [GroupRemoteInfo](docs/GroupRemoteInfo.md)
+ - [GroupRemoteInfoActiveDirectoryGroup](docs/GroupRemoteInfoActiveDirectoryGroup.md)
+ - [GroupRemoteInfoAzureAdMicrosoft365Group](docs/GroupRemoteInfoAzureAdMicrosoft365Group.md)
+ - [GroupRemoteInfoAzureAdSecurityGroup](docs/GroupRemoteInfoAzureAdSecurityGroup.md)
+ - [GroupRemoteInfoDuoGroup](docs/GroupRemoteInfoDuoGroup.md)
+ - [GroupRemoteInfoGithubTeam](docs/GroupRemoteInfoGithubTeam.md)
+ - [GroupRemoteInfoGitlabGroup](docs/GroupRemoteInfoGitlabGroup.md)
+ - [GroupRemoteInfoGoogleGroup](docs/GroupRemoteInfoGoogleGroup.md)
+ - [GroupRemoteInfoLdapGroup](docs/GroupRemoteInfoLdapGroup.md)
+ - [GroupRemoteInfoOktaGroup](docs/GroupRemoteInfoOktaGroup.md)
+ - [GroupResource](docs/GroupResource.md)
+ - [GroupResourceList](docs/GroupResourceList.md)
  - [GroupTypeEnum](docs/GroupTypeEnum.md)
+ - [GroupUser](docs/GroupUser.md)
+ - [GroupUserList](docs/GroupUserList.md)
  - [MessageChannel](docs/MessageChannel.md)
  - [MessageChannelIDList](docs/MessageChannelIDList.md)
  - [MessageChannelList](docs/MessageChannelList.md)
  - [MessageChannelProviderEnum](docs/MessageChannelProviderEnum.md)
- - [MessageChannelTypeEnum](docs/MessageChannelTypeEnum.md)
- - [NewAdminIDList](docs/NewAdminIDList.md)
+ - [OnCallSchedule](docs/OnCallSchedule.md)
+ - [OnCallScheduleIDList](docs/OnCallScheduleIDList.md)
+ - [OnCallScheduleList](docs/OnCallScheduleList.md)
+ - [OnCallScheduleProviderEnum](docs/OnCallScheduleProviderEnum.md)
+ - [Owner](docs/Owner.md)
+ - [PaginatedConfigurationTemplateList](docs/PaginatedConfigurationTemplateList.md)
  - [PaginatedEventList](docs/PaginatedEventList.md)
+ - [PaginatedGroupBindingsList](docs/PaginatedGroupBindingsList.md)
  - [PaginatedGroupsList](docs/PaginatedGroupsList.md)
- - [PaginatedResourceUserList](docs/PaginatedResourceUserList.md)
+ - [PaginatedOwnersList](docs/PaginatedOwnersList.md)
  - [PaginatedResourcesList](docs/PaginatedResourcesList.md)
+ - [PaginatedTagsList](docs/PaginatedTagsList.md)
+ - [PaginatedUARsList](docs/PaginatedUARsList.md)
+ - [PaginatedUsersList](docs/PaginatedUsersList.md)
+ - [Request](docs/Request.md)
+ - [RequestConfiguration](docs/RequestConfiguration.md)
+ - [RequestCustomFieldResponse](docs/RequestCustomFieldResponse.md)
+ - [RequestCustomFieldResponseFieldValue](docs/RequestCustomFieldResponseFieldValue.md)
+ - [RequestList](docs/RequestList.md)
+ - [RequestStatusEnum](docs/RequestStatusEnum.md)
+ - [RequestTemplateCustomFieldTypeEnum](docs/RequestTemplateCustomFieldTypeEnum.md)
+ - [RequestedItem](docs/RequestedItem.md)
  - [Resource](docs/Resource.md)
  - [ResourceAccessLevel](docs/ResourceAccessLevel.md)
+ - [ResourceAccessUser](docs/ResourceAccessUser.md)
+ - [ResourceAccessUserList](docs/ResourceAccessUserList.md)
+ - [ResourceRemoteInfo](docs/ResourceRemoteInfo.md)
+ - [ResourceRemoteInfoAwsAccount](docs/ResourceRemoteInfoAwsAccount.md)
+ - [ResourceRemoteInfoAwsEc2Instance](docs/ResourceRemoteInfoAwsEc2Instance.md)
+ - [ResourceRemoteInfoAwsEksCluster](docs/ResourceRemoteInfoAwsEksCluster.md)
+ - [ResourceRemoteInfoAwsIamRole](docs/ResourceRemoteInfoAwsIamRole.md)
+ - [ResourceRemoteInfoAwsPermissionSet](docs/ResourceRemoteInfoAwsPermissionSet.md)
+ - [ResourceRemoteInfoAwsRdsInstance](docs/ResourceRemoteInfoAwsRdsInstance.md)
+ - [ResourceRemoteInfoGcpBigQueryDataset](docs/ResourceRemoteInfoGcpBigQueryDataset.md)
+ - [ResourceRemoteInfoGcpBigQueryTable](docs/ResourceRemoteInfoGcpBigQueryTable.md)
+ - [ResourceRemoteInfoGcpBucket](docs/ResourceRemoteInfoGcpBucket.md)
+ - [ResourceRemoteInfoGcpComputeInstance](docs/ResourceRemoteInfoGcpComputeInstance.md)
+ - [ResourceRemoteInfoGcpFolder](docs/ResourceRemoteInfoGcpFolder.md)
+ - [ResourceRemoteInfoGcpGkeCluster](docs/ResourceRemoteInfoGcpGkeCluster.md)
+ - [ResourceRemoteInfoGcpOrganization](docs/ResourceRemoteInfoGcpOrganization.md)
+ - [ResourceRemoteInfoGcpProject](docs/ResourceRemoteInfoGcpProject.md)
+ - [ResourceRemoteInfoGcpSqlInstance](docs/ResourceRemoteInfoGcpSqlInstance.md)
+ - [ResourceRemoteInfoGithubRepo](docs/ResourceRemoteInfoGithubRepo.md)
+ - [ResourceRemoteInfoGitlabProject](docs/ResourceRemoteInfoGitlabProject.md)
+ - [ResourceRemoteInfoOktaApp](docs/ResourceRemoteInfoOktaApp.md)
+ - [ResourceRemoteInfoOktaCustomRole](docs/ResourceRemoteInfoOktaCustomRole.md)
+ - [ResourceRemoteInfoOktaStandardRole](docs/ResourceRemoteInfoOktaStandardRole.md)
+ - [ResourceRemoteInfoPagerdutyRole](docs/ResourceRemoteInfoPagerdutyRole.md)
+ - [ResourceRemoteInfoSalesforcePermissionSet](docs/ResourceRemoteInfoSalesforcePermissionSet.md)
+ - [ResourceRemoteInfoSalesforceProfile](docs/ResourceRemoteInfoSalesforceProfile.md)
+ - [ResourceRemoteInfoSalesforceRole](docs/ResourceRemoteInfoSalesforceRole.md)
+ - [ResourceRemoteInfoTeleportRole](docs/ResourceRemoteInfoTeleportRole.md)
  - [ResourceTypeEnum](docs/ResourceTypeEnum.md)
  - [ResourceUser](docs/ResourceUser.md)
  - [ResourceUserAccessStatus](docs/ResourceUserAccessStatus.md)
  - [ResourceUserAccessStatusEnum](docs/ResourceUserAccessStatusEnum.md)
+ - [ResourceWithAccessLevel](docs/ResourceWithAccessLevel.md)
  - [ReviewerIDList](docs/ReviewerIDList.md)
+ - [ReviewerStage](docs/ReviewerStage.md)
+ - [ReviewerStageList](docs/ReviewerStageList.md)
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
+ - [SubEvent](docs/SubEvent.md)
  - [Tag](docs/Tag.md)
+ - [TagFilter](docs/TagFilter.md)
  - [TagsList](docs/TagsList.md)
+ - [UAR](docs/UAR.md)
+ - [UARReviewerAssignmentPolicyEnum](docs/UARReviewerAssignmentPolicyEnum.md)
+ - [UARScope](docs/UARScope.md)
+ - [UpdateConfigurationTemplateInfo](docs/UpdateConfigurationTemplateInfo.md)
+ - [UpdateGroupBindingInfo](docs/UpdateGroupBindingInfo.md)
+ - [UpdateGroupBindingInfoList](docs/UpdateGroupBindingInfoList.md)
  - [UpdateGroupInfo](docs/UpdateGroupInfo.md)
  - [UpdateGroupInfoList](docs/UpdateGroupInfoList.md)
+ - [UpdateGroupResourcesInfo](docs/UpdateGroupResourcesInfo.md)
+ - [UpdateOwnerInfo](docs/UpdateOwnerInfo.md)
+ - [UpdateOwnerInfoList](docs/UpdateOwnerInfoList.md)
  - [UpdateResourceInfo](docs/UpdateResourceInfo.md)
  - [UpdateResourceInfoList](docs/UpdateResourceInfoList.md)
  - [User](docs/User.md)
- - [UsersList](docs/UsersList.md)
- - [VisibilityEnum](docs/VisibilityEnum.md)
+ - [UserHrIdpStatusEnum](docs/UserHrIdpStatusEnum.md)
+ - [UserIDList](docs/UserIDList.md)
+ - [UserList](docs/UserList.md)
+ - [VisibilityInfo](docs/VisibilityInfo.md)
+ - [VisibilityTypeEnum](docs/VisibilityTypeEnum.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation For Authorization
 
 
-## BearerAuth
+Authentication schemes defined for the API:
+<a id="BearerAuth"></a>
+### BearerAuth
 
 - **Type**: Bearer authentication
 
@@ -176,23 +327,4 @@ Class | Method | HTTP request | Description
 
 hello@opal.dev
 
-
-## Notes for Large OpenAPI documents
-If the OpenAPI document is large, imports in opal.apis and opal.models may fail with a
-RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
-
-Solution 1:
-Use specific imports for apis and models like:
-- `from opal.api.default_api import DefaultApi`
-- `from opal.model.pet import Pet`
-
-Solution 2:
-Before importing the package, adjust the maximum recursion limit as shown below:
-```
-import sys
-sys.setrecursionlimit(1500)
-import opal
-from opal.apis import *
-from opal.models import *
-```
 

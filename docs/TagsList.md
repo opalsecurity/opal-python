@@ -2,11 +2,28 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tags** | [**[Tag]**](Tag.md) |  | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**tags** | [**List[Tag]**](Tag.md) |  | 
 
+## Example
+
+```python
+from opal.models.tags_list import TagsList
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of TagsList from a JSON string
+tags_list_instance = TagsList.from_json(json)
+# print the JSON string representation of the object
+print TagsList.to_json()
+
+# convert the object into a dict
+tags_list_dict = tags_list_instance.to_dict()
+# create an instance of TagsList from a dict
+tags_list_form_dict = tags_list.from_dict(tags_list_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

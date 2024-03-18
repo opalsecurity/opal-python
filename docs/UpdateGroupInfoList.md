@@ -2,11 +2,28 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**groups** | [**[UpdateGroupInfo]**](UpdateGroupInfo.md) | A list of groups with information to update. | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**groups** | [**List[UpdateGroupInfo]**](UpdateGroupInfo.md) | A list of groups with information to update. | 
 
+## Example
+
+```python
+from opal.models.update_group_info_list import UpdateGroupInfoList
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of UpdateGroupInfoList from a JSON string
+update_group_info_list_instance = UpdateGroupInfoList.from_json(json)
+# print the JSON string representation of the object
+print UpdateGroupInfoList.to_json()
+
+# convert the object into a dict
+update_group_info_list_dict = update_group_info_list_instance.to_dict()
+# create an instance of UpdateGroupInfoList from a dict
+update_group_info_list_form_dict = update_group_info_list.from_dict(update_group_info_list_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
