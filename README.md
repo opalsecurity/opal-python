@@ -18,9 +18,9 @@ Python 3.7+
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/opalsecurity/opal-go.git
+pip install git+https://github.com/opalsecurity/opal-python.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/opalsecurity/opal-go.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/opalsecurity/opal-python.git`)
 
 Then import the package:
 ```python
@@ -51,39 +51,42 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 
-import opal
-from opal.rest import ApiException
-from pprint import pprint
 
+import time
+import opal
+from pprint import pprint
+from opal.api import events_api
+from opal.model.paginated_event_list import PaginatedEventList
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
-    host = "https://api.opal.dev/v1"
-)
-
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure Bearer authorization: BearerAuth
 configuration = opal.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
+    host = "https://api.opal.dev/v1",
+    access_token = 'YOUR_BEARER_TOKEN',
 )
+
 
 
 # Enter a context with an instance of the API client
 with opal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.AppsApi(api_client)
-    app_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the app.
+    api_instance = events_api.EventsApi(api_client)
+    start_date_filter = "2021/11/01" # str | A start date filter for the events. (optional)
+    end_date_filter = "2021-11-12" # str | An end date filter for the events. (optional)
+    actor_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An actor filter for the events. Supply the ID of the actor. (optional)
+    object_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An object filter for the events. Supply the ID of the object. (optional)
+    event_type_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An event type filter for the events. (optional)
+    cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
+    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
     try:
-        api_response = api_instance.get_app(app_id)
-        print("The response of AppsApi->get_app:\n")
+        api_response = api_instance.events(start_date_filter=start_date_filter, end_date_filter=end_date_filter, actor_filter=actor_filter, object_filter=object_filter, event_type_filter=event_type_filter, cursor=cursor, page_size=page_size)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppsApi->get_app: %s\n" % e)
+    except opal.ApiException as e:
+        print("Exception when calling EventsApi->events: %s\n" % e)
 
 ```
 
