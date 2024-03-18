@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoAzureAdMicrosoft365Group from a JSON string
 group_remote_info_azure_ad_microsoft365_group_instance = GroupRemoteInfoAzureAdMicrosoft365Group.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoAzureAdMicrosoft365Group.to_json()
+print(GroupRemoteInfoAzureAdMicrosoft365Group.to_json())
 
 # convert the object into a dict
 group_remote_info_azure_ad_microsoft365_group_dict = group_remote_info_azure_ad_microsoft365_group_instance.to_dict()

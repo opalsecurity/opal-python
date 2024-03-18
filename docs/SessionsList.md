@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of SessionsList from a JSON string
 sessions_list_instance = SessionsList.from_json(json)
 # print the JSON string representation of the object
-print SessionsList.to_json()
+print(SessionsList.to_json())
 
 # convert the object into a dict
 sessions_list_dict = sessions_list_instance.to_dict()

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
 from opal.models.uar_scope import UARScope
@@ -37,13 +37,14 @@ class CreateUARInfo(BaseModel):
     time_zone: StrictStr = Field(description="The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles.")
     self_review_allowed: StrictBool = Field(description="A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.")
     uar_scope: Optional[UARScope] = None
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["name", "reviewer_assignment_policy", "send_reviewer_assignment_notification", "deadline", "time_zone", "self_review_allowed", "uar_scope"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -69,8 +70,10 @@ class CreateUARInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -81,6 +84,11 @@ class CreateUARInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of uar_scope
         if self.uar_scope:
             _dict['uar_scope'] = self.uar_scope.to_dict()
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -101,6 +109,11 @@ class CreateUARInfo(BaseModel):
             "self_review_allowed": obj.get("self_review_allowed"),
             "uar_scope": UARScope.from_dict(obj["uar_scope"]) if obj.get("uar_scope") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,13 +30,14 @@ class ResourceRemoteInfoGcpBigQueryTable(BaseModel):
     project_id: StrictStr = Field(description="The id of the project the table is in.")
     dataset_id: StrictStr = Field(description="The id of the dataset the table is in.")
     table_id: StrictStr = Field(description="The id of the table.")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["project_id", "dataset_id", "table_id"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -62,8 +63,10 @@ class ResourceRemoteInfoGcpBigQueryTable(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -71,6 +74,11 @@ class ResourceRemoteInfoGcpBigQueryTable(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -87,6 +95,11 @@ class ResourceRemoteInfoGcpBigQueryTable(BaseModel):
             "dataset_id": obj.get("dataset_id"),
             "table_id": obj.get("table_id")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

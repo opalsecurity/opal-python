@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoOktaGroup from a JSON string
 group_remote_info_okta_group_instance = GroupRemoteInfoOktaGroup.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoOktaGroup.to_json()
+print(GroupRemoteInfoOktaGroup.to_json())
 
 # convert the object into a dict
 group_remote_info_okta_group_dict = group_remote_info_okta_group_instance.to_dict()

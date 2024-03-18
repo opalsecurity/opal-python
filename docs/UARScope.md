@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of UARScope from a JSON string
 uar_scope_instance = UARScope.from_json(json)
 # print the JSON string representation of the object
-print UARScope.to_json()
+print(UARScope.to_json())
 
 # convert the object into a dict
 uar_scope_dict = uar_scope_instance.to_dict()

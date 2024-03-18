@@ -21,7 +21,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoAwsRdsInstance from a JSON string
 resource_remote_info_aws_rds_instance_instance = ResourceRemoteInfoAwsRdsInstance.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoAwsRdsInstance.to_json()
+print(ResourceRemoteInfoAwsRdsInstance.to_json())
 
 # convert the object into a dict
 resource_remote_info_aws_rds_instance_dict = resource_remote_info_aws_rds_instance_instance.to_dict()

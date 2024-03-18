@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
@@ -37,13 +37,14 @@ class ResourceAccessUser(BaseModel):
     expiration_date: Optional[datetime] = Field(description="The day and time the user's access will expire.")
     has_direct_access: StrictBool = Field(description="The user has direct access to this resources (vs. indirectly, like through a group).")
     num_access_paths: StrictInt = Field(description="The number of ways in which the user has access through this resource (directly and indirectly).")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "user_id", "access_level", "full_name", "email", "expiration_date", "has_direct_access", "num_access_paths"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -69,8 +70,10 @@ class ResourceAccessUser(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -81,6 +84,11 @@ class ResourceAccessUser(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of access_level
         if self.access_level:
             _dict['access_level'] = self.access_level.to_dict()
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         # set to None if expiration_date (nullable) is None
         # and model_fields_set contains the field
         if self.expiration_date is None and "expiration_date" in self.model_fields_set:
@@ -107,6 +115,11 @@ class ResourceAccessUser(BaseModel):
             "has_direct_access": obj.get("has_direct_access"),
             "num_access_paths": obj.get("num_access_paths")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

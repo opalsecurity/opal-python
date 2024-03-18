@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from opal.models.request_configuration import RequestConfiguration
 from typing import Optional, Set
@@ -29,13 +29,14 @@ class CreateRequestConfigurationInfoList(BaseModel):
     # CreateRequestConfigurationInfoList Object ### Description The `CreateRequestConfigurationInfoList` object is used as an input to the CreateRequestConfigurations API.  ### Formatting Requirements The `CreateRequestConfigurationInfoList` object must contain a list of `RequestConfiguration` objects. Exactly one default `RequestConfiguration` must be provided.  A default `RequestConfiguration` is one with a `condition` of `null` and a `priority` of `0`.  The default `RequestConfiguration` will be used when no other `RequestConfiguration` matches the request.  Only one `RequestConfiguration` may be provided for each priority, and the priorities must be contiguous.  For example, if there are two `RequestConfigurations` with priorities 0 and 2, there must be a `RequestConfiguration` with priority 1.  To use the `condition` field, the `condition` must be a valid JSON object.  The `condition` must be a JSON object with the key `group_ids` (more options may be added in the future), whose value is a list of group IDs. The `condition` will match if the user requesting access is a member of any of the groups in the list. Currently, we only support using a single group as a condition.
     """ # noqa: E501
     request_configurations: List[RequestConfiguration] = Field(description="A list of request configurations to create.")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["request_configurations"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -61,8 +62,10 @@ class CreateRequestConfigurationInfoList(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -77,6 +80,11 @@ class CreateRequestConfigurationInfoList(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['request_configurations'] = _items
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -91,6 +99,11 @@ class CreateRequestConfigurationInfoList(BaseModel):
         _obj = cls.model_validate({
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

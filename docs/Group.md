@@ -40,7 +40,7 @@ json = "{}"
 # create an instance of Group from a JSON string
 group_instance = Group.from_json(json)
 # print the JSON string representation of the object
-print Group.to_json()
+print(Group.to_json())
 
 # convert the object into a dict
 group_dict = group_instance.to_dict()

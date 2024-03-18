@@ -23,7 +23,7 @@ json = "{}"
 # create an instance of UpdateOwnerInfo from a JSON string
 update_owner_info_instance = UpdateOwnerInfo.from_json(json)
 # print the JSON string representation of the object
-print UpdateOwnerInfo.to_json()
+print(UpdateOwnerInfo.to_json())
 
 # convert the object into a dict
 update_owner_info_dict = update_owner_info_instance.to_dict()

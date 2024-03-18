@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of GroupAccessLevel from a JSON string
 group_access_level_instance = GroupAccessLevel.from_json(json)
 # print the JSON string representation of the object
-print GroupAccessLevel.to_json()
+print(GroupAccessLevel.to_json())
 
 # convert the object into a dict
 group_access_level_dict = group_access_level_instance.to_dict()

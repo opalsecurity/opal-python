@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoGithubTeam from a JSON string
 group_remote_info_github_team_instance = GroupRemoteInfoGithubTeam.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoGithubTeam.to_json()
+print(GroupRemoteInfoGithubTeam.to_json())
 
 # convert the object into a dict
 group_remote_info_github_team_dict = group_remote_info_github_team_instance.to_dict()

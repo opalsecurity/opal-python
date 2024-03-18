@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of CreateMessageChannelInfo from a JSON string
 create_message_channel_info_instance = CreateMessageChannelInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateMessageChannelInfo.to_json()
+print(CreateMessageChannelInfo.to_json())
 
 # convert the object into a dict
 create_message_channel_info_dict = create_message_channel_info_instance.to_dict()

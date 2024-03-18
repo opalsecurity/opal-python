@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of MessageChannelIDList from a JSON string
 message_channel_id_list_instance = MessageChannelIDList.from_json(json)
 # print the JSON string representation of the object
-print MessageChannelIDList.to_json()
+print(MessageChannelIDList.to_json())
 
 # convert the object into a dict
 message_channel_id_list_dict = message_channel_id_list_instance.to_dict()

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from opal.models.app_type_enum import AppTypeEnum
 from typing import Optional, Set
@@ -33,13 +33,14 @@ class App(BaseModel):
     description: StrictStr = Field(description="A description of the app.")
     admin_owner_id: StrictStr = Field(description="The ID of the owner of the app.")
     app_type: AppTypeEnum
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["app_id", "name", "description", "admin_owner_id", "app_type"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -65,8 +66,10 @@ class App(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -74,6 +77,11 @@ class App(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -92,6 +100,11 @@ class App(BaseModel):
             "admin_owner_id": obj.get("admin_owner_id"),
             "app_type": obj.get("app_type")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

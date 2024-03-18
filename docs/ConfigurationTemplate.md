@@ -27,7 +27,7 @@ json = "{}"
 # create an instance of ConfigurationTemplate from a JSON string
 configuration_template_instance = ConfigurationTemplate.from_json(json)
 # print the JSON string representation of the object
-print ConfigurationTemplate.to_json()
+print(ConfigurationTemplate.to_json())
 
 # convert the object into a dict
 configuration_template_dict = configuration_template_instance.to_dict()

@@ -42,7 +42,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfo from a JSON string
 resource_remote_info_instance = ResourceRemoteInfo.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfo.to_json()
+print(ResourceRemoteInfo.to_json())
 
 # convert the object into a dict
 resource_remote_info_dict = resource_remote_info_instance.to_dict()

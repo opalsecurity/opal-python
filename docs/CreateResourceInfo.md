@@ -24,7 +24,7 @@ json = "{}"
 # create an instance of CreateResourceInfo from a JSON string
 create_resource_info_instance = CreateResourceInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateResourceInfo.to_json()
+print(CreateResourceInfo.to_json())
 
 # convert the object into a dict
 create_resource_info_dict = create_resource_info_instance.to_dict()

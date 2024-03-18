@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of TagsList from a JSON string
 tags_list_instance = TagsList.from_json(json)
 # print the JSON string representation of the object
-print TagsList.to_json()
+print(TagsList.to_json())
 
 # convert the object into a dict
 tags_list_dict = tags_list_instance.to_dict()

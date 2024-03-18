@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of SubEvent from a JSON string
 sub_event_instance = SubEvent.from_json(json)
 # print the JSON string representation of the object
-print SubEvent.to_json()
+print(SubEvent.to_json())
 
 # convert the object into a dict
 sub_event_dict = sub_event_instance.to_dict()

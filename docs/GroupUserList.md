@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of GroupUserList from a JSON string
 group_user_list_instance = GroupUserList.from_json(json)
 # print the JSON string representation of the object
-print GroupUserList.to_json()
+print(GroupUserList.to_json())
 
 # convert the object into a dict
 group_user_list_dict = group_user_list_instance.to_dict()

@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoAwsEksCluster from a JSON string
 resource_remote_info_aws_eks_cluster_instance = ResourceRemoteInfoAwsEksCluster.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoAwsEksCluster.to_json()
+print(ResourceRemoteInfoAwsEksCluster.to_json())
 
 # convert the object into a dict
 resource_remote_info_aws_eks_cluster_dict = resource_remote_info_aws_eks_cluster_instance.to_dict()

@@ -27,7 +27,7 @@ json = "{}"
 # create an instance of Event from a JSON string
 event_instance = Event.from_json(json)
 # print the JSON string representation of the object
-print Event.to_json()
+print(Event.to_json())
 
 # convert the object into a dict
 event_dict = event_instance.to_dict()

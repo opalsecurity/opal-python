@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoAwsAccount from a JSON string
 resource_remote_info_aws_account_instance = ResourceRemoteInfoAwsAccount.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoAwsAccount.to_json()
+print(ResourceRemoteInfoAwsAccount.to_json())
 
 # convert the object into a dict
 resource_remote_info_aws_account_dict = resource_remote_info_aws_account_instance.to_dict()

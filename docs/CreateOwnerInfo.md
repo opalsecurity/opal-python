@@ -23,7 +23,7 @@ json = "{}"
 # create an instance of CreateOwnerInfo from a JSON string
 create_owner_info_instance = CreateOwnerInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateOwnerInfo.to_json()
+print(CreateOwnerInfo.to_json())
 
 # convert the object into a dict
 create_owner_info_dict = create_owner_info_instance.to_dict()

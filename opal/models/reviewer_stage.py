@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,6 +30,7 @@ class ReviewerStage(BaseModel):
     require_manager_approval: StrictBool = Field(description="Whether this reviewer stage should require manager approval.")
     operator: StrictStr = Field(description="The operator of the reviewer stage.")
     owner_ids: List[StrictStr]
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["require_manager_approval", "operator", "owner_ids"]
 
     @field_validator('operator')
@@ -39,11 +40,11 @@ class ReviewerStage(BaseModel):
             raise ValueError("must be one of enum values ('AND', 'OR')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -69,8 +70,10 @@ class ReviewerStage(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -78,6 +81,11 @@ class ReviewerStage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -94,6 +102,11 @@ class ReviewerStage(BaseModel):
             "operator": obj.get("operator"),
             "owner_ids": obj.get("owner_ids")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

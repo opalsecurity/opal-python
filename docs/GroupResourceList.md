@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of GroupResourceList from a JSON string
 group_resource_list_instance = GroupResourceList.from_json(json)
 # print the JSON string representation of the object
-print GroupResourceList.to_json()
+print(GroupResourceList.to_json())
 
 # convert the object into a dict
 group_resource_list_dict = group_resource_list_instance.to_dict()

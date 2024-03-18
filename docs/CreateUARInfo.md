@@ -24,7 +24,7 @@ json = "{}"
 # create an instance of CreateUARInfo from a JSON string
 create_uar_info_instance = CreateUARInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateUARInfo.to_json()
+print(CreateUARInfo.to_json())
 
 # convert the object into a dict
 create_uar_info_dict = create_uar_info_instance.to_dict()

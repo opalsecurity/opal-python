@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of UpdateGroupResourcesInfo from a JSON string
 update_group_resources_info_instance = UpdateGroupResourcesInfo.from_json(json)
 # print the JSON string representation of the object
-print UpdateGroupResourcesInfo.to_json()
+print(UpdateGroupResourcesInfo.to_json())
 
 # convert the object into a dict
 update_group_resources_info_dict = update_group_resources_info_instance.to_dict()

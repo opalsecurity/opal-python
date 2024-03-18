@@ -27,7 +27,7 @@ json = "{}"
 # create an instance of RequestConfiguration from a JSON string
 request_configuration_instance = RequestConfiguration.from_json(json)
 # print the JSON string representation of the object
-print RequestConfiguration.to_json()
+print(RequestConfiguration.to_json())
 
 # convert the object into a dict
 request_configuration_dict = request_configuration_instance.to_dict()

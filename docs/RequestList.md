@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of RequestList from a JSON string
 request_list_instance = RequestList.from_json(json)
 # print the JSON string representation of the object
-print RequestList.to_json()
+print(RequestList.to_json())
 
 # convert the object into a dict
 request_list_dict = request_list_instance.to_dict()

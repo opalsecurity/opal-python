@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoLdapGroup from a JSON string
 group_remote_info_ldap_group_instance = GroupRemoteInfoLdapGroup.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoLdapGroup.to_json()
+print(GroupRemoteInfoLdapGroup.to_json())
 
 # convert the object into a dict
 group_remote_info_ldap_group_dict = group_remote_info_ldap_group_instance.to_dict()

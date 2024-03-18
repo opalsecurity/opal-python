@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of RequestCustomFieldResponse from a JSON string
 request_custom_field_response_instance = RequestCustomFieldResponse.from_json(json)
 # print the JSON string representation of the object
-print RequestCustomFieldResponse.to_json()
+print(RequestCustomFieldResponse.to_json())
 
 # convert the object into a dict
 request_custom_field_response_dict = request_custom_field_response_instance.to_dict()

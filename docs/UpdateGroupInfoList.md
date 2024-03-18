@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of UpdateGroupInfoList from a JSON string
 update_group_info_list_instance = UpdateGroupInfoList.from_json(json)
 # print the JSON string representation of the object
-print UpdateGroupInfoList.to_json()
+print(UpdateGroupInfoList.to_json())
 
 # convert the object into a dict
 update_group_info_list_dict = update_group_info_list_instance.to_dict()

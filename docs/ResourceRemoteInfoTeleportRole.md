@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoTeleportRole from a JSON string
 resource_remote_info_teleport_role_instance = ResourceRemoteInfoTeleportRole.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoTeleportRole.to_json()
+print(ResourceRemoteInfoTeleportRole.to_json())
 
 # convert the object into a dict
 resource_remote_info_teleport_role_dict = resource_remote_info_teleport_role_instance.to_dict()

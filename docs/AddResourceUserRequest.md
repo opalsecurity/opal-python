@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of AddResourceUserRequest from a JSON string
 add_resource_user_request_instance = AddResourceUserRequest.from_json(json)
 # print the JSON string representation of the object
-print AddResourceUserRequest.to_json()
+print(AddResourceUserRequest.to_json())
 
 # convert the object into a dict
 add_resource_user_request_dict = add_resource_user_request_instance.to_dict()

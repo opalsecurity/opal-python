@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of CreateTagInfo from a JSON string
 create_tag_info_instance = CreateTagInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateTagInfo.to_json()
+print(CreateTagInfo.to_json())
 
 # convert the object into a dict
 create_tag_info_dict = create_tag_info_instance.to_dict()

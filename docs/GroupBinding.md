@@ -22,7 +22,7 @@ json = "{}"
 # create an instance of GroupBinding from a JSON string
 group_binding_instance = GroupBinding.from_json(json)
 # print the JSON string representation of the object
-print GroupBinding.to_json()
+print(GroupBinding.to_json())
 
 # convert the object into a dict
 group_binding_dict = group_binding_instance.to_dict()

@@ -22,7 +22,7 @@ json = "{}"
 # create an instance of RequestedItem from a JSON string
 requested_item_instance = RequestedItem.from_json(json)
 # print the JSON string representation of the object
-print RequestedItem.to_json()
+print(RequestedItem.to_json())
 
 # convert the object into a dict
 requested_item_dict = requested_item_instance.to_dict()

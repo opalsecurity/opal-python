@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of PaginatedTagsList from a JSON string
 paginated_tags_list_instance = PaginatedTagsList.from_json(json)
 # print the JSON string representation of the object
-print PaginatedTagsList.to_json()
+print(PaginatedTagsList.to_json())
 
 # convert the object into a dict
 paginated_tags_list_dict = paginated_tags_list_instance.to_dict()

@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoGithubRepo from a JSON string
 resource_remote_info_github_repo_instance = ResourceRemoteInfoGithubRepo.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoGithubRepo.to_json()
+print(ResourceRemoteInfoGithubRepo.to_json())
 
 # convert the object into a dict
 resource_remote_info_github_repo_dict = resource_remote_info_github_repo_instance.to_dict()

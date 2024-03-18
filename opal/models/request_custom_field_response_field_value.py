@@ -16,7 +16,7 @@
 from __future__ import annotations
 import json
 import pprint
-from pydantic import BaseModel, Field, StrictBool, StrictStr, ValidationError, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from pydantic import StrictStr, Field
 from typing import Union, List, Optional, Dict
@@ -35,10 +35,10 @@ class RequestCustomFieldResponseFieldValue(BaseModel):
     actual_instance: Optional[Union[bool, str]] = None
     one_of_schemas: List[str] = Field(default=Literal["bool", "str"])
 
-    model_config = {
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def __init__(self, *args, **kwargs) -> None:

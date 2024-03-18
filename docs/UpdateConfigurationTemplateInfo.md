@@ -28,7 +28,7 @@ json = "{}"
 # create an instance of UpdateConfigurationTemplateInfo from a JSON string
 update_configuration_template_info_instance = UpdateConfigurationTemplateInfo.from_json(json)
 # print the JSON string representation of the object
-print UpdateConfigurationTemplateInfo.to_json()
+print(UpdateConfigurationTemplateInfo.to_json())
 
 # convert the object into a dict
 update_configuration_template_info_dict = update_configuration_template_info_instance.to_dict()

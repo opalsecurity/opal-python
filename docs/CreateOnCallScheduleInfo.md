@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of CreateOnCallScheduleInfo from a JSON string
 create_on_call_schedule_info_instance = CreateOnCallScheduleInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateOnCallScheduleInfo.to_json()
+print(CreateOnCallScheduleInfo.to_json())
 
 # convert the object into a dict
 create_on_call_schedule_info_dict = create_on_call_schedule_info_instance.to_dict()

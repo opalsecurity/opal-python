@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of Condition from a JSON string
 condition_instance = Condition.from_json(json)
 # print the JSON string representation of the object
-print Condition.to_json()
+print(Condition.to_json())
 
 # convert the object into a dict
 condition_dict = condition_instance.to_dict()

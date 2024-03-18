@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoAwsPermissionSet from a JSON string
 resource_remote_info_aws_permission_set_instance = ResourceRemoteInfoAwsPermissionSet.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoAwsPermissionSet.to_json()
+print(ResourceRemoteInfoAwsPermissionSet.to_json())
 
 # convert the object into a dict
 resource_remote_info_aws_permission_set_dict = resource_remote_info_aws_permission_set_instance.to_dict()

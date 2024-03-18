@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoSalesforcePermissionSet from a JSON string
 resource_remote_info_salesforce_permission_set_instance = ResourceRemoteInfoSalesforcePermissionSet.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoSalesforcePermissionSet.to_json()
+print(ResourceRemoteInfoSalesforcePermissionSet.to_json())
 
 # convert the object into a dict
 resource_remote_info_salesforce_permission_set_dict = resource_remote_info_salesforce_permission_set_instance.to_dict()

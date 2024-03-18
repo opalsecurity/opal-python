@@ -26,7 +26,7 @@ json = "{}"
 # create an instance of GroupRemoteInfo from a JSON string
 group_remote_info_instance = GroupRemoteInfo.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfo.to_json()
+print(GroupRemoteInfo.to_json())
 
 # convert the object into a dict
 group_remote_info_dict = group_remote_info_instance.to_dict()

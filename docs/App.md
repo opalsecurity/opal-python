@@ -22,7 +22,7 @@ json = "{}"
 # create an instance of App from a JSON string
 app_instance = App.from_json(json)
 # print the JSON string representation of the object
-print App.to_json()
+print(App.to_json())
 
 # convert the object into a dict
 app_dict = app_instance.to_dict()

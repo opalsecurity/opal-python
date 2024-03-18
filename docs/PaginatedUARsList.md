@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of PaginatedUARsList from a JSON string
 paginated_uars_list_instance = PaginatedUARsList.from_json(json)
 # print the JSON string representation of the object
-print PaginatedUARsList.to_json()
+print(PaginatedUARsList.to_json())
 
 # convert the object into a dict
 paginated_uars_list_dict = paginated_uars_list_instance.to_dict()

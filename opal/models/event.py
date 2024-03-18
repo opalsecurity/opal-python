@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.sub_event import SubEvent
 from typing import Optional, Set
@@ -39,13 +39,14 @@ class Event(BaseModel):
     api_token_name: Optional[StrictStr] = Field(default=None, description="The name of the API token used to create the event.")
     api_token_preview: Optional[StrictStr] = Field(default=None, description="The preview of the API token used to create the event.")
     sub_events: Optional[List[SubEvent]] = None
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["event_id", "actor_user_id", "actor_name", "actor_email", "event_type", "created_at", "actor_ip_address", "api_token_name", "api_token_preview", "sub_events"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -71,8 +72,10 @@ class Event(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -87,6 +90,11 @@ class Event(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['sub_events'] = _items
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         # set to None if actor_name (nullable) is None
         # and model_fields_set contains the field
         if self.actor_name is None and "actor_name" in self.model_fields_set:
@@ -115,6 +123,11 @@ class Event(BaseModel):
             "api_token_preview": obj.get("api_token_preview"),
             "sub_events": [SubEvent.from_dict(_item) for _item in obj["sub_events"]] if obj.get("sub_events") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

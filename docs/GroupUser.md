@@ -23,7 +23,7 @@ json = "{}"
 # create an instance of GroupUser from a JSON string
 group_user_instance = GroupUser.from_json(json)
 # print the JSON string representation of the object
-print GroupUser.to_json()
+print(GroupUser.to_json())
 
 # convert the object into a dict
 group_user_dict = group_user_instance.to_dict()

@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoOktaApp from a JSON string
 resource_remote_info_okta_app_instance = ResourceRemoteInfoOktaApp.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoOktaApp.to_json()
+print(ResourceRemoteInfoOktaApp.to_json())
 
 # convert the object into a dict
 resource_remote_info_okta_app_dict = resource_remote_info_okta_app_instance.to_dict()

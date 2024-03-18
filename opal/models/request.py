@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.request_custom_field_response import RequestCustomFieldResponse
 from opal.models.request_status_enum import RequestStatusEnum
@@ -41,13 +41,14 @@ class Request(BaseModel):
     duration_minutes: Optional[StrictInt] = Field(default=None, description="The duration of the request in minutes.")
     requested_items_list: Optional[List[RequestedItem]] = Field(default=None, description="The list of targets for the request.")
     custom_fields_responses: Optional[List[RequestCustomFieldResponse]] = Field(default=None, description="The responses given to the custom fields associated to the request")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "target_user_id", "status", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -73,8 +74,10 @@ class Request(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -96,6 +99,11 @@ class Request(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['custom_fields_responses'] = _items
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -119,6 +127,11 @@ class Request(BaseModel):
             "requested_items_list": [RequestedItem.from_dict(_item) for _item in obj["requested_items_list"]] if obj.get("requested_items_list") is not None else None,
             "custom_fields_responses": [RequestCustomFieldResponse.from_dict(_item) for _item in obj["custom_fields_responses"]] if obj.get("custom_fields_responses") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

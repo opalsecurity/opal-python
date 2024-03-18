@@ -35,7 +35,7 @@ json = "{}"
 # create an instance of UpdateResourceInfo from a JSON string
 update_resource_info_instance = UpdateResourceInfo.from_json(json)
 # print the JSON string representation of the object
-print UpdateResourceInfo.to_json()
+print(UpdateResourceInfo.to_json())
 
 # convert the object into a dict
 update_resource_info_dict = update_resource_info_instance.to_dict()

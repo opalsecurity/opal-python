@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of VisibilityInfo from a JSON string
 visibility_info_instance = VisibilityInfo.from_json(json)
 # print the JSON string representation of the object
-print VisibilityInfo.to_json()
+print(VisibilityInfo.to_json())
 
 # convert the object into a dict
 visibility_info_dict = visibility_info_instance.to_dict()

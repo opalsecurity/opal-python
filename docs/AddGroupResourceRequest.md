@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of AddGroupResourceRequest from a JSON string
 add_group_resource_request_instance = AddGroupResourceRequest.from_json(json)
 # print the JSON string representation of the object
-print AddGroupResourceRequest.to_json()
+print(AddGroupResourceRequest.to_json())
 
 # convert the object into a dict
 add_group_resource_request_dict = add_group_resource_request_instance.to_dict()

@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of UserIDList from a JSON string
 user_id_list_instance = UserIDList.from_json(json)
 # print the JSON string representation of the object
-print UserIDList.to_json()
+print(UserIDList.to_json())
 
 # convert the object into a dict
 user_id_list_dict = user_id_list_instance.to_dict()

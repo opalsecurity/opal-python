@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of PaginatedResourcesList from a JSON string
 paginated_resources_list_instance = PaginatedResourcesList.from_json(json)
 # print the JSON string representation of the object
-print PaginatedResourcesList.to_json()
+print(PaginatedResourcesList.to_json())
 
 # convert the object into a dict
 paginated_resources_list_dict = paginated_resources_list_instance.to_dict()

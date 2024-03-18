@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoGcpComputeInstance from a JSON string
 resource_remote_info_gcp_compute_instance_instance = ResourceRemoteInfoGcpComputeInstance.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoGcpComputeInstance.to_json()
+print(ResourceRemoteInfoGcpComputeInstance.to_json())
 
 # convert the object into a dict
 resource_remote_info_gcp_compute_instance_dict = resource_remote_info_gcp_compute_instance_instance.to_dict()

@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoAwsEc2Instance from a JSON string
 resource_remote_info_aws_ec2_instance_instance = ResourceRemoteInfoAwsEc2Instance.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoAwsEc2Instance.to_json()
+print(ResourceRemoteInfoAwsEc2Instance.to_json())
 
 # convert the object into a dict
 resource_remote_info_aws_ec2_instance_dict = resource_remote_info_aws_ec2_instance_instance.to_dict()

@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoGitlabGroup from a JSON string
 group_remote_info_gitlab_group_instance = GroupRemoteInfoGitlabGroup.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoGitlabGroup.to_json()
+print(GroupRemoteInfoGitlabGroup.to_json())
 
 # convert the object into a dict
 group_remote_info_gitlab_group_dict = group_remote_info_gitlab_group_instance.to_dict()

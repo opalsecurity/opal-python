@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoGcpBigQueryDataset from a JSON string
 resource_remote_info_gcp_big_query_dataset_instance = ResourceRemoteInfoGcpBigQueryDataset.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoGcpBigQueryDataset.to_json()
+print(ResourceRemoteInfoGcpBigQueryDataset.to_json())
 
 # convert the object into a dict
 resource_remote_info_gcp_big_query_dataset_dict = resource_remote_info_gcp_big_query_dataset_instance.to_dict()

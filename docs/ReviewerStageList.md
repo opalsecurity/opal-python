@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of ReviewerStageList from a JSON string
 reviewer_stage_list_instance = ReviewerStageList.from_json(json)
 # print the JSON string representation of the object
-print ReviewerStageList.to_json()
+print(ReviewerStageList.to_json())
 
 # convert the object into a dict
 reviewer_stage_list_dict = reviewer_stage_list_instance.to_dict()

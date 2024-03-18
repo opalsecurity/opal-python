@@ -23,7 +23,7 @@ json = "{}"
 # create an instance of Owner from a JSON string
 owner_instance = Owner.from_json(json)
 # print the JSON string representation of the object
-print Owner.to_json()
+print(Owner.to_json())
 
 # convert the object into a dict
 owner_dict = owner_instance.to_dict()

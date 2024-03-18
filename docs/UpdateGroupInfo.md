@@ -34,7 +34,7 @@ json = "{}"
 # create an instance of UpdateGroupInfo from a JSON string
 update_group_info_instance = UpdateGroupInfo.from_json(json)
 # print the JSON string representation of the object
-print UpdateGroupInfo.to_json()
+print(UpdateGroupInfo.to_json())
 
 # convert the object into a dict
 update_group_info_dict = update_group_info_instance.to_dict()

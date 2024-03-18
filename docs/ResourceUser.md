@@ -23,7 +23,7 @@ json = "{}"
 # create an instance of ResourceUser from a JSON string
 resource_user_instance = ResourceUser.from_json(json)
 # print the JSON string representation of the object
-print ResourceUser.to_json()
+print(ResourceUser.to_json())
 
 # convert the object into a dict
 resource_user_dict = resource_user_instance.to_dict()

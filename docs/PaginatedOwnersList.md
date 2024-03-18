@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of PaginatedOwnersList from a JSON string
 paginated_owners_list_instance = PaginatedOwnersList.from_json(json)
 # print the JSON string representation of the object
-print PaginatedOwnersList.to_json()
+print(PaginatedOwnersList.to_json())
 
 # convert the object into a dict
 paginated_owners_list_dict = paginated_owners_list_instance.to_dict()

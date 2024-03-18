@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of ResourceAccessUserList from a JSON string
 resource_access_user_list_instance = ResourceAccessUserList.from_json(json)
 # print the JSON string representation of the object
-print ResourceAccessUserList.to_json()
+print(ResourceAccessUserList.to_json())
 
 # convert the object into a dict
 resource_access_user_list_dict = resource_access_user_list_instance.to_dict()

@@ -22,7 +22,7 @@ json = "{}"
 # create an instance of ResourceUserAccessStatus from a JSON string
 resource_user_access_status_instance = ResourceUserAccessStatus.from_json(json)
 # print the JSON string representation of the object
-print ResourceUserAccessStatus.to_json()
+print(ResourceUserAccessStatus.to_json())
 
 # convert the object into a dict
 resource_user_access_status_dict = resource_user_access_status_instance.to_dict()

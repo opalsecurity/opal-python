@@ -22,7 +22,7 @@ json = "{}"
 # create an instance of MessageChannel from a JSON string
 message_channel_instance = MessageChannel.from_json(json)
 # print the JSON string representation of the object
-print MessageChannel.to_json()
+print(MessageChannel.to_json())
 
 # convert the object into a dict
 message_channel_dict = message_channel_instance.to_dict()

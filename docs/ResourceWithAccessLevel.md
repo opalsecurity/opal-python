@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of ResourceWithAccessLevel from a JSON string
 resource_with_access_level_instance = ResourceWithAccessLevel.from_json(json)
 # print the JSON string representation of the object
-print ResourceWithAccessLevel.to_json()
+print(ResourceWithAccessLevel.to_json())
 
 # convert the object into a dict
 resource_with_access_level_dict = resource_with_access_level_instance.to_dict()

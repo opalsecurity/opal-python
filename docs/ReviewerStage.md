@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of ReviewerStage from a JSON string
 reviewer_stage_instance = ReviewerStage.from_json(json)
 # print the JSON string representation of the object
-print ReviewerStage.to_json()
+print(ReviewerStage.to_json())
 
 # convert the object into a dict
 reviewer_stage_dict = reviewer_stage_instance.to_dict()

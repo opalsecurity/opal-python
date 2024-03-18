@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of AwsPermissionSetMetadataAwsPermissionSet from a JSON string
 aws_permission_set_metadata_aws_permission_set_instance = AwsPermissionSetMetadataAwsPermissionSet.from_json(json)
 # print the JSON string representation of the object
-print AwsPermissionSetMetadataAwsPermissionSet.to_json()
+print(AwsPermissionSetMetadataAwsPermissionSet.to_json())
 
 # convert the object into a dict
 aws_permission_set_metadata_aws_permission_set_dict = aws_permission_set_metadata_aws_permission_set_instance.to_dict()

@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of AddGroupUserRequest from a JSON string
 add_group_user_request_instance = AddGroupUserRequest.from_json(json)
 # print the JSON string representation of the object
-print AddGroupUserRequest.to_json()
+print(AddGroupUserRequest.to_json())
 
 # convert the object into a dict
 add_group_user_request_dict = add_group_user_request_instance.to_dict()

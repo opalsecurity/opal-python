@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 from opal.models.request_configuration import RequestConfiguration
@@ -41,13 +41,14 @@ class UpdateConfigurationTemplateInfo(BaseModel):
     break_glass_user_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the break glass users linked to the configuration template.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to resources associated with this configuration template.")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["configuration_template_id", "name", "admin_owner_id", "visibility", "linked_audit_message_channel_ids", "request_configurations", "request_configuration_list", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -73,8 +74,10 @@ class UpdateConfigurationTemplateInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -95,6 +98,11 @@ class UpdateConfigurationTemplateInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of request_configuration_list
         if self.request_configuration_list:
             _dict['request_configuration_list'] = self.request_configuration_list.to_dict()
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -119,6 +127,11 @@ class UpdateConfigurationTemplateInfo(BaseModel):
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
             "require_mfa_to_connect": obj.get("require_mfa_to_connect")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
 from opal.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
@@ -77,13 +77,14 @@ class ResourceRemoteInfo(BaseModel):
     salesforce_profile: Optional[ResourceRemoteInfoSalesforceProfile] = None
     salesforce_role: Optional[ResourceRemoteInfoSalesforceRole] = None
     teleport_role: Optional[ResourceRemoteInfoTeleportRole] = None
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "github_repo", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -109,8 +110,10 @@ class ResourceRemoteInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -193,6 +196,11 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of teleport_role
         if self.teleport_role:
             _dict['teleport_role'] = self.teleport_role.to_dict()
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -231,6 +239,11 @@ class ResourceRemoteInfo(BaseModel):
             "salesforce_role": ResourceRemoteInfoSalesforceRole.from_dict(obj["salesforce_role"]) if obj.get("salesforce_role") is not None else None,
             "teleport_role": ResourceRemoteInfoTeleportRole.from_dict(obj["teleport_role"]) if obj.get("teleport_role") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

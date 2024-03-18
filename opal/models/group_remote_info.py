@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.group_remote_info_active_directory_group import GroupRemoteInfoActiveDirectoryGroup
 from opal.models.group_remote_info_azure_ad_microsoft365_group import GroupRemoteInfoAzureAdMicrosoft365Group
@@ -45,13 +45,14 @@ class GroupRemoteInfo(BaseModel):
     duo_group: Optional[GroupRemoteInfoDuoGroup] = None
     azure_ad_security_group: Optional[GroupRemoteInfoAzureAdSecurityGroup] = None
     azure_ad_microsoft_365_group: Optional[GroupRemoteInfoAzureAdMicrosoft365Group] = None
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["active_directory_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -77,8 +78,10 @@ class GroupRemoteInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -113,6 +116,11 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of azure_ad_microsoft_365_group
         if self.azure_ad_microsoft_365_group:
             _dict['azure_ad_microsoft_365_group'] = self.azure_ad_microsoft_365_group.to_dict()
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -135,6 +143,11 @@ class GroupRemoteInfo(BaseModel):
             "azure_ad_security_group": GroupRemoteInfoAzureAdSecurityGroup.from_dict(obj["azure_ad_security_group"]) if obj.get("azure_ad_security_group") is not None else None,
             "azure_ad_microsoft_365_group": GroupRemoteInfoAzureAdMicrosoft365Group.from_dict(obj["azure_ad_microsoft_365_group"]) if obj.get("azure_ad_microsoft_365_group") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

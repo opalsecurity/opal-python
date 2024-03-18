@@ -17,7 +17,7 @@ json = "{}"
 # create an instance of OnCallScheduleList from a JSON string
 on_call_schedule_list_instance = OnCallScheduleList.from_json(json)
 # print the JSON string representation of the object
-print OnCallScheduleList.to_json()
+print(OnCallScheduleList.to_json())
 
 # convert the object into a dict
 on_call_schedule_list_dict = on_call_schedule_list_instance.to_dict()

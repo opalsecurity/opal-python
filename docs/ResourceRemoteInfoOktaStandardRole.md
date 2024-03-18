@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoOktaStandardRole from a JSON string
 resource_remote_info_okta_standard_role_instance = ResourceRemoteInfoOktaStandardRole.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoOktaStandardRole.to_json()
+print(ResourceRemoteInfoOktaStandardRole.to_json())
 
 # convert the object into a dict
 resource_remote_info_okta_standard_role_dict = resource_remote_info_okta_standard_role_instance.to_dict()

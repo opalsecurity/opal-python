@@ -25,7 +25,7 @@ json = "{}"
 # create an instance of UAR from a JSON string
 uar_instance = UAR.from_json(json)
 # print the JSON string representation of the object
-print UAR.to_json()
+print(UAR.to_json())
 
 # convert the object into a dict
 uar_dict = uar_instance.to_dict()

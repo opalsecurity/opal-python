@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,13 +33,14 @@ class CreateOwnerInfo(BaseModel):
     user_ids: List[StrictStr] = Field(description="Users to add to the created owner. If setting a source_group_id this list must be empty.")
     reviewer_message_channel_id: Optional[StrictStr] = Field(default=None, description="The message channel id for the reviewer channel.")
     source_group_id: Optional[StrictStr] = Field(default=None, description="Sync this owner's user list with a source group.")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["name", "description", "access_request_escalation_period", "user_ids", "reviewer_message_channel_id", "source_group_id"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -65,8 +66,10 @@ class CreateOwnerInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -74,6 +77,11 @@ class CreateOwnerInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -93,6 +101,11 @@ class CreateOwnerInfo(BaseModel):
             "reviewer_message_channel_id": obj.get("reviewer_message_channel_id"),
             "source_group_id": obj.get("source_group_id")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

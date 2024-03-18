@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoGcpProject from a JSON string
 resource_remote_info_gcp_project_instance = ResourceRemoteInfoGcpProject.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoGcpProject.to_json()
+print(ResourceRemoteInfoGcpProject.to_json())
 
 # convert the object into a dict
 resource_remote_info_gcp_project_dict = resource_remote_info_gcp_project_instance.to_dict()

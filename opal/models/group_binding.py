@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from opal.models.group_binding_group import GroupBindingGroup
 from typing import Optional, Set
@@ -34,13 +34,14 @@ class GroupBinding(BaseModel):
     created_at: datetime = Field(description="The date the group binding was created.")
     source_group_id: StrictStr = Field(description="The ID of the source group.")
     groups: List[GroupBindingGroup] = Field(description="The list of groups.")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_binding_id", "created_by_id", "created_at", "source_group_id", "groups"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -66,8 +67,10 @@ class GroupBinding(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -82,6 +85,11 @@ class GroupBinding(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['groups'] = _items
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -100,6 +108,11 @@ class GroupBinding(BaseModel):
             "source_group_id": obj.get("source_group_id"),
             "groups": [GroupBindingGroup.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

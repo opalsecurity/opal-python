@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of PaginatedConfigurationTemplateList from a JSON string
 paginated_configuration_template_list_instance = PaginatedConfigurationTemplateList.from_json(json)
 # print the JSON string representation of the object
-print PaginatedConfigurationTemplateList.to_json()
+print(PaginatedConfigurationTemplateList.to_json())
 
 # convert the object into a dict
 paginated_configuration_template_list_dict = paginated_configuration_template_list_instance.to_dict()

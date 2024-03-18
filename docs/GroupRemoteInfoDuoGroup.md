@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoDuoGroup from a JSON string
 group_remote_info_duo_group_instance = GroupRemoteInfoDuoGroup.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoDuoGroup.to_json()
+print(GroupRemoteInfoDuoGroup.to_json())
 
 # convert the object into a dict
 group_remote_info_duo_group_dict = group_remote_info_duo_group_instance.to_dict()

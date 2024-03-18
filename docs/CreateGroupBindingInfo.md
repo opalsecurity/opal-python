@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of CreateGroupBindingInfo from a JSON string
 create_group_binding_info_instance = CreateGroupBindingInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateGroupBindingInfo.to_json()
+print(CreateGroupBindingInfo.to_json())
 
 # convert the object into a dict
 create_group_binding_info_dict = create_group_binding_info_instance.to_dict()

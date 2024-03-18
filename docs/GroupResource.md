@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of GroupResource from a JSON string
 group_resource_instance = GroupResource.from_json(json)
 # print the JSON string representation of the object
-print GroupResource.to_json()
+print(GroupResource.to_json())
 
 # convert the object into a dict
 group_resource_dict = group_resource_instance.to_dict()

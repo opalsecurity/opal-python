@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of ResourceRemoteInfoGcpSqlInstance from a JSON string
 resource_remote_info_gcp_sql_instance_instance = ResourceRemoteInfoGcpSqlInstance.from_json(json)
 # print the JSON string representation of the object
-print ResourceRemoteInfoGcpSqlInstance.to_json()
+print(ResourceRemoteInfoGcpSqlInstance.to_json())
 
 # convert the object into a dict
 resource_remote_info_gcp_sql_instance_dict = resource_remote_info_gcp_sql_instance_instance.to_dict()

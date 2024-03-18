@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.condition import Condition
 from opal.models.reviewer_stage import ReviewerStage
@@ -39,13 +39,14 @@ class RequestConfiguration(BaseModel):
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template.")
     reviewer_stages: List[ReviewerStage] = Field(description="The list of reviewer stages for the request configuration.")
     priority: StrictInt = Field(description="The priority of the request configuration.")
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["condition", "allow_requests", "auto_approval", "require_mfa_to_request", "max_duration_minutes", "recommended_duration_minutes", "require_support_ticket", "request_template_id", "reviewer_stages", "priority"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -71,8 +72,10 @@ class RequestConfiguration(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -90,6 +93,11 @@ class RequestConfiguration(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['reviewer_stages'] = _items
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -113,6 +121,11 @@ class RequestConfiguration(BaseModel):
             "reviewer_stages": [ReviewerStage.from_dict(_item) for _item in obj["reviewer_stages"]] if obj.get("reviewer_stages") is not None else None,
             "priority": obj.get("priority")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

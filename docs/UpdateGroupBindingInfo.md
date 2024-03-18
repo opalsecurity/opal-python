@@ -20,7 +20,7 @@ json = "{}"
 # create an instance of UpdateGroupBindingInfo from a JSON string
 update_group_binding_info_instance = UpdateGroupBindingInfo.from_json(json)
 # print the JSON string representation of the object
-print UpdateGroupBindingInfo.to_json()
+print(UpdateGroupBindingInfo.to_json())
 
 # convert the object into a dict
 update_group_binding_info_dict = update_group_binding_info_instance.to_dict()

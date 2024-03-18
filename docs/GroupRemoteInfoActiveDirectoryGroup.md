@@ -18,7 +18,7 @@ json = "{}"
 # create an instance of GroupRemoteInfoActiveDirectoryGroup from a JSON string
 group_remote_info_active_directory_group_instance = GroupRemoteInfoActiveDirectoryGroup.from_json(json)
 # print the JSON string representation of the object
-print GroupRemoteInfoActiveDirectoryGroup.to_json()
+print(GroupRemoteInfoActiveDirectoryGroup.to_json())
 
 # convert the object into a dict
 group_remote_info_active_directory_group_dict = group_remote_info_active_directory_group_instance.to_dict()

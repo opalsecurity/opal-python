@@ -19,7 +19,7 @@ json = "{}"
 # create an instance of PaginatedGroupBindingsList from a JSON string
 paginated_group_bindings_list_instance = PaginatedGroupBindingsList.from_json(json)
 # print the JSON string representation of the object
-print PaginatedGroupBindingsList.to_json()
+print(PaginatedGroupBindingsList.to_json())
 
 # convert the object into a dict
 paginated_group_bindings_list_dict = paginated_group_bindings_list_instance.to_dict()

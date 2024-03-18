@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.group_remote_info import GroupRemoteInfo
 from opal.models.group_type_enum import GroupTypeEnum
@@ -53,13 +53,14 @@ class Group(BaseModel):
     request_configuration_list: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of request configurations for this group. Deprecated in favor of `request_configurations`.")
     metadata: Optional[StrictStr] = Field(default=None, description="JSON metadata about the remote group. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.")
     remote_info: Optional[GroupRemoteInfo] = None
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -85,8 +86,10 @@ class Group(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -111,6 +114,11 @@ class Group(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of remote_info
         if self.remote_info:
             _dict['remote_info'] = self.remote_info.to_dict()
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -147,6 +155,11 @@ class Group(BaseModel):
             "metadata": obj.get("metadata"),
             "remote_info": GroupRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

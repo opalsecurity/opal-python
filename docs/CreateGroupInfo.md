@@ -24,7 +24,7 @@ json = "{}"
 # create an instance of CreateGroupInfo from a JSON string
 create_group_info_instance = CreateGroupInfo.from_json(json)
 # print the JSON string representation of the object
-print CreateGroupInfo.to_json()
+print(CreateGroupInfo.to_json())
 
 # convert the object into a dict
 create_group_info_dict = create_group_info_instance.to_dict()
