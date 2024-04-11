@@ -3,15 +3,32 @@
 # AccessStatus Object ### Description The `AccessStatus` object is used to represent the user's access to the resource.  ### Usage Example View the `AccessStatus` for a resource/user pair to determine if the user has access to the resource.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **resource_id** | **str** | The ID of the resource. | 
 **user_id** | **str** | The ID of the user. | 
-**status** | [**ResourceUserAccessStatusEnum**](ResourceUserAccessStatusEnum.md) |  | 
-**expiration_date** | **datetime, none_type** | The day and time the user&#39;s access will expire. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**status** | [**ResourceUserAccessStatusEnum**](ResourceUserAccessStatusEnum.md) |  | 
+**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | 
 
+## Example
+
+```python
+from opal.models.resource_user_access_status import ResourceUserAccessStatus
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ResourceUserAccessStatus from a JSON string
+resource_user_access_status_instance = ResourceUserAccessStatus.from_json(json)
+# print the JSON string representation of the object
+print(ResourceUserAccessStatus.to_json())
+
+# convert the object into a dict
+resource_user_access_status_dict = resource_user_access_status_instance.to_dict()
+# create an instance of ResourceUserAccessStatus from a dict
+resource_user_access_status_form_dict = resource_user_access_status.from_dict(resource_user_access_status_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
