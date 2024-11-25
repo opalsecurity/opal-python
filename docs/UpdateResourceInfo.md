@@ -19,11 +19,14 @@ Name | Type | Description | Notes
 **require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **require_mfa_to_connect** | **bool** | A bool representing whether or not to require MFA to connect to this resource. | [optional] 
 **auto_approval** | **bool** | A bool representing whether or not to automatically approve requests to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
+**ticket_propagation** | [**TicketPropagationConfiguration**](TicketPropagationConfiguration.md) |  | [optional] 
+**custom_request_notification** | **str** | Custom request notification sent upon request approval. | [optional] 
+**risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
 **configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
 **request_template_id** | **str** | The ID of the associated request template. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of configurations for requests to this resource. If not provided, the default request configuration will be used. | [optional] 
-**request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) |  | [optional] 
+**request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 
 ## Example
 
@@ -40,7 +43,7 @@ print(UpdateResourceInfo.to_json())
 # convert the object into a dict
 update_resource_info_dict = update_resource_info_instance.to_dict()
 # create an instance of UpdateResourceInfo from a dict
-update_resource_info_form_dict = update_resource_info.from_dict(update_resource_info_dict)
+update_resource_info_from_dict = UpdateResourceInfo.from_dict(update_resource_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

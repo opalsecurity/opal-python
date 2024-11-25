@@ -27,7 +27,7 @@ print(MessageChannel.to_json())
 # convert the object into a dict
 message_channel_dict = message_channel_instance.to_dict()
 # create an instance of MessageChannel from a dict
-message_channel_form_dict = message_channel.from_dict(message_channel_dict)
+message_channel_from_dict = MessageChannel.from_dict(message_channel_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

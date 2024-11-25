@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +29,9 @@ class AddGroupResourceRequest(BaseModel):
     AddGroupResourceRequest
     """ # noqa: E501
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")
+    duration_minutes: Optional[Annotated[int, Field(le=525960, strict=True, ge=0)]] = Field(default=None, description="The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["access_level_remote_id"]
+    __properties: ClassVar[List[str]] = ["access_level_remote_id", "duration_minutes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +91,8 @@ class AddGroupResourceRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "access_level_remote_id": obj.get("access_level_remote_id")
+            "access_level_remote_id": obj.get("access_level_remote_id"),
+            "duration_minutes": obj.get("duration_minutes")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

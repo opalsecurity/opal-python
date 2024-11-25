@@ -31,7 +31,7 @@ class Event(BaseModel):
     """ # noqa: E501
     event_id: StrictStr = Field(description="The ID of the event.")
     actor_user_id: StrictStr = Field(description="The ID of the actor user.")
-    actor_name: Optional[Any] = Field(description="The name of the actor user.")
+    actor_name: Optional[Any]
     actor_email: Optional[StrictStr] = Field(default=None, description="The email of the actor user.")
     event_type: StrictStr = Field(description="The event type.")
     created_at: datetime = Field(description="The day and time the event was created.")
@@ -86,9 +86,9 @@ class Event(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in sub_events (list)
         _items = []
         if self.sub_events:
-            for _item in self.sub_events:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_sub_events in self.sub_events:
+                if _item_sub_events:
+                    _items.append(_item_sub_events.to_dict())
             _dict['sub_events'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

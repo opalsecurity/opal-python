@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from opal.models.group_type_enum import GroupTypeEnum
+from opal.models.resource_type_enum import ResourceTypeEnum
 from opal.models.tag_filter import TagFilter
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,11 +30,39 @@ class UARScope(BaseModel):
     """
     If set, the access review will only contain resources and groups that match at least one of the filters in scope.
     """ # noqa: E501
+    group_visibility: Optional[StrictStr] = Field(default=None, description="Specifies what users can see during an Access Review")
+    users: Optional[List[StrictStr]] = Field(default=None, description="The access review will only include the following users. If any users are selected, any entity filters will be applied to only the entities that the selected users have access to.")
+    filter_operator: Optional[StrictStr] = Field(default=None, description="Specifies whether entities must match all (AND) or any (OR) of the filters.")
+    entities: Optional[List[StrictStr]] = Field(default=None, description="This access review will include resources and groups with ids in the given strings.")
+    apps: Optional[List[StrictStr]] = Field(default=None, description="This access review will include items in the specified applications")
+    admins: Optional[List[StrictStr]] = Field(default=None, description="This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.")
+    group_types: Optional[List[GroupTypeEnum]] = Field(default=None, description="This access review will include items of the specified group types")
+    resource_types: Optional[List[ResourceTypeEnum]] = Field(default=None, description="This access review will include items of the specified resource types")
+    include_group_bindings: Optional[StrictBool] = None
     tags: Optional[List[TagFilter]] = Field(default=None, description="This access review will include resources and groups who are tagged with one of the given tags.")
     names: Optional[List[StrictStr]] = Field(default=None, description="This access review will include resources and groups whose name contains one of the given strings.")
-    admins: Optional[List[StrictStr]] = Field(default=None, description="This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["tags", "names", "admins"]
+    __properties: ClassVar[List[str]] = ["group_visibility", "users", "filter_operator", "entities", "apps", "admins", "group_types", "resource_types", "include_group_bindings", "tags", "names"]
+
+    @field_validator('group_visibility')
+    def group_visibility_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['STRICT', 'VIEW_VISIBLE_AND_ASSIGNED', 'VIEW_ALL']):
+            raise ValueError("must be one of enum values ('STRICT', 'VIEW_VISIBLE_AND_ASSIGNED', 'VIEW_ALL')")
+        return value
+
+    @field_validator('filter_operator')
+    def filter_operator_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ANY', 'ALL']):
+            raise ValueError("must be one of enum values ('ANY', 'ALL')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,9 +108,9 @@ class UARScope(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
         _items = []
         if self.tags:
-            for _item in self.tags:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_tags in self.tags:
+                if _item_tags:
+                    _items.append(_item_tags.to_dict())
             _dict['tags'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
@@ -99,9 +129,17 @@ class UARScope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "group_visibility": obj.get("group_visibility"),
+            "users": obj.get("users"),
+            "filter_operator": obj.get("filter_operator"),
+            "entities": obj.get("entities"),
+            "apps": obj.get("apps"),
+            "admins": obj.get("admins"),
+            "group_types": obj.get("group_types"),
+            "resource_types": obj.get("resource_types"),
+            "include_group_bindings": obj.get("include_group_bindings"),
             "tags": [TagFilter.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
-            "names": obj.get("names"),
-            "admins": obj.get("admins")
+            "names": obj.get("names")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

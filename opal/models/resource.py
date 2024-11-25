@@ -20,9 +20,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from opal.models.request_configuration import RequestConfiguration
 from opal.models.resource_remote_info import ResourceRemoteInfo
 from opal.models.resource_type_enum import ResourceTypeEnum
+from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal.models.ticket_propagation_configuration import TicketPropagationConfiguration
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -52,10 +55,14 @@ class Resource(BaseModel):
     configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource.")
     request_configuration_list: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource. Deprecated in favor of `request_configurations`.")
+    ticket_propagation: Optional[TicketPropagationConfiguration] = None
+    custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval.")
+    risk_sensitivity: Optional[RiskSensitivityEnum] = Field(default=None, description="The risk sensitivity level for the resource. When an override is set, this field will match that.")
+    risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     metadata: Optional[StrictStr] = Field(default=None, description="JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.")
     remote_info: Optional[ResourceRemoteInfo] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "metadata", "remote_info"]
+    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +94,11 @@ class Resource(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "risk_sensitivity",
             "additional_properties",
         ])
 
@@ -101,17 +110,20 @@ class Resource(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in request_configurations (list)
         _items = []
         if self.request_configurations:
-            for _item in self.request_configurations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configurations in self.request_configurations:
+                if _item_request_configurations:
+                    _items.append(_item_request_configurations.to_dict())
             _dict['request_configurations'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in request_configuration_list (list)
         _items = []
         if self.request_configuration_list:
-            for _item in self.request_configuration_list:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configuration_list in self.request_configuration_list:
+                if _item_request_configuration_list:
+                    _items.append(_item_request_configuration_list.to_dict())
             _dict['request_configuration_list'] = _items
+        # override the default output from pydantic by calling `to_dict()` of ticket_propagation
+        if self.ticket_propagation:
+            _dict['ticket_propagation'] = self.ticket_propagation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of remote_info
         if self.remote_info:
             _dict['remote_info'] = self.remote_info.to_dict()
@@ -154,6 +166,10 @@ class Resource(BaseModel):
             "configuration_template_id": obj.get("configuration_template_id"),
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None,
             "request_configuration_list": [RequestConfiguration.from_dict(_item) for _item in obj["request_configuration_list"]] if obj.get("request_configuration_list") is not None else None,
+            "ticket_propagation": TicketPropagationConfiguration.from_dict(obj["ticket_propagation"]) if obj.get("ticket_propagation") is not None else None,
+            "custom_request_notification": obj.get("custom_request_notification"),
+            "risk_sensitivity": obj.get("risk_sensitivity"),
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
             "metadata": obj.get("metadata"),
             "remote_info": ResourceRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None
         })

@@ -23,7 +23,7 @@ print(ResourceRemoteInfoPagerdutyRole.to_json())
 # convert the object into a dict
 resource_remote_info_pagerduty_role_dict = resource_remote_info_pagerduty_role_instance.to_dict()
 # create an instance of ResourceRemoteInfoPagerdutyRole from a dict
-resource_remote_info_pagerduty_role_form_dict = resource_remote_info_pagerduty_role.from_dict(resource_remote_info_pagerduty_role_dict)
+resource_remote_info_pagerduty_role_from_dict = ResourceRemoteInfoPagerdutyRole.from_dict(resource_remote_info_pagerduty_role_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

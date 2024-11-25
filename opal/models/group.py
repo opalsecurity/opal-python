@@ -20,9 +20,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from opal.models.group_remote_info import GroupRemoteInfo
 from opal.models.group_type_enum import GroupTypeEnum
 from opal.models.request_configuration import RequestConfiguration
+from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,6 +37,7 @@ class Group(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="The name of the group.")
     description: Optional[StrictStr] = Field(default=None, description="A description of the group.")
     admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the group.")
+    group_leader_user_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of User IDs for the group leaders of the group")
     remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the remote.")
     remote_name: Optional[StrictStr] = Field(default=None, description="The name of the remote.")
     group_type: Optional[GroupTypeEnum] = None
@@ -53,8 +56,11 @@ class Group(BaseModel):
     request_configuration_list: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of request configurations for this group. Deprecated in favor of `request_configurations`.")
     metadata: Optional[StrictStr] = Field(default=None, description="JSON metadata about the remote group. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.")
     remote_info: Optional[GroupRemoteInfo] = None
+    custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent to the requester when the request is approved.")
+    risk_sensitivity: Optional[RiskSensitivityEnum] = Field(default=None, description="The risk sensitivity level for the group. When an override is set, this field will match that.")
+    risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info"]
+    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,9 +92,11 @@ class Group(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "risk_sensitivity",
             "additional_properties",
         ])
 
@@ -100,16 +108,16 @@ class Group(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in request_configurations (list)
         _items = []
         if self.request_configurations:
-            for _item in self.request_configurations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configurations in self.request_configurations:
+                if _item_request_configurations:
+                    _items.append(_item_request_configurations.to_dict())
             _dict['request_configurations'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in request_configuration_list (list)
         _items = []
         if self.request_configuration_list:
-            for _item in self.request_configuration_list:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configuration_list in self.request_configuration_list:
+                if _item_request_configuration_list:
+                    _items.append(_item_request_configuration_list.to_dict())
             _dict['request_configuration_list'] = _items
         # override the default output from pydantic by calling `to_dict()` of remote_info
         if self.remote_info:
@@ -136,6 +144,7 @@ class Group(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "admin_owner_id": obj.get("admin_owner_id"),
+            "group_leader_user_ids": obj.get("group_leader_user_ids"),
             "remote_id": obj.get("remote_id"),
             "remote_name": obj.get("remote_name"),
             "group_type": obj.get("group_type"),
@@ -153,7 +162,10 @@ class Group(BaseModel):
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None,
             "request_configuration_list": [RequestConfiguration.from_dict(_item) for _item in obj["request_configuration_list"]] if obj.get("request_configuration_list") is not None else None,
             "metadata": obj.get("metadata"),
-            "remote_info": GroupRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None
+            "remote_info": GroupRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
+            "custom_request_notification": obj.get("custom_request_notification"),
+            "risk_sensitivity": obj.get("risk_sensitivity"),
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

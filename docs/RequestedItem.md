@@ -27,7 +27,7 @@ print(RequestedItem.to_json())
 # convert the object into a dict
 requested_item_dict = requested_item_instance.to_dict()
 # create an instance of RequestedItem from a dict
-requested_item_form_dict = requested_item.from_dict(requested_item_dict)
+requested_item_from_dict = RequestedItem.from_dict(requested_item_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

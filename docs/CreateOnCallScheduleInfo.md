@@ -24,7 +24,7 @@ print(CreateOnCallScheduleInfo.to_json())
 # convert the object into a dict
 create_on_call_schedule_info_dict = create_on_call_schedule_info_instance.to_dict()
 # create an instance of CreateOnCallScheduleInfo from a dict
-create_on_call_schedule_info_form_dict = create_on_call_schedule_info.from_dict(create_on_call_schedule_info_dict)
+create_on_call_schedule_info_from_dict = CreateOnCallScheduleInfo.from_dict(create_on_call_schedule_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

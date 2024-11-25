@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **deadline** | **datetime** | The last day for reviewers to complete their access reviews. | 
 **time_zone** | **str** | The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles. | 
 **self_review_allowed** | **bool** | A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False. | 
+**reminder_schedule** | **List[int]** |  | [optional] 
+**reminder_include_manager** | **bool** |  | [optional] 
 **uar_scope** | [**UARScope**](UARScope.md) |  | [optional] 
 
 ## Example
@@ -29,7 +31,7 @@ print(CreateUARInfo.to_json())
 # convert the object into a dict
 create_uar_info_dict = create_uar_info_instance.to_dict()
 # create an instance of CreateUARInfo from a dict
-create_uar_info_form_dict = create_uar_info.from_dict(create_uar_info_dict)
+create_uar_info_from_dict = CreateUARInfo.from_dict(create_uar_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

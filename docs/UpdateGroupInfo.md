@@ -21,8 +21,11 @@ Name | Type | Description | Notes
 **configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
 **request_template_id** | **str** | The ID of the associated request template. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
+**group_leader_user_ids** | **List[str]** | A list of User IDs for the group leaders of the group | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. | [optional] 
-**request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) |  | [optional] 
+**request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
+**custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
+**risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
 
 ## Example
 
@@ -39,7 +42,7 @@ print(UpdateGroupInfo.to_json())
 # convert the object into a dict
 update_group_info_dict = update_group_info_instance.to_dict()
 # create an instance of UpdateGroupInfo from a dict
-update_group_info_form_dict = update_group_info.from_dict(update_group_info_dict)
+update_group_info_from_dict = UpdateGroupInfo.from_dict(update_group_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

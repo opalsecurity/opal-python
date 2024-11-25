@@ -23,7 +23,7 @@ print(ResourceRemoteInfoGitlabProject.to_json())
 # convert the object into a dict
 resource_remote_info_gitlab_project_dict = resource_remote_info_gitlab_project_instance.to_dict()
 # create an instance of ResourceRemoteInfoGitlabProject from a dict
-resource_remote_info_gitlab_project_form_dict = resource_remote_info_gitlab_project.from_dict(resource_remote_info_gitlab_project_dict)
+resource_remote_info_gitlab_project_from_dict = ResourceRemoteInfoGitlabProject.from_dict(resource_remote_info_gitlab_project_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

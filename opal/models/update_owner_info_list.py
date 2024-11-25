@@ -76,9 +76,9 @@ class UpdateOwnerInfoList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in owners (list)
         _items = []
         if self.owners:
-            for _item in self.owners:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_owners in self.owners:
+                if _item_owners:
+                    _items.append(_item_owners.to_dict())
             _dict['owners'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

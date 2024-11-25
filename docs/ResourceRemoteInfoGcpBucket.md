@@ -23,7 +23,7 @@ print(ResourceRemoteInfoGcpBucket.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_bucket_dict = resource_remote_info_gcp_bucket_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpBucket from a dict
-resource_remote_info_gcp_bucket_form_dict = resource_remote_info_gcp_bucket.from_dict(resource_remote_info_gcp_bucket_dict)
+resource_remote_info_gcp_bucket_from_dict = ResourceRemoteInfoGcpBucket.from_dict(resource_remote_info_gcp_bucket_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

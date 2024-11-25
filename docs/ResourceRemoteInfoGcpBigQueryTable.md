@@ -25,7 +25,7 @@ print(ResourceRemoteInfoGcpBigQueryTable.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_big_query_table_dict = resource_remote_info_gcp_big_query_table_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpBigQueryTable from a dict
-resource_remote_info_gcp_big_query_table_form_dict = resource_remote_info_gcp_big_query_table.from_dict(resource_remote_info_gcp_big_query_table_dict)
+resource_remote_info_gcp_big_query_table_from_dict = ResourceRemoteInfoGcpBigQueryTable.from_dict(resource_remote_info_gcp_big_query_table_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

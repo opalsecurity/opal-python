@@ -21,7 +21,7 @@ print(RequestCustomFieldResponseFieldValue.to_json())
 # convert the object into a dict
 request_custom_field_response_field_value_dict = request_custom_field_response_field_value_instance.to_dict()
 # create an instance of RequestCustomFieldResponseFieldValue from a dict
-request_custom_field_response_field_value_form_dict = request_custom_field_response_field_value.from_dict(request_custom_field_response_field_value_dict)
+request_custom_field_response_field_value_from_dict = RequestCustomFieldResponseFieldValue.from_dict(request_custom_field_response_field_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

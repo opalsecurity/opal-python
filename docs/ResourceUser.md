@@ -28,7 +28,7 @@ print(ResourceUser.to_json())
 # convert the object into a dict
 resource_user_dict = resource_user_instance.to_dict()
 # create an instance of ResourceUser from a dict
-resource_user_form_dict = resource_user.from_dict(resource_user_dict)
+resource_user_from_dict = ResourceUser.from_dict(resource_user_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

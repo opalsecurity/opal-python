@@ -30,7 +30,7 @@ print(UAR.to_json())
 # convert the object into a dict
 uar_dict = uar_instance.to_dict()
 # create an instance of UAR from a dict
-uar_form_dict = uar.from_dict(uar_dict)
+uar_from_dict = UAR.from_dict(uar_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,7 +22,7 @@ print(MessageChannelList.to_json())
 # convert the object into a dict
 message_channel_list_dict = message_channel_list_instance.to_dict()
 # create an instance of MessageChannelList from a dict
-message_channel_list_form_dict = message_channel_list.from_dict(message_channel_list_dict)
+message_channel_list_from_dict = MessageChannelList.from_dict(message_channel_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

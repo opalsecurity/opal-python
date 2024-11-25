@@ -24,7 +24,7 @@ print(ResourceRemoteInfoAwsEksCluster.to_json())
 # convert the object into a dict
 resource_remote_info_aws_eks_cluster_dict = resource_remote_info_aws_eks_cluster_instance.to_dict()
 # create an instance of ResourceRemoteInfoAwsEksCluster from a dict
-resource_remote_info_aws_eks_cluster_form_dict = resource_remote_info_aws_eks_cluster.from_dict(resource_remote_info_aws_eks_cluster_dict)
+resource_remote_info_aws_eks_cluster_from_dict = ResourceRemoteInfoAwsEksCluster.from_dict(resource_remote_info_aws_eks_cluster_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

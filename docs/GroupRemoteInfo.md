@@ -31,7 +31,7 @@ print(GroupRemoteInfo.to_json())
 # convert the object into a dict
 group_remote_info_dict = group_remote_info_instance.to_dict()
 # create an instance of GroupRemoteInfo from a dict
-group_remote_info_form_dict = group_remote_info.from_dict(group_remote_info_dict)
+group_remote_info_from_dict = GroupRemoteInfo.from_dict(group_remote_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

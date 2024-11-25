@@ -24,7 +24,7 @@ print(VisibilityInfo.to_json())
 # convert the object into a dict
 visibility_info_dict = visibility_info_instance.to_dict()
 # create an instance of VisibilityInfo from a dict
-visibility_info_form_dict = visibility_info.from_dict(visibility_info_dict)
+visibility_info_from_dict = VisibilityInfo.from_dict(visibility_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

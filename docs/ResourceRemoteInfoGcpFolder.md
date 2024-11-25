@@ -23,7 +23,7 @@ print(ResourceRemoteInfoGcpFolder.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_folder_dict = resource_remote_info_gcp_folder_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpFolder from a dict
-resource_remote_info_gcp_folder_form_dict = resource_remote_info_gcp_folder.from_dict(resource_remote_info_gcp_folder_dict)
+resource_remote_info_gcp_folder_from_dict = ResourceRemoteInfoGcpFolder.from_dict(resource_remote_info_gcp_folder_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

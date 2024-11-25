@@ -76,9 +76,9 @@ class OnCallScheduleList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in on_call_schedules (list)
         _items = []
         if self.on_call_schedules:
-            for _item in self.on_call_schedules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_on_call_schedules in self.on_call_schedules:
+                if _item_on_call_schedules:
+                    _items.append(_item_on_call_schedules.to_dict())
             _dict['on_call_schedules'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

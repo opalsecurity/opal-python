@@ -24,7 +24,7 @@ print(ResourceRemoteInfoGcpBigQueryDataset.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_big_query_dataset_dict = resource_remote_info_gcp_big_query_dataset_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpBigQueryDataset from a dict
-resource_remote_info_gcp_big_query_dataset_form_dict = resource_remote_info_gcp_big_query_dataset.from_dict(resource_remote_info_gcp_big_query_dataset_dict)
+resource_remote_info_gcp_big_query_dataset_from_dict = ResourceRemoteInfoGcpBigQueryDataset.from_dict(resource_remote_info_gcp_big_query_dataset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

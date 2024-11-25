@@ -76,9 +76,9 @@ class CreateRequestConfigurationInfoList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in request_configurations (list)
         _items = []
         if self.request_configurations:
-            for _item in self.request_configurations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configurations in self.request_configurations:
+                if _item_request_configurations:
+                    _items.append(_item_request_configurations.to_dict())
             _dict['request_configurations'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

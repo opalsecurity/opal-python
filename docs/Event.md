@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event_id** | **str** | The ID of the event. | 
 **actor_user_id** | **str** | The ID of the actor user. | 
-**actor_name** | **object** | The name of the actor user. | 
+**actor_name** | **object** |  | 
 **actor_email** | **str** | The email of the actor user. | [optional] 
 **event_type** | **str** | The event type. | 
 **created_at** | **datetime** | The day and time the event was created. | 
@@ -32,7 +32,7 @@ print(Event.to_json())
 # convert the object into a dict
 event_dict = event_instance.to_dict()
 # create an instance of Event from a dict
-event_form_dict = event.from_dict(event_dict)
+event_from_dict = Event.from_dict(event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

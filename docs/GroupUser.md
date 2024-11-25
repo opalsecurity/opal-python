@@ -28,7 +28,7 @@ print(GroupUser.to_json())
 # convert the object into a dict
 group_user_dict = group_user_instance.to_dict()
 # create an instance of GroupUser from a dict
-group_user_form_dict = group_user.from_dict(group_user_dict)
+group_user_from_dict = GroupUser.from_dict(group_user_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

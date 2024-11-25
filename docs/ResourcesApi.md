@@ -4,12 +4,15 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_resource_nhi**](ResourcesApi.md#add_resource_nhi) | **POST** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 [**add_resource_user**](ResourcesApi.md#add_resource_user) | **POST** /resources/{resource_id}/users/{user_id} | 
 [**create_resource**](ResourcesApi.md#create_resource) | **POST** /resources | 
 [**delete_resource**](ResourcesApi.md#delete_resource) | **DELETE** /resources/{resource_id} | 
+[**delete_resource_nhi**](ResourcesApi.md#delete_resource_nhi) | **DELETE** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 [**delete_resource_user**](ResourcesApi.md#delete_resource_user) | **DELETE** /resources/{resource_id}/users/{user_id} | 
 [**get_resource**](ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | 
 [**get_resource_message_channels**](ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
+[**get_resource_nhis**](ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
 [**get_resource_reviewer_stages**](ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 [**get_resource_reviewers**](ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
 [**get_resource_tags**](ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
@@ -23,6 +26,88 @@ Method | HTTP request | Description
 [**set_resource_visibility**](ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
 [**update_resources**](ResourcesApi.md#update_resources) | **PUT** /resources | 
 
+
+# **add_resource_nhi**
+> ResourceNHI add_resource_nhi(resource_id, non_human_identity_id, add_resource_nhi_request=add_resource_nhi_request)
+
+
+
+Gives a non-human identity access to this resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal
+from opal.models.add_resource_nhi_request import AddResourceNhiRequest
+from opal.models.resource_nhi import ResourceNHI
+from opal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal.ResourcesApi(api_client)
+    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    non_human_identity_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The resource ID of the non-human identity to add.
+    add_resource_nhi_request = opal.AddResourceNhiRequest() # AddResourceNhiRequest |  (optional)
+
+    try:
+        api_response = api_instance.add_resource_nhi(resource_id, non_human_identity_id, add_resource_nhi_request=add_resource_nhi_request)
+        print("The response of ResourcesApi->add_resource_nhi:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->add_resource_nhi: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource. | 
+ **non_human_identity_id** | **str**| The resource ID of the non-human identity to add. | 
+ **add_resource_nhi_request** | [**AddResourceNhiRequest**](AddResourceNhiRequest.md)|  | [optional] 
+
+### Return type
+
+[**ResourceNHI**](ResourceNHI.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the access that the non-human identity was granted to the resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_resource_user**
 > ResourceUser add_resource_user(resource_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_resource_user_request=add_resource_user_request)
@@ -262,6 +347,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_resource_nhi**
+> delete_resource_nhi(resource_id, non_human_identity_id, access_level_remote_id=access_level_remote_id)
+
+
+
+Removes a non-human identity's direct access from this resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal
+from opal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal.ResourcesApi(api_client)
+    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    non_human_identity_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The resource ID of the non-human identity to remove from this resource.
+    access_level_remote_id = 'roles/cloudsql.instanceUser' # str | The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
+
+    try:
+        api_instance.delete_resource_nhi(resource_id, non_human_identity_id, access_level_remote_id=access_level_remote_id)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->delete_resource_nhi: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource. | 
+ **non_human_identity_id** | **str**| The resource ID of the non-human identity to remove from this resource. | 
+ **access_level_remote_id** | **str**| The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | This non-human identity&#39;s access was successfully removed from this resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_resource_user**
 > delete_resource_user(resource_id, user_id, access_level_remote_id=access_level_remote_id)
 
@@ -491,6 +654,85 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The audit message channels attached to the resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_resource_nhis**
+> AccessList get_resource_nhis(resource_id, limit=limit)
+
+
+
+Gets the list of non-human identities with access to this resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal
+from opal.models.access_list import AccessList
+from opal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal.ResourcesApi(api_client)
+    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    limit = 200 # int | Limit the number of results returned. (optional)
+
+    try:
+        api_response = api_instance.get_resource_nhis(resource_id, limit=limit)
+        print("The response of ResourcesApi->get_resource_nhis:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource_nhis: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource. | 
+ **limit** | **int**| Limit the number of results returned. | [optional] 
+
+### Return type
+
+[**AccessList**](AccessList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of non-human identities with access to this resource. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

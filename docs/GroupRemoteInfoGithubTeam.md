@@ -24,7 +24,7 @@ print(GroupRemoteInfoGithubTeam.to_json())
 # convert the object into a dict
 group_remote_info_github_team_dict = group_remote_info_github_team_instance.to_dict()
 # create an instance of GroupRemoteInfoGithubTeam from a dict
-group_remote_info_github_team_form_dict = group_remote_info_github_team.from_dict(group_remote_info_github_team_dict)
+group_remote_info_github_team_from_dict = GroupRemoteInfoGithubTeam.from_dict(group_remote_info_github_team_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

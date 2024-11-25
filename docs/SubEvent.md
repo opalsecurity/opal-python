@@ -23,7 +23,7 @@ print(SubEvent.to_json())
 # convert the object into a dict
 sub_event_dict = sub_event_instance.to_dict()
 # create an instance of SubEvent from a dict
-sub_event_form_dict = sub_event.from_dict(sub_event_dict)
+sub_event_from_dict = SubEvent.from_dict(sub_event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

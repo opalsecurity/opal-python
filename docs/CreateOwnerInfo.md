@@ -28,7 +28,7 @@ print(CreateOwnerInfo.to_json())
 # convert the object into a dict
 create_owner_info_dict = create_owner_info_instance.to_dict()
 # create an instance of CreateOwnerInfo from a dict
-create_owner_info_form_dict = create_owner_info.from_dict(create_owner_info_dict)
+create_owner_info_from_dict = CreateOwnerInfo.from_dict(create_owner_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

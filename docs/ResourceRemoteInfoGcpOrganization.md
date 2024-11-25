@@ -23,7 +23,7 @@ print(ResourceRemoteInfoGcpOrganization.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_organization_dict = resource_remote_info_gcp_organization_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpOrganization from a dict
-resource_remote_info_gcp_organization_form_dict = resource_remote_info_gcp_organization.from_dict(resource_remote_info_gcp_organization_dict)
+resource_remote_info_gcp_organization_from_dict = ResourceRemoteInfoGcpOrganization.from_dict(resource_remote_info_gcp_organization_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

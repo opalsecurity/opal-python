@@ -6,7 +6,9 @@ from opal.api.configuration_templates_api import ConfigurationTemplatesApi
 from opal.api.events_api import EventsApi
 from opal.api.group_bindings_api import GroupBindingsApi
 from opal.api.groups_api import GroupsApi
+from opal.api.idp_group_mappings_api import IdpGroupMappingsApi
 from opal.api.message_channels_api import MessageChannelsApi
+from opal.api.non_human_identities_api import NonHumanIdentitiesApi
 from opal.api.on_call_schedules_api import OnCallSchedulesApi
 from opal.api.owners_api import OwnersApi
 from opal.api.requests_api import RequestsApi

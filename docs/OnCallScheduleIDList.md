@@ -23,7 +23,7 @@ print(OnCallScheduleIDList.to_json())
 # convert the object into a dict
 on_call_schedule_id_list_dict = on_call_schedule_id_list_instance.to_dict()
 # create an instance of OnCallScheduleIDList from a dict
-on_call_schedule_id_list_form_dict = on_call_schedule_id_list.from_dict(on_call_schedule_id_list_dict)
+on_call_schedule_id_list_from_dict = OnCallScheduleIDList.from_dict(on_call_schedule_id_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

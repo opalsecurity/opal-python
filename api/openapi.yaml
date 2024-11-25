@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   contact:
     email: hello@opal.dev
@@ -128,6 +128,28 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/UpdateConfigurationTemplateInfo"
+      security:
+        - BearerAuth: []
+      tags:
+        - configuration-templates
+  /configuration-templates/{configuration_template_id}:
+    delete:
+      description: Deletes a configuration template.
+      operationId: deleteConfigurationTemplate
+      parameters:
+        - description: The ID of the configuration template.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: configuration_template_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The configuration template was successfully deleted.
       security:
         - BearerAuth: []
       tags:
@@ -534,7 +556,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GroupResourceList"
-          description: The resources that the group gives access to to.
+          description: The resources that the group gives access to.
       security:
         - BearerAuth: []
       tags:
@@ -608,11 +630,18 @@ paths:
             schema:
               example:
                 access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
+                duration_minutes: 60
               properties:
                 access_level_remote_id:
                   description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
                   example: arn:aws:iam::590304332660:role/AdministratorAccess
                   type: string
+                duration_minutes:
+                  description: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
+                  example: 60
+                  type: integer
+                  maximum: 525960 # One year
+                  minimum: 0
               type: object
       responses:
         "200":
@@ -1090,6 +1119,104 @@ paths:
         - BearerAuth: []
       tags:
         - group-bindings
+  /idp-group-mappings/{app_resource_id}:
+    get:
+      description: Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
+      operationId: getIdpGroupMappings
+      parameters:
+        - description: The ID of the Okta app.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: app_resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdpGroupMappingList"
+          description: The configured set of available `IdpGroupMapping` objects for an Okta app.
+      security:
+        - BearerAuth: []
+      tags:
+        - idp-group-mappings
+    put:
+      description: Updates the list of available `IdpGroupMapping` objects for an Okta app.
+      operationId: updateIdpGroupMappings
+      parameters:
+        - description: The ID of the Okta app.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: app_resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                mappings:
+                  type: array
+                  items:
+                    properties:
+                      group_id:
+                        type: string
+                        format: uuid
+                      alias:
+                        type: string
+                    type: object
+              required:
+                - mappings
+              type: object
+      responses:
+        "200":
+          description: The updated set of available `IdpGroupMapping` objects for an Okta app.
+      security:
+        - BearerAuth: []
+      tags:
+        - idp-group-mappings
+  /idp-group-mappings/{app_resource_id}/{group_id}/:
+    delete:
+      description: Deletes an `IdpGroupMapping` object.
+      operationId: delete_idp_group_mappings_by_app_resource_ID_group_ID
+      parameters:
+        - description: The ID of the Okta app.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: app_resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The IDP group mapping was successfully deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - idp-group-mappings
   /owners:
     get:
       description: Returns a list of `Owner` objects.
@@ -1347,6 +1474,32 @@ paths:
         - BearerAuth: []
       tags:
         - requests
+    post:
+      description: "Create an access request"
+      operationId: "createRequest" # TODO amruth confirm naming
+      requestBody:
+        description: Resources to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRequestInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    format: uuid
+                    type: string
+                    example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          description: The resulting request.
+      security:
+        - BearerAuth: []
+      tags:
+        - requests
+
   /resources:
     get:
       description: Returns a list of resources for your organization.
@@ -1760,6 +1913,76 @@ paths:
         - BearerAuth: []
       tags:
         - resources
+  /non-human-identities:
+    get:
+      description: Returns a list of non-human identities for your organization.
+      operationId: get_nhis
+      parameters:
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page. Default is 200.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+            maximum: 1000
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResourcesList"
+          description: One page worth non-human identities in your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - non-human-identities
+  /resources/{resource_id}/non-human-identities:
+    get:
+      description: Gets the list of non-human identities with access to this resource.
+      operationId: get_resource_nhis
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: Limit the number of results returned.
+          example: 200
+          explode: true
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessList"
+          description: List of non-human identities with access to this resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
   /resources/{resource_id}/users:
     get:
       description: Gets the list of users for this resource.
@@ -1791,6 +2014,103 @@ paths:
               schema:
                 $ref: "#/components/schemas/ResourceAccessUserList"
           description: List of users with access to this resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resources/{resource_id}/non-human-identities/{non_human_identity_id}:
+    post:
+      description: Gives a non-human identity access to this resource.
+      operationId: add_resource_nhi
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The resource ID of the non-human identity to add.
+          example: f92aa855-cea9-4814-b9d8-f2a60d3e4a06
+          explode: false
+          in: path
+          name: non_human_identity_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              example:
+                duration_minutes: 60
+                access_level_remote_id: roles/cloudsql.instanceUser
+              properties:
+                duration_minutes:
+                  description: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
+                  example: 60
+                  type: integer
+                  maximum: 525960 # One year
+                access_level_remote_id:
+                  description: The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.
+                  example: roles/cloudsql.instanceUser
+                  type: string
+              required:
+                - duration_minutes
+              type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNHI"
+          description: Details about the access that the non-human identity was granted to the resource.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+    delete:
+      description: Removes a non-human identity's direct access from this resource.
+      operationId: delete_resource_nhi
+      parameters:
+        - description: The ID of the resource.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The resource ID of the non-human identity to remove from this resource.
+          example: f92aa855-cea9-4814-b9d8-f2a60d3e4a06
+          explode: false
+          in: path
+          name: non_human_identity_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+          example: roles/cloudsql.instanceUser
+          explode: true
+          in: query
+          name: access_level_remote_id
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          description: This non-human identity's access was successfully removed from this resource.
       security:
         - BearerAuth: []
       tags:
@@ -2134,6 +2454,53 @@ paths:
         - BearerAuth: []
       tags:
         - users
+  /tag/{tag_id}:
+    get:
+      description: UNSTABLE. May be removed at any time. Gets a tag with the given id.
+      operationId: get_tag_by_ID
+      parameters:
+        - description: The tag ID
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          name: tag_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tag"
+          description: The tag requested.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
+    delete:
+      description: UNSTABLE. May be removed at any time. Deletes a tag with the given id.
+      operationId: delete_tag_by_ID
+      parameters:
+        - description: The tag ID
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          name: tag_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+          style: simple
+      responses:
+        "200":
+          description: Tag was deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - tags
   /tag:
     get:
       description: Gets a tag with the given key and value.
@@ -2655,6 +3022,10 @@ components:
     UARScope:
       description: If set, the access review will only contain resources and groups that match at least one of the filters in scope.
       example:
+        filter_operator: ANY
+        users:
+          - userd283-ca87-4a8a-bdbb-df212eca5353
+        include_group_bindings: True
         tags:
           - key: uar_scope
             value: high_priority
@@ -2664,7 +3035,66 @@ components:
         admins:
           - f454d283-ca87-4a8a-bdbb-df212eca5353
           - 8763d283-ca87-4a8a-bdbb-df212ecab139
+        resource_types:
+          - GCP_CLOUD_SQL_POSTGRES_INSTANCE
+        group_types:
+          - AWS_SSO_GROUP
+        apps:
+          - pas2d283-ca87-4a8a-bdbb-df212eca5353
+          - apss2d283-ca87-4a8a-bdbb-df212eca5353
+        entities:
+          - f454d283-as87-4a8a-bdbb-df212eca5353
+          - f454d283-as87-4a8a-bdbb-df212eca5329
       properties:
+        group_visibility:
+          description: Specifies what users can see during an Access Review
+          type: string
+          enum: [STRICT, VIEW_VISIBLE_AND_ASSIGNED, VIEW_ALL]
+        users:
+          description: The access review will only include the following users. If any users are selected, any entity filters will be applied to only the entities that the selected users have access to.
+          items:
+            example: userd283-ca87-4a8a-bdbb-df212eca5353
+            type: string
+            format: uuid
+          type: array
+        filter_operator:
+          description: Specifies whether entities must match all (AND) or any (OR) of the filters.
+          type: string
+          enum: [ANY, ALL]
+        entities:
+          description: This access review will include resources and groups with ids in the given strings.
+          items:
+            example: f454d283-as87-4a8a-bdbb-df212eca5353
+            type: string
+            format: uuid
+          type: array
+        apps:
+          description: This access review will include items in the specified applications
+          items:
+            example: pas2d283-ca87-4a8a-bdbb-df212eca5353
+            type: string
+            format: uuid
+          type: array
+        admins:
+          description: This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.
+          items:
+            example: f454d283-ca87-4a8a-bdbb-df212eca5353
+            type: string
+            format: uuid
+          type: array
+        group_types:
+          description: This access review will include items of the specified group types
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupTypeEnum"
+        resource_types:
+          description: This access review will include items of the specified resource types
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceTypeEnum"
+        include_group_bindings:
+          type: boolean
+          example: False
         tags:
           description: This access review will include resources and groups who are tagged with one of the given tags.
           items:
@@ -2676,13 +3106,6 @@ components:
             example: demo
             type: string
           type: array
-        admins:
-          description: This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.
-          items:
-            example: f454d283-ca87-4a8a-bdbb-df212eca5353
-            type: string
-            format: uuid
-          type: array
       type: object
     PaginatedUARsList:
       description: A list of UARs.
@@ -2693,7 +3116,7 @@ components:
           - uar_id: f454d283-ca87-4a8a-bdbb-df212eca5353
             name: Monthly UAR (July)
             send_reviewer_assignment_notification: False
-            deadline: 2022-07-14 06:59:59
+            deadline: 2022-07-14T06:59:59Z
             time_zone: America/Los_Angeles
             self_review_allowed: False
             uar_scope:
@@ -2709,7 +3132,7 @@ components:
           - uar_id: 39a4d283-ca87-4a8a-bdbb-df212eca5fdb
             name: Monthly UAR (August)
             send_reviewer_assignment_notification: True
-            deadline: 2022-08-14 06:59:59
+            deadline: 2022-08-14T06:59:59Z
             time_zone: America/Los_Angeles
             self_review_allowed: False
             uar_scope:
@@ -2748,7 +3171,7 @@ components:
         uar_id: f454d283-ca87-4a8a-bdbb-df212eca5353
         name: Monthly UAR (July)
         send_reviewer_assignment_notification: False
-        deadline: 2022-07-14 06:59:59
+        deadline: 2022-07-14T06:59:59Z
         time_zone: America/Los_Angeles
         self_review_allowed: False
         uar_scope:
@@ -2779,7 +3202,7 @@ components:
           type: boolean
         deadline:
           description: The last day for reviewers to complete their access reviews.
-          example: 2022-07-14 06:59:59
+          example: 2022-07-14T06:59:59Z
           type: string
           format: date-time
         time_zone:
@@ -2806,10 +3229,13 @@ components:
       example:
         name: Monthly UAR (July)
         send_reviewer_assignment_notification: False
-        deadline: 2022-07-14 06:59:59
+        deadline: 2022-07-14T06:59:59Z
         time_zone: America/Los_Angeles
         self_review_allowed: False
+        reminder_schedule: [7, 3, 1, 0]
+        reminder_include_manager: True
         uar_scope:
+          group_visibility: STRICT
           tags:
             - key: uar_scope
               value: high_priority
@@ -2832,7 +3258,7 @@ components:
           type: boolean
         deadline:
           description: The last day for reviewers to complete their access reviews.
-          example: 2022-07-14 06:59:59
+          example: 2022-07-14T06:59:59Z
           type: string
           format: date-time
         time_zone:
@@ -2843,6 +3269,13 @@ components:
           description: A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.
           example: False
           type: boolean
+        reminder_schedule:
+          items:
+            type: integer
+          type: array
+        reminder_include_manager:
+          type: boolean
+          example: False
         uar_scope:
           $ref: "#/components/schemas/UARScope"
       required:
@@ -3122,11 +3555,11 @@ components:
       description: |-
         # Access Level Object
         ### Description
-        The `ResourceAccessLevel` object is used to represent the level of access that a user has to a resource or a resource has to a group. The "default" access
-        level is a `ResourceAccessLevel` object whose fields are all empty strings.
+        The `AccessLevel` object is used to represent the level of access that a principal has. The "default" access
+        level is a `AccessLevel` object whose fields are all empty strings.
 
         ### Usage Example
-        View the `ResourceAccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
+        View the `AccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
       example:
         access_level_name: AdminRole
         access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
@@ -3296,6 +3729,119 @@ components:
         - access_level
         - has_direct_access
         - num_access_paths
+      type: object
+    AccessList:
+      example:
+        results:
+          - principal_id: 74908af0-9383-4feb-b7ea-8b305d737338
+            principal_type: RESOURCE
+            entity_id: db04925a-635d-4764-870e-500b9b035c8e
+            entity_type: RESOURCE
+            expiration_date: 2022-01-23T04:56:07Z
+            has_direct_access: true
+            num_access_paths: 3
+          - principal_id: d940df34-726a-4403-864e-16cb2a0d6793
+            principal_type: RESOURCE
+            entity_id: c26cd16c-a3fa-4b82-96b1-32177f8b8f59
+            entity_type: RESOURCE
+            expiration_date: 2022-01-23T04:56:07Z
+            has_direct_access: true
+            num_access_paths: 3
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/Access"
+          type: array
+      type: object
+    Access:
+      description: |-
+        # Access Object
+        ### Description
+        The `Access` object is used to represent a principal's access to an entity, either directly or inherited.
+
+        ### Usage Example
+        Fetch from the `LIST ResourceNonHumanIdentities` endpoint.
+      example:
+        principal_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        principal_type: RESOURCE
+        entity_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        entity_type: RESOURCE
+        expiration_date: 2022-01-23T04:56:07Z
+        has_direct_access: true
+        num_access_paths: 3
+      properties:
+        principal_id:
+          description: The ID of the principal with access.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        principal_type:
+          $ref: "#/components/schemas/EntityTypeEnum"
+        entity_id:
+          description: The ID of the entity being accessed.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        entity_type:
+          $ref: "#/components/schemas/EntityTypeEnum"
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        expiration_date:
+          description: The day and time the principal's access will expire.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          nullable: true
+          type: string
+        has_direct_access:
+          description: The principal has direct access to this entity (vs. inherited access).
+          example: true
+          type: boolean
+        num_access_paths:
+          description: The number of ways in which the principal has access to this entity (directly and inherited).
+          example: 3
+          format: int32
+          type: integer
+      required:
+        - principal_id
+        - principal_type
+        - entity_id
+        - entity_type
+        - expiration_date
+        - has_direct_access
+        - num_access_paths
+      type: object
+    ResourceNHI:
+      description: |-
+        # Resource Non-Human Identity Direct Access Object
+        ### Description
+        This object is used to represent a non-human identity with direct access to a resource.
+      example:
+        non_human_identity_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+        resource_id: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        expiration_date: 2022-01-23T04:56:07Z
+      properties:
+        resource_id:
+          description: The ID of the resource.
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          format: uuid
+          type: string
+        non_human_identity_id:
+          description: The resource ID of the non-human identity.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          format: uuid
+          type: string
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        expiration_date:
+          description: The day and time the non-human identity's access will expire.
+          example: 2022-01-23T04:56:07Z
+          format: date-time
+          nullable: true
+          type: string
+      required:
+        - resource_id
+        - non_human_identity_id
+        - expiration_date
       type: object
     SessionsList:
       example:
@@ -3598,6 +4144,12 @@ components:
           example: 7c86c85d-0651-43e2-a748-d69d658418e8
           format: uuid
           type: string
+        group_leader_user_ids:
+          description: A list of User IDs for the group leaders of the group
+          items:
+            type: string
+            format: uuid
+          type: array
         remote_id:
           description: The ID of the remote.
           example: google-group-group:037m2jsg218b2wb
@@ -3677,6 +4229,20 @@ components:
           type: string
         remote_info:
           $ref: "#/components/schemas/GroupRemoteInfo"
+        custom_request_notification:
+          description: Custom request notification sent to the requester when the request is approved.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
+        risk_sensitivity:
+          description: The risk sensitivity level for the group. When an override is set, this field will match that.
+          readOnly: true
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
+        risk_sensitivity_override:
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
       required:
         - group_id
       type: object
@@ -3887,6 +4453,12 @@ components:
           example: False
           type: boolean
           deprecated: true
+        group_leader_user_ids:
+          description: A list of User IDs for the group leaders of the group
+          items:
+            type: string
+            format: uuid
+          type: array
         request_configurations:
           type: array
           items:
@@ -3931,6 +4503,15 @@ components:
                       - 37cb7e41-12ba-46da-92ff-030abe0450b2
                     stage: 1
                 priority: 1
+        custom_request_notification:
+          description: Custom request notification sent to the requester when the request is approved.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
+        risk_sensitivity_override:
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
       required:
         - group_id
       type: object
@@ -3943,11 +4524,16 @@ components:
         - GIT_HUB_TEAM
         - GIT_LAB_GROUP
         - GOOGLE_GROUPS_GROUP
+        - GOOGLE_GROUPS_GKE_GROUP
         - LDAP_GROUP
         - OKTA_GROUP
+        - TAILSCALE_GROUP
         - OPAL_GROUP
         - AZURE_AD_SECURITY_GROUP
         - AZURE_AD_MICROSOFT_365_GROUP
+        - CONNECTOR_GROUP
+        - SNOWFLAKE_ROLE
+        - WORKDAY_USER_SECURITY_GROUP
       example: OPAL_GROUP
       type: string
     ResourceTypeEnum:
@@ -3956,11 +4542,27 @@ components:
         - AWS_IAM_ROLE
         - AWS_EC2_INSTANCE
         - AWS_EKS_CLUSTER
+        - AWS_RDS_POSTGRES_CLUSTER
         - AWS_RDS_POSTGRES_INSTANCE
+        - AWS_RDS_MYSQL_CLUSTER
         - AWS_RDS_MYSQL_INSTANCE
         - AWS_ACCOUNT
         - AWS_SSO_PERMISSION_SET
+        - AZURE_MANAGEMENT_GROUP
+        - AZURE_RESOURCE_GROUP
+        - AZURE_SUBSCRIPTION
+        - AZURE_VIRTUAL_MACHINE
+        - AZURE_STORAGE_ACCOUNT
+        - AZURE_STORAGE_CONTAINER
+        - AZURE_SQL_SERVER
+        - AZURE_SQL_MANAGED_INSTANCE
+        - AZURE_SQL_DATABASE
+        - AZURE_SQL_MANAGED_DATABASE
+        - AZURE_USER_ASSIGNED_MANAGED_Identity
+        - AZURE_ENTRA_ID_ROLE
         - CUSTOM
+        - CUSTOM_CONNECTOR
+        - GCP_ORGANIZATION
         - GCP_BUCKET
         - GCP_COMPUTE_INSTANCE
         - GCP_FOLDER
@@ -3968,6 +4570,9 @@ components:
         - GCP_PROJECT
         - GCP_CLOUD_SQL_POSTGRES_INSTANCE
         - GCP_CLOUD_SQL_MYSQL_INSTANCE
+        - GCP_BIG_QUERY_DATASET
+        - GCP_BIG_QUERY_TABLE
+        - GCP_SERVICE_ACCOUNT
         - GIT_HUB_REPO
         - GIT_LAB_PROJECT
         - GOOGLE_WORKSPACE_ROLE
@@ -3976,14 +4581,19 @@ components:
         - OKTA_APP
         - OKTA_ROLE
         - OPAL_ROLE
+        - OPAL_SCOPED_ROLE
         - PAGERDUTY_ROLE
         - TAILSCALE_SSH
         - SALESFORCE_PERMISSION_SET
         - SALESFORCE_PROFILE
         - SALESFORCE_ROLE
+        - SNOWFLAKE_DATABASE
+        - SNOWFLAKE_SCHEMA
+        - SNOWFLAKE_TABLE
         - WORKDAY_ROLE
         - MYSQL_INSTANCE
         - MARIADB_INSTANCE
+        - POSTGRES_INSTANCE
         - TELEPORT_ROLE
       example: AWS_IAM_ROLE
       type: string
@@ -4009,6 +4619,74 @@ components:
       type: object
       required:
         - resources
+    IdpGroupMapping:
+      description: Information about a group mapping.
+      example:
+        id: 7870617d-e72a-47f5-a84c-693817ab4567
+        organization_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
+        app_resource_id: 6f99639b-7928-4043-8184-47cbc6766145
+        group_id: 6f99639b-7928-4043-8184-47cbc6766145
+        alias: "finance-team"
+        hidden_from_end_user: False
+      properties:
+        id:
+          description: The ID of the idp group mapping.
+          example: 7870617d-e72a-47f5-a84c-693817ab4567
+          format: uuid
+          type: string
+        organization_id:
+          description: The ID of the organization.
+          example: 1520617d-e72a-47f5-a84c-693817ab48ad2
+          format: uuid
+          type: string
+        app_resource_id:
+          description: The ID of the idp app resource.
+          example: 6f99639b-7928-4043-8184-47cbc6766145
+          format: uuid
+          type: string
+        group_id:
+          description: The ID of the group.
+          example: 6f99639b-7928-4043-8184-47cbc6766145
+          format: uuid
+          type: string
+        alias:
+          description: The alias of the group.
+          example: finance-team
+          type: string
+        hidden_from_end_user:
+          description: A bool representing whether or not the group is hidden from the end user.
+          example: False
+          type: boolean
+      required:
+        - id
+        - organization_id
+        - app_resource_id
+        - group_id
+        - hidden_from_end_user
+      type: object
+    IdpGroupMappingList:
+      example:
+        idp_group_mappings:
+          - id: 7870617d-e72a-47f5-a84c-693817ab4567
+            organization_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
+            app_resource_id: 6f99639b-7928-4043-8184-47cbc6766145
+            group_id: 6f99639b-7928-4043-8184-47cbc6766145
+            alias: "finance-team"
+            hidden_from_end_user: False
+          - id: 1520617d-e72a-47f5-a84c-693817ab48ad2
+            organization_id: 6f99639b-7928-4043-8184-47cbc6766145
+            app_resource_id: 7870617d-e72a-47f5-a84c-693817ab4567
+            group_id: 7870617d-e72a-47f5-a84c-693817ab4567
+            alias: "engineering-team"
+            hidden_from_end_user: False
+      properties:
+        idp_group_mappings:
+          items:
+            $ref: "#/components/schemas/IdpGroupMapping"
+          type: array
+      type: object
+      required:
+        - idp_group_mappings
     ResourceWithAccessLevel:
       description: Information about a resource and corresponding access level
       example:
@@ -4168,8 +4846,12 @@ components:
           description: Whether this reviewer stage should require manager approval.
           example: False
           type: boolean
+        require_admin_approval:
+          description: Whether this reviewer stage should require admin approval.
+          example: False
+          type: boolean
         operator:
-          description: The operator of the reviewer stage.
+          description: The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.
           enum:
             - AND
             - OR
@@ -4306,6 +4988,14 @@ components:
         - PAGER_DUTY
       example: PAGER_DUTY
       type: string
+    TicketingProviderEnum:
+      description: The third party ticketing platform provider.
+      enum:
+        - JIRA
+        - LINEAR
+        - SERVICE_NOW
+      example: LINEAR
+      type: string
     GroupRemoteInfo:
       description: Information that defines the remote group. This replaces the deprecated remote_id and metadata fields.
       properties:
@@ -4385,20 +5075,20 @@ components:
           required:
             - group_id
         azure_ad_security_group:
-          description: Remote info for Azure AD Security group.
+          description: Remote info for Microsoft Entra ID Security group.
           properties:
             group_id:
-              description: The id of the Azure AD Security group.
+              description: The id of the Microsoft Entra ID Security group.
               example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
               type: string
           type: object
           required:
             - group_id
         azure_ad_microsoft_365_group:
-          description: Remote info for Azure AD Microsoft 365 group.
+          description: Remote info for Microsoft Entra ID Microsoft 365 group.
           properties:
             group_id:
-              description: The id of the Azure AD Microsoft 365 group.
+              description: The id of the Microsoft Entra ID Microsoft 365 group.
               example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
               type: string
           type: object
@@ -4624,6 +5314,26 @@ components:
           required:
             - instance_id
             - project_id
+        gcp_service_account:
+          description: Remote info for a GCP service account.
+          properties:
+            email:
+              description: The email of the service account.
+              example: production@project.iam.gserviceaccount.com
+              type: string
+            service_account_id:
+              description: The id of the service account.
+              example: 103561576023829463298
+              type: string
+            project_id:
+              description: The id of the project the service account is in.
+              example: example-project-898931321
+              type: string
+          type: object
+          required:
+            - email
+            - service_account_id
+            - project_id
         github_repo:
           description: Remote info for GitHub repository.
           properties:
@@ -4735,6 +5445,10 @@ components:
           required:
             - role_name
       type: object
+    RiskSensitivityEnum:
+      type: string
+      description: "Indicates the level of potential impact misuse or unauthorized access may incur."
+      enum: [UNKNOWN, CRITICAL, HIGH, MEDIUM, LOW, NONE]
     CreateResourceInfo:
       description: |-
         # CreateResourceInfo Object
@@ -5013,6 +5727,15 @@ components:
                 },
             }
           type: string
+        custom_request_notification:
+          description: Custom request notification sent upon request approval.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
+        risk_sensitivity_override:
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
       required:
         - name
         - resource_type
@@ -5151,6 +5874,15 @@ components:
           example: |-
             { "okta_directory_group": { "group_id": "00g4bs66kwtpe1g12345" } }
           type: string
+        custom_request_notification:
+          description: Custom request notification sent upon request approval.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
+        risk_sensitivity_override:
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
       required:
         - name
         - group_type
@@ -5226,6 +5958,7 @@ components:
         updated_at: 2021-01-06T20:00:00Z
         requester_id: c86c85d-0651-43e2-a748-d69d658418e8
         target_user_id: r86c85d-0651-43e2-a748-d69d658418e8
+        target_group_id: r86c85d-0651-43e2-a748-d69d658418e8
         status: pending
         reason: I need this resource.
         duration_minutes: 1440
@@ -5262,6 +5995,11 @@ components:
           example: 7c86c85d-0651-43e2-a748-d69d658418e8
           format: uuid
           type: string
+        target_group_id:
+          description: The unique identifier of the group who is the target of the request.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
         status:
           description: The status of the request.
           example: pending
@@ -5289,7 +6027,6 @@ components:
         - created_at
         - updated_at
         - requester_id
-        - target_user_id
         - status
         - reason
     RequestedItem:
@@ -5353,6 +6090,7 @@ components:
         - LONG_TEXT
         - BOOLEAN
         - MULTI_CHOICE
+      type: string
     RequestList:
       description: |-
         # Request List
@@ -5369,6 +6107,7 @@ components:
             updated_at: 2021-01-06T20:00:00Z
             requester_id: c86c85d-0651-43e2-a748-d69d658418e8
             target_user_id: r86c85d-0651-43e2-a748-d69d658418e8
+            target_group_id: g86c85d-0651-43e2-a748-d69d658418e8
             status: pending
             reason: I need this resource.
             duration_minutes: 1440
@@ -5506,6 +6245,21 @@ components:
           items:
             $ref: "#/components/schemas/RequestConfiguration"
           type: array
+        ticket_propagation:
+          $ref: "#/components/schemas/TicketPropagationConfiguration"
+        custom_request_notification:
+          description: Custom request notification sent upon request approval.
+          type: string
+          maxLength: 800
+          nullable: true
+        risk_sensitivity:
+          description: The risk sensitivity level for the resource. When an override is set, this field will match that.
+          readOnly: true
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
+        risk_sensitivity_override:
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
         metadata:
           description: JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.
           deprecated: true
@@ -5645,6 +6399,17 @@ components:
           example: False
           type: boolean
           deprecated: true
+        ticket_propagation:
+          $ref: "#/components/schemas/TicketPropagationConfiguration"
+        custom_request_notification:
+          description: Custom request notification sent upon request approval.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
+        risk_sensitivity_override:
+          allOf:
+            - $ref: "#/components/schemas/RiskSensitivityEnum"
         configuration_template_id:
           description: The ID of the associated configuration template.
           example: 06851574-e50d-40ca-8c78-f72ae6ab4304
@@ -6161,7 +6926,6 @@ components:
         reviewer_message_channel_id:
           description: The message channel id for the reviewer channel.
           example: 37cb7e41-12ba-46da-92ff-030abe0450b1
-          format: uuid
           type: string
         source_group_id:
           description: Sync this owner's user list with a source group.
@@ -6223,7 +6987,6 @@ components:
         reviewer_message_channel_id:
           description: The message channel id for the reviewer channel. Use "" to remove an existing message channel.
           example: 37cb7e41-12ba-46da-92ff-030abe0450b1
-          format: uuid
           type: string
         source_group_id:
           description: Sync this owner's user list with a source group. Use "" to remove an existing source group.
@@ -6527,6 +7290,14 @@ components:
                       - 37cb7e41-12ba-46da-92ff-030abe0450b2
                     stage: 1
                 priority: 1
+        ticket_propagation:
+          $ref: "#/components/schemas/TicketPropagationConfiguration"
+        custom_request_notification:
+          description: Custom request notification sent upon request approval for this configuration template.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
     ConfigurationTemplate:
       description: |-
         # Configuration Template Object
@@ -6611,6 +7382,29 @@ components:
           description: A bool representing whether or not to require MFA to connect to resources associated with this configuration template.
           example: False
           type: boolean
+        ticket_propagation:
+          $ref: "#/components/schemas/TicketPropagationConfiguration"
+        custom_request_notification:
+          description: Custom request notification sent upon request approval for this configuration template.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
+    TicketPropagationConfiguration:
+      description: Configuration for ticket propagation, when enabled, a ticket will be created for access changes related to the users in this resource.
+      type: object
+      properties:
+        enabled_on_grant:
+          type: boolean
+        enabled_on_revocation:
+          type: boolean
+        ticket_provider:
+          $ref: "#/components/schemas/TicketingProviderEnum"
+        ticket_project_id:
+          type: string
+      required:
+        - enabled_on_grant
+        - enabled_on_revocation
     UpdateConfigurationTemplateInfo:
       description: |-
         # UpdateConfigurationTemplateInfo Object
@@ -6736,6 +7530,14 @@ components:
           description: A bool representing whether or not to require MFA to connect to resources associated with this configuration template.
           example: False
           type: boolean
+        ticket_propagation:
+          $ref: "#/components/schemas/TicketPropagationConfiguration"
+        custom_request_notification:
+          description: Custom request notification sent upon request approval for this configuration template.
+          type: string
+          maxLength: 800
+          nullable: true
+          example: "Check your email to register your account."
     PaginatedConfigurationTemplateList:
       description: |-
         # PaginatedConfigurationTemplateList Object
@@ -6766,6 +7568,100 @@ components:
           items:
             $ref: "#/components/schemas/ConfigurationTemplate"
           type: array
+    CreateRequestInfo:
+      description: All the information needed for creating a request
+      properties:
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: The ID of the resource requested. Should not be specified if group_id is specified.
+                example: group283-ca87-4a8a-bdbb-df212eca5353
+                format: uuid
+                type: string
+              access_level_remote_id:
+                description: The ID of the access level requested on the remote system.
+                example: arn:aws:iam::490306337630:role/SupportUser
+                type: string
+              access_level_name:
+                description: The ID of the access level requested on the remote system.
+                example: arn:aws:iam::490306337630:role/SupportUser
+                type: string
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: The ID of the group requested. Should not be specified if resource_id is specified.
+                example: f454d283-ca87-4a8a-bdbb-df212eca5353
+                format: uuid
+                type: string
+              access_level_remote_id:
+                description: The ID of the access level requested on the remote system.
+                example: arn:aws:iam::490306337630:role/SupportUser
+                type: string
+              access_level_name:
+                description: The ID of the access level requested on the remote system.
+                example: arn:aws:iam::490306337630:role/SupportUser
+                type: string
+            required:
+              - id
+        target_user_id:
+          description: The ID of the user to be granted access. Should not be specified if target_group_id is specified.
+          example: userd283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        target_group_id:
+          description: The ID of the group the request is for.  Should not be specified if target_user_id is specified.
+          example: userd283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        reason:
+          type: string
+        support_ticket:
+          type: object
+          properties:
+            ticketing_provider:
+              $ref: "#/components/schemas/TicketingProviderEnum"
+            remote_id:
+              type: string
+            identifier:
+              type: string
+            url:
+              type: string # TODO amruth Does url format exist?
+          required:
+            - ticketing_provider
+            - remote_id
+            - identifier
+            - url
+        duration_minutes:
+          description: The duration of the request in minutes. -1 represents an indefinite duration
+          type: integer
+          minimum: -1
+        custom_metadata:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                $ref: "#/components/schemas/RequestTemplateCustomFieldTypeEnum"
+              value:
+                type: string
+            required:
+              - name
+              - type
+              - value
+
+      required:
+        - reason
+        - duration_minutes
+        - resources
+        - groups
   securitySchemes:
     BearerAuth:
       scheme: bearer

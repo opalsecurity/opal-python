@@ -25,7 +25,7 @@ print(ResourceRemoteInfoGcpComputeInstance.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_compute_instance_dict = resource_remote_info_gcp_compute_instance_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpComputeInstance from a dict
-resource_remote_info_gcp_compute_instance_form_dict = resource_remote_info_gcp_compute_instance.from_dict(resource_remote_info_gcp_compute_instance_dict)
+resource_remote_info_gcp_compute_instance_from_dict = ResourceRemoteInfoGcpComputeInstance.from_dict(resource_remote_info_gcp_compute_instance_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

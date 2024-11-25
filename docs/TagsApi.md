@@ -8,7 +8,9 @@ Method | HTTP request | Description
 [**add_resource_tag**](TagsApi.md#add_resource_tag) | **POST** /tags/{tag_id}/resources/{resource_id} | 
 [**add_user_tag**](TagsApi.md#add_user_tag) | **POST** /tags/{tag_id}/users/{user_id} | 
 [**create_tag**](TagsApi.md#create_tag) | **POST** /tag | 
+[**delete_tag_by_id**](TagsApi.md#delete_tag_by_id) | **DELETE** /tag/{tag_id} | 
 [**get_tag**](TagsApi.md#get_tag) | **GET** /tag | 
+[**get_tag_by_id**](TagsApi.md#get_tag_by_id) | **GET** /tag/{tag_id} | 
 [**get_tags**](TagsApi.md#get_tags) | **GET** /tags | 
 [**remove_group_tag**](TagsApi.md#remove_group_tag) | **DELETE** /tags/{tag_id}/groups/{group_id} | 
 [**remove_resource_tag**](TagsApi.md#remove_resource_tag) | **DELETE** /tags/{tag_id}/resources/{resource_id} | 
@@ -327,6 +329,80 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_tag_by_id**
+> delete_tag_by_id(tag_id)
+
+
+
+UNSTABLE. May be removed at any time. Deletes a tag with the given id.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal
+from opal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal.TagsApi(api_client)
+    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
+
+    try:
+        api_instance.delete_tag_by_id(tag_id)
+    except Exception as e:
+        print("Exception when calling TagsApi->delete_tag_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag_id** | **str**| The tag ID | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Tag was deleted. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_tag**
 > Tag get_tag(tag_key, tag_value=tag_value)
 
@@ -384,6 +460,83 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag_key** | **str**| The key of the tag to get. | 
  **tag_value** | **str**| The value of the tag to get. | [optional] 
+
+### Return type
+
+[**Tag**](Tag.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tag requested. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_tag_by_id**
+> Tag get_tag_by_id(tag_id)
+
+
+
+UNSTABLE. May be removed at any time. Gets a tag with the given id.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal
+from opal.models.tag import Tag
+from opal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal.TagsApi(api_client)
+    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
+
+    try:
+        api_response = api_instance.get_tag_by_id(tag_id)
+        print("The response of TagsApi->get_tag_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TagsApi->get_tag_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag_id** | **str**| The tag ID | 
 
 ### Return type
 

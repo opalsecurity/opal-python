@@ -24,7 +24,7 @@ print(GroupAccessLevel.to_json())
 # convert the object into a dict
 group_access_level_dict = group_access_level_instance.to_dict()
 # create an instance of GroupAccessLevel from a dict
-group_access_level_form_dict = group_access_level.from_dict(group_access_level_dict)
+group_access_level_from_dict = GroupAccessLevel.from_dict(group_access_level_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

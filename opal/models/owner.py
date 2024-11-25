@@ -82,16 +82,6 @@ class Owner(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if reviewer_message_channel_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.reviewer_message_channel_id is None and "reviewer_message_channel_id" in self.model_fields_set:
-            _dict['reviewer_message_channel_id'] = None
-
-        # set to None if source_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.source_group_id is None and "source_group_id" in self.model_fields_set:
-            _dict['source_group_id'] = None
-
         return _dict
 
     @classmethod

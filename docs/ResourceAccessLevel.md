@@ -1,6 +1,6 @@
 # ResourceAccessLevel
 
-# Access Level Object ### Description The `ResourceAccessLevel` object is used to represent the level of access that a user has to a resource or a resource has to a group. The \"default\" access level is a `ResourceAccessLevel` object whose fields are all empty strings.  ### Usage Example View the `ResourceAccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
+# Access Level Object ### Description The `AccessLevel` object is used to represent the level of access that a principal has. The \"default\" access level is a `AccessLevel` object whose fields are all empty strings.  ### Usage Example View the `AccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
 
 ## Properties
 
@@ -24,7 +24,7 @@ print(ResourceAccessLevel.to_json())
 # convert the object into a dict
 resource_access_level_dict = resource_access_level_instance.to_dict()
 # create an instance of ResourceAccessLevel from a dict
-resource_access_level_form_dict = resource_access_level.from_dict(resource_access_level_dict)
+resource_access_level_from_dict = ResourceAccessLevel.from_dict(resource_access_level_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ print(ResourceRemoteInfoAwsRdsInstance.to_json())
 # convert the object into a dict
 resource_remote_info_aws_rds_instance_dict = resource_remote_info_aws_rds_instance_instance.to_dict()
 # create an instance of ResourceRemoteInfoAwsRdsInstance from a dict
-resource_remote_info_aws_rds_instance_form_dict = resource_remote_info_aws_rds_instance.from_dict(resource_remote_info_aws_rds_instance_dict)
+resource_remote_info_aws_rds_instance_from_dict = ResourceRemoteInfoAwsRdsInstance.from_dict(resource_remote_info_aws_rds_instance_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

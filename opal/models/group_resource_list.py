@@ -76,9 +76,9 @@ class GroupResourceList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in group_resources (list)
         _items = []
         if self.group_resources:
-            for _item in self.group_resources:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_group_resources in self.group_resources:
+                if _item_group_resources:
+                    _items.append(_item_group_resources.to_dict())
             _dict['group_resources'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

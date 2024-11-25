@@ -23,7 +23,7 @@ print(AwsPermissionSetMetadataAwsPermissionSet.to_json())
 # convert the object into a dict
 aws_permission_set_metadata_aws_permission_set_dict = aws_permission_set_metadata_aws_permission_set_instance.to_dict()
 # create an instance of AwsPermissionSetMetadataAwsPermissionSet from a dict
-aws_permission_set_metadata_aws_permission_set_form_dict = aws_permission_set_metadata_aws_permission_set.from_dict(aws_permission_set_metadata_aws_permission_set_dict)
+aws_permission_set_metadata_aws_permission_set_from_dict = AwsPermissionSetMetadataAwsPermissionSet.from_dict(aws_permission_set_metadata_aws_permission_set_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
