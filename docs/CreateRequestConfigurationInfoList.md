@@ -23,7 +23,7 @@ print(CreateRequestConfigurationInfoList.to_json())
 # convert the object into a dict
 create_request_configuration_info_list_dict = create_request_configuration_info_list_instance.to_dict()
 # create an instance of CreateRequestConfigurationInfoList from a dict
-create_request_configuration_info_list_form_dict = create_request_configuration_info_list.from_dict(create_request_configuration_info_list_dict)
+create_request_configuration_info_list_from_dict = CreateRequestConfigurationInfoList.from_dict(create_request_configuration_info_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

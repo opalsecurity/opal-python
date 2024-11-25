@@ -24,7 +24,7 @@ print(Condition.to_json())
 # convert the object into a dict
 condition_dict = condition_instance.to_dict()
 # create an instance of Condition from a dict
-condition_form_dict = condition.from_dict(condition_dict)
+condition_from_dict = Condition.from_dict(condition_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

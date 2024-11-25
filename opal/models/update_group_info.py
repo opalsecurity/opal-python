@@ -20,8 +20,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from opal.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 from opal.models.request_configuration import RequestConfiguration
+from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -44,10 +46,13 @@ class UpdateGroupInfo(BaseModel):
     configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this group. Deprecated in favor of `request_configurations`.")
+    group_leader_user_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of User IDs for the group leaders of the group")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used.")
-    request_configuration_list: Optional[CreateRequestConfigurationInfoList] = None
+    request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
+    custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent to the requester when the request is approved.")
+    risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "configuration_template_id", "request_template_id", "is_requestable", "request_configurations", "request_configuration_list"]
+    __properties: ClassVar[List[str]] = ["group_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "configuration_template_id", "request_template_id", "is_requestable", "group_leader_user_ids", "request_configurations", "request_configuration_list", "custom_request_notification", "risk_sensitivity_override"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,9 +98,9 @@ class UpdateGroupInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in request_configurations (list)
         _items = []
         if self.request_configurations:
-            for _item in self.request_configurations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configurations in self.request_configurations:
+                if _item_request_configurations:
+                    _items.append(_item_request_configurations.to_dict())
             _dict['request_configurations'] = _items
         # override the default output from pydantic by calling `to_dict()` of request_configuration_list
         if self.request_configuration_list:
@@ -132,8 +137,11 @@ class UpdateGroupInfo(BaseModel):
             "configuration_template_id": obj.get("configuration_template_id"),
             "request_template_id": obj.get("request_template_id"),
             "is_requestable": obj.get("is_requestable"),
+            "group_leader_user_ids": obj.get("group_leader_user_ids"),
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None,
-            "request_configuration_list": CreateRequestConfigurationInfoList.from_dict(obj["request_configuration_list"]) if obj.get("request_configuration_list") is not None else None
+            "request_configuration_list": CreateRequestConfigurationInfoList.from_dict(obj["request_configuration_list"]) if obj.get("request_configuration_list") is not None else None,
+            "custom_request_notification": obj.get("custom_request_notification"),
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -76,9 +76,9 @@ class ReviewerStageList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in stages (list)
         _items = []
         if self.stages:
-            for _item in self.stages:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_stages in self.stages:
+                if _item_stages:
+                    _items.append(_item_stages.to_dict())
             _dict['stages'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

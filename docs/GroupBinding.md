@@ -27,7 +27,7 @@ print(GroupBinding.to_json())
 # convert the object into a dict
 group_binding_dict = group_binding_instance.to_dict()
 # create an instance of GroupBinding from a dict
-group_binding_form_dict = group_binding.from_dict(group_binding_dict)
+group_binding_from_dict = GroupBinding.from_dict(group_binding_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

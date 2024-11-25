@@ -24,7 +24,7 @@ print(ResourceRemoteInfoGcpSqlInstance.to_json())
 # convert the object into a dict
 resource_remote_info_gcp_sql_instance_dict = resource_remote_info_gcp_sql_instance_instance.to_dict()
 # create an instance of ResourceRemoteInfoGcpSqlInstance from a dict
-resource_remote_info_gcp_sql_instance_form_dict = resource_remote_info_gcp_sql_instance.from_dict(resource_remote_info_gcp_sql_instance_dict)
+resource_remote_info_gcp_sql_instance_from_dict = ResourceRemoteInfoGcpSqlInstance.from_dict(resource_remote_info_gcp_sql_instance_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

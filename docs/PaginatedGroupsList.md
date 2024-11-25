@@ -24,7 +24,7 @@ print(PaginatedGroupsList.to_json())
 # convert the object into a dict
 paginated_groups_list_dict = paginated_groups_list_instance.to_dict()
 # create an instance of PaginatedGroupsList from a dict
-paginated_groups_list_form_dict = paginated_groups_list.from_dict(paginated_groups_list_dict)
+paginated_groups_list_from_dict = PaginatedGroupsList.from_dict(paginated_groups_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

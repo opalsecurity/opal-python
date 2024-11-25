@@ -25,7 +25,7 @@ print(GroupResource.to_json())
 # convert the object into a dict
 group_resource_dict = group_resource_instance.to_dict()
 # create an instance of GroupResource from a dict
-group_resource_form_dict = group_resource.from_dict(group_resource_dict)
+group_resource_from_dict = GroupResource.from_dict(group_resource_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
 from opal.models.uar_scope import UARScope
@@ -36,9 +36,11 @@ class CreateUARInfo(BaseModel):
     deadline: datetime = Field(description="The last day for reviewers to complete their access reviews.")
     time_zone: StrictStr = Field(description="The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles.")
     self_review_allowed: StrictBool = Field(description="A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.")
+    reminder_schedule: Optional[List[StrictInt]] = None
+    reminder_include_manager: Optional[StrictBool] = None
     uar_scope: Optional[UARScope] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "reviewer_assignment_policy", "send_reviewer_assignment_notification", "deadline", "time_zone", "self_review_allowed", "uar_scope"]
+    __properties: ClassVar[List[str]] = ["name", "reviewer_assignment_policy", "send_reviewer_assignment_notification", "deadline", "time_zone", "self_review_allowed", "reminder_schedule", "reminder_include_manager", "uar_scope"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,6 +109,8 @@ class CreateUARInfo(BaseModel):
             "deadline": obj.get("deadline"),
             "time_zone": obj.get("time_zone"),
             "self_review_allowed": obj.get("self_review_allowed"),
+            "reminder_schedule": obj.get("reminder_schedule"),
+            "reminder_include_manager": obj.get("reminder_include_manager"),
             "uar_scope": UARScope.from_dict(obj["uar_scope"]) if obj.get("uar_scope") is not None else None
         })
         # store additional fields in additional_properties

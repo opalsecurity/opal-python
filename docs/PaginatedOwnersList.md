@@ -24,7 +24,7 @@ print(PaginatedOwnersList.to_json())
 # convert the object into a dict
 paginated_owners_list_dict = paginated_owners_list_instance.to_dict()
 # create an instance of PaginatedOwnersList from a dict
-paginated_owners_list_form_dict = paginated_owners_list.from_dict(paginated_owners_list_dict)
+paginated_owners_list_from_dict = PaginatedOwnersList.from_dict(paginated_owners_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

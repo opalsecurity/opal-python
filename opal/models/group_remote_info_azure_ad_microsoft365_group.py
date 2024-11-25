@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class GroupRemoteInfoAzureAdMicrosoft365Group(BaseModel):
     """
-    Remote info for Azure AD Microsoft 365 group.
+    Remote info for Microsoft Entra ID Microsoft 365 group.
     """ # noqa: E501
-    group_id: StrictStr = Field(description="The id of the Azure AD Microsoft 365 group.")
+    group_id: StrictStr = Field(description="The id of the Microsoft Entra ID Microsoft 365 group.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_id"]
 

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **gcp_gke_cluster** | [**ResourceRemoteInfoGcpGkeCluster**](ResourceRemoteInfoGcpGkeCluster.md) |  | [optional] 
 **gcp_project** | [**ResourceRemoteInfoGcpProject**](ResourceRemoteInfoGcpProject.md) |  | [optional] 
 **gcp_sql_instance** | [**ResourceRemoteInfoGcpSqlInstance**](ResourceRemoteInfoGcpSqlInstance.md) |  | [optional] 
+**gcp_service_account** | [**ResourceRemoteInfoGcpServiceAccount**](ResourceRemoteInfoGcpServiceAccount.md) |  | [optional] 
 **github_repo** | [**ResourceRemoteInfoGithubRepo**](ResourceRemoteInfoGithubRepo.md) |  | [optional] 
 **gitlab_project** | [**ResourceRemoteInfoGitlabProject**](ResourceRemoteInfoGitlabProject.md) |  | [optional] 
 **okta_app** | [**ResourceRemoteInfoOktaApp**](ResourceRemoteInfoOktaApp.md) |  | [optional] 
@@ -47,7 +48,7 @@ print(ResourceRemoteInfo.to_json())
 # convert the object into a dict
 resource_remote_info_dict = resource_remote_info_instance.to_dict()
 # create an instance of ResourceRemoteInfo from a dict
-resource_remote_info_form_dict = resource_remote_info.from_dict(resource_remote_info_dict)
+resource_remote_info_from_dict = ResourceRemoteInfo.from_dict(resource_remote_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

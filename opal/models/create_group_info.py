@@ -20,8 +20,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from opal.models.group_remote_info import GroupRemoteInfo
 from opal.models.group_type_enum import GroupTypeEnum
+from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,8 +38,10 @@ class CreateGroupInfo(BaseModel):
     remote_info: Optional[GroupRemoteInfo] = None
     remote_group_id: Optional[StrictStr] = Field(default=None, description="Deprecated - use remote_info instead. The ID of the group on the remote system. Include only for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details on how to specify this field.")
     metadata: Optional[StrictStr] = Field(default=None, description="Deprecated - use remote_info instead.  JSON metadata about the remote group. Include only for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details on how to specify this field. The required format is dependent on group_type and should have the following schema: <style type=\"text/css\"> code {max-height:300px !important} </style> ```json {   \"$schema\": \"http://json-schema.org/draft-04/schema#\",   \"title\": \"Group Metadata\",   \"properties\": {     \"ad_group\": {       \"properties\": {         \"object_guid\": {           \"type\": \"string\"         }       },       \"required\": [\"object_guid\"],       \"additionalProperties\": false,       \"type\": \"object\",       \"title\": \"Active Directory Group\"     },     \"duo_group\": {       \"properties\": {         \"group_id\": {           \"type\": \"string\"         }       },       \"required\": [\"group_id\"],       \"additionalProperties\": false,       \"type\": \"object\",       \"title\": \"Duo Group\"     },     \"git_hub_team\": {       \"properties\": {         \"org_name\": {           \"type\": \"string\"         },         \"team_slug\": {           \"type\": \"string\"         }       },       \"required\": [\"org_name\", \"team_slug\"],       \"additionalProperties\": false,       \"type\": \"object\",       \"title\": \"GitHub Team\"     },     \"google_groups_group\": {       \"properties\": {         \"group_id\": {           \"type\": \"string\"         }       },       \"required\": [\"group_id\"],       \"additionalProperties\": false,       \"type\": \"object\",       \"title\": \"Google Groups Group\"     },     \"ldap_group\": {       \"properties\": {         \"group_uid\": {           \"type\": \"string\"         }       },       \"required\": [\"group_uid\"],       \"additionalProperties\": false,       \"type\": \"object\",       \"title\": \"LDAP Group\"     },     \"okta_directory_group\": {       \"properties\": {         \"group_id\": {           \"type\": \"string\"         }       },       \"required\": [\"group_id\"],       \"additionalProperties\": false,       \"type\": \"object\",       \"title\": \"Okta Directory Group\"     }   },   \"additionalProperties\": false,   \"minProperties\": 1,   \"maxProperties\": 1,   \"type\": \"object\" } ```")
+    custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval.")
+    risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "description", "group_type", "app_id", "remote_info", "remote_group_id", "metadata"]
+    __properties: ClassVar[List[str]] = ["name", "description", "group_type", "app_id", "remote_info", "remote_group_id", "metadata", "custom_request_notification", "risk_sensitivity_override"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +110,9 @@ class CreateGroupInfo(BaseModel):
             "app_id": obj.get("app_id"),
             "remote_info": GroupRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
             "remote_group_id": obj.get("remote_group_id"),
-            "metadata": obj.get("metadata")
+            "metadata": obj.get("metadata"),
+            "custom_request_notification": obj.get("custom_request_notification"),
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

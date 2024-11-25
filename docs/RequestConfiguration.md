@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**condition** | [**Condition**](Condition.md) |  | [optional] 
+**condition** | [**Condition**](Condition.md) | The condition for the request configuration. | [optional] 
 **allow_requests** | **bool** | A bool representing whether or not to allow requests for this resource. | 
 **auto_approval** | **bool** | A bool representing whether or not to automatically approve requests for this resource. | 
 **require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this resource. | 
@@ -32,7 +32,7 @@ print(RequestConfiguration.to_json())
 # convert the object into a dict
 request_configuration_dict = request_configuration_instance.to_dict()
 # create an instance of RequestConfiguration from a dict
-request_configuration_form_dict = request_configuration.from_dict(request_configuration_dict)
+request_configuration_from_dict = RequestConfiguration.from_dict(request_configuration_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

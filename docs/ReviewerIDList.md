@@ -23,7 +23,7 @@ print(ReviewerIDList.to_json())
 # convert the object into a dict
 reviewer_id_list_dict = reviewer_id_list_instance.to_dict()
 # create an instance of ReviewerIDList from a dict
-reviewer_id_list_form_dict = reviewer_id_list.from_dict(reviewer_id_list_dict)
+reviewer_id_list_from_dict = ReviewerIDList.from_dict(reviewer_id_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

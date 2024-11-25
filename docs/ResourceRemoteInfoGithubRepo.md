@@ -24,7 +24,7 @@ print(ResourceRemoteInfoGithubRepo.to_json())
 # convert the object into a dict
 resource_remote_info_github_repo_dict = resource_remote_info_github_repo_instance.to_dict()
 # create an instance of ResourceRemoteInfoGithubRepo from a dict
-resource_remote_info_github_repo_form_dict = resource_remote_info_github_repo.from_dict(resource_remote_info_github_repo_dict)
+resource_remote_info_github_repo_from_dict = ResourceRemoteInfoGithubRepo.from_dict(resource_remote_info_github_repo_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,6 +28,10 @@ Name | Type | Description | Notes
 **configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of configurations for requests to this resource. | [optional] 
 **request_configuration_list** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of configurations for requests to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
+**ticket_propagation** | [**TicketPropagationConfiguration**](TicketPropagationConfiguration.md) |  | [optional] 
+**custom_request_notification** | **str** | Custom request notification sent upon request approval. | [optional] 
+**risk_sensitivity** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) | The risk sensitivity level for the resource. When an override is set, this field will match that. | [optional] [readonly] 
+**risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
 **metadata** | **str** | JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details. | [optional] 
 **remote_info** | [**ResourceRemoteInfo**](ResourceRemoteInfo.md) |  | [optional] 
 
@@ -46,7 +50,7 @@ print(Resource.to_json())
 # convert the object into a dict
 resource_dict = resource_instance.to_dict()
 # create an instance of Resource from a dict
-resource_form_dict = resource.from_dict(resource_dict)
+resource_from_dict = Resource.from_dict(resource_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

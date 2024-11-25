@@ -20,6 +20,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from opal.models.ticket_propagation_configuration import TicketPropagationConfiguration
 from opal.models.visibility_info import VisibilityInfo
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,15 +33,17 @@ class ConfigurationTemplate(BaseModel):
     configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the configuration template.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the configuration template.")
     admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the configuration template.")
-    visibility: Optional[VisibilityInfo] = None
+    visibility: Optional[VisibilityInfo] = Field(default=None, description="The visibility info of the configuration template.")
     linked_audit_message_channel_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the audit message channels linked to the configuration template.")
     request_configuration_id: Optional[StrictStr] = Field(default=None, description="The ID of the request configuration linked to the configuration template.")
     member_oncall_schedule_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the on-call schedules linked to the configuration template.")
     break_glass_user_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the break glass users linked to the configuration template.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to resources associated with this configuration template.")
+    ticket_propagation: Optional[TicketPropagationConfiguration] = None
+    custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval for this configuration template.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["configuration_template_id", "name", "admin_owner_id", "visibility", "linked_audit_message_channel_ids", "request_configuration_id", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect"]
+    __properties: ClassVar[List[str]] = ["configuration_template_id", "name", "admin_owner_id", "visibility", "linked_audit_message_channel_ids", "request_configuration_id", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect", "ticket_propagation", "custom_request_notification"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +89,9 @@ class ConfigurationTemplate(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of visibility
         if self.visibility:
             _dict['visibility'] = self.visibility.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ticket_propagation
+        if self.ticket_propagation:
+            _dict['ticket_propagation'] = self.ticket_propagation.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -111,7 +118,9 @@ class ConfigurationTemplate(BaseModel):
             "member_oncall_schedule_ids": obj.get("member_oncall_schedule_ids"),
             "break_glass_user_ids": obj.get("break_glass_user_ids"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
-            "require_mfa_to_connect": obj.get("require_mfa_to_connect")
+            "require_mfa_to_connect": obj.get("require_mfa_to_connect"),
+            "ticket_propagation": TicketPropagationConfiguration.from_dict(obj["ticket_propagation"]) if obj.get("ticket_propagation") is not None else None,
+            "custom_request_notification": obj.get("custom_request_notification")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -29,7 +29,7 @@ class RequestConfiguration(BaseModel):
     """
     # Request Configuration Object ### Description The `RequestConfiguration` object is used to represent a request configuration.  ### Usage Example Returned from the `GET Request Configurations` endpoint.
     """ # noqa: E501
-    condition: Optional[Condition] = None
+    condition: Optional[Condition] = Field(default=None, description="The condition for the request configuration.")
     allow_requests: StrictBool = Field(description="A bool representing whether or not to allow requests for this resource.")
     auto_approval: StrictBool = Field(description="A bool representing whether or not to automatically approve requests for this resource.")
     require_mfa_to_request: StrictBool = Field(description="A bool representing whether or not to require MFA for requesting access to this resource.")
@@ -89,9 +89,9 @@ class RequestConfiguration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in reviewer_stages (list)
         _items = []
         if self.reviewer_stages:
-            for _item in self.reviewer_stages:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_reviewer_stages in self.reviewer_stages:
+                if _item_reviewer_stages:
+                    _items.append(_item_reviewer_stages.to_dict())
             _dict['reviewer_stages'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

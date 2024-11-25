@@ -24,7 +24,7 @@ print(SessionsList.to_json())
 # convert the object into a dict
 sessions_list_dict = sessions_list_instance.to_dict()
 # create an instance of SessionsList from a dict
-sessions_list_form_dict = sessions_list.from_dict(sessions_list_dict)
+sessions_list_from_dict = SessionsList.from_dict(sessions_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

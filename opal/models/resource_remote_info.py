@@ -34,6 +34,7 @@ from opal.models.resource_remote_info_gcp_folder import ResourceRemoteInfoGcpFol
 from opal.models.resource_remote_info_gcp_gke_cluster import ResourceRemoteInfoGcpGkeCluster
 from opal.models.resource_remote_info_gcp_organization import ResourceRemoteInfoGcpOrganization
 from opal.models.resource_remote_info_gcp_project import ResourceRemoteInfoGcpProject
+from opal.models.resource_remote_info_gcp_service_account import ResourceRemoteInfoGcpServiceAccount
 from opal.models.resource_remote_info_gcp_sql_instance import ResourceRemoteInfoGcpSqlInstance
 from opal.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo
 from opal.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
@@ -67,6 +68,7 @@ class ResourceRemoteInfo(BaseModel):
     gcp_gke_cluster: Optional[ResourceRemoteInfoGcpGkeCluster] = None
     gcp_project: Optional[ResourceRemoteInfoGcpProject] = None
     gcp_sql_instance: Optional[ResourceRemoteInfoGcpSqlInstance] = None
+    gcp_service_account: Optional[ResourceRemoteInfoGcpServiceAccount] = None
     github_repo: Optional[ResourceRemoteInfoGithubRepo] = None
     gitlab_project: Optional[ResourceRemoteInfoGitlabProject] = None
     okta_app: Optional[ResourceRemoteInfoOktaApp] = None
@@ -78,7 +80,7 @@ class ResourceRemoteInfo(BaseModel):
     salesforce_role: Optional[ResourceRemoteInfoSalesforceRole] = None
     teleport_role: Optional[ResourceRemoteInfoTeleportRole] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "github_repo", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role"]
+    __properties: ClassVar[List[str]] = ["aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "github_repo", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -166,6 +168,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gcp_sql_instance
         if self.gcp_sql_instance:
             _dict['gcp_sql_instance'] = self.gcp_sql_instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_service_account
+        if self.gcp_service_account:
+            _dict['gcp_service_account'] = self.gcp_service_account.to_dict()
         # override the default output from pydantic by calling `to_dict()` of github_repo
         if self.github_repo:
             _dict['github_repo'] = self.github_repo.to_dict()
@@ -228,6 +233,7 @@ class ResourceRemoteInfo(BaseModel):
             "gcp_gke_cluster": ResourceRemoteInfoGcpGkeCluster.from_dict(obj["gcp_gke_cluster"]) if obj.get("gcp_gke_cluster") is not None else None,
             "gcp_project": ResourceRemoteInfoGcpProject.from_dict(obj["gcp_project"]) if obj.get("gcp_project") is not None else None,
             "gcp_sql_instance": ResourceRemoteInfoGcpSqlInstance.from_dict(obj["gcp_sql_instance"]) if obj.get("gcp_sql_instance") is not None else None,
+            "gcp_service_account": ResourceRemoteInfoGcpServiceAccount.from_dict(obj["gcp_service_account"]) if obj.get("gcp_service_account") is not None else None,
             "github_repo": ResourceRemoteInfoGithubRepo.from_dict(obj["github_repo"]) if obj.get("github_repo") is not None else None,
             "gitlab_project": ResourceRemoteInfoGitlabProject.from_dict(obj["gitlab_project"]) if obj.get("gitlab_project") is not None else None,
             "okta_app": ResourceRemoteInfoOktaApp.from_dict(obj["okta_app"]) if obj.get("okta_app") is not None else None,

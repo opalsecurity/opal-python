@@ -27,7 +27,7 @@ print(ResourceUserAccessStatus.to_json())
 # convert the object into a dict
 resource_user_access_status_dict = resource_user_access_status_instance.to_dict()
 # create an instance of ResourceUserAccessStatus from a dict
-resource_user_access_status_form_dict = resource_user_access_status.from_dict(resource_user_access_status_dict)
+resource_user_access_status_from_dict = ResourceUserAccessStatus.from_dict(resource_user_access_status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

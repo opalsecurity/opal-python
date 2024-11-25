@@ -23,7 +23,9 @@ from opal.api.configuration_templates_api import ConfigurationTemplatesApi
 from opal.api.events_api import EventsApi
 from opal.api.group_bindings_api import GroupBindingsApi
 from opal.api.groups_api import GroupsApi
+from opal.api.idp_group_mappings_api import IdpGroupMappingsApi
 from opal.api.message_channels_api import MessageChannelsApi
+from opal.api.non_human_identities_api import NonHumanIdentitiesApi
 from opal.api.on_call_schedules_api import OnCallSchedulesApi
 from opal.api.owners_api import OwnersApi
 from opal.api.requests_api import RequestsApi
@@ -45,8 +47,11 @@ from opal.exceptions import ApiAttributeError
 from opal.exceptions import ApiException
 
 # import models into sdk package
+from opal.models.access import Access
+from opal.models.access_list import AccessList
 from opal.models.add_group_resource_request import AddGroupResourceRequest
 from opal.models.add_group_user_request import AddGroupUserRequest
+from opal.models.add_resource_nhi_request import AddResourceNhiRequest
 from opal.models.add_resource_user_request import AddResourceUserRequest
 from opal.models.app import App
 from opal.models.app_type_enum import AppTypeEnum
@@ -62,7 +67,13 @@ from opal.models.create_group_info import CreateGroupInfo
 from opal.models.create_message_channel_info import CreateMessageChannelInfo
 from opal.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
 from opal.models.create_owner_info import CreateOwnerInfo
+from opal.models.create_request200_response import CreateRequest200Response
 from opal.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
+from opal.models.create_request_info import CreateRequestInfo
+from opal.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
+from opal.models.create_request_info_groups_inner import CreateRequestInfoGroupsInner
+from opal.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner
+from opal.models.create_request_info_support_ticket import CreateRequestInfoSupportTicket
 from opal.models.create_resource_info import CreateResourceInfo
 from opal.models.create_tag_info import CreateTagInfo
 from opal.models.create_uar_info import CreateUARInfo
@@ -87,6 +98,8 @@ from opal.models.group_resource_list import GroupResourceList
 from opal.models.group_type_enum import GroupTypeEnum
 from opal.models.group_user import GroupUser
 from opal.models.group_user_list import GroupUserList
+from opal.models.idp_group_mapping import IdpGroupMapping
+from opal.models.idp_group_mapping_list import IdpGroupMappingList
 from opal.models.message_channel import MessageChannel
 from opal.models.message_channel_id_list import MessageChannelIDList
 from opal.models.message_channel_list import MessageChannelList
@@ -117,6 +130,7 @@ from opal.models.resource import Resource
 from opal.models.resource_access_level import ResourceAccessLevel
 from opal.models.resource_access_user import ResourceAccessUser
 from opal.models.resource_access_user_list import ResourceAccessUserList
+from opal.models.resource_nhi import ResourceNHI
 from opal.models.resource_remote_info import ResourceRemoteInfo
 from opal.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
 from opal.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
@@ -132,6 +146,7 @@ from opal.models.resource_remote_info_gcp_folder import ResourceRemoteInfoGcpFol
 from opal.models.resource_remote_info_gcp_gke_cluster import ResourceRemoteInfoGcpGkeCluster
 from opal.models.resource_remote_info_gcp_organization import ResourceRemoteInfoGcpOrganization
 from opal.models.resource_remote_info_gcp_project import ResourceRemoteInfoGcpProject
+from opal.models.resource_remote_info_gcp_service_account import ResourceRemoteInfoGcpServiceAccount
 from opal.models.resource_remote_info_gcp_sql_instance import ResourceRemoteInfoGcpSqlInstance
 from opal.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo
 from opal.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
@@ -151,12 +166,15 @@ from opal.models.resource_with_access_level import ResourceWithAccessLevel
 from opal.models.reviewer_id_list import ReviewerIDList
 from opal.models.reviewer_stage import ReviewerStage
 from opal.models.reviewer_stage_list import ReviewerStageList
+from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
 from opal.models.session import Session
 from opal.models.sessions_list import SessionsList
 from opal.models.sub_event import SubEvent
 from opal.models.tag import Tag
 from opal.models.tag_filter import TagFilter
 from opal.models.tags_list import TagsList
+from opal.models.ticket_propagation_configuration import TicketPropagationConfiguration
+from opal.models.ticketing_provider_enum import TicketingProviderEnum
 from opal.models.uar import UAR
 from opal.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
 from opal.models.uar_scope import UARScope
@@ -166,6 +184,8 @@ from opal.models.update_group_binding_info_list import UpdateGroupBindingInfoLis
 from opal.models.update_group_info import UpdateGroupInfo
 from opal.models.update_group_info_list import UpdateGroupInfoList
 from opal.models.update_group_resources_info import UpdateGroupResourcesInfo
+from opal.models.update_idp_group_mappings_request import UpdateIdpGroupMappingsRequest
+from opal.models.update_idp_group_mappings_request_mappings_inner import UpdateIdpGroupMappingsRequestMappingsInner
 from opal.models.update_owner_info import UpdateOwnerInfo
 from opal.models.update_owner_info_list import UpdateOwnerInfoList
 from opal.models.update_resource_info import UpdateResourceInfo

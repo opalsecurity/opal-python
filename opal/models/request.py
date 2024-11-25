@@ -35,14 +35,15 @@ class Request(BaseModel):
     created_at: datetime = Field(description="The date and time the request was created.")
     updated_at: datetime = Field(description="The date and time the request was last updated.")
     requester_id: StrictStr = Field(description="The unique identifier of the user who created the request.")
-    target_user_id: StrictStr = Field(description="The unique identifier of the user who is the target of the request.")
-    status: RequestStatusEnum
+    target_user_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the user who is the target of the request.")
+    target_group_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the group who is the target of the request.")
+    status: RequestStatusEnum = Field(description="The status of the request.")
     reason: StrictStr = Field(description="The reason for the request.")
     duration_minutes: Optional[StrictInt] = Field(default=None, description="The duration of the request in minutes.")
     requested_items_list: Optional[List[RequestedItem]] = Field(default=None, description="The list of targets for the request.")
     custom_fields_responses: Optional[List[RequestCustomFieldResponse]] = Field(default=None, description="The responses given to the custom fields associated to the request")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "target_user_id", "status", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "target_user_id", "target_group_id", "status", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,16 +89,16 @@ class Request(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in requested_items_list (list)
         _items = []
         if self.requested_items_list:
-            for _item in self.requested_items_list:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_requested_items_list in self.requested_items_list:
+                if _item_requested_items_list:
+                    _items.append(_item_requested_items_list.to_dict())
             _dict['requested_items_list'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in custom_fields_responses (list)
         _items = []
         if self.custom_fields_responses:
-            for _item in self.custom_fields_responses:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_custom_fields_responses in self.custom_fields_responses:
+                if _item_custom_fields_responses:
+                    _items.append(_item_custom_fields_responses.to_dict())
             _dict['custom_fields_responses'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
@@ -121,6 +122,7 @@ class Request(BaseModel):
             "updated_at": obj.get("updated_at"),
             "requester_id": obj.get("requester_id"),
             "target_user_id": obj.get("target_user_id"),
+            "target_group_id": obj.get("target_group_id"),
             "status": obj.get("status"),
             "reason": obj.get("reason"),
             "duration_minutes": obj.get("duration_minutes"),

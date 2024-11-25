@@ -23,7 +23,7 @@ print(AppsList.to_json())
 # convert the object into a dict
 apps_list_dict = apps_list_instance.to_dict()
 # create an instance of AppsList from a dict
-apps_list_form_dict = apps_list.from_dict(apps_list_dict)
+apps_list_from_dict = AppsList.from_dict(apps_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

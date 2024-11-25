@@ -25,7 +25,7 @@ print(ResourceRemoteInfoAwsEc2Instance.to_json())
 # convert the object into a dict
 resource_remote_info_aws_ec2_instance_dict = resource_remote_info_aws_ec2_instance_instance.to_dict()
 # create an instance of ResourceRemoteInfoAwsEc2Instance from a dict
-resource_remote_info_aws_ec2_instance_form_dict = resource_remote_info_aws_ec2_instance.from_dict(resource_remote_info_aws_ec2_instance_dict)
+resource_remote_info_aws_ec2_instance_from_dict = ResourceRemoteInfoAwsEc2Instance.from_dict(resource_remote_info_aws_ec2_instance_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

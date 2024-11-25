@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name of the group. | [optional] 
 **description** | **str** | A description of the group. | [optional] 
 **admin_owner_id** | **str** | The ID of the owner of the group. | [optional] 
+**group_leader_user_ids** | **List[str]** | A list of User IDs for the group leaders of the group | [optional] 
 **remote_id** | **str** | The ID of the remote. | [optional] 
 **remote_name** | **str** | The name of the remote. | [optional] 
 **group_type** | [**GroupTypeEnum**](GroupTypeEnum.md) |  | [optional] 
@@ -29,6 +30,9 @@ Name | Type | Description | Notes
 **request_configuration_list** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of request configurations for this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **metadata** | **str** | JSON metadata about the remote group. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details. | [optional] 
 **remote_info** | [**GroupRemoteInfo**](GroupRemoteInfo.md) |  | [optional] 
+**custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
+**risk_sensitivity** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) | The risk sensitivity level for the group. When an override is set, this field will match that. | [optional] [readonly] 
+**risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
 
 ## Example
 
@@ -45,7 +49,7 @@ print(Group.to_json())
 # convert the object into a dict
 group_dict = group_instance.to_dict()
 # create an instance of Group from a dict
-group_form_dict = group.from_dict(group_dict)
+group_from_dict = Group.from_dict(group_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

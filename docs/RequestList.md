@@ -24,7 +24,7 @@ print(RequestList.to_json())
 # convert the object into a dict
 request_list_dict = request_list_instance.to_dict()
 # create an instance of RequestList from a dict
-request_list_form_dict = request_list.from_dict(request_list_dict)
+request_list_from_dict = RequestList.from_dict(request_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

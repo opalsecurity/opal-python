@@ -23,7 +23,7 @@ print(GroupRemoteInfoOktaGroup.to_json())
 # convert the object into a dict
 group_remote_info_okta_group_dict = group_remote_info_okta_group_instance.to_dict()
 # create an instance of GroupRemoteInfoOktaGroup from a dict
-group_remote_info_okta_group_form_dict = group_remote_info_okta_group.from_dict(group_remote_info_okta_group_dict)
+group_remote_info_okta_group_from_dict = GroupRemoteInfoOktaGroup.from_dict(group_remote_info_okta_group_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

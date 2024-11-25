@@ -25,7 +25,7 @@ print(UpdateGroupBindingInfo.to_json())
 # convert the object into a dict
 update_group_binding_info_dict = update_group_binding_info_instance.to_dict()
 # create an instance of UpdateGroupBindingInfo from a dict
-update_group_binding_info_form_dict = update_group_binding_info.from_dict(update_group_binding_info_dict)
+update_group_binding_info_from_dict = UpdateGroupBindingInfo.from_dict(update_group_binding_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

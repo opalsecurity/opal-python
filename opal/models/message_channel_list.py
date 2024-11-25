@@ -76,9 +76,9 @@ class MessageChannelList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in channels (list)
         _items = []
         if self.channels:
-            for _item in self.channels:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_channels in self.channels:
+                if _item_channels:
+                    _items.append(_item_channels.to_dict())
             _dict['channels'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

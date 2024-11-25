@@ -24,7 +24,7 @@ print(CreateGroupBindingInfo.to_json())
 # convert the object into a dict
 create_group_binding_info_dict = create_group_binding_info_instance.to_dict()
 # create an instance of CreateGroupBindingInfo from a dict
-create_group_binding_info_form_dict = create_group_binding_info.from_dict(create_group_binding_info_dict)
+create_group_binding_info_from_dict = CreateGroupBindingInfo.from_dict(create_group_binding_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

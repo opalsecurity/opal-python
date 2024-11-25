@@ -25,7 +25,7 @@ from typing_extensions import Self
 
 class ResourceAccessLevel(BaseModel):
     """
-    # Access Level Object ### Description The `ResourceAccessLevel` object is used to represent the level of access that a user has to a resource or a resource has to a group. The \"default\" access level is a `ResourceAccessLevel` object whose fields are all empty strings.  ### Usage Example View the `ResourceAccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
+    # Access Level Object ### Description The `AccessLevel` object is used to represent the level of access that a principal has. The \"default\" access level is a `AccessLevel` object whose fields are all empty strings.  ### Usage Example View the `AccessLevel` of a resource/user or resource/group pair to see the level of access granted to the resource.
     """ # noqa: E501
     access_level_name: StrictStr = Field(description="The human-readable name of the access level.")
     access_level_remote_id: StrictStr = Field(description="The machine-readable identifier of the access level.")

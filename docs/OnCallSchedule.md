@@ -26,7 +26,7 @@ print(OnCallSchedule.to_json())
 # convert the object into a dict
 on_call_schedule_dict = on_call_schedule_instance.to_dict()
 # create an instance of OnCallSchedule from a dict
-on_call_schedule_form_dict = on_call_schedule.from_dict(on_call_schedule_dict)
+on_call_schedule_from_dict = OnCallSchedule.from_dict(on_call_schedule_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

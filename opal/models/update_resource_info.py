@@ -20,8 +20,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from opal.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 from opal.models.request_configuration import RequestConfiguration
+from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal.models.ticket_propagation_configuration import TicketPropagationConfiguration
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -42,13 +45,16 @@ class UpdateResourceInfo(BaseModel):
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this resource. Deprecated in favor of `request_configurations`.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to this resource.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this resource. Deprecated in favor of `request_configurations`.")
+    ticket_propagation: Optional[TicketPropagationConfiguration] = None
+    custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval.")
+    risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this resource. Deprecated in favor of `request_configurations`.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used.")
-    request_configuration_list: Optional[CreateRequestConfigurationInfoList] = None
+    request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "configuration_template_id", "request_template_id", "is_requestable", "request_configurations", "request_configuration_list"]
+    __properties: ClassVar[List[str]] = ["resource_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "ticket_propagation", "custom_request_notification", "risk_sensitivity_override", "configuration_template_id", "request_template_id", "is_requestable", "request_configurations", "request_configuration_list"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,12 +97,15 @@ class UpdateResourceInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of ticket_propagation
+        if self.ticket_propagation:
+            _dict['ticket_propagation'] = self.ticket_propagation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in request_configurations (list)
         _items = []
         if self.request_configurations:
-            for _item in self.request_configurations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_configurations in self.request_configurations:
+                if _item_request_configurations:
+                    _items.append(_item_request_configurations.to_dict())
             _dict['request_configurations'] = _items
         # override the default output from pydantic by calling `to_dict()` of request_configuration_list
         if self.request_configuration_list:
@@ -131,6 +140,9 @@ class UpdateResourceInfo(BaseModel):
             "require_mfa_to_request": obj.get("require_mfa_to_request"),
             "require_mfa_to_connect": obj.get("require_mfa_to_connect"),
             "auto_approval": obj.get("auto_approval"),
+            "ticket_propagation": TicketPropagationConfiguration.from_dict(obj["ticket_propagation"]) if obj.get("ticket_propagation") is not None else None,
+            "custom_request_notification": obj.get("custom_request_notification"),
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
             "configuration_template_id": obj.get("configuration_template_id"),
             "request_template_id": obj.get("request_template_id"),
             "is_requestable": obj.get("is_requestable"),
