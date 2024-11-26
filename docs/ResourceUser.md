@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | 
 **full_name** | **str** | The user&#39;s full name. | 
 **email** | **str** | The user&#39;s email. | 
-**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | [optional] 
+**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | 
 
 ## Example
 
