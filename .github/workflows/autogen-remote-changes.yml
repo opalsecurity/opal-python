@@ -1,0 +1,62 @@
+name: Auto-Update SDK
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Runs every Monday at midnight
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  update-sdk:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      run: |
+        git clone https://github.com/${{ github.repository }} repo
+        cd repo
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    - name: Pull and generate SDK
+      run: |
+        cd repo
+        make gen-openapi-remote
+    - name: Check for changes
+      run: |
+        cd repo
+        if git diff --quiet; then
+          echo "changes=false" >> $GITHUB_ENV
+        else
+          echo "changes=true" >> $GITHUB_ENV
+        fi
+    - name: Commit changes
+      if: env.changes == 'true'
+      run: |
+        cd repo
+        git checkout -b auto-update-sdk || git checkout auto-update-sdk
+        git add .
+        git commit -m "Auto-update SDK on $(date +'%Y-%m-%d')"
+    - name: Push changes
+      if: env.changes == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd repo
+        git push --force --set-upstream origin auto-update-sdk
+    - name: Create a pull request
+      if: env.changes == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        PR_TITLE="Auto-update SDK on $(date +'%Y-%m-%d')"
+        PR_BODY="This pull request was automatically created by GitHub Actions to update the SDK."
+        curl -H "Authorization: token $GITHUB_TOKEN" \
+             -X POST \
+             -H "Content-Type: application/json" \
+             -d @- \
+             https://api.github.com/repos/${{ github.repository }}/pulls <<EOF
+                {
+                    "title": "$PR_TITLE",
+                    "body": "$PR_BODY",
+                    "head": "auto-update-sdk",
+                    "base": "main"
+                }
+                EOF
