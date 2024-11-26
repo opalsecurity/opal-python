@@ -1,5 +1,7 @@
 .github/workflows/python.yml
 .gitignore
+.gitlab-ci.yml
+.travis.yml
 README.md
 docs/Access.md
 docs/AccessList.md
