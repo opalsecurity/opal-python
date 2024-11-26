@@ -32,7 +32,7 @@ class ResourceNHI(BaseModel):
     resource_id: StrictStr = Field(description="The ID of the resource.")
     non_human_identity_id: StrictStr = Field(description="The resource ID of the non-human identity.")
     access_level: Optional[ResourceAccessLevel] = None
-    expiration_date: Optional[datetime] = Field(default=None, description="The day and time the non-human identity's access will expire.")
+    expiration_date: datetime = Field(description="The day and time the non-human identity's access will expire.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "non_human_identity_id", "access_level", "expiration_date"]
 
