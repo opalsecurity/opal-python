@@ -35,7 +35,7 @@ class Access(BaseModel):
     entity_id: StrictStr = Field(description="The ID of the entity being accessed.")
     entity_type: EntityTypeEnum
     access_level: Optional[ResourceAccessLevel] = None
-    expiration_date: datetime = Field(description="The day and time the principal's access will expire.")
+    expiration_date: Optional[datetime] = Field(default=None, description="The day and time the principal's access will expire.")
     has_direct_access: StrictBool = Field(description="The principal has direct access to this entity (vs. inherited access).")
     num_access_paths: StrictInt = Field(description="The number of ways in which the principal has access to this entity (directly and inherited).")
     additional_properties: Dict[str, Any] = {}

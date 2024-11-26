@@ -3611,7 +3611,6 @@ components:
           nullable: true
           type: string
       required:
-        - expiration_date
         - resource_id
         - status
         - user_id
@@ -3664,7 +3663,6 @@ components:
           type: string
       required:
         - email
-        - expiration_date
         - full_name
         - resource_id
         - user_id
@@ -3722,7 +3720,6 @@ components:
           type: integer
       required:
         - email
-        - expiration_date
         - full_name
         - resource_id
         - user_id
@@ -3806,7 +3803,6 @@ components:
         - principal_type
         - entity_id
         - entity_type
-        - expiration_date
         - has_direct_access
         - num_access_paths
       type: object
@@ -3841,7 +3837,6 @@ components:
       required:
         - resource_id
         - non_human_identity_id
-        - expiration_date
       type: object
     SessionsList:
       example:
@@ -4334,7 +4329,6 @@ components:
           type: string
       required:
         - email
-        - expiration_date
         - full_name
         - group_id
         - user_id

@@ -34,7 +34,7 @@ class GroupUser(BaseModel):
     access_level: Optional[GroupAccessLevel] = None
     full_name: StrictStr = Field(description="The user's full name.")
     email: StrictStr = Field(description="The user's email.")
-    expiration_date: datetime = Field(description="The day and time the user's access will expire.")
+    expiration_date: Optional[datetime] = Field(default=None, description="The day and time the user's access will expire.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_id", "user_id", "access_level", "full_name", "email", "expiration_date"]
 
