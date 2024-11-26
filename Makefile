@@ -5,3 +5,6 @@ OPENAPI_GEN=openapi-generator generate --enable-post-process-file -i api/openapi
 
 gen-openapi:
 	$(OPENAPI_GEN)
+gen-openapi-remote:
+	curl https://app.opal.dev/openapi.yaml > api/openapi.yaml
+	$(OPENAPI_GEN)
