@@ -4,61 +4,68 @@ name: Auto-Update SDK
 #   schedule:
 #     - cron: "0 0 * * 1" # Runs every Monday at midnight
 #   workflow_dispatch: # Allows manual triggering of the workflow
-
 on: [push, pull_request]
 
 jobs:
   update-sdk:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
     steps:
-    - name: Checkout repository
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' 
+    - name: Install OpenAPI Generator CLI
+      run: npm install @openapitools/openapi-generator-cli -g
+    - name: Install dependencies
       run: |
-        git clone https://github.com/${{ github.repository }} repo
-        cd repo
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
     - name: Pull and generate SDK
-      run: |
-        cd repo
-        make gen-openapi-remote
+      run: make gen-openapi-remote-for-ci
     - name: Check for changes
+      id: check_changes
       run: |
-        cd repo
         if git diff --quiet; then
           echo "changes=false" >> $GITHUB_ENV
         else
           echo "changes=true" >> $GITHUB_ENV
         fi
+    - name: Set up Git
+      if: env.changes == 'true'
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
     - name: Commit changes
       if: env.changes == 'true'
       run: |
-        cd repo
-        git checkout -b auto-update-sdk || git checkout auto-update-sdk
+        BRANCH_NAME="auto-update-sdk-$(date +'%Y-%m-%d-%H-%M-%S')"
+        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        git checkout -b $BRANCH_NAME || git checkout $BRANCH_NAME
         git add .
         git commit -m "Auto-update SDK on $(date +'%Y-%m-%d')"
     - name: Push changes
       if: env.changes == 'true'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: git push --force --set-upstream origin $BRANCH_NAME
+    - name: Install GitHub CLI
+      if: env.changes == 'true'
       run: |
-        cd repo
-        git push --force --set-upstream origin auto-update-sdk
+        sudo apt-get update
+        sudo apt-get install -y gh
     - name: Create a pull request
       if: env.changes == 'true'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         PR_TITLE="Auto-update SDK on $(date +'%Y-%m-%d')"
-        PR_BODY="This pull request was automatically created by GitHub Actions to update the SDK."
-        curl -H "Authorization: token $GITHUB_TOKEN" \
-             -X POST \
-             -H "Content-Type: application/json" \
-             -d @- \
-             https://api.github.com/repos/${{ github.repository }}/pulls <<EOF
-                {
-                    "title": "$PR_TITLE",
-                    "body": "$PR_BODY",
-                    "head": "auto-update-sdk",
-                    "base": "main"
-                }
-                EOF
+        PR_BODY="This pull request was automatically created by GitHub Actions to update the SDK with the latest remote OpenAPI specification."
+        gh pr create --title "$PR_TITLE" --body "$PR_BODY" --head $BRANCH_NAME --base main
