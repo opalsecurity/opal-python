@@ -34,7 +34,7 @@ class ResourceUserAccessStatus(BaseModel):
     user_id: StrictStr = Field(description="The ID of the user.")
     access_level: Optional[ResourceAccessLevel] = None
     status: ResourceUserAccessStatusEnum
-    expiration_date: datetime = Field(description="The day and time the user's access will expire.")
+    expiration_date: Optional[datetime] = Field(default=None, description="The day and time the user's access will expire.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "user_id", "access_level", "status", "expiration_date"]
 

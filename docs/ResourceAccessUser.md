@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | 
 **full_name** | **str** | The user&#39;s full name. | 
 **email** | **str** | The user&#39;s email. | 
-**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | 
+**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | [optional] 
 **has_direct_access** | **bool** | The user has direct access to this resources (vs. indirectly, like through a group). | 
 **num_access_paths** | **int** | The number of ways in which the user has access through this resource (directly and indirectly). | 
 

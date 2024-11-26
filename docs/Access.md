@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **entity_id** | **str** | The ID of the entity being accessed. | 
 **entity_type** | [**EntityTypeEnum**](EntityTypeEnum.md) |  | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | [optional] 
-**expiration_date** | **datetime** | The day and time the principal&#39;s access will expire. | 
+**expiration_date** | **datetime** | The day and time the principal&#39;s access will expire. | [optional] 
 **has_direct_access** | **bool** | The principal has direct access to this entity (vs. inherited access). | 
 **num_access_paths** | **int** | The number of ways in which the principal has access to this entity (directly and inherited). | 
 
