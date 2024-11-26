@@ -1,0 +1,92 @@
+name: Auto-Update SDK
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Runs every Monday at midnight
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  update-sdk:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' 
+    - name: Install OpenAPI Generator CLI
+      run: npm install @openapitools/openapi-generator-cli -g
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Pull and generate SDK
+      run: make gen-openapi-remote-for-ci
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet; then
+          echo "changes=false" >> $GITHUB_ENV
+        else
+          echo "changes=true" >> $GITHUB_ENV
+        fi
+    - name: Set up Git
+      if: env.changes == 'true'
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+    - name: Commit changes
+      if: env.changes == 'true'
+      run: |
+        BRANCH_NAME="auto-update-sdk-$(date +'%Y-%m-%d-%H-%M-%S')"
+        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        git checkout -b $BRANCH_NAME || git checkout $BRANCH_NAME
+        git add .
+        git commit -m "Auto-update SDK on $(date +'%Y-%m-%d')"
+    - name: Push changes
+      if: env.changes == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: git push --force --set-upstream origin $BRANCH_NAME
+    - name: Install GitHub CLI
+      if: env.changes == 'true'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gh
+    - name: Check for existing pull request
+      if: env.changes == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      id: check_pr
+      run: |
+        PR_EXISTS=$(gh pr list --search "Auto-update SDK" --base main --state open --json number -q '.[0].number')
+        if [[ -n "$PR_EXISTS" ]]; then
+        echo "pr_exists=true" >> $GITHUB_ENV
+        echo "PR_NUMBER=$PR_EXISTS" >> $GITHUB_ENV
+        else
+        echo "pr_exists=false" >> $GITHUB_ENV
+        fi
+    - name: Create a pull request
+      if: env.changes == 'true' && env.pr_exists == 'false'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        PR_TITLE="Auto-update SDK on $(date +'%Y-%m-%d')"
+        PR_BODY="This pull request was automatically created by GitHub Actions to update the SDK with the latest remote OpenAPI specification."
+        gh pr create --title "$PR_TITLE" --body "$PR_BODY" --head $BRANCH_NAME --base main
+    - name: Update existing pull request
+      if: env.changes == 'true' && env.pr_exists == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "An existing pull request titled 'Auto-update SDK' is already open. Updating it with the latest changes."
+        git push --set-upstream origin $BRANCH_NAME --force
+        gh pr comment $PR_NUMBER --body "This pull request has been updated with the latest changes from the automated SDK update process on $(date +'%Y-%m-%d %H:%M:%S')."
+    

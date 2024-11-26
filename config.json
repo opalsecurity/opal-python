@@ -1,1 +1,8 @@
-{"enumClassPrefix": true, "packageName": "opal", "gitHost": "github.com", "gitUserId": "opalsecurity", "gitRepoId": "opal-python", "disallowAdditionalPropertiesIfNotPresent":false}
+{
+  "enumClassPrefix": true,
+  "packageName": "opal",
+  "gitHost": "github.com",
+  "gitUserId": "opalsecurity",
+  "gitRepoId": "opal-python",
+  "disallowAdditionalPropertiesIfNotPresent": false
+}
