@@ -1,9 +1,11 @@
 name: Auto-Update SDK
 
-on:
-  schedule:
-    - cron: "0 0 * * 1" # Runs every Monday at midnight
-  workflow_dispatch: # Allows manual triggering of the workflow
+# on:
+#   schedule:
+#     - cron: "0 0 * * 1" # Runs every Monday at midnight
+#   workflow_dispatch: # Allows manual triggering of the workflow
+
+on: [push, pull_request]
 
 jobs:
   update-sdk:
