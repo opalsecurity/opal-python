@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole
+from opal_security.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole
 
 # TODO update the JSON string below
 json = "{}"

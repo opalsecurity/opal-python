@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.paginated_group_bindings_list import PaginatedGroupBindingsList
+from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
 
 class TestPaginatedGroupBindingsList(unittest.TestCase):
     """PaginatedGroupBindingsList unit test stubs"""

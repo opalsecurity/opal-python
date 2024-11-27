@@ -1,4 +1,4 @@
-# opal.IdpGroupMappingsApi
+# opal_security.IdpGroupMappingsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -21,12 +21,14 @@ Deletes an `IdpGroupMapping` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -42,9 +44,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.IdpGroupMappingsApi(api_client)
+    api_instance = opal_security.IdpGroupMappingsApi(api_client)
     app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
@@ -97,13 +99,15 @@ Returns the configured set of available `IdpGroupMapping` objects for an Okta ap
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.idp_group_mapping_list import IdpGroupMappingList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.idp_group_mapping_list import IdpGroupMappingList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -119,9 +123,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.IdpGroupMappingsApi(api_client)
+    api_instance = opal_security.IdpGroupMappingsApi(api_client)
     app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
 
     try:
@@ -174,13 +178,15 @@ Updates the list of available `IdpGroupMapping` objects for an Okta app.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.update_idp_group_mappings_request import UpdateIdpGroupMappingsRequest
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.update_idp_group_mappings_request import UpdateIdpGroupMappingsRequest
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -196,11 +202,11 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.IdpGroupMappingsApi(api_client)
+    api_instance = opal_security.IdpGroupMappingsApi(api_client)
     app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
-    update_idp_group_mappings_request = opal.UpdateIdpGroupMappingsRequest() # UpdateIdpGroupMappingsRequest | 
+    update_idp_group_mappings_request = opal_security.UpdateIdpGroupMappingsRequest() # UpdateIdpGroupMappingsRequest | 
 
     try:
         api_instance.update_idp_group_mappings(app_resource_id, update_idp_group_mappings_request)

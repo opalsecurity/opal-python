@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.visibility_type_enum import VisibilityTypeEnum
+from opal_security.models.visibility_type_enum import VisibilityTypeEnum
 
 class TestVisibilityTypeEnum(unittest.TestCase):
     """VisibilityTypeEnum unit test stubs"""

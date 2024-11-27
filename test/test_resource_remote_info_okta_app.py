@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
+from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
 
 class TestResourceRemoteInfoOktaApp(unittest.TestCase):
     """ResourceRemoteInfoOktaApp unit test stubs"""

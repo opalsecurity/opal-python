@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet
+from opal_security.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet
 
 class TestResourceRemoteInfoSalesforcePermissionSet(unittest.TestCase):
     """ResourceRemoteInfoSalesforcePermissionSet unit test stubs"""

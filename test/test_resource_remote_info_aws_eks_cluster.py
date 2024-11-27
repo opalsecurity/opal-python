@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_aws_eks_cluster import ResourceRemoteInfoAwsEksCluster
+from opal_security.models.resource_remote_info_aws_eks_cluster import ResourceRemoteInfoAwsEksCluster
 
 class TestResourceRemoteInfoAwsEksCluster(unittest.TestCase):
     """ResourceRemoteInfoAwsEksCluster unit test stubs"""

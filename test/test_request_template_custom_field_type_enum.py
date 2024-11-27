@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.request_template_custom_field_type_enum import RequestTemplateCustomFieldTypeEnum
+from opal_security.models.request_template_custom_field_type_enum import RequestTemplateCustomFieldTypeEnum
 
 class TestRequestTemplateCustomFieldTypeEnum(unittest.TestCase):
     """RequestTemplateCustomFieldTypeEnum unit test stubs"""

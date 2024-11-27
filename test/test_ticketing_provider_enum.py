@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.ticketing_provider_enum import TicketingProviderEnum
+from opal_security.models.ticketing_provider_enum import TicketingProviderEnum
 
 class TestTicketingProviderEnum(unittest.TestCase):
     """TicketingProviderEnum unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
+from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
 
 class TestGroupRemoteInfoGoogleGroup(unittest.TestCase):
     """GroupRemoteInfoGoogleGroup unit test stubs"""

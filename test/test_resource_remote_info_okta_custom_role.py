@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
+from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
 
 class TestResourceRemoteInfoOktaCustomRole(unittest.TestCase):
     """ResourceRemoteInfoOktaCustomRole unit test stubs"""

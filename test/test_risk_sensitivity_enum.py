@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
 
 class TestRiskSensitivityEnum(unittest.TestCase):
     """RiskSensitivityEnum unit test stubs"""

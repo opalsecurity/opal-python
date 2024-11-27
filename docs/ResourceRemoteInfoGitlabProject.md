@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
+from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 
 # TODO update the JSON string below
 json = "{}"

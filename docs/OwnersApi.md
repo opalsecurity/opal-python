@@ -1,4 +1,4 @@
-# opal.OwnersApi
+# opal_security.OwnersApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -26,14 +26,16 @@ Creates an owner.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_owner_info import CreateOwnerInfo
-from opal.models.owner import Owner
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_owner_info import CreateOwnerInfo
+from opal_security.models.owner import Owner
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -49,10 +51,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
-    create_owner_info = opal.CreateOwnerInfo() # CreateOwnerInfo | 
+    api_instance = opal_security.OwnersApi(api_client)
+    create_owner_info = opal_security.CreateOwnerInfo() # CreateOwnerInfo | 
 
     try:
         api_response = api_instance.create_owner(create_owner_info)
@@ -104,12 +106,14 @@ Deletes an owner.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -125,9 +129,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
+    api_instance = opal_security.OwnersApi(api_client)
     owner_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the owner.
 
     try:
@@ -178,13 +182,15 @@ Returns an `Owner` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.owner import Owner
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.owner import Owner
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -200,9 +206,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
+    api_instance = opal_security.OwnersApi(api_client)
     owner_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the owner.
 
     try:
@@ -255,13 +261,15 @@ Returns an `Owner` object. Does not support owners with `/` in their name, use /
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.owner import Owner
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.owner import Owner
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -277,9 +285,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
+    api_instance = opal_security.OwnersApi(api_client)
     owner_name = 'MyOwner' # str | The name of the owner.
 
     try:
@@ -332,13 +340,15 @@ Gets the list of users for this owner, in escalation priority order if applicabl
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.user_list import UserList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.user_list import UserList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -354,9 +364,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
+    api_instance = opal_security.OwnersApi(api_client)
     owner_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the owner.
 
     try:
@@ -409,13 +419,15 @@ Returns a list of `Owner` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_owners_list import PaginatedOwnersList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_owners_list import PaginatedOwnersList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -431,9 +443,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
+    api_instance = opal_security.OwnersApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     name = '200' # str | Owner name to filter by. (optional)
@@ -490,14 +502,16 @@ Sets the list of users for this owner. If escalation is enabled, the order of th
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.user_id_list import UserIDList
-from opal.models.user_list import UserList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.user_id_list import UserIDList
+from opal_security.models.user_list import UserList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -513,11 +527,11 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
+    api_instance = opal_security.OwnersApi(api_client)
     owner_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the owner.
-    user_id_list = opal.UserIDList() # UserIDList | 
+    user_id_list = opal_security.UserIDList() # UserIDList | 
 
     try:
         api_response = api_instance.set_owner_users(owner_id, user_id_list)
@@ -570,13 +584,15 @@ Bulk updates a list of owners.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.update_owner_info_list import UpdateOwnerInfoList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.update_owner_info_list import UpdateOwnerInfoList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -592,10 +608,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OwnersApi(api_client)
-    update_owner_info_list = opal.UpdateOwnerInfoList() # UpdateOwnerInfoList | Owners to be updated
+    api_instance = opal_security.OwnersApi(api_client)
+    update_owner_info_list = opal_security.UpdateOwnerInfoList() # UpdateOwnerInfoList | Owners to be updated
 
     try:
         api_response = api_instance.update_owners(update_owner_info_list)

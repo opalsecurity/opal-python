@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.ticket_propagation_configuration import TicketPropagationConfiguration
+from opal_security.models.ticket_propagation_configuration import TicketPropagationConfiguration
 
 class TestTicketPropagationConfiguration(unittest.TestCase):
     """TicketPropagationConfiguration unit test stubs"""

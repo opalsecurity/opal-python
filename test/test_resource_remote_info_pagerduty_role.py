@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_pagerduty_role import ResourceRemoteInfoPagerdutyRole
+from opal_security.models.resource_remote_info_pagerduty_role import ResourceRemoteInfoPagerdutyRole
 
 class TestResourceRemoteInfoPagerdutyRole(unittest.TestCase):
     """ResourceRemoteInfoPagerdutyRole unit test stubs"""

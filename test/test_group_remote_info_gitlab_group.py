@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_remote_info_gitlab_group import GroupRemoteInfoGitlabGroup
+from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoGitlabGroup
 
 class TestGroupRemoteInfoGitlabGroup(unittest.TestCase):
     """GroupRemoteInfoGitlabGroup unit test stubs"""

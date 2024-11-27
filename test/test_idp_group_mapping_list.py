@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.idp_group_mapping_list import IdpGroupMappingList
+from opal_security.models.idp_group_mapping_list import IdpGroupMappingList
 
 class TestIdpGroupMappingList(unittest.TestCase):
     """IdpGroupMappingList unit test stubs"""

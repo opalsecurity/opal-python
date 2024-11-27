@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.message_channel import MessageChannel
+from opal_security.models.message_channel import MessageChannel
 
 # TODO update the JSON string below
 json = "{}"

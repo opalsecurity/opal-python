@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
+from opal_security.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
 
 class TestCreateRequestInfoCustomMetadataInner(unittest.TestCase):
     """CreateRequestInfoCustomMetadataInner unit test stubs"""

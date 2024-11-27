@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.on_call_schedule_list import OnCallScheduleList
+from opal_security.models.on_call_schedule_list import OnCallScheduleList
 
 class TestOnCallScheduleList(unittest.TestCase):
     """OnCallScheduleList unit test stubs"""

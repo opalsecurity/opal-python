@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.uar import UAR
+from opal_security.models.uar import UAR
 
 class TestUAR(unittest.TestCase):
     """UAR unit test stubs"""

@@ -1,4 +1,4 @@
-# opal.NonHumanIdentitiesApi
+# opal_security.NonHumanIdentitiesApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -19,13 +19,15 @@ Returns a list of non-human identities for your organization.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_resources_list import PaginatedResourcesList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_resources_list import PaginatedResourcesList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -41,9 +43,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.NonHumanIdentitiesApi(api_client)
+    api_instance = opal_security.NonHumanIdentitiesApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 

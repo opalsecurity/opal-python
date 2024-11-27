@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.event import Event
+import opal_security
+from opal_security.models.event import Event
 globals()['Event'] = Event
-from opal.model.paginated_event_list import PaginatedEventList
+from opal_security.models.paginated_event_list import PaginatedEventList
 
 
 class TestPaginatedEventList(unittest.TestCase):

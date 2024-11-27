@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_remote_info_azure_ad_security_group import GroupRemoteInfoAzureAdSecurityGroup
+from opal_security.models.group_remote_info_azure_ad_security_group import GroupRemoteInfoAzureAdSecurityGroup
 
 class TestGroupRemoteInfoAzureAdSecurityGroup(unittest.TestCase):
     """GroupRemoteInfoAzureAdSecurityGroup unit test stubs"""

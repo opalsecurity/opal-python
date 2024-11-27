@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.requested_item import RequestedItem
+from opal_security.models.requested_item import RequestedItem
 
 class TestRequestedItem(unittest.TestCase):
     """RequestedItem unit test stubs"""

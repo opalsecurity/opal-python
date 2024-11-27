@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.request_configuration import RequestConfiguration
+from opal_security.models.request_configuration import RequestConfiguration
 
 class TestRequestConfiguration(unittest.TestCase):
     """RequestConfiguration unit test stubs"""

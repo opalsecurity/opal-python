@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.message_channels_api import MessageChannelsApi
+from opal_security.api.message_channels_api import MessageChannelsApi
 
 
 class TestMessageChannelsApi(unittest.TestCase):

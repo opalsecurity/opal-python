@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.update_owner_info_list import UpdateOwnerInfoList
+from opal_security.models.update_owner_info_list import UpdateOwnerInfoList
 
 class TestUpdateOwnerInfoList(unittest.TestCase):
     """UpdateOwnerInfoList unit test stubs"""

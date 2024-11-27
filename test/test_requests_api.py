@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.requests_api import RequestsApi
+from opal_security.api.requests_api import RequestsApi
 
 
 class TestRequestsApi(unittest.TestCase):

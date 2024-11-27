@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_configuration_template_info import CreateConfigurationTemplateInfo
+from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
 
 class TestCreateConfigurationTemplateInfo(unittest.TestCase):
     """CreateConfigurationTemplateInfo unit test stubs"""

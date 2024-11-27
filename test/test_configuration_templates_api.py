@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.configuration_templates_api import ConfigurationTemplatesApi
+from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
 
 
 class TestConfigurationTemplatesApi(unittest.TestCase):

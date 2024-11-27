@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.request_list import RequestList
+from opal_security.models.request_list import RequestList
 
 # TODO update the JSON string below
 json = "{}"

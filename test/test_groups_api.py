@@ -11,8 +11,8 @@
 
 import unittest
 
-import opal
-from opal.api.groups_api import GroupsApi  # noqa: E501
+import opal_security
+from opal_security.api.groups_api import GroupsApi  # noqa: E501
 
 
 class TestGroupsApi(unittest.TestCase):

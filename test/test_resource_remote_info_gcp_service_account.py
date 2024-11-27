@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_gcp_service_account import ResourceRemoteInfoGcpServiceAccount
+from opal_security.models.resource_remote_info_gcp_service_account import ResourceRemoteInfoGcpServiceAccount
 
 class TestResourceRemoteInfoGcpServiceAccount(unittest.TestCase):
     """ResourceRemoteInfoGcpServiceAccount unit test stubs"""

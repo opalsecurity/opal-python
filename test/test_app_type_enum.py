@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.app_type_enum import AppTypeEnum
+from opal_security.models.app_type_enum import AppTypeEnum
 
 class TestAppTypeEnum(unittest.TestCase):
     """AppTypeEnum unit test stubs"""

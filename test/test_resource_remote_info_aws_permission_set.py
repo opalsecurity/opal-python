@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_aws_permission_set import ResourceRemoteInfoAwsPermissionSet
+from opal_security.models.resource_remote_info_aws_permission_set import ResourceRemoteInfoAwsPermissionSet
 
 class TestResourceRemoteInfoAwsPermissionSet(unittest.TestCase):
     """ResourceRemoteInfoAwsPermissionSet unit test stubs"""

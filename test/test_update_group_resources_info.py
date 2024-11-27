@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.update_group_resources_info import UpdateGroupResourcesInfo
+from opal_security.models.update_group_resources_info import UpdateGroupResourcesInfo
 
 class TestUpdateGroupResourcesInfo(unittest.TestCase):
     """UpdateGroupResourcesInfo unit test stubs"""

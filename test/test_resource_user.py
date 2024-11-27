@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.resource_access_level import ResourceAccessLevel
+import opal_security
+from opal_security.models.resource_access_level import ResourceAccessLevel
 globals()['ResourceAccessLevel'] = ResourceAccessLevel
-from opal.model.resource_user import ResourceUser
+from opal_security.models.resource_user import ResourceUser
 
 
 class TestResourceUser(unittest.TestCase):

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.add_group_user_request import AddGroupUserRequest
+from opal_security.models.add_group_user_request import AddGroupUserRequest
 
 class TestAddGroupUserRequest(unittest.TestCase):
     """AddGroupUserRequest unit test stubs"""

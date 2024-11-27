@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.update_configuration_template_info import UpdateConfigurationTemplateInfo
+from opal_security.models.update_configuration_template_info import UpdateConfigurationTemplateInfo
 
 class TestUpdateConfigurationTemplateInfo(unittest.TestCase):
     """UpdateConfigurationTemplateInfo unit test stubs"""

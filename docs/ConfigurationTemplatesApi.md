@@ -1,4 +1,4 @@
-# opal.ConfigurationTemplatesApi
+# opal_security.ConfigurationTemplatesApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -22,14 +22,16 @@ Creates a configuration template.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.configuration_template import ConfigurationTemplate
-from opal.models.create_configuration_template_info import CreateConfigurationTemplateInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.configuration_template import ConfigurationTemplate
+from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -45,10 +47,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ConfigurationTemplatesApi(api_client)
-    create_configuration_template_info = opal.CreateConfigurationTemplateInfo() # CreateConfigurationTemplateInfo | 
+    api_instance = opal_security.ConfigurationTemplatesApi(api_client)
+    create_configuration_template_info = opal_security.CreateConfigurationTemplateInfo() # CreateConfigurationTemplateInfo | 
 
     try:
         api_response = api_instance.create_configuration_template(create_configuration_template_info)
@@ -100,12 +102,14 @@ Deletes a configuration template.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -121,9 +125,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ConfigurationTemplatesApi(api_client)
+    api_instance = opal_security.ConfigurationTemplatesApi(api_client)
     configuration_template_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the configuration template.
 
     try:
@@ -174,13 +178,15 @@ Returns a list of `ConfigurationTemplate` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -196,9 +202,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ConfigurationTemplatesApi(api_client)
+    api_instance = opal_security.ConfigurationTemplatesApi(api_client)
 
     try:
         api_response = api_instance.get_configuration_templates()
@@ -247,14 +253,16 @@ Update a configuration template.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.configuration_template import ConfigurationTemplate
-from opal.models.update_configuration_template_info import UpdateConfigurationTemplateInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.configuration_template import ConfigurationTemplate
+from opal_security.models.update_configuration_template_info import UpdateConfigurationTemplateInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -270,10 +278,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ConfigurationTemplatesApi(api_client)
-    update_configuration_template_info = opal.UpdateConfigurationTemplateInfo() # UpdateConfigurationTemplateInfo | Configuration template to be updated
+    api_instance = opal_security.ConfigurationTemplatesApi(api_client)
+    update_configuration_template_info = opal_security.UpdateConfigurationTemplateInfo() # UpdateConfigurationTemplateInfo | Configuration template to be updated
 
     try:
         api_response = api_instance.update_configuration_template(update_configuration_template_info)

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_uar_info import CreateUARInfo
+from opal_security.models.create_uar_info import CreateUARInfo
 
 # TODO update the JSON string below
 json = "{}"

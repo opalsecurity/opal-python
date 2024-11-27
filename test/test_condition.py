@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.condition import Condition
+from opal_security.models.condition import Condition
 
 class TestCondition(unittest.TestCase):
     """Condition unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.non_human_identities_api import NonHumanIdentitiesApi
+from opal_security.api.non_human_identities_api import NonHumanIdentitiesApi
 
 
 class TestNonHumanIdentitiesApi(unittest.TestCase):

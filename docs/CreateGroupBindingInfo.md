@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_group_binding_info import CreateGroupBindingInfo
+from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
 
 # TODO update the JSON string below
 json = "{}"

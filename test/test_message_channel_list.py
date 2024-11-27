@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.message_channel import MessageChannel
+import opal_security
+from opal_security.models.message_channel import MessageChannel
 globals()['MessageChannel'] = MessageChannel
-from opal.model.message_channel_list import MessageChannelList
+from opal_security.models.message_channel_list import MessageChannelList
 
 
 class TestMessageChannelList(unittest.TestCase):

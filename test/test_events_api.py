@@ -11,8 +11,8 @@
 
 import unittest
 
-import opal
-from opal.api.events_api import EventsApi  # noqa: E501
+import opal_security
+from opal_security.api.events_api import EventsApi  # noqa: E501
 
 
 class TestEventsApi(unittest.TestCase):

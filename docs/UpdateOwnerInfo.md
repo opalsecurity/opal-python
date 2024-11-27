@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.update_owner_info import UpdateOwnerInfo
+from opal_security.models.update_owner_info import UpdateOwnerInfo
 
 # TODO update the JSON string below
 json = "{}"

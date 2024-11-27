@@ -1,4 +1,4 @@
-# opal.OnCallSchedulesApi
+# opal_security.OnCallSchedulesApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -21,14 +21,16 @@ Creates a `OnCallSchedule` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
-from opal.models.on_call_schedule import OnCallSchedule
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
+from opal_security.models.on_call_schedule import OnCallSchedule
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -44,10 +46,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OnCallSchedulesApi(api_client)
-    create_on_call_schedule_info = opal.CreateOnCallScheduleInfo() # CreateOnCallScheduleInfo | The `OnCallSchedule` object to be created.
+    api_instance = opal_security.OnCallSchedulesApi(api_client)
+    create_on_call_schedule_info = opal_security.CreateOnCallScheduleInfo() # CreateOnCallScheduleInfo | The `OnCallSchedule` object to be created.
 
     try:
         api_response = api_instance.create_on_call_schedule(create_on_call_schedule_info)
@@ -99,13 +101,15 @@ Gets a `OnCallSchedule` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.on_call_schedule import OnCallSchedule
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.on_call_schedule import OnCallSchedule
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -121,9 +125,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OnCallSchedulesApi(api_client)
+    api_instance = opal_security.OnCallSchedulesApi(api_client)
     on_call_schedule_id = '9546209c-42c2-4801-96d7-9ec42df0f59c' # str | The ID of the on_call_schedule.
 
     try:
@@ -176,13 +180,15 @@ Returns a list of `OnCallSchedule` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.on_call_schedule_list import OnCallScheduleList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.on_call_schedule_list import OnCallScheduleList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -198,9 +204,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.OnCallSchedulesApi(api_client)
+    api_instance = opal_security.OnCallSchedulesApi(api_client)
 
     try:
         api_response = api_instance.get_on_call_schedules()

@@ -1,4 +1,4 @@
-# opal.ResourcesApi
+# opal_security.ResourcesApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -39,14 +39,16 @@ Gives a non-human identity access to this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.add_resource_nhi_request import AddResourceNhiRequest
-from opal.models.resource_nhi import ResourceNHI
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
+from opal_security.models.resource_nhi import ResourceNHI
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -62,12 +64,12 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     non_human_identity_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The resource ID of the non-human identity to add.
-    add_resource_nhi_request = opal.AddResourceNhiRequest() # AddResourceNhiRequest |  (optional)
+    add_resource_nhi_request = opal_security.AddResourceNhiRequest() # AddResourceNhiRequest |  (optional)
 
     try:
         api_response = api_instance.add_resource_nhi(resource_id, non_human_identity_id, add_resource_nhi_request=add_resource_nhi_request)
@@ -121,14 +123,16 @@ Adds a user to this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.add_resource_user_request import AddResourceUserRequest
-from opal.models.resource_user import ResourceUser
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.add_resource_user_request import AddResourceUserRequest
+from opal_security.models.resource_user import ResourceUser
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -144,14 +148,14 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user to add.
     duration_minutes = 60 # int | The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite. (optional)
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. (optional)
-    add_resource_user_request = opal.AddResourceUserRequest() # AddResourceUserRequest |  (optional)
+    add_resource_user_request = opal_security.AddResourceUserRequest() # AddResourceUserRequest |  (optional)
 
     try:
         api_response = api_instance.add_resource_user(resource_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_resource_user_request=add_resource_user_request)
@@ -207,14 +211,16 @@ Creates a resource. See [here](https://docs.opal.dev/reference/end-system-object
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_resource_info import CreateResourceInfo
-from opal.models.resource import Resource
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_resource_info import CreateResourceInfo
+from opal_security.models.resource import Resource
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -230,10 +236,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
-    create_resource_info = opal.CreateResourceInfo() # CreateResourceInfo | 
+    api_instance = opal_security.ResourcesApi(api_client)
+    create_resource_info = opal_security.CreateResourceInfo() # CreateResourceInfo | 
 
     try:
         api_response = api_instance.create_resource(create_resource_info)
@@ -285,12 +291,14 @@ Deletes a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -306,9 +314,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
@@ -359,12 +367,14 @@ Removes a non-human identity's direct access from this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -380,9 +390,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     non_human_identity_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The resource ID of the non-human identity to remove from this resource.
     access_level_remote_id = 'roles/cloudsql.instanceUser' # str | The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
@@ -437,12 +447,14 @@ Removes a user's direct access from this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -458,9 +470,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of a user to remove from this resource.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
@@ -515,13 +527,15 @@ Retrieves a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.resource import Resource
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.resource import Resource
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -537,9 +551,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
@@ -592,13 +606,15 @@ Gets the list of audit message channels attached to a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.message_channel_list import MessageChannelList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.message_channel_list import MessageChannelList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -614,9 +630,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
@@ -669,13 +685,15 @@ Gets the list of non-human identities with access to this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.access_list import AccessList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.access_list import AccessList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -691,9 +709,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     limit = 200 # int | Limit the number of results returned. (optional)
 
@@ -748,13 +766,15 @@ Gets the list reviewer stages for a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.reviewer_stage import ReviewerStage
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.reviewer_stage import ReviewerStage
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -770,9 +790,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
@@ -825,12 +845,14 @@ Gets the list of owner IDs of the reviewers for a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -846,9 +868,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
@@ -901,13 +923,15 @@ Returns all tags applied to the resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.tags_list import TagsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.tags_list import TagsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -923,9 +947,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource whose tags to return.
 
     try:
@@ -978,13 +1002,15 @@ Gets the list of users for this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.resource_access_user_list import ResourceAccessUserList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.resource_access_user_list import ResourceAccessUserList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1000,9 +1026,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     limit = 200 # int | Limit the number of results returned. (optional)
 
@@ -1057,13 +1083,15 @@ Gets the visibility of this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.visibility_info import VisibilityInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.visibility_info import VisibilityInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1079,9 +1107,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
@@ -1134,14 +1162,16 @@ Returns a list of resources for your organization.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_resources_list import PaginatedResourcesList
-from opal.models.resource_type_enum import ResourceTypeEnum
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_resources_list import PaginatedResourcesList
+from opal_security.models.resource_type_enum import ResourceTypeEnum
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1157,12 +1187,12 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
-    resource_type_filter = opal.ResourceTypeEnum() # ResourceTypeEnum | The resource type to filter by. (optional)
+    resource_type_filter = opal_security.ResourceTypeEnum() # ResourceTypeEnum | The resource type to filter by. (optional)
     resource_ids = ['[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\",\"1b978423-db0a-4037-a4cf-f79c60cb67b3\"]'] # List[str] | The resource ids to filter by. (optional)
     resource_name = 'example-name' # str | Resource name. (optional)
     parent_resource_id = '[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]' # str | The parent resource id to filter by. (optional)
@@ -1222,13 +1252,15 @@ Get user's access status to a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.resource_user_access_status import ResourceUserAccessStatus
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.resource_user_access_status import ResourceUserAccessStatus
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1244,9 +1276,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource.
     user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The ID of the user.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used. (optional)
@@ -1307,13 +1339,15 @@ Sets the list of audit message channels attached to a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.message_channel_id_list import MessageChannelIDList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.message_channel_id_list import MessageChannelIDList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1329,11 +1363,11 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    message_channel_id_list = opal.MessageChannelIDList() # MessageChannelIDList | 
+    message_channel_id_list = opal_security.MessageChannelIDList() # MessageChannelIDList | 
 
     try:
         api_response = api_instance.set_resource_message_channels(resource_id, message_channel_id_list)
@@ -1386,14 +1420,16 @@ Sets the list of reviewer stages for a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.reviewer_stage import ReviewerStage
-from opal.models.reviewer_stage_list import ReviewerStageList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.reviewer_stage import ReviewerStage
+from opal_security.models.reviewer_stage_list import ReviewerStageList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1409,11 +1445,11 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    reviewer_stage_list = opal.ReviewerStageList() # ReviewerStageList | 
+    reviewer_stage_list = opal_security.ReviewerStageList() # ReviewerStageList | 
 
     try:
         api_response = api_instance.set_resource_reviewer_stages(resource_id, reviewer_stage_list)
@@ -1466,13 +1502,15 @@ Sets the list of reviewers for a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.reviewer_id_list import ReviewerIDList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.reviewer_id_list import ReviewerIDList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1488,11 +1526,11 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    reviewer_id_list = opal.ReviewerIDList() # ReviewerIDList | 
+    reviewer_id_list = opal_security.ReviewerIDList() # ReviewerIDList | 
 
     try:
         api_response = api_instance.set_resource_reviewers(resource_id, reviewer_id_list)
@@ -1545,13 +1583,15 @@ Sets the visibility of this resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.visibility_info import VisibilityInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.visibility_info import VisibilityInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1567,11 +1607,11 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
+    api_instance = opal_security.ResourcesApi(api_client)
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    visibility_info = opal.VisibilityInfo() # VisibilityInfo | 
+    visibility_info = opal_security.VisibilityInfo() # VisibilityInfo | 
 
     try:
         api_response = api_instance.set_resource_visibility(resource_id, visibility_info)
@@ -1624,13 +1664,15 @@ Bulk updates a list of resources.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.update_resource_info_list import UpdateResourceInfoList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.update_resource_info_list import UpdateResourceInfoList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -1646,10 +1688,10 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.ResourcesApi(api_client)
-    update_resource_info_list = opal.UpdateResourceInfoList() # UpdateResourceInfoList | Resources to be updated
+    api_instance = opal_security.ResourcesApi(api_client)
+    update_resource_info_list = opal_security.UpdateResourceInfoList() # UpdateResourceInfoList | Resources to be updated
 
     try:
         api_response = api_instance.update_resources(update_resource_info_list)

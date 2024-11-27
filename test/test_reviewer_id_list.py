@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.reviewer_id_list import ReviewerIDList
+import opal_security
+from opal_security.models.reviewer_id_list import ReviewerIDList
 
 
 class TestReviewerIDList(unittest.TestCase):

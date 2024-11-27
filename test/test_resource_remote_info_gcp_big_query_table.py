@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
+from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
 
 class TestResourceRemoteInfoGcpBigQueryTable(unittest.TestCase):
     """ResourceRemoteInfoGcpBigQueryTable unit test stubs"""

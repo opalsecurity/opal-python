@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.visibility_enum import VisibilityEnum
-globals()['VisibilityEnum'] = VisibilityEnum
-from opal.model.update_resource_info import UpdateResourceInfo
+import opal_security
+from opal_security.models.visibility_type_enum import VisibilityTypeEnum
+globals()['VisibilityTypeEnum'] = VisibilityTypeEnum
+from opal_security.models.update_resource_info import UpdateResourceInfo
 
 
 class TestUpdateResourceInfo(unittest.TestCase):

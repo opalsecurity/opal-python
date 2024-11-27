@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_aws_eks_cluster import ResourceRemoteInfoAwsEksCluster
+from opal_security.models.resource_remote_info_aws_eks_cluster import ResourceRemoteInfoAwsEksCluster
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.group_type_enum import GroupTypeEnum
+import opal_security
+from opal_security.models.group_type_enum import GroupTypeEnum
 
 
 class TestGroupTypeEnum(unittest.TestCase):

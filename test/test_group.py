@@ -12,14 +12,12 @@
 import sys
 import unittest
 
-import opal
-from opal.model.group_function_enum import GroupFunctionEnum
-from opal.model.group_type_enum import GroupTypeEnum
-from opal.model.visibility_enum import VisibilityEnum
-globals()['GroupFunctionEnum'] = GroupFunctionEnum
+import opal_security
+from opal_security.models.group_type_enum import GroupTypeEnum
+from opal_security.models.visibility_type_enum import VisibilityTypeEnum
 globals()['GroupTypeEnum'] = GroupTypeEnum
-globals()['VisibilityEnum'] = VisibilityEnum
-from opal.model.group import Group
+globals()['VisibilityTypeEnum'] = VisibilityTypeEnum
+from opal_security.models.group import Group
 
 
 class TestGroup(unittest.TestCase):

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request_info_support_ticket import CreateRequestInfoSupportTicket
+from opal_security.models.create_request_info_support_ticket import CreateRequestInfoSupportTicket
 
 class TestCreateRequestInfoSupportTicket(unittest.TestCase):
     """CreateRequestInfoSupportTicket unit test stubs"""

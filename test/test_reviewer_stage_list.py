@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.reviewer_stage_list import ReviewerStageList
+from opal_security.models.reviewer_stage_list import ReviewerStageList
 
 class TestReviewerStageList(unittest.TestCase):
     """ReviewerStageList unit test stubs"""

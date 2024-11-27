@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info import ResourceRemoteInfo
+from opal_security.models.resource_remote_info import ResourceRemoteInfo
 
 class TestResourceRemoteInfo(unittest.TestCase):
     """ResourceRemoteInfo unit test stubs"""

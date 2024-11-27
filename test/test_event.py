@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.event import Event
+import opal_security
+from opal_security.models.event import Event
 
 
 class TestEvent(unittest.TestCase):

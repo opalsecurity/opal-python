@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.update_idp_group_mappings_request import UpdateIdpGroupMappingsRequest
+from opal_security.models.update_idp_group_mappings_request import UpdateIdpGroupMappingsRequest
 
 class TestUpdateIdpGroupMappingsRequest(unittest.TestCase):
     """UpdateIdpGroupMappingsRequest unit test stubs"""

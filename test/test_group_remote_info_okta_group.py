@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
+from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
 
 class TestGroupRemoteInfoOktaGroup(unittest.TestCase):
     """GroupRemoteInfoOktaGroup unit test stubs"""

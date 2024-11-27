@@ -1,15 +1,14 @@
 ```python
 {{#apiInfo}}{{#apis}}{{#-last}}{{#hasHttpSignatureMethods}}import datetime{{/hasHttpSignatureMethods}}{{/-last}}{{/apis}}{{/apiInfo}}
-import {{{packageName}}}
 from {{{packageName}}}.rest import ApiException
 from pprint import pprint
 {{#apiInfo}}{{#apis}}{{#-first}}{{#operations}}{{#operation}}{{#-first}}
 {{> python_doc_auth_partial}}
 
 # Enter a context with an instance of the API client
-{{#asyncio}}async {{/asyncio}}with {{{packageName}}}.ApiClient(configuration) as api_client:
+{{#asyncio}}async {{/asyncio}}with {{{packageShorthand}}}.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = {{{packageName}}}.{{{classname}}}(api_client)
+    api_instance = {{{packageShorthand}}}.{{{classname}}}(api_client)
     {{#allParams}}
     {{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
     {{/allParams}}
@@ -32,11 +31,11 @@ Example with Events API:
 
 ```python
 import time
-import opal
+import {{{packageName}}} as {{{packageShorthand}}}
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = {{{packageShorthand}}}.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -46,15 +45,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = {{{packageShorthand}}}.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with {{{packageShorthand}}}.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.EventsApi(api_client)
+    api_instance = {{{packageShorthand}}}.EventsApi(api_client)
     start_date_filter = "2021/11/01" # str | A start date filter for the events. (optional)
     end_date_filter = "2021-11-12" # str | An end date filter for the events. (optional)
     actor_filter = "29827fb8-f2dd-4e80-9576-28e31e9934ac" # str | An actor filter for the events. Supply the ID of the actor. (optional)
@@ -66,7 +65,7 @@ with opal.ApiClient(configuration) as api_client:
     try:
         api_response = api_instance.events(start_date_filter=start_date_filter, end_date_filter=end_date_filter, actor_filter=actor_filter, object_filter=object_filter, event_type_filter=event_type_filter, cursor=cursor, page_size=page_size)
         pprint(api_response.dict())
-    except opal.ApiException as e:
+    except {{{packageShorthand}}}.ApiException as e:
         print("Exception when calling EventsApi->events: %s\n" % e)
 ```
 

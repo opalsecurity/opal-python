@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
+from opal_security.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
 
 class TestCreateOnCallScheduleInfo(unittest.TestCase):
     """CreateOnCallScheduleInfo unit test stubs"""

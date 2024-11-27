@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_access_level import GroupAccessLevel
+from opal_security.models.group_access_level import GroupAccessLevel
 
 class TestGroupAccessLevel(unittest.TestCase):
     """GroupAccessLevel unit test stubs"""

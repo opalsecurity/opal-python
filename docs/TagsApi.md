@@ -1,4 +1,4 @@
-# opal.TagsApi
+# opal_security.TagsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -29,12 +29,14 @@ Applies a tag to a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -50,9 +52,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
     group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the group to apply the tag to.
 
@@ -105,12 +107,14 @@ Applies a tag to a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -126,9 +130,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
     resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource to apply the tag to.
 
@@ -181,12 +185,14 @@ Applies a tag to a user.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -202,9 +208,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
     user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user to apply the tag to.
 
@@ -257,14 +263,16 @@ Creates a tag with the given key and value.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_tag_info import CreateTagInfo
-from opal.models.tag import Tag
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_tag_info import CreateTagInfo
+from opal_security.models.tag import Tag
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -280,13 +288,13 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_key = 'api-scope' # str | The key of the tag to create. (optional)
     tag_value = 'production' # str | The value of the tag to create. (optional)
     admin_owner_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the owner that manages the tag. (optional)
-    create_tag_info = opal.CreateTagInfo() # CreateTagInfo |  (optional)
+    create_tag_info = opal_security.CreateTagInfo() # CreateTagInfo |  (optional)
 
     try:
         api_response = api_instance.create_tag(tag_key=tag_key, tag_value=tag_value, admin_owner_id=admin_owner_id, create_tag_info=create_tag_info)
@@ -341,12 +349,14 @@ UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -362,9 +372,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
 
     try:
@@ -415,13 +425,15 @@ Gets a tag with the given key and value.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.tag import Tag
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.tag import Tag
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -437,9 +449,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_key = 'api-scope' # str | The key of the tag to get.
     tag_value = 'production' # str | The value of the tag to get. (optional)
 
@@ -494,13 +506,15 @@ UNSTABLE. May be removed at any time. Gets a tag with the given id.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.tag import Tag
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.tag import Tag
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -516,9 +530,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
 
     try:
@@ -571,13 +585,15 @@ Returns a list of tags created by your organization.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_tags_list import PaginatedTagsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_tags_list import PaginatedTagsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -593,9 +609,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
@@ -650,12 +666,14 @@ Removes a tag from a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -671,9 +689,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to remove.
     group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the group to remove the tag from.
 
@@ -726,12 +744,14 @@ Removes a tag from a resource.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -747,9 +767,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to remove.
     resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource to remove the tag from.
 
@@ -802,12 +822,14 @@ Removes a tag from a user.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
 configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
@@ -823,9 +845,9 @@ configuration = opal.Configuration(
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.TagsApi(api_client)
+    api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to remove.
     user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user to remove the tag from.
 

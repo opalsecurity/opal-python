@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_remote_info_active_directory_group import GroupRemoteInfoActiveDirectoryGroup
+from opal_security.models.group_remote_info_active_directory_group import GroupRemoteInfoActiveDirectoryGroup
 
 class TestGroupRemoteInfoActiveDirectoryGroup(unittest.TestCase):
     """GroupRemoteInfoActiveDirectoryGroup unit test stubs"""

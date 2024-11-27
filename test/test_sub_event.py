@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.sub_event import SubEvent
+from opal_security.models.sub_event import SubEvent
 
 class TestSubEvent(unittest.TestCase):
     """SubEvent unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.update_group_binding_info import UpdateGroupBindingInfo
+from opal_security.models.update_group_binding_info import UpdateGroupBindingInfo
 
 class TestUpdateGroupBindingInfo(unittest.TestCase):
     """UpdateGroupBindingInfo unit test stubs"""

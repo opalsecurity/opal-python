@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.tag_filter import TagFilter
+from opal_security.models.tag_filter import TagFilter
 
 class TestTagFilter(unittest.TestCase):
     """TagFilter unit test stubs"""

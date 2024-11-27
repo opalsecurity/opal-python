@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.add_group_resource_request import AddGroupResourceRequest
+from opal_security.models.add_group_resource_request import AddGroupResourceRequest
 
 # TODO update the JSON string below
 json = "{}"

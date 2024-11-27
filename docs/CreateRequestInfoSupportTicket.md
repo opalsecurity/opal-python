@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_request_info_support_ticket import CreateRequestInfoSupportTicket
+from opal_security.models.create_request_info_support_ticket import CreateRequestInfoSupportTicket
 
 # TODO update the JSON string below
 json = "{}"

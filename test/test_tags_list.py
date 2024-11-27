@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.tag import Tag
+import opal_security
+from opal_security.models.tag import Tag
 globals()['Tag'] = Tag
-from opal.model.tags_list import TagsList
+from opal_security.models.tags_list import TagsList
 
 
 class TestTagsList(unittest.TestCase):

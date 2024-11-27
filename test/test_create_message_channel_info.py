@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_message_channel_info import CreateMessageChannelInfo
+from opal_security.models.create_message_channel_info import CreateMessageChannelInfo
 
 class TestCreateMessageChannelInfo(unittest.TestCase):
     """CreateMessageChannelInfo unit test stubs"""

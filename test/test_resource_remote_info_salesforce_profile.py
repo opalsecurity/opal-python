@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_salesforce_profile import ResourceRemoteInfoSalesforceProfile
+from opal_security.models.resource_remote_info_salesforce_profile import ResourceRemoteInfoSalesforceProfile
 
 class TestResourceRemoteInfoSalesforceProfile(unittest.TestCase):
     """ResourceRemoteInfoSalesforceProfile unit test stubs"""

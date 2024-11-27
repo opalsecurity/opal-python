@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.paginated_users_list import PaginatedUsersList
+from opal_security.models.paginated_users_list import PaginatedUsersList
 
 class TestPaginatedUsersList(unittest.TestCase):
     """PaginatedUsersList unit test stubs"""

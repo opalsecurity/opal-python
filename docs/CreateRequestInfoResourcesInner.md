@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner
+from opal_security.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner
 
 # TODO update the JSON string below
 json = "{}"

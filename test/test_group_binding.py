@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_binding import GroupBinding
+from opal_security.models.group_binding import GroupBinding
 
 class TestGroupBinding(unittest.TestCase):
     """GroupBinding unit test stubs"""

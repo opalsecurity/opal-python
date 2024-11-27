@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.add_resource_user_request import AddResourceUserRequest
+from opal_security.models.add_resource_user_request import AddResourceUserRequest
 
 class TestAddResourceUserRequest(unittest.TestCase):
     """AddResourceUserRequest unit test stubs"""

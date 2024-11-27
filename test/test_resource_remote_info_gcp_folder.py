@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_gcp_folder import ResourceRemoteInfoGcpFolder
+from opal_security.models.resource_remote_info_gcp_folder import ResourceRemoteInfoGcpFolder
 
 class TestResourceRemoteInfoGcpFolder(unittest.TestCase):
     """ResourceRemoteInfoGcpFolder unit test stubs"""

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_nhi import ResourceNHI
+from opal_security.models.resource_nhi import ResourceNHI
 
 # TODO update the JSON string below
 json = "{}"

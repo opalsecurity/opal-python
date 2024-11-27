@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.paginated_event_list import PaginatedEventList
+from opal_security.models.paginated_event_list import PaginatedEventList
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.owner import Owner
+from opal_security.models.owner import Owner
 
 class TestOwner(unittest.TestCase):
     """Owner unit test stubs"""

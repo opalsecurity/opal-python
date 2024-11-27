@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.message_channel_id_list import MessageChannelIDList
+import opal_security
+from opal_security.models.message_channel_id_list import MessageChannelIDList
 
 
 class TestMessageChannelIDList(unittest.TestCase):
