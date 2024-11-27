@@ -28,7 +28,7 @@ pip install git+https://github.com/opalsecurity/opal-python.git
 
 Then import the package:
 ```python
-import opal_security
+import opal_security as opal
 ```
 
 ### Setuptools
@@ -42,7 +42,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import opal_security
+import opal_security as opal
 ```
 
 ### Tests
@@ -55,7 +55,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 
-import opal_security
+import opal_security as opal
 from opal_security.rest import ApiException
 from pprint import pprint
 
@@ -77,9 +77,9 @@ configuration = opal_security.Configuration(
 
 
 # Enter a context with an instance of the API client
-with opal_security.ApiClient(configuration) as api_client:
+with opal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal_security.AppsApi(api_client)
+    api_instance = opal.AppsApi(api_client)
     app_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the app.
 
     try:
@@ -95,7 +95,7 @@ Example with Events API:
 
 ```python
 import time
-import opal_security
+import opal_security as opal
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
