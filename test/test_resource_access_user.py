@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_access_user import ResourceAccessUser
+from opal_security.models.resource_access_user import ResourceAccessUser
 
 class TestResourceAccessUser(unittest.TestCase):
     """ResourceAccessUser unit test stubs"""

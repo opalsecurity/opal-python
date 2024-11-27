@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_message_channel_info import CreateMessageChannelInfo
+from opal_security.models.create_message_channel_info import CreateMessageChannelInfo
 
 # TODO update the JSON string below
 json = "{}"

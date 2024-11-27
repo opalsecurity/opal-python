@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.access_list import AccessList
+from opal_security.models.access_list import AccessList
 
 class TestAccessList(unittest.TestCase):
     """AccessList unit test stubs"""

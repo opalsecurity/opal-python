@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.message_channel_provider_enum import MessageChannelProviderEnum
+import opal_security
+from opal_security.models.message_channel_provider_enum import MessageChannelProviderEnum
 
 
 class TestMessageChannelProviderEnum(unittest.TestCase):

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_aws_iam_role import ResourceRemoteInfoAwsIamRole
+from opal_security.models.resource_remote_info_aws_iam_role import ResourceRemoteInfoAwsIamRole
 
 class TestResourceRemoteInfoAwsIamRole(unittest.TestCase):
     """ResourceRemoteInfoAwsIamRole unit test stubs"""

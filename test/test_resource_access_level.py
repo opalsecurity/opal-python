@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.resource_access_level import ResourceAccessLevel
+import opal_security
+from opal_security.models.resource_access_level import ResourceAccessLevel
 
 
 class TestResourceAccessLevel(unittest.TestCase):

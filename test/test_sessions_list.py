@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.session import Session
+import opal_security
+from opal_security.models.session import Session
 globals()['Session'] = Session
-from opal.model.sessions_list import SessionsList
+from opal_security.models.sessions_list import SessionsList
 
 
 class TestSessionsList(unittest.TestCase):

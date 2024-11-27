@@ -21,8 +21,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "opal"
-VERSION = "1.0.0"
+NAME = "opal-security"
 PYTHON_REQUIRES = ">= 3.8"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 3.0.0",
@@ -33,7 +32,6 @@ REQUIRES = [
 
 setup(
     name=NAME,
-    version=VERSION,
     description="Opal API",
     author="Opal Team",
     author_email="hello@opal.dev",
@@ -42,9 +40,11 @@ setup(
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
     long_description_content_type='text/markdown',
     long_description="""\
     Your Home For Developer Resources.
     """,  # noqa: E501
-    package_data={"opal": ["py.typed"]},
+    package_data={"opal_security": ["py.typed"]},
 )

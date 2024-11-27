@@ -1,4 +1,4 @@
-# opal.AppsApi
+# opal_security.AppsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -20,14 +20,14 @@ Returns an `App` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.app import App
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.app import App
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -37,14 +37,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.AppsApi(api_client)
+    api_instance = opal_security.AppsApi(api_client)
     app_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the app.
 
     try:
@@ -97,15 +97,15 @@ Returns a list of `App` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.app_type_enum import AppTypeEnum
-from opal.models.apps_list import AppsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.app_type_enum import AppTypeEnum
+from opal_security.models.apps_list import AppsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -115,15 +115,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.AppsApi(api_client)
-    app_type_filter = [opal.AppTypeEnum()] # List[AppTypeEnum] | A list of app types to filter by. (optional)
+    api_instance = opal_security.AppsApi(api_client)
+    app_type_filter = [opal_security.AppTypeEnum()] # List[AppTypeEnum] | A list of app types to filter by. (optional)
     owner_filter = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | An owner ID to filter by. (optional)
 
     try:

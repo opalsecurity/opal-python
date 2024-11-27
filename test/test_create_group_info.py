@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_group_info import CreateGroupInfo
+from opal_security.models.create_group_info import CreateGroupInfo
 
 class TestCreateGroupInfo(unittest.TestCase):
     """CreateGroupInfo unit test stubs"""

@@ -11,8 +11,8 @@
 
 import unittest
 
-import opal
-from opal.api.tags_api import TagsApi  # noqa: E501
+import opal_security
+from opal_security.api.tags_api import TagsApi  # noqa: E501
 
 
 class TestTagsApi(unittest.TestCase):

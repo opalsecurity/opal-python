@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.paginated_group_bindings_list import PaginatedGroupBindingsList
+from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
 
 # TODO update the JSON string below
 json = "{}"

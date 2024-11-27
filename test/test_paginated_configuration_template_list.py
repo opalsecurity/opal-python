@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
+from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
 
 class TestPaginatedConfigurationTemplateList(unittest.TestCase):
     """PaginatedConfigurationTemplateList unit test stubs"""

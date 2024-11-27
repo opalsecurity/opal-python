@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.paginated_owners_list import PaginatedOwnersList
+from opal_security.models.paginated_owners_list import PaginatedOwnersList
 
 class TestPaginatedOwnersList(unittest.TestCase):
     """PaginatedOwnersList unit test stubs"""

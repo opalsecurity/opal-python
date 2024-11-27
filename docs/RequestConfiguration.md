@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.request_configuration import RequestConfiguration
+from opal_security.models.request_configuration import RequestConfiguration
 
 # TODO update the JSON string below
 json = "{}"

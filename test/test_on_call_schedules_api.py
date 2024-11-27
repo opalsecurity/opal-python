@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.on_call_schedules_api import OnCallSchedulesApi
+from opal_security.api.on_call_schedules_api import OnCallSchedulesApi
 
 
 class TestOnCallSchedulesApi(unittest.TestCase):

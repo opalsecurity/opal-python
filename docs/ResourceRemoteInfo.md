@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info import ResourceRemoteInfo
+from opal_security.models.resource_remote_info import ResourceRemoteInfo
 
 # TODO update the JSON string below
 json = "{}"

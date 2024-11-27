@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.add_group_resource_request import AddGroupResourceRequest
+from opal_security.models.add_group_resource_request import AddGroupResourceRequest
 
 class TestAddGroupResourceRequest(unittest.TestCase):
     """AddGroupResourceRequest unit test stubs"""

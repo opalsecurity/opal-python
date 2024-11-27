@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.update_group_info import UpdateGroupInfo
+import opal_security
+from opal_security.models.update_group_info import UpdateGroupInfo
 globals()['UpdateGroupInfo'] = UpdateGroupInfo
-from opal.model.update_group_info_list import UpdateGroupInfoList
+from opal_security.models.update_group_info_list import UpdateGroupInfoList
 
 
 class TestUpdateGroupInfoList(unittest.TestCase):

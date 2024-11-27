@@ -12,7 +12,7 @@ stages:
   script:
    - pip install -r requirements.txt
    - pip install -r test-requirements.txt
-   - pytest --cov=opal
+   - pytest --cov=opal_security
 
 pytest-3.8:
   extends: .pytest

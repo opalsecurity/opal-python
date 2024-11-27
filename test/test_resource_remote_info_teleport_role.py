@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole
+from opal_security.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole
 
 class TestResourceRemoteInfoTeleportRole(unittest.TestCase):
     """ResourceRemoteInfoTeleportRole unit test stubs"""

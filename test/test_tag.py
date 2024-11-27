@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.tag import Tag
+import opal_security
+from opal_security.models.tag import Tag
 
 
 class TestTag(unittest.TestCase):

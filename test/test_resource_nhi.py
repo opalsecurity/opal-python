@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_nhi import ResourceNHI
+from opal_security.models.resource_nhi import ResourceNHI
 
 class TestResourceNHI(unittest.TestCase):
     """ResourceNHI unit test stubs"""

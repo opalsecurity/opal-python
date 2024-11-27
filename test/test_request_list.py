@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.request_list import RequestList
+from opal_security.models.request_list import RequestList
 
 class TestRequestList(unittest.TestCase):
     """RequestList unit test stubs"""

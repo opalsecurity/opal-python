@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.ticket_propagation_configuration import TicketPropagationConfiguration
+from opal_security.models.ticket_propagation_configuration import TicketPropagationConfiguration
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.uars_api import UarsApi
+from opal_security.api.uars_api import UarsApi
 
 
 class TestUarsApi(unittest.TestCase):

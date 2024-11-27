@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
+from opal_security.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
 
 class TestResourceRemoteInfoAwsRdsInstance(unittest.TestCase):
     """ResourceRemoteInfoAwsRdsInstance unit test stubs"""

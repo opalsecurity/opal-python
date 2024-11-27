@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.group_binding import GroupBinding
+from opal_security.models.group_binding import GroupBinding
 
 # TODO update the JSON string below
 json = "{}"

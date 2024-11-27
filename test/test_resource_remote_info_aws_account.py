@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
+from opal_security.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
 
 class TestResourceRemoteInfoAwsAccount(unittest.TestCase):
     """ResourceRemoteInfoAwsAccount unit test stubs"""

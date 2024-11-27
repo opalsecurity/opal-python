@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.access import Access
+from opal_security.models.access import Access
 
 class TestAccess(unittest.TestCase):
     """Access unit test stubs"""

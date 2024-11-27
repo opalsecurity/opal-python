@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
+from opal_security.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
 
 # TODO update the JSON string below
 json = "{}"

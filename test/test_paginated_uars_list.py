@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.paginated_uars_list import PaginatedUARsList
+from opal_security.models.paginated_uars_list import PaginatedUARsList
 
 class TestPaginatedUARsList(unittest.TestCase):
     """PaginatedUARsList unit test stubs"""

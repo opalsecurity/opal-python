@@ -1,4 +1,4 @@
-# opal.GroupBindingsApi
+# opal_security.GroupBindingsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -23,15 +23,15 @@ Creates a group binding.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_group_binding_info import CreateGroupBindingInfo
-from opal.models.group_binding import GroupBinding
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
+from opal_security.models.group_binding import GroupBinding
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -41,15 +41,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupBindingsApi(api_client)
-    create_group_binding_info = opal.CreateGroupBindingInfo() # CreateGroupBindingInfo | 
+    api_instance = opal_security.GroupBindingsApi(api_client)
+    create_group_binding_info = opal_security.CreateGroupBindingInfo() # CreateGroupBindingInfo | 
 
     try:
         api_response = api_instance.create_group_binding(create_group_binding_info)
@@ -101,13 +101,13 @@ Deletes a group binding.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -117,14 +117,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupBindingsApi(api_client)
+    api_instance = opal_security.GroupBindingsApi(api_client)
     group_binding_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group binding.
 
     try:
@@ -175,14 +175,14 @@ Returns a `GroupBinding` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.group_binding import GroupBinding
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.group_binding import GroupBinding
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -192,14 +192,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupBindingsApi(api_client)
+    api_instance = opal_security.GroupBindingsApi(api_client)
     group_binding_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group binding.
 
     try:
@@ -252,14 +252,14 @@ Returns a list of `GroupBinding` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_group_bindings_list import PaginatedGroupBindingsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -269,14 +269,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupBindingsApi(api_client)
+    api_instance = opal_security.GroupBindingsApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
@@ -331,14 +331,14 @@ Bulk updates a list of group bindings.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.update_group_binding_info_list import UpdateGroupBindingInfoList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.update_group_binding_info_list import UpdateGroupBindingInfoList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -348,15 +348,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupBindingsApi(api_client)
-    update_group_binding_info_list = opal.UpdateGroupBindingInfoList() # UpdateGroupBindingInfoList | Group bindings to be updated
+    api_instance = opal_security.GroupBindingsApi(api_client)
+    update_group_binding_info_list = opal_security.UpdateGroupBindingInfoList() # UpdateGroupBindingInfoList | Group bindings to be updated
 
     try:
         api_instance.update_group_bindings(update_group_binding_info_list)

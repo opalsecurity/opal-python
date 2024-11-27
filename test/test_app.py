@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.app import App
+from opal_security.models.app import App
 
 class TestApp(unittest.TestCase):
     """App unit test stubs"""

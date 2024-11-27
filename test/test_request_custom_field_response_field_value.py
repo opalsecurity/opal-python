@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.request_custom_field_response_field_value import RequestCustomFieldResponseFieldValue
+from opal_security.models.request_custom_field_response_field_value import RequestCustomFieldResponseFieldValue
 
 class TestRequestCustomFieldResponseFieldValue(unittest.TestCase):
     """RequestCustomFieldResponseFieldValue unit test stubs"""

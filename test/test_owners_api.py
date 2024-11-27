@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.owners_api import OwnersApi
+from opal_security.api.owners_api import OwnersApi
 
 
 class TestOwnersApi(unittest.TestCase):

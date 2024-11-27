@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request_info import CreateRequestInfo
+from opal_security.models.create_request_info import CreateRequestInfo
 
 class TestCreateRequestInfo(unittest.TestCase):
     """CreateRequestInfo unit test stubs"""

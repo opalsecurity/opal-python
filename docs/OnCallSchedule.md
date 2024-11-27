@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.on_call_schedule import OnCallSchedule
+from opal_security.models.on_call_schedule import OnCallSchedule
 
 # TODO update the JSON string below
 json = "{}"

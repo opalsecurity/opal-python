@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.add_resource_nhi_request import AddResourceNhiRequest
+from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
 
 class TestAddResourceNhiRequest(unittest.TestCase):
     """AddResourceNhiRequest unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
+from opal_security.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
 
 class TestUARReviewerAssignmentPolicyEnum(unittest.TestCase):
     """UARReviewerAssignmentPolicyEnum unit test stubs"""

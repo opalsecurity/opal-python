@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.resource_user_access_status_enum import ResourceUserAccessStatusEnum
+import opal_security
+from opal_security.models.resource_user_access_status_enum import ResourceUserAccessStatusEnum
 
 
 class TestResourceUserAccessStatusEnum(unittest.TestCase):

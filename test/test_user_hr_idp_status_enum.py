@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.user_hr_idp_status_enum import UserHrIdpStatusEnum
+from opal_security.models.user_hr_idp_status_enum import UserHrIdpStatusEnum
 
 class TestUserHrIdpStatusEnum(unittest.TestCase):
     """UserHrIdpStatusEnum unit test stubs"""

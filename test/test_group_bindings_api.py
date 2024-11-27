@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.group_bindings_api import GroupBindingsApi
+from opal_security.api.group_bindings_api import GroupBindingsApi
 
 
 class TestGroupBindingsApi(unittest.TestCase):

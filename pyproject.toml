@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "opal"
+name = "opal_security"
 version = "1.0.0"
 description = "Opal API"
 authors = ["Opal Team <hello@opal.dev>"]
@@ -7,7 +7,7 @@ license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/opalsecurity/opal-python"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Opal API"]
-include = ["opal/py.typed"]
+include = ["opal_security/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -35,7 +35,7 @@ extension-pkg-whitelist = "pydantic"
 
 [tool.mypy]
 files = [
-  "opal",
+  "opal_security",
   #"test",  # auto-generated tests
   "tests", # hand-written tests
 ]
@@ -73,7 +73,7 @@ disallow_any_generics = true
 
 [[tool.mypy.overrides]]
 module = [
-  "opal.configuration",
+  "opal_security.configuration",
 ]
 warn_unused_ignores = true
 strict_equality = true

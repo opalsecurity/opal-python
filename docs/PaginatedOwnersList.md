@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.paginated_owners_list import PaginatedOwnersList
+from opal_security.models.paginated_owners_list import PaginatedOwnersList
 
 # TODO update the JSON string below
 json = "{}"

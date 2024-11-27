@@ -11,8 +11,8 @@
 
 import unittest
 
-import opal
-from opal.api.resources_api import ResourcesApi  # noqa: E501
+import opal_security
+from opal_security.api.resources_api import ResourcesApi  # noqa: E501
 
 
 class TestResourcesApi(unittest.TestCase):

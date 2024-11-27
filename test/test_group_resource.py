@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_resource import GroupResource
+from opal_security.models.group_resource import GroupResource
 
 class TestGroupResource(unittest.TestCase):
     """GroupResource unit test stubs"""

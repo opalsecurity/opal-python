@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_with_access_level import ResourceWithAccessLevel
+from opal_security.models.resource_with_access_level import ResourceWithAccessLevel
 
 class TestResourceWithAccessLevel(unittest.TestCase):
     """ResourceWithAccessLevel unit test stubs"""

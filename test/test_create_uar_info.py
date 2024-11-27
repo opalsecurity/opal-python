@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_uar_info import CreateUARInfo
+from opal_security.models.create_uar_info import CreateUARInfo
 
 class TestCreateUARInfo(unittest.TestCase):
     """CreateUARInfo unit test stubs"""

@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.group import Group
+import opal_security
+from opal_security.models.group import Group
 globals()['Group'] = Group
-from opal.model.paginated_groups_list import PaginatedGroupsList
+from opal_security.models.paginated_groups_list import PaginatedGroupsList
 
 
 class TestPaginatedGroupsList(unittest.TestCase):

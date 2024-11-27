@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_request200_response import CreateRequest200Response
+from opal_security.models.create_request200_response import CreateRequest200Response
 
 # TODO update the JSON string below
 json = "{}"

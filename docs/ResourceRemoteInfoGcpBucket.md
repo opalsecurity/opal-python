@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket
+from opal_security.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket
 
 # TODO update the JSON string below
 json = "{}"

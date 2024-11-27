@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.on_call_schedule_list import OnCallScheduleList
+from opal_security.models.on_call_schedule_list import OnCallScheduleList
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.resource import Resource
+import opal_security
+from opal_security.models.resource import Resource
 globals()['Resource'] = Resource
-from opal.model.paginated_resources_list import PaginatedResourcesList
+from opal_security.models.paginated_resources_list import PaginatedResourcesList
 
 
 class TestPaginatedResourcesList(unittest.TestCase):

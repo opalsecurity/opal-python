@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.aws_permission_set_metadata import AwsPermissionSetMetadata
+from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 
 # TODO update the JSON string below
 json = "{}"

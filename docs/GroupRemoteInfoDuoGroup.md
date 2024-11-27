@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.group_remote_info_duo_group import GroupRemoteInfoDuoGroup
+from opal_security.models.group_remote_info_duo_group import GroupRemoteInfoDuoGroup
 
 # TODO update the JSON string below
 json = "{}"

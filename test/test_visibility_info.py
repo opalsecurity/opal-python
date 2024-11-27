@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.visibility_info import VisibilityInfo
+from opal_security.models.visibility_info import VisibilityInfo
 
 class TestVisibilityInfo(unittest.TestCase):
     """VisibilityInfo unit test stubs"""

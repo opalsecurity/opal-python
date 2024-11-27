@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner
+from opal_security.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner
 
 class TestCreateRequestInfoResourcesInner(unittest.TestCase):
     """CreateRequestInfoResourcesInner unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.user_list import UserList
+from opal_security.models.user_list import UserList
 
 class TestUserList(unittest.TestCase):
     """UserList unit test stubs"""

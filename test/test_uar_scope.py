@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.uar_scope import UARScope
+from opal_security.models.uar_scope import UARScope
 
 class TestUARScope(unittest.TestCase):
     """UARScope unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request_info_groups_inner import CreateRequestInfoGroupsInner
+from opal_security.models.create_request_info_groups_inner import CreateRequestInfoGroupsInner
 
 class TestCreateRequestInfoGroupsInner(unittest.TestCase):
     """CreateRequestInfoGroupsInner unit test stubs"""

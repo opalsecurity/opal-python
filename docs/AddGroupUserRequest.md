@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.add_group_user_request import AddGroupUserRequest
+from opal_security.models.add_group_user_request import AddGroupUserRequest
 
 # TODO update the JSON string below
 json = "{}"

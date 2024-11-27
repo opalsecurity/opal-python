@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.reviewer_stage import ReviewerStage
+from opal_security.models.reviewer_stage import ReviewerStage
 
 # TODO update the JSON string below
 json = "{}"

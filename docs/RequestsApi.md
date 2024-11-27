@@ -1,4 +1,4 @@
-# opal.RequestsApi
+# opal_security.RequestsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -20,15 +20,15 @@ Create an access request
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_request200_response import CreateRequest200Response
-from opal.models.create_request_info import CreateRequestInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_request200_response import CreateRequest200Response
+from opal_security.models.create_request_info import CreateRequestInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -38,15 +38,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.RequestsApi(api_client)
-    create_request_info = opal.CreateRequestInfo() # CreateRequestInfo | Resources to be updated
+    api_instance = opal_security.RequestsApi(api_client)
+    create_request_info = opal_security.CreateRequestInfo() # CreateRequestInfo | Resources to be updated
 
     try:
         api_response = api_instance.create_request(create_request_info)
@@ -98,14 +98,14 @@ Returns a list of requests for your organization that is visible by the admin.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.request_list import RequestList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.request_list import RequestList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -115,14 +115,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.RequestsApi(api_client)
+    api_instance = opal_security.RequestsApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     show_pending_only = True # bool | Boolean toggle for if it should only show pending requests. (optional)

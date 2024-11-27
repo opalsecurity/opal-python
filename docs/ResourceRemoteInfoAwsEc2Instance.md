@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
+from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
 
 # TODO update the JSON string below
 json = "{}"

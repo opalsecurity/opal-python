@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.user import User
+import opal_security
+from opal_security.models.user import User
 
 
 class TestUser(unittest.TestCase):

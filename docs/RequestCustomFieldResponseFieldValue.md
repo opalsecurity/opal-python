@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.request_custom_field_response_field_value import RequestCustomFieldResponseFieldValue
+from opal_security.models.request_custom_field_response_field_value import RequestCustomFieldResponseFieldValue
 
 # TODO update the JSON string below
 json = "{}"

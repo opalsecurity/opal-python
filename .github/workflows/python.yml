@@ -3,7 +3,7 @@
 #
 # ref: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: opal Python package
+name: opal_security Python package
 
 on: [push, pull_request]
 

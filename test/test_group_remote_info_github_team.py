@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam
+from opal_security.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam
 
 class TestGroupRemoteInfoGithubTeam(unittest.TestCase):
     """GroupRemoteInfoGithubTeam unit test stubs"""

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.group_user_list import GroupUserList
+from opal_security.models.group_user_list import GroupUserList
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# opal.EventsApi
+# opal_security.EventsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -19,14 +19,14 @@ Returns a list of `Event` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_event_list import PaginatedEventList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_event_list import PaginatedEventList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -36,14 +36,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.EventsApi(api_client)
+    api_instance = opal_security.EventsApi(api_client)
     start_date_filter = '2021-11-01' # str | A start date filter for the events. (optional)
     end_date_filter = '2021-11-12' # str | An end date filter for the events. (optional)
     actor_filter = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | An actor filter for the events. Supply the ID of the actor. (optional)

@@ -11,8 +11,8 @@
 
 import unittest
 
-import opal
-from opal.api.users_api import UsersApi  # noqa: E501
+import opal_security
+from opal_security.api.users_api import UsersApi  # noqa: E501
 
 
 class TestUsersApi(unittest.TestCase):

@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.update_group_info import UpdateGroupInfo
+from opal_security.models.update_group_info import UpdateGroupInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet
+from opal_security.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet
 
 # TODO update the JSON string below
 json = "{}"

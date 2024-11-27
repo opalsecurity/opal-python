@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
+from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
 
 class TestOnCallScheduleProviderEnum(unittest.TestCase):
     """OnCallScheduleProviderEnum unit test stubs"""

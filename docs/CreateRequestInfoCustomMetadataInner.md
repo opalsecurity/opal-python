@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
+from opal_security.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
 
 # TODO update the JSON string below
 json = "{}"

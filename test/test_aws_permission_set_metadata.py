@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.aws_permission_set_metadata import AwsPermissionSetMetadata
+from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 
 class TestAwsPermissionSetMetadata(unittest.TestCase):
     """AwsPermissionSetMetadata unit test stubs"""

@@ -12,10 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.update_resource_info import UpdateResourceInfo
+import opal_security
+from opal_security.models.update_resource_info import UpdateResourceInfo
 globals()['UpdateResourceInfo'] = UpdateResourceInfo
-from opal.model.update_resource_info_list import UpdateResourceInfoList
+from opal_security.models.update_resource_info_list import UpdateResourceInfoList
 
 
 class TestUpdateResourceInfoList(unittest.TestCase):

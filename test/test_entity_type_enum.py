@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.entity_type_enum import EntityTypeEnum
+import opal_security
+from opal_security.models.entity_type_enum import EntityTypeEnum
 
 
 class TestEntityTypeEnum(unittest.TestCase):

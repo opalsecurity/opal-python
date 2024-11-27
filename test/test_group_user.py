@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.group_user import GroupUser
+from opal_security.models.group_user import GroupUser
 
 class TestGroupUser(unittest.TestCase):
     """GroupUser unit test stubs"""

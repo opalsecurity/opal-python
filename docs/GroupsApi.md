@@ -1,4 +1,4 @@
-# opal.GroupsApi
+# opal_security.GroupsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -40,15 +40,15 @@ Adds a resource to a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.add_group_resource_request import AddGroupResourceRequest
-from opal.models.group_resource import GroupResource
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.add_group_resource_request import AddGroupResourceRequest
+from opal_security.models.group_resource import GroupResource
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -58,18 +58,18 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. (optional)
-    add_group_resource_request = opal.AddGroupResourceRequest() # AddGroupResourceRequest |  (optional)
+    add_group_resource_request = opal_security.AddGroupResourceRequest() # AddGroupResourceRequest |  (optional)
 
     try:
         api_response = api_instance.add_group_resource(group_id, resource_id, access_level_remote_id=access_level_remote_id, add_group_resource_request=add_group_resource_request)
@@ -124,15 +124,15 @@ Adds a user to this group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.add_group_user_request import AddGroupUserRequest
-from opal.models.group_user import GroupUser
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.add_group_user_request import AddGroupUserRequest
+from opal_security.models.group_user import GroupUser
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -142,19 +142,19 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
     user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user to add.
     duration_minutes = 60 # int | The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite. (optional)
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. (optional)
-    add_group_user_request = opal.AddGroupUserRequest() # AddGroupUserRequest |  (optional)
+    add_group_user_request = opal_security.AddGroupUserRequest() # AddGroupUserRequest |  (optional)
 
     try:
         api_response = api_instance.add_group_user(group_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_group_user_request=add_group_user_request)
@@ -210,15 +210,15 @@ Creates a group. See [here](https://docs.opal.dev/reference/end-system-objects) 
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_group_info import CreateGroupInfo
-from opal.models.group import Group
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_group_info import CreateGroupInfo
+from opal_security.models.group import Group
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -228,15 +228,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
-    create_group_info = opal.CreateGroupInfo() # CreateGroupInfo | 
+    api_instance = opal_security.GroupsApi(api_client)
+    create_group_info = opal_security.CreateGroupInfo() # CreateGroupInfo | 
 
     try:
         api_response = api_instance.create_group(create_group_info)
@@ -288,13 +288,13 @@ Deletes a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -304,14 +304,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -362,13 +362,13 @@ Removes a user's access from this group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -378,14 +378,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
     user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of a user to remove from this group.
 
@@ -438,14 +438,14 @@ Returns a `Group` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.group import Group
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.group import Group
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -455,14 +455,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group.
 
     try:
@@ -515,14 +515,14 @@ Gets the list of audit and reviewer message channels attached to a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.message_channel_list import MessageChannelList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.message_channel_list import MessageChannelList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -532,14 +532,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -592,14 +592,14 @@ Gets the list of on call schedules attached to a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.on_call_schedule_list import OnCallScheduleList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.on_call_schedule_list import OnCallScheduleList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -609,14 +609,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -669,14 +669,14 @@ Gets the list of resources that the group gives access to.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.group_resource_list import GroupResourceList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.group_resource_list import GroupResourceList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -686,14 +686,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -746,14 +746,14 @@ Gets the list of reviewer stages for a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.reviewer_stage import ReviewerStage
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.reviewer_stage import ReviewerStage
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -763,14 +763,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -823,13 +823,13 @@ Gets the list of owner IDs of the reviewers for a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.rest import ApiException
+import opal_security
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -839,14 +839,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -899,14 +899,14 @@ Returns all tags applied to the group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.tags_list import TagsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.tags_list import TagsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -916,14 +916,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the group whose tags to return.
 
     try:
@@ -976,14 +976,14 @@ Gets the list of users for this group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.group_user_list import GroupUserList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.group_user_list import GroupUserList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -993,14 +993,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -1053,14 +1053,14 @@ Gets the visibility of this group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.visibility_info import VisibilityInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.visibility_info import VisibilityInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1070,14 +1070,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
@@ -1130,15 +1130,15 @@ Returns a list of groups for your organization.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.group_type_enum import GroupTypeEnum
-from opal.models.paginated_groups_list import PaginatedGroupsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.group_type_enum import GroupTypeEnum
+from opal_security.models.paginated_groups_list import PaginatedGroupsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1148,17 +1148,17 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
-    group_type_filter = opal.GroupTypeEnum() # GroupTypeEnum | The group type to filter by. (optional)
+    group_type_filter = opal_security.GroupTypeEnum() # GroupTypeEnum | The group type to filter by. (optional)
     group_ids = ['[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\",\"1b978423-db0a-4037-a4cf-f79c60cb67b3\"]'] # List[str] | The group ids to filter by. (optional)
     group_name = 'example-name' # str | Group name. (optional)
 
@@ -1216,14 +1216,14 @@ Sets the list of audit message channels attached to a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.message_channel_id_list import MessageChannelIDList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.message_channel_id_list import MessageChannelIDList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1233,16 +1233,16 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    message_channel_id_list = opal.MessageChannelIDList() # MessageChannelIDList | 
+    message_channel_id_list = opal_security.MessageChannelIDList() # MessageChannelIDList | 
 
     try:
         api_response = api_instance.set_group_message_channels(group_id, message_channel_id_list)
@@ -1295,14 +1295,14 @@ Sets the list of on call schedules attached to a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.on_call_schedule_id_list import OnCallScheduleIDList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1312,16 +1312,16 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    on_call_schedule_id_list = opal.OnCallScheduleIDList() # OnCallScheduleIDList | 
+    on_call_schedule_id_list = opal_security.OnCallScheduleIDList() # OnCallScheduleIDList | 
 
     try:
         api_response = api_instance.set_group_on_call_schedules(group_id, on_call_schedule_id_list)
@@ -1374,14 +1374,14 @@ Sets the list of resources that the group gives access to.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.update_group_resources_info import UpdateGroupResourcesInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.update_group_resources_info import UpdateGroupResourcesInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1391,16 +1391,16 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    update_group_resources_info = opal.UpdateGroupResourcesInfo() # UpdateGroupResourcesInfo | 
+    update_group_resources_info = opal_security.UpdateGroupResourcesInfo() # UpdateGroupResourcesInfo | 
 
     try:
         api_instance.set_group_resources(group_id, update_group_resources_info)
@@ -1451,15 +1451,15 @@ Sets the list of reviewer stages for a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.reviewer_stage import ReviewerStage
-from opal.models.reviewer_stage_list import ReviewerStageList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.reviewer_stage import ReviewerStage
+from opal_security.models.reviewer_stage_list import ReviewerStageList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1469,16 +1469,16 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    reviewer_stage_list = opal.ReviewerStageList() # ReviewerStageList | 
+    reviewer_stage_list = opal_security.ReviewerStageList() # ReviewerStageList | 
 
     try:
         api_response = api_instance.set_group_reviewer_stages(group_id, reviewer_stage_list)
@@ -1531,14 +1531,14 @@ Sets the list of reviewers for a group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.reviewer_id_list import ReviewerIDList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.reviewer_id_list import ReviewerIDList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1548,16 +1548,16 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    reviewer_id_list = opal.ReviewerIDList() # ReviewerIDList | 
+    reviewer_id_list = opal_security.ReviewerIDList() # ReviewerIDList | 
 
     try:
         api_response = api_instance.set_group_reviewers(group_id, reviewer_id_list)
@@ -1610,14 +1610,14 @@ Sets the visibility of this group.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.visibility_info import VisibilityInfo
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.visibility_info import VisibilityInfo
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1627,16 +1627,16 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
+    api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    visibility_info = opal.VisibilityInfo() # VisibilityInfo | 
+    visibility_info = opal_security.VisibilityInfo() # VisibilityInfo | 
 
     try:
         api_response = api_instance.set_group_visibility(group_id, visibility_info)
@@ -1689,14 +1689,14 @@ Bulk updates a list of groups.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.update_group_info_list import UpdateGroupInfoList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.update_group_info_list import UpdateGroupInfoList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -1706,15 +1706,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.GroupsApi(api_client)
-    update_group_info_list = opal.UpdateGroupInfoList() # UpdateGroupInfoList | Groups to be updated
+    api_instance = opal_security.GroupsApi(api_client)
+    update_group_info_list = opal_security.UpdateGroupInfoList() # UpdateGroupInfoList | Groups to be updated
 
     try:
         api_response = api_instance.update_groups(update_group_info_list)

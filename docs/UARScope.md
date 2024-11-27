@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.uar_scope import UARScope
+from opal_security.models.uar_scope import UARScope
 
 # TODO update the JSON string below
 json = "{}"

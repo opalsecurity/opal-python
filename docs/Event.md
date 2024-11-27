@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.event import Event
+from opal_security.models.event import Event
 
 # TODO update the JSON string below
 json = "{}"

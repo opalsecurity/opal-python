@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request200_response import CreateRequest200Response
+from opal_security.models.create_request200_response import CreateRequest200Response
 
 class TestCreateRequest200Response(unittest.TestCase):
     """CreateRequest200Response unit test stubs"""

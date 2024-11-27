@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.paginated_tags_list import PaginatedTagsList
+from opal_security.models.paginated_tags_list import PaginatedTagsList
 
 class TestPaginatedTagsList(unittest.TestCase):
     """PaginatedTagsList unit test stubs"""

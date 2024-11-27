@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_request_info import CreateRequestInfo
+from opal_security.models.create_request_info import CreateRequestInfo
 
 # TODO update the JSON string below
 json = "{}"

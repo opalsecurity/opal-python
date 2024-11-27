@@ -12,12 +12,12 @@
 import sys
 import unittest
 
-import opal
-from opal.model.resource_type_enum import ResourceTypeEnum
-from opal.model.visibility_enum import VisibilityEnum
+import opal_security
+from opal_security.models.resource_type_enum import ResourceTypeEnum
+from opal_security.models.visibility_type_enum import VisibilityTypeEnum
 globals()['ResourceTypeEnum'] = ResourceTypeEnum
-globals()['VisibilityEnum'] = VisibilityEnum
-from opal.model.resource import Resource
+globals()['VisibilityTypeEnum'] = VisibilityTypeEnum
+from opal_security.models.resource import Resource
 
 
 class TestResource(unittest.TestCase):

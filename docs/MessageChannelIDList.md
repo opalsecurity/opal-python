@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.message_channel_id_list import MessageChannelIDList
+from opal_security.models.message_channel_id_list import MessageChannelIDList
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
+from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
 
 # TODO update the JSON string below
 json = "{}"

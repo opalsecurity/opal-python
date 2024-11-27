@@ -11,8 +11,8 @@
 
 import unittest
 
-import opal
-from opal.api.sessions_api import SessionsApi  # noqa: E501
+import opal_security
+from opal_security.api.sessions_api import SessionsApi  # noqa: E501
 
 
 class TestSessionsApi(unittest.TestCase):

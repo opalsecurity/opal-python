@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_gcp_organization import ResourceRemoteInfoGcpOrganization
+from opal_security.models.resource_remote_info_gcp_organization import ResourceRemoteInfoGcpOrganization
 
 class TestResourceRemoteInfoGcpOrganization(unittest.TestCase):
     """ResourceRemoteInfoGcpOrganization unit test stubs"""

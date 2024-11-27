@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.request_status_enum import RequestStatusEnum
+from opal_security.models.request_status_enum import RequestStatusEnum
 
 class TestRequestStatusEnum(unittest.TestCase):
     """RequestStatusEnum unit test stubs"""

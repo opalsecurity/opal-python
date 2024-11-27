@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_resource_info import CreateResourceInfo
+from opal_security.models.create_resource_info import CreateResourceInfo
 
 class TestCreateResourceInfo(unittest.TestCase):
     """CreateResourceInfo unit test stubs"""

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_group_info import CreateGroupInfo
+from opal_security.models.create_group_info import CreateGroupInfo
 
 # TODO update the JSON string below
 json = "{}"

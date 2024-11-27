@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_owner_info import CreateOwnerInfo
+from opal_security.models.create_owner_info import CreateOwnerInfo
 
 class TestCreateOwnerInfo(unittest.TestCase):
     """CreateOwnerInfo unit test stubs"""

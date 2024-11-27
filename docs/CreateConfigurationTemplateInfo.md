@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.create_configuration_template_info import CreateConfigurationTemplateInfo
+from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
 
 # TODO update the JSON string below
 json = "{}"

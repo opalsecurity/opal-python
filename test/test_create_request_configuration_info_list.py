@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
+from opal_security.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 
 class TestCreateRequestConfigurationInfoList(unittest.TestCase):
     """CreateRequestConfigurationInfoList unit test stubs"""

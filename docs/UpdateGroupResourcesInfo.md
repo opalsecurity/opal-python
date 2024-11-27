@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.update_group_resources_info import UpdateGroupResourcesInfo
+from opal_security.models.update_group_resources_info import UpdateGroupResourcesInfo
 
 # TODO update the JSON string below
 json = "{}"

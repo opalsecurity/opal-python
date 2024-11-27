@@ -1,4 +1,4 @@
-# opal.MessageChannelsApi
+# opal_security.MessageChannelsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -21,15 +21,15 @@ Creates a `MessageChannel` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_message_channel_info import CreateMessageChannelInfo
-from opal.models.message_channel import MessageChannel
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_message_channel_info import CreateMessageChannelInfo
+from opal_security.models.message_channel import MessageChannel
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -39,15 +39,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.MessageChannelsApi(api_client)
-    create_message_channel_info = opal.CreateMessageChannelInfo() # CreateMessageChannelInfo | The `MessageChannel` object to be created.
+    api_instance = opal_security.MessageChannelsApi(api_client)
+    create_message_channel_info = opal_security.CreateMessageChannelInfo() # CreateMessageChannelInfo | The `MessageChannel` object to be created.
 
     try:
         api_response = api_instance.create_message_channel(create_message_channel_info)
@@ -99,14 +99,14 @@ Gets a `MessageChannel` object.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.message_channel import MessageChannel
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.message_channel import MessageChannel
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -116,14 +116,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.MessageChannelsApi(api_client)
+    api_instance = opal_security.MessageChannelsApi(api_client)
     message_channel_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the message_channel.
 
     try:
@@ -176,14 +176,14 @@ Returns a list of `MessageChannel` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.message_channel_list import MessageChannelList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.message_channel_list import MessageChannelList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -193,14 +193,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.MessageChannelsApi(api_client)
+    api_instance = opal_security.MessageChannelsApi(api_client)
 
     try:
         api_response = api_instance.get_message_channels()

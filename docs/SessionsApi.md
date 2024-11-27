@@ -1,4 +1,4 @@
-# opal.SessionsApi
+# opal_security.SessionsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -19,14 +19,14 @@ Returns a list of `Session` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.sessions_list import SessionsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.sessions_list import SessionsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -36,14 +36,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.SessionsApi(api_client)
+    api_instance = opal_security.SessionsApi(api_client)
     resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource.
     user_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the user you wish to query sessions for. (optional)
 

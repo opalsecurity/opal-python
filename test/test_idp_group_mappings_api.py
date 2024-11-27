@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.api.idp_group_mappings_api import IdpGroupMappingsApi
+from opal_security.api.idp_group_mappings_api import IdpGroupMappingsApi
 
 
 class TestIdpGroupMappingsApi(unittest.TestCase):

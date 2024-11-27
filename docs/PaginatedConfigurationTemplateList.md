@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
+from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
 
 # TODO update the JSON string below
 json = "{}"

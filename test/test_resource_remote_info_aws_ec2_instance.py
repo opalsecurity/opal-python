@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
+from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
 
 class TestResourceRemoteInfoAwsEc2Instance(unittest.TestCase):
     """ResourceRemoteInfoAwsEc2Instance unit test stubs"""

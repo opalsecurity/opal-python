@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
+from opal_security.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
 
 # TODO update the JSON string below
 json = "{}"

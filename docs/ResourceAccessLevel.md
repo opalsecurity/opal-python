@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.resource_access_level import ResourceAccessLevel
+from opal_security.models.resource_access_level import ResourceAccessLevel
 
 # TODO update the JSON string below
 json = "{}"

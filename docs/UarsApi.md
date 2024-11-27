@@ -1,4 +1,4 @@
-# opal.UarsApi
+# opal_security.UarsApi
 
 All URIs are relative to *https://api.opal.dev/v1*
 
@@ -21,15 +21,15 @@ Starts a User Access Review.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.create_uar_info import CreateUARInfo
-from opal.models.uar import UAR
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.create_uar_info import CreateUARInfo
+from opal_security.models.uar import UAR
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -39,15 +39,15 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.UarsApi(api_client)
-    create_uar_info = opal.CreateUARInfo() # CreateUARInfo | The settings of the UAR.
+    api_instance = opal_security.UarsApi(api_client)
+    create_uar_info = opal_security.CreateUARInfo() # CreateUARInfo | The settings of the UAR.
 
     try:
         api_response = api_instance.create_uar(create_uar_info)
@@ -99,14 +99,14 @@ Retrieves a specific UAR.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.uar import UAR
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.uar import UAR
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -116,14 +116,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.UarsApi(api_client)
+    api_instance = opal_security.UarsApi(api_client)
     uar_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the UAR.
 
     try:
@@ -176,14 +176,14 @@ Returns a list of `UAR` objects.
 * Bearer Authentication (BearerAuth):
 
 ```python
-import opal
-from opal.models.paginated_uars_list import PaginatedUARsList
-from opal.rest import ApiException
+import opal_security
+from opal_security.models.paginated_uars_list import PaginatedUARsList
+from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -193,14 +193,14 @@ configuration = opal.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal.Configuration(
+configuration = opal_security.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with opal.ApiClient(configuration) as api_client:
+with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = opal.UarsApi(api_client)
+    api_instance = opal_security.UarsApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 

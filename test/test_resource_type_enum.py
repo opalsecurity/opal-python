@@ -12,8 +12,8 @@
 import sys
 import unittest
 
-import opal
-from opal.model.resource_type_enum import ResourceTypeEnum
+import opal_security
+from opal_security.models.resource_type_enum import ResourceTypeEnum
 
 
 class TestResourceTypeEnum(unittest.TestCase):

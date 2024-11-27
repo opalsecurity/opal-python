@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from opal.models.tags_list import TagsList
+from opal_security.models.tags_list import TagsList
 
 # TODO update the JSON string below
 json = "{}"

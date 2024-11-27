@@ -15,7 +15,7 @@
 
 import unittest
 
-from opal.models.resource_remote_info_gcp_gke_cluster import ResourceRemoteInfoGcpGkeCluster
+from opal_security.models.resource_remote_info_gcp_gke_cluster import ResourceRemoteInfoGcpGkeCluster
 
 class TestResourceRemoteInfoGcpGkeCluster(unittest.TestCase):
     """ResourceRemoteInfoGcpGkeCluster unit test stubs"""

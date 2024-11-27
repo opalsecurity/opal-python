@@ -12,12 +12,10 @@
 import sys
 import unittest
 
-import opal
-from opal.model.message_channel_provider_enum import MessageChannelProviderEnum
-from opal.model.message_channel_type_enum import MessageChannelTypeEnum
+import opal_security
+from opal_security.models.message_channel_provider_enum import MessageChannelProviderEnum
 globals()['MessageChannelProviderEnum'] = MessageChannelProviderEnum
-globals()['MessageChannelTypeEnum'] = MessageChannelTypeEnum
-from opal.model.message_channel import MessageChannel
+from opal_security.models.message_channel import MessageChannel
 
 
 class TestMessageChannel(unittest.TestCase):
