@@ -55,13 +55,14 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 
-import opal_security as opal
 from opal_security.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.opal.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = opal_security.Configuration(
+import opal_security as opal
+
+configuration = opal.Configuration(
     host = "https://api.opal.dev/v1"
 )
 
@@ -71,7 +72,7 @@ configuration = opal_security.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: BearerAuth
-configuration = opal_security.Configuration(
+configuration = opal.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
