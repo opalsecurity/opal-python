@@ -20,7 +20,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +34,7 @@ class ResourceUser(BaseModel):
     access_level: ResourceAccessLevel
     full_name: StrictStr = Field(description="The user's full name.")
     email: StrictStr = Field(description="The user's email.")
-    expiration_date: Optional[datetime] = Field(default=None, description="The day and time the user's access will expire.")
+    expiration_date: datetime = Field(description="The day and time the user's access will expire.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "user_id", "access_level", "full_name", "email", "expiration_date"]
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **user_id** | **str** | The ID of the user. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | [optional] 
 **status** | [**ResourceUserAccessStatusEnum**](ResourceUserAccessStatusEnum.md) |  | 
-**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | [optional] 
+**expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | 
 
 ## Example
 
