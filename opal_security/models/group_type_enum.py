@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -38,6 +38,7 @@ class GroupTypeEnum(str, Enum):
     OKTA_GROUP = 'OKTA_GROUP'
     TAILSCALE_GROUP = 'TAILSCALE_GROUP'
     OPAL_GROUP = 'OPAL_GROUP'
+    OPAL_ACCESS_RULE = 'OPAL_ACCESS_RULE'
     AZURE_AD_SECURITY_GROUP = 'AZURE_AD_SECURITY_GROUP'
     AZURE_AD_MICROSOFT_365_GROUP = 'AZURE_AD_MICROSOFT_365_GROUP'
     CONNECTOR_GROUP = 'CONNECTOR_GROUP'

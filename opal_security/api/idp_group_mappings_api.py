@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -41,7 +41,7 @@ class IdpGroupMappingsApi:
 
 
     @validate_call
-    def delete_idp_group_mappings_by_app_resource_id_group_id(
+    def delete_idp_group_mappings(
         self,
         app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
@@ -58,7 +58,7 @@ class IdpGroupMappingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """delete_idp_group_mappings_by_app_resource_id_group_id
+        """delete_idp_group_mappings
 
         Deletes an `IdpGroupMapping` object.
 
@@ -88,7 +88,7 @@ class IdpGroupMappingsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_idp_group_mappings_by_app_resource_id_group_id_serialize(
+        _param = self._delete_idp_group_mappings_serialize(
             app_resource_id=app_resource_id,
             group_id=group_id,
             _request_auth=_request_auth,
@@ -112,7 +112,7 @@ class IdpGroupMappingsApi:
 
 
     @validate_call
-    def delete_idp_group_mappings_by_app_resource_id_group_id_with_http_info(
+    def delete_idp_group_mappings_with_http_info(
         self,
         app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
@@ -129,7 +129,7 @@ class IdpGroupMappingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """delete_idp_group_mappings_by_app_resource_id_group_id
+        """delete_idp_group_mappings
 
         Deletes an `IdpGroupMapping` object.
 
@@ -159,7 +159,7 @@ class IdpGroupMappingsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_idp_group_mappings_by_app_resource_id_group_id_serialize(
+        _param = self._delete_idp_group_mappings_serialize(
             app_resource_id=app_resource_id,
             group_id=group_id,
             _request_auth=_request_auth,
@@ -183,7 +183,7 @@ class IdpGroupMappingsApi:
 
 
     @validate_call
-    def delete_idp_group_mappings_by_app_resource_id_group_id_without_preload_content(
+    def delete_idp_group_mappings_without_preload_content(
         self,
         app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
@@ -200,7 +200,7 @@ class IdpGroupMappingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """delete_idp_group_mappings_by_app_resource_id_group_id
+        """delete_idp_group_mappings
 
         Deletes an `IdpGroupMapping` object.
 
@@ -230,7 +230,7 @@ class IdpGroupMappingsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_idp_group_mappings_by_app_resource_id_group_id_serialize(
+        _param = self._delete_idp_group_mappings_serialize(
             app_resource_id=app_resource_id,
             group_id=group_id,
             _request_auth=_request_auth,
@@ -249,7 +249,7 @@ class IdpGroupMappingsApi:
         return response_data.response
 
 
-    def _delete_idp_group_mappings_by_app_resource_id_group_id_serialize(
+    def _delete_idp_group_mappings_serialize(
         self,
         app_resource_id,
         group_id,

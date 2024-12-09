@@ -4,13 +4,13 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_idp_group_mappings_by_app_resource_id_group_id**](IdpGroupMappingsApi.md#delete_idp_group_mappings_by_app_resource_id_group_id) | **DELETE** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
+[**delete_idp_group_mappings**](IdpGroupMappingsApi.md#delete_idp_group_mappings) | **DELETE** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
 [**get_idp_group_mappings**](IdpGroupMappingsApi.md#get_idp_group_mappings) | **GET** /idp-group-mappings/{app_resource_id} | 
 [**update_idp_group_mappings**](IdpGroupMappingsApi.md#update_idp_group_mappings) | **PUT** /idp-group-mappings/{app_resource_id} | 
 
 
-# **delete_idp_group_mappings_by_app_resource_id_group_id**
-> delete_idp_group_mappings_by_app_resource_id_group_id(app_resource_id, group_id)
+# **delete_idp_group_mappings**
+> delete_idp_group_mappings(app_resource_id, group_id)
 
 
 
@@ -51,9 +51,9 @@ with opal_security.ApiClient(configuration) as api_client:
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
-        api_instance.delete_idp_group_mappings_by_app_resource_id_group_id(app_resource_id, group_id)
+        api_instance.delete_idp_group_mappings(app_resource_id, group_id)
     except Exception as e:
-        print("Exception when calling IdpGroupMappingsApi->delete_idp_group_mappings_by_app_resource_id_group_id: %s\n" % e)
+        print("Exception when calling IdpGroupMappingsApi->delete_idp_group_mappings: %s\n" % e)
 ```
 
 

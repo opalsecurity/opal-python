@@ -26,6 +26,8 @@ The type of the group.
 
 * `OPAL_GROUP` (value: `'OPAL_GROUP'`)
 
+* `OPAL_ACCESS_RULE` (value: `'OPAL_ACCESS_RULE'`)
+
 * `AZURE_AD_SECURITY_GROUP` (value: `'AZURE_AD_SECURITY_GROUP'`)
 
 * `AZURE_AD_MICROSOFT_365_GROUP` (value: `'AZURE_AD_MICROSOFT_365_GROUP'`)

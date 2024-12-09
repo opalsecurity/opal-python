@@ -46,6 +46,8 @@ The type of the resource.
 
 * `AZURE_ENTRA_ID_ROLE` (value: `'AZURE_ENTRA_ID_ROLE'`)
 
+* `AZURE_ENTERPRISE_APP` (value: `'AZURE_ENTERPRISE_APP'`)
+
 * `CUSTOM` (value: `'CUSTOM'`)
 
 * `CUSTOM_CONNECTOR` (value: `'CUSTOM_CONNECTOR'`)
