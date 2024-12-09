@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -44,7 +44,7 @@ setup(
     setup_requires=['setuptools_scm'],
     long_description_content_type='text/markdown',
     long_description="""\
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
     """,  # noqa: E501
     package_data={"opal_security": ["py.typed"]},
 )
