@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -48,6 +48,7 @@ class ResourceTypeEnum(str, Enum):
     AZURE_SQL_MANAGED_DATABASE = 'AZURE_SQL_MANAGED_DATABASE'
     AZURE_USER_ASSIGNED_MANAGED_IDENTITY = 'AZURE_USER_ASSIGNED_MANAGED_Identity'
     AZURE_ENTRA_ID_ROLE = 'AZURE_ENTRA_ID_ROLE'
+    AZURE_ENTERPRISE_APP = 'AZURE_ENTERPRISE_APP'
     CUSTOM = 'CUSTOM'
     CUSTOM_CONNECTOR = 'CUSTOM_CONNECTOR'
     GCP_ORGANIZATION = 'GCP_ORGANIZATION'
