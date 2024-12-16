@@ -139,6 +139,8 @@ docs/Session.md
 docs/SessionsApi.md
 docs/SessionsList.md
 docs/SubEvent.md
+docs/SyncError.md
+docs/SyncErrorList.md
 docs/Tag.md
 docs/TagFilter.md
 docs/TagsApi.md
@@ -315,6 +317,8 @@ opal_security/models/risk_sensitivity_enum.py
 opal_security/models/session.py
 opal_security/models/sessions_list.py
 opal_security/models/sub_event.py
+opal_security/models/sync_error.py
+opal_security/models/sync_error_list.py
 opal_security/models/tag.py
 opal_security/models/tag_filter.py
 opal_security/models/tags_list.py
@@ -349,4 +353,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_sync_error.py
+test/test_sync_error_list.py
 tox.ini
