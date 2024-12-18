@@ -138,6 +138,8 @@ from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
 from opal_security.models.session import Session
 from opal_security.models.sessions_list import SessionsList
 from opal_security.models.sub_event import SubEvent
+from opal_security.models.sync_error import SyncError
+from opal_security.models.sync_error_list import SyncErrorList
 from opal_security.models.tag import Tag
 from opal_security.models.tag_filter import TagFilter
 from opal_security.models.tags_list import TagsList

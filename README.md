@@ -143,6 +143,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /apps/{app_id} | 
 *AppsApi* | [**get_apps**](docs/AppsApi.md#get_apps) | **GET** /apps | 
+*AppsApi* | [**get_sync_errors**](docs/AppsApi.md#get_sync_errors) | **GET** /sync_errors | 
 *ConfigurationTemplatesApi* | [**create_configuration_template**](docs/ConfigurationTemplatesApi.md#create_configuration_template) | **POST** /configuration-templates | 
 *ConfigurationTemplatesApi* | [**delete_configuration_template**](docs/ConfigurationTemplatesApi.md#delete_configuration_template) | **DELETE** /configuration-templates/{configuration_template_id} | 
 *ConfigurationTemplatesApi* | [**get_configuration_templates**](docs/ConfigurationTemplatesApi.md#get_configuration_templates) | **GET** /configuration-templates | 
@@ -361,6 +362,8 @@ Class | Method | HTTP request | Description
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
  - [SubEvent](docs/SubEvent.md)
+ - [SyncError](docs/SyncError.md)
+ - [SyncErrorList](docs/SyncErrorList.md)
  - [Tag](docs/Tag.md)
  - [TagFilter](docs/TagFilter.md)
  - [TagsList](docs/TagsList.md)
