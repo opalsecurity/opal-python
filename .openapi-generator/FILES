@@ -353,6 +353,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_sync_error.py
-test/test_sync_error_list.py
 tox.ini
