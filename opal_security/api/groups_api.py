@@ -2577,7 +2577,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> List[ReviewerStage]:
-        """get_group_reviewer_stages
+        """(Deprecated) get_group_reviewer_stages
 
         Gets the list of reviewer stages for a group.
 
@@ -2604,6 +2604,7 @@ class GroupsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /groups/{group_id}/reviewer-stages is deprecated.", DeprecationWarning)
 
         _param = self._get_group_reviewer_stages_serialize(
             group_id=group_id,
@@ -2644,7 +2645,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[List[ReviewerStage]]:
-        """get_group_reviewer_stages
+        """(Deprecated) get_group_reviewer_stages
 
         Gets the list of reviewer stages for a group.
 
@@ -2671,6 +2672,7 @@ class GroupsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /groups/{group_id}/reviewer-stages is deprecated.", DeprecationWarning)
 
         _param = self._get_group_reviewer_stages_serialize(
             group_id=group_id,
@@ -2711,7 +2713,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_group_reviewer_stages
+        """(Deprecated) get_group_reviewer_stages
 
         Gets the list of reviewer stages for a group.
 
@@ -2738,6 +2740,7 @@ class GroupsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /groups/{group_id}/reviewer-stages is deprecated.", DeprecationWarning)
 
         _param = self._get_group_reviewer_stages_serialize(
             group_id=group_id,
@@ -5078,7 +5081,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> List[ReviewerStage]:
-        """set_group_reviewer_stages
+        """(Deprecated) set_group_reviewer_stages
 
         Sets the list of reviewer stages for a group.
 
@@ -5107,6 +5110,7 @@ class GroupsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /groups/{group_id}/reviewer-stages is deprecated.", DeprecationWarning)
 
         _param = self._set_group_reviewer_stages_serialize(
             group_id=group_id,
@@ -5149,7 +5153,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[List[ReviewerStage]]:
-        """set_group_reviewer_stages
+        """(Deprecated) set_group_reviewer_stages
 
         Sets the list of reviewer stages for a group.
 
@@ -5178,6 +5182,7 @@ class GroupsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /groups/{group_id}/reviewer-stages is deprecated.", DeprecationWarning)
 
         _param = self._set_group_reviewer_stages_serialize(
             group_id=group_id,
@@ -5220,7 +5225,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """set_group_reviewer_stages
+        """(Deprecated) set_group_reviewer_stages
 
         Sets the list of reviewer stages for a group.
 
@@ -5249,6 +5254,7 @@ class GroupsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /groups/{group_id}/reviewer-stages is deprecated.", DeprecationWarning)
 
         _param = self._set_group_reviewer_stages_serialize(
             group_id=group_id,

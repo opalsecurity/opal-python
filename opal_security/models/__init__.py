@@ -23,6 +23,9 @@ from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
 from opal_security.models.add_resource_user_request import AddResourceUserRequest
 from opal_security.models.app import App
 from opal_security.models.app_type_enum import AppTypeEnum
+from opal_security.models.app_validation import AppValidation
+from opal_security.models.app_validation_severity_enum import AppValidationSeverityEnum
+from opal_security.models.app_validation_status_enum import AppValidationStatusEnum
 from opal_security.models.apps_list import AppsList
 from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 from opal_security.models.aws_permission_set_metadata_aws_permission_set import AwsPermissionSetMetadataAwsPermissionSet

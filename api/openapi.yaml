@@ -780,6 +780,7 @@ paths:
         - groups
   /groups/{group_id}/reviewer-stages:
     get:
+      deprecated: true
       description: Gets the list of reviewer stages for a group.
       operationId: get_group_reviewer_stages
       parameters:
@@ -808,6 +809,7 @@ paths:
       tags:
         - groups
     put:
+      deprecated: true
       description: Sets the list of reviewer stages for a group.
       operationId: set_group_reviewer_stages
       parameters:
@@ -3415,6 +3417,11 @@ components:
           type: string
         app_type:
           $ref: "#/components/schemas/AppTypeEnum"
+        validations:
+          description: Validation checks of an apps' configuration and permissions.
+          items:
+            $ref: "#/components/schemas/AppValidation"
+          type: array
       required:
         - app_id
         - name
@@ -3522,6 +3529,69 @@ components:
         - event_type
         - created_at
       type: object
+    AppValidation:
+      description: |-
+        # App validation object
+        ### Description
+        The `AppValidation` object is used to represent a validation check of an apps' configuration and permissions.
+
+        ### Usage Example
+        List from the `GET Apps` endpoint.
+      example:
+        key: "iam:GetRole"
+        name: "Opal's service account is missing the 'iam:GetRole' permission."
+        usage_reason: "Opal uses the 'iam:GetRole' permissions to view access to resources."
+        details: "403 Google API Error. Service account is not authorized to access role assignments."
+        severity: HIGH
+        status: FAILED
+        updated_at: 2021-01-06T20:00:00Z
+      properties:
+        key:
+          description: The key of the app validation. These are not unique IDs between runs.
+          example: "iam:GetUser"
+          type: string
+        name:
+          description: The human-readable description of whether the validation has the permissions.
+          example: "Opal's service account is missing the 'iam:GetUser' description."
+        usage_reason:
+          description: The reason for needing the validation.
+          example: Opal uses the 'iam:GetUser' permission to import users.
+          type: string
+        details:
+          description: Extra details regarding the validation. Could be an error message or restrictions on permissions.
+          example: 403 Google API Error. Service account is not authorized to access role assignments.
+          type: string
+        severity:
+          $ref: "#/components/schemas/AppValidationSeverityEnum"
+        status:
+          $ref: "#/components/schemas/AppValidationStatusEnum"
+        updated_at:
+          description: The date and time the app validation was last run.
+          example: 2021-01-06T20:00:00Z
+          format: date-time
+          type: string
+      required:
+        - key
+        - name
+        - status
+        - severity
+        - updated_at
+    AppValidationSeverityEnum:
+      description: The severity of an app validation.
+      enum:
+        - CRITICAL
+        - HIGH
+        - MEDIUM
+        - LOW
+      example: CRITICAL
+      type: string
+    AppValidationStatusEnum:
+      description: The status of an app validation.
+      enum:
+        - SUCCESS
+        - FAILED
+      example: FAILED
+      type: string
     SubEvent:
       description: |-
         # Sub event Object
@@ -4569,6 +4639,7 @@ components:
         - GOOGLE_GROUPS_GKE_GROUP
         - LDAP_GROUP
         - OKTA_GROUP
+        - OKTA_GROUP_RULE
         - TAILSCALE_GROUP
         - OPAL_GROUP
         - OPAL_ACCESS_RULE

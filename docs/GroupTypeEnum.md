@@ -22,6 +22,8 @@ The type of the group.
 
 * `OKTA_GROUP` (value: `'OKTA_GROUP'`)
 
+* `OKTA_GROUP_RULE` (value: `'OKTA_GROUP_RULE'`)
+
 * `TAILSCALE_GROUP` (value: `'TAILSCALE_GROUP'`)
 
 * `OPAL_GROUP` (value: `'OPAL_GROUP'`)
