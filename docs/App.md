@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **str** | A description of the app. | 
 **admin_owner_id** | **str** | The ID of the owner of the app. | 
 **app_type** | [**AppTypeEnum**](AppTypeEnum.md) |  | 
+**validations** | [**List[AppValidation]**](AppValidation.md) | Validation checks of an apps&#39; configuration and permissions. | [optional] 
 
 ## Example
 
