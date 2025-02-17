@@ -11,6 +11,9 @@ docs/AddResourceNhiRequest.md
 docs/AddResourceUserRequest.md
 docs/App.md
 docs/AppTypeEnum.md
+docs/AppValidation.md
+docs/AppValidationSeverityEnum.md
+docs/AppValidationStatusEnum.md
 docs/AppsApi.md
 docs/AppsList.md
 docs/AwsPermissionSetMetadata.md
@@ -84,6 +87,8 @@ docs/PaginatedResourcesList.md
 docs/PaginatedTagsList.md
 docs/PaginatedUARsList.md
 docs/PaginatedUsersList.md
+docs/PropagationStatus.md
+docs/PropagationStatusEnum.md
 docs/Request.md
 docs/RequestConfiguration.md
 docs/RequestCustomFieldResponse.md
@@ -202,6 +207,9 @@ opal_security/models/add_resource_nhi_request.py
 opal_security/models/add_resource_user_request.py
 opal_security/models/app.py
 opal_security/models/app_type_enum.py
+opal_security/models/app_validation.py
+opal_security/models/app_validation_severity_enum.py
+opal_security/models/app_validation_status_enum.py
 opal_security/models/apps_list.py
 opal_security/models/aws_permission_set_metadata.py
 opal_security/models/aws_permission_set_metadata_aws_permission_set.py
@@ -265,6 +273,8 @@ opal_security/models/paginated_resources_list.py
 opal_security/models/paginated_tags_list.py
 opal_security/models/paginated_uars_list.py
 opal_security/models/paginated_users_list.py
+opal_security/models/propagation_status.py
+opal_security/models/propagation_status_enum.py
 opal_security/models/request.py
 opal_security/models/request_configuration.py
 opal_security/models/request_custom_field_response.py
@@ -353,6 +363,9 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_sync_error.py
-test/test_sync_error_list.py
+test/test_app_validation.py
+test/test_app_validation_severity_enum.py
+test/test_app_validation_status_enum.py
+test/test_propagation_status.py
+test/test_propagation_status_enum.py
 tox.ini

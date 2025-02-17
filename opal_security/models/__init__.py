@@ -23,6 +23,9 @@ from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
 from opal_security.models.add_resource_user_request import AddResourceUserRequest
 from opal_security.models.app import App
 from opal_security.models.app_type_enum import AppTypeEnum
+from opal_security.models.app_validation import AppValidation
+from opal_security.models.app_validation_severity_enum import AppValidationSeverityEnum
+from opal_security.models.app_validation_status_enum import AppValidationStatusEnum
 from opal_security.models.apps_list import AppsList
 from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 from opal_security.models.aws_permission_set_metadata_aws_permission_set import AwsPermissionSetMetadataAwsPermissionSet
@@ -86,6 +89,8 @@ from opal_security.models.paginated_resources_list import PaginatedResourcesList
 from opal_security.models.paginated_tags_list import PaginatedTagsList
 from opal_security.models.paginated_uars_list import PaginatedUARsList
 from opal_security.models.paginated_users_list import PaginatedUsersList
+from opal_security.models.propagation_status import PropagationStatus
+from opal_security.models.propagation_status_enum import PropagationStatusEnum
 from opal_security.models.request import Request
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse
