@@ -780,6 +780,7 @@ paths:
         - groups
   /groups/{group_id}/reviewer-stages:
     get:
+      deprecated: true
       description: Gets the list of reviewer stages for a group.
       operationId: get_group_reviewer_stages
       parameters:
@@ -808,6 +809,7 @@ paths:
       tags:
         - groups
     put:
+      deprecated: true
       description: Sets the list of reviewer stages for a group.
       operationId: set_group_reviewer_stages
       parameters:
@@ -1174,6 +1176,8 @@ paths:
                         format: uuid
                       alias:
                         type: string
+                      hidden_from_end_user:
+                        type: boolean
                     type: object
               required:
                 - mappings
@@ -1476,7 +1480,7 @@ paths:
         - requests
     post:
       description: "Create an access request"
-      operationId: "createRequest" # TODO amruth confirm naming
+      operationId: "createRequest"
       requestBody:
         description: Resources to be updated
         required: true
@@ -3415,6 +3419,11 @@ components:
           type: string
         app_type:
           $ref: "#/components/schemas/AppTypeEnum"
+        validations:
+          description: Validation checks of an apps' configuration and permissions.
+          items:
+            $ref: "#/components/schemas/AppValidation"
+          type: array
       required:
         - app_id
         - name
@@ -3522,6 +3531,69 @@ components:
         - event_type
         - created_at
       type: object
+    AppValidation:
+      description: |-
+        # App validation object
+        ### Description
+        The `AppValidation` object is used to represent a validation check of an apps' configuration and permissions.
+
+        ### Usage Example
+        List from the `GET Apps` endpoint.
+      example:
+        key: "iam:GetRole"
+        name: "Opal's service account is missing the 'iam:GetRole' permission."
+        usage_reason: "Opal uses the 'iam:GetRole' permissions to view access to resources."
+        details: "403 Google API Error. Service account is not authorized to access role assignments."
+        severity: HIGH
+        status: FAILED
+        updated_at: 2021-01-06T20:00:00Z
+      properties:
+        key:
+          description: The key of the app validation. These are not unique IDs between runs.
+          example: "iam:GetUser"
+          type: string
+        name:
+          description: The human-readable description of whether the validation has the permissions.
+          example: "Opal's service account is missing the 'iam:GetUser' description."
+        usage_reason:
+          description: The reason for needing the validation.
+          example: Opal uses the 'iam:GetUser' permission to import users.
+          type: string
+        details:
+          description: Extra details regarding the validation. Could be an error message or restrictions on permissions.
+          example: 403 Google API Error. Service account is not authorized to access role assignments.
+          type: string
+        severity:
+          $ref: "#/components/schemas/AppValidationSeverityEnum"
+        status:
+          $ref: "#/components/schemas/AppValidationStatusEnum"
+        updated_at:
+          description: The date and time the app validation was last run.
+          example: 2021-01-06T20:00:00Z
+          format: date-time
+          type: string
+      required:
+        - key
+        - name
+        - status
+        - severity
+        - updated_at
+    AppValidationSeverityEnum:
+      description: The severity of an app validation.
+      enum:
+        - CRITICAL
+        - HIGH
+        - MEDIUM
+        - LOW
+      example: CRITICAL
+      type: string
+    AppValidationStatusEnum:
+      description: The status of an app validation.
+      enum:
+        - SUCCESS
+        - FAILED
+      example: FAILED
+      type: string
     SubEvent:
       description: |-
         # Sub event Object
@@ -3766,6 +3838,8 @@ components:
           example: 3
           format: int32
           type: integer
+        propagation_status:
+          $ref: "#/components/schemas/PropagationStatus"
       required:
         - email
         - full_name
@@ -4375,12 +4449,48 @@ components:
           format: date-time
           nullable: true
           type: string
+        propagation_status:
+          $ref: "#/components/schemas/PropagationStatus"
       required:
         - email
         - full_name
         - group_id
         - user_id
       type: object
+    PropagationStatus:
+      description: The state of whether the push action was propagated to the remote system. If this is null, the access was synced from the remote system.
+      properties:
+        status:
+          $ref: "#/components/schemas/PropagationStatusEnum"
+      required:
+        - status
+    PropagationStatusEnum:
+      description: The status of whether the user has been synced to the group or resource in the remote system.
+      enum:
+        - SUCCESS
+        - ERR_REMOTE_INTERNAL_ERROR
+        - ERR_REMOTE_USER_NOT_FOUND
+        - ERR_REMOTE_USER_NOT_LINKED
+        - ERR_REMOTE_RESOURCE_NOT_FOUND
+        - ERR_REMOTE_THROTTLE
+        - ERR_NOT_AUTHORIZED_TO_QUERY_RESOURCE
+        - ERR_REMOTE_PROVISIONING_VIA_IDP_FAILED
+        - ERR_IDP_EMAIL_UPDATE_CONFLICT
+        - ERR_TIMEOUT
+        - ERR_UNKNOWN
+        - ERR_OPAL_INTERNAL_ERROR
+        - ERR_ORG_READ_ONLY
+        - ERR_OPERATION_UNSUPPORTED
+        - PENDING
+        - PENDING_MANUAL_PROPAGATION
+        - PENDING_TICKET_CREATION
+        - ERR_TICKET_CREATION_SKIPPED
+        - ERR_DRY_RUN_MODE_ENABLED
+        - ERR_HR_IDP_PROVIDER_NOT_LINKED
+        - ERR_REMOTE_UNRECOVERABLE_ERROR
+      example:
+        - SUCCESS
+      type: string
     UpdateGroupInfoList:
       example:
         groups:
@@ -4562,6 +4672,7 @@ components:
       enum:
         - ACTIVE_DIRECTORY_GROUP
         - AWS_SSO_GROUP
+        - DATABRICKS_ACCOUNT_GROUP
         - DUO_GROUP
         - GIT_HUB_TEAM
         - GIT_LAB_GROUP
@@ -4569,6 +4680,7 @@ components:
         - GOOGLE_GROUPS_GKE_GROUP
         - LDAP_GROUP
         - OKTA_GROUP
+        - OKTA_GROUP_RULE
         - TAILSCALE_GROUP
         - OPAL_GROUP
         - OPAL_ACCESS_RULE
@@ -4606,6 +4718,7 @@ components:
         - AZURE_ENTERPRISE_APP
         - CUSTOM
         - CUSTOM_CONNECTOR
+        - DATABRICKS_ACCOUNT_SERVICE_PRINCIPAL
         - GCP_ORGANIZATION
         - GCP_BUCKET
         - GCP_COMPUTE_INSTANCE
@@ -4666,28 +4779,10 @@ components:
     IdpGroupMapping:
       description: Information about a group mapping.
       example:
-        id: 7870617d-e72a-47f5-a84c-693817ab4567
-        organization_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
-        app_resource_id: 6f99639b-7928-4043-8184-47cbc6766145
         group_id: 6f99639b-7928-4043-8184-47cbc6766145
         alias: "finance-team"
         hidden_from_end_user: False
       properties:
-        id:
-          description: The ID of the idp group mapping.
-          example: 7870617d-e72a-47f5-a84c-693817ab4567
-          format: uuid
-          type: string
-        organization_id:
-          description: The ID of the organization.
-          example: 1520617d-e72a-47f5-a84c-693817ab48ad2
-          format: uuid
-          type: string
-        app_resource_id:
-          description: The ID of the idp app resource.
-          example: 6f99639b-7928-4043-8184-47cbc6766145
-          format: uuid
-          type: string
         group_id:
           description: The ID of the group.
           example: 6f99639b-7928-4043-8184-47cbc6766145
@@ -4702,35 +4797,26 @@ components:
           example: False
           type: boolean
       required:
-        - id
-        - organization_id
-        - app_resource_id
         - group_id
         - hidden_from_end_user
       type: object
     IdpGroupMappingList:
       example:
-        idp_group_mappings:
-          - id: 7870617d-e72a-47f5-a84c-693817ab4567
-            organization_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
-            app_resource_id: 6f99639b-7928-4043-8184-47cbc6766145
-            group_id: 6f99639b-7928-4043-8184-47cbc6766145
+        mappings:
+          - group_id: 6f99639b-7928-4043-8184-47cbc6766145
             alias: "finance-team"
             hidden_from_end_user: False
-          - id: 1520617d-e72a-47f5-a84c-693817ab48ad2
-            organization_id: 6f99639b-7928-4043-8184-47cbc6766145
-            app_resource_id: 7870617d-e72a-47f5-a84c-693817ab4567
-            group_id: 7870617d-e72a-47f5-a84c-693817ab4567
+          - group_id: 7870617d-e72a-47f5-a84c-693817ab4567
             alias: "engineering-team"
             hidden_from_end_user: False
       properties:
-        idp_group_mappings:
+        mappings:
           items:
             $ref: "#/components/schemas/IdpGroupMapping"
           type: array
       type: object
       required:
-        - idp_group_mappings
+        - mappings
     ResourceWithAccessLevel:
       description: Information about a resource and corresponding access level
       example:
@@ -7675,7 +7761,7 @@ components:
             identifier:
               type: string
             url:
-              type: string # TODO amruth Does url format exist?
+              type: string
           required:
             - ticketing_provider
             - remote_id

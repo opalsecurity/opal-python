@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +29,9 @@ class UpdateIdpGroupMappingsRequestMappingsInner(BaseModel):
     """ # noqa: E501
     group_id: Optional[StrictStr] = None
     alias: Optional[StrictStr] = None
+    hidden_from_end_user: Optional[StrictBool] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "alias"]
+    __properties: ClassVar[List[str]] = ["group_id", "alias", "hidden_from_end_user"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +92,8 @@ class UpdateIdpGroupMappingsRequestMappingsInner(BaseModel):
 
         _obj = cls.model_validate({
             "group_id": obj.get("group_id"),
-            "alias": obj.get("alias")
+            "alias": obj.get("alias"),
+            "hidden_from_end_user": obj.get("hidden_from_end_user")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
