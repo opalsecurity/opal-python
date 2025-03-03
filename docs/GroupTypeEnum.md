@@ -8,6 +8,8 @@ The type of the group.
 
 * `AWS_SSO_GROUP` (value: `'AWS_SSO_GROUP'`)
 
+* `DATABRICKS_ACCOUNT_GROUP` (value: `'DATABRICKS_ACCOUNT_GROUP'`)
+
 * `DUO_GROUP` (value: `'DUO_GROUP'`)
 
 * `GIT_HUB_TEAM` (value: `'GIT_HUB_TEAM'`)
@@ -21,6 +23,8 @@ The type of the group.
 * `LDAP_GROUP` (value: `'LDAP_GROUP'`)
 
 * `OKTA_GROUP` (value: `'OKTA_GROUP'`)
+
+* `OKTA_GROUP_RULE` (value: `'OKTA_GROUP_RULE'`)
 
 * `TAILSCALE_GROUP` (value: `'TAILSCALE_GROUP'`)
 

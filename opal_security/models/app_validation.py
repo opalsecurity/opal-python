@@ -18,19 +18,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from opal_security.models.idp_group_mapping import IdpGroupMapping
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.app_validation_severity_enum import AppValidationSeverityEnum
+from opal_security.models.app_validation_status_enum import AppValidationStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
-class IdpGroupMappingList(BaseModel):
+class AppValidation(BaseModel):
     """
-    IdpGroupMappingList
+    # App validation object ### Description The `AppValidation` object is used to represent a validation check of an apps' configuration and permissions.  ### Usage Example List from the `GET Apps` endpoint.
     """ # noqa: E501
-    mappings: List[IdpGroupMapping]
+    key: StrictStr = Field(description="The key of the app validation. These are not unique IDs between runs.")
+    name: Optional[Any]
+    usage_reason: Optional[StrictStr] = Field(default=None, description="The reason for needing the validation.")
+    details: Optional[StrictStr] = Field(default=None, description="Extra details regarding the validation. Could be an error message or restrictions on permissions.")
+    severity: AppValidationSeverityEnum
+    status: AppValidationStatusEnum
+    updated_at: datetime = Field(description="The date and time the app validation was last run.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["mappings"]
+    __properties: ClassVar[List[str]] = ["key", "name", "usage_reason", "details", "severity", "status", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +58,7 @@ class IdpGroupMappingList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IdpGroupMappingList from a JSON string"""
+        """Create an instance of AppValidation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,23 +81,21 @@ class IdpGroupMappingList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in mappings (list)
-        _items = []
-        if self.mappings:
-            for _item_mappings in self.mappings:
-                if _item_mappings:
-                    _items.append(_item_mappings.to_dict())
-            _dict['mappings'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if name (nullable) is None
+        # and model_fields_set contains the field
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IdpGroupMappingList from a dict"""
+        """Create an instance of AppValidation from a dict"""
         if obj is None:
             return None
 
@@ -97,7 +103,13 @@ class IdpGroupMappingList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "mappings": [IdpGroupMapping.from_dict(_item) for _item in obj["mappings"]] if obj.get("mappings") is not None else None
+            "key": obj.get("key"),
+            "name": obj.get("name"),
+            "usage_reason": obj.get("usage_reason"),
+            "details": obj.get("details"),
+            "severity": obj.get("severity"),
+            "status": obj.get("status"),
+            "updated_at": obj.get("updated_at")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
