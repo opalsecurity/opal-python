@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.app_type_enum import AppTypeEnum
+from opal_security.models.app_validation import AppValidation
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,8 +34,9 @@ class App(BaseModel):
     description: StrictStr = Field(description="A description of the app.")
     admin_owner_id: StrictStr = Field(description="The ID of the owner of the app.")
     app_type: AppTypeEnum
+    validations: Optional[List[AppValidation]] = Field(default=None, description="Validation checks of an apps' configuration and permissions.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["app_id", "name", "description", "admin_owner_id", "app_type"]
+    __properties: ClassVar[List[str]] = ["app_id", "name", "description", "admin_owner_id", "app_type", "validations"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,13 @@ class App(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in validations (list)
+        _items = []
+        if self.validations:
+            for _item_validations in self.validations:
+                if _item_validations:
+                    _items.append(_item_validations.to_dict())
+            _dict['validations'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -98,7 +107,8 @@ class App(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "admin_owner_id": obj.get("admin_owner_id"),
-            "app_type": obj.get("app_type")
+            "app_type": obj.get("app_type"),
+            "validations": [AppValidation.from_dict(_item) for _item in obj["validations"]] if obj.get("validations") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

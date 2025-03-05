@@ -20,17 +20,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from opal_security.models.idp_group_mapping import IdpGroupMapping
+from opal_security.models.propagation_status_enum import PropagationStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
-class IdpGroupMappingList(BaseModel):
+class PropagationStatus(BaseModel):
     """
-    IdpGroupMappingList
+    The state of whether the push action was propagated to the remote system. If this is null, the access was synced from the remote system.
     """ # noqa: E501
-    mappings: List[IdpGroupMapping]
+    status: PropagationStatusEnum
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["mappings"]
+    __properties: ClassVar[List[str]] = ["status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class IdpGroupMappingList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IdpGroupMappingList from a JSON string"""
+        """Create an instance of PropagationStatus from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,13 +73,6 @@ class IdpGroupMappingList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in mappings (list)
-        _items = []
-        if self.mappings:
-            for _item_mappings in self.mappings:
-                if _item_mappings:
-                    _items.append(_item_mappings.to_dict())
-            _dict['mappings'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -89,7 +82,7 @@ class IdpGroupMappingList(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IdpGroupMappingList from a dict"""
+        """Create an instance of PropagationStatus from a dict"""
         if obj is None:
             return None
 
@@ -97,7 +90,7 @@ class IdpGroupMappingList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "mappings": [IdpGroupMapping.from_dict(_item) for _item in obj["mappings"]] if obj.get("mappings") is not None else None
+            "status": obj.get("status")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
