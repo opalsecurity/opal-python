@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.group_access_level import GroupAccessLevel
+from opal_security.models.propagation_status import PropagationStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,8 +36,9 @@ class GroupUser(BaseModel):
     full_name: StrictStr = Field(description="The user's full name.")
     email: StrictStr = Field(description="The user's email.")
     expiration_date: Optional[datetime] = Field(default=None, description="The day and time the user's access will expire.")
+    propagation_status: Optional[PropagationStatus] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "user_id", "access_level", "full_name", "email", "expiration_date"]
+    __properties: ClassVar[List[str]] = ["group_id", "user_id", "access_level", "full_name", "email", "expiration_date", "propagation_status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +84,9 @@ class GroupUser(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of access_level
         if self.access_level:
             _dict['access_level'] = self.access_level.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of propagation_status
+        if self.propagation_status:
+            _dict['propagation_status'] = self.propagation_status.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -104,7 +109,8 @@ class GroupUser(BaseModel):
             "access_level": GroupAccessLevel.from_dict(obj["access_level"]) if obj.get("access_level") is not None else None,
             "full_name": obj.get("full_name"),
             "email": obj.get("email"),
-            "expiration_date": obj.get("expiration_date")
+            "expiration_date": obj.get("expiration_date"),
+            "propagation_status": PropagationStatus.from_dict(obj["propagation_status"]) if obj.get("propagation_status") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

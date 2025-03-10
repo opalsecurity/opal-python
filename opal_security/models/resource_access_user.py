@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.propagation_status import PropagationStatus
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -37,8 +38,9 @@ class ResourceAccessUser(BaseModel):
     expiration_date: Optional[datetime] = Field(default=None, description="The day and time the user's access will expire.")
     has_direct_access: StrictBool = Field(description="The user has direct access to this resources (vs. indirectly, like through a group).")
     num_access_paths: StrictInt = Field(description="The number of ways in which the user has access through this resource (directly and indirectly).")
+    propagation_status: Optional[PropagationStatus] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "user_id", "access_level", "full_name", "email", "expiration_date", "has_direct_access", "num_access_paths"]
+    __properties: ClassVar[List[str]] = ["resource_id", "user_id", "access_level", "full_name", "email", "expiration_date", "has_direct_access", "num_access_paths", "propagation_status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +86,9 @@ class ResourceAccessUser(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of access_level
         if self.access_level:
             _dict['access_level'] = self.access_level.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of propagation_status
+        if self.propagation_status:
+            _dict['propagation_status'] = self.propagation_status.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -108,7 +113,8 @@ class ResourceAccessUser(BaseModel):
             "email": obj.get("email"),
             "expiration_date": obj.get("expiration_date"),
             "has_direct_access": obj.get("has_direct_access"),
-            "num_access_paths": obj.get("num_access_paths")
+            "num_access_paths": obj.get("num_access_paths"),
+            "propagation_status": PropagationStatus.from_dict(obj["propagation_status"]) if obj.get("propagation_status") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

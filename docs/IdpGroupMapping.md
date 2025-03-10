@@ -6,9 +6,6 @@ Information about a group mapping.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the idp group mapping. | 
-**organization_id** | **str** | The ID of the organization. | 
-**app_resource_id** | **str** | The ID of the idp app resource. | 
 **group_id** | **str** | The ID of the group. | 
 **alias** | **str** | The alias of the group. | [optional] 
 **hidden_from_end_user** | **bool** | A bool representing whether or not the group is hidden from the end user. | 
