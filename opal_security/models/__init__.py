@@ -23,11 +23,17 @@ from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
 from opal_security.models.add_resource_user_request import AddResourceUserRequest
 from opal_security.models.app import App
 from opal_security.models.app_type_enum import AppTypeEnum
+from opal_security.models.app_validation import AppValidation
+from opal_security.models.app_validation_severity_enum import AppValidationSeverityEnum
+from opal_security.models.app_validation_status_enum import AppValidationStatusEnum
 from opal_security.models.apps_list import AppsList
 from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 from opal_security.models.aws_permission_set_metadata_aws_permission_set import AwsPermissionSetMetadataAwsPermissionSet
+from opal_security.models.bundle import Bundle
+from opal_security.models.bundles_visibility_type_enum import BundlesVisibilityTypeEnum
 from opal_security.models.condition import Condition
 from opal_security.models.configuration_template import ConfigurationTemplate
+from opal_security.models.create_bundle_info import CreateBundleInfo
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
 from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
 from opal_security.models.create_group_binding_info_groups_inner import CreateGroupBindingInfoGroupsInner
@@ -77,6 +83,7 @@ from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
 from opal_security.models.owner import Owner
+from opal_security.models.paginated_bundle_list import PaginatedBundleList
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
 from opal_security.models.paginated_event_list import PaginatedEventList
 from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
@@ -86,6 +93,8 @@ from opal_security.models.paginated_resources_list import PaginatedResourcesList
 from opal_security.models.paginated_tags_list import PaginatedTagsList
 from opal_security.models.paginated_uars_list import PaginatedUARsList
 from opal_security.models.paginated_users_list import PaginatedUsersList
+from opal_security.models.propagation_status import PropagationStatus
+from opal_security.models.propagation_status_enum import PropagationStatusEnum
 from opal_security.models.request import Request
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse

@@ -144,6 +144,10 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /apps/{app_id} | 
 *AppsApi* | [**get_apps**](docs/AppsApi.md#get_apps) | **GET** /apps | 
 *AppsApi* | [**get_sync_errors**](docs/AppsApi.md#get_sync_errors) | **GET** /sync_errors | 
+*ComingSoonApi* | [**create_bundle**](docs/ComingSoonApi.md#create_bundle) | **POST** /experimental/bundles | 
+*ComingSoonApi* | [**delete_bundle**](docs/ComingSoonApi.md#delete_bundle) | **DELETE** /experimental/bundles/{bundle_id} | 
+*ComingSoonApi* | [**get_bundle**](docs/ComingSoonApi.md#get_bundle) | **GET** /experimental/bundles/{bundle_id} | 
+*ComingSoonApi* | [**get_bundles**](docs/ComingSoonApi.md#get_bundles) | **GET** /experimental/bundles | 
 *ConfigurationTemplatesApi* | [**create_configuration_template**](docs/ConfigurationTemplatesApi.md#create_configuration_template) | **POST** /configuration-templates | 
 *ConfigurationTemplatesApi* | [**delete_configuration_template**](docs/ConfigurationTemplatesApi.md#delete_configuration_template) | **DELETE** /configuration-templates/{configuration_template_id} | 
 *ConfigurationTemplatesApi* | [**get_configuration_templates**](docs/ConfigurationTemplatesApi.md#get_configuration_templates) | **GET** /configuration-templates | 
@@ -247,11 +251,17 @@ Class | Method | HTTP request | Description
  - [AddResourceUserRequest](docs/AddResourceUserRequest.md)
  - [App](docs/App.md)
  - [AppTypeEnum](docs/AppTypeEnum.md)
+ - [AppValidation](docs/AppValidation.md)
+ - [AppValidationSeverityEnum](docs/AppValidationSeverityEnum.md)
+ - [AppValidationStatusEnum](docs/AppValidationStatusEnum.md)
  - [AppsList](docs/AppsList.md)
  - [AwsPermissionSetMetadata](docs/AwsPermissionSetMetadata.md)
  - [AwsPermissionSetMetadataAwsPermissionSet](docs/AwsPermissionSetMetadataAwsPermissionSet.md)
+ - [Bundle](docs/Bundle.md)
+ - [BundlesVisibilityTypeEnum](docs/BundlesVisibilityTypeEnum.md)
  - [Condition](docs/Condition.md)
  - [ConfigurationTemplate](docs/ConfigurationTemplate.md)
+ - [CreateBundleInfo](docs/CreateBundleInfo.md)
  - [CreateConfigurationTemplateInfo](docs/CreateConfigurationTemplateInfo.md)
  - [CreateGroupBindingInfo](docs/CreateGroupBindingInfo.md)
  - [CreateGroupBindingInfoGroupsInner](docs/CreateGroupBindingInfoGroupsInner.md)
@@ -301,6 +311,7 @@ Class | Method | HTTP request | Description
  - [OnCallScheduleList](docs/OnCallScheduleList.md)
  - [OnCallScheduleProviderEnum](docs/OnCallScheduleProviderEnum.md)
  - [Owner](docs/Owner.md)
+ - [PaginatedBundleList](docs/PaginatedBundleList.md)
  - [PaginatedConfigurationTemplateList](docs/PaginatedConfigurationTemplateList.md)
  - [PaginatedEventList](docs/PaginatedEventList.md)
  - [PaginatedGroupBindingsList](docs/PaginatedGroupBindingsList.md)
@@ -310,6 +321,8 @@ Class | Method | HTTP request | Description
  - [PaginatedTagsList](docs/PaginatedTagsList.md)
  - [PaginatedUARsList](docs/PaginatedUARsList.md)
  - [PaginatedUsersList](docs/PaginatedUsersList.md)
+ - [PropagationStatus](docs/PropagationStatus.md)
+ - [PropagationStatusEnum](docs/PropagationStatusEnum.md)
  - [Request](docs/Request.md)
  - [RequestConfiguration](docs/RequestConfiguration.md)
  - [RequestCustomFieldResponse](docs/RequestCustomFieldResponse.md)

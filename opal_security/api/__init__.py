@@ -2,6 +2,7 @@
 
 # import apis into api package
 from opal_security.api.apps_api import AppsApi
+from opal_security.api.coming_soon_api import ComingSoonApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
 from opal_security.api.events_api import EventsApi
 from opal_security.api.group_bindings_api import GroupBindingsApi

@@ -76,6 +76,116 @@ paths:
         - BearerAuth: []
       tags:
         - apps
+  /experimental/bundles:
+    get:
+      description: Returns a list of `Bundle` objects.
+      operationId: getBundles
+      parameters:
+        - description: The maximum number of bundles to return from the beginning of the list. Default is 200, max is 1000.
+          example: 200
+          explode: true
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: A cursor indicating where to start fetching items after a specific point.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: A filter for the bundle name.
+          example: Engineering
+          explode: true
+          in: query
+          name: contains
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          description: A list of bundles for your organization.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedBundleList"
+      security:
+        - BearerAuth: []
+      tags:
+        - coming soon
+    post:
+      description: Creates a bundle.
+      operationId: createBundle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBundleInfo"
+      responses:
+        "201":
+          description: The bundle successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bundle"
+      security:
+        - BearerAuth: []
+      tags:
+        - coming soon
+  /experimental/bundles/{bundle_id}:
+    get:
+      description: Returns a `Bundle` object.
+      operationId: getBundle
+      parameters:
+        - description: The ID of the bundle.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: bundle_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bundle"
+          description: The requested `Bundle`.
+      security:
+        - BearerAuth: []
+      tags:
+        - coming soon
+    delete:
+      description: Deletes a bundle.
+      operationId: deleteBundle
+      parameters:
+        - description: The ID of the bundle.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: bundle_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "204":
+          description: The bundle was successfully deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - coming soon
   /configuration-templates:
     get:
       description: Returns a list of `ConfigurationTemplate` objects.
@@ -780,6 +890,7 @@ paths:
         - groups
   /groups/{group_id}/reviewer-stages:
     get:
+      deprecated: true
       description: Gets the list of reviewer stages for a group.
       operationId: get_group_reviewer_stages
       parameters:
@@ -808,6 +919,7 @@ paths:
       tags:
         - groups
     put:
+      deprecated: true
       description: Sets the list of reviewer stages for a group.
       operationId: set_group_reviewer_stages
       parameters:
@@ -1174,6 +1286,8 @@ paths:
                         format: uuid
                       alias:
                         type: string
+                      hidden_from_end_user:
+                        type: boolean
                     type: object
               required:
                 - mappings
@@ -1476,7 +1590,7 @@ paths:
         - requests
     post:
       description: "Create an access request"
-      operationId: "createRequest" # TODO amruth confirm naming
+      operationId: "createRequest"
       requestBody:
         description: Resources to be updated
         required: true
@@ -3415,6 +3529,11 @@ components:
           type: string
         app_type:
           $ref: "#/components/schemas/AppTypeEnum"
+        validations:
+          description: Validation checks of an apps' configuration and permissions.
+          items:
+            $ref: "#/components/schemas/AppValidation"
+          type: array
       required:
         - app_id
         - name
@@ -3522,6 +3641,69 @@ components:
         - event_type
         - created_at
       type: object
+    AppValidation:
+      description: |-
+        # App validation object
+        ### Description
+        The `AppValidation` object is used to represent a validation check of an apps' configuration and permissions.
+
+        ### Usage Example
+        List from the `GET Apps` endpoint.
+      example:
+        key: "iam:GetRole"
+        name: "Opal's service account is missing the 'iam:GetRole' permission."
+        usage_reason: "Opal uses the 'iam:GetRole' permissions to view access to resources."
+        details: "403 Google API Error. Service account is not authorized to access role assignments."
+        severity: HIGH
+        status: FAILED
+        updated_at: 2021-01-06T20:00:00Z
+      properties:
+        key:
+          description: The key of the app validation. These are not unique IDs between runs.
+          example: "iam:GetUser"
+          type: string
+        name:
+          description: The human-readable description of whether the validation has the permissions.
+          example: "Opal's service account is missing the 'iam:GetUser' description."
+        usage_reason:
+          description: The reason for needing the validation.
+          example: Opal uses the 'iam:GetUser' permission to import users.
+          type: string
+        details:
+          description: Extra details regarding the validation. Could be an error message or restrictions on permissions.
+          example: 403 Google API Error. Service account is not authorized to access role assignments.
+          type: string
+        severity:
+          $ref: "#/components/schemas/AppValidationSeverityEnum"
+        status:
+          $ref: "#/components/schemas/AppValidationStatusEnum"
+        updated_at:
+          description: The date and time the app validation was last run.
+          example: 2021-01-06T20:00:00Z
+          format: date-time
+          type: string
+      required:
+        - key
+        - name
+        - status
+        - severity
+        - updated_at
+    AppValidationSeverityEnum:
+      description: The severity of an app validation.
+      enum:
+        - CRITICAL
+        - HIGH
+        - MEDIUM
+        - LOW
+      example: CRITICAL
+      type: string
+    AppValidationStatusEnum:
+      description: The status of an app validation.
+      enum:
+        - SUCCESS
+        - FAILED
+      example: FAILED
+      type: string
     SubEvent:
       description: |-
         # Sub event Object
@@ -3766,6 +3948,8 @@ components:
           example: 3
           format: int32
           type: integer
+        propagation_status:
+          $ref: "#/components/schemas/PropagationStatus"
       required:
         - email
         - full_name
@@ -3967,11 +4151,11 @@ components:
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
           - user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
-            email: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+            email: john.doe@company.dev
             full_name: John Doe
             position: Senior Engineer
           - user_id: e8581682-04f7-473a-a419-472f0fb26d46
-            email: 186511e5-5b5a-4ad7-a4ad-b6c8694a544a
+            email: jane.smith@company.dev
             full_name: Jane Smith
             position: Product Marketing Lead
       properties:
@@ -4004,7 +4188,7 @@ components:
         Fetch from the `LIST Sessions` endpoint.
       example:
         user_id: 29827fb8-f2dd-4e80-9576-28e31e9934ac
-        email: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+        email: john.doe@company.dev
         full_name: John Doe
         first_name: John
         last_name: Doe
@@ -4017,7 +4201,7 @@ components:
           type: string
         email:
           description: The email of the user.
-          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          example: john.doe@company.dev
           type: string
         full_name:
           description: The full name of the user.
@@ -4375,12 +4559,48 @@ components:
           format: date-time
           nullable: true
           type: string
+        propagation_status:
+          $ref: "#/components/schemas/PropagationStatus"
       required:
         - email
         - full_name
         - group_id
         - user_id
       type: object
+    PropagationStatus:
+      description: The state of whether the push action was propagated to the remote system. If this is null, the access was synced from the remote system.
+      properties:
+        status:
+          $ref: "#/components/schemas/PropagationStatusEnum"
+      required:
+        - status
+    PropagationStatusEnum:
+      description: The status of whether the user has been synced to the group or resource in the remote system.
+      enum:
+        - SUCCESS
+        - ERR_REMOTE_INTERNAL_ERROR
+        - ERR_REMOTE_USER_NOT_FOUND
+        - ERR_REMOTE_USER_NOT_LINKED
+        - ERR_REMOTE_RESOURCE_NOT_FOUND
+        - ERR_REMOTE_THROTTLE
+        - ERR_NOT_AUTHORIZED_TO_QUERY_RESOURCE
+        - ERR_REMOTE_PROVISIONING_VIA_IDP_FAILED
+        - ERR_IDP_EMAIL_UPDATE_CONFLICT
+        - ERR_TIMEOUT
+        - ERR_UNKNOWN
+        - ERR_OPAL_INTERNAL_ERROR
+        - ERR_ORG_READ_ONLY
+        - ERR_OPERATION_UNSUPPORTED
+        - PENDING
+        - PENDING_MANUAL_PROPAGATION
+        - PENDING_TICKET_CREATION
+        - ERR_TICKET_CREATION_SKIPPED
+        - ERR_DRY_RUN_MODE_ENABLED
+        - ERR_HR_IDP_PROVIDER_NOT_LINKED
+        - ERR_REMOTE_UNRECOVERABLE_ERROR
+      example:
+        - SUCCESS
+      type: string
     UpdateGroupInfoList:
       example:
         groups:
@@ -4562,6 +4782,7 @@ components:
       enum:
         - ACTIVE_DIRECTORY_GROUP
         - AWS_SSO_GROUP
+        - DATABRICKS_ACCOUNT_GROUP
         - DUO_GROUP
         - GIT_HUB_TEAM
         - GIT_LAB_GROUP
@@ -4569,6 +4790,7 @@ components:
         - GOOGLE_GROUPS_GKE_GROUP
         - LDAP_GROUP
         - OKTA_GROUP
+        - OKTA_GROUP_RULE
         - TAILSCALE_GROUP
         - OPAL_GROUP
         - OPAL_ACCESS_RULE
@@ -4606,6 +4828,7 @@ components:
         - AZURE_ENTERPRISE_APP
         - CUSTOM
         - CUSTOM_CONNECTOR
+        - DATABRICKS_ACCOUNT_SERVICE_PRINCIPAL
         - GCP_ORGANIZATION
         - GCP_BUCKET
         - GCP_COMPUTE_INSTANCE
@@ -4648,6 +4871,13 @@ components:
         - LIMITED
       example: GLOBAL
       type: string
+    BundlesVisibilityTypeEnum:
+      description: The visibility level of the entity.
+      enum:
+        - GLOBAL
+        - TEAM
+      example: GLOBAL
+      type: string
     UpdateGroupResourcesInfo:
       example:
         group_resources:
@@ -4666,28 +4896,10 @@ components:
     IdpGroupMapping:
       description: Information about a group mapping.
       example:
-        id: 7870617d-e72a-47f5-a84c-693817ab4567
-        organization_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
-        app_resource_id: 6f99639b-7928-4043-8184-47cbc6766145
         group_id: 6f99639b-7928-4043-8184-47cbc6766145
         alias: "finance-team"
         hidden_from_end_user: False
       properties:
-        id:
-          description: The ID of the idp group mapping.
-          example: 7870617d-e72a-47f5-a84c-693817ab4567
-          format: uuid
-          type: string
-        organization_id:
-          description: The ID of the organization.
-          example: 1520617d-e72a-47f5-a84c-693817ab48ad2
-          format: uuid
-          type: string
-        app_resource_id:
-          description: The ID of the idp app resource.
-          example: 6f99639b-7928-4043-8184-47cbc6766145
-          format: uuid
-          type: string
         group_id:
           description: The ID of the group.
           example: 6f99639b-7928-4043-8184-47cbc6766145
@@ -4702,35 +4914,26 @@ components:
           example: False
           type: boolean
       required:
-        - id
-        - organization_id
-        - app_resource_id
         - group_id
         - hidden_from_end_user
       type: object
     IdpGroupMappingList:
       example:
-        idp_group_mappings:
-          - id: 7870617d-e72a-47f5-a84c-693817ab4567
-            organization_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
-            app_resource_id: 6f99639b-7928-4043-8184-47cbc6766145
-            group_id: 6f99639b-7928-4043-8184-47cbc6766145
+        mappings:
+          - group_id: 6f99639b-7928-4043-8184-47cbc6766145
             alias: "finance-team"
             hidden_from_end_user: False
-          - id: 1520617d-e72a-47f5-a84c-693817ab48ad2
-            organization_id: 6f99639b-7928-4043-8184-47cbc6766145
-            app_resource_id: 7870617d-e72a-47f5-a84c-693817ab4567
-            group_id: 7870617d-e72a-47f5-a84c-693817ab4567
+          - group_id: 7870617d-e72a-47f5-a84c-693817ab4567
             alias: "engineering-team"
             hidden_from_end_user: False
       properties:
-        idp_group_mappings:
+        mappings:
           items:
             $ref: "#/components/schemas/IdpGroupMapping"
           type: array
       type: object
       required:
-        - idp_group_mappings
+        - mappings
     ResourceWithAccessLevel:
       description: Information about a resource and corresponding access level
       example:
@@ -5785,6 +5988,34 @@ components:
         - resource_type
         - app_id
       type: object
+    CreateBundleInfo:
+      description: |-
+        # CreateBundleInfo Object
+        ### Description
+        The `CreateBundleInfo` object is used to store creation info for a bundle.
+
+        ### Usage Example
+        Use in the `POST Bundles` endpoint.
+      example:
+        name: Engineering Team Bundle
+        description: Engineering team bundle.
+        admin_owner_id: 7870617d-e72a-47f5-a84c-693817ab4567
+      properties:
+        name:
+          type: string
+          description: The name of the bundle.
+          example: "Test Bundle"
+        description:
+          type: string
+          description: A brief description of the bundle.
+          example: "This is a test bundle"
+        admin_owner_id:
+          type: string
+          description: The ID of the bundle's admin owner.
+          example: "7c86c85d-0651-43e2-a748-d69d658418e8"
+      required:
+        - name
+        - admin_owner_id
     CreateGroupInfo:
       description: |-
         # CreateGroupInfo Object
@@ -7145,7 +7376,6 @@ components:
         - auto_approval
         - require_mfa_to_request
         - require_support_ticket
-        - reviewer_stages
         - priority
     CreateRequestConfigurationInfoList:
       description: |-
@@ -7675,7 +7905,7 @@ components:
             identifier:
               type: string
             url:
-              type: string # TODO amruth Does url format exist?
+              type: string
           required:
             - ticketing_provider
             - remote_id
@@ -7763,6 +7993,93 @@ components:
         - last_seen
         - error_message
       type: object
+    Bundle:
+      properties:
+        id:
+          description: The ID of the bundle.
+          example: a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1
+          format: uuid
+          type: string
+        name:
+          description: The name of the bundle.
+          example: Bundle 1
+          type: string
+        description:
+          description: The description of the bundle.
+          example: Description of bundle 1
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          description: The creation timestamp of the bundle, in ISO 8601 format
+        updated_at:
+          type: string
+          format: date-time
+          description: The last updated timestamp of the bundle, in ISO 8601 format
+        admin_owner_id:
+          description: The ID of the owner of the bundle.
+          example: 4aed3e8a-727b-4d72-8010-3b8710c50bec
+          format: uuid
+          type: string
+        total_num_items:
+          description: The total number of items in the bundle.
+          example: 15
+          type: integer
+        total_num_resources:
+          description: The total number of resources in the bundle.
+          example: 10
+          type: integer
+        total_num_groups:
+          description: The total number of groups in the bundle.
+          example: 5
+          type: integer
+      required:
+        - id
+        - admin_owner_id
+    PaginatedBundleList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        totalCount: 2
+        bundles:
+          - id: a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1
+            name: Bundle 1
+            description: Description of bundle 1
+            admin_owner_id: 4aed3e8a-727b-4d72-8010-3b8710c50bec
+            total_num_items: 0
+            total_num_resources: 0
+            total_num_groups: 0
+          - id: 8294e9c9-deb6-48e9-9c99-da2a1e04a87f
+            name: Bundle 2
+            description: Description of bundle 2
+            admin_owner_id: 4aed3e8a-727b-4d72-8010-3b8710c50bec
+            total_num_items: 0
+            total_num_resources: 0
+            total_num_groups: 0
+      properties:
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        total_count:
+          description: The total number of items in the result set.
+          example: 2
+          type: integer
+        bundles:
+          items:
+            $ref: "#/components/schemas/Bundle"
+          type: array
+      type: object
+      required:
+        - bundles
   securitySchemes:
     BearerAuth:
       scheme: bearer

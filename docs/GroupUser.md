@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **full_name** | **str** | The user&#39;s full name. | 
 **email** | **str** | The user&#39;s email. | 
 **expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | [optional] 
+**propagation_status** | [**PropagationStatus**](PropagationStatus.md) |  | [optional] 
 
 ## Example
 

@@ -18,19 +18,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from opal_security.models.idp_group_mapping import IdpGroupMapping
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class IdpGroupMappingList(BaseModel):
+class Bundle(BaseModel):
     """
-    IdpGroupMappingList
+    Bundle
     """ # noqa: E501
-    mappings: List[IdpGroupMapping]
+    id: StrictStr = Field(description="The ID of the bundle.")
+    name: Optional[StrictStr] = Field(default=None, description="The name of the bundle.")
+    description: Optional[StrictStr] = Field(default=None, description="The description of the bundle.")
+    created_at: Optional[datetime] = Field(default=None, description="The creation timestamp of the bundle, in ISO 8601 format")
+    updated_at: Optional[datetime] = Field(default=None, description="The last updated timestamp of the bundle, in ISO 8601 format")
+    admin_owner_id: StrictStr = Field(description="The ID of the owner of the bundle.")
+    total_num_items: Optional[StrictInt] = Field(default=None, description="The total number of items in the bundle.")
+    total_num_resources: Optional[StrictInt] = Field(default=None, description="The total number of resources in the bundle.")
+    total_num_groups: Optional[StrictInt] = Field(default=None, description="The total number of groups in the bundle.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["mappings"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "created_at", "updated_at", "admin_owner_id", "total_num_items", "total_num_resources", "total_num_groups"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +58,7 @@ class IdpGroupMappingList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IdpGroupMappingList from a JSON string"""
+        """Create an instance of Bundle from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,13 +81,6 @@ class IdpGroupMappingList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in mappings (list)
-        _items = []
-        if self.mappings:
-            for _item_mappings in self.mappings:
-                if _item_mappings:
-                    _items.append(_item_mappings.to_dict())
-            _dict['mappings'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -89,7 +90,7 @@ class IdpGroupMappingList(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IdpGroupMappingList from a dict"""
+        """Create an instance of Bundle from a dict"""
         if obj is None:
             return None
 
@@ -97,7 +98,15 @@ class IdpGroupMappingList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "mappings": [IdpGroupMapping.from_dict(_item) for _item in obj["mappings"]] if obj.get("mappings") is not None else None
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "created_at": obj.get("created_at"),
+            "updated_at": obj.get("updated_at"),
+            "admin_owner_id": obj.get("admin_owner_id"),
+            "total_num_items": obj.get("total_num_items"),
+            "total_num_resources": obj.get("total_num_resources"),
+            "total_num_groups": obj.get("total_num_groups")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

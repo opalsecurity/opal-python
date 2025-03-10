@@ -37,7 +37,7 @@ class RequestConfiguration(BaseModel):
     recommended_duration_minutes: Optional[StrictInt] = Field(default=None, description="The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.")
     require_support_ticket: StrictBool = Field(description="A bool representing whether or not access requests to the resource require an access ticket.")
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template.")
-    reviewer_stages: List[ReviewerStage] = Field(description="The list of reviewer stages for the request configuration.")
+    reviewer_stages: Optional[List[ReviewerStage]] = Field(default=None, description="The list of reviewer stages for the request configuration.")
     priority: StrictInt = Field(description="The priority of the request configuration.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["condition", "allow_requests", "auto_approval", "require_mfa_to_request", "max_duration_minutes", "recommended_duration_minutes", "require_support_ticket", "request_template_id", "reviewer_stages", "priority"]

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**idp_group_mappings** | [**List[IdpGroupMapping]**](IdpGroupMapping.md) |  | 
+**mappings** | [**List[IdpGroupMapping]**](IdpGroupMapping.md) |  | 
 
 ## Example
 
