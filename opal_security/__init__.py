@@ -19,6 +19,7 @@ __version__ = "1.0.0"
 
 # import apis into sdk package
 from opal_security.api.apps_api import AppsApi
+from opal_security.api.coming_soon_api import ComingSoonApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
 from opal_security.api.events_api import EventsApi
 from opal_security.api.group_bindings_api import GroupBindingsApi
@@ -49,6 +50,8 @@ from opal_security.exceptions import ApiException
 # import models into sdk package
 from opal_security.models.access import Access
 from opal_security.models.access_list import AccessList
+from opal_security.models.add_bundle_group_request import AddBundleGroupRequest
+from opal_security.models.add_bundle_resource_request import AddBundleResourceRequest
 from opal_security.models.add_group_resource_request import AddGroupResourceRequest
 from opal_security.models.add_group_user_request import AddGroupUserRequest
 from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
@@ -61,8 +64,13 @@ from opal_security.models.app_validation_status_enum import AppValidationStatusE
 from opal_security.models.apps_list import AppsList
 from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 from opal_security.models.aws_permission_set_metadata_aws_permission_set import AwsPermissionSetMetadataAwsPermissionSet
+from opal_security.models.bundle import Bundle
+from opal_security.models.bundle_group import BundleGroup
+from opal_security.models.bundle_resource import BundleResource
+from opal_security.models.bundles_visibility_type_enum import BundlesVisibilityTypeEnum
 from opal_security.models.condition import Condition
 from opal_security.models.configuration_template import ConfigurationTemplate
+from opal_security.models.create_bundle_info import CreateBundleInfo
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
 from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
 from opal_security.models.create_group_binding_info_groups_inner import CreateGroupBindingInfoGroupsInner
@@ -112,6 +120,9 @@ from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
 from opal_security.models.owner import Owner
+from opal_security.models.paginated_bundle_group_list import PaginatedBundleGroupList
+from opal_security.models.paginated_bundle_list import PaginatedBundleList
+from opal_security.models.paginated_bundle_resource_list import PaginatedBundleResourceList
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
 from opal_security.models.paginated_event_list import PaginatedEventList
 from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
@@ -197,6 +208,7 @@ from opal_security.models.update_owner_info import UpdateOwnerInfo
 from opal_security.models.update_owner_info_list import UpdateOwnerInfoList
 from opal_security.models.update_resource_info import UpdateResourceInfo
 from opal_security.models.update_resource_info_list import UpdateResourceInfoList
+from opal_security.models.update_resource_user_request import UpdateResourceUserRequest
 from opal_security.models.user import User
 from opal_security.models.user_hr_idp_status_enum import UserHrIdpStatusEnum
 from opal_security.models.user_id_list import UserIDList
