@@ -17,6 +17,9 @@
 # import models into model package
 from opal_security.models.access import Access
 from opal_security.models.access_list import AccessList
+from opal_security.models.access_rule_condition import AccessRuleCondition
+from opal_security.models.add_bundle_group_request import AddBundleGroupRequest
+from opal_security.models.add_bundle_resource_request import AddBundleResourceRequest
 from opal_security.models.add_group_resource_request import AddGroupResourceRequest
 from opal_security.models.add_group_user_request import AddGroupUserRequest
 from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
@@ -29,8 +32,13 @@ from opal_security.models.app_validation_status_enum import AppValidationStatusE
 from opal_security.models.apps_list import AppsList
 from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 from opal_security.models.aws_permission_set_metadata_aws_permission_set import AwsPermissionSetMetadataAwsPermissionSet
+from opal_security.models.bundle import Bundle
+from opal_security.models.bundle_group import BundleGroup
+from opal_security.models.bundle_resource import BundleResource
+from opal_security.models.bundles_visibility_type_enum import BundlesVisibilityTypeEnum
 from opal_security.models.condition import Condition
 from opal_security.models.configuration_template import ConfigurationTemplate
+from opal_security.models.create_bundle_info import CreateBundleInfo
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
 from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
 from opal_security.models.create_group_binding_info_groups_inner import CreateGroupBindingInfoGroupsInner
@@ -54,6 +62,8 @@ from opal_security.models.group import Group
 from opal_security.models.group_access_level import GroupAccessLevel
 from opal_security.models.group_binding import GroupBinding
 from opal_security.models.group_binding_group import GroupBindingGroup
+from opal_security.models.group_containing_group import GroupContainingGroup
+from opal_security.models.group_containing_group_list import GroupContainingGroupList
 from opal_security.models.group_remote_info import GroupRemoteInfo
 from opal_security.models.group_remote_info_active_directory_group import GroupRemoteInfoActiveDirectoryGroup
 from opal_security.models.group_remote_info_azure_ad_microsoft365_group import GroupRemoteInfoAzureAdMicrosoft365Group
@@ -69,6 +79,7 @@ from opal_security.models.group_resource_list import GroupResourceList
 from opal_security.models.group_type_enum import GroupTypeEnum
 from opal_security.models.group_user import GroupUser
 from opal_security.models.group_user_list import GroupUserList
+from opal_security.models.group_with_access_level import GroupWithAccessLevel
 from opal_security.models.idp_group_mapping import IdpGroupMapping
 from opal_security.models.idp_group_mapping_list import IdpGroupMappingList
 from opal_security.models.message_channel import MessageChannel
@@ -80,6 +91,9 @@ from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
 from opal_security.models.owner import Owner
+from opal_security.models.paginated_bundle_group_list import PaginatedBundleGroupList
+from opal_security.models.paginated_bundle_list import PaginatedBundleList
+from opal_security.models.paginated_bundle_resource_list import PaginatedBundleResourceList
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
 from opal_security.models.paginated_event_list import PaginatedEventList
 from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
@@ -140,6 +154,9 @@ from opal_security.models.reviewer_id_list import ReviewerIDList
 from opal_security.models.reviewer_stage import ReviewerStage
 from opal_security.models.reviewer_stage_list import ReviewerStageList
 from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal_security.models.rule_clauses import RuleClauses
+from opal_security.models.rule_conjunction import RuleConjunction
+from opal_security.models.rule_disjunction import RuleDisjunction
 from opal_security.models.session import Session
 from opal_security.models.sessions_list import SessionsList
 from opal_security.models.sub_event import SubEvent
@@ -147,6 +164,7 @@ from opal_security.models.sync_error import SyncError
 from opal_security.models.sync_error_list import SyncErrorList
 from opal_security.models.tag import Tag
 from opal_security.models.tag_filter import TagFilter
+from opal_security.models.tag_selector import TagSelector
 from opal_security.models.tags_list import TagsList
 from opal_security.models.ticket_propagation_configuration import TicketPropagationConfiguration
 from opal_security.models.ticketing_provider_enum import TicketingProviderEnum
@@ -165,6 +183,7 @@ from opal_security.models.update_owner_info import UpdateOwnerInfo
 from opal_security.models.update_owner_info_list import UpdateOwnerInfoList
 from opal_security.models.update_resource_info import UpdateResourceInfo
 from opal_security.models.update_resource_info_list import UpdateResourceInfoList
+from opal_security.models.update_resource_user_request import UpdateResourceUserRequest
 from opal_security.models.user import User
 from opal_security.models.user_hr_idp_status_enum import UserHrIdpStatusEnum
 from opal_security.models.user_id_list import UserIDList

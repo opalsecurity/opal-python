@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**set_resource_reviewer_stages**](ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
 [**set_resource_reviewers**](ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
 [**set_resource_visibility**](ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
+[**update_resource_user**](ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 [**update_resources**](ResourcesApi.md#update_resources) | **PUT** /resources | 
 
 
@@ -1649,6 +1650,90 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The visibility info of this resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_resource_user**
+> ResourceUser update_resource_user(resource_id, user_id, update_resource_user_request)
+
+
+
+Updates a user's access level or duration on this resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.resource_user import ResourceUser
+from opal_security.models.update_resource_user_request import UpdateResourceUserRequest
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user whose access is being updated.
+    update_resource_user_request = opal_security.UpdateResourceUserRequest() # UpdateResourceUserRequest | 
+
+    try:
+        api_response = api_instance.update_resource_user(resource_id, user_id, update_resource_user_request)
+        print("The response of ResourcesApi->update_resource_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->update_resource_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource. | 
+ **user_id** | **str**| The ID of the user whose access is being updated. | 
+ **update_resource_user_request** | [**UpdateResourceUserRequest**](UpdateResourceUserRequest.md)|  | 
+
+### Return type
+
+[**ResourceUser**](ResourceUser.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The ResourceUser was successfully updated. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
