@@ -24,13 +24,12 @@ Method | HTTP request | Description
 [**set_resource_reviewer_stages**](ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
 [**set_resource_reviewers**](ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
 [**set_resource_visibility**](ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
+[**update_resource_user**](ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 [**update_resources**](ResourcesApi.md#update_resources) | **PUT** /resources | 
 
 
 # **add_resource_nhi**
 > ResourceNHI add_resource_nhi(resource_id, non_human_identity_id, add_resource_nhi_request=add_resource_nhi_request)
-
-
 
 Gives a non-human identity access to this resource.
 
@@ -113,8 +112,6 @@ Name | Type | Description  | Notes
 
 # **add_resource_user**
 > ResourceUser add_resource_user(resource_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_resource_user_request=add_resource_user_request)
-
-
 
 Adds a user to this resource.
 
@@ -202,8 +199,6 @@ Name | Type | Description  | Notes
 # **create_resource**
 > Resource create_resource(create_resource_info)
 
-
-
 Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
 
 ### Example
@@ -282,8 +277,6 @@ Name | Type | Description  | Notes
 # **delete_resource**
 > delete_resource(resource_id)
 
-
-
 Deletes a resource.
 
 ### Example
@@ -357,8 +350,6 @@ void (empty response body)
 
 # **delete_resource_nhi**
 > delete_resource_nhi(resource_id, non_human_identity_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a non-human identity's direct access from this resource.
 
@@ -438,8 +429,6 @@ void (empty response body)
 # **delete_resource_user**
 > delete_resource_user(resource_id, user_id, access_level_remote_id=access_level_remote_id)
 
-
-
 Removes a user's direct access from this resource.
 
 ### Example
@@ -518,8 +507,6 @@ void (empty response body)
 # **get_resource**
 > Resource get_resource(resource_id)
 
-
-
 Retrieves a resource.
 
 ### Example
@@ -597,8 +584,6 @@ Name | Type | Description  | Notes
 # **get_resource_message_channels**
 > MessageChannelList get_resource_message_channels(resource_id)
 
-
-
 Gets the list of audit message channels attached to a resource.
 
 ### Example
@@ -675,8 +660,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_nhis**
 > AccessList get_resource_nhis(resource_id, limit=limit)
-
-
 
 Gets the list of non-human identities with access to this resource.
 
@@ -757,8 +740,6 @@ Name | Type | Description  | Notes
 # **get_resource_reviewer_stages**
 > List[ReviewerStage] get_resource_reviewer_stages(resource_id)
 
-
-
 Gets the list reviewer stages for a resource.
 
 ### Example
@@ -836,8 +817,6 @@ Name | Type | Description  | Notes
 # **get_resource_reviewers**
 > List[str] get_resource_reviewers(resource_id)
 
-
-
 Gets the list of owner IDs of the reviewers for a resource.
 
 ### Example
@@ -913,8 +892,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_tags**
 > TagsList get_resource_tags(resource_id)
-
-
 
 Returns all tags applied to the resource.
 
@@ -992,8 +969,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_users**
 > ResourceAccessUserList get_resource_users(resource_id, limit=limit)
-
-
 
 Gets the list of users for this resource.
 
@@ -1074,8 +1049,6 @@ Name | Type | Description  | Notes
 # **get_resource_visibility**
 > VisibilityInfo get_resource_visibility(resource_id)
 
-
-
 Gets the visibility of this resource.
 
 ### Example
@@ -1152,8 +1125,6 @@ Name | Type | Description  | Notes
 
 # **get_resources**
 > PaginatedResourcesList get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id)
-
-
 
 Returns a list of resources for your organization.
 
@@ -1243,8 +1214,6 @@ Name | Type | Description  | Notes
 # **resource_user_access_status_retrieve**
 > ResourceUserAccessStatus resource_user_access_status_retrieve(resource_id, user_id, access_level_remote_id=access_level_remote_id, cursor=cursor, page_size=page_size)
 
-
-
 Get user's access status to a resource.
 
 ### Example
@@ -1330,8 +1299,6 @@ Name | Type | Description  | Notes
 # **set_resource_message_channels**
 > List[str] set_resource_message_channels(resource_id, message_channel_id_list)
 
-
-
 Sets the list of audit message channels attached to a resource.
 
 ### Example
@@ -1410,8 +1377,6 @@ Name | Type | Description  | Notes
 
 # **set_resource_reviewer_stages**
 > List[ReviewerStage] set_resource_reviewer_stages(resource_id, reviewer_stage_list)
-
-
 
 Sets the list of reviewer stages for a resource.
 
@@ -1493,8 +1458,6 @@ Name | Type | Description  | Notes
 # **set_resource_reviewers**
 > List[str] set_resource_reviewers(resource_id, reviewer_id_list)
 
-
-
 Sets the list of reviewers for a resource.
 
 ### Example
@@ -1574,8 +1537,6 @@ Name | Type | Description  | Notes
 # **set_resource_visibility**
 > VisibilityInfo set_resource_visibility(resource_id, visibility_info)
 
-
-
 Sets the visibility of this resource.
 
 ### Example
@@ -1652,10 +1613,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_resource_user**
+> ResourceUser update_resource_user(resource_id, user_id, update_resource_user_request)
+
+Updates a user's access level or duration on this resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.resource_user import ResourceUser
+from opal_security.models.update_resource_user_request import UpdateResourceUserRequest
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user whose access is being updated.
+    update_resource_user_request = opal_security.UpdateResourceUserRequest() # UpdateResourceUserRequest | 
+
+    try:
+        api_response = api_instance.update_resource_user(resource_id, user_id, update_resource_user_request)
+        print("The response of ResourcesApi->update_resource_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->update_resource_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource. | 
+ **user_id** | **str**| The ID of the user whose access is being updated. | 
+ **update_resource_user_request** | [**UpdateResourceUserRequest**](UpdateResourceUserRequest.md)|  | 
+
+### Return type
+
+[**ResourceUser**](ResourceUser.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The ResourceUser was successfully updated. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_resources**
 > UpdateResourceInfoList update_resources(update_resource_info_list)
-
-
 
 Bulk updates a list of resources.
 

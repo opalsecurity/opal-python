@@ -10,8 +10,6 @@ Method | HTTP request | Description
 # **sessions**
 > SessionsList sessions(resource_id, user_id=user_id)
 
-
-
 Returns a list of `Session` objects.
 
 ### Example

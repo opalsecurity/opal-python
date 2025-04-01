@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_on_call_schedule**
 > OnCallSchedule create_on_call_schedule(create_on_call_schedule_info)
 
-
-
 Creates a `OnCallSchedule` objects.
 
 ### Example
@@ -92,8 +90,6 @@ Name | Type | Description  | Notes
 # **get_on_call_schedule**
 > OnCallSchedule get_on_call_schedule(on_call_schedule_id)
 
-
-
 Gets a `OnCallSchedule` object.
 
 ### Example
@@ -170,8 +166,6 @@ Name | Type | Description  | Notes
 
 # **get_on_call_schedules**
 > OnCallScheduleList get_on_call_schedules()
-
-
 
 Returns a list of `OnCallSchedule` objects.
 

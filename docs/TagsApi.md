@@ -20,8 +20,6 @@ Method | HTTP request | Description
 # **add_group_tag**
 > add_group_tag(tag_id, group_id)
 
-
-
 Applies a tag to a group.
 
 ### Example
@@ -97,8 +95,6 @@ void (empty response body)
 
 # **add_resource_tag**
 > add_resource_tag(tag_id, resource_id)
-
-
 
 Applies a tag to a resource.
 
@@ -176,8 +172,6 @@ void (empty response body)
 # **add_user_tag**
 > add_user_tag(tag_id, user_id)
 
-
-
 Applies a tag to a user.
 
 ### Example
@@ -253,8 +247,6 @@ void (empty response body)
 
 # **create_tag**
 > Tag create_tag(tag_key=tag_key, tag_value=tag_value, admin_owner_id=admin_owner_id, create_tag_info=create_tag_info)
-
-
 
 Creates a tag with the given key and value.
 
@@ -340,8 +332,6 @@ Name | Type | Description  | Notes
 # **delete_tag_by_id**
 > delete_tag_by_id(tag_id)
 
-
-
 UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 
 ### Example
@@ -415,8 +405,6 @@ void (empty response body)
 
 # **get_tag**
 > Tag get_tag(tag_key, tag_value=tag_value)
-
-
 
 Gets a tag with the given key and value.
 
@@ -497,8 +485,6 @@ Name | Type | Description  | Notes
 # **get_tag_by_id**
 > Tag get_tag_by_id(tag_id)
 
-
-
 UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
 ### Example
@@ -575,8 +561,6 @@ Name | Type | Description  | Notes
 
 # **get_tags**
 > PaginatedTagsList get_tags(cursor=cursor, page_size=page_size)
-
-
 
 Returns a list of tags created by your organization.
 
@@ -657,8 +641,6 @@ Name | Type | Description  | Notes
 # **remove_group_tag**
 > remove_group_tag(tag_id, group_id)
 
-
-
 Removes a tag from a group.
 
 ### Example
@@ -735,8 +717,6 @@ void (empty response body)
 # **remove_resource_tag**
 > remove_resource_tag(tag_id, resource_id)
 
-
-
 Removes a tag from a resource.
 
 ### Example
@@ -812,8 +792,6 @@ void (empty response body)
 
 # **remove_user_tag**
 > remove_user_tag(tag_id, user_id)
-
-
 
 Removes a tag from a user.
 

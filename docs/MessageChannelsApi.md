@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_message_channel**
 > MessageChannel create_message_channel(create_message_channel_info)
 
-
-
 Creates a `MessageChannel` objects.
 
 ### Example
@@ -92,8 +90,6 @@ Name | Type | Description  | Notes
 # **get_message_channel**
 > MessageChannel get_message_channel(message_channel_id)
 
-
-
 Gets a `MessageChannel` object.
 
 ### Example
@@ -170,8 +166,6 @@ Name | Type | Description  | Notes
 
 # **get_message_channels**
 > MessageChannelList get_message_channels()
-
-
 
 Returns a list of `MessageChannel` objects.
 

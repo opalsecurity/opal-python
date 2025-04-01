@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **delete_idp_group_mappings**
 > delete_idp_group_mappings(app_resource_id, group_id)
 
-
-
 Deletes an `IdpGroupMapping` object.
 
 ### Example
@@ -89,8 +87,6 @@ void (empty response body)
 
 # **get_idp_group_mappings**
 > IdpGroupMappingList get_idp_group_mappings(app_resource_id)
-
-
 
 Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 
@@ -168,8 +164,6 @@ Name | Type | Description  | Notes
 
 # **update_idp_group_mappings**
 > update_idp_group_mappings(app_resource_id, update_idp_group_mappings_request)
-
-
 
 Updates the list of available `IdpGroupMapping` objects for an Okta app.
 

@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_uar**
 > UAR create_uar(create_uar_info)
 
-
-
 Starts a User Access Review.
 
 ### Example
@@ -92,8 +90,6 @@ Name | Type | Description  | Notes
 # **get_uar**
 > UAR get_uar(uar_id)
 
-
-
 Retrieves a specific UAR.
 
 ### Example
@@ -170,8 +166,6 @@ Name | Type | Description  | Notes
 
 # **get_uars**
 > PaginatedUARsList get_uars(cursor=cursor, page_size=page_size)
-
-
 
 Returns a list of `UAR` objects.
 
