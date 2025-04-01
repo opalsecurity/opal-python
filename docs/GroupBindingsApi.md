@@ -14,8 +14,6 @@ Method | HTTP request | Description
 # **create_group_binding**
 > GroupBinding create_group_binding(create_group_binding_info)
 
-
-
 Creates a group binding.
 
 ### Example
@@ -94,8 +92,6 @@ Name | Type | Description  | Notes
 # **delete_group_binding**
 > delete_group_binding(group_binding_id)
 
-
-
 Deletes a group binding.
 
 ### Example
@@ -169,8 +165,6 @@ void (empty response body)
 
 # **get_group_binding**
 > GroupBinding get_group_binding(group_binding_id)
-
-
 
 Returns a `GroupBinding` object.
 
@@ -248,8 +242,6 @@ Name | Type | Description  | Notes
 
 # **get_group_bindings**
 > PaginatedGroupBindingsList get_group_bindings(cursor=cursor, page_size=page_size)
-
-
 
 Returns a list of `GroupBinding` objects.
 
@@ -329,8 +321,6 @@ Name | Type | Description  | Notes
 
 # **update_group_bindings**
 > update_group_bindings(update_group_binding_info_list)
-
-
 
 Bulk updates a list of group bindings.
 

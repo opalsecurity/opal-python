@@ -17,8 +17,6 @@ Method | HTTP request | Description
 # **create_owner**
 > Owner create_owner(create_owner_info)
 
-
-
 Creates an owner.
 
 ### Example
@@ -97,8 +95,6 @@ Name | Type | Description  | Notes
 # **delete_owner**
 > delete_owner(owner_id)
 
-
-
 Deletes an owner.
 
 ### Example
@@ -172,8 +168,6 @@ void (empty response body)
 
 # **get_owner**
 > Owner get_owner(owner_id)
-
-
 
 Returns an `Owner` object.
 
@@ -252,8 +246,6 @@ Name | Type | Description  | Notes
 # **get_owner_from_name**
 > Owner get_owner_from_name(owner_name)
 
-
-
 Returns an `Owner` object. Does not support owners with `/` in their name, use /owners?name=... instead.
 
 ### Example
@@ -331,8 +323,6 @@ Name | Type | Description  | Notes
 # **get_owner_users**
 > UserList get_owner_users(owner_id)
 
-
-
 Gets the list of users for this owner, in escalation priority order if applicable.
 
 ### Example
@@ -409,8 +399,6 @@ Name | Type | Description  | Notes
 
 # **get_owners**
 > PaginatedOwnersList get_owners(cursor=cursor, page_size=page_size, name=name)
-
-
 
 Returns a list of `Owner` objects.
 
@@ -493,8 +481,6 @@ Name | Type | Description  | Notes
 # **set_owner_users**
 > UserList set_owner_users(owner_id, user_id_list)
 
-
-
 Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
 
 ### Example
@@ -574,8 +560,6 @@ Name | Type | Description  | Notes
 
 # **update_owners**
 > UpdateOwnerInfoList update_owners(update_owner_info_list)
-
-
 
 Bulk updates a list of owners.
 

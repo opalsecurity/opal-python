@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **get_app**
 > App get_app(app_id)
 
-
-
 Returns an `App` object.
 
 ### Example
@@ -90,8 +88,6 @@ Name | Type | Description  | Notes
 
 # **get_apps**
 > AppsList get_apps(app_type_filter=app_type_filter, owner_filter=owner_filter)
-
-
 
 Returns a list of `App` objects.
 
@@ -172,8 +168,6 @@ Name | Type | Description  | Notes
 
 # **get_sync_errors**
 > List[SyncErrorList] get_sync_errors(app_id=app_id, resource_id=resource_id, group_id=group_id)
-
-
 
 Returns a list of recent sync errors that have occurred since the last successful sync.
 

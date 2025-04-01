@@ -13,8 +13,6 @@ Method | HTTP request | Description
 # **create_configuration_template**
 > ConfigurationTemplate create_configuration_template(create_configuration_template_info)
 
-
-
 Creates a configuration template.
 
 ### Example
@@ -93,8 +91,6 @@ Name | Type | Description  | Notes
 # **delete_configuration_template**
 > delete_configuration_template(configuration_template_id)
 
-
-
 Deletes a configuration template.
 
 ### Example
@@ -169,8 +165,6 @@ void (empty response body)
 # **get_configuration_templates**
 > PaginatedConfigurationTemplateList get_configuration_templates()
 
-
-
 Returns a list of `ConfigurationTemplate` objects.
 
 ### Example
@@ -243,8 +237,6 @@ This endpoint does not need any parameter.
 
 # **update_configuration_template**
 > ConfigurationTemplate update_configuration_template(update_configuration_template_info)
-
-
 
 Update a configuration template.
 

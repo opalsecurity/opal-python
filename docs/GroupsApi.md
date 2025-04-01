@@ -4,12 +4,15 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_group_containing_group**](GroupsApi.md#add_group_containing_group) | **POST** /groups/{group_id}/containing-groups | 
 [**add_group_resource**](GroupsApi.md#add_group_resource) | **POST** /groups/{group_id}/resources/{resource_id} | 
 [**add_group_user**](GroupsApi.md#add_group_user) | **POST** /groups/{group_id}/users/{user_id} | 
 [**create_group**](GroupsApi.md#create_group) | **POST** /groups | 
 [**delete_group**](GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
 [**delete_group_user**](GroupsApi.md#delete_group_user) | **DELETE** /groups/{group_id}/users/{user_id} | 
 [**get_group**](GroupsApi.md#get_group) | **GET** /groups/{group_id} | 
+[**get_group_containing_group**](GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | 
+[**get_group_containing_groups**](GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | 
 [**get_group_message_channels**](GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
 [**get_group_on_call_schedules**](GroupsApi.md#get_group_on_call_schedules) | **GET** /groups/{group_id}/on-call-schedules | 
 [**get_group_resources**](GroupsApi.md#get_group_resources) | **GET** /groups/{group_id}/resources | 
@@ -19,6 +22,7 @@ Method | HTTP request | Description
 [**get_group_users**](GroupsApi.md#get_group_users) | **GET** /groups/{group_id}/users | 
 [**get_group_visibility**](GroupsApi.md#get_group_visibility) | **GET** /groups/{group_id}/visibility | 
 [**get_groups**](GroupsApi.md#get_groups) | **GET** /groups | 
+[**remove_group_containing_group**](GroupsApi.md#remove_group_containing_group) | **DELETE** /groups/{group_id}/containing-groups/{containing_group_id} | 
 [**set_group_message_channels**](GroupsApi.md#set_group_message_channels) | **PUT** /groups/{group_id}/message-channels | 
 [**set_group_on_call_schedules**](GroupsApi.md#set_group_on_call_schedules) | **PUT** /groups/{group_id}/on-call-schedules | 
 [**set_group_resources**](GroupsApi.md#set_group_resources) | **PUT** /groups/{group_id}/resources | 
@@ -28,10 +32,87 @@ Method | HTTP request | Description
 [**update_groups**](GroupsApi.md#update_groups) | **PUT** /groups | 
 
 
+# **add_group_containing_group**
+> GroupContainingGroup add_group_containing_group(group_id, group_containing_group)
+
+Creates a new containing group.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.group_containing_group import GroupContainingGroup
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.GroupsApi(api_client)
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_containing_group = opal_security.GroupContainingGroup() # GroupContainingGroup | 
+
+    try:
+        api_response = api_instance.add_group_containing_group(group_id, group_containing_group)
+        print("The response of GroupsApi->add_group_containing_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GroupsApi->add_group_containing_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The ID of the group. | 
+ **group_containing_group** | [**GroupContainingGroup**](GroupContainingGroup.md)|  | 
+
+### Return type
+
+[**GroupContainingGroup**](GroupContainingGroup.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created &#x60;GroupContainingGroup&#x60; object. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **add_group_resource**
 > GroupResource add_group_resource(group_id, resource_id, access_level_remote_id=access_level_remote_id, add_group_resource_request=add_group_resource_request)
-
-
 
 Adds a resource to a group.
 
@@ -116,8 +197,6 @@ Name | Type | Description  | Notes
 
 # **add_group_user**
 > GroupUser add_group_user(group_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_group_user_request=add_group_user_request)
-
-
 
 Adds a user to this group.
 
@@ -205,9 +284,7 @@ Name | Type | Description  | Notes
 # **create_group**
 > Group create_group(create_group_info)
 
-
-
-Creates a group. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing groups.
+Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
 
 ### Example
 
@@ -285,8 +362,6 @@ Name | Type | Description  | Notes
 # **delete_group**
 > delete_group(group_id)
 
-
-
 Deletes a group.
 
 ### Example
@@ -360,8 +435,6 @@ void (empty response body)
 
 # **delete_group_user**
 > delete_group_user(group_id, user_id)
-
-
 
 Removes a user's access from this group.
 
@@ -439,8 +512,6 @@ void (empty response body)
 # **get_group**
 > Group get_group(group_id)
 
-
-
 Returns a `Group` object.
 
 ### Example
@@ -515,10 +586,164 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_group_containing_group**
+> GroupContainingGroup get_group_containing_group(group_id, containing_group_id)
+
+Gets a specific containing group for a group.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.group_containing_group import GroupContainingGroup
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.GroupsApi(api_client)
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
+
+    try:
+        api_response = api_instance.get_group_containing_group(group_id, containing_group_id)
+        print("The response of GroupsApi->get_group_containing_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GroupsApi->get_group_containing_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The ID of the group. | 
+ **containing_group_id** | **str**| The ID of the containing group. | 
+
+### Return type
+
+[**GroupContainingGroup**](GroupContainingGroup.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created &#x60;GroupContainingGroup&#x60; object. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_group_containing_groups**
+> GroupContainingGroupList get_group_containing_groups(group_id)
+
+Gets the list of groups that the group gives access to.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.group_containing_group_list import GroupContainingGroupList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.GroupsApi(api_client)
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+
+    try:
+        api_response = api_instance.get_group_containing_groups(group_id)
+        print("The response of GroupsApi->get_group_containing_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GroupsApi->get_group_containing_groups: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The ID of the group. | 
+
+### Return type
+
+[**GroupContainingGroupList**](GroupContainingGroupList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The resources that the group gives access to. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_group_message_channels**
 > MessageChannelList get_group_message_channels(group_id)
-
-
 
 Gets the list of audit and reviewer message channels attached to a group.
 
@@ -597,8 +822,6 @@ Name | Type | Description  | Notes
 # **get_group_on_call_schedules**
 > OnCallScheduleList get_group_on_call_schedules(group_id)
 
-
-
 Gets the list of on call schedules attached to a group.
 
 ### Example
@@ -675,8 +898,6 @@ Name | Type | Description  | Notes
 
 # **get_group_resources**
 > GroupResourceList get_group_resources(group_id)
-
-
 
 Gets the list of resources that the group gives access to.
 
@@ -755,8 +976,6 @@ Name | Type | Description  | Notes
 # **get_group_reviewer_stages**
 > List[ReviewerStage] get_group_reviewer_stages(group_id)
 
-
-
 Gets the list of reviewer stages for a group.
 
 ### Example
@@ -834,8 +1053,6 @@ Name | Type | Description  | Notes
 # **get_group_reviewers**
 > List[str] get_group_reviewers(group_id)
 
-
-
 Gets the list of owner IDs of the reviewers for a group.
 
 ### Example
@@ -911,8 +1128,6 @@ Name | Type | Description  | Notes
 
 # **get_group_tags**
 > TagsList get_group_tags(group_id)
-
-
 
 Returns all tags applied to the group.
 
@@ -991,8 +1206,6 @@ Name | Type | Description  | Notes
 # **get_group_users**
 > GroupUserList get_group_users(group_id)
 
-
-
 Gets the list of users for this group.
 
 ### Example
@@ -1070,8 +1283,6 @@ Name | Type | Description  | Notes
 # **get_group_visibility**
 > VisibilityInfo get_group_visibility(group_id)
 
-
-
 Gets the visibility of this group.
 
 ### Example
@@ -1148,8 +1359,6 @@ Name | Type | Description  | Notes
 
 # **get_groups**
 > PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
-
-
 
 Returns a list of groups for your organization.
 
@@ -1234,10 +1443,84 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **remove_group_containing_group**
+> remove_group_containing_group(group_id, containing_group_id)
+
+Removes a containing group from a group.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.GroupsApi(api_client)
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
+
+    try:
+        api_instance.remove_group_containing_group(group_id, containing_group_id)
+    except Exception as e:
+        print("Exception when calling GroupsApi->remove_group_containing_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The ID of the group. | 
+ **containing_group_id** | **str**| The ID of the containing group. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The containing group was successfully removed from the group. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_group_message_channels**
 > List[str] set_group_message_channels(group_id, message_channel_id_list)
-
-
 
 Sets the list of audit message channels attached to a group.
 
@@ -1318,8 +1601,6 @@ Name | Type | Description  | Notes
 # **set_group_on_call_schedules**
 > List[str] set_group_on_call_schedules(group_id, on_call_schedule_id_list)
 
-
-
 Sets the list of on call schedules attached to a group.
 
 ### Example
@@ -1399,8 +1680,6 @@ Name | Type | Description  | Notes
 # **set_group_resources**
 > set_group_resources(group_id, update_group_resources_info)
 
-
-
 Sets the list of resources that the group gives access to.
 
 ### Example
@@ -1477,8 +1756,6 @@ void (empty response body)
 
 # **set_group_reviewer_stages**
 > List[ReviewerStage] set_group_reviewer_stages(group_id, reviewer_stage_list)
-
-
 
 Sets the list of reviewer stages for a group.
 
@@ -1560,8 +1837,6 @@ Name | Type | Description  | Notes
 # **set_group_reviewers**
 > List[str] set_group_reviewers(group_id, reviewer_id_list)
 
-
-
 Sets the list of reviewers for a group.
 
 ### Example
@@ -1641,8 +1916,6 @@ Name | Type | Description  | Notes
 # **set_group_visibility**
 > VisibilityInfo set_group_visibility(group_id, visibility_info)
 
-
-
 Sets the visibility of this group.
 
 ### Example
@@ -1721,8 +1994,6 @@ Name | Type | Description  | Notes
 
 # **update_groups**
 > UpdateGroupInfoList update_groups(update_group_info_list)
-
-
 
 Bulk updates a list of groups.
 
