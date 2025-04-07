@@ -11,6 +11,8 @@ Method | HTTP request | Description
 # **create_request**
 > CreateRequest200Response create_request(create_request_info)
 
+
+
 Create an access request
 
 ### Example
@@ -88,6 +90,8 @@ Name | Type | Description  | Notes
 
 # **get_requests**
 > RequestList get_requests(cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+
+
 
 Returns a list of requests for your organization that is visible by the admin.
 

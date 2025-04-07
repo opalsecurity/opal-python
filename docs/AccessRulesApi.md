@@ -11,6 +11,8 @@ Method | HTTP request | Description
 # **get_access_rule**
 > AccessRuleCondition get_access_rule(access_rule_id)
 
+
+
 Returns a list of access rule config given the group_id of the access rule.
 
 ### Example
@@ -87,6 +89,8 @@ Name | Type | Description  | Notes
 
 # **update_access_rule**
 > AccessRuleCondition update_access_rule(access_rule_id, access_rule_condition)
+
+
 
 Updates the access rule config for the given group_id.
 

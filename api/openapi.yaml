@@ -5930,6 +5930,16 @@ components:
           type: object
           required:
             - group_id
+        snowflake_role:
+          description: Remote info for Snowflake role.
+          properties:
+            role_id:
+              description: The id of the Snowflake role.
+              example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
+              type: string
+          type: object
+          required:
+            - role_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
