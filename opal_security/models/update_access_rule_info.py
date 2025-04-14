@@ -18,19 +18,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from opal_security.models.tag_selector import TagSelector
+from opal_security.models.rule_clauses import RuleClauses
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RuleDisjunction(BaseModel):
+class UpdateAccessRuleInfo(BaseModel):
     """
-    RuleDisjunction
+    # UpdateAccessRuleInfo Object ### Description The `UpdateAccessRuleInfo` object is used as an input to the UpdateAccessRule and CreateAccessRule API.
     """ # noqa: E501
-    selectors: List[TagSelector]
+    name: StrictStr = Field(description="The name of the access rule.")
+    description: StrictStr = Field(description="A description of the group.")
+    admin_owner_id: StrictStr = Field(description="The ID of the owner of the group.")
+    status: StrictStr = Field(description="The status of the access rule.")
+    rule_clauses: RuleClauses = Field(alias="ruleClauses")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["selectors"]
+    __properties: ClassVar[List[str]] = ["name", "description", "admin_owner_id", "status", "ruleClauses"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['ACTIVE', 'PAUSED']):
+            raise ValueError("must be one of enum values ('ACTIVE', 'PAUSED')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +61,7 @@ class RuleDisjunction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RuleDisjunction from a JSON string"""
+        """Create an instance of UpdateAccessRuleInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,13 +84,9 @@ class RuleDisjunction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in selectors (list)
-        _items = []
-        if self.selectors:
-            for _item_selectors in self.selectors:
-                if _item_selectors:
-                    _items.append(_item_selectors.to_dict())
-            _dict['selectors'] = _items
+        # override the default output from pydantic by calling `to_dict()` of rule_clauses
+        if self.rule_clauses:
+            _dict['ruleClauses'] = self.rule_clauses.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -89,7 +96,7 @@ class RuleDisjunction(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RuleDisjunction from a dict"""
+        """Create an instance of UpdateAccessRuleInfo from a dict"""
         if obj is None:
             return None
 
@@ -97,7 +104,11 @@ class RuleDisjunction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "selectors": [TagSelector.from_dict(_item) for _item in obj["selectors"]] if obj.get("selectors") is not None else None
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "admin_owner_id": obj.get("admin_owner_id"),
+            "status": obj.get("status"),
+            "ruleClauses": RuleClauses.from_dict(obj["ruleClauses"]) if obj.get("ruleClauses") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
