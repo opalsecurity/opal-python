@@ -22,6 +22,8 @@ Method | HTTP request | Description
 # **add_bundle_group**
 > BundleGroup add_bundle_group(bundle_id, add_bundle_group_request)
 
+
+
 Adds a group to a bundle.
 
 ### Example
@@ -101,6 +103,8 @@ Name | Type | Description  | Notes
 
 # **add_bundle_resource**
 > BundleResource add_bundle_resource(bundle_id, add_bundle_resource_request=add_bundle_resource_request)
+
+
 
 Adds a resource to a bundle.
 
@@ -182,6 +186,8 @@ Name | Type | Description  | Notes
 # **create_bundle**
 > Bundle create_bundle(create_bundle_info)
 
+
+
 Creates a bundle.
 
 ### Example
@@ -260,6 +266,8 @@ Name | Type | Description  | Notes
 # **delete_bundle**
 > delete_bundle(bundle_id)
 
+
+
 Deletes a bundle.
 
 ### Example
@@ -333,6 +341,8 @@ void (empty response body)
 
 # **get_bundle**
 > Bundle get_bundle(bundle_id)
+
+
 
 Returns a `Bundle` object.
 
@@ -410,6 +420,8 @@ Name | Type | Description  | Notes
 
 # **get_bundle_groups**
 > PaginatedBundleGroupList get_bundle_groups(bundle_id, page_size=page_size, cursor=cursor)
+
+
 
 Returns a list of `Group` objects in a given bundle.
 
@@ -492,6 +504,8 @@ Name | Type | Description  | Notes
 # **get_bundle_resources**
 > PaginatedBundleResourceList get_bundle_resources(bundle_id, page_size=page_size, cursor=cursor)
 
+
+
 Returns a list of `Resource` objects in a given bundle.
 
 ### Example
@@ -573,6 +587,8 @@ Name | Type | Description  | Notes
 # **get_bundle_visibility**
 > VisibilityInfo get_bundle_visibility(bundle_id)
 
+
+
 Gets the visibility of the bundle.
 
 ### Example
@@ -649,6 +665,8 @@ Name | Type | Description  | Notes
 
 # **get_bundles**
 > PaginatedBundleList get_bundles(page_size=page_size, cursor=cursor, contains=contains)
+
+
 
 Returns a list of `Bundle` objects.
 
@@ -731,6 +749,8 @@ Name | Type | Description  | Notes
 # **remove_bundle_group**
 > remove_bundle_group(bundle_id, group_id)
 
+
+
 Removes a group from a bundle.
 
 ### Example
@@ -806,6 +826,8 @@ void (empty response body)
 
 # **remove_bundle_resource**
 > remove_bundle_resource(bundle_id, resource_id, access_level_remote_id=access_level_remote_id)
+
+
 
 Removes a resource from a bundle.
 
@@ -885,6 +907,8 @@ void (empty response body)
 # **set_bundle_visibility**
 > set_bundle_visibility(bundle_id, visibility_info)
 
+
+
 Sets the visibility of the bundle.
 
 ### Example
@@ -961,6 +985,8 @@ void (empty response body)
 
 # **update_bundle**
 > Bundle update_bundle(bundle_id, bundle)
+
+
 
 Updates a bundle.
 

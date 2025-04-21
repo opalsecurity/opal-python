@@ -319,6 +319,8 @@ class RequestsApi:
     @validate_call
     def get_requests(
         self,
+        start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
+        end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -339,6 +341,10 @@ class RequestsApi:
 
         Returns a list of requests for your organization that is visible by the admin.
 
+        :param start_date_filter: A start date filter for the events.
+        :type start_date_filter: str
+        :param end_date_filter: An end date filter for the events.
+        :type end_date_filter: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -368,6 +374,8 @@ class RequestsApi:
         """ # noqa: E501
 
         _param = self._get_requests_serialize(
+            start_date_filter=start_date_filter,
+            end_date_filter=end_date_filter,
             cursor=cursor,
             page_size=page_size,
             show_pending_only=show_pending_only,
@@ -394,6 +402,8 @@ class RequestsApi:
     @validate_call
     def get_requests_with_http_info(
         self,
+        start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
+        end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -414,6 +424,10 @@ class RequestsApi:
 
         Returns a list of requests for your organization that is visible by the admin.
 
+        :param start_date_filter: A start date filter for the events.
+        :type start_date_filter: str
+        :param end_date_filter: An end date filter for the events.
+        :type end_date_filter: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -443,6 +457,8 @@ class RequestsApi:
         """ # noqa: E501
 
         _param = self._get_requests_serialize(
+            start_date_filter=start_date_filter,
+            end_date_filter=end_date_filter,
             cursor=cursor,
             page_size=page_size,
             show_pending_only=show_pending_only,
@@ -469,6 +485,8 @@ class RequestsApi:
     @validate_call
     def get_requests_without_preload_content(
         self,
+        start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
+        end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -489,6 +507,10 @@ class RequestsApi:
 
         Returns a list of requests for your organization that is visible by the admin.
 
+        :param start_date_filter: A start date filter for the events.
+        :type start_date_filter: str
+        :param end_date_filter: An end date filter for the events.
+        :type end_date_filter: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -518,6 +540,8 @@ class RequestsApi:
         """ # noqa: E501
 
         _param = self._get_requests_serialize(
+            start_date_filter=start_date_filter,
+            end_date_filter=end_date_filter,
             cursor=cursor,
             page_size=page_size,
             show_pending_only=show_pending_only,
@@ -539,6 +563,8 @@ class RequestsApi:
 
     def _get_requests_serialize(
         self,
+        start_date_filter,
+        end_date_filter,
         cursor,
         page_size,
         show_pending_only,
@@ -564,6 +590,14 @@ class RequestsApi:
 
         # process the path parameters
         # process the query parameters
+        if start_date_filter is not None:
+            
+            _query_params.append(('start_date_filter', start_date_filter))
+            
+        if end_date_filter is not None:
+            
+            _query_params.append(('end_date_filter', end_date_filter))
+            
         if cursor is not None:
             
             _query_params.append(('cursor', cursor))

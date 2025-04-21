@@ -29,6 +29,7 @@ from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoG
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
+from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -45,8 +46,9 @@ class GroupRemoteInfo(BaseModel):
     duo_group: Optional[GroupRemoteInfoDuoGroup] = None
     azure_ad_security_group: Optional[GroupRemoteInfoAzureAdSecurityGroup] = None
     azure_ad_microsoft_365_group: Optional[GroupRemoteInfoAzureAdMicrosoft365Group] = None
+    snowflake_role: Optional[GroupRemoteInfoSnowflakeRole] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["active_directory_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group"]
+    __properties: ClassVar[List[str]] = ["active_directory_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,6 +118,9 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of azure_ad_microsoft_365_group
         if self.azure_ad_microsoft_365_group:
             _dict['azure_ad_microsoft_365_group'] = self.azure_ad_microsoft_365_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of snowflake_role
+        if self.snowflake_role:
+            _dict['snowflake_role'] = self.snowflake_role.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -141,7 +146,8 @@ class GroupRemoteInfo(BaseModel):
             "okta_group": GroupRemoteInfoOktaGroup.from_dict(obj["okta_group"]) if obj.get("okta_group") is not None else None,
             "duo_group": GroupRemoteInfoDuoGroup.from_dict(obj["duo_group"]) if obj.get("duo_group") is not None else None,
             "azure_ad_security_group": GroupRemoteInfoAzureAdSecurityGroup.from_dict(obj["azure_ad_security_group"]) if obj.get("azure_ad_security_group") is not None else None,
-            "azure_ad_microsoft_365_group": GroupRemoteInfoAzureAdMicrosoft365Group.from_dict(obj["azure_ad_microsoft_365_group"]) if obj.get("azure_ad_microsoft_365_group") is not None else None
+            "azure_ad_microsoft_365_group": GroupRemoteInfoAzureAdMicrosoft365Group.from_dict(obj["azure_ad_microsoft_365_group"]) if obj.get("azure_ad_microsoft_365_group") is not None else None,
+            "snowflake_role": GroupRemoteInfoSnowflakeRole.from_dict(obj["snowflake_role"]) if obj.get("snowflake_role") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
