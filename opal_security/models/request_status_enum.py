@@ -27,10 +27,10 @@ class RequestStatusEnum(str, Enum):
     """
     allowed enum values
     """
-    PENDING = 'pending'
-    APPROVED = 'approved'
-    DENIED = 'denied'
-    CANCELED = 'canceled'
+    PENDING = 'PENDING'
+    APPROVED = 'APPROVED'
+    DENIED = 'DENIED'
+    CANCELED = 'CANCELED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

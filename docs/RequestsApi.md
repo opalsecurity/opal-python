@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_requests**
-> RequestList get_requests(cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+> RequestList get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
 
 Returns a list of requests for your organization that is visible by the admin.
 
@@ -123,12 +123,14 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.RequestsApi(api_client)
+    start_date_filter = '2021-11-01' # str | A start date filter for the events. (optional)
+    end_date_filter = '2021-11-12' # str | An end date filter for the events. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     show_pending_only = True # bool | Boolean toggle for if it should only show pending requests. (optional)
 
     try:
-        api_response = api_instance.get_requests(cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+        api_response = api_instance.get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
         print("The response of RequestsApi->get_requests:\n")
         pprint(api_response)
     except Exception as e:
@@ -142,6 +144,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **start_date_filter** | **str**| A start date filter for the events. | [optional] 
+ **end_date_filter** | **str**| An end date filter for the events. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
  **show_pending_only** | **bool**| Boolean toggle for if it should only show pending requests. | [optional] 

@@ -4,13 +4,13 @@
 
 ## Enum
 
-* `PENDING` (value: `'pending'`)
+* `PENDING` (value: `'PENDING'`)
 
-* `APPROVED` (value: `'approved'`)
+* `APPROVED` (value: `'APPROVED'`)
 
-* `DENIED` (value: `'denied'`)
+* `DENIED` (value: `'DENIED'`)
 
-* `CANCELED` (value: `'canceled'`)
+* `CANCELED` (value: `'CANCELED'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

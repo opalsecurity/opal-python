@@ -17,7 +17,7 @@
 # import models into model package
 from opal_security.models.access import Access
 from opal_security.models.access_list import AccessList
-from opal_security.models.access_rule_condition import AccessRuleCondition
+from opal_security.models.access_rule import AccessRule
 from opal_security.models.add_bundle_group_request import AddBundleGroupRequest
 from opal_security.models.add_bundle_resource_request import AddBundleResourceRequest
 from opal_security.models.add_group_resource_request import AddGroupResourceRequest
@@ -73,6 +73,7 @@ from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoG
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
+from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
 from opal_security.models.group_resource import GroupResource
 from opal_security.models.group_resource_list import GroupResourceList
 from opal_security.models.group_type_enum import GroupTypeEnum
@@ -170,6 +171,7 @@ from opal_security.models.ticketing_provider_enum import TicketingProviderEnum
 from opal_security.models.uar import UAR
 from opal_security.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
 from opal_security.models.uar_scope import UARScope
+from opal_security.models.update_access_rule_info import UpdateAccessRuleInfo
 from opal_security.models.update_configuration_template_info import UpdateConfigurationTemplateInfo
 from opal_security.models.update_group_binding_info import UpdateGroupBindingInfo
 from opal_security.models.update_group_binding_info_list import UpdateGroupBindingInfoList
