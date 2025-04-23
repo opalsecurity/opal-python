@@ -82,14 +82,14 @@ configuration = opal.Configuration(
 with opal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal.AccessRulesApi(api_client)
-    access_rule_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The access rule ID (group ID) of the access rule.
+    update_access_rule_info = opal_security.UpdateAccessRuleInfo() # UpdateAccessRuleInfo | 
 
     try:
-        api_response = api_instance.get_access_rule(access_rule_id)
-        print("The response of AccessRulesApi->get_access_rule:\n")
+        api_response = api_instance.create_access_rule(update_access_rule_info)
+        print("The response of AccessRulesApi->create_access_rule:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AccessRulesApi->get_access_rule: %s\n" % e)
+        print("Exception when calling AccessRulesApi->create_access_rule: %s\n" % e)
 
 ```
 
@@ -141,6 +141,7 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AccessRulesApi* | [**create_access_rule**](docs/AccessRulesApi.md#create_access_rule) | **POST** /access-rules | 
 *AccessRulesApi* | [**get_access_rule**](docs/AccessRulesApi.md#get_access_rule) | **GET** /access-rules/{access_rule_id} | 
 *AccessRulesApi* | [**update_access_rule**](docs/AccessRulesApi.md#update_access_rule) | **PUT** /access-rules/{access_rule_id} | 
 *AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /apps/{app_id} | 
@@ -261,7 +262,7 @@ Class | Method | HTTP request | Description
 
  - [Access](docs/Access.md)
  - [AccessList](docs/AccessList.md)
- - [AccessRuleCondition](docs/AccessRuleCondition.md)
+ - [AccessRule](docs/AccessRule.md)
  - [AddBundleGroupRequest](docs/AddBundleGroupRequest.md)
  - [AddBundleResourceRequest](docs/AddBundleResourceRequest.md)
  - [AddGroupResourceRequest](docs/AddGroupResourceRequest.md)
@@ -317,6 +318,7 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoGoogleGroup](docs/GroupRemoteInfoGoogleGroup.md)
  - [GroupRemoteInfoLdapGroup](docs/GroupRemoteInfoLdapGroup.md)
  - [GroupRemoteInfoOktaGroup](docs/GroupRemoteInfoOktaGroup.md)
+ - [GroupRemoteInfoSnowflakeRole](docs/GroupRemoteInfoSnowflakeRole.md)
  - [GroupResource](docs/GroupResource.md)
  - [GroupResourceList](docs/GroupResourceList.md)
  - [GroupTypeEnum](docs/GroupTypeEnum.md)
@@ -414,6 +416,7 @@ Class | Method | HTTP request | Description
  - [UAR](docs/UAR.md)
  - [UARReviewerAssignmentPolicyEnum](docs/UARReviewerAssignmentPolicyEnum.md)
  - [UARScope](docs/UARScope.md)
+ - [UpdateAccessRuleInfo](docs/UpdateAccessRuleInfo.md)
  - [UpdateConfigurationTemplateInfo](docs/UpdateConfigurationTemplateInfo.md)
  - [UpdateGroupBindingInfo](docs/UpdateGroupBindingInfo.md)
  - [UpdateGroupBindingInfoList](docs/UpdateGroupBindingInfoList.md)

@@ -4293,7 +4293,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ResourceUserAccessStatus:
-        """resource_user_access_status_retrieve
+        """(Deprecated) resource_user_access_status_retrieve
 
         Get user's access status to a resource.
 
@@ -4328,6 +4328,7 @@ class ResourcesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /resource-user-access-status/{resource_id}/{user_id} is deprecated.", DeprecationWarning)
 
         _param = self._resource_user_access_status_retrieve_serialize(
             resource_id=resource_id,
@@ -4376,7 +4377,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ResourceUserAccessStatus]:
-        """resource_user_access_status_retrieve
+        """(Deprecated) resource_user_access_status_retrieve
 
         Get user's access status to a resource.
 
@@ -4411,6 +4412,7 @@ class ResourcesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /resource-user-access-status/{resource_id}/{user_id} is deprecated.", DeprecationWarning)
 
         _param = self._resource_user_access_status_retrieve_serialize(
             resource_id=resource_id,
@@ -4459,7 +4461,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """resource_user_access_status_retrieve
+        """(Deprecated) resource_user_access_status_retrieve
 
         Get user's access status to a resource.
 
@@ -4494,6 +4496,7 @@ class ResourcesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /resource-user-access-status/{resource_id}/{user_id} is deprecated.", DeprecationWarning)
 
         _param = self._resource_user_access_status_retrieve_serialize(
             resource_id=resource_id,
