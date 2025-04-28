@@ -35,6 +35,8 @@ Method | HTTP request | Description
 # **add_group_containing_group**
 > GroupContainingGroup add_group_containing_group(group_id, group_containing_group)
 
+
+
 Creates a new containing group.
 
 ### Example
@@ -113,6 +115,8 @@ Name | Type | Description  | Notes
 
 # **add_group_resource**
 > GroupResource add_group_resource(group_id, resource_id, access_level_remote_id=access_level_remote_id, add_group_resource_request=add_group_resource_request)
+
+
 
 Adds a resource to a group.
 
@@ -197,6 +201,8 @@ Name | Type | Description  | Notes
 
 # **add_group_user**
 > GroupUser add_group_user(group_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_group_user_request=add_group_user_request)
+
+
 
 Adds a user to this group.
 
@@ -284,6 +290,8 @@ Name | Type | Description  | Notes
 # **create_group**
 > Group create_group(create_group_info)
 
+
+
 Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
 
 ### Example
@@ -362,6 +370,8 @@ Name | Type | Description  | Notes
 # **delete_group**
 > delete_group(group_id)
 
+
+
 Deletes a group.
 
 ### Example
@@ -435,6 +445,8 @@ void (empty response body)
 
 # **delete_group_user**
 > delete_group_user(group_id, user_id)
+
+
 
 Removes a user's access from this group.
 
@@ -512,6 +524,8 @@ void (empty response body)
 # **get_group**
 > Group get_group(group_id)
 
+
+
 Returns a `Group` object.
 
 ### Example
@@ -588,6 +602,8 @@ Name | Type | Description  | Notes
 
 # **get_group_containing_group**
 > GroupContainingGroup get_group_containing_group(group_id, containing_group_id)
+
+
 
 Gets a specific containing group for a group.
 
@@ -668,6 +684,8 @@ Name | Type | Description  | Notes
 # **get_group_containing_groups**
 > GroupContainingGroupList get_group_containing_groups(group_id)
 
+
+
 Gets the list of groups that the group gives access to.
 
 ### Example
@@ -744,6 +762,8 @@ Name | Type | Description  | Notes
 
 # **get_group_message_channels**
 > MessageChannelList get_group_message_channels(group_id)
+
+
 
 Gets the list of audit and reviewer message channels attached to a group.
 
@@ -822,6 +842,8 @@ Name | Type | Description  | Notes
 # **get_group_on_call_schedules**
 > OnCallScheduleList get_group_on_call_schedules(group_id)
 
+
+
 Gets the list of on call schedules attached to a group.
 
 ### Example
@@ -898,6 +920,8 @@ Name | Type | Description  | Notes
 
 # **get_group_resources**
 > GroupResourceList get_group_resources(group_id)
+
+
 
 Gets the list of resources that the group gives access to.
 
@@ -976,6 +1000,8 @@ Name | Type | Description  | Notes
 # **get_group_reviewer_stages**
 > List[ReviewerStage] get_group_reviewer_stages(group_id)
 
+
+
 Gets the list of reviewer stages for a group.
 
 ### Example
@@ -1053,6 +1079,8 @@ Name | Type | Description  | Notes
 # **get_group_reviewers**
 > List[str] get_group_reviewers(group_id)
 
+
+
 Gets the list of owner IDs of the reviewers for a group.
 
 ### Example
@@ -1128,6 +1156,8 @@ Name | Type | Description  | Notes
 
 # **get_group_tags**
 > TagsList get_group_tags(group_id)
+
+
 
 Returns all tags applied to the group.
 
@@ -1206,6 +1236,8 @@ Name | Type | Description  | Notes
 # **get_group_users**
 > GroupUserList get_group_users(group_id)
 
+
+
 Gets the list of users for this group.
 
 ### Example
@@ -1283,6 +1315,8 @@ Name | Type | Description  | Notes
 # **get_group_visibility**
 > VisibilityInfo get_group_visibility(group_id)
 
+
+
 Gets the visibility of this group.
 
 ### Example
@@ -1359,6 +1393,8 @@ Name | Type | Description  | Notes
 
 # **get_groups**
 > PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
+
+
 
 Returns a list of groups for your organization.
 
@@ -1446,6 +1482,8 @@ Name | Type | Description  | Notes
 # **remove_group_containing_group**
 > remove_group_containing_group(group_id, containing_group_id)
 
+
+
 Removes a containing group from a group.
 
 ### Example
@@ -1521,6 +1559,8 @@ void (empty response body)
 
 # **set_group_message_channels**
 > List[str] set_group_message_channels(group_id, message_channel_id_list)
+
+
 
 Sets the list of audit message channels attached to a group.
 
@@ -1601,6 +1641,8 @@ Name | Type | Description  | Notes
 # **set_group_on_call_schedules**
 > List[str] set_group_on_call_schedules(group_id, on_call_schedule_id_list)
 
+
+
 Sets the list of on call schedules attached to a group.
 
 ### Example
@@ -1680,6 +1722,8 @@ Name | Type | Description  | Notes
 # **set_group_resources**
 > set_group_resources(group_id, update_group_resources_info)
 
+
+
 Sets the list of resources that the group gives access to.
 
 ### Example
@@ -1756,6 +1800,8 @@ void (empty response body)
 
 # **set_group_reviewer_stages**
 > List[ReviewerStage] set_group_reviewer_stages(group_id, reviewer_stage_list)
+
+
 
 Sets the list of reviewer stages for a group.
 
@@ -1837,6 +1883,8 @@ Name | Type | Description  | Notes
 # **set_group_reviewers**
 > List[str] set_group_reviewers(group_id, reviewer_id_list)
 
+
+
 Sets the list of reviewers for a group.
 
 ### Example
@@ -1916,6 +1964,8 @@ Name | Type | Description  | Notes
 # **set_group_visibility**
 > VisibilityInfo set_group_visibility(group_id, visibility_info)
 
+
+
 Sets the visibility of this group.
 
 ### Example
@@ -1994,6 +2044,8 @@ Name | Type | Description  | Notes
 
 # **update_groups**
 > UpdateGroupInfoList update_groups(update_group_info_list)
+
+
 
 Bulk updates a list of groups.
 
