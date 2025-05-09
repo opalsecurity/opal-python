@@ -22,6 +22,8 @@ Method | HTTP request | Description
 # **add_bundle_group**
 > BundleGroup add_bundle_group(bundle_id, add_bundle_group_request)
 
+
+
 Adds a group to a bundle.
 
 ### Example
@@ -101,6 +103,8 @@ Name | Type | Description  | Notes
 
 # **add_bundle_resource**
 > BundleResource add_bundle_resource(bundle_id, add_bundle_resource_request=add_bundle_resource_request)
+
+
 
 Adds a resource to a bundle.
 
@@ -182,6 +186,8 @@ Name | Type | Description  | Notes
 # **create_bundle**
 > Bundle create_bundle(create_bundle_info)
 
+
+
 Creates a bundle.
 
 ### Example
@@ -260,6 +266,8 @@ Name | Type | Description  | Notes
 # **delete_bundle**
 > delete_bundle(bundle_id)
 
+
+
 Deletes a bundle.
 
 ### Example
@@ -333,6 +341,8 @@ void (empty response body)
 
 # **get_bundle**
 > Bundle get_bundle(bundle_id)
+
+
 
 Returns a `Bundle` object.
 
@@ -410,6 +420,8 @@ Name | Type | Description  | Notes
 
 # **get_bundle_groups**
 > PaginatedBundleGroupList get_bundle_groups(bundle_id, page_size=page_size, cursor=cursor)
+
+
 
 Returns a list of `Group` objects in a given bundle.
 
@@ -492,6 +504,8 @@ Name | Type | Description  | Notes
 # **get_bundle_resources**
 > PaginatedBundleResourceList get_bundle_resources(bundle_id, page_size=page_size, cursor=cursor)
 
+
+
 Returns a list of `Resource` objects in a given bundle.
 
 ### Example
@@ -573,6 +587,8 @@ Name | Type | Description  | Notes
 # **get_bundle_visibility**
 > VisibilityInfo get_bundle_visibility(bundle_id)
 
+
+
 Gets the visibility of the bundle.
 
 ### Example
@@ -649,6 +665,8 @@ Name | Type | Description  | Notes
 
 # **get_bundles**
 > PaginatedBundleList get_bundles(page_size=page_size, cursor=cursor, contains=contains)
+
+
 
 Returns a list of `Bundle` objects.
 
@@ -729,7 +747,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_bundle_group**
-> remove_bundle_group(bundle_id, group_id)
+> remove_bundle_group(bundle_id, group_id, access_level_remote_id=access_level_remote_id)
+
+
 
 Removes a group from a bundle.
 
@@ -766,9 +786,10 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.BundlesApi(api_client)
     bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
     group_id = '72e75a6f-7183-48c5-94ff-6013f213314b' # str | The ID of the group to remove.
+    access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to remove. (optional)
 
     try:
-        api_instance.remove_bundle_group(bundle_id, group_id)
+        api_instance.remove_bundle_group(bundle_id, group_id, access_level_remote_id=access_level_remote_id)
     except Exception as e:
         print("Exception when calling BundlesApi->remove_bundle_group: %s\n" % e)
 ```
@@ -782,6 +803,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bundle_id** | **str**| The ID of the bundle. | 
  **group_id** | **str**| The ID of the group to remove. | 
+ **access_level_remote_id** | **str**| The remote ID of the access level to remove. | [optional] 
 
 ### Return type
 
@@ -806,6 +828,8 @@ void (empty response body)
 
 # **remove_bundle_resource**
 > remove_bundle_resource(bundle_id, resource_id, access_level_remote_id=access_level_remote_id)
+
+
 
 Removes a resource from a bundle.
 
@@ -885,6 +909,8 @@ void (empty response body)
 # **set_bundle_visibility**
 > set_bundle_visibility(bundle_id, visibility_info)
 
+
+
 Sets the visibility of the bundle.
 
 ### Example
@@ -961,6 +987,8 @@ void (empty response body)
 
 # **update_bundle**
 > Bundle update_bundle(bundle_id, bundle)
+
+
 
 Updates a bundle.
 

@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group_id** | **str** | The ID of the group to add. | 
+**access_level_remote_id** | **str** | The remote ID of the access level to grant to this user. Required if the group being added requires an access level. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
+**access_level_name** | **str** | The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used. | [optional] 
 
 ## Example
 

@@ -408,6 +408,14 @@ paths:
                   example: 72e75a6f-7183-48c5-94ff-6013f213314b
                   format: uuid
                   type: string
+                access_level_remote_id:
+                  description: The remote ID of the access level to grant to this user. Required if the group being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.
+                  example: arn:aws:iam::590304332660:role/AdministratorAccess
+                  type: string
+                access_level_name:
+                  description: The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.
+                  example: AdministratorAccess
+                  type: string
               required:
                 - group_id
       responses:
@@ -442,6 +450,15 @@ paths:
           schema:
             format: uuid
             type: string
+        - description: The remote ID of the access level to remove.
+          example: arn:aws:iam::590304332660:role/AdministratorAccess
+          explode: true
+          in: query
+          name: access_level_remote_id
+          required: false
+          schema:
+            type: string
+          style: form
       responses:
         "200":
           description: Group was successfully removed from the bundle.
@@ -589,8 +606,8 @@ paths:
               summary: Example with date
               value: 2021-11-01
             withDatetime:
-              summary: Example with date and time
-              value: 2021-11-01 12:00:00
+              summary: Example with date and time in ISO 8601 datetime format.
+              value: 2025-01-01T00:00:00Z
           explode: true
           in: query
           name: start_date_filter
@@ -604,8 +621,8 @@ paths:
               summary: Example with date
               value: 2021-11-12
             withDatetime:
-              summary: Example with date and time
-              value: 2021-11-12 12:00:00
+              summary: Example with date and time in ISO 8601 datetime format.
+              value: 2025-01-01T00:00:00Z
           explode: true
           in: query
           name: end_date_filter
@@ -1988,6 +2005,36 @@ paths:
       description: Returns a list of requests for your organization that is visible by the admin.
       operationId: getRequests
       parameters:
+        - description: A start date filter for the events.
+          examples:
+            withDate:
+              summary: Example with date
+              value: 2021-11-01
+            withDatetime:
+              summary: Example with date and time in ISO 8601 datetime format.
+              value: 2025-01-01T00:00:00Z
+          explode: true
+          in: query
+          name: start_date_filter
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: An end date filter for the events.
+          examples:
+            withDate:
+              summary: Example with date
+              value: 2021-11-12
+            withDatetime:
+              summary: Example with date and time in ISO 8601 datetime format.
+              value: 2025-01-01T00:00:00Z
+          explode: true
+          in: query
+          name: end_date_filter
+          required: false
+          schema:
+            type: string
+          style: form
         - description: The pagination cursor value.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           explode: true
@@ -2841,6 +2888,7 @@ paths:
         - resources
   /resource-user-access-status/{resource_id}/{user_id}:
     get:
+      deprecated: true
       description: Get user's access status to a resource.
       operationId: resource_user_access_status_retrieve
       parameters:
@@ -3060,6 +3108,27 @@ paths:
         - BearerAuth: []
       tags:
         - users
+  /access-rules:
+    post:
+      description: Creates a new access rule config for the given group_id.
+      operationId: create_access_rule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAccessRuleInfo"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessRule"
+          description: The created access rule config for the group.
+      security:
+        - BearerAuth: []
+      tags:
+        - access-rules
   /access-rules/{access_rule_id}:
     get:
       description: Returns a list of access rule config given the group_id of the access rule.
@@ -3080,7 +3149,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AccessRuleCondition"
+                $ref: "#/components/schemas/AccessRule"
           description: The access rules for the group.
       security:
         - BearerAuth: []
@@ -3105,13 +3174,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AccessRuleCondition"
+              $ref: "#/components/schemas/UpdateAccessRuleInfo"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AccessRuleCondition"
+                $ref: "#/components/schemas/AccessRule"
           description: The updated access rule config for the group.
       security:
         - BearerAuth: []
@@ -5406,6 +5475,7 @@ components:
         - GCP_BIG_QUERY_TABLE
         - GCP_SERVICE_ACCOUNT
         - GIT_HUB_REPO
+        - GIT_HUB_ORG_ROLE
         - GIT_LAB_PROJECT
         - GOOGLE_WORKSPACE_ROLE
         - MONGO_INSTANCE
@@ -5930,6 +6000,16 @@ components:
           type: object
           required:
             - group_id
+        snowflake_role:
+          description: Remote info for Snowflake role.
+          properties:
+            role_id:
+              description: The id of the Snowflake role.
+              example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
+              type: string
+          type: object
+          required:
+            - role_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
@@ -6803,10 +6883,10 @@ components:
         ### Usage Example
         Returned from the `GET Requests` endpoint.
       enum:
-        - pending
-        - approved
-        - denied
-        - canceled
+        - PENDING
+        - APPROVED
+        - DENIED
+        - CANCELED
       type: string
     Request:
       description: |-
@@ -7679,15 +7759,25 @@ components:
         - group_id
         - group_type
       type: object
-    AccessRuleCondition:
+    UpdateAccessRuleInfo:
       description: |-
-        # Access Rule Config Object
+        # UpdateAccessRuleInfo Object
         ### Description
-        The `AccessRuleConfig` object is used to represent an access rule configuration.
-
-        ### Usage Example
-        Get access rule configurations from the `GET Access Rule Configs` endpoint.
+        The `UpdateAccessRuleInfo` object is used as an input to the UpdateAccessRule and CreateAccessRule API.
       properties:
+        name:
+          description: The name of the access rule.
+          example: Platform Engineering
+          type: string
+        description:
+          description: A description of the group.
+          example: This access rule represents all platform engineers in the company.
+          type: string
+        admin_owner_id:
+          description: The ID of the owner of the group.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
         status:
           description: The status of the access rule.
           type: string
@@ -7700,6 +7790,52 @@ components:
       required:
         - status
         - ruleClauses
+        - name
+        - admin_owner_id
+        - description
+    AccessRule:
+      description: |-
+        # Access Rule Object
+        ### Description
+        The `AccessRule` object is used to represent an access rule configuration.
+
+        ### Usage Example
+        Get access rule configurations from the `GET Access Rule Configs` endpoint.
+      properties:
+        access_rule_id:
+          description: The ID (group ID) of the access rule.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        name:
+          description: The name of the access rule.
+          example: Platform Engineering
+          type: string
+        description:
+          description: A description of the group.
+          example: This access rule represents all platform engineers in the company.
+          type: string
+        admin_owner_id:
+          description: The ID of the owner of the group.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        status:
+          description: The status of the access rule.
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+          example: ACTIVE
+        ruleClauses:
+          $ref: "#/components/schemas/RuleClauses"
+      required:
+        - status
+        - ruleClauses
+        - name
+        - admin_owner_id
+        - access_rule_id
+        - description
     RuleClauses:
       properties:
         when:
@@ -7721,7 +7857,6 @@ components:
       properties:
         selectors:
           type: array
-          minItems: 1
           items:
             $ref: "#/components/schemas/TagSelector"
       required:
@@ -8802,6 +8937,14 @@ components:
           format: uuid
           type: string
           readOnly: true
+        access_level_name:
+          description: The access level of the group within a bundle.
+          example: Read
+          type: string
+        access_level_remote_id:
+          description: The remote ID of the access level of the group within a bundle.
+          example: arn:aws:iam::490306337630:role/SupportUser
+          type: string
     PaginatedBundleGroupList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw

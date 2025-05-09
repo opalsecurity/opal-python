@@ -18,20 +18,31 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
+from opal_security.models.rule_clauses import RuleClauses
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AddBundleGroupRequest(BaseModel):
+class AccessRule(BaseModel):
     """
-    AddBundleGroupRequest
+    # Access Rule Object ### Description The `AccessRule` object is used to represent an access rule configuration.  ### Usage Example Get access rule configurations from the `GET Access Rule Configs` endpoint.
     """ # noqa: E501
-    group_id: StrictStr = Field(description="The ID of the group to add.")
-    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level to grant to this user. Required if the group being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.")
-    access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.")
+    access_rule_id: StrictStr = Field(description="The ID (group ID) of the access rule.")
+    name: StrictStr = Field(description="The name of the access rule.")
+    description: StrictStr = Field(description="A description of the group.")
+    admin_owner_id: StrictStr = Field(description="The ID of the owner of the group.")
+    status: StrictStr = Field(description="The status of the access rule.")
+    rule_clauses: RuleClauses = Field(alias="ruleClauses")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "access_level_remote_id", "access_level_name"]
+    __properties: ClassVar[List[str]] = ["access_rule_id", "name", "description", "admin_owner_id", "status", "ruleClauses"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['ACTIVE', 'PAUSED']):
+            raise ValueError("must be one of enum values ('ACTIVE', 'PAUSED')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +62,7 @@ class AddBundleGroupRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AddBundleGroupRequest from a JSON string"""
+        """Create an instance of AccessRule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,6 +85,9 @@ class AddBundleGroupRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of rule_clauses
+        if self.rule_clauses:
+            _dict['ruleClauses'] = self.rule_clauses.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -83,7 +97,7 @@ class AddBundleGroupRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AddBundleGroupRequest from a dict"""
+        """Create an instance of AccessRule from a dict"""
         if obj is None:
             return None
 
@@ -91,9 +105,12 @@ class AddBundleGroupRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "group_id": obj.get("group_id"),
-            "access_level_remote_id": obj.get("access_level_remote_id"),
-            "access_level_name": obj.get("access_level_name")
+            "access_rule_id": obj.get("access_rule_id"),
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "admin_owner_id": obj.get("admin_owner_id"),
+            "status": obj.get("status"),
+            "ruleClauses": RuleClauses.from_dict(obj["ruleClauses"]) if obj.get("ruleClauses") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

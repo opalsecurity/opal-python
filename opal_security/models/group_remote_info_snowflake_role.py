@@ -19,19 +19,17 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AddBundleGroupRequest(BaseModel):
+class GroupRemoteInfoSnowflakeRole(BaseModel):
     """
-    AddBundleGroupRequest
+    Remote info for Snowflake role.
     """ # noqa: E501
-    group_id: StrictStr = Field(description="The ID of the group to add.")
-    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level to grant to this user. Required if the group being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.")
-    access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.")
+    role_id: StrictStr = Field(description="The id of the Snowflake role.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "access_level_remote_id", "access_level_name"]
+    __properties: ClassVar[List[str]] = ["role_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +49,7 @@ class AddBundleGroupRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AddBundleGroupRequest from a JSON string"""
+        """Create an instance of GroupRemoteInfoSnowflakeRole from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +81,7 @@ class AddBundleGroupRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AddBundleGroupRequest from a dict"""
+        """Create an instance of GroupRemoteInfoSnowflakeRole from a dict"""
         if obj is None:
             return None
 
@@ -91,9 +89,7 @@ class AddBundleGroupRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "group_id": obj.get("group_id"),
-            "access_level_remote_id": obj.get("access_level_remote_id"),
-            "access_level_name": obj.get("access_level_name")
+            "role_id": obj.get("role_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

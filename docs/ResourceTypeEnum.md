@@ -78,6 +78,8 @@ The type of the resource.
 
 * `GIT_HUB_REPO` (value: `'GIT_HUB_REPO'`)
 
+* `GIT_HUB_ORG_ROLE` (value: `'GIT_HUB_ORG_ROLE'`)
+
 * `GIT_LAB_PROJECT` (value: `'GIT_LAB_PROJECT'`)
 
 * `GOOGLE_WORKSPACE_ROLE` (value: `'GOOGLE_WORKSPACE_ROLE'`)
