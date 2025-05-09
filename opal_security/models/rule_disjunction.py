@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
 from opal_security.models.tag_selector import TagSelector
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +28,7 @@ class RuleDisjunction(BaseModel):
     """
     RuleDisjunction
     """ # noqa: E501
-    selectors: Annotated[List[TagSelector], Field(min_length=1)]
+    selectors: List[TagSelector]
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["selectors"]
 

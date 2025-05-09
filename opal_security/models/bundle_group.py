@@ -29,8 +29,10 @@ class BundleGroup(BaseModel):
     """ # noqa: E501
     bundle_id: Optional[StrictStr] = Field(default=None, description="The ID of the bundle containing the group.")
     group_id: Optional[StrictStr] = Field(default=None, description="The ID of the group within a bundle.")
+    access_level_name: Optional[StrictStr] = Field(default=None, description="The access level of the group within a bundle.")
+    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level of the group within a bundle.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["bundle_id", "group_id"]
+    __properties: ClassVar[List[str]] = ["bundle_id", "group_id", "access_level_name", "access_level_remote_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +97,9 @@ class BundleGroup(BaseModel):
 
         _obj = cls.model_validate({
             "bundle_id": obj.get("bundle_id"),
-            "group_id": obj.get("group_id")
+            "group_id": obj.get("group_id"),
+            "access_level_name": obj.get("access_level_name"),
+            "access_level_remote_id": obj.get("access_level_remote_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

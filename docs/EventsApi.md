@@ -10,6 +10,8 @@ Method | HTTP request | Description
 # **events**
 > PaginatedEventList events(start_date_filter=start_date_filter, end_date_filter=end_date_filter, actor_filter=actor_filter, object_filter=object_filter, event_type_filter=event_type_filter, api_token_filter=api_token_filter, cursor=cursor, page_size=page_size)
 
+
+
 Returns a list of `Event` objects.
 
 ### Example

@@ -2569,6 +2569,7 @@ class BundlesApi:
         self,
         bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         group_id: Annotated[StrictStr, Field(description="The ID of the group to remove.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to remove.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2590,6 +2591,8 @@ class BundlesApi:
         :type bundle_id: str
         :param group_id: The ID of the group to remove. (required)
         :type group_id: str
+        :param access_level_remote_id: The remote ID of the access level to remove.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2615,6 +2618,7 @@ class BundlesApi:
         _param = self._remove_bundle_group_serialize(
             bundle_id=bundle_id,
             group_id=group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2640,6 +2644,7 @@ class BundlesApi:
         self,
         bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         group_id: Annotated[StrictStr, Field(description="The ID of the group to remove.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to remove.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2661,6 +2666,8 @@ class BundlesApi:
         :type bundle_id: str
         :param group_id: The ID of the group to remove. (required)
         :type group_id: str
+        :param access_level_remote_id: The remote ID of the access level to remove.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2686,6 +2693,7 @@ class BundlesApi:
         _param = self._remove_bundle_group_serialize(
             bundle_id=bundle_id,
             group_id=group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2711,6 +2719,7 @@ class BundlesApi:
         self,
         bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         group_id: Annotated[StrictStr, Field(description="The ID of the group to remove.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to remove.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2732,6 +2741,8 @@ class BundlesApi:
         :type bundle_id: str
         :param group_id: The ID of the group to remove. (required)
         :type group_id: str
+        :param access_level_remote_id: The remote ID of the access level to remove.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2757,6 +2768,7 @@ class BundlesApi:
         _param = self._remove_bundle_group_serialize(
             bundle_id=bundle_id,
             group_id=group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2777,6 +2789,7 @@ class BundlesApi:
         self,
         bundle_id,
         group_id,
+        access_level_remote_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2803,6 +2816,10 @@ class BundlesApi:
         if group_id is not None:
             _path_params['group_id'] = group_id
         # process the query parameters
+        if access_level_remote_id is not None:
+            
+            _query_params.append(('access_level_remote_id', access_level_remote_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
