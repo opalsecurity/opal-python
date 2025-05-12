@@ -407,7 +407,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_access_rule.py
-test/test_group_remote_info_snowflake_role.py
-test/test_update_access_rule_info.py
 tox.ini
