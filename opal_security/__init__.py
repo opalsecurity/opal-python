@@ -63,6 +63,8 @@ from opal_security.models.app_type_enum import AppTypeEnum
 from opal_security.models.app_validation import AppValidation
 from opal_security.models.app_validation_severity_enum import AppValidationSeverityEnum
 from opal_security.models.app_validation_status_enum import AppValidationStatusEnum
+from opal_security.models.approve_request200_response import ApproveRequest200Response
+from opal_security.models.approve_request_request import ApproveRequestRequest
 from opal_security.models.apps_list import AppsList
 from opal_security.models.aws_permission_set_metadata import AwsPermissionSetMetadata
 from opal_security.models.aws_permission_set_metadata_aws_permission_set import AwsPermissionSetMetadataAwsPermissionSet
@@ -91,6 +93,7 @@ from opal_security.models.create_tag_info import CreateTagInfo
 from opal_security.models.create_uar_info import CreateUARInfo
 from opal_security.models.entity_type_enum import EntityTypeEnum
 from opal_security.models.event import Event
+from opal_security.models.get_resource_user200_response import GetResourceUser200Response
 from opal_security.models.group import Group
 from opal_security.models.group_access_level import GroupAccessLevel
 from opal_security.models.group_binding import GroupBinding
@@ -125,6 +128,8 @@ from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
 from opal_security.models.owner import Owner
+from opal_security.models.page_info import PageInfo
+from opal_security.models.paginated_assigned_request_list import PaginatedAssignedRequestList
 from opal_security.models.paginated_bundle_group_list import PaginatedBundleGroupList
 from opal_security.models.paginated_bundle_list import PaginatedBundleList
 from opal_security.models.paginated_bundle_resource_list import PaginatedBundleResourceList
@@ -141,9 +146,14 @@ from opal_security.models.propagation_status import PropagationStatus
 from opal_security.models.propagation_status_enum import PropagationStatusEnum
 from opal_security.models.request import Request
 from opal_security.models.request_configuration import RequestConfiguration
+from opal_security.models.request_connection import RequestConnection
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse
 from opal_security.models.request_custom_field_response_field_value import RequestCustomFieldResponseFieldValue
+from opal_security.models.request_edge import RequestEdge
+from opal_security.models.request_item_stages import RequestItemStages
 from opal_security.models.request_list import RequestList
+from opal_security.models.request_reviewer import RequestReviewer
+from opal_security.models.request_stage import RequestStage
 from opal_security.models.request_status_enum import RequestStatusEnum
 from opal_security.models.request_template_custom_field_type_enum import RequestTemplateCustomFieldTypeEnum
 from opal_security.models.requested_item import RequestedItem
@@ -184,6 +194,7 @@ from opal_security.models.resource_user import ResourceUser
 from opal_security.models.resource_user_access_status import ResourceUserAccessStatus
 from opal_security.models.resource_user_access_status_enum import ResourceUserAccessStatusEnum
 from opal_security.models.resource_with_access_level import ResourceWithAccessLevel
+from opal_security.models.review_stage_operator import ReviewStageOperator
 from opal_security.models.reviewer_id_list import ReviewerIDList
 from opal_security.models.reviewer_stage import ReviewerStage
 from opal_security.models.reviewer_stage_list import ReviewerStageList

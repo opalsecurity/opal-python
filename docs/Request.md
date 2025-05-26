@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **duration_minutes** | **int** | The duration of the request in minutes. | [optional] 
 **requested_items_list** | [**List[RequestedItem]**](RequestedItem.md) | The list of targets for the request. | [optional] 
 **custom_fields_responses** | [**List[RequestCustomFieldResponse]**](RequestCustomFieldResponse.md) | The responses given to the custom fields associated to the request | [optional] 
+**stages** | [**RequestItemStages**](RequestItemStages.md) | The stages configuration for this request | [optional] 
 
 ## Example
 

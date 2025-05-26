@@ -2098,7 +2098,127 @@ paths:
         - BearerAuth: []
       tags:
         - requests
-
+  /requests/relay:
+    get:
+      description: Returns a paginated list of requests using Relay-style cursor pagination.
+      operationId: getRequestsRelay
+      parameters:
+        - description: Number of results to return after the cursor. Use either first/after or last/before, not both.
+          example: 10
+          in: query
+          name: first
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - description: Cursor to fetch results after. Used with 'first' for forward pagination.
+          example: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+          in: query
+          name: after
+          required: false
+          schema:
+            type: string
+        - description: Number of results to return before the cursor. Use either first/after or last/before, not both.
+          example: 10
+          in: query
+          name: last
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - description: Cursor to fetch results before. Used with 'last' for backward pagination.
+          example: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+          in: query
+          name: before
+          required: false
+          schema:
+            type: string
+        - description: Filter requests by their status.
+          example: PENDING
+          in: query
+          name: status
+          required: false
+          schema:
+            $ref: "#/components/schemas/RequestStatusEnum"
+        - description: Filter requests assigned to a specific user ID.
+          example: 37cb7e41-12ba-46da-92ff-030abe0450b1
+          in: query
+          name: to
+          required: false
+          schema:
+            format: uuid
+            type: string
+        - description: Filter requests made by a specific user ID.
+          example: 37cb7e41-12ba-46da-92ff-030abe0450b1
+          in: query
+          name: from
+          required: false
+          schema:
+            format: uuid
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestConnection"
+          description: A paginated list of requests using Relay-style cursor pagination.
+      security:
+        - BearerAuth: []
+      tags:
+        - requests
+  /requests/{id}/approve:
+    post:
+      description: "Approve an access request"
+      operationId: "approveRequest"
+      parameters:
+        - description: "The ID of the request to approve"
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Approval parameters
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                level:
+                  type: string
+                  enum: [REGULAR, ADMIN]
+                  description: "The decision level for the approval"
+                  example: "REGULAR"
+                comment:
+                  type: string
+                  description: "Optional comment for the approval"
+                  example: "Approved after security review"
+              required:
+                - level
+      responses:
+        "200":
+          description: "Request successfully approved"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request:
+                    $ref: "#/components/schemas/Request"
+                  taskId:
+                    type: string
+                    format: uuid
+                    description: "ID of the task created for propagating access"
+                    example: "c6f85bfb-3fe7-4936-a68d-7a5e1e3d0f6a"
+      security:
+        - BearerAuth: []
+      tags:
+        - requests
   /resources:
     get:
       description: Returns a list of resources for your organization.
@@ -2886,6 +3006,65 @@ paths:
         - BearerAuth: []
       tags:
         - resources
+    get:
+      description: Returns information about a specific user's access to a resource.
+      operationId: getResourceUser
+      parameters:
+        - description: The ID of the resource.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          in: path
+          name: resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the user.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          in: path
+          name: user_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ResourceUser"
+                  cursor:
+                    type: string
+                    description: Pagination cursor for the next page of results
+                    example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+                  total_count:
+                    type: integer
+                    description: Total number of results
+                    example: 120
+                required:
+                  - data
+          description: List of ResourceUser records for the user's access to the resource.
+        "404":
+          description: Resource or user not found.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
   /resource-user-access-status/{resource_id}/{user_id}:
     get:
       deprecated: true
@@ -3378,6 +3557,12 @@ paths:
             format: uuid
             type: string
           style: simple
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
       responses:
         "200":
           description: Tag applied to user successfully.
@@ -3799,6 +3984,68 @@ paths:
         - apps
 components:
   schemas:
+    PaginatedAssignedRequestList:
+      type: object
+      required:
+        - requests
+        - cursor
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: "#/components/schemas/Request"
+        cursor:
+          type: string
+          description: The cursor to continue pagination
+    PageInfo:
+      type: object
+      required:
+        - hasNextPage
+        - endCursor
+        - hasPreviousPage
+        - startCursor
+      properties:
+        hasNextPage:
+          type: boolean
+          description: Whether there are more items after the end cursor
+        endCursor:
+          type: string
+          description: The cursor to continue pagination forwards
+        hasPreviousPage:
+          type: boolean
+          description: Whether there are more items before the start cursor
+        startCursor:
+          type: string
+          description: The cursor to continue pagination backwards
+
+    RequestEdge:
+      type: object
+      required:
+        - node
+        - cursor
+      properties:
+        node:
+          $ref: "#/components/schemas/Request"
+        cursor:
+          type: string
+          description: The cursor for this request edge
+
+    RequestConnection:
+      type: object
+      required:
+        - edges
+        - pageInfo
+        - totalCount
+      properties:
+        edges:
+          type: array
+          items:
+            $ref: "#/components/schemas/RequestEdge"
+        pageInfo:
+          $ref: "#/components/schemas/PageInfo"
+        totalCount:
+          type: integer
+          description: The total number of items available
     UARScope:
       description: If set, the access review will only contain resources and groups that match at least one of the filters in scope.
       example:
@@ -6913,6 +7160,20 @@ components:
             request_id: 4c86c85d-0651-43e2-a748-d69d658418e8
             user_id: c86c85d-0651-43e2-a748-d69d658418e8
             comment: This is a comment.
+        stages:
+          requestedRoleName: "Admin"
+          requestedItemName: "AWS Production Account"
+          stages:
+            - stage: 1
+              operator: AND
+              reviewers:
+                - id: 7c86c85d-0651-43e2-a748-d69d658418e8
+                  status: PENDING
+            - stage: 2
+              operator: OR
+              reviewers:
+                - id: 8d86c85d-0651-43e2-a748-d69d658418e9
+                  status: APPROVED
       properties:
         id:
           description: The unique identifier of the request.
@@ -6966,6 +7227,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/RequestCustomFieldResponse"
+        stages:
+          description: The stages configuration for this request
+          $ref: "#/components/schemas/RequestItemStages"
       required:
         - id
         - created_at
@@ -6973,6 +7237,67 @@ components:
         - requester_id
         - status
         - reason
+    RequestItemStages:
+      description: The stages configuration for a request item
+      type: object
+      properties:
+        requestedRoleName:
+          description: The name of the requested role
+          type: string
+        requestedItemName:
+          description: The name of the requested item
+          type: string
+        stages:
+          description: The stages of review for this request
+          type: array
+          items:
+            $ref: "#/components/schemas/RequestStage"
+      required:
+        - requestedItemName
+        - stages
+    RequestStage:
+      description: A stage in the request review process
+      type: object
+      properties:
+        stage:
+          description: The stage number
+          type: integer
+        operator:
+          description: The operator to apply to reviewers in this stage
+          $ref: "#/components/schemas/ReviewStageOperator"
+        reviewers:
+          description: The reviewers for this stage
+          type: array
+          items:
+            $ref: "#/components/schemas/RequestReviewer"
+      required:
+        - stage
+        - operator
+        - reviewers
+    ReviewStageOperator:
+      description: The operator to apply to reviewers in a stage
+      type: string
+      enum:
+        - AND
+        - OR
+    RequestReviewer:
+      description: A reviewer in a request stage
+      type: object
+      properties:
+        id:
+          description: The unique identifier of the reviewer
+          type: string
+          format: uuid
+        status:
+          description: The status of this reviewer's review
+          type: string
+          enum:
+            - PENDING
+            - APPROVED
+            - REJECTED
+      required:
+        - id
+        - status
     RequestedItem:
       description: |-
         # Requested Item Object
@@ -8418,7 +8743,7 @@ components:
           description: The IDs of the on-call schedules linked to the configuration template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
-            - 37cb7e41-12ba-46da-92ff-030abe0450b2
+            - 7c86c85d-0651-43e2-a748-d69d658418e8
           items:
             type: string
             format: uuid
