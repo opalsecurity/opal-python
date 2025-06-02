@@ -18,6 +18,8 @@ docs/AppTypeEnum.md
 docs/AppValidation.md
 docs/AppValidationSeverityEnum.md
 docs/AppValidationStatusEnum.md
+docs/ApproveRequest200Response.md
+docs/ApproveRequestRequest.md
 docs/AppsApi.md
 docs/AppsList.md
 docs/AwsPermissionSetMetadata.md
@@ -50,6 +52,7 @@ docs/CreateUARInfo.md
 docs/EntityTypeEnum.md
 docs/Event.md
 docs/EventsApi.md
+docs/GetResourceUser200Response.md
 docs/Group.md
 docs/GroupAccessLevel.md
 docs/GroupBinding.md
@@ -91,6 +94,8 @@ docs/OnCallScheduleProviderEnum.md
 docs/OnCallSchedulesApi.md
 docs/Owner.md
 docs/OwnersApi.md
+docs/PageInfo.md
+docs/PaginatedAssignedRequestList.md
 docs/PaginatedBundleGroupList.md
 docs/PaginatedBundleList.md
 docs/PaginatedBundleResourceList.md
@@ -107,9 +112,14 @@ docs/PropagationStatus.md
 docs/PropagationStatusEnum.md
 docs/Request.md
 docs/RequestConfiguration.md
+docs/RequestConnection.md
 docs/RequestCustomFieldResponse.md
 docs/RequestCustomFieldResponseFieldValue.md
+docs/RequestEdge.md
+docs/RequestItemStages.md
 docs/RequestList.md
+docs/RequestReviewer.md
+docs/RequestStage.md
 docs/RequestStatusEnum.md
 docs/RequestTemplateCustomFieldTypeEnum.md
 docs/RequestedItem.md
@@ -152,6 +162,7 @@ docs/ResourceUserAccessStatus.md
 docs/ResourceUserAccessStatusEnum.md
 docs/ResourceWithAccessLevel.md
 docs/ResourcesApi.md
+docs/ReviewStageOperator.md
 docs/ReviewerIDList.md
 docs/ReviewerStage.md
 docs/ReviewerStageList.md
@@ -183,6 +194,7 @@ docs/UpdateGroupBindingInfoList.md
 docs/UpdateGroupInfo.md
 docs/UpdateGroupInfoList.md
 docs/UpdateGroupResourcesInfo.md
+docs/UpdateGroupUserRequest.md
 docs/UpdateIdpGroupMappingsRequest.md
 docs/UpdateIdpGroupMappingsRequestMappingsInner.md
 docs/UpdateOwnerInfo.md
@@ -237,6 +249,8 @@ opal_security/models/app_type_enum.py
 opal_security/models/app_validation.py
 opal_security/models/app_validation_severity_enum.py
 opal_security/models/app_validation_status_enum.py
+opal_security/models/approve_request200_response.py
+opal_security/models/approve_request_request.py
 opal_security/models/apps_list.py
 opal_security/models/aws_permission_set_metadata.py
 opal_security/models/aws_permission_set_metadata_aws_permission_set.py
@@ -265,6 +279,7 @@ opal_security/models/create_tag_info.py
 opal_security/models/create_uar_info.py
 opal_security/models/entity_type_enum.py
 opal_security/models/event.py
+opal_security/models/get_resource_user200_response.py
 opal_security/models/group.py
 opal_security/models/group_access_level.py
 opal_security/models/group_binding.py
@@ -299,6 +314,8 @@ opal_security/models/on_call_schedule_id_list.py
 opal_security/models/on_call_schedule_list.py
 opal_security/models/on_call_schedule_provider_enum.py
 opal_security/models/owner.py
+opal_security/models/page_info.py
+opal_security/models/paginated_assigned_request_list.py
 opal_security/models/paginated_bundle_group_list.py
 opal_security/models/paginated_bundle_list.py
 opal_security/models/paginated_bundle_resource_list.py
@@ -315,9 +332,14 @@ opal_security/models/propagation_status.py
 opal_security/models/propagation_status_enum.py
 opal_security/models/request.py
 opal_security/models/request_configuration.py
+opal_security/models/request_connection.py
 opal_security/models/request_custom_field_response.py
 opal_security/models/request_custom_field_response_field_value.py
+opal_security/models/request_edge.py
+opal_security/models/request_item_stages.py
 opal_security/models/request_list.py
+opal_security/models/request_reviewer.py
+opal_security/models/request_stage.py
 opal_security/models/request_status_enum.py
 opal_security/models/request_template_custom_field_type_enum.py
 opal_security/models/requested_item.py
@@ -358,6 +380,7 @@ opal_security/models/resource_user.py
 opal_security/models/resource_user_access_status.py
 opal_security/models/resource_user_access_status_enum.py
 opal_security/models/resource_with_access_level.py
+opal_security/models/review_stage_operator.py
 opal_security/models/reviewer_id_list.py
 opal_security/models/reviewer_stage.py
 opal_security/models/reviewer_stage_list.py
@@ -386,6 +409,7 @@ opal_security/models/update_group_binding_info_list.py
 opal_security/models/update_group_info.py
 opal_security/models/update_group_info_list.py
 opal_security/models/update_group_resources_info.py
+opal_security/models/update_group_user_request.py
 opal_security/models/update_idp_group_mappings_request.py
 opal_security/models/update_idp_group_mappings_request_mappings_inner.py
 opal_security/models/update_owner_info.py
@@ -407,7 +431,16 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_access_rule.py
-test/test_group_remote_info_snowflake_role.py
-test/test_update_access_rule_info.py
+test/test_approve_request200_response.py
+test/test_approve_request_request.py
+test/test_get_resource_user200_response.py
+test/test_page_info.py
+test/test_paginated_assigned_request_list.py
+test/test_request_connection.py
+test/test_request_edge.py
+test/test_request_item_stages.py
+test/test_request_reviewer.py
+test/test_request_stage.py
+test/test_review_stage_operator.py
+test/test_update_group_user_request.py
 tox.ini
