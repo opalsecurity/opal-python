@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_resource_reviewer_stages**](ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 [**get_resource_reviewers**](ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
 [**get_resource_tags**](ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
+[**get_resource_user**](ResourcesApi.md#get_resource_user) | **GET** /resources/{resource_id}/users/{user_id} | 
 [**get_resource_users**](ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
 [**get_resource_visibility**](ResourcesApi.md#get_resource_visibility) | **GET** /resources/{resource_id}/visibility | 
 [**get_resources**](ResourcesApi.md#get_resources) | **GET** /resources | 
@@ -991,6 +992,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_resource_user**
+> GetResourceUser200Response get_resource_user(resource_id, user_id, cursor=cursor)
+
+
+
+Returns information about a specific user's access to a resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.get_resource_user200_response import GetResourceUser200Response
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the resource.
+    user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The ID of the user.
+    cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
+
+    try:
+        api_response = api_instance.get_resource_user(resource_id, user_id, cursor=cursor)
+        print("The response of ResourcesApi->get_resource_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource. | 
+ **user_id** | **str**| The ID of the user. | 
+ **cursor** | **str**| The pagination cursor value. | [optional] 
+
+### Return type
+
+[**GetResourceUser200Response**](GetResourceUser200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of ResourceUser records for the user&#39;s access to the resource. |  -  |
+**404** | Resource or user not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_resource_users**
 > ResourceAccessUserList get_resource_users(resource_id, limit=limit)
 
@@ -1152,7 +1237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_resources**
-> PaginatedResourcesList get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id)
+> PaginatedResourcesList get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id)
 
 
 
@@ -1197,9 +1282,10 @@ with opal_security.ApiClient(configuration) as api_client:
     resource_ids = ['[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\",\"1b978423-db0a-4037-a4cf-f79c60cb67b3\"]'] # List[str] | The resource ids to filter by. (optional)
     resource_name = 'example-name' # str | Resource name. (optional)
     parent_resource_id = '[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]' # str | The parent resource id to filter by. (optional)
+    ancestor_resource_id = '[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]' # str | The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. (optional)
 
     try:
-        api_response = api_instance.get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id)
+        api_response = api_instance.get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id)
         print("The response of ResourcesApi->get_resources:\n")
         pprint(api_response)
     except Exception as e:
@@ -1219,6 +1305,7 @@ Name | Type | Description  | Notes
  **resource_ids** | [**List[str]**](str.md)| The resource ids to filter by. | [optional] 
  **resource_name** | **str**| Resource name. | [optional] 
  **parent_resource_id** | **str**| The parent resource id to filter by. | [optional] 
+ **ancestor_resource_id** | **str**| The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. | [optional] 
 
 ### Return type
 

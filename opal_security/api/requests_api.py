@@ -20,9 +20,13 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from opal_security.models.approve_request200_response import ApproveRequest200Response
+from opal_security.models.approve_request_request import ApproveRequestRequest
 from opal_security.models.create_request200_response import CreateRequest200Response
 from opal_security.models.create_request_info import CreateRequestInfo
+from opal_security.models.request_connection import RequestConnection
 from opal_security.models.request_list import RequestList
+from opal_security.models.request_status_enum import RequestStatusEnum
 
 from opal_security.api_client import ApiClient, RequestSerialized
 from opal_security.api_response import ApiResponse
@@ -40,6 +44,295 @@ class RequestsApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def approve_request(
+        self,
+        id: Annotated[StrictStr, Field(description="The ID of the request to approve")],
+        approve_request_request: Annotated[ApproveRequestRequest, Field(description="Approval parameters")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApproveRequest200Response:
+        """approve_request
+
+        Approve an access request
+
+        :param id: The ID of the request to approve (required)
+        :type id: str
+        :param approve_request_request: Approval parameters (required)
+        :type approve_request_request: ApproveRequestRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._approve_request_serialize(
+            id=id,
+            approve_request_request=approve_request_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApproveRequest200Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def approve_request_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The ID of the request to approve")],
+        approve_request_request: Annotated[ApproveRequestRequest, Field(description="Approval parameters")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApproveRequest200Response]:
+        """approve_request
+
+        Approve an access request
+
+        :param id: The ID of the request to approve (required)
+        :type id: str
+        :param approve_request_request: Approval parameters (required)
+        :type approve_request_request: ApproveRequestRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._approve_request_serialize(
+            id=id,
+            approve_request_request=approve_request_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApproveRequest200Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def approve_request_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The ID of the request to approve")],
+        approve_request_request: Annotated[ApproveRequestRequest, Field(description="Approval parameters")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """approve_request
+
+        Approve an access request
+
+        :param id: The ID of the request to approve (required)
+        :type id: str
+        :param approve_request_request: Approval parameters (required)
+        :type approve_request_request: ApproveRequestRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._approve_request_serialize(
+            id=id,
+            approve_request_request=approve_request_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApproveRequest200Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _approve_request_serialize(
+        self,
+        id,
+        approve_request_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if approve_request_request is not None:
+            _body_params = approve_request_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/requests/{id}/approve',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call
@@ -632,6 +925,371 @@ class RequestsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/requests',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_requests_relay(
+        self,
+        first: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return after the cursor. Use either first/after or last/before, not both.")] = None,
+        after: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results after. Used with 'first' for forward pagination.")] = None,
+        last: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return before the cursor. Use either first/after or last/before, not both.")] = None,
+        before: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results before. Used with 'last' for backward pagination.")] = None,
+        status: Annotated[Optional[RequestStatusEnum], Field(description="Filter requests by their status.")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Filter requests assigned to a specific user ID.")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Filter requests made by a specific user ID.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RequestConnection:
+        """get_requests_relay
+
+        Returns a paginated list of requests using Relay-style cursor pagination.
+
+        :param first: Number of results to return after the cursor. Use either first/after or last/before, not both.
+        :type first: int
+        :param after: Cursor to fetch results after. Used with 'first' for forward pagination.
+        :type after: str
+        :param last: Number of results to return before the cursor. Use either first/after or last/before, not both.
+        :type last: int
+        :param before: Cursor to fetch results before. Used with 'last' for backward pagination.
+        :type before: str
+        :param status: Filter requests by their status.
+        :type status: RequestStatusEnum
+        :param to: Filter requests assigned to a specific user ID.
+        :type to: str
+        :param var_from: Filter requests made by a specific user ID.
+        :type var_from: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_requests_relay_serialize(
+            first=first,
+            after=after,
+            last=last,
+            before=before,
+            status=status,
+            to=to,
+            var_from=var_from,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RequestConnection",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_requests_relay_with_http_info(
+        self,
+        first: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return after the cursor. Use either first/after or last/before, not both.")] = None,
+        after: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results after. Used with 'first' for forward pagination.")] = None,
+        last: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return before the cursor. Use either first/after or last/before, not both.")] = None,
+        before: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results before. Used with 'last' for backward pagination.")] = None,
+        status: Annotated[Optional[RequestStatusEnum], Field(description="Filter requests by their status.")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Filter requests assigned to a specific user ID.")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Filter requests made by a specific user ID.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RequestConnection]:
+        """get_requests_relay
+
+        Returns a paginated list of requests using Relay-style cursor pagination.
+
+        :param first: Number of results to return after the cursor. Use either first/after or last/before, not both.
+        :type first: int
+        :param after: Cursor to fetch results after. Used with 'first' for forward pagination.
+        :type after: str
+        :param last: Number of results to return before the cursor. Use either first/after or last/before, not both.
+        :type last: int
+        :param before: Cursor to fetch results before. Used with 'last' for backward pagination.
+        :type before: str
+        :param status: Filter requests by their status.
+        :type status: RequestStatusEnum
+        :param to: Filter requests assigned to a specific user ID.
+        :type to: str
+        :param var_from: Filter requests made by a specific user ID.
+        :type var_from: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_requests_relay_serialize(
+            first=first,
+            after=after,
+            last=last,
+            before=before,
+            status=status,
+            to=to,
+            var_from=var_from,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RequestConnection",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_requests_relay_without_preload_content(
+        self,
+        first: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return after the cursor. Use either first/after or last/before, not both.")] = None,
+        after: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results after. Used with 'first' for forward pagination.")] = None,
+        last: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return before the cursor. Use either first/after or last/before, not both.")] = None,
+        before: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results before. Used with 'last' for backward pagination.")] = None,
+        status: Annotated[Optional[RequestStatusEnum], Field(description="Filter requests by their status.")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Filter requests assigned to a specific user ID.")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Filter requests made by a specific user ID.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_requests_relay
+
+        Returns a paginated list of requests using Relay-style cursor pagination.
+
+        :param first: Number of results to return after the cursor. Use either first/after or last/before, not both.
+        :type first: int
+        :param after: Cursor to fetch results after. Used with 'first' for forward pagination.
+        :type after: str
+        :param last: Number of results to return before the cursor. Use either first/after or last/before, not both.
+        :type last: int
+        :param before: Cursor to fetch results before. Used with 'last' for backward pagination.
+        :type before: str
+        :param status: Filter requests by their status.
+        :type status: RequestStatusEnum
+        :param to: Filter requests assigned to a specific user ID.
+        :type to: str
+        :param var_from: Filter requests made by a specific user ID.
+        :type var_from: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_requests_relay_serialize(
+            first=first,
+            after=after,
+            last=last,
+            before=before,
+            status=status,
+            to=to,
+            var_from=var_from,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RequestConnection",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_requests_relay_serialize(
+        self,
+        first,
+        after,
+        last,
+        before,
+        status,
+        to,
+        var_from,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if first is not None:
+            
+            _query_params.append(('first', first))
+            
+        if after is not None:
+            
+            _query_params.append(('after', after))
+            
+        if last is not None:
+            
+            _query_params.append(('last', last))
+            
+        if before is not None:
+            
+            _query_params.append(('before', before))
+            
+        if status is not None:
+            
+            _query_params.append(('status', status.value))
+            
+        if to is not None:
+            
+            _query_params.append(('to', to))
+            
+        if var_from is not None:
+            
+            _query_params.append(('from', var_from))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/requests/relay',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

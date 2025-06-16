@@ -34,6 +34,8 @@ Name | Type | Description | Notes
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
 **metadata** | **str** | JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details. | [optional] 
 **remote_info** | [**ResourceRemoteInfo**](ResourceRemoteInfo.md) |  | [optional] 
+**ancestor_resource_ids** | **List[str]** | List of resource IDs that are ancestors of this resource. | [optional] 
+**descendant_resource_ids** | **List[str]** | List of resource IDs that are descendants of this resource. | [optional] 
 
 ## Example
 
