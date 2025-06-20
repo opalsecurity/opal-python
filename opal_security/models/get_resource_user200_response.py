@@ -18,19 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.resource_user import ResourceUser
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceRemoteInfoAwsAccount(BaseModel):
+class GetResourceUser200Response(BaseModel):
     """
-    Remote info for AWS account.
+    GetResourceUser200Response
     """ # noqa: E501
-    account_id: StrictStr = Field(description="The id of the AWS account.")
-    organizational_unit_id: Optional[StrictStr] = Field(default=None, description="The id of the AWS organizational unit. Required only if customer has OUs enabled.")
+    data: List[ResourceUser]
+    cursor: Optional[StrictStr] = Field(default=None, description="Pagination cursor for the next page of results")
+    total_count: Optional[StrictInt] = Field(default=None, description="Total number of results")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account_id", "organizational_unit_id"]
+    __properties: ClassVar[List[str]] = ["data", "cursor", "total_count"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +52,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a JSON string"""
+        """Create an instance of GetResourceUser200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,6 +75,13 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
+        if self.data:
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -82,7 +91,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a dict"""
+        """Create an instance of GetResourceUser200Response from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +99,9 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "organizational_unit_id": obj.get("organizational_unit_id")
+            "data": [ResourceUser.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "cursor": obj.get("cursor"),
+            "total_count": obj.get("total_count")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

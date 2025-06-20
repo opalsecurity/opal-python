@@ -18,19 +18,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceRemoteInfoAwsAccount(BaseModel):
+class ApproveRequestRequest(BaseModel):
     """
-    Remote info for AWS account.
+    ApproveRequestRequest
     """ # noqa: E501
-    account_id: StrictStr = Field(description="The id of the AWS account.")
-    organizational_unit_id: Optional[StrictStr] = Field(default=None, description="The id of the AWS organizational unit. Required only if customer has OUs enabled.")
+    level: StrictStr = Field(description="The decision level for the approval")
+    comment: Optional[StrictStr] = Field(default=None, description="Optional comment for the approval")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account_id", "organizational_unit_id"]
+    __properties: ClassVar[List[str]] = ["level", "comment"]
+
+    @field_validator('level')
+    def level_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['REGULAR', 'ADMIN']):
+            raise ValueError("must be one of enum values ('REGULAR', 'ADMIN')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +57,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a JSON string"""
+        """Create an instance of ApproveRequestRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +89,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a dict"""
+        """Create an instance of ApproveRequestRequest from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +97,8 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "organizational_unit_id": obj.get("organizational_unit_id")
+            "level": obj.get("level"),
+            "comment": obj.get("comment")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated
 from opal_security.models.create_tag_info import CreateTagInfo
 from opal_security.models.paginated_tags_list import PaginatedTagsList
@@ -585,6 +585,7 @@ class TagsApi:
         self,
         tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
         user_id: Annotated[StrictStr, Field(description="The ID of the user to apply the tag to.")],
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -606,6 +607,8 @@ class TagsApi:
         :type tag_id: str
         :param user_id: The ID of the user to apply the tag to. (required)
         :type user_id: str
+        :param body:
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -631,6 +634,7 @@ class TagsApi:
         _param = self._add_user_tag_serialize(
             tag_id=tag_id,
             user_id=user_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -656,6 +660,7 @@ class TagsApi:
         self,
         tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
         user_id: Annotated[StrictStr, Field(description="The ID of the user to apply the tag to.")],
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -677,6 +682,8 @@ class TagsApi:
         :type tag_id: str
         :param user_id: The ID of the user to apply the tag to. (required)
         :type user_id: str
+        :param body:
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -702,6 +709,7 @@ class TagsApi:
         _param = self._add_user_tag_serialize(
             tag_id=tag_id,
             user_id=user_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -727,6 +735,7 @@ class TagsApi:
         self,
         tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
         user_id: Annotated[StrictStr, Field(description="The ID of the user to apply the tag to.")],
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -748,6 +757,8 @@ class TagsApi:
         :type tag_id: str
         :param user_id: The ID of the user to apply the tag to. (required)
         :type user_id: str
+        :param body:
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -773,6 +784,7 @@ class TagsApi:
         _param = self._add_user_tag_serialize(
             tag_id=tag_id,
             user_id=user_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -793,6 +805,7 @@ class TagsApi:
         self,
         tag_id,
         user_id,
+        body,
         _request_auth,
         _content_type,
         _headers,
@@ -822,9 +835,24 @@ class TagsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
 
 
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [

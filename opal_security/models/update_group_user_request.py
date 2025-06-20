@@ -20,17 +20,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceRemoteInfoAwsAccount(BaseModel):
+class UpdateGroupUserRequest(BaseModel):
     """
-    Remote info for AWS account.
+    UpdateGroupUserRequest
     """ # noqa: E501
-    account_id: StrictStr = Field(description="The id of the AWS account.")
-    organizational_unit_id: Optional[StrictStr] = Field(default=None, description="The id of the AWS organizational unit. Required only if customer has OUs enabled.")
+    duration_minutes: Annotated[int, Field(le=525960, strict=True)] = Field(description="The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.")
+    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The updated remote ID of the access level granted to this user.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account_id", "organizational_unit_id"]
+    __properties: ClassVar[List[str]] = ["duration_minutes", "access_level_remote_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +51,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a JSON string"""
+        """Create an instance of UpdateGroupUserRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +83,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a dict"""
+        """Create an instance of UpdateGroupUserRequest from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +91,8 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "organizational_unit_id": obj.get("organizational_unit_id")
+            "duration_minutes": obj.get("duration_minutes"),
+            "access_level_remote_id": obj.get("access_level_remote_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

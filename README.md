@@ -195,6 +195,7 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**set_group_reviewer_stages**](docs/GroupsApi.md#set_group_reviewer_stages) | **PUT** /groups/{group_id}/reviewer-stages | 
 *GroupsApi* | [**set_group_reviewers**](docs/GroupsApi.md#set_group_reviewers) | **PUT** /groups/{group_id}/reviewers | 
 *GroupsApi* | [**set_group_visibility**](docs/GroupsApi.md#set_group_visibility) | **PUT** /groups/{group_id}/visibility | 
+*GroupsApi* | [**update_group_user**](docs/GroupsApi.md#update_group_user) | **PUT** /groups/{group_id}/users/{user_id} | 
 *GroupsApi* | [**update_groups**](docs/GroupsApi.md#update_groups) | **PUT** /groups | 
 *IdpGroupMappingsApi* | [**delete_idp_group_mappings**](docs/IdpGroupMappingsApi.md#delete_idp_group_mappings) | **DELETE** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
 *IdpGroupMappingsApi* | [**get_idp_group_mappings**](docs/IdpGroupMappingsApi.md#get_idp_group_mappings) | **GET** /idp-group-mappings/{app_resource_id} | 
@@ -214,8 +215,10 @@ Class | Method | HTTP request | Description
 *OwnersApi* | [**get_owners**](docs/OwnersApi.md#get_owners) | **GET** /owners | 
 *OwnersApi* | [**set_owner_users**](docs/OwnersApi.md#set_owner_users) | **PUT** /owners/{owner_id}/users | 
 *OwnersApi* | [**update_owners**](docs/OwnersApi.md#update_owners) | **PUT** /owners | 
+*RequestsApi* | [**approve_request**](docs/RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
 *RequestsApi* | [**create_request**](docs/RequestsApi.md#create_request) | **POST** /requests | 
 *RequestsApi* | [**get_requests**](docs/RequestsApi.md#get_requests) | **GET** /requests | 
+*RequestsApi* | [**get_requests_relay**](docs/RequestsApi.md#get_requests_relay) | **GET** /requests/relay | 
 *ResourcesApi* | [**add_resource_nhi**](docs/ResourcesApi.md#add_resource_nhi) | **POST** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 *ResourcesApi* | [**add_resource_user**](docs/ResourcesApi.md#add_resource_user) | **POST** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**create_resource**](docs/ResourcesApi.md#create_resource) | **POST** /resources | 
@@ -228,6 +231,7 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**get_resource_reviewer_stages**](docs/ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 *ResourcesApi* | [**get_resource_reviewers**](docs/ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
 *ResourcesApi* | [**get_resource_tags**](docs/ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
+*ResourcesApi* | [**get_resource_user**](docs/ResourcesApi.md#get_resource_user) | **GET** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**get_resource_users**](docs/ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
 *ResourcesApi* | [**get_resource_visibility**](docs/ResourcesApi.md#get_resource_visibility) | **GET** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**get_resources**](docs/ResourcesApi.md#get_resources) | **GET** /resources | 
@@ -274,6 +278,8 @@ Class | Method | HTTP request | Description
  - [AppValidation](docs/AppValidation.md)
  - [AppValidationSeverityEnum](docs/AppValidationSeverityEnum.md)
  - [AppValidationStatusEnum](docs/AppValidationStatusEnum.md)
+ - [ApproveRequest200Response](docs/ApproveRequest200Response.md)
+ - [ApproveRequestRequest](docs/ApproveRequestRequest.md)
  - [AppsList](docs/AppsList.md)
  - [AwsPermissionSetMetadata](docs/AwsPermissionSetMetadata.md)
  - [AwsPermissionSetMetadataAwsPermissionSet](docs/AwsPermissionSetMetadataAwsPermissionSet.md)
@@ -302,6 +308,7 @@ Class | Method | HTTP request | Description
  - [CreateUARInfo](docs/CreateUARInfo.md)
  - [EntityTypeEnum](docs/EntityTypeEnum.md)
  - [Event](docs/Event.md)
+ - [GetResourceUser200Response](docs/GetResourceUser200Response.md)
  - [Group](docs/Group.md)
  - [GroupAccessLevel](docs/GroupAccessLevel.md)
  - [GroupBinding](docs/GroupBinding.md)
@@ -336,6 +343,8 @@ Class | Method | HTTP request | Description
  - [OnCallScheduleList](docs/OnCallScheduleList.md)
  - [OnCallScheduleProviderEnum](docs/OnCallScheduleProviderEnum.md)
  - [Owner](docs/Owner.md)
+ - [PageInfo](docs/PageInfo.md)
+ - [PaginatedAssignedRequestList](docs/PaginatedAssignedRequestList.md)
  - [PaginatedBundleGroupList](docs/PaginatedBundleGroupList.md)
  - [PaginatedBundleList](docs/PaginatedBundleList.md)
  - [PaginatedBundleResourceList](docs/PaginatedBundleResourceList.md)
@@ -352,9 +361,14 @@ Class | Method | HTTP request | Description
  - [PropagationStatusEnum](docs/PropagationStatusEnum.md)
  - [Request](docs/Request.md)
  - [RequestConfiguration](docs/RequestConfiguration.md)
+ - [RequestConnection](docs/RequestConnection.md)
  - [RequestCustomFieldResponse](docs/RequestCustomFieldResponse.md)
  - [RequestCustomFieldResponseFieldValue](docs/RequestCustomFieldResponseFieldValue.md)
+ - [RequestEdge](docs/RequestEdge.md)
+ - [RequestItemStages](docs/RequestItemStages.md)
  - [RequestList](docs/RequestList.md)
+ - [RequestReviewer](docs/RequestReviewer.md)
+ - [RequestStage](docs/RequestStage.md)
  - [RequestStatusEnum](docs/RequestStatusEnum.md)
  - [RequestTemplateCustomFieldTypeEnum](docs/RequestTemplateCustomFieldTypeEnum.md)
  - [RequestedItem](docs/RequestedItem.md)
@@ -368,8 +382,10 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoAwsEc2Instance](docs/ResourceRemoteInfoAwsEc2Instance.md)
  - [ResourceRemoteInfoAwsEksCluster](docs/ResourceRemoteInfoAwsEksCluster.md)
  - [ResourceRemoteInfoAwsIamRole](docs/ResourceRemoteInfoAwsIamRole.md)
+ - [ResourceRemoteInfoAwsOrganizationalUnit](docs/ResourceRemoteInfoAwsOrganizationalUnit.md)
  - [ResourceRemoteInfoAwsPermissionSet](docs/ResourceRemoteInfoAwsPermissionSet.md)
  - [ResourceRemoteInfoAwsRdsInstance](docs/ResourceRemoteInfoAwsRdsInstance.md)
+ - [ResourceRemoteInfoCustomConnector](docs/ResourceRemoteInfoCustomConnector.md)
  - [ResourceRemoteInfoGcpBigQueryDataset](docs/ResourceRemoteInfoGcpBigQueryDataset.md)
  - [ResourceRemoteInfoGcpBigQueryTable](docs/ResourceRemoteInfoGcpBigQueryTable.md)
  - [ResourceRemoteInfoGcpBucket](docs/ResourceRemoteInfoGcpBucket.md)
@@ -395,6 +411,7 @@ Class | Method | HTTP request | Description
  - [ResourceUserAccessStatus](docs/ResourceUserAccessStatus.md)
  - [ResourceUserAccessStatusEnum](docs/ResourceUserAccessStatusEnum.md)
  - [ResourceWithAccessLevel](docs/ResourceWithAccessLevel.md)
+ - [ReviewStageOperator](docs/ReviewStageOperator.md)
  - [ReviewerIDList](docs/ReviewerIDList.md)
  - [ReviewerStage](docs/ReviewerStage.md)
  - [ReviewerStageList](docs/ReviewerStageList.md)
@@ -423,6 +440,7 @@ Class | Method | HTTP request | Description
  - [UpdateGroupInfo](docs/UpdateGroupInfo.md)
  - [UpdateGroupInfoList](docs/UpdateGroupInfoList.md)
  - [UpdateGroupResourcesInfo](docs/UpdateGroupResourcesInfo.md)
+ - [UpdateGroupUserRequest](docs/UpdateGroupUserRequest.md)
  - [UpdateIdpGroupMappingsRequest](docs/UpdateIdpGroupMappingsRequest.md)
  - [UpdateIdpGroupMappingsRequestMappingsInner](docs/UpdateIdpGroupMappingsRequestMappingsInner.md)
  - [UpdateOwnerInfo](docs/UpdateOwnerInfo.md)

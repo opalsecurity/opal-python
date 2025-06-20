@@ -18,19 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceRemoteInfoAwsAccount(BaseModel):
+class ResourceRemoteInfoCustomConnector(BaseModel):
     """
-    Remote info for AWS account.
+    Remote info for a custom connector resource.
     """ # noqa: E501
-    account_id: StrictStr = Field(description="The id of the AWS account.")
-    organizational_unit_id: Optional[StrictStr] = Field(default=None, description="The id of the AWS organizational unit. Required only if customer has OUs enabled.")
+    remote_resource_id: StrictStr = Field(description="The id of the resource in the end system")
+    can_have_usage_events: StrictBool = Field(description="A bool representing whether or not the resource can have usage data.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account_id", "organizational_unit_id"]
+    __properties: ClassVar[List[str]] = ["remote_resource_id", "can_have_usage_events"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a JSON string"""
+        """Create an instance of ResourceRemoteInfoCustomConnector from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +82,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a dict"""
+        """Create an instance of ResourceRemoteInfoCustomConnector from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +90,8 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "organizational_unit_id": obj.get("organizational_unit_id")
+            "remote_resource_id": obj.get("remote_resource_id"),
+            "can_have_usage_events": obj.get("can_have_usage_events")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

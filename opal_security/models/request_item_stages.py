@@ -20,17 +20,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.request_stage import RequestStage
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceRemoteInfoAwsAccount(BaseModel):
+class RequestItemStages(BaseModel):
     """
-    Remote info for AWS account.
+    The stages configuration for a request item
     """ # noqa: E501
-    account_id: StrictStr = Field(description="The id of the AWS account.")
-    organizational_unit_id: Optional[StrictStr] = Field(default=None, description="The id of the AWS organizational unit. Required only if customer has OUs enabled.")
+    requested_role_name: Optional[StrictStr] = Field(default=None, description="The name of the requested role", alias="requestedRoleName")
+    requested_item_name: StrictStr = Field(description="The name of the requested item", alias="requestedItemName")
+    stages: List[RequestStage] = Field(description="The stages of review for this request")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account_id", "organizational_unit_id"]
+    __properties: ClassVar[List[str]] = ["requestedRoleName", "requestedItemName", "stages"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +52,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a JSON string"""
+        """Create an instance of RequestItemStages from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,6 +75,13 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in stages (list)
+        _items = []
+        if self.stages:
+            for _item_stages in self.stages:
+                if _item_stages:
+                    _items.append(_item_stages.to_dict())
+            _dict['stages'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -82,7 +91,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a dict"""
+        """Create an instance of RequestItemStages from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +99,9 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "organizational_unit_id": obj.get("organizational_unit_id")
+            "requestedRoleName": obj.get("requestedRoleName"),
+            "requestedItemName": obj.get("requestedItemName"),
+            "stages": [RequestStage.from_dict(_item) for _item in obj["stages"]] if obj.get("stages") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
