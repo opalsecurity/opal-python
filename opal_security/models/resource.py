@@ -61,8 +61,10 @@ class Resource(BaseModel):
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     metadata: Optional[StrictStr] = Field(default=None, description="JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.")
     remote_info: Optional[ResourceRemoteInfo] = None
+    ancestor_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are ancestors of this resource.")
+    descendant_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are descendants of this resource.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info"]
+    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -171,7 +173,9 @@ class Resource(BaseModel):
             "risk_sensitivity": obj.get("risk_sensitivity"),
             "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
             "metadata": obj.get("metadata"),
-            "remote_info": ResourceRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None
+            "remote_info": ResourceRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
+            "ancestor_resource_ids": obj.get("ancestor_resource_ids"),
+            "descendant_resource_ids": obj.get("descendant_resource_ids")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

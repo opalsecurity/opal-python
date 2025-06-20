@@ -24,8 +24,10 @@ from opal_security.models.resource_remote_info_aws_account import ResourceRemote
 from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
 from opal_security.models.resource_remote_info_aws_eks_cluster import ResourceRemoteInfoAwsEksCluster
 from opal_security.models.resource_remote_info_aws_iam_role import ResourceRemoteInfoAwsIamRole
+from opal_security.models.resource_remote_info_aws_organizational_unit import ResourceRemoteInfoAwsOrganizationalUnit
 from opal_security.models.resource_remote_info_aws_permission_set import ResourceRemoteInfoAwsPermissionSet
 from opal_security.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
+from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector
 from opal_security.models.resource_remote_info_gcp_big_query_dataset import ResourceRemoteInfoGcpBigQueryDataset
 from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
 from opal_security.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket
@@ -53,12 +55,14 @@ class ResourceRemoteInfo(BaseModel):
     """
     Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
     """ # noqa: E501
+    aws_organizational_unit: Optional[ResourceRemoteInfoAwsOrganizationalUnit] = None
     aws_account: Optional[ResourceRemoteInfoAwsAccount] = None
     aws_permission_set: Optional[ResourceRemoteInfoAwsPermissionSet] = None
     aws_iam_role: Optional[ResourceRemoteInfoAwsIamRole] = None
     aws_ec2_instance: Optional[ResourceRemoteInfoAwsEc2Instance] = None
     aws_rds_instance: Optional[ResourceRemoteInfoAwsRdsInstance] = None
     aws_eks_cluster: Optional[ResourceRemoteInfoAwsEksCluster] = None
+    custom_connector: Optional[ResourceRemoteInfoCustomConnector] = None
     gcp_organization: Optional[ResourceRemoteInfoGcpOrganization] = None
     gcp_bucket: Optional[ResourceRemoteInfoGcpBucket] = None
     gcp_compute_instance: Optional[ResourceRemoteInfoGcpComputeInstance] = None
@@ -80,7 +84,7 @@ class ResourceRemoteInfo(BaseModel):
     salesforce_role: Optional[ResourceRemoteInfoSalesforceRole] = None
     teleport_role: Optional[ResourceRemoteInfoTeleportRole] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "github_repo", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role"]
+    __properties: ClassVar[List[str]] = ["aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "github_repo", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +127,9 @@ class ResourceRemoteInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of aws_organizational_unit
+        if self.aws_organizational_unit:
+            _dict['aws_organizational_unit'] = self.aws_organizational_unit.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aws_account
         if self.aws_account:
             _dict['aws_account'] = self.aws_account.to_dict()
@@ -141,6 +148,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aws_eks_cluster
         if self.aws_eks_cluster:
             _dict['aws_eks_cluster'] = self.aws_eks_cluster.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of custom_connector
+        if self.custom_connector:
+            _dict['custom_connector'] = self.custom_connector.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gcp_organization
         if self.gcp_organization:
             _dict['gcp_organization'] = self.gcp_organization.to_dict()
@@ -218,12 +228,14 @@ class ResourceRemoteInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "aws_organizational_unit": ResourceRemoteInfoAwsOrganizationalUnit.from_dict(obj["aws_organizational_unit"]) if obj.get("aws_organizational_unit") is not None else None,
             "aws_account": ResourceRemoteInfoAwsAccount.from_dict(obj["aws_account"]) if obj.get("aws_account") is not None else None,
             "aws_permission_set": ResourceRemoteInfoAwsPermissionSet.from_dict(obj["aws_permission_set"]) if obj.get("aws_permission_set") is not None else None,
             "aws_iam_role": ResourceRemoteInfoAwsIamRole.from_dict(obj["aws_iam_role"]) if obj.get("aws_iam_role") is not None else None,
             "aws_ec2_instance": ResourceRemoteInfoAwsEc2Instance.from_dict(obj["aws_ec2_instance"]) if obj.get("aws_ec2_instance") is not None else None,
             "aws_rds_instance": ResourceRemoteInfoAwsRdsInstance.from_dict(obj["aws_rds_instance"]) if obj.get("aws_rds_instance") is not None else None,
             "aws_eks_cluster": ResourceRemoteInfoAwsEksCluster.from_dict(obj["aws_eks_cluster"]) if obj.get("aws_eks_cluster") is not None else None,
+            "custom_connector": ResourceRemoteInfoCustomConnector.from_dict(obj["custom_connector"]) if obj.get("custom_connector") is not None else None,
             "gcp_organization": ResourceRemoteInfoGcpOrganization.from_dict(obj["gcp_organization"]) if obj.get("gcp_organization") is not None else None,
             "gcp_bucket": ResourceRemoteInfoGcpBucket.from_dict(obj["gcp_bucket"]) if obj.get("gcp_bucket") is not None else None,
             "gcp_compute_instance": ResourceRemoteInfoGcpComputeInstance.from_dict(obj["gcp_compute_instance"]) if obj.get("gcp_compute_instance") is not None else None,

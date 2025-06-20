@@ -6,12 +6,14 @@ Information that defines the remote resource. This replaces the deprecated remot
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aws_organizational_unit** | [**ResourceRemoteInfoAwsOrganizationalUnit**](ResourceRemoteInfoAwsOrganizationalUnit.md) |  | [optional] 
 **aws_account** | [**ResourceRemoteInfoAwsAccount**](ResourceRemoteInfoAwsAccount.md) |  | [optional] 
 **aws_permission_set** | [**ResourceRemoteInfoAwsPermissionSet**](ResourceRemoteInfoAwsPermissionSet.md) |  | [optional] 
 **aws_iam_role** | [**ResourceRemoteInfoAwsIamRole**](ResourceRemoteInfoAwsIamRole.md) |  | [optional] 
 **aws_ec2_instance** | [**ResourceRemoteInfoAwsEc2Instance**](ResourceRemoteInfoAwsEc2Instance.md) |  | [optional] 
 **aws_rds_instance** | [**ResourceRemoteInfoAwsRdsInstance**](ResourceRemoteInfoAwsRdsInstance.md) |  | [optional] 
 **aws_eks_cluster** | [**ResourceRemoteInfoAwsEksCluster**](ResourceRemoteInfoAwsEksCluster.md) |  | [optional] 
+**custom_connector** | [**ResourceRemoteInfoCustomConnector**](ResourceRemoteInfoCustomConnector.md) |  | [optional] 
 **gcp_organization** | [**ResourceRemoteInfoGcpOrganization**](ResourceRemoteInfoGcpOrganization.md) |  | [optional] 
 **gcp_bucket** | [**ResourceRemoteInfoGcpBucket**](ResourceRemoteInfoGcpBucket.md) |  | [optional] 
 **gcp_compute_instance** | [**ResourceRemoteInfoGcpComputeInstance**](ResourceRemoteInfoGcpComputeInstance.md) |  | [optional] 

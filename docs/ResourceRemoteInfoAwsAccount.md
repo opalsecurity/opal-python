@@ -7,6 +7,7 @@ Remote info for AWS account.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **str** | The id of the AWS account. | 
+**organizational_unit_id** | **str** | The id of the AWS organizational unit. Required only if customer has OUs enabled. | [optional] 
 
 ## Example
 

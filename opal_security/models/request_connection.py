@@ -18,19 +18,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing import Any, ClassVar, Dict, List
+from opal_security.models.page_info import PageInfo
+from opal_security.models.request_edge import RequestEdge
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceRemoteInfoAwsAccount(BaseModel):
+class RequestConnection(BaseModel):
     """
-    Remote info for AWS account.
+    RequestConnection
     """ # noqa: E501
-    account_id: StrictStr = Field(description="The id of the AWS account.")
-    organizational_unit_id: Optional[StrictStr] = Field(default=None, description="The id of the AWS organizational unit. Required only if customer has OUs enabled.")
+    edges: List[RequestEdge]
+    page_info: PageInfo = Field(alias="pageInfo")
+    total_count: StrictInt = Field(description="The total number of items available", alias="totalCount")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account_id", "organizational_unit_id"]
+    __properties: ClassVar[List[str]] = ["edges", "pageInfo", "totalCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +53,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a JSON string"""
+        """Create an instance of RequestConnection from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,6 +76,16 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in edges (list)
+        _items = []
+        if self.edges:
+            for _item_edges in self.edges:
+                if _item_edges:
+                    _items.append(_item_edges.to_dict())
+            _dict['edges'] = _items
+        # override the default output from pydantic by calling `to_dict()` of page_info
+        if self.page_info:
+            _dict['pageInfo'] = self.page_info.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -82,7 +95,7 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceRemoteInfoAwsAccount from a dict"""
+        """Create an instance of RequestConnection from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +103,9 @@ class ResourceRemoteInfoAwsAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "organizational_unit_id": obj.get("organizational_unit_id")
+            "edges": [RequestEdge.from_dict(_item) for _item in obj["edges"]] if obj.get("edges") is not None else None,
+            "pageInfo": PageInfo.from_dict(obj["pageInfo"]) if obj.get("pageInfo") is not None else None,
+            "totalCount": obj.get("totalCount")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -174,7 +174,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_user_tag**
-> add_user_tag(tag_id, user_id)
+> add_user_tag(tag_id, user_id, body=body)
 
 
 
@@ -213,9 +213,10 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.TagsApi(api_client)
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
     user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user to apply the tag to.
+    body = None # object |  (optional)
 
     try:
-        api_instance.add_user_tag(tag_id, user_id)
+        api_instance.add_user_tag(tag_id, user_id, body=body)
     except Exception as e:
         print("Exception when calling TagsApi->add_user_tag: %s\n" % e)
 ```
@@ -229,6 +230,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag_id** | **str**| The ID of the tag to apply. | 
  **user_id** | **str**| The ID of the user to apply the tag to. | 
+ **body** | **object**|  | [optional] 
 
 ### Return type
 
@@ -240,7 +242,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 ### HTTP response details
