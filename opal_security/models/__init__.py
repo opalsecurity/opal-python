@@ -76,7 +76,9 @@ from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoG
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
+from opal_security.models.group_remote_info_okta_group_rule import GroupRemoteInfoOktaGroupRule
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup
 from opal_security.models.group_resource import GroupResource
 from opal_security.models.group_resource_list import GroupResourceList
 from opal_security.models.group_type_enum import GroupTypeEnum
@@ -167,9 +169,13 @@ from opal_security.models.reviewer_id_list import ReviewerIDList
 from opal_security.models.reviewer_stage import ReviewerStage
 from opal_security.models.reviewer_stage_list import ReviewerStageList
 from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal_security.models.role_permission_name_enum import RolePermissionNameEnum
+from opal_security.models.role_permission_target_type_enum import RolePermissionTargetTypeEnum
 from opal_security.models.rule_clauses import RuleClauses
 from opal_security.models.rule_conjunction import RuleConjunction
 from opal_security.models.rule_disjunction import RuleDisjunction
+from opal_security.models.scoped_role_permission import ScopedRolePermission
+from opal_security.models.scoped_role_permission_list import ScopedRolePermissionList
 from opal_security.models.session import Session
 from opal_security.models.sessions_list import SessionsList
 from opal_security.models.sub_event import SubEvent

@@ -217,6 +217,7 @@ Class | Method | HTTP request | Description
 *OwnersApi* | [**update_owners**](docs/OwnersApi.md#update_owners) | **PUT** /owners | 
 *RequestsApi* | [**approve_request**](docs/RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
 *RequestsApi* | [**create_request**](docs/RequestsApi.md#create_request) | **POST** /requests | 
+*RequestsApi* | [**get_request**](docs/RequestsApi.md#get_request) | **GET** /requests/{id} | 
 *RequestsApi* | [**get_requests**](docs/RequestsApi.md#get_requests) | **GET** /requests | 
 *RequestsApi* | [**get_requests_relay**](docs/RequestsApi.md#get_requests_relay) | **GET** /requests/relay | 
 *ResourcesApi* | [**add_resource_nhi**](docs/ResourcesApi.md#add_resource_nhi) | **POST** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
@@ -230,6 +231,7 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**get_resource_nhis**](docs/ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
 *ResourcesApi* | [**get_resource_reviewer_stages**](docs/ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 *ResourcesApi* | [**get_resource_reviewers**](docs/ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
+*ResourcesApi* | [**get_resource_scoped_role_permissions**](docs/ResourcesApi.md#get_resource_scoped_role_permissions) | **GET** /resources/{resource_id}/scoped-role-permissions | 
 *ResourcesApi* | [**get_resource_tags**](docs/ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
 *ResourcesApi* | [**get_resource_user**](docs/ResourcesApi.md#get_resource_user) | **GET** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**get_resource_users**](docs/ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
@@ -239,9 +241,12 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**set_resource_message_channels**](docs/ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
 *ResourcesApi* | [**set_resource_reviewer_stages**](docs/ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
 *ResourcesApi* | [**set_resource_reviewers**](docs/ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
+*ResourcesApi* | [**set_resource_scoped_role_permissions**](docs/ResourcesApi.md#set_resource_scoped_role_permissions) | **PUT** /resources/{resource_id}/scoped-role-permissions | 
 *ResourcesApi* | [**set_resource_visibility**](docs/ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**update_resource_user**](docs/ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**update_resources**](docs/ResourcesApi.md#update_resources) | **PUT** /resources | 
+*ScopedRolePermissionsApi* | [**get_resource_scoped_role_permissions**](docs/ScopedRolePermissionsApi.md#get_resource_scoped_role_permissions) | **GET** /resources/{resource_id}/scoped-role-permissions | 
+*ScopedRolePermissionsApi* | [**set_resource_scoped_role_permissions**](docs/ScopedRolePermissionsApi.md#set_resource_scoped_role_permissions) | **PUT** /resources/{resource_id}/scoped-role-permissions | 
 *SessionsApi* | [**sessions**](docs/SessionsApi.md#sessions) | **GET** /sessions | 
 *TagsApi* | [**add_group_tag**](docs/TagsApi.md#add_group_tag) | **POST** /tags/{tag_id}/groups/{group_id} | 
 *TagsApi* | [**add_resource_tag**](docs/TagsApi.md#add_resource_tag) | **POST** /tags/{tag_id}/resources/{resource_id} | 
@@ -325,7 +330,9 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoGoogleGroup](docs/GroupRemoteInfoGoogleGroup.md)
  - [GroupRemoteInfoLdapGroup](docs/GroupRemoteInfoLdapGroup.md)
  - [GroupRemoteInfoOktaGroup](docs/GroupRemoteInfoOktaGroup.md)
+ - [GroupRemoteInfoOktaGroupRule](docs/GroupRemoteInfoOktaGroupRule.md)
  - [GroupRemoteInfoSnowflakeRole](docs/GroupRemoteInfoSnowflakeRole.md)
+ - [GroupRemoteInfoWorkdayUserSecurityGroup](docs/GroupRemoteInfoWorkdayUserSecurityGroup.md)
  - [GroupResource](docs/GroupResource.md)
  - [GroupResourceList](docs/GroupResourceList.md)
  - [GroupTypeEnum](docs/GroupTypeEnum.md)
@@ -416,9 +423,13 @@ Class | Method | HTTP request | Description
  - [ReviewerStage](docs/ReviewerStage.md)
  - [ReviewerStageList](docs/ReviewerStageList.md)
  - [RiskSensitivityEnum](docs/RiskSensitivityEnum.md)
+ - [RolePermissionNameEnum](docs/RolePermissionNameEnum.md)
+ - [RolePermissionTargetTypeEnum](docs/RolePermissionTargetTypeEnum.md)
  - [RuleClauses](docs/RuleClauses.md)
  - [RuleConjunction](docs/RuleConjunction.md)
  - [RuleDisjunction](docs/RuleDisjunction.md)
+ - [ScopedRolePermission](docs/ScopedRolePermission.md)
+ - [ScopedRolePermissionList](docs/ScopedRolePermissionList.md)
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
  - [SubEvent](docs/SubEvent.md)
