@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **azure_ad_security_group** | [**GroupRemoteInfoAzureAdSecurityGroup**](GroupRemoteInfoAzureAdSecurityGroup.md) |  | [optional] 
 **azure_ad_microsoft_365_group** | [**GroupRemoteInfoAzureAdMicrosoft365Group**](GroupRemoteInfoAzureAdMicrosoft365Group.md) |  | [optional] 
 **snowflake_role** | [**GroupRemoteInfoSnowflakeRole**](GroupRemoteInfoSnowflakeRole.md) |  | [optional] 
+**okta_group_rule** | [**GroupRemoteInfoOktaGroupRule**](GroupRemoteInfoOktaGroupRule.md) |  | [optional] 
+**workday_user_security_group** | [**GroupRemoteInfoWorkdayUserSecurityGroup**](GroupRemoteInfoWorkdayUserSecurityGroup.md) |  | [optional] 
 
 ## Example
 
