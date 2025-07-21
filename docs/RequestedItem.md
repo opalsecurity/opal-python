@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **access_level_name** | **str** | The name of the access level requested. | [optional] 
 **access_level_remote_id** | **str** | The ID of the access level requested on the remote system. | [optional] 
 **name** | **str** | The name of the target. | [optional] 
+**remote_id** | **str** | The ID of the target on the remote system. | [optional] 
+**remote_name** | **str** | The name of the target on the remote system. | [optional] 
 
 ## Example
 
