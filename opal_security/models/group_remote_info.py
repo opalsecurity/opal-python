@@ -29,7 +29,9 @@ from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoG
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
+from opal_security.models.group_remote_info_okta_group_rule import GroupRemoteInfoOktaGroupRule
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -47,8 +49,10 @@ class GroupRemoteInfo(BaseModel):
     azure_ad_security_group: Optional[GroupRemoteInfoAzureAdSecurityGroup] = None
     azure_ad_microsoft_365_group: Optional[GroupRemoteInfoAzureAdMicrosoft365Group] = None
     snowflake_role: Optional[GroupRemoteInfoSnowflakeRole] = None
+    okta_group_rule: Optional[GroupRemoteInfoOktaGroupRule] = None
+    workday_user_security_group: Optional[GroupRemoteInfoWorkdayUserSecurityGroup] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["active_directory_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role"]
+    __properties: ClassVar[List[str]] = ["active_directory_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,6 +125,12 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of snowflake_role
         if self.snowflake_role:
             _dict['snowflake_role'] = self.snowflake_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of okta_group_rule
+        if self.okta_group_rule:
+            _dict['okta_group_rule'] = self.okta_group_rule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workday_user_security_group
+        if self.workday_user_security_group:
+            _dict['workday_user_security_group'] = self.workday_user_security_group.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -147,7 +157,9 @@ class GroupRemoteInfo(BaseModel):
             "duo_group": GroupRemoteInfoDuoGroup.from_dict(obj["duo_group"]) if obj.get("duo_group") is not None else None,
             "azure_ad_security_group": GroupRemoteInfoAzureAdSecurityGroup.from_dict(obj["azure_ad_security_group"]) if obj.get("azure_ad_security_group") is not None else None,
             "azure_ad_microsoft_365_group": GroupRemoteInfoAzureAdMicrosoft365Group.from_dict(obj["azure_ad_microsoft_365_group"]) if obj.get("azure_ad_microsoft_365_group") is not None else None,
-            "snowflake_role": GroupRemoteInfoSnowflakeRole.from_dict(obj["snowflake_role"]) if obj.get("snowflake_role") is not None else None
+            "snowflake_role": GroupRemoteInfoSnowflakeRole.from_dict(obj["snowflake_role"]) if obj.get("snowflake_role") is not None else None,
+            "okta_group_rule": GroupRemoteInfoOktaGroupRule.from_dict(obj["okta_group_rule"]) if obj.get("okta_group_rule") is not None else None,
+            "workday_user_security_group": GroupRemoteInfoWorkdayUserSecurityGroup.from_dict(obj["workday_user_security_group"]) if obj.get("workday_user_security_group") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

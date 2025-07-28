@@ -19,23 +19,17 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RequestedItem(BaseModel):
+class GroupRemoteInfoOktaGroupRule(BaseModel):
     """
-    # Requested Item Object ### Description The `RequestedItem` object is used to represent a request target item.  ### Usage Example Returned from the `GET Requests` endpoint.
+    Remote info for Okta Directory group rule.
     """ # noqa: E501
-    resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource requested.")
-    group_id: Optional[StrictStr] = Field(default=None, description="The ID of the group requested.")
-    access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level requested.")
-    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the access level requested on the remote system.")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the target.")
-    remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the target on the remote system.")
-    remote_name: Optional[StrictStr] = Field(default=None, description="The name of the target on the remote system.")
+    rule_id: StrictStr = Field(description="The id of the Okta group rule.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "group_id", "access_level_name", "access_level_remote_id", "name", "remote_id", "remote_name"]
+    __properties: ClassVar[List[str]] = ["rule_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +49,7 @@ class RequestedItem(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RequestedItem from a JSON string"""
+        """Create an instance of GroupRemoteInfoOktaGroupRule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -87,7 +81,7 @@ class RequestedItem(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RequestedItem from a dict"""
+        """Create an instance of GroupRemoteInfoOktaGroupRule from a dict"""
         if obj is None:
             return None
 
@@ -95,13 +89,7 @@ class RequestedItem(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "resource_id": obj.get("resource_id"),
-            "group_id": obj.get("group_id"),
-            "access_level_name": obj.get("access_level_name"),
-            "access_level_remote_id": obj.get("access_level_remote_id"),
-            "name": obj.get("name"),
-            "remote_id": obj.get("remote_id"),
-            "remote_name": obj.get("remote_name")
+            "rule_id": obj.get("rule_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
