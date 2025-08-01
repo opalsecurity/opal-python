@@ -10,6 +10,26 @@ info:
 servers:
   - description: Production
     url: https://api.opal.dev/v1
+# keep tags alphabetized, also add any new tags to the list below
+tags:
+  - name: access-rules
+  - name: apps
+  - name: bundles
+  - name: configuration-templates
+  - name: events
+  - name: groups
+  - name: group-bindings
+  - name: idp-group-mappings
+  - name: message-channels
+  - name: non-human-identities
+  - name: on-call-schedules
+  - name: owners
+  - name: requests
+  - name: resources
+  - name: sessions
+  - name: tags
+  - name: uars
+  - name: users
 paths:
   /apps:
     get:
@@ -6323,6 +6343,26 @@ components:
           type: object
           required:
             - role_id
+        okta_group_rule:
+          description: Remote info for Okta Directory group rule.
+          properties:
+            rule_id:
+              description: The id of the Okta group rule.
+              example: 0pr3f7zMZZHPgUoWO0g4
+              type: string
+          type: object
+          required:
+            - rule_id
+        workday_user_security_group:
+          description: Remote info for Workday User Security group.
+          properties:
+            group_id:
+              description: The id of the Workday User Security group.
+              example: 123abc456def
+              type: string
+          type: object
+          required:
+            - group_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.

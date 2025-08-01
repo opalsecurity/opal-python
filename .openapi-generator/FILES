@@ -70,7 +70,9 @@ docs/GroupRemoteInfoGitlabGroup.md
 docs/GroupRemoteInfoGoogleGroup.md
 docs/GroupRemoteInfoLdapGroup.md
 docs/GroupRemoteInfoOktaGroup.md
+docs/GroupRemoteInfoOktaGroupRule.md
 docs/GroupRemoteInfoSnowflakeRole.md
+docs/GroupRemoteInfoWorkdayUserSecurityGroup.md
 docs/GroupResource.md
 docs/GroupResourceList.md
 docs/GroupTypeEnum.md
@@ -298,7 +300,9 @@ opal_security/models/group_remote_info_gitlab_group.py
 opal_security/models/group_remote_info_google_group.py
 opal_security/models/group_remote_info_ldap_group.py
 opal_security/models/group_remote_info_okta_group.py
+opal_security/models/group_remote_info_okta_group_rule.py
 opal_security/models/group_remote_info_snowflake_role.py
+opal_security/models/group_remote_info_workday_user_security_group.py
 opal_security/models/group_resource.py
 opal_security/models/group_resource_list.py
 opal_security/models/group_type_enum.py
@@ -435,4 +439,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_group_remote_info_okta_group_rule.py
+test/test_group_remote_info_workday_user_security_group.py
 tox.ini
