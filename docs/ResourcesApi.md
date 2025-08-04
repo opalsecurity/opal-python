@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**get_resource_nhis**](ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
 [**get_resource_reviewer_stages**](ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 [**get_resource_reviewers**](ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
+[**get_resource_scoped_role_permissions**](ResourcesApi.md#get_resource_scoped_role_permissions) | **GET** /resources/{resource_id}/scoped-role-permissions | 
 [**get_resource_tags**](ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
 [**get_resource_user**](ResourcesApi.md#get_resource_user) | **GET** /resources/{resource_id}/users/{user_id} | 
 [**get_resource_users**](ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
@@ -24,6 +25,7 @@ Method | HTTP request | Description
 [**set_resource_message_channels**](ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
 [**set_resource_reviewer_stages**](ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
 [**set_resource_reviewers**](ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
+[**set_resource_scoped_role_permissions**](ResourcesApi.md#set_resource_scoped_role_permissions) | **PUT** /resources/{resource_id}/scoped-role-permissions | 
 [**set_resource_visibility**](ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
 [**update_resource_user**](ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 [**update_resources**](ResourcesApi.md#update_resources) | **PUT** /resources | 
@@ -913,6 +915,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_resource_scoped_role_permissions**
+> ScopedRolePermissionList get_resource_scoped_role_permissions(resource_id)
+
+
+
+Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.scoped_role_permission_list import ScopedRolePermissionList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource whose scoped role permissions belong to.
+
+    try:
+        api_response = api_instance.get_resource_scoped_role_permissions(resource_id)
+        print("The response of ResourcesApi->get_resource_scoped_role_permissions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource_scoped_role_permissions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource whose scoped role permissions belong to. | 
+
+### Return type
+
+[**ScopedRolePermissionList**](ScopedRolePermissionList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The role permissions that this Opal Scoped Role has. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_resource_tags**
 > TagsList get_resource_tags(resource_id)
 
@@ -1656,6 +1737,87 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated IDs of owners that are reviewers for this resource |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_resource_scoped_role_permissions**
+> ScopedRolePermissionList set_resource_scoped_role_permissions(resource_id, scoped_role_permission_list)
+
+
+
+Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.scoped_role_permission_list import ScopedRolePermissionList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.
+    scoped_role_permission_list = opal_security.ScopedRolePermissionList() # ScopedRolePermissionList | 
+
+    try:
+        api_response = api_instance.set_resource_scoped_role_permissions(resource_id, scoped_role_permission_list)
+        print("The response of ResourcesApi->set_resource_scoped_role_permissions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->set_resource_scoped_role_permissions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type. | 
+ **scoped_role_permission_list** | [**ScopedRolePermissionList**](ScopedRolePermissionList.md)|  | 
+
+### Return type
+
+[**ScopedRolePermissionList**](ScopedRolePermissionList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The role permissions that this Opal Scoped Role has. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

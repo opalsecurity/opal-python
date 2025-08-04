@@ -20,22 +20,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.remote_user import RemoteUser
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RequestedItem(BaseModel):
+class PaginatedRemoteUsersList(BaseModel):
     """
-    # Requested Item Object ### Description The `RequestedItem` object is used to represent a request target item.  ### Usage Example Returned from the `GET Requests` endpoint.
+    PaginatedRemoteUsersList
     """ # noqa: E501
-    resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource requested.")
-    group_id: Optional[StrictStr] = Field(default=None, description="The ID of the group requested.")
-    access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level requested.")
-    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the access level requested on the remote system.")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the target.")
-    remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the target on the remote system.")
-    remote_name: Optional[StrictStr] = Field(default=None, description="The name of the target on the remote system.")
+    next: Optional[StrictStr] = Field(default=None, description="The cursor with which to continue pagination if additional result pages exist.")
+    previous: Optional[StrictStr] = Field(default=None, description="The cursor used to obtain the current result page.")
+    results: List[RemoteUser]
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "group_id", "access_level_name", "access_level_remote_id", "name", "remote_id", "remote_name"]
+    __properties: ClassVar[List[str]] = ["next", "previous", "results"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +52,7 @@ class RequestedItem(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RequestedItem from a JSON string"""
+        """Create an instance of PaginatedRemoteUsersList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,6 +75,13 @@ class RequestedItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
+        _items = []
+        if self.results:
+            for _item_results in self.results:
+                if _item_results:
+                    _items.append(_item_results.to_dict())
+            _dict['results'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -87,7 +91,7 @@ class RequestedItem(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RequestedItem from a dict"""
+        """Create an instance of PaginatedRemoteUsersList from a dict"""
         if obj is None:
             return None
 
@@ -95,13 +99,9 @@ class RequestedItem(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "resource_id": obj.get("resource_id"),
-            "group_id": obj.get("group_id"),
-            "access_level_name": obj.get("access_level_name"),
-            "access_level_remote_id": obj.get("access_level_remote_id"),
-            "name": obj.get("name"),
-            "remote_id": obj.get("remote_id"),
-            "remote_name": obj.get("remote_name")
+            "next": obj.get("next"),
+            "previous": obj.get("previous"),
+            "results": [RemoteUser.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

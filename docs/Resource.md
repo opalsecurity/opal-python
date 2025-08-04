@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **remote_info** | [**ResourceRemoteInfo**](ResourceRemoteInfo.md) |  | [optional] 
 **ancestor_resource_ids** | **List[str]** | List of resource IDs that are ancestors of this resource. | [optional] 
 **descendant_resource_ids** | **List[str]** | List of resource IDs that are descendants of this resource. | [optional] 
+**last_successful_sync** | [**SyncTask**](SyncTask.md) | Information about the last successful sync of this resource. | [optional] [readonly] 
 
 ## Example
 
