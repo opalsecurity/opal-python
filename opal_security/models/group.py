@@ -25,6 +25,7 @@ from opal_security.models.group_remote_info import GroupRemoteInfo
 from opal_security.models.group_type_enum import GroupTypeEnum
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal_security.models.sync_task import SyncTask
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -59,8 +60,9 @@ class Group(BaseModel):
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent to the requester when the request is approved.")
     risk_sensitivity: Optional[RiskSensitivityEnum] = Field(default=None, description="The risk sensitivity level for the group. When an override is set, this field will match that.")
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
+    last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this group.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override"]
+    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "last_successful_sync"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,10 +95,12 @@ class Group(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
             "risk_sensitivity",
+            "last_successful_sync",
             "additional_properties",
         ])
 
@@ -122,6 +126,9 @@ class Group(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of remote_info
         if self.remote_info:
             _dict['remote_info'] = self.remote_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of last_successful_sync
+        if self.last_successful_sync:
+            _dict['last_successful_sync'] = self.last_successful_sync.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -165,7 +172,8 @@ class Group(BaseModel):
             "remote_info": GroupRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
             "custom_request_notification": obj.get("custom_request_notification"),
             "risk_sensitivity": obj.get("risk_sensitivity"),
-            "risk_sensitivity_override": obj.get("risk_sensitivity_override")
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
+            "last_successful_sync": SyncTask.from_dict(obj["last_successful_sync"]) if obj.get("last_successful_sync") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

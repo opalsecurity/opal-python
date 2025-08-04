@@ -445,7 +445,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_group_user**
-> delete_group_user(group_id, user_id)
+> delete_group_user(group_id, user_id, access_level_remote_id=access_level_remote_id)
 
 
 
@@ -484,9 +484,10 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
     user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of a user to remove from this group.
+    access_level_remote_id = '30' # str | The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
 
     try:
-        api_instance.delete_group_user(group_id, user_id)
+        api_instance.delete_group_user(group_id, user_id, access_level_remote_id=access_level_remote_id)
     except Exception as e:
         print("Exception when calling GroupsApi->delete_group_user: %s\n" % e)
 ```
@@ -500,6 +501,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**| The ID of the group. | 
  **user_id** | **str**| The ID of a user to remove from this group. | 
+ **access_level_remote_id** | **str**| The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. | [optional] 
 
 ### Return type
 

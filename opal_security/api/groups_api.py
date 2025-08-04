@@ -1544,6 +1544,7 @@ class GroupsApi:
         self,
         group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1565,6 +1566,8 @@ class GroupsApi:
         :type group_id: str
         :param user_id: The ID of a user to remove from this group. (required)
         :type user_id: str
+        :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1590,6 +1593,7 @@ class GroupsApi:
         _param = self._delete_group_user_serialize(
             group_id=group_id,
             user_id=user_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1615,6 +1619,7 @@ class GroupsApi:
         self,
         group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1636,6 +1641,8 @@ class GroupsApi:
         :type group_id: str
         :param user_id: The ID of a user to remove from this group. (required)
         :type user_id: str
+        :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1661,6 +1668,7 @@ class GroupsApi:
         _param = self._delete_group_user_serialize(
             group_id=group_id,
             user_id=user_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1686,6 +1694,7 @@ class GroupsApi:
         self,
         group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1707,6 +1716,8 @@ class GroupsApi:
         :type group_id: str
         :param user_id: The ID of a user to remove from this group. (required)
         :type user_id: str
+        :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1732,6 +1743,7 @@ class GroupsApi:
         _param = self._delete_group_user_serialize(
             group_id=group_id,
             user_id=user_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1752,6 +1764,7 @@ class GroupsApi:
         self,
         group_id,
         user_id,
+        access_level_remote_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1778,6 +1791,10 @@ class GroupsApi:
         if user_id is not None:
             _path_params['user_id'] = user_id
         # process the query parameters
+        if access_level_remote_id is not None:
+            
+            _query_params.append(('access_level_remote_id', access_level_remote_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

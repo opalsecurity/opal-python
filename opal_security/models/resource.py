@@ -25,6 +25,7 @@ from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.resource_remote_info import ResourceRemoteInfo
 from opal_security.models.resource_type_enum import ResourceTypeEnum
 from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
+from opal_security.models.sync_task import SyncTask
 from opal_security.models.ticket_propagation_configuration import TicketPropagationConfiguration
 from typing import Optional, Set
 from typing_extensions import Self
@@ -63,8 +64,9 @@ class Resource(BaseModel):
     remote_info: Optional[ResourceRemoteInfo] = None
     ancestor_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are ancestors of this resource.")
     descendant_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are descendants of this resource.")
+    last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this resource.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids"]
+    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids", "last_successful_sync"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,10 +99,12 @@ class Resource(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
             "risk_sensitivity",
+            "last_successful_sync",
             "additional_properties",
         ])
 
@@ -129,6 +133,9 @@ class Resource(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of remote_info
         if self.remote_info:
             _dict['remote_info'] = self.remote_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of last_successful_sync
+        if self.last_successful_sync:
+            _dict['last_successful_sync'] = self.last_successful_sync.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -175,7 +182,8 @@ class Resource(BaseModel):
             "metadata": obj.get("metadata"),
             "remote_info": ResourceRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
             "ancestor_resource_ids": obj.get("ancestor_resource_ids"),
-            "descendant_resource_ids": obj.get("descendant_resource_ids")
+            "descendant_resource_ids": obj.get("descendant_resource_ids"),
+            "last_successful_sync": SyncTask.from_dict(obj["last_successful_sync"]) if obj.get("last_successful_sync") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

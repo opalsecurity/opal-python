@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
 **risk_sensitivity** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) | The risk sensitivity level for the group. When an override is set, this field will match that. | [optional] [readonly] 
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
+**last_successful_sync** | [**SyncTask**](SyncTask.md) | Information about the last successful sync of this group. | [optional] [readonly] 
 
 ## Example
 

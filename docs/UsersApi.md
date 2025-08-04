@@ -4,10 +4,99 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_remote_users**](UsersApi.md#get_remote_users) | **GET** /users/remote_users | 
 [**get_user_tags**](UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
 [**get_users**](UsersApi.md#get_users) | **GET** /users | 
 [**user**](UsersApi.md#user) | **GET** /user | 
 
+
+# **get_remote_users**
+> PaginatedRemoteUsersList get_remote_users(third_party_provider=third_party_provider, user_id=user_id, remote_id=remote_id, cursor=cursor, page_size=page_size)
+
+
+
+Returns a list of remote users for your organization.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.paginated_remote_users_list import PaginatedRemoteUsersList
+from opal_security.models.third_party_provider_enum import ThirdPartyProviderEnum
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.UsersApi(api_client)
+    third_party_provider = [opal_security.ThirdPartyProviderEnum()] # List[ThirdPartyProviderEnum] | Filter remote users by their third party provider. (optional)
+    user_id = ['[\"32acc112-21ff-4669-91c2-21e27683eaa1\"]'] # List[str] | Filter remote users by their user ID. (optional)
+    remote_id = ['[1234567890]'] # List[str] | Filter remote users by their remote ID. (optional)
+    cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
+    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
+
+    try:
+        api_response = api_instance.get_remote_users(third_party_provider=third_party_provider, user_id=user_id, remote_id=remote_id, cursor=cursor, page_size=page_size)
+        print("The response of UsersApi->get_remote_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UsersApi->get_remote_users: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **third_party_provider** | [**List[ThirdPartyProviderEnum]**](ThirdPartyProviderEnum.md)| Filter remote users by their third party provider. | [optional] 
+ **user_id** | [**List[str]**](str.md)| Filter remote users by their user ID. | [optional] 
+ **remote_id** | [**List[str]**](str.md)| Filter remote users by their remote ID. | [optional] 
+ **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
+
+### Return type
+
+[**PaginatedRemoteUsersList**](PaginatedRemoteUsersList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | One page worth users in your organization. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_tags**
 > TagsList get_user_tags(user_id)

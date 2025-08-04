@@ -18,24 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from opal_security.models.scoped_role_permission import ScopedRolePermission
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RequestedItem(BaseModel):
+class ScopedRolePermissionList(BaseModel):
     """
-    # Requested Item Object ### Description The `RequestedItem` object is used to represent a request target item.  ### Usage Example Returned from the `GET Requests` endpoint.
+    ScopedRolePermissionList
     """ # noqa: E501
-    resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource requested.")
-    group_id: Optional[StrictStr] = Field(default=None, description="The ID of the group requested.")
-    access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level requested.")
-    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the access level requested on the remote system.")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the target.")
-    remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the target on the remote system.")
-    remote_name: Optional[StrictStr] = Field(default=None, description="The name of the target on the remote system.")
+    permissions: List[ScopedRolePermission]
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "group_id", "access_level_name", "access_level_remote_id", "name", "remote_id", "remote_name"]
+    __properties: ClassVar[List[str]] = ["permissions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +50,7 @@ class RequestedItem(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RequestedItem from a JSON string"""
+        """Create an instance of ScopedRolePermissionList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,6 +73,13 @@ class RequestedItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in permissions (list)
+        _items = []
+        if self.permissions:
+            for _item_permissions in self.permissions:
+                if _item_permissions:
+                    _items.append(_item_permissions.to_dict())
+            _dict['permissions'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -87,7 +89,7 @@ class RequestedItem(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RequestedItem from a dict"""
+        """Create an instance of ScopedRolePermissionList from a dict"""
         if obj is None:
             return None
 
@@ -95,13 +97,7 @@ class RequestedItem(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "resource_id": obj.get("resource_id"),
-            "group_id": obj.get("group_id"),
-            "access_level_name": obj.get("access_level_name"),
-            "access_level_remote_id": obj.get("access_level_remote_id"),
-            "name": obj.get("name"),
-            "remote_id": obj.get("remote_id"),
-            "remote_name": obj.get("remote_name")
+            "permissions": [ScopedRolePermission.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
