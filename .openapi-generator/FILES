@@ -152,6 +152,7 @@ docs/ResourceRemoteInfoGcpOrganization.md
 docs/ResourceRemoteInfoGcpProject.md
 docs/ResourceRemoteInfoGcpServiceAccount.md
 docs/ResourceRemoteInfoGcpSqlInstance.md
+docs/ResourceRemoteInfoGithubOrgRole.md
 docs/ResourceRemoteInfoGithubRepo.md
 docs/ResourceRemoteInfoGitlabProject.md
 docs/ResourceRemoteInfoGoogleWorkspaceRole.md
@@ -386,6 +387,7 @@ opal_security/models/resource_remote_info_gcp_organization.py
 opal_security/models/resource_remote_info_gcp_project.py
 opal_security/models/resource_remote_info_gcp_service_account.py
 opal_security/models/resource_remote_info_gcp_sql_instance.py
+opal_security/models/resource_remote_info_github_org_role.py
 opal_security/models/resource_remote_info_github_repo.py
 opal_security/models/resource_remote_info_gitlab_project.py
 opal_security/models/resource_remote_info_google_workspace_role.py
@@ -459,14 +461,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_paginated_remote_users_list.py
-test/test_remote_user.py
-test/test_resource_remote_info_google_workspace_role.py
-test/test_role_permission_name_enum.py
-test/test_role_permission_target_type_enum.py
-test/test_scoped_role_permission.py
-test/test_scoped_role_permission_list.py
-test/test_scoped_role_permissions_api.py
-test/test_sync_task.py
-test/test_third_party_provider_enum.py
+test/test_resource_remote_info_github_org_role.py
 tox.ini
