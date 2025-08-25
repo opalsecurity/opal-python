@@ -19,20 +19,17 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from opal_security.models.resource_access_user import ResourceAccessUser
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourceAccessUserList(BaseModel):
+class ResourceRemoteInfoGithubOrgRole(BaseModel):
     """
-    ResourceAccessUserList
+    Remote info for GitHub organization role.
     """ # noqa: E501
-    next: Optional[StrictStr] = Field(default=None, description="The cursor with which to continue pagination if additional result pages exist.")
-    previous: Optional[StrictStr] = Field(default=None, description="The cursor used to obtain the current result page.")
-    results: Optional[List[ResourceAccessUser]] = None
+    role_id: StrictStr = Field(description="The id of the role.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["next", "previous", "results"]
+    __properties: ClassVar[List[str]] = ["role_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +49,7 @@ class ResourceAccessUserList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourceAccessUserList from a JSON string"""
+        """Create an instance of ResourceRemoteInfoGithubOrgRole from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,13 +72,6 @@ class ResourceAccessUserList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
-        _items = []
-        if self.results:
-            for _item_results in self.results:
-                if _item_results:
-                    _items.append(_item_results.to_dict())
-            _dict['results'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -91,7 +81,7 @@ class ResourceAccessUserList(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourceAccessUserList from a dict"""
+        """Create an instance of ResourceRemoteInfoGithubOrgRole from a dict"""
         if obj is None:
             return None
 
@@ -99,9 +89,7 @@ class ResourceAccessUserList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "next": obj.get("next"),
-            "previous": obj.get("previous"),
-            "results": [ResourceAccessUser.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
+            "role_id": obj.get("role_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

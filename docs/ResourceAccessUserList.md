@@ -5,6 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**next** | **str** | The cursor with which to continue pagination if additional result pages exist. | [optional] 
+**previous** | **str** | The cursor used to obtain the current result page. | [optional] 
 **results** | [**List[ResourceAccessUser]**](ResourceAccessUser.md) |  | [optional] 
 
 ## Example
