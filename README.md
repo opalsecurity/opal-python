@@ -197,6 +197,7 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**set_group_visibility**](docs/GroupsApi.md#set_group_visibility) | **PUT** /groups/{group_id}/visibility | 
 *GroupsApi* | [**update_group_user**](docs/GroupsApi.md#update_group_user) | **PUT** /groups/{group_id}/users/{user_id} | 
 *GroupsApi* | [**update_groups**](docs/GroupsApi.md#update_groups) | **PUT** /groups | 
+*IdpGroupMappingsApi* | [**create_idp_group_mapping**](docs/IdpGroupMappingsApi.md#create_idp_group_mapping) | **POST** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
 *IdpGroupMappingsApi* | [**delete_idp_group_mappings**](docs/IdpGroupMappingsApi.md#delete_idp_group_mappings) | **DELETE** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
 *IdpGroupMappingsApi* | [**get_idp_group_mappings**](docs/IdpGroupMappingsApi.md#get_idp_group_mappings) | **GET** /idp-group-mappings/{app_resource_id} | 
 *IdpGroupMappingsApi* | [**update_idp_group_mappings**](docs/IdpGroupMappingsApi.md#update_idp_group_mappings) | **PUT** /idp-group-mappings/{app_resource_id} | 
@@ -237,6 +238,7 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**get_resource_users**](docs/ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
 *ResourcesApi* | [**get_resource_visibility**](docs/ResourcesApi.md#get_resource_visibility) | **GET** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**get_resources**](docs/ResourcesApi.md#get_resources) | **GET** /resources | 
+*ResourcesApi* | [**get_user_resources**](docs/ResourcesApi.md#get_user_resources) | **GET** /resources/users/{user_id} | 
 *ResourcesApi* | [**resource_user_access_status_retrieve**](docs/ResourcesApi.md#resource_user_access_status_retrieve) | **GET** /resource-user-access-status/{resource_id}/{user_id} | 
 *ResourcesApi* | [**set_resource_message_channels**](docs/ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
 *ResourcesApi* | [**set_resource_reviewer_stages**](docs/ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
@@ -299,6 +301,7 @@ Class | Method | HTTP request | Description
  - [CreateGroupBindingInfo](docs/CreateGroupBindingInfo.md)
  - [CreateGroupBindingInfoGroupsInner](docs/CreateGroupBindingInfoGroupsInner.md)
  - [CreateGroupInfo](docs/CreateGroupInfo.md)
+ - [CreateIdpGroupMappingRequest](docs/CreateIdpGroupMappingRequest.md)
  - [CreateMessageChannelInfo](docs/CreateMessageChannelInfo.md)
  - [CreateOnCallScheduleInfo](docs/CreateOnCallScheduleInfo.md)
  - [CreateOwnerInfo](docs/CreateOwnerInfo.md)
@@ -370,6 +373,7 @@ Class | Method | HTTP request | Description
  - [PropagationStatusEnum](docs/PropagationStatusEnum.md)
  - [RemoteUser](docs/RemoteUser.md)
  - [Request](docs/Request.md)
+ - [RequestApprovalEnum](docs/RequestApprovalEnum.md)
  - [RequestConfiguration](docs/RequestConfiguration.md)
  - [RequestConnection](docs/RequestConnection.md)
  - [RequestCustomFieldResponse](docs/RequestCustomFieldResponse.md)
@@ -406,6 +410,7 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoGcpProject](docs/ResourceRemoteInfoGcpProject.md)
  - [ResourceRemoteInfoGcpServiceAccount](docs/ResourceRemoteInfoGcpServiceAccount.md)
  - [ResourceRemoteInfoGcpSqlInstance](docs/ResourceRemoteInfoGcpSqlInstance.md)
+ - [ResourceRemoteInfoGithubOrgRole](docs/ResourceRemoteInfoGithubOrgRole.md)
  - [ResourceRemoteInfoGithubRepo](docs/ResourceRemoteInfoGithubRepo.md)
  - [ResourceRemoteInfoGitlabProject](docs/ResourceRemoteInfoGitlabProject.md)
  - [ResourceRemoteInfoGoogleWorkspaceRole](docs/ResourceRemoteInfoGoogleWorkspaceRole.md)

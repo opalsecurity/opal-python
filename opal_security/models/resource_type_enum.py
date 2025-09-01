@@ -87,6 +87,7 @@ class ResourceTypeEnum(str, Enum):
     MARIADB_INSTANCE = 'MARIADB_INSTANCE'
     POSTGRES_INSTANCE = 'POSTGRES_INSTANCE'
     TELEPORT_ROLE = 'TELEPORT_ROLE'
+    ILEVEL_ADVANCED_ROLE = 'ILEVEL_ADVANCED_ROLE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

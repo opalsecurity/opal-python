@@ -1858,6 +1858,65 @@ paths:
       tags:
         - idp-group-mappings
   /idp-group-mappings/{app_resource_id}/{group_id}/:
+    post:
+      description: |
+        Creates or updates an individual `IdpGroupMapping` object (upsert operation).
+
+        **Behavior:**
+        - If the mapping doesn't exist, it will be created with the provided values
+        - If the mapping exists, only the fields provided in the request will be updated
+      operationId: createIdpGroupMapping
+      parameters:
+        - description: The ID of the Okta app.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: app_resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                alias:
+                  description: Optional alias for the group mapping
+                  type: string
+                  nullable: true
+                hidden_from_end_user:
+                  description: |
+                    Whether this mapping should be hidden from end users.
+                    - **New mappings**: If not provided, defaults to `false`
+                    - **Existing mappings**: If not provided, existing value is preserved (no change)
+                    - **Explicit values**: If provided, value is updated to the specified boolean
+                  type: boolean
+                  nullable: true
+              type: object
+      responses:
+        "200":
+          description: The IDP group mapping was successfully created or updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdpGroupMapping"
+      security:
+        - BearerAuth: []
+      tags:
+        - idp-group-mappings
     delete:
       description: Deletes an `IdpGroupMapping` object.
       operationId: delete_idp_group_mappings
@@ -2338,10 +2397,7 @@ paths:
               type: object
               properties:
                 level:
-                  type: string
-                  enum: [REGULAR, ADMIN]
-                  description: "The decision level for the approval"
-                  example: "REGULAR"
+                  $ref: "#/components/schemas/RequestApprovalEnum"
                 comment:
                   type: string
                   description: "Optional comment for the approval"
@@ -2358,11 +2414,6 @@ paths:
                 properties:
                   request:
                     $ref: "#/components/schemas/Request"
-                  taskId:
-                    type: string
-                    format: uuid
-                    description: "ID of the task created for propagating access"
-                    example: "c6f85bfb-3fe7-4936-a68d-7a5e1e3d0f6a"
       security:
         - BearerAuth: []
       tags:
@@ -2391,7 +2442,7 @@ paths:
             type: integer
             maximum: 1000
           style: form
-        - description: The resource type to filter by.
+        - description: The resource type to filter by. Required when remote_id is provided.
           example: AWS_IAM_ROLE
           explode: true
           in: query
@@ -2444,6 +2495,13 @@ paths:
           required: false
           schema:
             format: uuid
+            type: string
+          style: form
+        - description: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
+          in: query
+          name: remote_id
+          required: false
+          schema:
             type: string
           style: form
       responses:
@@ -3374,6 +3432,59 @@ paths:
       tags:
         - resources
         - scoped-role-permissions
+  /resources/users/{user_id}:
+    get:
+      description: Gets the list of resources for this user.
+      operationId: get_user_resources
+      parameters:
+        - description: The ID of the user.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: user_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: Limit the number of results returned.
+          example: 200
+          explode: true
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Include user's access to unmanaged resources.
+          example: false
+          explode: true
+          in: query
+          name: include_unmanaged
+          required: false
+          schema:
+            type: boolean
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceAccessUserList"
+          description: List of resources user has access to.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
   /sessions:
     get:
       description: Returns a list of `Session` objects.
@@ -4266,6 +4377,7 @@ paths:
         - BearerAuth: []
       tags:
         - apps
+
 components:
   schemas:
     PaginatedAssignedRequestList:
@@ -4925,6 +5037,18 @@ components:
             has_direct_access: true
             num_access_paths: 3
       properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional
+            result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/ResourceAccessUser"
@@ -5637,6 +5761,10 @@ components:
           description: The recommended duration for which the group should be requested (in minutes). -1 represents an indefinite duration.
           type: integer
           example: 120
+        extensions_duration_in_minutes:
+          description: The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+          type: integer
+          example: 120
         require_manager_approval:
           description: A bool representing whether or not access requests to the group require manager approval.
           example: False
@@ -5967,6 +6095,10 @@ components:
             type: string
             format: uuid
           type: array
+        extensions_duration_in_minutes:
+          description: The duration for which access can be extended (in minutes).
+          type: integer
+          example: 120
         request_configurations:
           type: array
           items:
@@ -6110,6 +6242,7 @@ components:
         - MARIADB_INSTANCE
         - POSTGRES_INSTANCE
         - TELEPORT_ROLE
+        - ILEVEL_ADVANCED_ROLE
       example: AWS_IAM_ROLE
       type: string
     VisibilityTypeEnum:
@@ -6976,6 +7109,16 @@ components:
           type: object
           required:
             - repo_name
+        github_org_role:
+          description: Remote info for GitHub organization role.
+          properties:
+            role_id:
+              description: The id of the role.
+              example: 112233
+              type: string
+          type: object
+          required:
+            - role_id
         gitlab_project:
           description: Remote info for Gitlab project.
           properties:
@@ -7935,6 +8078,10 @@ components:
           description: The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.
           type: integer
           example: 120
+        extensions_duration_in_minutes:
+          description: The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+          type: integer
+          example: 120
         require_manager_approval:
           description: A bool representing whether or not access requests to the resource require manager approval.
           example: False
@@ -8193,6 +8340,10 @@ components:
           example: False
           type: boolean
           deprecated: true
+        extensions_duration_in_minutes:
+          description: The duration for which access can be extended (in minutes).
+          type: integer
+          example: 120
         request_configurations:
           type: array
           items:
@@ -8963,6 +9114,10 @@ components:
           description: A bool representing whether or not access requests to the resource require an access ticket.
           example: False
           type: boolean
+        extensions_duration_in_minutes:
+          description: The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+          type: integer
+          example: 120
         request_template_id:
           description: The ID of the associated request template.
           example: 06851574-e50d-40ca-8c78-f72ae6ab4304
@@ -9860,6 +10015,11 @@ components:
       example:
         id: 7c86c85d-0651-43e2-a748-d69d658418e8
         completed_at: 2023-10-01T12:00:00Z
+    RequestApprovalEnum:
+      type: string
+      enum: [REGULAR, ADMIN]
+      description: "The decision level for the approval"
+      example: "REGULAR"
   securitySchemes:
     BearerAuth:
       scheme: bearer

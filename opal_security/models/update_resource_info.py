@@ -51,10 +51,11 @@ class UpdateResourceInfo(BaseModel):
     configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this resource. Deprecated in favor of `request_configurations`.")
+    extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes).")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used.")
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "ticket_propagation", "custom_request_notification", "risk_sensitivity_override", "configuration_template_id", "request_template_id", "is_requestable", "request_configurations", "request_configuration_list"]
+    __properties: ClassVar[List[str]] = ["resource_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "ticket_propagation", "custom_request_notification", "risk_sensitivity_override", "configuration_template_id", "request_template_id", "is_requestable", "extensions_duration_in_minutes", "request_configurations", "request_configuration_list"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -146,6 +147,7 @@ class UpdateResourceInfo(BaseModel):
             "configuration_template_id": obj.get("configuration_template_id"),
             "request_template_id": obj.get("request_template_id"),
             "is_requestable": obj.get("is_requestable"),
+            "extensions_duration_in_minutes": obj.get("extensions_duration_in_minutes"),
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None,
             "request_configuration_list": CreateRequestConfigurationInfoList.from_dict(obj["request_configuration_list"]) if obj.get("request_configuration_list") is not None else None
         })
