@@ -18,19 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from opal_security.models.request import Request
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ApproveRequest200Response(BaseModel):
+class CreateIdpGroupMappingRequest(BaseModel):
     """
-    ApproveRequest200Response
+    CreateIdpGroupMappingRequest
     """ # noqa: E501
-    request: Optional[Request] = None
+    alias: Optional[StrictStr] = Field(default=None, description="Optional alias for the group mapping")
+    hidden_from_end_user: Optional[StrictBool] = Field(default=None, description="Whether this mapping should be hidden from end users. - **New mappings**: If not provided, defaults to `false` - **Existing mappings**: If not provided, existing value is preserved (no change) - **Explicit values**: If provided, value is updated to the specified boolean ")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["request"]
+    __properties: ClassVar[List[str]] = ["alias", "hidden_from_end_user"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class ApproveRequest200Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ApproveRequest200Response from a JSON string"""
+        """Create an instance of CreateIdpGroupMappingRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,9 +73,6 @@ class ApproveRequest200Response(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of request
-        if self.request:
-            _dict['request'] = self.request.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -85,7 +82,7 @@ class ApproveRequest200Response(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ApproveRequest200Response from a dict"""
+        """Create an instance of CreateIdpGroupMappingRequest from a dict"""
         if obj is None:
             return None
 
@@ -93,7 +90,8 @@ class ApproveRequest200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "request": Request.from_dict(obj["request"]) if obj.get("request") is not None else None
+            "alias": obj.get("alias"),
+            "hidden_from_end_user": obj.get("hidden_from_end_user")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
