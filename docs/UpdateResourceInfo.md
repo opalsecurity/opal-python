@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
 **request_template_id** | **str** | The ID of the associated request template. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
+**extensions_duration_in_minutes** | **int** | The duration for which access can be extended (in minutes). | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of configurations for requests to this resource. If not provided, the default request configuration will be used. | [optional] 
 **request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 

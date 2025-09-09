@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**approve_request**](RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
 [**create_request**](RequestsApi.md#create_request) | **POST** /requests | 
+[**create_request_comment**](RequestsApi.md#create_request_comment) | **POST** /requests/{id}/comments | 
+[**deny_request**](RequestsApi.md#deny_request) | **POST** /requests/{id}/deny | 
 [**get_request**](RequestsApi.md#get_request) | **GET** /requests/{id} | 
+[**get_request_comments**](RequestsApi.md#get_request_comments) | **GET** /requests/{id}/comments | 
 [**get_requests**](RequestsApi.md#get_requests) | **GET** /requests | 
 [**get_requests_relay**](RequestsApi.md#get_requests_relay) | **GET** /requests/relay | 
 
@@ -173,6 +176,170 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_request_comment**
+> ApproveRequest200Response create_request_comment(id, create_request_comment_request)
+
+
+
+Comment on an access request
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.approve_request200_response import ApproveRequest200Response
+from opal_security.models.create_request_comment_request import CreateRequestCommentRequest
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = 'id_example' # str | The ID of the request to comment on
+    create_request_comment_request = opal_security.CreateRequestCommentRequest() # CreateRequestCommentRequest | Comment parameters
+
+    try:
+        api_response = api_instance.create_request_comment(id, create_request_comment_request)
+        print("The response of RequestsApi->create_request_comment:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->create_request_comment: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the request to comment on | 
+ **create_request_comment_request** | [**CreateRequestCommentRequest**](CreateRequestCommentRequest.md)| Comment parameters | 
+
+### Return type
+
+[**ApproveRequest200Response**](ApproveRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Request successfully commented |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deny_request**
+> ApproveRequest200Response deny_request(id, deny_request_request)
+
+
+
+Deny an access request
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.approve_request200_response import ApproveRequest200Response
+from opal_security.models.deny_request_request import DenyRequestRequest
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = 'id_example' # str | The ID of the request to deny
+    deny_request_request = opal_security.DenyRequestRequest() # DenyRequestRequest | Denial parameters
+
+    try:
+        api_response = api_instance.deny_request(id, deny_request_request)
+        print("The response of RequestsApi->deny_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->deny_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the request to deny | 
+ **deny_request_request** | [**DenyRequestRequest**](DenyRequestRequest.md)| Denial parameters | 
+
+### Return type
+
+[**ApproveRequest200Response**](ApproveRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Request successfully denied |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_request**
 > Request get_request(id)
 
@@ -249,6 +416,84 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested request object. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_request_comments**
+> RequestCommentList get_request_comments(id)
+
+
+
+Returns a list of comments for a specific request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = 'id_example' # str | The ID of the request to get comments for
+
+    try:
+        api_response = api_instance.get_request_comments(id)
+        print("The response of RequestsApi->get_request_comments:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->get_request_comments: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the request to get comments for | 
+
+### Return type
+
+[**RequestCommentList**](RequestCommentList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of comments associated with the specified request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -15,7 +15,6 @@ from opal_security.api.on_call_schedules_api import OnCallSchedulesApi
 from opal_security.api.owners_api import OwnersApi
 from opal_security.api.requests_api import RequestsApi
 from opal_security.api.resources_api import ResourcesApi
-from opal_security.api.scoped_role_permissions_api import ScopedRolePermissionsApi
 from opal_security.api.sessions_api import SessionsApi
 from opal_security.api.tags_api import TagsApi
 from opal_security.api.uars_api import UarsApi
