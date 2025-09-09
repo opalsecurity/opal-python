@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.request_approval_enum import RequestApprovalEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,17 +28,10 @@ class ApproveRequestRequest(BaseModel):
     """
     ApproveRequestRequest
     """ # noqa: E501
-    level: StrictStr = Field(description="The decision level for the approval")
+    level: RequestApprovalEnum
     comment: Optional[StrictStr] = Field(default=None, description="Optional comment for the approval")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["level", "comment"]
-
-    @field_validator('level')
-    def level_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['REGULAR', 'ADMIN']):
-            raise ValueError("must be one of enum values ('REGULAR', 'ADMIN')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
