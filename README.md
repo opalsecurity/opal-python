@@ -164,6 +164,10 @@ Class | Method | HTTP request | Description
 *ConfigurationTemplatesApi* | [**delete_configuration_template**](docs/ConfigurationTemplatesApi.md#delete_configuration_template) | **DELETE** /configuration-templates/{configuration_template_id} | 
 *ConfigurationTemplatesApi* | [**get_configuration_templates**](docs/ConfigurationTemplatesApi.md#get_configuration_templates) | **GET** /configuration-templates | 
 *ConfigurationTemplatesApi* | [**update_configuration_template**](docs/ConfigurationTemplatesApi.md#update_configuration_template) | **PUT** /configuration-templates | 
+*DelegationsApi* | [**create_delegation**](docs/DelegationsApi.md#create_delegation) | **POST** /delegations | 
+*DelegationsApi* | [**delete_delegation**](docs/DelegationsApi.md#delete_delegation) | **DELETE** /delegations/{delegation_id} | 
+*DelegationsApi* | [**get_delegation**](docs/DelegationsApi.md#get_delegation) | **GET** /delegations/{delegation_id} | 
+*DelegationsApi* | [**get_delegations**](docs/DelegationsApi.md#get_delegations) | **GET** /delegations | 
 *EventsApi* | [**events**](docs/EventsApi.md#events) | **GET** /events | 
 *GroupBindingsApi* | [**create_group_binding**](docs/GroupBindingsApi.md#create_group_binding) | **POST** /group-bindings | 
 *GroupBindingsApi* | [**delete_group_binding**](docs/GroupBindingsApi.md#delete_group_binding) | **DELETE** /group-bindings/{group_binding_id} | 
@@ -188,6 +192,7 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**get_group_users**](docs/GroupsApi.md#get_group_users) | **GET** /groups/{group_id}/users | 
 *GroupsApi* | [**get_group_visibility**](docs/GroupsApi.md#get_group_visibility) | **GET** /groups/{group_id}/visibility | 
 *GroupsApi* | [**get_groups**](docs/GroupsApi.md#get_groups) | **GET** /groups | 
+*GroupsApi* | [**get_user_groups**](docs/GroupsApi.md#get_user_groups) | **GET** /groups/users/{user_id} | 
 *GroupsApi* | [**remove_group_containing_group**](docs/GroupsApi.md#remove_group_containing_group) | **DELETE** /groups/{group_id}/containing-groups/{containing_group_id} | 
 *GroupsApi* | [**set_group_message_channels**](docs/GroupsApi.md#set_group_message_channels) | **PUT** /groups/{group_id}/message-channels | 
 *GroupsApi* | [**set_group_on_call_schedules**](docs/GroupsApi.md#set_group_on_call_schedules) | **PUT** /groups/{group_id}/on-call-schedules | 
@@ -197,7 +202,9 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**set_group_visibility**](docs/GroupsApi.md#set_group_visibility) | **PUT** /groups/{group_id}/visibility | 
 *GroupsApi* | [**update_group_user**](docs/GroupsApi.md#update_group_user) | **PUT** /groups/{group_id}/users/{user_id} | 
 *GroupsApi* | [**update_groups**](docs/GroupsApi.md#update_groups) | **PUT** /groups | 
+*IdpGroupMappingsApi* | [**create_idp_group_mapping**](docs/IdpGroupMappingsApi.md#create_idp_group_mapping) | **POST** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
 *IdpGroupMappingsApi* | [**delete_idp_group_mappings**](docs/IdpGroupMappingsApi.md#delete_idp_group_mappings) | **DELETE** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
+*IdpGroupMappingsApi* | [**get_idp_group_mapping**](docs/IdpGroupMappingsApi.md#get_idp_group_mapping) | **GET** /idp-group-mappings/{app_resource_id}/{group_id}/ | 
 *IdpGroupMappingsApi* | [**get_idp_group_mappings**](docs/IdpGroupMappingsApi.md#get_idp_group_mappings) | **GET** /idp-group-mappings/{app_resource_id} | 
 *IdpGroupMappingsApi* | [**update_idp_group_mappings**](docs/IdpGroupMappingsApi.md#update_idp_group_mappings) | **PUT** /idp-group-mappings/{app_resource_id} | 
 *MessageChannelsApi* | [**create_message_channel**](docs/MessageChannelsApi.md#create_message_channel) | **POST** /message-channels | 
@@ -217,7 +224,10 @@ Class | Method | HTTP request | Description
 *OwnersApi* | [**update_owners**](docs/OwnersApi.md#update_owners) | **PUT** /owners | 
 *RequestsApi* | [**approve_request**](docs/RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
 *RequestsApi* | [**create_request**](docs/RequestsApi.md#create_request) | **POST** /requests | 
+*RequestsApi* | [**create_request_comment**](docs/RequestsApi.md#create_request_comment) | **POST** /requests/{id}/comments | 
+*RequestsApi* | [**deny_request**](docs/RequestsApi.md#deny_request) | **POST** /requests/{id}/deny | 
 *RequestsApi* | [**get_request**](docs/RequestsApi.md#get_request) | **GET** /requests/{id} | 
+*RequestsApi* | [**get_request_comments**](docs/RequestsApi.md#get_request_comments) | **GET** /requests/{id}/comments | 
 *RequestsApi* | [**get_requests**](docs/RequestsApi.md#get_requests) | **GET** /requests | 
 *RequestsApi* | [**get_requests_relay**](docs/RequestsApi.md#get_requests_relay) | **GET** /requests/relay | 
 *ResourcesApi* | [**add_resource_nhi**](docs/ResourcesApi.md#add_resource_nhi) | **POST** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
@@ -237,6 +247,7 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**get_resource_users**](docs/ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
 *ResourcesApi* | [**get_resource_visibility**](docs/ResourcesApi.md#get_resource_visibility) | **GET** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**get_resources**](docs/ResourcesApi.md#get_resources) | **GET** /resources | 
+*ResourcesApi* | [**get_user_resources**](docs/ResourcesApi.md#get_user_resources) | **GET** /resources/users/{user_id} | 
 *ResourcesApi* | [**resource_user_access_status_retrieve**](docs/ResourcesApi.md#resource_user_access_status_retrieve) | **GET** /resource-user-access-status/{resource_id}/{user_id} | 
 *ResourcesApi* | [**set_resource_message_channels**](docs/ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
 *ResourcesApi* | [**set_resource_reviewer_stages**](docs/ResourcesApi.md#set_resource_reviewer_stages) | **PUT** /resources/{resource_id}/reviewer-stages | 
@@ -245,8 +256,6 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**set_resource_visibility**](docs/ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
 *ResourcesApi* | [**update_resource_user**](docs/ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**update_resources**](docs/ResourcesApi.md#update_resources) | **PUT** /resources | 
-*ScopedRolePermissionsApi* | [**get_resource_scoped_role_permissions**](docs/ScopedRolePermissionsApi.md#get_resource_scoped_role_permissions) | **GET** /resources/{resource_id}/scoped-role-permissions | 
-*ScopedRolePermissionsApi* | [**set_resource_scoped_role_permissions**](docs/ScopedRolePermissionsApi.md#set_resource_scoped_role_permissions) | **PUT** /resources/{resource_id}/scoped-role-permissions | 
 *SessionsApi* | [**sessions**](docs/SessionsApi.md#sessions) | **GET** /sessions | 
 *TagsApi* | [**add_group_tag**](docs/TagsApi.md#add_group_tag) | **POST** /tags/{tag_id}/groups/{group_id} | 
 *TagsApi* | [**add_resource_tag**](docs/TagsApi.md#add_resource_tag) | **POST** /tags/{tag_id}/resources/{resource_id} | 
@@ -296,13 +305,16 @@ Class | Method | HTTP request | Description
  - [ConfigurationTemplate](docs/ConfigurationTemplate.md)
  - [CreateBundleInfo](docs/CreateBundleInfo.md)
  - [CreateConfigurationTemplateInfo](docs/CreateConfigurationTemplateInfo.md)
+ - [CreateDelegationRequest](docs/CreateDelegationRequest.md)
  - [CreateGroupBindingInfo](docs/CreateGroupBindingInfo.md)
  - [CreateGroupBindingInfoGroupsInner](docs/CreateGroupBindingInfoGroupsInner.md)
  - [CreateGroupInfo](docs/CreateGroupInfo.md)
+ - [CreateIdpGroupMappingRequest](docs/CreateIdpGroupMappingRequest.md)
  - [CreateMessageChannelInfo](docs/CreateMessageChannelInfo.md)
  - [CreateOnCallScheduleInfo](docs/CreateOnCallScheduleInfo.md)
  - [CreateOwnerInfo](docs/CreateOwnerInfo.md)
  - [CreateRequest200Response](docs/CreateRequest200Response.md)
+ - [CreateRequestCommentRequest](docs/CreateRequestCommentRequest.md)
  - [CreateRequestConfigurationInfoList](docs/CreateRequestConfigurationInfoList.md)
  - [CreateRequestInfo](docs/CreateRequestInfo.md)
  - [CreateRequestInfoCustomMetadataInner](docs/CreateRequestInfoCustomMetadataInner.md)
@@ -312,6 +324,8 @@ Class | Method | HTTP request | Description
  - [CreateResourceInfo](docs/CreateResourceInfo.md)
  - [CreateTagInfo](docs/CreateTagInfo.md)
  - [CreateUARInfo](docs/CreateUARInfo.md)
+ - [Delegation](docs/Delegation.md)
+ - [DenyRequestRequest](docs/DenyRequestRequest.md)
  - [EntityTypeEnum](docs/EntityTypeEnum.md)
  - [Event](docs/Event.md)
  - [GetResourceUser200Response](docs/GetResourceUser200Response.md)
@@ -357,6 +371,7 @@ Class | Method | HTTP request | Description
  - [PaginatedBundleList](docs/PaginatedBundleList.md)
  - [PaginatedBundleResourceList](docs/PaginatedBundleResourceList.md)
  - [PaginatedConfigurationTemplateList](docs/PaginatedConfigurationTemplateList.md)
+ - [PaginatedDelegationsList](docs/PaginatedDelegationsList.md)
  - [PaginatedEventList](docs/PaginatedEventList.md)
  - [PaginatedGroupBindingsList](docs/PaginatedGroupBindingsList.md)
  - [PaginatedGroupsList](docs/PaginatedGroupsList.md)
@@ -370,6 +385,9 @@ Class | Method | HTTP request | Description
  - [PropagationStatusEnum](docs/PropagationStatusEnum.md)
  - [RemoteUser](docs/RemoteUser.md)
  - [Request](docs/Request.md)
+ - [RequestApprovalEnum](docs/RequestApprovalEnum.md)
+ - [RequestComment](docs/RequestComment.md)
+ - [RequestCommentList](docs/RequestCommentList.md)
  - [RequestConfiguration](docs/RequestConfiguration.md)
  - [RequestConnection](docs/RequestConnection.md)
  - [RequestCustomFieldResponse](docs/RequestCustomFieldResponse.md)
@@ -378,6 +396,7 @@ Class | Method | HTTP request | Description
  - [RequestItemStages](docs/RequestItemStages.md)
  - [RequestList](docs/RequestList.md)
  - [RequestReviewer](docs/RequestReviewer.md)
+ - [RequestReviewerStages](docs/RequestReviewerStages.md)
  - [RequestStage](docs/RequestStage.md)
  - [RequestStatusEnum](docs/RequestStatusEnum.md)
  - [RequestTemplateCustomFieldTypeEnum](docs/RequestTemplateCustomFieldTypeEnum.md)
@@ -396,6 +415,7 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoAwsPermissionSet](docs/ResourceRemoteInfoAwsPermissionSet.md)
  - [ResourceRemoteInfoAwsRdsInstance](docs/ResourceRemoteInfoAwsRdsInstance.md)
  - [ResourceRemoteInfoCustomConnector](docs/ResourceRemoteInfoCustomConnector.md)
+ - [ResourceRemoteInfoDatastaxAstraRole](docs/ResourceRemoteInfoDatastaxAstraRole.md)
  - [ResourceRemoteInfoGcpBigQueryDataset](docs/ResourceRemoteInfoGcpBigQueryDataset.md)
  - [ResourceRemoteInfoGcpBigQueryTable](docs/ResourceRemoteInfoGcpBigQueryTable.md)
  - [ResourceRemoteInfoGcpBucket](docs/ResourceRemoteInfoGcpBucket.md)
@@ -406,6 +426,7 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoGcpProject](docs/ResourceRemoteInfoGcpProject.md)
  - [ResourceRemoteInfoGcpServiceAccount](docs/ResourceRemoteInfoGcpServiceAccount.md)
  - [ResourceRemoteInfoGcpSqlInstance](docs/ResourceRemoteInfoGcpSqlInstance.md)
+ - [ResourceRemoteInfoGithubOrgRole](docs/ResourceRemoteInfoGithubOrgRole.md)
  - [ResourceRemoteInfoGithubRepo](docs/ResourceRemoteInfoGithubRepo.md)
  - [ResourceRemoteInfoGitlabProject](docs/ResourceRemoteInfoGitlabProject.md)
  - [ResourceRemoteInfoGoogleWorkspaceRole](docs/ResourceRemoteInfoGoogleWorkspaceRole.md)

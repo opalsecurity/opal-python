@@ -22,6 +22,7 @@ from opal_security.api.access_rules_api import AccessRulesApi
 from opal_security.api.apps_api import AppsApi
 from opal_security.api.bundles_api import BundlesApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
+from opal_security.api.delegations_api import DelegationsApi
 from opal_security.api.events_api import EventsApi
 from opal_security.api.group_bindings_api import GroupBindingsApi
 from opal_security.api.groups_api import GroupsApi
@@ -32,7 +33,6 @@ from opal_security.api.on_call_schedules_api import OnCallSchedulesApi
 from opal_security.api.owners_api import OwnersApi
 from opal_security.api.requests_api import RequestsApi
 from opal_security.api.resources_api import ResourcesApi
-from opal_security.api.scoped_role_permissions_api import ScopedRolePermissionsApi
 from opal_security.api.sessions_api import SessionsApi
 from opal_security.api.tags_api import TagsApi
 from opal_security.api.uars_api import UarsApi
@@ -76,13 +76,16 @@ from opal_security.models.condition import Condition
 from opal_security.models.configuration_template import ConfigurationTemplate
 from opal_security.models.create_bundle_info import CreateBundleInfo
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
+from opal_security.models.create_delegation_request import CreateDelegationRequest
 from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
 from opal_security.models.create_group_binding_info_groups_inner import CreateGroupBindingInfoGroupsInner
 from opal_security.models.create_group_info import CreateGroupInfo
+from opal_security.models.create_idp_group_mapping_request import CreateIdpGroupMappingRequest
 from opal_security.models.create_message_channel_info import CreateMessageChannelInfo
 from opal_security.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
 from opal_security.models.create_owner_info import CreateOwnerInfo
 from opal_security.models.create_request200_response import CreateRequest200Response
+from opal_security.models.create_request_comment_request import CreateRequestCommentRequest
 from opal_security.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 from opal_security.models.create_request_info import CreateRequestInfo
 from opal_security.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
@@ -92,6 +95,8 @@ from opal_security.models.create_request_info_support_ticket import CreateReques
 from opal_security.models.create_resource_info import CreateResourceInfo
 from opal_security.models.create_tag_info import CreateTagInfo
 from opal_security.models.create_uar_info import CreateUARInfo
+from opal_security.models.delegation import Delegation
+from opal_security.models.deny_request_request import DenyRequestRequest
 from opal_security.models.entity_type_enum import EntityTypeEnum
 from opal_security.models.event import Event
 from opal_security.models.get_resource_user200_response import GetResourceUser200Response
@@ -137,6 +142,7 @@ from opal_security.models.paginated_bundle_group_list import PaginatedBundleGrou
 from opal_security.models.paginated_bundle_list import PaginatedBundleList
 from opal_security.models.paginated_bundle_resource_list import PaginatedBundleResourceList
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
+from opal_security.models.paginated_delegations_list import PaginatedDelegationsList
 from opal_security.models.paginated_event_list import PaginatedEventList
 from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
 from opal_security.models.paginated_groups_list import PaginatedGroupsList
@@ -150,6 +156,9 @@ from opal_security.models.propagation_status import PropagationStatus
 from opal_security.models.propagation_status_enum import PropagationStatusEnum
 from opal_security.models.remote_user import RemoteUser
 from opal_security.models.request import Request
+from opal_security.models.request_approval_enum import RequestApprovalEnum
+from opal_security.models.request_comment import RequestComment
+from opal_security.models.request_comment_list import RequestCommentList
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.request_connection import RequestConnection
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse
@@ -158,6 +167,7 @@ from opal_security.models.request_edge import RequestEdge
 from opal_security.models.request_item_stages import RequestItemStages
 from opal_security.models.request_list import RequestList
 from opal_security.models.request_reviewer import RequestReviewer
+from opal_security.models.request_reviewer_stages import RequestReviewerStages
 from opal_security.models.request_stage import RequestStage
 from opal_security.models.request_status_enum import RequestStatusEnum
 from opal_security.models.request_template_custom_field_type_enum import RequestTemplateCustomFieldTypeEnum
@@ -176,6 +186,7 @@ from opal_security.models.resource_remote_info_aws_organizational_unit import Re
 from opal_security.models.resource_remote_info_aws_permission_set import ResourceRemoteInfoAwsPermissionSet
 from opal_security.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
 from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector
+from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_gcp_big_query_dataset import ResourceRemoteInfoGcpBigQueryDataset
 from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
 from opal_security.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket
@@ -186,6 +197,7 @@ from opal_security.models.resource_remote_info_gcp_organization import ResourceR
 from opal_security.models.resource_remote_info_gcp_project import ResourceRemoteInfoGcpProject
 from opal_security.models.resource_remote_info_gcp_service_account import ResourceRemoteInfoGcpServiceAccount
 from opal_security.models.resource_remote_info_gcp_sql_instance import ResourceRemoteInfoGcpSqlInstance
+from opal_security.models.resource_remote_info_github_org_role import ResourceRemoteInfoGithubOrgRole
 from opal_security.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole

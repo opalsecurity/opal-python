@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,9 +28,10 @@ class RequestReviewer(BaseModel):
     A reviewer in a request stage
     """ # noqa: E501
     id: StrictStr = Field(description="The unique identifier of the reviewer")
+    full_name: Optional[StrictStr] = Field(default=None, description="The user's full name.")
     status: StrictStr = Field(description="The status of this reviewer's review")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "status"]
+    __properties: ClassVar[List[str]] = ["id", "full_name", "status"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -98,6 +99,7 @@ class RequestReviewer(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
+            "full_name": obj.get("full_name"),
             "status": obj.get("status")
         })
         # store additional fields in additional_properties

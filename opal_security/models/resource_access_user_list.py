@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.resource_access_user import ResourceAccessUser
 from typing import Optional, Set
@@ -28,9 +28,11 @@ class ResourceAccessUserList(BaseModel):
     """
     ResourceAccessUserList
     """ # noqa: E501
+    next: Optional[StrictStr] = Field(default=None, description="The cursor with which to continue pagination if additional result pages exist.")
+    previous: Optional[StrictStr] = Field(default=None, description="The cursor used to obtain the current result page.")
     results: Optional[List[ResourceAccessUser]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["results"]
+    __properties: ClassVar[List[str]] = ["next", "previous", "results"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +99,8 @@ class ResourceAccessUserList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "next": obj.get("next"),
+            "previous": obj.get("previous"),
             "results": [ResourceAccessUser.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
         })
         # store additional fields in additional_properties

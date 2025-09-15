@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.request import Request
 from typing import Optional, Set
@@ -29,9 +29,8 @@ class ApproveRequest200Response(BaseModel):
     ApproveRequest200Response
     """ # noqa: E501
     request: Optional[Request] = None
-    task_id: Optional[StrictStr] = Field(default=None, description="ID of the task created for propagating access", alias="taskId")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["request", "taskId"]
+    __properties: ClassVar[List[str]] = ["request"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,8 +93,7 @@ class ApproveRequest200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "request": Request.from_dict(obj["request"]) if obj.get("request") is not None else None,
-            "taskId": obj.get("taskId")
+            "request": Request.from_dict(obj["request"]) if obj.get("request") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

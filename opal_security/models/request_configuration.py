@@ -36,11 +36,12 @@ class RequestConfiguration(BaseModel):
     max_duration_minutes: Optional[StrictInt] = Field(default=None, description="The maximum duration for which the resource can be requested (in minutes).")
     recommended_duration_minutes: Optional[StrictInt] = Field(default=None, description="The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.")
     require_support_ticket: StrictBool = Field(description="A bool representing whether or not access requests to the resource require an access ticket.")
+    extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.")
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template.")
     reviewer_stages: Optional[List[ReviewerStage]] = Field(default=None, description="The list of reviewer stages for the request configuration.")
     priority: StrictInt = Field(description="The priority of the request configuration.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["condition", "allow_requests", "auto_approval", "require_mfa_to_request", "max_duration_minutes", "recommended_duration_minutes", "require_support_ticket", "request_template_id", "reviewer_stages", "priority"]
+    __properties: ClassVar[List[str]] = ["condition", "allow_requests", "auto_approval", "require_mfa_to_request", "max_duration_minutes", "recommended_duration_minutes", "require_support_ticket", "extensions_duration_in_minutes", "request_template_id", "reviewer_stages", "priority"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,6 +118,7 @@ class RequestConfiguration(BaseModel):
             "max_duration_minutes": obj.get("max_duration_minutes"),
             "recommended_duration_minutes": obj.get("recommended_duration_minutes"),
             "require_support_ticket": obj.get("require_support_ticket"),
+            "extensions_duration_in_minutes": obj.get("extensions_duration_in_minutes"),
             "request_template_id": obj.get("request_template_id"),
             "reviewer_stages": [ReviewerStage.from_dict(_item) for _item in obj["reviewer_stages"]] if obj.get("reviewer_stages") is not None else None,
             "priority": obj.get("priority")
