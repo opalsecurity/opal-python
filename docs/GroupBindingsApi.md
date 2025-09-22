@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_group_binding**](GroupBindingsApi.md#create_group_binding) | **POST** /group-bindings | 
 [**delete_group_binding**](GroupBindingsApi.md#delete_group_binding) | **DELETE** /group-bindings/{group_binding_id} | 
-[**get_group_binding**](GroupBindingsApi.md#get_group_binding) | **GET** /group-bindings/{group_binding_id} | 
-[**get_group_bindings**](GroupBindingsApi.md#get_group_bindings) | **GET** /group-bindings | 
+[**get_group_binding**](GroupBindingsApi.md#get_group_binding) | **GET** /group-bindings/{group_binding_id} | Get group binding by ID
+[**get_group_bindings**](GroupBindingsApi.md#get_group_bindings) | **GET** /group-bindings | Get group bindings
 [**update_group_bindings**](GroupBindingsApi.md#update_group_bindings) | **PUT** /group-bindings | 
 
 
@@ -170,7 +170,7 @@ void (empty response body)
 # **get_group_binding**
 > GroupBinding get_group_binding(group_binding_id)
 
-
+Get group binding by ID
 
 Returns a `GroupBinding` object.
 
@@ -209,6 +209,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_binding_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group binding.
 
     try:
+        # Get group binding by ID
         api_response = api_instance.get_group_binding(group_binding_id)
         print("The response of GroupBindingsApi->get_group_binding:\n")
         pprint(api_response)
@@ -249,7 +250,7 @@ Name | Type | Description  | Notes
 # **get_group_bindings**
 > PaginatedGroupBindingsList get_group_bindings(cursor=cursor, page_size=page_size)
 
-
+Get group bindings
 
 Returns a list of `GroupBinding` objects.
 
@@ -289,6 +290,7 @@ with opal_security.ApiClient(configuration) as api_client:
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
     try:
+        # Get group bindings
         api_response = api_instance.get_group_bindings(cursor=cursor, page_size=page_size)
         print("The response of GroupBindingsApi->get_group_bindings:\n")
         pprint(api_response)
