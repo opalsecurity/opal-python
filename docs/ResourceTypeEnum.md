@@ -124,6 +124,14 @@ The type of the resource.
 
 * `TELEPORT_ROLE` (value: `'TELEPORT_ROLE'`)
 
+* `ILEVEL_ADVANCED_ROLE` (value: `'ILEVEL_ADVANCED_ROLE'`)
+
+* `DATASTAX_ASTRA_ROLE` (value: `'DATASTAX_ASTRA_ROLE'`)
+
+* `COUPA_ROLE` (value: `'COUPA_ROLE'`)
+
+* `CURSOR_ORGANIZATION` (value: `'CURSOR_ORGANIZATION'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -5,8 +5,8 @@ All URIs are relative to *https://api.opal.dev/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_on_call_schedule**](OnCallSchedulesApi.md#create_on_call_schedule) | **POST** /on-call-schedules | 
-[**get_on_call_schedule**](OnCallSchedulesApi.md#get_on_call_schedule) | **GET** /on-call-schedules/{on_call_schedule_id} | 
-[**get_on_call_schedules**](OnCallSchedulesApi.md#get_on_call_schedules) | **GET** /on-call-schedules | 
+[**get_on_call_schedule**](OnCallSchedulesApi.md#get_on_call_schedule) | **GET** /on-call-schedules/{on_call_schedule_id} | Get on call schedule by ID
+[**get_on_call_schedules**](OnCallSchedulesApi.md#get_on_call_schedules) | **GET** /on-call-schedules | Get on call schedules
 
 
 # **create_on_call_schedule**
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 # **get_on_call_schedule**
 > OnCallSchedule get_on_call_schedule(on_call_schedule_id)
 
-
+Get on call schedule by ID
 
 Gets a `OnCallSchedule` object.
 
@@ -131,6 +131,7 @@ with opal_security.ApiClient(configuration) as api_client:
     on_call_schedule_id = '9546209c-42c2-4801-96d7-9ec42df0f59c' # str | The ID of the on_call_schedule.
 
     try:
+        # Get on call schedule by ID
         api_response = api_instance.get_on_call_schedule(on_call_schedule_id)
         print("The response of OnCallSchedulesApi->get_on_call_schedule:\n")
         pprint(api_response)
@@ -171,7 +172,7 @@ Name | Type | Description  | Notes
 # **get_on_call_schedules**
 > OnCallScheduleList get_on_call_schedules()
 
-
+Get on call schedules
 
 Returns a list of `OnCallSchedule` objects.
 
@@ -209,6 +210,7 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.OnCallSchedulesApi(api_client)
 
     try:
+        # Get on call schedules
         api_response = api_instance.get_on_call_schedules()
         print("The response of OnCallSchedulesApi->get_on_call_schedules:\n")
         pprint(api_response)

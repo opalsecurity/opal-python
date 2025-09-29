@@ -4,15 +4,15 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_app**](AppsApi.md#get_app) | **GET** /apps/{app_id} | 
-[**get_apps**](AppsApi.md#get_apps) | **GET** /apps | 
+[**get_app**](AppsApi.md#get_app) | **GET** /apps/{app_id} | Get app by ID
+[**get_apps**](AppsApi.md#get_apps) | **GET** /apps | Get apps
 [**get_sync_errors**](AppsApi.md#get_sync_errors) | **GET** /sync_errors | 
 
 
 # **get_app**
 > App get_app(app_id)
 
-
+Get app by ID
 
 Returns an `App` object.
 
@@ -51,6 +51,7 @@ with opal_security.ApiClient(configuration) as api_client:
     app_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the app.
 
     try:
+        # Get app by ID
         api_response = api_instance.get_app(app_id)
         print("The response of AppsApi->get_app:\n")
         pprint(api_response)
@@ -91,7 +92,7 @@ Name | Type | Description  | Notes
 # **get_apps**
 > AppsList get_apps(app_type_filter=app_type_filter, owner_filter=owner_filter)
 
-
+Get apps
 
 Returns a list of `App` objects.
 
@@ -132,6 +133,7 @@ with opal_security.ApiClient(configuration) as api_client:
     owner_filter = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | An owner ID to filter by. (optional)
 
     try:
+        # Get apps
         api_response = api_instance.get_apps(app_type_filter=app_type_filter, owner_filter=owner_filter)
         print("The response of AppsApi->get_apps:\n")
         pprint(api_response)

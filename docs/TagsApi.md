@@ -10,8 +10,8 @@ Method | HTTP request | Description
 [**create_tag**](TagsApi.md#create_tag) | **POST** /tag | 
 [**delete_tag_by_id**](TagsApi.md#delete_tag_by_id) | **DELETE** /tag/{tag_id} | 
 [**get_tag**](TagsApi.md#get_tag) | **GET** /tag | 
-[**get_tag_by_id**](TagsApi.md#get_tag_by_id) | **GET** /tag/{tag_id} | 
-[**get_tags**](TagsApi.md#get_tags) | **GET** /tags | 
+[**get_tag_by_id**](TagsApi.md#get_tag_by_id) | **GET** /tag/{tag_id} | Get tag by ID
+[**get_tags**](TagsApi.md#get_tags) | **GET** /tags | Get tags
 [**remove_group_tag**](TagsApi.md#remove_group_tag) | **DELETE** /tags/{tag_id}/groups/{group_id} | 
 [**remove_resource_tag**](TagsApi.md#remove_resource_tag) | **DELETE** /tags/{tag_id}/resources/{resource_id} | 
 [**remove_user_tag**](TagsApi.md#remove_user_tag) | **DELETE** /tags/{tag_id}/users/{user_id} | 
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 # **get_tag_by_id**
 > Tag get_tag_by_id(tag_id)
 
-
+Get tag by ID
 
 UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
@@ -538,6 +538,7 @@ with opal_security.ApiClient(configuration) as api_client:
     tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
 
     try:
+        # Get tag by ID
         api_response = api_instance.get_tag_by_id(tag_id)
         print("The response of TagsApi->get_tag_by_id:\n")
         pprint(api_response)
@@ -578,7 +579,7 @@ Name | Type | Description  | Notes
 # **get_tags**
 > PaginatedTagsList get_tags(cursor=cursor, page_size=page_size)
 
-
+Get tags
 
 Returns a list of tags created by your organization.
 
@@ -618,6 +619,7 @@ with opal_security.ApiClient(configuration) as api_client:
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
     try:
+        # Get tags
         api_response = api_instance.get_tags(cursor=cursor, page_size=page_size)
         print("The response of TagsApi->get_tags:\n")
         pprint(api_response)
