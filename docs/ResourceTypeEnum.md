@@ -124,6 +124,22 @@ The type of the resource.
 
 * `TELEPORT_ROLE` (value: `'TELEPORT_ROLE'`)
 
+* `ILEVEL_ADVANCED_ROLE` (value: `'ILEVEL_ADVANCED_ROLE'`)
+
+* `DATASTAX_ASTRA_ROLE` (value: `'DATASTAX_ASTRA_ROLE'`)
+
+* `COUPA_ROLE` (value: `'COUPA_ROLE'`)
+
+* `CURSOR_ORGANIZATION` (value: `'CURSOR_ORGANIZATION'`)
+
+* `OPENAI_PLATFORM_PROJECT` (value: `'OPENAI_PLATFORM_PROJECT'`)
+
+* `OPENAI_PLATFORM_SERVICE_ACCOUNT` (value: `'OPENAI_PLATFORM_SERVICE_ACCOUNT'`)
+
+* `ANTHROPIC_WORKSPACE` (value: `'ANTHROPIC_WORKSPACE'`)
+
+* `GIT_HUB_ORG` (value: `'GIT_HUB_ORG'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

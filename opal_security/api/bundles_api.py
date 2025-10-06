@@ -1172,7 +1172,7 @@ class BundlesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Bundle:
-        """get_bundle
+        """Get bundle by ID
 
         Returns a `Bundle` object.
 
@@ -1239,7 +1239,7 @@ class BundlesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Bundle]:
-        """get_bundle
+        """Get bundle by ID
 
         Returns a `Bundle` object.
 
@@ -1306,7 +1306,7 @@ class BundlesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_bundle
+        """Get bundle by ID
 
         Returns a `Bundle` object.
 
@@ -2286,7 +2286,7 @@ class BundlesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedBundleList:
-        """get_bundles
+        """Get bundles
 
         Returns a list of `Bundle` objects.
 
@@ -2361,7 +2361,7 @@ class BundlesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedBundleList]:
-        """get_bundles
+        """Get bundles
 
         Returns a list of `Bundle` objects.
 
@@ -2436,7 +2436,7 @@ class BundlesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_bundles
+        """Get bundles
 
         Returns a list of `Bundle` objects.
 

@@ -33,6 +33,7 @@ class ThirdPartyProviderEnum(str, Enum):
     JIRA = 'JIRA'
     LINEAR = 'LINEAR'
     SERVICE_NOW = 'SERVICE_NOW'
+    FRESH_SERVICE = 'FRESH_SERVICE'
     PAGER_DUTY = 'PAGER_DUTY'
     OPSGENIE = 'OPSGENIE'
     GIT_HUB = 'GIT_HUB'

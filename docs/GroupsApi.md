@@ -10,9 +10,9 @@ Method | HTTP request | Description
 [**create_group**](GroupsApi.md#create_group) | **POST** /groups | 
 [**delete_group**](GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
 [**delete_group_user**](GroupsApi.md#delete_group_user) | **DELETE** /groups/{group_id}/users/{user_id} | 
-[**get_group**](GroupsApi.md#get_group) | **GET** /groups/{group_id} | 
-[**get_group_containing_group**](GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | 
-[**get_group_containing_groups**](GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | 
+[**get_group**](GroupsApi.md#get_group) | **GET** /groups/{group_id} | Get group by ID
+[**get_group_containing_group**](GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | Get nested group by ID
+[**get_group_containing_groups**](GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | Get nested groups
 [**get_group_message_channels**](GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
 [**get_group_on_call_schedules**](GroupsApi.md#get_group_on_call_schedules) | **GET** /groups/{group_id}/on-call-schedules | 
 [**get_group_resources**](GroupsApi.md#get_group_resources) | **GET** /groups/{group_id}/resources | 
@@ -21,7 +21,8 @@ Method | HTTP request | Description
 [**get_group_tags**](GroupsApi.md#get_group_tags) | **GET** /groups/{group_id}/tags | 
 [**get_group_users**](GroupsApi.md#get_group_users) | **GET** /groups/{group_id}/users | 
 [**get_group_visibility**](GroupsApi.md#get_group_visibility) | **GET** /groups/{group_id}/visibility | 
-[**get_groups**](GroupsApi.md#get_groups) | **GET** /groups | 
+[**get_groups**](GroupsApi.md#get_groups) | **GET** /groups | Get groups
+[**get_user_groups**](GroupsApi.md#get_user_groups) | **GET** /groups/users/{user_id} | 
 [**remove_group_containing_group**](GroupsApi.md#remove_group_containing_group) | **DELETE** /groups/{group_id}/containing-groups/{containing_group_id} | 
 [**set_group_message_channels**](GroupsApi.md#set_group_message_channels) | **PUT** /groups/{group_id}/message-channels | 
 [**set_group_on_call_schedules**](GroupsApi.md#set_group_on_call_schedules) | **PUT** /groups/{group_id}/on-call-schedules | 
@@ -527,7 +528,7 @@ void (empty response body)
 # **get_group**
 > Group get_group(group_id)
 
-
+Get group by ID
 
 Returns a `Group` object.
 
@@ -566,6 +567,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group.
 
     try:
+        # Get group by ID
         api_response = api_instance.get_group(group_id)
         print("The response of GroupsApi->get_group:\n")
         pprint(api_response)
@@ -606,7 +608,7 @@ Name | Type | Description  | Notes
 # **get_group_containing_group**
 > GroupContainingGroup get_group_containing_group(group_id, containing_group_id)
 
-
+Get nested group by ID
 
 Gets a specific containing group for a group.
 
@@ -646,6 +648,7 @@ with opal_security.ApiClient(configuration) as api_client:
     containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
 
     try:
+        # Get nested group by ID
         api_response = api_instance.get_group_containing_group(group_id, containing_group_id)
         print("The response of GroupsApi->get_group_containing_group:\n")
         pprint(api_response)
@@ -687,7 +690,7 @@ Name | Type | Description  | Notes
 # **get_group_containing_groups**
 > GroupContainingGroupList get_group_containing_groups(group_id)
 
-
+Get nested groups
 
 Gets the list of groups that the group gives access to.
 
@@ -726,6 +729,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
+        # Get nested groups
         api_response = api_instance.get_group_containing_groups(group_id)
         print("The response of GroupsApi->get_group_containing_groups:\n")
         pprint(api_response)
@@ -1237,7 +1241,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_group_users**
-> GroupUserList get_group_users(group_id)
+> GroupUserList get_group_users(group_id, cursor=cursor, page_size=page_size)
 
 
 
@@ -1276,9 +1280,11 @@ with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
+    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
     try:
-        api_response = api_instance.get_group_users(group_id)
+        api_response = api_instance.get_group_users(group_id, cursor=cursor, page_size=page_size)
         print("The response of GroupsApi->get_group_users:\n")
         pprint(api_response)
     except Exception as e:
@@ -1293,6 +1299,8 @@ with opal_security.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**| The ID of the group. | 
+ **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
 
 ### Return type
 
@@ -1397,7 +1405,7 @@ Name | Type | Description  | Notes
 # **get_groups**
 > PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
 
-
+Get groups
 
 Returns a list of groups for your organization.
 
@@ -1441,6 +1449,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_name = 'example-name' # str | Group name. (optional)
 
     try:
+        # Get groups
         api_response = api_instance.get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
         print("The response of GroupsApi->get_groups:\n")
         pprint(api_response)
@@ -1479,6 +1488,89 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | One page worth groups associated with your organization. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user_groups**
+> GroupUserList get_user_groups(user_id, cursor=cursor, page_size=page_size)
+
+
+
+Returns all groups that the user is a member of.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.group_user_list import GroupUserList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.GroupsApi(api_client)
+    user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user whose groups to return.
+    cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
+    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
+
+    try:
+        api_response = api_instance.get_user_groups(user_id, cursor=cursor, page_size=page_size)
+        print("The response of GroupsApi->get_user_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GroupsApi->get_user_groups: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| The ID of the user whose groups to return. | 
+ **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
+
+### Return type
+
+[**GroupUserList**](GroupUserList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The groups that the user is a member of. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
