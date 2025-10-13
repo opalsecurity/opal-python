@@ -332,7 +332,7 @@ class MessageChannelsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> MessageChannel:
-        """get_message_channel
+        """Get message channel by ID
 
         Gets a `MessageChannel` object.
 
@@ -399,7 +399,7 @@ class MessageChannelsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[MessageChannel]:
-        """get_message_channel
+        """Get message channel by ID
 
         Gets a `MessageChannel` object.
 
@@ -466,7 +466,7 @@ class MessageChannelsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_message_channel
+        """Get message channel by ID
 
         Gets a `MessageChannel` object.
 
@@ -592,7 +592,7 @@ class MessageChannelsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> MessageChannelList:
-        """get_message_channels
+        """Get message channels
 
         Returns a list of `MessageChannel` objects.
 
@@ -655,7 +655,7 @@ class MessageChannelsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[MessageChannelList]:
-        """get_message_channels
+        """Get message channels
 
         Returns a list of `MessageChannel` objects.
 
@@ -718,7 +718,7 @@ class MessageChannelsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_message_channels
+        """Get message channels
 
         Returns a list of `MessageChannel` objects.
 

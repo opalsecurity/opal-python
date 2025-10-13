@@ -44,6 +44,7 @@ class Resource(BaseModel):
     resource_type: Optional[ResourceTypeEnum] = None
     max_duration: Optional[StrictInt] = Field(default=None, description="The maximum duration for which the resource can be requested (in minutes).")
     recommended_duration: Optional[StrictInt] = Field(default=None, description="The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.")
+    extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.")
     require_manager_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the resource require manager approval.")
     require_support_ticket: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the resource require an access ticket.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this resource.")
@@ -66,7 +67,7 @@ class Resource(BaseModel):
     descendant_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are descendants of this resource.")
     last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this resource.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids", "last_successful_sync"]
+    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids", "last_successful_sync"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -163,6 +164,7 @@ class Resource(BaseModel):
             "resource_type": obj.get("resource_type"),
             "max_duration": obj.get("max_duration"),
             "recommended_duration": obj.get("recommended_duration"),
+            "extensions_duration_in_minutes": obj.get("extensions_duration_in_minutes"),
             "require_manager_approval": obj.get("require_manager_approval"),
             "require_support_ticket": obj.get("require_support_ticket"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),

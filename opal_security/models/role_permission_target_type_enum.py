@@ -33,6 +33,7 @@ class RolePermissionTargetTypeEnum(str, Enum):
     BUNDLE = 'BUNDLE'
     USER = 'USER'
     ACCESS_REVIEW = 'ACCESS_REVIEW'
+    OWNER = 'OWNER'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

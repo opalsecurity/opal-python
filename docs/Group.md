@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **group_type** | [**GroupTypeEnum**](GroupTypeEnum.md) |  | [optional] 
 **max_duration** | **int** | The maximum duration for which the group can be requested (in minutes). | [optional] 
 **recommended_duration** | **int** | The recommended duration for which the group should be requested (in minutes). -1 represents an indefinite duration. | [optional] 
+**extensions_duration_in_minutes** | **int** | The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When &gt; 0, extensions are enabled for the specified duration. | [optional] 
 **require_manager_approval** | **bool** | A bool representing whether or not access requests to the group require manager approval. | [optional] 
 **require_support_ticket** | **bool** | A bool representing whether or not access requests to the group require an access ticket. | [optional] 
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this group. | [optional] 

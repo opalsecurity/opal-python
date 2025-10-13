@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **gcp_service_account** | [**ResourceRemoteInfoGcpServiceAccount**](ResourceRemoteInfoGcpServiceAccount.md) |  | [optional] 
 **google_workspace_role** | [**ResourceRemoteInfoGoogleWorkspaceRole**](ResourceRemoteInfoGoogleWorkspaceRole.md) |  | [optional] 
 **github_repo** | [**ResourceRemoteInfoGithubRepo**](ResourceRemoteInfoGithubRepo.md) |  | [optional] 
+**github_org_role** | [**ResourceRemoteInfoGithubOrgRole**](ResourceRemoteInfoGithubOrgRole.md) |  | [optional] 
+**github_org** | [**ResourceRemoteInfoGithubOrg**](ResourceRemoteInfoGithubOrg.md) |  | [optional] 
 **gitlab_project** | [**ResourceRemoteInfoGitlabProject**](ResourceRemoteInfoGitlabProject.md) |  | [optional] 
 **okta_app** | [**ResourceRemoteInfoOktaApp**](ResourceRemoteInfoOktaApp.md) |  | [optional] 
 **okta_standard_role** | [**ResourceRemoteInfoOktaStandardRole**](ResourceRemoteInfoOktaStandardRole.md) |  | [optional] 
@@ -35,6 +37,12 @@ Name | Type | Description | Notes
 **salesforce_profile** | [**ResourceRemoteInfoSalesforceProfile**](ResourceRemoteInfoSalesforceProfile.md) |  | [optional] 
 **salesforce_role** | [**ResourceRemoteInfoSalesforceRole**](ResourceRemoteInfoSalesforceRole.md) |  | [optional] 
 **teleport_role** | [**ResourceRemoteInfoTeleportRole**](ResourceRemoteInfoTeleportRole.md) |  | [optional] 
+**datastax_astra_role** | [**ResourceRemoteInfoDatastaxAstraRole**](ResourceRemoteInfoDatastaxAstraRole.md) |  | [optional] 
+**coupa_role** | [**ResourceRemoteInfoCoupaRole**](ResourceRemoteInfoCoupaRole.md) |  | [optional] 
+**cursor_organization** | [**ResourceRemoteInfoCursorOrganization**](ResourceRemoteInfoCursorOrganization.md) |  | [optional] 
+**openai_platform_project** | [**ResourceRemoteInfoOpenaiPlatformProject**](ResourceRemoteInfoOpenaiPlatformProject.md) |  | [optional] 
+**openai_platform_service_account** | [**ResourceRemoteInfoOpenaiPlatformServiceAccount**](ResourceRemoteInfoOpenaiPlatformServiceAccount.md) |  | [optional] 
+**anthropic_workspace** | [**ResourceRemoteInfoAnthropicWorkspace**](ResourceRemoteInfoAnthropicWorkspace.md) |  | [optional] 
 
 ## Example
 

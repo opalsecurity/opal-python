@@ -1753,7 +1753,7 @@ class TagsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Tag:
-        """get_tag_by_id
+        """Get tag by ID
 
         UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
@@ -1820,7 +1820,7 @@ class TagsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Tag]:
-        """get_tag_by_id
+        """Get tag by ID
 
         UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
@@ -1887,7 +1887,7 @@ class TagsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_tag_by_id
+        """Get tag by ID
 
         UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
@@ -2015,7 +2015,7 @@ class TagsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedTagsList:
-        """get_tags
+        """Get tags
 
         Returns a list of tags created by your organization.
 
@@ -2086,7 +2086,7 @@ class TagsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedTagsList]:
-        """get_tags
+        """Get tags
 
         Returns a list of tags created by your organization.
 
@@ -2157,7 +2157,7 @@ class TagsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_tags
+        """Get tags
 
         Returns a list of tags created by your organization.
 
