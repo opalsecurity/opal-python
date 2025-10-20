@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **results** | [**List[GroupUser]**](GroupUser.md) |  | [optional] 
+**next** | **str** | The cursor with which to continue pagination if additional result pages exist. | [optional] 
+**previous** | **str** | The cursor used to obtain the current result page. | [optional] 
 
 ## Example
 

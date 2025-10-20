@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.resource_remote_info_anthropic_workspace import ResourceRemoteInfoAnthropicWorkspace
 from opal_security.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
 from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
 from opal_security.models.resource_remote_info_aws_eks_cluster import ResourceRemoteInfoAwsEksCluster
@@ -27,7 +28,23 @@ from opal_security.models.resource_remote_info_aws_iam_role import ResourceRemot
 from opal_security.models.resource_remote_info_aws_organizational_unit import ResourceRemoteInfoAwsOrganizationalUnit
 from opal_security.models.resource_remote_info_aws_permission_set import ResourceRemoteInfoAwsPermissionSet
 from opal_security.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
+from opal_security.models.resource_remote_info_azure_enterprise_app import ResourceRemoteInfoAzureEnterpriseApp
+from opal_security.models.resource_remote_info_azure_entra_id_role import ResourceRemoteInfoAzureEntraIdRole
+from opal_security.models.resource_remote_info_azure_management_group import ResourceRemoteInfoAzureManagementGroup
+from opal_security.models.resource_remote_info_azure_resource_group import ResourceRemoteInfoAzureResourceGroup
+from opal_security.models.resource_remote_info_azure_sql_database import ResourceRemoteInfoAzureSqlDatabase
+from opal_security.models.resource_remote_info_azure_sql_managed_database import ResourceRemoteInfoAzureSqlManagedDatabase
+from opal_security.models.resource_remote_info_azure_sql_managed_instance import ResourceRemoteInfoAzureSqlManagedInstance
+from opal_security.models.resource_remote_info_azure_sql_server import ResourceRemoteInfoAzureSqlServer
+from opal_security.models.resource_remote_info_azure_storage_account import ResourceRemoteInfoAzureStorageAccount
+from opal_security.models.resource_remote_info_azure_storage_container import ResourceRemoteInfoAzureStorageContainer
+from opal_security.models.resource_remote_info_azure_subscription import ResourceRemoteInfoAzureSubscription
+from opal_security.models.resource_remote_info_azure_user_assigned_managed_identity import ResourceRemoteInfoAzureUserAssignedManagedIdentity
+from opal_security.models.resource_remote_info_azure_virtual_machine import ResourceRemoteInfoAzureVirtualMachine
+from opal_security.models.resource_remote_info_coupa_role import ResourceRemoteInfoCoupaRole
+from opal_security.models.resource_remote_info_cursor_organization import ResourceRemoteInfoCursorOrganization
 from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector
+from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_gcp_big_query_dataset import ResourceRemoteInfoGcpBigQueryDataset
 from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
 from opal_security.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket
@@ -38,12 +55,16 @@ from opal_security.models.resource_remote_info_gcp_organization import ResourceR
 from opal_security.models.resource_remote_info_gcp_project import ResourceRemoteInfoGcpProject
 from opal_security.models.resource_remote_info_gcp_service_account import ResourceRemoteInfoGcpServiceAccount
 from opal_security.models.resource_remote_info_gcp_sql_instance import ResourceRemoteInfoGcpSqlInstance
+from opal_security.models.resource_remote_info_github_org import ResourceRemoteInfoGithubOrg
+from opal_security.models.resource_remote_info_github_org_role import ResourceRemoteInfoGithubOrgRole
 from opal_security.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
 from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
 from opal_security.models.resource_remote_info_okta_standard_role import ResourceRemoteInfoOktaStandardRole
+from opal_security.models.resource_remote_info_openai_platform_project import ResourceRemoteInfoOpenaiPlatformProject
+from opal_security.models.resource_remote_info_openai_platform_service_account import ResourceRemoteInfoOpenaiPlatformServiceAccount
 from opal_security.models.resource_remote_info_pagerduty_role import ResourceRemoteInfoPagerdutyRole
 from opal_security.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet
 from opal_security.models.resource_remote_info_salesforce_profile import ResourceRemoteInfoSalesforceProfile
@@ -56,6 +77,19 @@ class ResourceRemoteInfo(BaseModel):
     """
     Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
     """ # noqa: E501
+    azure_subscription: Optional[ResourceRemoteInfoAzureSubscription] = None
+    azure_resource_group: Optional[ResourceRemoteInfoAzureResourceGroup] = None
+    azure_management_group: Optional[ResourceRemoteInfoAzureManagementGroup] = None
+    azure_virtual_machine: Optional[ResourceRemoteInfoAzureVirtualMachine] = None
+    azure_storage_account: Optional[ResourceRemoteInfoAzureStorageAccount] = None
+    azure_storage_container: Optional[ResourceRemoteInfoAzureStorageContainer] = None
+    azure_sql_server: Optional[ResourceRemoteInfoAzureSqlServer] = None
+    azure_sql_database: Optional[ResourceRemoteInfoAzureSqlDatabase] = None
+    azure_sql_managed_instance: Optional[ResourceRemoteInfoAzureSqlManagedInstance] = None
+    azure_sql_managed_database: Optional[ResourceRemoteInfoAzureSqlManagedDatabase] = None
+    azure_user_assigned_managed_identity: Optional[ResourceRemoteInfoAzureUserAssignedManagedIdentity] = None
+    azure_enterprise_app: Optional[ResourceRemoteInfoAzureEnterpriseApp] = None
+    azure_entra_id_role: Optional[ResourceRemoteInfoAzureEntraIdRole] = None
     aws_organizational_unit: Optional[ResourceRemoteInfoAwsOrganizationalUnit] = None
     aws_account: Optional[ResourceRemoteInfoAwsAccount] = None
     aws_permission_set: Optional[ResourceRemoteInfoAwsPermissionSet] = None
@@ -76,6 +110,8 @@ class ResourceRemoteInfo(BaseModel):
     gcp_service_account: Optional[ResourceRemoteInfoGcpServiceAccount] = None
     google_workspace_role: Optional[ResourceRemoteInfoGoogleWorkspaceRole] = None
     github_repo: Optional[ResourceRemoteInfoGithubRepo] = None
+    github_org_role: Optional[ResourceRemoteInfoGithubOrgRole] = None
+    github_org: Optional[ResourceRemoteInfoGithubOrg] = None
     gitlab_project: Optional[ResourceRemoteInfoGitlabProject] = None
     okta_app: Optional[ResourceRemoteInfoOktaApp] = None
     okta_standard_role: Optional[ResourceRemoteInfoOktaStandardRole] = None
@@ -85,8 +121,14 @@ class ResourceRemoteInfo(BaseModel):
     salesforce_profile: Optional[ResourceRemoteInfoSalesforceProfile] = None
     salesforce_role: Optional[ResourceRemoteInfoSalesforceRole] = None
     teleport_role: Optional[ResourceRemoteInfoTeleportRole] = None
+    datastax_astra_role: Optional[ResourceRemoteInfoDatastaxAstraRole] = None
+    coupa_role: Optional[ResourceRemoteInfoCoupaRole] = None
+    cursor_organization: Optional[ResourceRemoteInfoCursorOrganization] = None
+    openai_platform_project: Optional[ResourceRemoteInfoOpenaiPlatformProject] = None
+    openai_platform_service_account: Optional[ResourceRemoteInfoOpenaiPlatformServiceAccount] = None
+    anthropic_workspace: Optional[ResourceRemoteInfoAnthropicWorkspace] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role"]
+    __properties: ClassVar[List[str]] = ["azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,6 +171,45 @@ class ResourceRemoteInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of azure_subscription
+        if self.azure_subscription:
+            _dict['azure_subscription'] = self.azure_subscription.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_resource_group
+        if self.azure_resource_group:
+            _dict['azure_resource_group'] = self.azure_resource_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_management_group
+        if self.azure_management_group:
+            _dict['azure_management_group'] = self.azure_management_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_virtual_machine
+        if self.azure_virtual_machine:
+            _dict['azure_virtual_machine'] = self.azure_virtual_machine.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_storage_account
+        if self.azure_storage_account:
+            _dict['azure_storage_account'] = self.azure_storage_account.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_storage_container
+        if self.azure_storage_container:
+            _dict['azure_storage_container'] = self.azure_storage_container.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sql_server
+        if self.azure_sql_server:
+            _dict['azure_sql_server'] = self.azure_sql_server.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sql_database
+        if self.azure_sql_database:
+            _dict['azure_sql_database'] = self.azure_sql_database.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sql_managed_instance
+        if self.azure_sql_managed_instance:
+            _dict['azure_sql_managed_instance'] = self.azure_sql_managed_instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sql_managed_database
+        if self.azure_sql_managed_database:
+            _dict['azure_sql_managed_database'] = self.azure_sql_managed_database.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_user_assigned_managed_identity
+        if self.azure_user_assigned_managed_identity:
+            _dict['azure_user_assigned_managed_identity'] = self.azure_user_assigned_managed_identity.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_enterprise_app
+        if self.azure_enterprise_app:
+            _dict['azure_enterprise_app'] = self.azure_enterprise_app.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_entra_id_role
+        if self.azure_entra_id_role:
+            _dict['azure_entra_id_role'] = self.azure_entra_id_role.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aws_organizational_unit
         if self.aws_organizational_unit:
             _dict['aws_organizational_unit'] = self.aws_organizational_unit.to_dict()
@@ -189,6 +270,12 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of github_repo
         if self.github_repo:
             _dict['github_repo'] = self.github_repo.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of github_org_role
+        if self.github_org_role:
+            _dict['github_org_role'] = self.github_org_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of github_org
+        if self.github_org:
+            _dict['github_org'] = self.github_org.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gitlab_project
         if self.gitlab_project:
             _dict['gitlab_project'] = self.gitlab_project.to_dict()
@@ -216,6 +303,24 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of teleport_role
         if self.teleport_role:
             _dict['teleport_role'] = self.teleport_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of datastax_astra_role
+        if self.datastax_astra_role:
+            _dict['datastax_astra_role'] = self.datastax_astra_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of coupa_role
+        if self.coupa_role:
+            _dict['coupa_role'] = self.coupa_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cursor_organization
+        if self.cursor_organization:
+            _dict['cursor_organization'] = self.cursor_organization.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of openai_platform_project
+        if self.openai_platform_project:
+            _dict['openai_platform_project'] = self.openai_platform_project.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of openai_platform_service_account
+        if self.openai_platform_service_account:
+            _dict['openai_platform_service_account'] = self.openai_platform_service_account.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anthropic_workspace
+        if self.anthropic_workspace:
+            _dict['anthropic_workspace'] = self.anthropic_workspace.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -233,6 +338,19 @@ class ResourceRemoteInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "azure_subscription": ResourceRemoteInfoAzureSubscription.from_dict(obj["azure_subscription"]) if obj.get("azure_subscription") is not None else None,
+            "azure_resource_group": ResourceRemoteInfoAzureResourceGroup.from_dict(obj["azure_resource_group"]) if obj.get("azure_resource_group") is not None else None,
+            "azure_management_group": ResourceRemoteInfoAzureManagementGroup.from_dict(obj["azure_management_group"]) if obj.get("azure_management_group") is not None else None,
+            "azure_virtual_machine": ResourceRemoteInfoAzureVirtualMachine.from_dict(obj["azure_virtual_machine"]) if obj.get("azure_virtual_machine") is not None else None,
+            "azure_storage_account": ResourceRemoteInfoAzureStorageAccount.from_dict(obj["azure_storage_account"]) if obj.get("azure_storage_account") is not None else None,
+            "azure_storage_container": ResourceRemoteInfoAzureStorageContainer.from_dict(obj["azure_storage_container"]) if obj.get("azure_storage_container") is not None else None,
+            "azure_sql_server": ResourceRemoteInfoAzureSqlServer.from_dict(obj["azure_sql_server"]) if obj.get("azure_sql_server") is not None else None,
+            "azure_sql_database": ResourceRemoteInfoAzureSqlDatabase.from_dict(obj["azure_sql_database"]) if obj.get("azure_sql_database") is not None else None,
+            "azure_sql_managed_instance": ResourceRemoteInfoAzureSqlManagedInstance.from_dict(obj["azure_sql_managed_instance"]) if obj.get("azure_sql_managed_instance") is not None else None,
+            "azure_sql_managed_database": ResourceRemoteInfoAzureSqlManagedDatabase.from_dict(obj["azure_sql_managed_database"]) if obj.get("azure_sql_managed_database") is not None else None,
+            "azure_user_assigned_managed_identity": ResourceRemoteInfoAzureUserAssignedManagedIdentity.from_dict(obj["azure_user_assigned_managed_identity"]) if obj.get("azure_user_assigned_managed_identity") is not None else None,
+            "azure_enterprise_app": ResourceRemoteInfoAzureEnterpriseApp.from_dict(obj["azure_enterprise_app"]) if obj.get("azure_enterprise_app") is not None else None,
+            "azure_entra_id_role": ResourceRemoteInfoAzureEntraIdRole.from_dict(obj["azure_entra_id_role"]) if obj.get("azure_entra_id_role") is not None else None,
             "aws_organizational_unit": ResourceRemoteInfoAwsOrganizationalUnit.from_dict(obj["aws_organizational_unit"]) if obj.get("aws_organizational_unit") is not None else None,
             "aws_account": ResourceRemoteInfoAwsAccount.from_dict(obj["aws_account"]) if obj.get("aws_account") is not None else None,
             "aws_permission_set": ResourceRemoteInfoAwsPermissionSet.from_dict(obj["aws_permission_set"]) if obj.get("aws_permission_set") is not None else None,
@@ -253,6 +371,8 @@ class ResourceRemoteInfo(BaseModel):
             "gcp_service_account": ResourceRemoteInfoGcpServiceAccount.from_dict(obj["gcp_service_account"]) if obj.get("gcp_service_account") is not None else None,
             "google_workspace_role": ResourceRemoteInfoGoogleWorkspaceRole.from_dict(obj["google_workspace_role"]) if obj.get("google_workspace_role") is not None else None,
             "github_repo": ResourceRemoteInfoGithubRepo.from_dict(obj["github_repo"]) if obj.get("github_repo") is not None else None,
+            "github_org_role": ResourceRemoteInfoGithubOrgRole.from_dict(obj["github_org_role"]) if obj.get("github_org_role") is not None else None,
+            "github_org": ResourceRemoteInfoGithubOrg.from_dict(obj["github_org"]) if obj.get("github_org") is not None else None,
             "gitlab_project": ResourceRemoteInfoGitlabProject.from_dict(obj["gitlab_project"]) if obj.get("gitlab_project") is not None else None,
             "okta_app": ResourceRemoteInfoOktaApp.from_dict(obj["okta_app"]) if obj.get("okta_app") is not None else None,
             "okta_standard_role": ResourceRemoteInfoOktaStandardRole.from_dict(obj["okta_standard_role"]) if obj.get("okta_standard_role") is not None else None,
@@ -261,7 +381,13 @@ class ResourceRemoteInfo(BaseModel):
             "salesforce_permission_set": ResourceRemoteInfoSalesforcePermissionSet.from_dict(obj["salesforce_permission_set"]) if obj.get("salesforce_permission_set") is not None else None,
             "salesforce_profile": ResourceRemoteInfoSalesforceProfile.from_dict(obj["salesforce_profile"]) if obj.get("salesforce_profile") is not None else None,
             "salesforce_role": ResourceRemoteInfoSalesforceRole.from_dict(obj["salesforce_role"]) if obj.get("salesforce_role") is not None else None,
-            "teleport_role": ResourceRemoteInfoTeleportRole.from_dict(obj["teleport_role"]) if obj.get("teleport_role") is not None else None
+            "teleport_role": ResourceRemoteInfoTeleportRole.from_dict(obj["teleport_role"]) if obj.get("teleport_role") is not None else None,
+            "datastax_astra_role": ResourceRemoteInfoDatastaxAstraRole.from_dict(obj["datastax_astra_role"]) if obj.get("datastax_astra_role") is not None else None,
+            "coupa_role": ResourceRemoteInfoCoupaRole.from_dict(obj["coupa_role"]) if obj.get("coupa_role") is not None else None,
+            "cursor_organization": ResourceRemoteInfoCursorOrganization.from_dict(obj["cursor_organization"]) if obj.get("cursor_organization") is not None else None,
+            "openai_platform_project": ResourceRemoteInfoOpenaiPlatformProject.from_dict(obj["openai_platform_project"]) if obj.get("openai_platform_project") is not None else None,
+            "openai_platform_service_account": ResourceRemoteInfoOpenaiPlatformServiceAccount.from_dict(obj["openai_platform_service_account"]) if obj.get("openai_platform_service_account") is not None else None,
+            "anthropic_workspace": ResourceRemoteInfoAnthropicWorkspace.from_dict(obj["anthropic_workspace"]) if obj.get("anthropic_workspace") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

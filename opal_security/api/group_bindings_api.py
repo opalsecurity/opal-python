@@ -588,7 +588,7 @@ class GroupBindingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GroupBinding:
-        """get_group_binding
+        """Get group binding by ID
 
         Returns a `GroupBinding` object.
 
@@ -655,7 +655,7 @@ class GroupBindingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GroupBinding]:
-        """get_group_binding
+        """Get group binding by ID
 
         Returns a `GroupBinding` object.
 
@@ -722,7 +722,7 @@ class GroupBindingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_group_binding
+        """Get group binding by ID
 
         Returns a `GroupBinding` object.
 
@@ -850,7 +850,7 @@ class GroupBindingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedGroupBindingsList:
-        """get_group_bindings
+        """Get group bindings
 
         Returns a list of `GroupBinding` objects.
 
@@ -921,7 +921,7 @@ class GroupBindingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedGroupBindingsList]:
-        """get_group_bindings
+        """Get group bindings
 
         Returns a list of `GroupBinding` objects.
 
@@ -992,7 +992,7 @@ class GroupBindingsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_group_bindings
+        """Get group bindings
 
         Returns a list of `GroupBinding` objects.
 
