@@ -7,6 +7,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group_id** | **str** | The ID of the group. | 
+**group_name** | **str** | The name of the group. | 
+**description** | **str** | The description of the group. | 
 **user_id** | **str** | The ID of the user. | 
 **access_level** | [**GroupAccessLevel**](GroupAccessLevel.md) |  | [optional] 
 **full_name** | **str** | The user&#39;s full name. | 

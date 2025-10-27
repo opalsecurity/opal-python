@@ -8,10 +8,10 @@ Method | HTTP request | Description
 [**create_request**](RequestsApi.md#create_request) | **POST** /requests | 
 [**create_request_comment**](RequestsApi.md#create_request_comment) | **POST** /requests/{id}/comments | 
 [**deny_request**](RequestsApi.md#deny_request) | **POST** /requests/{id}/deny | 
-[**get_request**](RequestsApi.md#get_request) | **GET** /requests/{id} | 
+[**get_request**](RequestsApi.md#get_request) | **GET** /requests/{id} | Get request by ID
 [**get_request_comments**](RequestsApi.md#get_request_comments) | **GET** /requests/{id}/comments | 
-[**get_requests**](RequestsApi.md#get_requests) | **GET** /requests | 
-[**get_requests_relay**](RequestsApi.md#get_requests_relay) | **GET** /requests/relay | 
+[**get_requests**](RequestsApi.md#get_requests) | **GET** /requests | Get requests
+[**get_requests_relay**](RequestsApi.md#get_requests_relay) | **GET** /requests/relay | Get requests via Relay
 
 
 # **approve_request**
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 # **get_request**
 > Request get_request(id)
 
-
+Get request by ID
 
 Returns a request by ID.
 
@@ -382,6 +382,7 @@ with opal_security.ApiClient(configuration) as api_client:
     id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the request.
 
     try:
+        # Get request by ID
         api_response = api_instance.get_request(id)
         print("The response of RequestsApi->get_request:\n")
         pprint(api_response)
@@ -500,7 +501,7 @@ Name | Type | Description  | Notes
 # **get_requests**
 > RequestList get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
 
-
+Get requests
 
 Returns a list of requests for your organization that is visible by the admin.
 
@@ -545,6 +546,7 @@ with opal_security.ApiClient(configuration) as api_client:
     show_pending_only = True # bool | Boolean toggle for if it should only show pending requests. (optional)
 
     try:
+        # Get requests
         api_response = api_instance.get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
         print("The response of RequestsApi->get_requests:\n")
         pprint(api_response)
@@ -591,7 +593,7 @@ Name | Type | Description  | Notes
 # **get_requests_relay**
 > RequestConnection get_requests_relay(first=first, after=after, last=last, before=before, status=status, to=to, var_from=var_from)
 
-
+Get requests via Relay
 
 Returns a paginated list of requests using Relay-style cursor pagination.
 
@@ -637,6 +639,7 @@ with opal_security.ApiClient(configuration) as api_client:
     var_from = '37cb7e41-12ba-46da-92ff-030abe0450b1' # str | Filter requests made by a specific user ID. (optional)
 
     try:
+        # Get requests via Relay
         api_response = api_instance.get_requests_relay(first=first, after=after, last=last, before=before, status=status, to=to, var_from=var_from)
         print("The response of RequestsApi->get_requests_relay:\n")
         pprint(api_response)

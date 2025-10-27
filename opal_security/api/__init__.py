@@ -5,6 +5,7 @@ from opal_security.api.access_rules_api import AccessRulesApi
 from opal_security.api.apps_api import AppsApi
 from opal_security.api.bundles_api import BundlesApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
+from opal_security.api.delegations_api import DelegationsApi
 from opal_security.api.events_api import EventsApi
 from opal_security.api.group_bindings_api import GroupBindingsApi
 from opal_security.api.groups_api import GroupsApi

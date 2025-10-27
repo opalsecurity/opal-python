@@ -19,7 +19,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.request_approval_enum import RequestApprovalEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +29,9 @@ class DenyRequestRequest(BaseModel):
     DenyRequestRequest
     """ # noqa: E501
     comment: StrictStr = Field(description="Comment for the denial")
+    level: Optional[RequestApprovalEnum] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["comment"]
+    __properties: ClassVar[List[str]] = ["comment", "level"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +91,8 @@ class DenyRequestRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "comment": obj.get("comment")
+            "comment": obj.get("comment"),
+            "level": obj.get("level")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

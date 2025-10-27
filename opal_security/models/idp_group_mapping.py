@@ -27,11 +27,12 @@ class IdpGroupMapping(BaseModel):
     """
     Information about a group mapping.
     """ # noqa: E501
+    app_resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the app resource.")
     group_id: StrictStr = Field(description="The ID of the group.")
     alias: Optional[StrictStr] = Field(default=None, description="The alias of the group.")
     hidden_from_end_user: StrictBool = Field(description="A bool representing whether or not the group is hidden from the end user.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "alias", "hidden_from_end_user"]
+    __properties: ClassVar[List[str]] = ["app_resource_id", "group_id", "alias", "hidden_from_end_user"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +92,7 @@ class IdpGroupMapping(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "app_resource_id": obj.get("app_resource_id"),
             "group_id": obj.get("group_id"),
             "alias": obj.get("alias"),
             "hidden_from_end_user": obj.get("hidden_from_end_user")

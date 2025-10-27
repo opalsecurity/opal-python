@@ -10,9 +10,9 @@ Method | HTTP request | Description
 [**create_group**](GroupsApi.md#create_group) | **POST** /groups | 
 [**delete_group**](GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
 [**delete_group_user**](GroupsApi.md#delete_group_user) | **DELETE** /groups/{group_id}/users/{user_id} | 
-[**get_group**](GroupsApi.md#get_group) | **GET** /groups/{group_id} | 
-[**get_group_containing_group**](GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | 
-[**get_group_containing_groups**](GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | 
+[**get_group**](GroupsApi.md#get_group) | **GET** /groups/{group_id} | Get group by ID
+[**get_group_containing_group**](GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | Get nested group by ID
+[**get_group_containing_groups**](GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | Get nested groups
 [**get_group_message_channels**](GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
 [**get_group_on_call_schedules**](GroupsApi.md#get_group_on_call_schedules) | **GET** /groups/{group_id}/on-call-schedules | 
 [**get_group_resources**](GroupsApi.md#get_group_resources) | **GET** /groups/{group_id}/resources | 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 [**get_group_tags**](GroupsApi.md#get_group_tags) | **GET** /groups/{group_id}/tags | 
 [**get_group_users**](GroupsApi.md#get_group_users) | **GET** /groups/{group_id}/users | 
 [**get_group_visibility**](GroupsApi.md#get_group_visibility) | **GET** /groups/{group_id}/visibility | 
-[**get_groups**](GroupsApi.md#get_groups) | **GET** /groups | 
+[**get_groups**](GroupsApi.md#get_groups) | **GET** /groups | Get groups
 [**get_user_groups**](GroupsApi.md#get_user_groups) | **GET** /groups/users/{user_id} | 
 [**remove_group_containing_group**](GroupsApi.md#remove_group_containing_group) | **DELETE** /groups/{group_id}/containing-groups/{containing_group_id} | 
 [**set_group_message_channels**](GroupsApi.md#set_group_message_channels) | **PUT** /groups/{group_id}/message-channels | 
@@ -528,7 +528,7 @@ void (empty response body)
 # **get_group**
 > Group get_group(group_id)
 
-
+Get group by ID
 
 Returns a `Group` object.
 
@@ -567,6 +567,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group.
 
     try:
+        # Get group by ID
         api_response = api_instance.get_group(group_id)
         print("The response of GroupsApi->get_group:\n")
         pprint(api_response)
@@ -607,7 +608,7 @@ Name | Type | Description  | Notes
 # **get_group_containing_group**
 > GroupContainingGroup get_group_containing_group(group_id, containing_group_id)
 
-
+Get nested group by ID
 
 Gets a specific containing group for a group.
 
@@ -647,6 +648,7 @@ with opal_security.ApiClient(configuration) as api_client:
     containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
 
     try:
+        # Get nested group by ID
         api_response = api_instance.get_group_containing_group(group_id, containing_group_id)
         print("The response of GroupsApi->get_group_containing_group:\n")
         pprint(api_response)
@@ -688,7 +690,7 @@ Name | Type | Description  | Notes
 # **get_group_containing_groups**
 > GroupContainingGroupList get_group_containing_groups(group_id)
 
-
+Get nested groups
 
 Gets the list of groups that the group gives access to.
 
@@ -727,6 +729,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
+        # Get nested groups
         api_response = api_instance.get_group_containing_groups(group_id)
         print("The response of GroupsApi->get_group_containing_groups:\n")
         pprint(api_response)
@@ -1402,7 +1405,7 @@ Name | Type | Description  | Notes
 # **get_groups**
 > PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
 
-
+Get groups
 
 Returns a list of groups for your organization.
 
@@ -1446,6 +1449,7 @@ with opal_security.ApiClient(configuration) as api_client:
     group_name = 'example-name' # str | Group name. (optional)
 
     try:
+        # Get groups
         api_response = api_instance.get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
         print("The response of GroupsApi->get_groups:\n")
         pprint(api_response)

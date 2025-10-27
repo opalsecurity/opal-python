@@ -5,8 +5,8 @@ All URIs are relative to *https://api.opal.dev/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_message_channel**](MessageChannelsApi.md#create_message_channel) | **POST** /message-channels | 
-[**get_message_channel**](MessageChannelsApi.md#get_message_channel) | **GET** /message-channels/{message_channel_id} | 
-[**get_message_channels**](MessageChannelsApi.md#get_message_channels) | **GET** /message-channels | 
+[**get_message_channel**](MessageChannelsApi.md#get_message_channel) | **GET** /message-channels/{message_channel_id} | Get message channel by ID
+[**get_message_channels**](MessageChannelsApi.md#get_message_channels) | **GET** /message-channels | Get message channels
 
 
 # **create_message_channel**
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 # **get_message_channel**
 > MessageChannel get_message_channel(message_channel_id)
 
-
+Get message channel by ID
 
 Gets a `MessageChannel` object.
 
@@ -131,6 +131,7 @@ with opal_security.ApiClient(configuration) as api_client:
     message_channel_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the message_channel.
 
     try:
+        # Get message channel by ID
         api_response = api_instance.get_message_channel(message_channel_id)
         print("The response of MessageChannelsApi->get_message_channel:\n")
         pprint(api_response)
@@ -171,7 +172,7 @@ Name | Type | Description  | Notes
 # **get_message_channels**
 > MessageChannelList get_message_channels()
 
-
+Get message channels
 
 Returns a list of `MessageChannel` objects.
 
@@ -209,6 +210,7 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.MessageChannelsApi(api_client)
 
     try:
+        # Get message channels
         api_response = api_instance.get_message_channels()
         print("The response of MessageChannelsApi->get_message_channels:\n")
         pprint(api_response)

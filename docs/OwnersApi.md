@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_owner**](OwnersApi.md#create_owner) | **POST** /owners | 
 [**delete_owner**](OwnersApi.md#delete_owner) | **DELETE** /owners/{owner_id} | 
-[**get_owner**](OwnersApi.md#get_owner) | **GET** /owners/{owner_id} | 
+[**get_owner**](OwnersApi.md#get_owner) | **GET** /owners/{owner_id} | Get owner by ID
 [**get_owner_from_name**](OwnersApi.md#get_owner_from_name) | **GET** /owners/name/{owner_name} | 
 [**get_owner_users**](OwnersApi.md#get_owner_users) | **GET** /owners/{owner_id}/users | 
-[**get_owners**](OwnersApi.md#get_owners) | **GET** /owners | 
+[**get_owners**](OwnersApi.md#get_owners) | **GET** /owners | Get owners
 [**set_owner_users**](OwnersApi.md#set_owner_users) | **PUT** /owners/{owner_id}/users | 
 [**update_owners**](OwnersApi.md#update_owners) | **PUT** /owners | 
 
@@ -173,7 +173,7 @@ void (empty response body)
 # **get_owner**
 > Owner get_owner(owner_id)
 
-
+Get owner by ID
 
 Returns an `Owner` object.
 
@@ -212,6 +212,7 @@ with opal_security.ApiClient(configuration) as api_client:
     owner_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the owner.
 
     try:
+        # Get owner by ID
         api_response = api_instance.get_owner(owner_id)
         print("The response of OwnersApi->get_owner:\n")
         pprint(api_response)
@@ -410,7 +411,7 @@ Name | Type | Description  | Notes
 # **get_owners**
 > PaginatedOwnersList get_owners(cursor=cursor, page_size=page_size, name=name)
 
-
+Get owners
 
 Returns a list of `Owner` objects.
 
@@ -451,6 +452,7 @@ with opal_security.ApiClient(configuration) as api_client:
     name = '200' # str | Owner name to filter by. (optional)
 
     try:
+        # Get owners
         api_response = api_instance.get_owners(cursor=cursor, page_size=page_size, name=name)
         print("The response of OwnersApi->get_owners:\n")
         pprint(api_response)

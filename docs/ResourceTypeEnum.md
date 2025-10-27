@@ -128,6 +128,20 @@ The type of the resource.
 
 * `DATASTAX_ASTRA_ROLE` (value: `'DATASTAX_ASTRA_ROLE'`)
 
+* `COUPA_ROLE` (value: `'COUPA_ROLE'`)
+
+* `CURSOR_ORGANIZATION` (value: `'CURSOR_ORGANIZATION'`)
+
+* `OPENAI_PLATFORM_PROJECT` (value: `'OPENAI_PLATFORM_PROJECT'`)
+
+* `OPENAI_PLATFORM_SERVICE_ACCOUNT` (value: `'OPENAI_PLATFORM_SERVICE_ACCOUNT'`)
+
+* `ANTHROPIC_WORKSPACE` (value: `'ANTHROPIC_WORKSPACE'`)
+
+* `GIT_HUB_ORG` (value: `'GIT_HUB_ORG'`)
+
+* `ORACLE_FUSION_ROLE` (value: `'ORACLE_FUSION_ROLE'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

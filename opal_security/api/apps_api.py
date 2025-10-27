@@ -60,7 +60,7 @@ class AppsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> App:
-        """get_app
+        """Get app by ID
 
         Returns an `App` object.
 
@@ -127,7 +127,7 @@ class AppsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[App]:
-        """get_app
+        """Get app by ID
 
         Returns an `App` object.
 
@@ -194,7 +194,7 @@ class AppsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_app
+        """Get app by ID
 
         Returns an `App` object.
 
@@ -322,7 +322,7 @@ class AppsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AppsList:
-        """get_apps
+        """Get apps
 
         Returns a list of `App` objects.
 
@@ -393,7 +393,7 @@ class AppsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AppsList]:
-        """get_apps
+        """Get apps
 
         Returns a list of `App` objects.
 
@@ -464,7 +464,7 @@ class AppsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_apps
+        """Get apps
 
         Returns a list of `App` objects.
 
