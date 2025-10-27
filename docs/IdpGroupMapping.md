@@ -6,6 +6,7 @@ Information about a group mapping.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**app_resource_id** | **str** | The ID of the app resource. | [optional] 
 **group_id** | **str** | The ID of the group. | 
 **alias** | **str** | The alias of the group. | [optional] 
 **hidden_from_end_user** | **bool** | A bool representing whether or not the group is hidden from the end user. | 

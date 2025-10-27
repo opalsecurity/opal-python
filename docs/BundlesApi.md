@@ -8,11 +8,11 @@ Method | HTTP request | Description
 [**add_bundle_resource**](BundlesApi.md#add_bundle_resource) | **POST** /bundles/{bundle_id}/resources | 
 [**create_bundle**](BundlesApi.md#create_bundle) | **POST** /bundles | 
 [**delete_bundle**](BundlesApi.md#delete_bundle) | **DELETE** /bundles/{bundle_id} | 
-[**get_bundle**](BundlesApi.md#get_bundle) | **GET** /bundles/{bundle_id} | 
+[**get_bundle**](BundlesApi.md#get_bundle) | **GET** /bundles/{bundle_id} | Get bundle by ID
 [**get_bundle_groups**](BundlesApi.md#get_bundle_groups) | **GET** /bundles/{bundle_id}/groups | 
 [**get_bundle_resources**](BundlesApi.md#get_bundle_resources) | **GET** /bundles/{bundle_id}/resources | 
 [**get_bundle_visibility**](BundlesApi.md#get_bundle_visibility) | **GET** /bundles/{bundle_id}/visibility | 
-[**get_bundles**](BundlesApi.md#get_bundles) | **GET** /bundles | 
+[**get_bundles**](BundlesApi.md#get_bundles) | **GET** /bundles | Get bundles
 [**remove_bundle_group**](BundlesApi.md#remove_bundle_group) | **DELETE** /bundles/{bundle_id}/groups/{group_id} | 
 [**remove_bundle_resource**](BundlesApi.md#remove_bundle_resource) | **DELETE** /bundles/{bundle_id}/resources/{resource_id} | 
 [**set_bundle_visibility**](BundlesApi.md#set_bundle_visibility) | **PUT** /bundles/{bundle_id}/visibility | 
@@ -342,7 +342,7 @@ void (empty response body)
 # **get_bundle**
 > Bundle get_bundle(bundle_id)
 
-
+Get bundle by ID
 
 Returns a `Bundle` object.
 
@@ -381,6 +381,7 @@ with opal_security.ApiClient(configuration) as api_client:
     bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
 
     try:
+        # Get bundle by ID
         api_response = api_instance.get_bundle(bundle_id)
         print("The response of BundlesApi->get_bundle:\n")
         pprint(api_response)
@@ -666,7 +667,7 @@ Name | Type | Description  | Notes
 # **get_bundles**
 > PaginatedBundleList get_bundles(page_size=page_size, cursor=cursor, contains=contains)
 
-
+Get bundles
 
 Returns a list of `Bundle` objects.
 
@@ -707,6 +708,7 @@ with opal_security.ApiClient(configuration) as api_client:
     contains = 'Engineering' # str | A filter for the bundle name. (optional)
 
     try:
+        # Get bundles
         api_response = api_instance.get_bundles(page_size=page_size, cursor=cursor, contains=contains)
         print("The response of BundlesApi->get_bundles:\n")
         pprint(api_response)

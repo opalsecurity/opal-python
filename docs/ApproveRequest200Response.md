@@ -6,7 +6,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request** | [**Request**](Request.md) |  | [optional] 
-**task_id** | **str** | ID of the task created for propagating access | [optional] 
 
 ## Example
 

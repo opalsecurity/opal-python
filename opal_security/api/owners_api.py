@@ -590,7 +590,7 @@ class OwnersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Owner:
-        """get_owner
+        """Get owner by ID
 
         Returns an `Owner` object.
 
@@ -657,7 +657,7 @@ class OwnersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Owner]:
-        """get_owner
+        """Get owner by ID
 
         Returns an `Owner` object.
 
@@ -724,7 +724,7 @@ class OwnersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_owner
+        """Get owner by ID
 
         Returns an `Owner` object.
 
@@ -1375,7 +1375,7 @@ class OwnersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedOwnersList:
-        """get_owners
+        """Get owners
 
         Returns a list of `Owner` objects.
 
@@ -1450,7 +1450,7 @@ class OwnersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedOwnersList]:
-        """get_owners
+        """Get owners
 
         Returns a list of `Owner` objects.
 
@@ -1525,7 +1525,7 @@ class OwnersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_owners
+        """Get owners
 
         Returns a list of `Owner` objects.
 
