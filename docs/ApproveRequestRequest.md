@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**level** | **str** | The decision level for the approval | 
+**level** | [**RequestApprovalEnum**](RequestApprovalEnum.md) |  | 
 **comment** | **str** | Optional comment for the approval | [optional] 
 
 ## Example

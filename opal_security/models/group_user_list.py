@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.group_user import GroupUser
 from typing import Optional, Set
@@ -29,8 +29,10 @@ class GroupUserList(BaseModel):
     GroupUserList
     """ # noqa: E501
     results: Optional[List[GroupUser]] = None
+    next: Optional[StrictStr] = Field(default=None, description="The cursor with which to continue pagination if additional result pages exist.")
+    previous: Optional[StrictStr] = Field(default=None, description="The cursor used to obtain the current result page.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["results"]
+    __properties: ClassVar[List[str]] = ["results", "next", "previous"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +99,9 @@ class GroupUserList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "results": [GroupUser.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
+            "results": [GroupUser.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None,
+            "next": obj.get("next"),
+            "previous": obj.get("previous")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
