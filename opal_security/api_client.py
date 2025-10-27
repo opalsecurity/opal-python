@@ -383,6 +383,10 @@ class ApiClient:
             else:
                 obj_dict = obj.__dict__
 
+        if isinstance(obj_dict, list):
+            # here we handle instances that can either be a list or something else, and only became a real list by calling to_dict()
+            return self.sanitize_for_serialization(obj_dict)
+
         return {
             key: self.sanitize_for_serialization(val)
             for key, val in obj_dict.items()
@@ -518,7 +522,7 @@ class ApiClient:
             if k in collection_formats:
                 collection_format = collection_formats[k]
                 if collection_format == 'multi':
-                    new_params.extend((k, str(value)) for value in v)
+                    new_params.extend((k, quote(str(value))) for value in v)
                 else:
                     if collection_format == 'ssv':
                         delimiter = ' '

@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestApp(unittest.TestCase):
 
     def make_instance(self, include_optional) -> App:
         """Test App
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `App`
@@ -40,7 +40,10 @@ class TestApp(unittest.TestCase):
                 name = 'Okta Org',
                 description = 'Okta directory for the engineering team.',
                 admin_owner_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                app_type = 'OKTA_DIRECTORY'
+                app_type = 'OKTA_DIRECTORY',
+                validations = [
+                    {key=iam:GetRole, name=Opal's service account is missing the 'iam:GetRole' permission., usage_reason=Opal uses the 'iam:GetRole' permissions to view access to resources., details=403 Google API Error. Service account is not authorized to access role assignments., severity=HIGH, status=FAILED, updated_at=2021-01-06T20:00:00Z}
+                    ]
             )
         else:
             return App(

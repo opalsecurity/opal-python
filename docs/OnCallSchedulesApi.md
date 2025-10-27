@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_on_call_schedule**
 > OnCallSchedule create_on_call_schedule(create_on_call_schedule_info)
 
-
-
 Creates a `OnCallSchedule` objects.
 
 ### Example

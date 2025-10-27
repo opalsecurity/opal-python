@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestGroupUserList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GroupUserList:
         """Test GroupUserList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GroupUserList`
@@ -37,8 +37,10 @@ class TestGroupUserList(unittest.TestCase):
         if include_optional:
             return GroupUserList(
                 results = [
-                    {"full_name":"Jake Barnes","user_id":"29827fb8-f2dd-4e80-9576-28e31e9934ac","group_id":"1b978423-db0a-4037-a4cf-f79c60cb67b3","expiration_date":"2022-01-23T04:56:07Z","email":"jake@company.dev"}
-                    ]
+                    {full_name=Jake Barnes, user_id=29827fb8-f2dd-4e80-9576-28e31e9934ac, group_id=1b978423-db0a-4037-a4cf-f79c60cb67b3, expiration_date=2022-01-23T04:56:07Z, email=jake@company.dev}
+                    ],
+                next = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw',
+                previous = 'cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ'
             )
         else:
             return GroupUserList(

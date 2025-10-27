@@ -35,8 +35,6 @@ Method | HTTP request | Description
 # **add_resource_nhi**
 > ResourceNHI add_resource_nhi(resource_id, non_human_identity_id, add_resource_nhi_request=add_resource_nhi_request)
 
-
-
 Gives a non-human identity access to this resource.
 
 ### Example
@@ -118,8 +116,6 @@ Name | Type | Description  | Notes
 
 # **add_resource_user**
 > ResourceUser add_resource_user(resource_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_resource_user_request=add_resource_user_request)
-
-
 
 Adds a user to this resource.
 
@@ -207,8 +203,6 @@ Name | Type | Description  | Notes
 # **create_resource**
 > Resource create_resource(create_resource_info)
 
-
-
 Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
 
 ### Example
@@ -287,8 +281,6 @@ Name | Type | Description  | Notes
 # **delete_resource**
 > delete_resource(resource_id)
 
-
-
 Deletes a resource.
 
 ### Example
@@ -362,8 +354,6 @@ void (empty response body)
 
 # **delete_resource_nhi**
 > delete_resource_nhi(resource_id, non_human_identity_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a non-human identity's direct access from this resource.
 
@@ -442,8 +432,6 @@ void (empty response body)
 
 # **delete_resource_user**
 > delete_resource_user(resource_id, user_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a user's direct access from this resource.
 
@@ -603,8 +591,6 @@ Name | Type | Description  | Notes
 # **get_resource_message_channels**
 > MessageChannelList get_resource_message_channels(resource_id)
 
-
-
 Gets the list of audit message channels attached to a resource.
 
 ### Example
@@ -681,8 +667,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_nhis**
 > AccessList get_resource_nhis(resource_id, limit=limit)
-
-
 
 Gets the list of non-human identities with access to this resource.
 
@@ -763,8 +747,6 @@ Name | Type | Description  | Notes
 # **get_resource_reviewer_stages**
 > List[ReviewerStage] get_resource_reviewer_stages(resource_id)
 
-
-
 Gets the list reviewer stages for a resource.
 
 ### Example
@@ -842,8 +824,6 @@ Name | Type | Description  | Notes
 # **get_resource_reviewers**
 > List[str] get_resource_reviewers(resource_id)
 
-
-
 Gets the list of owner IDs of the reviewers for a resource.
 
 ### Example
@@ -919,8 +899,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_scoped_role_permissions**
 > ScopedRolePermissionList get_resource_scoped_role_permissions(resource_id)
-
-
 
 Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 
@@ -998,8 +976,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_tags**
 > TagsList get_resource_tags(resource_id)
-
-
 
 Returns all tags applied to the resource.
 
@@ -1245,8 +1221,6 @@ Name | Type | Description  | Notes
 # **get_resource_visibility**
 > VisibilityInfo get_resource_visibility(resource_id)
 
-
-
 Gets the visibility of this resource.
 
 ### Example
@@ -1419,8 +1393,6 @@ Name | Type | Description  | Notes
 # **get_user_resources**
 > ResourceAccessUserList get_user_resources(user_id, limit=limit, cursor=cursor, include_unmanaged=include_unmanaged)
 
-
-
 Gets the list of resources for this user.
 
 ### Example
@@ -1503,8 +1475,6 @@ Name | Type | Description  | Notes
 
 # **resource_user_access_status_retrieve**
 > ResourceUserAccessStatus resource_user_access_status_retrieve(resource_id, user_id, access_level_remote_id=access_level_remote_id, cursor=cursor, page_size=page_size)
-
-
 
 Get user's access status to a resource.
 
@@ -1591,8 +1561,6 @@ Name | Type | Description  | Notes
 # **set_resource_message_channels**
 > List[str] set_resource_message_channels(resource_id, message_channel_id_list)
 
-
-
 Sets the list of audit message channels attached to a resource.
 
 ### Example
@@ -1671,8 +1639,6 @@ Name | Type | Description  | Notes
 
 # **set_resource_reviewer_stages**
 > List[ReviewerStage] set_resource_reviewer_stages(resource_id, reviewer_stage_list)
-
-
 
 Sets the list of reviewer stages for a resource.
 
@@ -1754,8 +1720,6 @@ Name | Type | Description  | Notes
 # **set_resource_reviewers**
 > List[str] set_resource_reviewers(resource_id, reviewer_id_list)
 
-
-
 Sets the list of reviewers for a resource.
 
 ### Example
@@ -1834,8 +1798,6 @@ Name | Type | Description  | Notes
 
 # **set_resource_scoped_role_permissions**
 > ScopedRolePermissionList set_resource_scoped_role_permissions(resource_id, scoped_role_permission_list)
-
-
 
 Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
 
@@ -1916,8 +1878,6 @@ Name | Type | Description  | Notes
 # **set_resource_visibility**
 > VisibilityInfo set_resource_visibility(resource_id, visibility_info)
 
-
-
 Sets the visibility of this resource.
 
 ### Example
@@ -1996,8 +1956,6 @@ Name | Type | Description  | Notes
 
 # **update_resource_user**
 > ResourceUser update_resource_user(resource_id, user_id, update_resource_user_request)
-
-
 
 Updates a user's access level or duration on this resource.
 
@@ -2080,8 +2038,6 @@ Name | Type | Description  | Notes
 
 # **update_resources**
 > UpdateResourceInfoList update_resources(update_resource_info_list)
-
-
 
 Bulk updates a list of resources.
 

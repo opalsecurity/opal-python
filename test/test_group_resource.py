@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestGroupResource(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GroupResource:
         """Test GroupResource
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GroupResource`
@@ -36,15 +36,15 @@ class TestGroupResource(unittest.TestCase):
         model = GroupResource()
         if include_optional:
             return GroupResource(
-                group_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353',
+                group_id = 'f454d283-ca87-4a87-bdbb-df212eca5353',
                 resource_id = 'b5a5ca27-0ea3-4d86-9199-2126d57d1fbd',
-                access_level = {"access_level_name":"AdminRole","access_level_remote_id":"arn:aws:iam::590304332660:role/AdministratorAccess"}
+                access_level = {access_level_name=AdminRole, access_level_remote_id=arn:aws:iam::590304332660:role/AdministratorAccess}
             )
         else:
             return GroupResource(
-                group_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353',
+                group_id = 'f454d283-ca87-4a87-bdbb-df212eca5353',
                 resource_id = 'b5a5ca27-0ea3-4d86-9199-2126d57d1fbd',
-                access_level = {"access_level_name":"AdminRole","access_level_remote_id":"arn:aws:iam::590304332660:role/AdministratorAccess"},
+                access_level = {access_level_name=AdminRole, access_level_remote_id=arn:aws:iam::590304332660:role/AdministratorAccess},
         )
         """
 

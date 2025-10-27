@@ -36,7 +36,8 @@ class TestDenyRequestRequest(unittest.TestCase):
         model = DenyRequestRequest()
         if include_optional:
             return DenyRequestRequest(
-                comment = 'Denied due to insufficient justification'
+                comment = 'Denied due to insufficient justification',
+                level = 'REGULAR'
             )
         else:
             return DenyRequestRequest(

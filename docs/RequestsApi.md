@@ -17,8 +17,6 @@ Method | HTTP request | Description
 # **approve_request**
 > ApproveRequest200Response approve_request(id, approve_request_request)
 
-
-
 Approve an access request
 
 ### Example
@@ -99,8 +97,6 @@ Name | Type | Description  | Notes
 # **create_request**
 > CreateRequest200Response create_request(create_request_info)
 
-
-
 Create an access request
 
 ### Example
@@ -178,8 +174,6 @@ Name | Type | Description  | Notes
 
 # **create_request_comment**
 > ApproveRequest200Response create_request_comment(id, create_request_comment_request)
-
-
 
 Comment on an access request
 
@@ -260,8 +254,6 @@ Name | Type | Description  | Notes
 
 # **deny_request**
 > ApproveRequest200Response deny_request(id, deny_request_request)
-
-
 
 Deny an access request
 
@@ -422,8 +414,6 @@ Name | Type | Description  | Notes
 
 # **get_request_comments**
 > RequestCommentList get_request_comments(id)
-
-
 
 Returns a list of comments for a specific request.
 

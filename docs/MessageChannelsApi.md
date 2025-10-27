@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_message_channel**
 > MessageChannel create_message_channel(create_message_channel_info)
 
-
-
 Creates a `MessageChannel` objects.
 
 ### Example

@@ -27,6 +27,12 @@ class TestAccessRulesApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_create_access_rule(self) -> None:
+        """Test case for create_access_rule
+
+        """
+        pass
+
     def test_get_access_rule(self) -> None:
         """Test case for get_access_rule
 

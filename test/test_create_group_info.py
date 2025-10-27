@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestCreateGroupInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> CreateGroupInfo:
         """Test CreateGroupInfo
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateGroupInfo`
@@ -40,28 +40,36 @@ class TestCreateGroupInfo(unittest.TestCase):
                 description = 'Engineering team Okta group.',
                 group_type = 'OPAL_GROUP',
                 app_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353',
-                remote_info = opal.models.group_remote_info.GroupRemoteInfo(
-                    active_directory_group = opal.models.group_remote_info_active_directory_group.GroupRemoteInfo_active_directory_group(
+                remote_info = opal_security.models.group_remote_info.GroupRemoteInfo(
+                    active_directory_group = opal_security.models.group_remote_info_active_directory_group.GroupRemoteInfo_active_directory_group(
                         group_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', ), 
-                    github_team = opal.models.group_remote_info_github_team.GroupRemoteInfo_github_team(
+                    github_team = opal_security.models.group_remote_info_github_team.GroupRemoteInfo_github_team(
                         team_id = '898931321', 
                         team_slug = 'opal-security', ), 
-                    gitlab_group = opal.models.group_remote_info_gitlab_group.GroupRemoteInfo_gitlab_group(
+                    gitlab_group = opal_security.models.group_remote_info_gitlab_group.GroupRemoteInfo_gitlab_group(
                         group_id = '898931321', ), 
-                    google_group = opal.models.group_remote_info_google_group.GroupRemoteInfo_google_group(
+                    google_group = opal_security.models.group_remote_info_google_group.GroupRemoteInfo_google_group(
                         group_id = '1y6w882181n7sg', ), 
-                    ldap_group = opal.models.group_remote_info_ldap_group.GroupRemoteInfo_ldap_group(
+                    ldap_group = opal_security.models.group_remote_info_ldap_group.GroupRemoteInfo_ldap_group(
                         group_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', ), 
-                    okta_group = opal.models.group_remote_info_okta_group.GroupRemoteInfo_okta_group(
+                    okta_group = opal_security.models.group_remote_info_okta_group.GroupRemoteInfo_okta_group(
                         group_id = '00gjs33pe8rtmRrp3rd6', ), 
-                    duo_group = opal.models.group_remote_info_duo_group.GroupRemoteInfo_duo_group(
+                    duo_group = opal_security.models.group_remote_info_duo_group.GroupRemoteInfo_duo_group(
                         group_id = 'DSRD8W89B9DNDBY4RHAC', ), 
-                    azure_ad_security_group = opal.models.group_remote_info_azure_ad_security_group.GroupRemoteInfo_azure_ad_security_group(
+                    azure_ad_security_group = opal_security.models.group_remote_info_azure_ad_security_group.GroupRemoteInfo_azure_ad_security_group(
                         group_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', ), 
-                    azure_ad_microsoft_365_group = opal.models.group_remote_info_azure_ad_microsoft_365_group.GroupRemoteInfo_azure_ad_microsoft_365_group(
-                        group_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', ), ),
+                    azure_ad_microsoft_365_group = opal_security.models.group_remote_info_azure_ad_microsoft_365_group.GroupRemoteInfo_azure_ad_microsoft_365_group(
+                        group_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', ), 
+                    snowflake_role = opal_security.models.group_remote_info_snowflake_role.GroupRemoteInfo_snowflake_role(
+                        role_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', ), 
+                    okta_group_rule = opal_security.models.group_remote_info_okta_group_rule.GroupRemoteInfo_okta_group_rule(
+                        rule_id = '0pr3f7zMZZHPgUoWO0g4', ), 
+                    workday_user_security_group = opal_security.models.group_remote_info_workday_user_security_group.GroupRemoteInfo_workday_user_security_group(
+                        group_id = '123abc456def', ), ),
                 remote_group_id = '00g4fixjd6Bc9w012345',
-                metadata = '{ "okta_directory_group": { "group_id": "00g4bs66kwtpe1g12345" } }'
+                metadata = '{ "okta_directory_group": { "group_id": "00g4bs66kwtpe1g12345" } }',
+                custom_request_notification = 'Check your email to register your account.',
+                risk_sensitivity_override = 'UNKNOWN'
             )
         else:
             return CreateGroupInfo(

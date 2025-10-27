@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestUpdateGroupBindingInfoList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> UpdateGroupBindingInfoList:
         """Test UpdateGroupBindingInfoList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UpdateGroupBindingInfoList`
@@ -37,13 +37,13 @@ class TestUpdateGroupBindingInfoList(unittest.TestCase):
         if include_optional:
             return UpdateGroupBindingInfoList(
                 group_bindings = [
-                    {"group_binding_id":"0ae19dbf-324d-4216-999c-574d46182c7e","source_group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","groups":[{"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353"},{"group_id":"99d0b81d-14be-4cf6-bd27-348b4af1d11b"}]}
+                    {group_binding_id=0ae19dbf-324d-4216-999c-574d46182c7e, source_group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, groups=[{group_id=f454d283-ca87-4a8a-bdbb-df212eca5353}, {group_id=99d0b81d-14be-4cf6-bd27-348b4af1d11b}]}
                     ]
             )
         else:
             return UpdateGroupBindingInfoList(
                 group_bindings = [
-                    {"group_binding_id":"0ae19dbf-324d-4216-999c-574d46182c7e","source_group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","groups":[{"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353"},{"group_id":"99d0b81d-14be-4cf6-bd27-348b4af1d11b"}]}
+                    {group_binding_id=0ae19dbf-324d-4216-999c-574d46182c7e, source_group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, groups=[{group_id=f454d283-ca87-4a8a-bdbb-df212eca5353}, {group_id=99d0b81d-14be-4cf6-bd27-348b4af1d11b}]}
                     ],
         )
         """

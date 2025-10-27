@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestRequestList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> RequestList:
         """Test RequestList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RequestList`
@@ -37,7 +37,7 @@ class TestRequestList(unittest.TestCase):
         if include_optional:
             return RequestList(
                 requests = [
-                    {"id":"7c86c85d-0651-43e2-a748-d69d658418e8","created_at":"2021-01-06T20:00:00Z","updated_at":"2021-01-06T20:00:00Z","requester_id":"c86c85d-0651-43e2-a748-d69d658418e8","target_user_id":"r86c85d-0651-43e2-a748-d69d658418e8","status":"pending","reason":"I need this resource.","duration_minutes":1440,"request_comments":[{"id":"7c86c85d-0651-43e2-a748-d69d658418e8","created_at":"2021-01-06T20:00:00Z","updated_at":"2021-01-06T20:00:00Z","request_id":"4c86c85d-0651-43e2-a748-d69d658418e8","user_id":"c86c85d-0651-43e2-a748-d69d658418e8","comment":"This is a comment."}]}
+                    {id=7c86c85d-0651-43e2-a748-d69d658418e8, created_at=2021-01-06T20:00:00Z, updated_at=2021-01-06T20:00:00Z, requester_id=c86c85d-0651-43e2-a748-d69d658418e8, target_user_id=r86c85d-0651-43e2-a748-d69d658418e8, target_group_id=r86c85d-0651-43e2-a748-d69d658418e8, status=pending, reason=I need this resource., duration_minutes=1440, request_comments=[{id=7c86c85d-0651-43e2-a748-d69d658418e8, created_at=2021-01-06T20:00:00Z, updated_at=2021-01-06T20:00:00Z, request_id=4c86c85d-0651-43e2-a748-d69d658418e8, user_id=c86c85d-0651-43e2-a748-d69d658418e8, comment=This is a comment.}], reviewer_stages=[{requestedRoleName=Admin, requestedItemName=AWS Production Account, stages=[{stage=1, operator=AND, reviewers=[{id=7c86c85d-0651-43e2-a748-d69d658418e8, status=PENDING}]}, {stage=2, operator=OR, reviewers=[{id=8d86c85d-0651-43e2-a748-d69d658418e9, status=APPROVED}]}]}]}
                     ],
                 cursor = 'eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0='
             )

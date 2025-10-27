@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestGroupResourceList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GroupResourceList:
         """Test GroupResourceList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GroupResourceList`
@@ -37,13 +37,13 @@ class TestGroupResourceList(unittest.TestCase):
         if include_optional:
             return GroupResourceList(
                 group_resources = [
-                    {"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","resource_id":"b5a5ca27-0ea3-4d86-9199-2126d57d1fbd","access_level_remote_id":"write"}
+                    {group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, resource_id=b5a5ca27-0ea3-4d86-9199-2126d57d1fbd, access_level_remote_id=write}
                     ]
             )
         else:
             return GroupResourceList(
                 group_resources = [
-                    {"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","resource_id":"b5a5ca27-0ea3-4d86-9199-2126d57d1fbd","access_level_remote_id":"write"}
+                    {group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, resource_id=b5a5ca27-0ea3-4d86-9199-2126d57d1fbd, access_level_remote_id=write}
                     ],
         )
         """

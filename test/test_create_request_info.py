@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -37,13 +37,13 @@ class TestCreateRequestInfo(unittest.TestCase):
         if include_optional:
             return CreateRequestInfo(
                 resources = [
-                    opal.models.create_request_info_resources_inner.CreateRequestInfo_resources_inner(
+                    opal_security.models.create_request_info_resources_inner.CreateRequestInfo_resources_inner(
                         id = 'group283-ca87-4a8a-bdbb-df212eca5353', 
                         access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', 
                         access_level_name = 'arn:aws:iam::490306337630:role/SupportUser', )
                     ],
                 groups = [
-                    opal.models.create_request_info_groups_inner.CreateRequestInfo_groups_inner(
+                    opal_security.models.create_request_info_groups_inner.CreateRequestInfo_groups_inner(
                         id = 'f454d283-ca87-4a8a-bdbb-df212eca5353', 
                         access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', 
                         access_level_name = 'arn:aws:iam::490306337630:role/SupportUser', )
@@ -51,14 +51,14 @@ class TestCreateRequestInfo(unittest.TestCase):
                 target_user_id = 'userd283-ca87-4a8a-bdbb-df212eca5353',
                 target_group_id = 'userd283-ca87-4a8a-bdbb-df212eca5353',
                 reason = '',
-                support_ticket = opal.models.create_request_info_support_ticket.CreateRequestInfo_support_ticket(
+                support_ticket = opal_security.models.create_request_info_support_ticket.CreateRequestInfo_support_ticket(
                     ticketing_provider = 'LINEAR', 
                     remote_id = '', 
                     identifier = '', 
                     url = '', ),
                 duration_minutes = -1,
                 custom_metadata = [
-                    opal.models.create_request_info_custom_metadata_inner.CreateRequestInfo_custom_metadata_inner(
+                    opal_security.models.create_request_info_custom_metadata_inner.CreateRequestInfo_custom_metadata_inner(
                         name = '', 
                         type = 'SHORT_TEXT', 
                         value = '', )
@@ -67,13 +67,13 @@ class TestCreateRequestInfo(unittest.TestCase):
         else:
             return CreateRequestInfo(
                 resources = [
-                    opal.models.create_request_info_resources_inner.CreateRequestInfo_resources_inner(
+                    opal_security.models.create_request_info_resources_inner.CreateRequestInfo_resources_inner(
                         id = 'group283-ca87-4a8a-bdbb-df212eca5353', 
                         access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', 
                         access_level_name = 'arn:aws:iam::490306337630:role/SupportUser', )
                     ],
                 groups = [
-                    opal.models.create_request_info_groups_inner.CreateRequestInfo_groups_inner(
+                    opal_security.models.create_request_info_groups_inner.CreateRequestInfo_groups_inner(
                         id = 'f454d283-ca87-4a8a-bdbb-df212eca5353', 
                         access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', 
                         access_level_name = 'arn:aws:iam::490306337630:role/SupportUser', )

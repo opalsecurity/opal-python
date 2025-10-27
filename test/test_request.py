@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestRequest(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Request:
         """Test Request
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Request`
@@ -37,31 +37,63 @@ class TestRequest(unittest.TestCase):
         if include_optional:
             return Request(
                 id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                created_at = '2021-01-06T20:00Z',
-                updated_at = '2021-01-06T20:00Z',
+                created_at = '2021-01-06T20:00:00Z',
+                updated_at = '2021-01-06T20:00:00Z',
                 requester_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
                 target_user_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                status = 'pending',
+                target_group_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
+                status = pending,
                 reason = 'I need access to the AWS account.',
                 duration_minutes = 120,
                 requested_items_list = [
-                    {"resource_id":null,"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","access_level_name":"admin","access_level_remote_id":"arn:aws:iam::490306337630:role/SupportUser","name":"Engineering Team"}
+                    {resource_id=null, group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, access_level_name=admin, access_level_remote_id=arn:aws:iam::490306337630:role/SupportUser, name=Engineering Team}
                     ],
                 custom_fields_responses = [
-                    opal.models.request_custom_field_response.RequestCustomFieldResponse(
+                    opal_security.models.request_custom_field_response.RequestCustomFieldResponse(
                         field_name = '', 
-                        field_type = 'SHORT_TEXT', 
+                        field_type = SHORT_TEXT, 
                         field_value = null, )
+                    ],
+                stages = opal_security.models.request_item_stages.RequestItemStages(
+                    requested_role_name = '', 
+                    requested_item_name = '', 
+                    stages = [
+                        opal_security.models.request_stage.RequestStage(
+                            stage = 56, 
+                            operator = 'AND', 
+                            reviewers = [
+                                opal_security.models.request_reviewer.RequestReviewer(
+                                    id = '', 
+                                    full_name = 'Jake Barnes', 
+                                    status = 'PENDING', )
+                                ], )
+                        ], ),
+                reviewer_stages = [
+                    opal_security.models.request_reviewer_stages.RequestReviewerStages(
+                        access_level_name = 'admin', 
+                        access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', 
+                        item_name = '', 
+                        item_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353', 
+                        stages = [
+                            opal_security.models.request_stage.RequestStage(
+                                stage = 56, 
+                                operator = 'AND', 
+                                reviewers = [
+                                    opal_security.models.request_reviewer.RequestReviewer(
+                                        id = '', 
+                                        full_name = 'Jake Barnes', 
+                                        status = 'PENDING', )
+                                    ], )
+                            ], )
                     ]
             )
         else:
             return Request(
                 id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                created_at = '2021-01-06T20:00Z',
-                updated_at = '2021-01-06T20:00Z',
+                created_at = '2021-01-06T20:00:00Z',
+                updated_at = '2021-01-06T20:00:00Z',
                 requester_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                target_user_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                status = 'pending',
+                status = pending,
                 reason = 'I need access to the AWS account.',
         )
         """

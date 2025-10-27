@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -36,12 +36,14 @@ class TestMessageChannelsApi(unittest.TestCase):
     def test_get_message_channel(self) -> None:
         """Test case for get_message_channel
 
+        Get message channel by ID
         """
         pass
 
     def test_get_message_channels(self) -> None:
         """Test case for get_message_channels
 
+        Get message channels
         """
         pass
 

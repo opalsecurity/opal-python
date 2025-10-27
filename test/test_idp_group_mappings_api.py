@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -27,8 +27,20 @@ class TestIdpGroupMappingsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_delete_idp_group_mappings_by_app_resource_id_group_id(self) -> None:
-        """Test case for delete_idp_group_mappings_by_app_resource_id_group_id
+    def test_create_idp_group_mapping(self) -> None:
+        """Test case for create_idp_group_mapping
+
+        """
+        pass
+
+    def test_delete_idp_group_mappings(self) -> None:
+        """Test case for delete_idp_group_mappings
+
+        """
+        pass
+
+    def test_get_idp_group_mapping(self) -> None:
+        """Test case for get_idp_group_mapping
 
         """
         pass

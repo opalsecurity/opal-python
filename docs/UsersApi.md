@@ -13,8 +13,6 @@ Method | HTTP request | Description
 # **get_remote_users**
 > PaginatedRemoteUsersList get_remote_users(third_party_provider=third_party_provider, user_id=user_id, remote_id=remote_id, cursor=cursor, page_size=page_size)
 
-
-
 Returns a list of remote users for your organization.
 
 ### Example
@@ -101,8 +99,6 @@ Name | Type | Description  | Notes
 # **get_user_tags**
 > TagsList get_user_tags(user_id)
 
-
-
 Returns all tags applied to the user.
 
 ### Example
@@ -179,8 +175,6 @@ Name | Type | Description  | Notes
 
 # **get_users**
 > PaginatedUsersList get_users(cursor=cursor, page_size=page_size)
-
-
 
 Returns a list of users for your organization.
 
@@ -260,8 +254,6 @@ Name | Type | Description  | Notes
 
 # **user**
 > User user(user_id=user_id, email=email)
-
-
 
 Returns a `User` object.
 

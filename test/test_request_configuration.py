@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestRequestConfiguration(unittest.TestCase):
 
     def make_instance(self, include_optional) -> RequestConfiguration:
         """Test RequestConfiguration
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RequestConfiguration`
@@ -36,16 +36,17 @@ class TestRequestConfiguration(unittest.TestCase):
         model = RequestConfiguration()
         if include_optional:
             return RequestConfiguration(
-                condition = {"group_ids":["1b978423-db0a-4037-a4cf-f79c60cb67b3"]},
+                condition = {group_ids=[1b978423-db0a-4037-a4cf-f79c60cb67b3]},
                 allow_requests = True,
                 auto_approval = False,
                 require_mfa_to_request = False,
                 max_duration_minutes = 120,
                 recommended_duration_minutes = 120,
                 require_support_ticket = False,
+                extensions_duration_in_minutes = 120,
                 request_template_id = '06851574-e50d-40ca-8c78-f72ae6ab4304',
                 reviewer_stages = [
-                    {"owner_ids":["7870617d-e72a-47f5-a84c-693817ab4567","1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+                    {owner_ids=[7870617d-e72a-47f5-a84c-693817ab4567, 1520617d-e72a-47f5-a84c-693817ab48ad2]}
                     ],
                 priority = 1
             )
@@ -55,9 +56,6 @@ class TestRequestConfiguration(unittest.TestCase):
                 auto_approval = False,
                 require_mfa_to_request = False,
                 require_support_ticket = False,
-                reviewer_stages = [
-                    {"owner_ids":["7870617d-e72a-47f5-a84c-693817ab4567","1520617d-e72a-47f5-a84c-693817ab48ad2"]}
-                    ],
                 priority = 1,
         )
         """

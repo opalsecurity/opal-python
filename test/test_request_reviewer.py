@@ -37,6 +37,7 @@ class TestRequestReviewer(unittest.TestCase):
         if include_optional:
             return RequestReviewer(
                 id = '',
+                full_name = 'Jake Barnes',
                 status = 'PENDING'
             )
         else:

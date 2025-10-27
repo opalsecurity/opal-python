@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -36,18 +36,13 @@ class TestIdpGroupMapping(unittest.TestCase):
         model = IdpGroupMapping()
         if include_optional:
             return IdpGroupMapping(
-                id = '7870617d-e72a-47f5-a84c-693817ab4567',
-                organization_id = '1520617d-e72a-47f5-a84c-693817ab48ad2',
-                app_resource_id = '6f99639b-7928-4043-8184-47cbc6766145',
+                app_resource_id = '1520617d-e72a-47f5-a84c-693817ab48ad2',
                 group_id = '6f99639b-7928-4043-8184-47cbc6766145',
                 alias = 'finance-team',
                 hidden_from_end_user = False
             )
         else:
             return IdpGroupMapping(
-                id = '7870617d-e72a-47f5-a84c-693817ab4567',
-                organization_id = '1520617d-e72a-47f5-a84c-693817ab48ad2',
-                app_resource_id = '6f99639b-7928-4043-8184-47cbc6766145',
                 group_id = '6f99639b-7928-4043-8184-47cbc6766145',
                 hidden_from_end_user = False,
         )

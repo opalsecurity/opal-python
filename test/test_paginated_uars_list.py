@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestPaginatedUARsList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PaginatedUARsList:
         """Test PaginatedUARsList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaginatedUARsList`
@@ -39,13 +39,13 @@ class TestPaginatedUARsList(unittest.TestCase):
                 next = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw',
                 previous = 'cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ',
                 results = [
-                    {"uar_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","name":"Monthly UAR (July)","send_reviewer_assignment_notification":false,"deadline":"2022-07-14 06:59:59","time_zone":"America/Los_Angeles","self_review_allowed":false,"uar_scope":{"tags":[{"key":"uar_scope","value":"high_priority"}],"names":["demo","api"],"admins":["f454d283-ca87-4a8a-bdbb-df212eca5353","8763d283-ca87-4a8a-bdbb-df212ecab139"]}}
+                    {uar_id=f454d283-ca87-4a8a-bdbb-df212eca5353, name=Monthly UAR (July), send_reviewer_assignment_notification=false, deadline=2022-07-14T06:59:59Z, time_zone=America/Los_Angeles, self_review_allowed=false, uar_scope={tags=[{key=uar_scope, value=high_priority}], names=[demo, api], admins=[f454d283-ca87-4a8a-bdbb-df212eca5353, 8763d283-ca87-4a8a-bdbb-df212ecab139]}}
                     ]
             )
         else:
             return PaginatedUARsList(
                 results = [
-                    {"uar_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","name":"Monthly UAR (July)","send_reviewer_assignment_notification":false,"deadline":"2022-07-14 06:59:59","time_zone":"America/Los_Angeles","self_review_allowed":false,"uar_scope":{"tags":[{"key":"uar_scope","value":"high_priority"}],"names":["demo","api"],"admins":["f454d283-ca87-4a8a-bdbb-df212eca5353","8763d283-ca87-4a8a-bdbb-df212ecab139"]}}
+                    {uar_id=f454d283-ca87-4a8a-bdbb-df212eca5353, name=Monthly UAR (July), send_reviewer_assignment_notification=false, deadline=2022-07-14T06:59:59Z, time_zone=America/Los_Angeles, self_review_allowed=false, uar_scope={tags=[{key=uar_scope, value=high_priority}], names=[demo, api], admins=[f454d283-ca87-4a8a-bdbb-df212eca5353, 8763d283-ca87-4a8a-bdbb-df212ecab139]}}
                     ],
         )
         """

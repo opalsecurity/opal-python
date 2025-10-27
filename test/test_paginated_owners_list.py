@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestPaginatedOwnersList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PaginatedOwnersList:
         """Test PaginatedOwnersList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaginatedOwnersList`
@@ -39,13 +39,13 @@ class TestPaginatedOwnersList(unittest.TestCase):
                 next = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw',
                 previous = 'cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ',
                 results = [
-                    {"owner_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","name":"API Owner","description":"This owner represents the API team owners.","access_request_escalation_period":120}
+                    {owner_id=f454d283-ca87-4a8a-bdbb-df212eca5353, name=API Owner, description=This owner represents the API team owners., access_request_escalation_period=120}
                     ]
             )
         else:
             return PaginatedOwnersList(
                 results = [
-                    {"owner_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","name":"API Owner","description":"This owner represents the API team owners.","access_request_escalation_period":120}
+                    {owner_id=f454d283-ca87-4a8a-bdbb-df212eca5353, name=API Owner, description=This owner represents the API team owners., access_request_escalation_period=120}
                     ],
         )
         """

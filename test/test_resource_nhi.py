@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -45,7 +45,6 @@ class TestResourceNHI(unittest.TestCase):
             return ResourceNHI(
                 resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3',
                 non_human_identity_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac',
-                expiration_date = '2022-01-23T04:56:07Z',
         )
         """
 
