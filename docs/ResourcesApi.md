@@ -10,17 +10,17 @@ Method | HTTP request | Description
 [**delete_resource**](ResourcesApi.md#delete_resource) | **DELETE** /resources/{resource_id} | 
 [**delete_resource_nhi**](ResourcesApi.md#delete_resource_nhi) | **DELETE** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 [**delete_resource_user**](ResourcesApi.md#delete_resource_user) | **DELETE** /resources/{resource_id}/users/{user_id} | 
-[**get_resource**](ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | 
+[**get_resource**](ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | Get resource by ID
 [**get_resource_message_channels**](ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
 [**get_resource_nhis**](ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
 [**get_resource_reviewer_stages**](ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
 [**get_resource_reviewers**](ResourcesApi.md#get_resource_reviewers) | **GET** /resources/{resource_id}/reviewers | 
 [**get_resource_scoped_role_permissions**](ResourcesApi.md#get_resource_scoped_role_permissions) | **GET** /resources/{resource_id}/scoped-role-permissions | 
 [**get_resource_tags**](ResourcesApi.md#get_resource_tags) | **GET** /resources/{resource_id}/tags | 
-[**get_resource_user**](ResourcesApi.md#get_resource_user) | **GET** /resources/{resource_id}/users/{user_id} | 
-[**get_resource_users**](ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | 
+[**get_resource_user**](ResourcesApi.md#get_resource_user) | **GET** /resources/{resource_id}/users/{user_id} | Get resource user
+[**get_resource_users**](ResourcesApi.md#get_resource_users) | **GET** /resources/{resource_id}/users | Get resource users
 [**get_resource_visibility**](ResourcesApi.md#get_resource_visibility) | **GET** /resources/{resource_id}/visibility | 
-[**get_resources**](ResourcesApi.md#get_resources) | **GET** /resources | 
+[**get_resources**](ResourcesApi.md#get_resources) | **GET** /resources | Get resources
 [**get_user_resources**](ResourcesApi.md#get_user_resources) | **GET** /resources/users/{user_id} | 
 [**resource_user_access_status_retrieve**](ResourcesApi.md#resource_user_access_status_retrieve) | **GET** /resource-user-access-status/{resource_id}/{user_id} | 
 [**set_resource_message_channels**](ResourcesApi.md#set_resource_message_channels) | **PUT** /resources/{resource_id}/message-channels | 
@@ -523,7 +523,7 @@ void (empty response body)
 # **get_resource**
 > Resource get_resource(resource_id)
 
-
+Get resource by ID
 
 Retrieves a resource.
 
@@ -562,6 +562,7 @@ with opal_security.ApiClient(configuration) as api_client:
     resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
 
     try:
+        # Get resource by ID
         api_response = api_instance.get_resource(resource_id)
         print("The response of ResourcesApi->get_resource:\n")
         pprint(api_response)
@@ -1077,7 +1078,7 @@ Name | Type | Description  | Notes
 # **get_resource_user**
 > GetResourceUser200Response get_resource_user(resource_id, user_id, cursor=cursor)
 
-
+Get resource user
 
 Returns information about a specific user's access to a resource.
 
@@ -1118,6 +1119,7 @@ with opal_security.ApiClient(configuration) as api_client:
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
 
     try:
+        # Get resource user
         api_response = api_instance.get_resource_user(resource_id, user_id, cursor=cursor)
         print("The response of ResourcesApi->get_resource_user:\n")
         pprint(api_response)
@@ -1161,7 +1163,7 @@ Name | Type | Description  | Notes
 # **get_resource_users**
 > ResourceAccessUserList get_resource_users(resource_id, limit=limit)
 
-
+Get resource users
 
 Gets the list of users for this resource.
 
@@ -1201,6 +1203,7 @@ with opal_security.ApiClient(configuration) as api_client:
     limit = 200 # int | Limit the number of results returned. (optional)
 
     try:
+        # Get resource users
         api_response = api_instance.get_resource_users(resource_id, limit=limit)
         print("The response of ResourcesApi->get_resource_users:\n")
         pprint(api_response)
@@ -1321,7 +1324,7 @@ Name | Type | Description  | Notes
 # **get_resources**
 > PaginatedResourcesList get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id, remote_id=remote_id)
 
-
+Get resources
 
 Returns a list of resources for your organization.
 
@@ -1368,6 +1371,7 @@ with opal_security.ApiClient(configuration) as api_client:
     remote_id = 'remote_id_example' # str | Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided. (optional)
 
     try:
+        # Get resources
         api_response = api_instance.get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id, remote_id=remote_id)
         print("The response of ResourcesApi->get_resources:\n")
         pprint(api_response)

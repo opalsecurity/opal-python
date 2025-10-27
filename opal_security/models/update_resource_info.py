@@ -51,7 +51,7 @@ class UpdateResourceInfo(BaseModel):
     configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
     request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this resource. Deprecated in favor of `request_configurations`.")
-    extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes).")
+    extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used.")
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
     additional_properties: Dict[str, Any] = {}

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **request_template_id** | **str** | The ID of the associated request template. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **group_leader_user_ids** | **List[str]** | A list of User IDs for the group leaders of the group | [optional] 
-**extensions_duration_in_minutes** | **int** | The duration for which access can be extended (in minutes). | [optional] 
+**extensions_duration_in_minutes** | **int** | The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to. | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. | [optional] 
 **request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 

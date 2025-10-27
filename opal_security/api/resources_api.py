@@ -1820,7 +1820,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Resource:
-        """get_resource
+        """Get resource by ID
 
         Retrieves a resource.
 
@@ -1887,7 +1887,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Resource]:
-        """get_resource
+        """Get resource by ID
 
         Retrieves a resource.
 
@@ -1954,7 +1954,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_resource
+        """Get resource by ID
 
         Retrieves a resource.
 
@@ -3666,7 +3666,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GetResourceUser200Response:
-        """get_resource_user
+        """Get resource user
 
         Returns information about a specific user's access to a resource.
 
@@ -3742,7 +3742,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GetResourceUser200Response]:
-        """get_resource_user
+        """Get resource user
 
         Returns information about a specific user's access to a resource.
 
@@ -3818,7 +3818,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_resource_user
+        """Get resource user
 
         Returns information about a specific user's access to a resource.
 
@@ -3961,7 +3961,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ResourceAccessUserList:
-        """get_resource_users
+        """Get resource users
 
         Gets the list of users for this resource.
 
@@ -4032,7 +4032,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ResourceAccessUserList]:
-        """get_resource_users
+        """Get resource users
 
         Gets the list of users for this resource.
 
@@ -4103,7 +4103,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_resource_users
+        """Get resource users
 
         Gets the list of users for this resource.
 
@@ -4506,7 +4506,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedResourcesList:
-        """get_resources
+        """Get resources
 
         Returns a list of resources for your organization.
 
@@ -4601,7 +4601,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedResourcesList]:
-        """get_resources
+        """Get resources
 
         Returns a list of resources for your organization.
 
@@ -4696,7 +4696,7 @@ class ResourcesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_resources
+        """Get resources
 
         Returns a list of resources for your organization.
 

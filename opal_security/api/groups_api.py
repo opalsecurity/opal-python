@@ -1842,7 +1842,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Group:
-        """get_group
+        """Get group by ID
 
         Returns a `Group` object.
 
@@ -1909,7 +1909,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Group]:
-        """get_group
+        """Get group by ID
 
         Returns a `Group` object.
 
@@ -1976,7 +1976,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_group
+        """Get group by ID
 
         Returns a `Group` object.
 
@@ -2104,7 +2104,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GroupContainingGroup:
-        """get_group_containing_group
+        """Get nested group by ID
 
         Gets a specific containing group for a group.
 
@@ -2175,7 +2175,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GroupContainingGroup]:
-        """get_group_containing_group
+        """Get nested group by ID
 
         Gets a specific containing group for a group.
 
@@ -2246,7 +2246,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_group_containing_group
+        """Get nested group by ID
 
         Gets a specific containing group for a group.
 
@@ -2379,7 +2379,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GroupContainingGroupList:
-        """get_group_containing_groups
+        """Get nested groups
 
         Gets the list of groups that the group gives access to.
 
@@ -2446,7 +2446,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GroupContainingGroupList]:
-        """get_group_containing_groups
+        """Get nested groups
 
         Gets the list of groups that the group gives access to.
 
@@ -2513,7 +2513,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_group_containing_groups
+        """Get nested groups
 
         Gets the list of groups that the group gives access to.
 
@@ -4772,7 +4772,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedGroupsList:
-        """get_groups
+        """Get groups
 
         Returns a list of groups for your organization.
 
@@ -4855,7 +4855,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedGroupsList]:
-        """get_groups
+        """Get groups
 
         Returns a list of groups for your organization.
 
@@ -4938,7 +4938,7 @@ class GroupsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_groups
+        """Get groups
 
         Returns a list of groups for your organization.
 

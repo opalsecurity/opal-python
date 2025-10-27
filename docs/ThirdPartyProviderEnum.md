@@ -16,6 +16,8 @@ The third party provider of the remote user.
 
 * `SERVICE_NOW` (value: `'SERVICE_NOW'`)
 
+* `FRESH_SERVICE` (value: `'FRESH_SERVICE'`)
+
 * `PAGER_DUTY` (value: `'PAGER_DUTY'`)
 
 * `OPSGENIE` (value: `'OPSGENIE'`)

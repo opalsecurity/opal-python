@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **comment** | **str** | Comment for the denial | 
+**level** | [**RequestApprovalEnum**](RequestApprovalEnum.md) |  | [optional] 
 
 ## Example
 

@@ -1207,7 +1207,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Request:
-        """get_request
+        """Get request by ID
 
         Returns a request by ID.
 
@@ -1274,7 +1274,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Request]:
-        """get_request
+        """Get request by ID
 
         Returns a request by ID.
 
@@ -1341,7 +1341,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_request
+        """Get request by ID
 
         Returns a request by ID.
 
@@ -1735,7 +1735,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RequestList:
-        """get_requests
+        """Get requests
 
         Returns a list of requests for your organization that is visible by the admin.
 
@@ -1826,7 +1826,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[RequestList]:
-        """get_requests
+        """Get requests
 
         Returns a list of requests for your organization that is visible by the admin.
 
@@ -1917,7 +1917,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_requests
+        """Get requests
 
         Returns a list of requests for your organization that is visible by the admin.
 
@@ -2100,7 +2100,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RequestConnection:
-        """(Deprecated) get_requests_relay
+        """(Deprecated) Get requests via Relay
 
         Returns a paginated list of requests using Relay-style cursor pagination.
 
@@ -2192,7 +2192,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[RequestConnection]:
-        """(Deprecated) get_requests_relay
+        """(Deprecated) Get requests via Relay
 
         Returns a paginated list of requests using Relay-style cursor pagination.
 
@@ -2284,7 +2284,7 @@ class RequestsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """(Deprecated) get_requests_relay
+        """(Deprecated) Get requests via Relay
 
         Returns a paginated list of requests using Relay-style cursor pagination.
 

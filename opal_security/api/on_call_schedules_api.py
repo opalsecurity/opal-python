@@ -332,7 +332,7 @@ class OnCallSchedulesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> OnCallSchedule:
-        """get_on_call_schedule
+        """Get on call schedule by ID
 
         Gets a `OnCallSchedule` object.
 
@@ -399,7 +399,7 @@ class OnCallSchedulesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[OnCallSchedule]:
-        """get_on_call_schedule
+        """Get on call schedule by ID
 
         Gets a `OnCallSchedule` object.
 
@@ -466,7 +466,7 @@ class OnCallSchedulesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_on_call_schedule
+        """Get on call schedule by ID
 
         Gets a `OnCallSchedule` object.
 
@@ -592,7 +592,7 @@ class OnCallSchedulesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> OnCallScheduleList:
-        """get_on_call_schedules
+        """Get on call schedules
 
         Returns a list of `OnCallSchedule` objects.
 
@@ -655,7 +655,7 @@ class OnCallSchedulesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[OnCallScheduleList]:
-        """get_on_call_schedules
+        """Get on call schedules
 
         Returns a list of `OnCallSchedule` objects.
 
@@ -718,7 +718,7 @@ class OnCallSchedulesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_on_call_schedules
+        """Get on call schedules
 
         Returns a list of `OnCallSchedule` objects.
 

@@ -20,6 +20,8 @@ tags:
     description: Operations related to bundles
   - name: configuration-templates
     description: Operations related to configuration templates
+  - name: delegations
+    description: Operations related to request reviewer delegations
   - name: events
     description: Operations related to events
   - name: groups
@@ -51,6 +53,7 @@ tags:
 paths:
   /apps:
     get:
+      summary: Get apps
       description: Returns a list of `App` objects.
       operationId: getApps
       parameters:
@@ -90,6 +93,7 @@ paths:
         - apps
   /apps/{app_id}:
     get:
+      summary: Get app by ID
       description: Returns an `App` object.
       operationId: getApp
       parameters:
@@ -116,6 +120,7 @@ paths:
         - apps
   /bundles:
     get:
+      summary: Get bundles
       description: Returns a list of `Bundle` objects.
       operationId: getBundles
       parameters:
@@ -179,6 +184,7 @@ paths:
         - bundles
   /bundles/{bundle_id}:
     get:
+      summary: Get bundle by ID
       description: Returns a `Bundle` object.
       operationId: getBundle
       parameters:
@@ -738,6 +744,7 @@ paths:
         - events
   /groups:
     get:
+      summary: Get groups
       description: Returns a list of groups for your organization.
       operationId: getGroups
       parameters:
@@ -847,6 +854,7 @@ paths:
         - groups
   /groups/{group_id}:
     get:
+      summary: Get group by ID
       description: Returns a `Group` object.
       operationId: getGroup
       parameters:
@@ -1069,6 +1077,7 @@ paths:
         - groups
   /groups/{group_id}/containing-groups:
     get:
+      summary: Get nested groups
       description: Gets the list of groups that the group gives access to.
       operationId: get_group_containing_groups
       parameters:
@@ -1126,6 +1135,7 @@ paths:
         - groups
   /groups/{group_id}/containing-groups/{containing_group_id}:
     get:
+      summary: Get nested group by ID
       description: Gets a specific containing group for a group.
       operationId: get_group_containing_group
       parameters:
@@ -1735,6 +1745,7 @@ paths:
         - groups
   /group-bindings:
     get:
+      summary: Get group bindings
       description: Returns a list of `GroupBinding` objects.
       operationId: getGroupBindings
       parameters:
@@ -1806,6 +1817,7 @@ paths:
         - group-bindings
   /group-bindings/{group_binding_id}:
     get:
+      summary: Get group binding by ID
       description: Returns a `GroupBinding` object.
       operationId: getGroupBinding
       parameters:
@@ -1919,7 +1931,42 @@ paths:
         - BearerAuth: []
       tags:
         - idp-group-mappings
-  /idp-group-mappings/{app_resource_id}/{group_id}/:
+  /idp-group-mappings/{app_resource_id}/groups/{group_id}:
+    get:
+      description: Gets an `IdpGroupMapping` object for an Okta app and group.
+      operationId: getIdpGroupMapping
+      parameters:
+        - description: The ID of the Okta app.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: app_resource_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the group.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: group_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdpGroupMapping"
+          description: The `IdpGroupMapping` object for the Okta app and group.
+      security:
+        - BearerAuth: []
+      tags:
+        - idp-group-mappings
     post:
       description: |
         Creates or updates an individual `IdpGroupMapping` object (upsert operation).
@@ -2012,6 +2059,7 @@ paths:
         - idp-group-mappings
   /owners:
     get:
+      summary: Get owners
       description: Returns a list of `Owner` objects.
       operationId: get_owners
       parameters:
@@ -2097,6 +2145,7 @@ paths:
         - owners
   /owners/{owner_id}:
     get:
+      summary: Get owner by ID
       description: Returns an `Owner` object.
       operationId: getOwner
       parameters:
@@ -2226,6 +2275,7 @@ paths:
         - owners
   /requests:
     get:
+      summary: Get requests
       description: Returns a list of requests for your organization that is visible by the admin.
       operationId: getRequests
       parameters:
@@ -2342,6 +2392,7 @@ paths:
         - requests
   /requests/relay:
     get:
+      summary: Get requests via Relay
       description: Returns a paginated list of requests using Relay-style cursor pagination.
       operationId: getRequestsRelay
       deprecated: true
@@ -2414,6 +2465,7 @@ paths:
         - requests
   /requests/{id}:
     get:
+      summary: Get request by ID
       description: Returns a request by ID.
       operationId: getRequest
       parameters:
@@ -2504,6 +2556,8 @@ paths:
                   type: string
                   description: "Comment for the denial"
                   example: "Denied due to insufficient justification"
+                level:
+                  $ref: "#/components/schemas/RequestApprovalEnum"
               required:
                 - comment
       responses:
@@ -2584,6 +2638,7 @@ paths:
         - requests
   /resources:
     get:
+      summary: Get resources
       description: Returns a list of resources for your organization.
       operationId: getResources
       parameters:
@@ -2722,6 +2777,7 @@ paths:
         - resources
   /resources/{resource_id}:
     get:
+      summary: Get resource by ID
       description: Retrieves a resource.
       operationId: get_resource
       parameters:
@@ -3085,6 +3141,7 @@ paths:
         - resources
   /resources/{resource_id}/users:
     get:
+      summary: Get resource users
       description: Gets the list of users for this resource.
       operationId: get_resource_users
       parameters:
@@ -3388,6 +3445,7 @@ paths:
       tags:
         - resources
     get:
+      summary: Get resource user
       description: Returns information about a specific user's access to a resource.
       operationId: getResourceUser
       parameters:
@@ -3924,6 +3982,7 @@ paths:
         - access-rules
   /tag/{tag_id}:
     get:
+      summary: Get tag by ID
       description: UNSTABLE. May be removed at any time. Gets a tag with the given id.
       operationId: get_tag_by_ID
       parameters:
@@ -4056,6 +4115,7 @@ paths:
         - tags
   /tags:
     get:
+      summary: Get tags
       description: Returns a list of tags created by your organization.
       operationId: getTags
       parameters:
@@ -4286,6 +4346,7 @@ paths:
         - tags
   /message-channels:
     get:
+      summary: Get message channels
       description: Returns a list of `MessageChannel` objects.
       operationId: get_message_channels
       responses:
@@ -4322,6 +4383,7 @@ paths:
         - message-channels
   /message-channels/{message_channel_id}:
     get:
+      summary: Get message channel by ID
       description: Gets a `MessageChannel` object.
       operationId: get_message_channel
       parameters:
@@ -4348,6 +4410,7 @@ paths:
         - message-channels
   /on-call-schedules:
     get:
+      summary: Get on call schedules
       description: Returns a list of `OnCallSchedule` objects.
       operationId: get_on_call_schedules
       responses:
@@ -4384,6 +4447,7 @@ paths:
         - on-call-schedules
   /on-call-schedules/{on_call_schedule_id}:
     get:
+      summary: Get on call schedule by ID
       description: Gets a `OnCallSchedule` object.
       operationId: get_on_call_schedule
       parameters:
@@ -4539,6 +4603,130 @@ paths:
         - BearerAuth: []
       tags:
         - apps
+  /delegations:
+    get:
+      summary: Get delegations
+      description: Returns a list of request reviewer delegations configured for your organization.
+      operationId: getDelegations
+      parameters:
+        - description: The delegator user ID to filter delegations by the user delegating their access review requests.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: true
+          in: query
+          name: delegator_user_id
+          required: false
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: The delegate user ID to filter delegations by the user being delegated to.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: true
+          in: query
+          name: delegate_user_id
+          required: false
+          schema:
+            format: uuid
+            type: string
+          style: form
+        - description: A cursor to indicate where to start fetching results.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: The maximum number of results to return per page. The default is 200.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+            maximum: 1000
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedDelegationsList"
+          description: A list of delegations for your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - delegations
+    post:
+      description: Creates a new request reviewer delegation to delegate access review requests from one user to another.
+      operationId: createDelegation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDelegationRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Delegation"
+          description: Delegation created successfully.
+      security:
+        - BearerAuth: []
+      tags:
+        - delegations
+  /delegations/{delegation_id}:
+    get:
+      summary: Get delegation by ID
+      description: Returns a specific delegation by its ID.
+      operationId: getDelegation
+      parameters:
+        - description: The ID of the delegation to retrieve.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: delegation_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Delegation"
+          description: The requested delegation.
+      security:
+        - BearerAuth: []
+      tags:
+        - delegations
+    delete:
+      description: Deletes a delegation by its ID.
+      operationId: deleteDelegation
+      parameters:
+        - description: The ID of the delegation to remove.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: delegation_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: Delegation removed successfully
+      security:
+        - BearerAuth: []
+      tags:
+        - delegations
 
 components:
   schemas:
@@ -5768,6 +5956,7 @@ components:
         - JIRA
         - LINEAR
         - SERVICE_NOW
+        - FRESH_SERVICE
         - PAGER_DUTY
         - OPSGENIE
         - GIT_HUB
@@ -6087,6 +6276,14 @@ components:
           example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
           format: uuid
           type: string
+        group_name:
+          description: The name of the group.
+          example: API Group
+          type: string
+        description:
+          description: The description of the group.
+          example: Group required to request API's
+          type: string
         user_id:
           description: The ID of the user.
           example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
@@ -6116,6 +6313,8 @@ components:
         - full_name
         - group_id
         - user_id
+        - group_name
+        - description
       type: object
     PropagationStatus:
       description: The state of whether the push action was propagated to the remote system. If this is null, the access was synced from the remote system.
@@ -6272,9 +6471,10 @@ components:
             format: uuid
           type: array
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes).
+          description: The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.
           type: integer
           example: 120
+          deprecated: true
         request_configurations:
           type: array
           items:
@@ -6420,6 +6620,13 @@ components:
         - TELEPORT_ROLE
         - ILEVEL_ADVANCED_ROLE
         - DATASTAX_ASTRA_ROLE
+        - COUPA_ROLE
+        - CURSOR_ORGANIZATION
+        - OPENAI_PLATFORM_PROJECT
+        - OPENAI_PLATFORM_SERVICE_ACCOUNT
+        - ANTHROPIC_WORKSPACE
+        - GIT_HUB_ORG
+        - ORACLE_FUSION_ROLE
       example: AWS_IAM_ROLE
       type: string
     VisibilityTypeEnum:
@@ -6462,6 +6669,7 @@ components:
         - BUNDLE
         - USER
         - ACCESS_REVIEW
+        - OWNER
       example: RESOURCE
       type: string
     UpdateGroupResourcesInfo:
@@ -6482,10 +6690,16 @@ components:
     IdpGroupMapping:
       description: Information about a group mapping.
       example:
+        app_resource_id: 1520617d-e72a-47f5-a84c-693817ab48ad2
         group_id: 6f99639b-7928-4043-8184-47cbc6766145
         alias: "finance-team"
         hidden_from_end_user: False
       properties:
+        app_resource_id:
+          description: The ID of the app resource.
+          example: 1520617d-e72a-47f5-a84c-693817ab48ad2
+          format: uuid
+          type: string
         group_id:
           description: The ID of the group.
           example: 6f99639b-7928-4043-8184-47cbc6766145
@@ -6992,6 +7206,136 @@ components:
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
       properties:
+        azure_subscription:
+          description: Remote info for Azure subscription.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the subscription.
+              example: /subscriptions/00000000-0000-0000-0000-000000000000
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_resource_group:
+          description: Remote info for Azure resource group.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the resource group.
+              example: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_management_group:
+          description: Remote info for Azure management group.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the management group.
+              example: /providers/Microsoft.Management/managementGroups/my-mg
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_virtual_machine:
+          description: Remote info for Azure virtual machine.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the virtual machine.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/vm01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_storage_account:
+          description: Remote info for Azure storage account.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the storage account.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/sa01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_storage_container:
+          description: Remote info for Azure storage container.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the storage container.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/sa01/blobServices/default/containers/c01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_sql_server:
+          description: Remote info for Azure SQL server.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the SQL server.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/servers/sqldev01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_sql_database:
+          description: Remote info for Azure SQL database.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the SQL database.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/servers/sqldev01/databases/db01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_sql_managed_instance:
+          description: Remote info for Azure SQL managed instance.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the SQL managed instance.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/managedInstances/mi01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_sql_managed_database:
+          description: Remote info for Azure SQL managed database.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the SQL managed database.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/managedInstances/mi01/databases/midb01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_user_assigned_managed_identity:
+          description: Remote info for Azure user assigned managed identity.
+          properties:
+            resource_id:
+              description: The ARM resource ID of the user assigned managed identity.
+              example: /subscriptions/0000/resourceGroups/rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id01
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_enterprise_app:
+          description: Remote info for Azure Enterprise App.
+          properties:
+            resource_id:
+              description: The remote application identifier (service principal or application object ID).
+              example: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+              type: string
+          type: object
+          required:
+            - resource_id
+        azure_entra_id_role:
+          description: Remote info for Azure Entra ID role.
+          properties:
+            resource_id:
+              description: The remote role identifier from Entra (object ID).
+              example: 11111111-2222-3333-4444-555555555555
+              type: string
+          type: object
+          required:
+            - resource_id
         aws_organizational_unit:
           description: Remote info for AWS organizational unit.
           properties:
@@ -7296,6 +7640,16 @@ components:
           type: object
           required:
             - role_id
+        github_org:
+          description: Remote info for GitHub organization.
+          properties:
+            org_name:
+              description: The name of the organization.
+              example: Opal Security
+              type: string
+          type: object
+          required:
+            - org_name
         gitlab_project:
           description: Remote info for Gitlab project.
           properties:
@@ -7393,6 +7747,71 @@ components:
             - role_name
         datastax_astra_role:
           description: Remote info for an Astra role.
+          properties:
+            role_id:
+              description: The id of the role.
+              example: 123e4567-e89b-12d3-a456-426614174000
+              type: string
+          type: object
+          required:
+            - role_id
+        coupa_role:
+          description: Remote info for Coupa role.
+          properties:
+            role_id:
+              description: The id of the role.
+              example: 999
+              type: string
+          type: object
+          required:
+            - role_id
+        cursor_organization:
+          description: Remote info for a Cursor organization.
+          properties:
+            org_id:
+              description: The id of the organization.
+              example: 123e4567-e89b-12d3-a456-426614174000
+              type: string
+          type: object
+          required:
+            - org_id
+        openai_platform_project:
+          description: Remote info for OpenAI Platform project.
+          properties:
+            project_id:
+              description: The id of the project.
+              example: proj_abc
+              type: string
+          type: object
+          required:
+            - project_id
+        openai_platform_service_account:
+          description: Remote info for OpenAI Platform service account.
+          properties:
+            project_id:
+              description: The id of the project for the service account.
+              example: proj_abc
+              type: string
+            service_account_id:
+              description: The id of the service account.
+              example: svc_acct_abc
+              type: string
+          type: object
+          required:
+            - project_id
+            - service_account_id
+        anthropic_workspace:
+          description: Remote info for Anthropic workspace.
+          properties:
+            workspace_id:
+              description: The id of the workspace.
+              example: ws-123456
+              type: string
+          type: object
+          required:
+            - workspace_id
+        oracle_fusion_role:
+          description: Remote info for Oracle Fusion role.
           properties:
             role_id:
               description: The id of the role.
@@ -8630,9 +9049,10 @@ components:
           type: boolean
           deprecated: true
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes).
+          description: The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.
           type: integer
           example: 120
+          deprecated: true
         request_configurations:
           type: array
           items:
@@ -10309,6 +10729,122 @@ components:
       enum: [REGULAR, ADMIN]
       description: "The decision level for the approval"
       example: "REGULAR"
+    Delegation:
+      type: object
+      description: |-
+        # Delegation Object
+        ### Description
+        The `Delegation` object represents a delegation of access review requests from one user to another.
+
+        ### Usage Example
+        List from the `GET Delegations` endpoint.
+        Get from the `GET Delegation` endpoint.
+      properties:
+        id:
+          description: The ID of the delegation.
+          example: 4aed3e8a-727b-4d72-8010-3b8710c50bec
+          format: uuid
+          type: string
+        delegator_user_id:
+          description: The ID of the user delegating their access review requests.
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+          type: string
+        delegate_user_id:
+          description: The ID of the user being delegated to.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        start_time:
+          description: The start time of the delegation.
+          example: 2023-10-01T12:00:00Z
+          type: string
+          format: date-time
+        end_time:
+          description: The end time of the delegation.
+          example: 2023-10-01T12:00:00Z
+          type: string
+          format: date-time
+        reason:
+          description: The reason for the delegation.
+          example: "I need to be out of the office"
+          type: string
+        created_at:
+          description: The creation time of the delegation.
+          example: 2023-10-01T12:00:00Z
+          type: string
+          format: date-time
+        updated_at:
+          description: The last updated time of the delegation.
+          example: 2023-10-01T12:00:00Z
+          type: string
+          format: date-time
+      required:
+        - id
+        - delegator_user_id
+        - delegate_user_id
+        - start_time
+        - end_time
+        - reason
+        - created_at
+        - updated_at
+    PaginatedDelegationsList:
+      type: object
+      description: A list of delegations for your organization.
+      properties:
+        results:
+          description: The delegations in the result set.
+          type: array
+          items:
+            $ref: "#/components/schemas/Delegation"
+        next:
+          description: The cursor with which to continue pagination if additional result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        total_count:
+          description: The total number of items in the result set.
+          example: 2
+          type: integer
+    CreateDelegationRequest:
+      type: object
+      description: Request body for creating a new delegation of access review requests from one user to another.
+      properties:
+        delegator_user_id:
+          description: The ID of the user delegating their access review requests.
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+          type: string
+        delegate_user_id:
+          description: The ID of the user being delegated to.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        start_time:
+          description: The start time of the delegation.
+          example: 2023-10-01T12:00:00Z
+          type: string
+          format: date-time
+        end_time:
+          description: The end time of the delegation.
+          example: 2023-10-01T12:00:00Z
+          type: string
+          format: date-time
+        reason:
+          description: The reason for the delegation.
+          example: "I need to be out of the office"
+          type: string
+      required:
+        - delegator_user_id
+        - delegate_user_id
+        - start_time
+        - end_time
+        - reason
   securitySchemes:
     BearerAuth:
       scheme: bearer
