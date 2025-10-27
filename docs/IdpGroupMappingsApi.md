@@ -14,9 +14,12 @@ Method | HTTP request | Description
 # **create_idp_group_mapping**
 > IdpGroupMapping create_idp_group_mapping(app_resource_id, group_id, create_idp_group_mapping_request=create_idp_group_mapping_request)
 
+Creates or updates an individual `IdpGroupMapping` object (upsert operation).
 
+**Behavior:**
+- If the mapping doesn't exist, it will be created with the provided values
+- If the mapping exists, only the fields provided in the request will be updated
 
-Creates or updates an individual `IdpGroupMapping` object (upsert operation).  **Behavior:** - If the mapping doesn't exist, it will be created with the provided values - If the mapping exists, only the fields provided in the request will be updated 
 
 ### Example
 
@@ -98,8 +101,6 @@ Name | Type | Description  | Notes
 # **delete_idp_group_mappings**
 > delete_idp_group_mappings(app_resource_id, group_id)
 
-
-
 Deletes an `IdpGroupMapping` object.
 
 ### Example
@@ -175,8 +176,6 @@ void (empty response body)
 
 # **get_idp_group_mapping**
 > IdpGroupMapping get_idp_group_mapping(app_resource_id, group_id)
-
-
 
 Gets an `IdpGroupMapping` object for an Okta app and group.
 
@@ -257,8 +256,6 @@ Name | Type | Description  | Notes
 # **get_idp_group_mappings**
 > IdpGroupMappingList get_idp_group_mappings(app_resource_id)
 
-
-
 Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 
 ### Example
@@ -335,8 +332,6 @@ Name | Type | Description  | Notes
 
 # **update_idp_group_mappings**
 > update_idp_group_mappings(app_resource_id, update_idp_group_mappings_request)
-
-
 
 Updates the list of available `IdpGroupMapping` objects for an Okta app.
 

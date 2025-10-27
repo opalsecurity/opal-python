@@ -45,6 +45,7 @@ class TestRequestItemStages(unittest.TestCase):
                         reviewers = [
                             opal_security.models.request_reviewer.RequestReviewer(
                                 id = '', 
+                                full_name = 'Jake Barnes', 
                                 status = 'PENDING', )
                             ], )
                     ]
@@ -59,6 +60,7 @@ class TestRequestItemStages(unittest.TestCase):
                         reviewers = [
                             opal_security.models.request_reviewer.RequestReviewer(
                                 id = '', 
+                                full_name = 'Jake Barnes', 
                                 status = 'PENDING', )
                             ], )
                     ],

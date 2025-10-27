@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestUARScope(unittest.TestCase):
 
     def make_instance(self, include_optional) -> UARScope:
         """Test UARScope
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UARScope`
@@ -36,14 +36,32 @@ class TestUARScope(unittest.TestCase):
         model = UARScope()
         if include_optional:
             return UARScope(
-                tags = [
-                    {"key":"uar_scope","value":"high_priority"}
+                group_visibility = 'STRICT',
+                users = [
+                    'userd283-ca87-4a8a-bdbb-df212eca5353'
                     ],
-                names = [
-                    'demo'
+                filter_operator = 'ANY',
+                entities = [
+                    'f454d283-as87-4a8a-bdbb-df212eca5353'
+                    ],
+                apps = [
+                    'pas2d283-ca87-4a8a-bdbb-df212eca5353'
                     ],
                 admins = [
                     'f454d283-ca87-4a8a-bdbb-df212eca5353'
+                    ],
+                group_types = [
+                    'OPAL_GROUP'
+                    ],
+                resource_types = [
+                    'AWS_IAM_ROLE'
+                    ],
+                include_group_bindings = False,
+                tags = [
+                    {key=uar_scope, value=high_priority}
+                    ],
+                names = [
+                    'demo'
                     ]
             )
         else:

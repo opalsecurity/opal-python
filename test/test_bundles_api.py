@@ -54,6 +54,7 @@ class TestBundlesApi(unittest.TestCase):
     def test_get_bundle(self) -> None:
         """Test case for get_bundle
 
+        Get bundle by ID
         """
         pass
 
@@ -78,6 +79,7 @@ class TestBundlesApi(unittest.TestCase):
     def test_get_bundles(self) -> None:
         """Test case for get_bundles
 
+        Get bundles
         """
         pass
 

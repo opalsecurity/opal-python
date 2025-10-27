@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestOnCallScheduleList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> OnCallScheduleList:
         """Test OnCallScheduleList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OnCallScheduleList`
@@ -37,13 +37,13 @@ class TestOnCallScheduleList(unittest.TestCase):
         if include_optional:
             return OnCallScheduleList(
                 on_call_schedules = [
-                    {"on_call_schedule_id":"50d5e9f6-f23f-4d5a-ae91-b2640cf3975e","third_party_provider":"PAGER_DUTY","remote_id":"P7OWH2R","name":"Customer Support On-Call"}
+                    {on_call_schedule_id=50d5e9f6-f23f-4d5a-ae91-b2640cf3975e, third_party_provider=PAGER_DUTY, remote_id=P7OWH2R, name=Customer Support On-Call}
                     ]
             )
         else:
             return OnCallScheduleList(
                 on_call_schedules = [
-                    {"on_call_schedule_id":"50d5e9f6-f23f-4d5a-ae91-b2640cf3975e","third_party_provider":"PAGER_DUTY","remote_id":"P7OWH2R","name":"Customer Support On-Call"}
+                    {on_call_schedule_id=50d5e9f6-f23f-4d5a-ae91-b2640cf3975e, third_party_provider=PAGER_DUTY, remote_id=P7OWH2R, name=Customer Support On-Call}
                     ],
         )
         """

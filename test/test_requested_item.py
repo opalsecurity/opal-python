@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestRequestedItem(unittest.TestCase):
 
     def make_instance(self, include_optional) -> RequestedItem:
         """Test RequestedItem
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RequestedItem`
@@ -40,7 +40,9 @@ class TestRequestedItem(unittest.TestCase):
                 group_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353',
                 access_level_name = 'admin',
                 access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser',
-                name = 'Engineering Team'
+                name = 'Engineering Team',
+                remote_id = 'arn:aws:iam::490306337630:role/SupportUser',
+                remote_name = 'SupportUser'
             )
         else:
             return RequestedItem(

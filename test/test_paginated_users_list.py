@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestPaginatedUsersList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PaginatedUsersList:
         """Test PaginatedUsersList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaginatedUsersList`
@@ -39,13 +39,13 @@ class TestPaginatedUsersList(unittest.TestCase):
                 next = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw',
                 previous = 'cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ',
                 results = [
-                    {"user_id":"29827fb8-f2dd-4e80-9576-28e31e9934ac","email":"1b978423-db0a-4037-a4cf-f79c60cb67b3","full_name":"John Doe","first_name":"John","last_name":"Doe","position":"Engineer"}
+                    {user_id=29827fb8-f2dd-4e80-9576-28e31e9934ac, email=john.doe@company.dev, full_name=John Doe, first_name=John, last_name=Doe, position=Engineer}
                     ]
             )
         else:
             return PaginatedUsersList(
                 results = [
-                    {"user_id":"29827fb8-f2dd-4e80-9576-28e31e9934ac","email":"1b978423-db0a-4037-a4cf-f79c60cb67b3","full_name":"John Doe","first_name":"John","last_name":"Doe","position":"Engineer"}
+                    {user_id=29827fb8-f2dd-4e80-9576-28e31e9934ac, email=john.doe@company.dev, full_name=John Doe, first_name=John, last_name=Doe, position=Engineer}
                     ],
         )
         """

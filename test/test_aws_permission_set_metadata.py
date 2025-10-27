@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestAwsPermissionSetMetadata(unittest.TestCase):
 
     def make_instance(self, include_optional) -> AwsPermissionSetMetadata:
         """Test AwsPermissionSetMetadata
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AwsPermissionSetMetadata`
@@ -36,13 +36,13 @@ class TestAwsPermissionSetMetadata(unittest.TestCase):
         model = AwsPermissionSetMetadata()
         if include_optional:
             return AwsPermissionSetMetadata(
-                aws_permission_set = opal.models.aws_permission_set_metadata_aws_permission_set.AwsPermissionSetMetadata_aws_permission_set(
+                aws_permission_set = opal_security.models.aws_permission_set_metadata_aws_permission_set.AwsPermissionSetMetadata_aws_permission_set(
                     arn = 'arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9', 
                     account_id = '234234234234', )
             )
         else:
             return AwsPermissionSetMetadata(
-                aws_permission_set = opal.models.aws_permission_set_metadata_aws_permission_set.AwsPermissionSetMetadata_aws_permission_set(
+                aws_permission_set = opal_security.models.aws_permission_set_metadata_aws_permission_set.AwsPermissionSetMetadata_aws_permission_set(
                     arn = 'arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9', 
                     account_id = '234234234234', ),
         )

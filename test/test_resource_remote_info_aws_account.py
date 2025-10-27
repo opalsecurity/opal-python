@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestResourceRemoteInfoAwsAccount(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ResourceRemoteInfoAwsAccount:
         """Test ResourceRemoteInfoAwsAccount
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ResourceRemoteInfoAwsAccount`
@@ -36,7 +36,8 @@ class TestResourceRemoteInfoAwsAccount(unittest.TestCase):
         model = ResourceRemoteInfoAwsAccount()
         if include_optional:
             return ResourceRemoteInfoAwsAccount(
-                account_id = '234234234234'
+                account_id = '234234234234',
+                organizational_unit_id = 'ou-1234'
             )
         else:
             return ResourceRemoteInfoAwsAccount(

@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestCreateOwnerInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> CreateOwnerInfo:
         """Test CreateOwnerInfo
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateOwnerInfo`
@@ -39,14 +39,14 @@ class TestCreateOwnerInfo(unittest.TestCase):
                 name = 'API Owner',
                 description = 'This owner represents the API team owners.',
                 access_request_escalation_period = 120,
-                user_ids = ["7870617d-e72a-47f5-a84c-693817ab4567","1520617d-e72a-47f5-a84c-693817ab48ad2"],
+                user_ids = [7870617d-e72a-47f5-a84c-693817ab4567, 1520617d-e72a-47f5-a84c-693817ab48ad2],
                 reviewer_message_channel_id = '37cb7e41-12ba-46da-92ff-030abe0450b1',
                 source_group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3'
             )
         else:
             return CreateOwnerInfo(
                 name = 'API Owner',
-                user_ids = ["7870617d-e72a-47f5-a84c-693817ab4567","1520617d-e72a-47f5-a84c-693817ab48ad2"],
+                user_ids = [7870617d-e72a-47f5-a84c-693817ab4567, 1520617d-e72a-47f5-a84c-693817ab48ad2],
         )
         """
 

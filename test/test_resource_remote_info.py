@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestResourceRemoteInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ResourceRemoteInfo:
         """Test ResourceRemoteInfo
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ResourceRemoteInfo`
@@ -36,72 +36,130 @@ class TestResourceRemoteInfo(unittest.TestCase):
         model = ResourceRemoteInfo()
         if include_optional:
             return ResourceRemoteInfo(
-                aws_account = opal.models.resource_remote_info_aws_account.ResourceRemoteInfo_aws_account(
-                    account_id = '234234234234', ),
-                aws_permission_set = opal.models.resource_remote_info_aws_permission_set.ResourceRemoteInfo_aws_permission_set(
+                azure_subscription = opal_security.models.resource_remote_info_azure_subscription.ResourceRemoteInfo_azure_subscription(
+                    resource_id = '/subscriptions/00000000-0000-0000-0000-000000000000', ),
+                azure_resource_group = opal_security.models.resource_remote_info_azure_resource_group.ResourceRemoteInfo_azure_resource_group(
+                    resource_id = '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg', ),
+                azure_management_group = opal_security.models.resource_remote_info_azure_management_group.ResourceRemoteInfo_azure_management_group(
+                    resource_id = '/providers/Microsoft.Management/managementGroups/my-mg', ),
+                azure_virtual_machine = opal_security.models.resource_remote_info_azure_virtual_machine.ResourceRemoteInfo_azure_virtual_machine(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/vm01', ),
+                azure_storage_account = opal_security.models.resource_remote_info_azure_storage_account.ResourceRemoteInfo_azure_storage_account(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/sa01', ),
+                azure_storage_container = opal_security.models.resource_remote_info_azure_storage_container.ResourceRemoteInfo_azure_storage_container(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/sa01/blobServices/default/containers/c01', ),
+                azure_sql_server = opal_security.models.resource_remote_info_azure_sql_server.ResourceRemoteInfo_azure_sql_server(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/servers/sqldev01', ),
+                azure_sql_database = opal_security.models.resource_remote_info_azure_sql_database.ResourceRemoteInfo_azure_sql_database(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/servers/sqldev01/databases/db01', ),
+                azure_sql_managed_instance = opal_security.models.resource_remote_info_azure_sql_managed_instance.ResourceRemoteInfo_azure_sql_managed_instance(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/managedInstances/mi01', ),
+                azure_sql_managed_database = opal_security.models.resource_remote_info_azure_sql_managed_database.ResourceRemoteInfo_azure_sql_managed_database(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.Sql/managedInstances/mi01/databases/midb01', ),
+                azure_user_assigned_managed_identity = opal_security.models.resource_remote_info_azure_user_assigned_managed_identity.ResourceRemoteInfo_azure_user_assigned_managed_identity(
+                    resource_id = '/subscriptions/0000/resourceGroups/rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id01', ),
+                azure_enterprise_app = opal_security.models.resource_remote_info_azure_enterprise_app.ResourceRemoteInfo_azure_enterprise_app(
+                    resource_id = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee', ),
+                azure_entra_id_role = opal_security.models.resource_remote_info_azure_entra_id_role.ResourceRemoteInfo_azure_entra_id_role(
+                    resource_id = '11111111-2222-3333-4444-555555555555', ),
+                aws_organizational_unit = opal_security.models.resource_remote_info_aws_organizational_unit.ResourceRemoteInfo_aws_organizational_unit(
+                    parent_id = 'ou-1234', 
+                    organizational_unit_id = 'ou-1234', ),
+                aws_account = opal_security.models.resource_remote_info_aws_account.ResourceRemoteInfo_aws_account(
+                    account_id = '234234234234', 
+                    organizational_unit_id = 'ou-1234', ),
+                aws_permission_set = opal_security.models.resource_remote_info_aws_permission_set.ResourceRemoteInfo_aws_permission_set(
                     arn = 'arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9', 
                     account_id = '234234234234', ),
-                aws_iam_role = opal.models.resource_remote_info_aws_iam_role.ResourceRemoteInfo_aws_iam_role(
+                aws_iam_role = opal_security.models.resource_remote_info_aws_iam_role.ResourceRemoteInfo_aws_iam_role(
                     arn = 'arn:aws:iam::179308207300:role/MyRole', 
                     account_id = '234234234234', ),
-                aws_ec2_instance = opal.models.resource_remote_info_aws_ec2_instance.ResourceRemoteInfo_aws_ec2_instance(
+                aws_ec2_instance = opal_security.models.resource_remote_info_aws_ec2_instance.ResourceRemoteInfo_aws_ec2_instance(
                     instance_id = 'i-13f1a1e2899f9e93a', 
                     region = 'us-east-2', 
                     account_id = '234234234234', ),
-                aws_rds_instance = opal.models.resource_remote_info_aws_rds_instance.ResourceRemoteInfo_aws_rds_instance(
+                aws_rds_instance = opal_security.models.resource_remote_info_aws_rds_instance.ResourceRemoteInfo_aws_rds_instance(
                     instance_id = 'demo-mysql-db', 
                     region = 'us-east-2', 
                     resource_id = 'db-AOO8V0XUCNU13XLZXQDQRSN0NQ', 
                     account_id = '234234234234', ),
-                aws_eks_cluster = opal.models.resource_remote_info_aws_eks_cluster.ResourceRemoteInfo_aws_eks_cluster(
+                aws_eks_cluster = opal_security.models.resource_remote_info_aws_eks_cluster.ResourceRemoteInfo_aws_eks_cluster(
                     arn = 'arn:aws:eks:us-east-2:234234234234:cluster/testcluster', 
                     account_id = '234234234234', ),
-                gcp_organization = opal.models.resource_remote_info_gcp_organization.ResourceRemoteInfo_gcp_organization(
+                custom_connector = opal_security.models.resource_remote_info_custom_connector.ResourceRemoteInfo_custom_connector(
+                    remote_resource_id = '01fa7402-01d8-103b-8deb-5f3a0ab7884', 
+                    can_have_usage_events = False, ),
+                gcp_organization = opal_security.models.resource_remote_info_gcp_organization.ResourceRemoteInfo_gcp_organization(
                     organization_id = 'organizations/898931321', ),
-                gcp_bucket = opal.models.resource_remote_info_gcp_bucket.ResourceRemoteInfo_gcp_bucket(
+                gcp_bucket = opal_security.models.resource_remote_info_gcp_bucket.ResourceRemoteInfo_gcp_bucket(
                     bucket_id = 'example-bucket-898931321', ),
-                gcp_compute_instance = opal.models.resource_remote_info_gcp_compute_instance.ResourceRemoteInfo_gcp_compute_instance(
+                gcp_compute_instance = opal_security.models.resource_remote_info_gcp_compute_instance.ResourceRemoteInfo_gcp_compute_instance(
                     instance_id = 'example-instance-898931321', 
                     project_id = 'example-project-898931321', 
                     zone = 'us-central1-a', ),
-                gcp_big_query_dataset = opal.models.resource_remote_info_gcp_big_query_dataset.ResourceRemoteInfo_gcp_big_query_dataset(
+                gcp_big_query_dataset = opal_security.models.resource_remote_info_gcp_big_query_dataset.ResourceRemoteInfo_gcp_big_query_dataset(
                     project_id = 'example-project-898931321', 
                     dataset_id = 'example-dataset-898931321', ),
-                gcp_big_query_table = opal.models.resource_remote_info_gcp_big_query_table.ResourceRemoteInfo_gcp_big_query_table(
+                gcp_big_query_table = opal_security.models.resource_remote_info_gcp_big_query_table.ResourceRemoteInfo_gcp_big_query_table(
                     project_id = 'example-project-898931321', 
                     dataset_id = 'example-dataset-898931321', 
                     table_id = 'example-table-898931321', ),
-                gcp_folder = opal.models.resource_remote_info_gcp_folder.ResourceRemoteInfo_gcp_folder(
+                gcp_folder = opal_security.models.resource_remote_info_gcp_folder.ResourceRemoteInfo_gcp_folder(
                     folder_id = 'folder/898931321', ),
-                gcp_gke_cluster = opal.models.resource_remote_info_gcp_gke_cluster.ResourceRemoteInfo_gcp_gke_cluster(
+                gcp_gke_cluster = opal_security.models.resource_remote_info_gcp_gke_cluster.ResourceRemoteInfo_gcp_gke_cluster(
                     cluster_name = 'example-cluster-898931321', ),
-                gcp_project = opal.models.resource_remote_info_gcp_project.ResourceRemoteInfo_gcp_project(
+                gcp_project = opal_security.models.resource_remote_info_gcp_project.ResourceRemoteInfo_gcp_project(
                     project_id = 'example-project-898931321', ),
-                gcp_sql_instance = opal.models.resource_remote_info_gcp_sql_instance.ResourceRemoteInfo_gcp_sql_instance(
+                gcp_sql_instance = opal_security.models.resource_remote_info_gcp_sql_instance.ResourceRemoteInfo_gcp_sql_instance(
                     instance_id = 'example-sql-898931321', 
                     project_id = 'example-project-898931321', ),
-                github_repo = opal.models.resource_remote_info_github_repo.ResourceRemoteInfo_github_repo(
+                gcp_service_account = opal_security.models.resource_remote_info_gcp_service_account.ResourceRemoteInfo_gcp_service_account(
+                    email = 'production@project.iam.gserviceaccount.com', 
+                    service_account_id = '103561576023829463298', 
+                    project_id = 'example-project-898931321', ),
+                google_workspace_role = opal_security.models.resource_remote_info_google_workspace_role.ResourceRemoteInfo_google_workspace_role(
+                    role_id = 'google-workspace-role:01234567890123456', ),
+                github_repo = opal_security.models.resource_remote_info_github_repo.ResourceRemoteInfo_github_repo(
                     repo_id = '898931321', 
                     repo_name = 'Opal Security', ),
-                gitlab_project = opal.models.resource_remote_info_gitlab_project.ResourceRemoteInfo_gitlab_project(
+                github_org_role = opal_security.models.resource_remote_info_github_org_role.ResourceRemoteInfo_github_org_role(
+                    role_id = '112233', ),
+                github_org = opal_security.models.resource_remote_info_github_org.ResourceRemoteInfo_github_org(
+                    org_name = 'Opal Security', ),
+                gitlab_project = opal_security.models.resource_remote_info_gitlab_project.ResourceRemoteInfo_gitlab_project(
                     project_id = '898931321', ),
-                okta_app = opal.models.resource_remote_info_okta_app.ResourceRemoteInfo_okta_app(
+                okta_app = opal_security.models.resource_remote_info_okta_app.ResourceRemoteInfo_okta_app(
                     app_id = 'a9dfas0f678asdf67867', ),
-                okta_standard_role = opal.models.resource_remote_info_okta_standard_role.ResourceRemoteInfo_okta_standard_role(
+                okta_standard_role = opal_security.models.resource_remote_info_okta_standard_role.ResourceRemoteInfo_okta_standard_role(
                     role_type = 'ORG_ADMIN', ),
-                okta_custom_role = opal.models.resource_remote_info_okta_custom_role.ResourceRemoteInfo_okta_custom_role(
+                okta_custom_role = opal_security.models.resource_remote_info_okta_custom_role.ResourceRemoteInfo_okta_custom_role(
                     role_id = 'a9dfas0f678asdf67867', ),
-                pagerduty_role = opal.models.resource_remote_info_pagerduty_role.ResourceRemoteInfo_pagerduty_role(
+                pagerduty_role = opal_security.models.resource_remote_info_pagerduty_role.ResourceRemoteInfo_pagerduty_role(
                     role_name = 'owner', ),
-                salesforce_permission_set = opal.models.resource_remote_info_salesforce_permission_set.ResourceRemoteInfo_salesforce_permission_set(
+                salesforce_permission_set = opal_security.models.resource_remote_info_salesforce_permission_set.ResourceRemoteInfo_salesforce_permission_set(
                     permission_set_id = '0PS5Y090202wOV7WAM', ),
-                salesforce_profile = opal.models.resource_remote_info_salesforce_profile.ResourceRemoteInfo_salesforce_profile(
+                salesforce_profile = opal_security.models.resource_remote_info_salesforce_profile.ResourceRemoteInfo_salesforce_profile(
                     profile_id = '0PS5Y090202wOV7WAM', 
                     user_license_id = '1005Y030081Qb5XJHS', ),
-                salesforce_role = opal.models.resource_remote_info_salesforce_role.ResourceRemoteInfo_salesforce_role(
+                salesforce_role = opal_security.models.resource_remote_info_salesforce_role.ResourceRemoteInfo_salesforce_role(
                     role_id = '0PS5Y090202wOV7WAM', ),
-                teleport_role = opal.models.resource_remote_info_teleport_role.ResourceRemoteInfo_teleport_role(
-                    role_name = 'admin_role', )
+                teleport_role = opal_security.models.resource_remote_info_teleport_role.ResourceRemoteInfo_teleport_role(
+                    role_name = 'admin_role', ),
+                datastax_astra_role = opal_security.models.resource_remote_info_datastax_astra_role.ResourceRemoteInfo_datastax_astra_role(
+                    role_id = '123e4567-e89b-12d3-a456-426614174000', ),
+                coupa_role = opal_security.models.resource_remote_info_coupa_role.ResourceRemoteInfo_coupa_role(
+                    role_id = '999', ),
+                cursor_organization = opal_security.models.resource_remote_info_cursor_organization.ResourceRemoteInfo_cursor_organization(
+                    org_id = '123e4567-e89b-12d3-a456-426614174000', ),
+                openai_platform_project = opal_security.models.resource_remote_info_openai_platform_project.ResourceRemoteInfo_openai_platform_project(
+                    project_id = 'proj_abc', ),
+                openai_platform_service_account = opal_security.models.resource_remote_info_openai_platform_service_account.ResourceRemoteInfo_openai_platform_service_account(
+                    project_id = 'proj_abc', 
+                    service_account_id = 'svc_acct_abc', ),
+                anthropic_workspace = opal_security.models.resource_remote_info_anthropic_workspace.ResourceRemoteInfo_anthropic_workspace(
+                    workspace_id = 'ws-123456', ),
+                oracle_fusion_role = opal_security.models.resource_remote_info_oracle_fusion_role.ResourceRemoteInfo_oracle_fusion_role(
+                    role_id = '123e4567-e89b-12d3-a456-426614174000', )
             )
         else:
             return ResourceRemoteInfo(

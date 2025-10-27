@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestCreateConfigurationTemplateInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> CreateConfigurationTemplateInfo:
         """Test CreateConfigurationTemplateInfo
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateConfigurationTemplateInfo`
@@ -37,22 +37,28 @@ class TestCreateConfigurationTemplateInfo(unittest.TestCase):
         if include_optional:
             return CreateConfigurationTemplateInfo(
                 admin_owner_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                visibility = {"visibility":"LIMITED","visibility_group_ids":["7870617d-e72a-47f5-a84c-693817ab4567","1520617d-e72a-47f5-a84c-693817ab48ad2"]},
-                linked_audit_message_channel_ids = ["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],
-                member_oncall_schedule_ids = ["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],
-                break_glass_user_ids = ["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],
+                visibility = private,
+                linked_audit_message_channel_ids = [37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2],
+                member_oncall_schedule_ids = [37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2],
+                break_glass_user_ids = [37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2],
                 require_mfa_to_approve = False,
                 require_mfa_to_connect = False,
                 name = 'Prod AWS Template',
                 request_configurations = [
-                    {"request_configuration_id":"7c86c85d-0651-43e2-a748-d69d658418e8","organization_id":"w86c85d-0651-43e2-a748-d69d658418e8","created_at":"2021-01-06T20:00:00Z","updated_at":"2021-01-06T20:00:00Z","condition":{"group_id":"1b978423-db0a-4037-a4cf-f79c60cb67b3"},"allow_requests":true,"auto_approval":false,"require_mfa_to_request":false,"max_duration_minutes":120,"recommended_duration_minutes":120,"require_support_ticket":false,"reviewer_stages":[{"reviewer_stage_id":"7c86c85d-0651-43e2-a748-d69d658418e8","owner_ids":["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],"stage":1}],"priority":1}
+                    {request_configuration_id=7c86c85d-0651-43e2-a748-d69d658418e8, organization_id=w86c85d-0651-43e2-a748-d69d658418e8, created_at=2021-01-06T20:00:00Z, updated_at=2021-01-06T20:00:00Z, condition={group_id=1b978423-db0a-4037-a4cf-f79c60cb67b3}, allow_requests=true, auto_approval=false, require_mfa_to_request=false, max_duration_minutes=120, recommended_duration_minutes=120, require_support_ticket=false, reviewer_stages=[{reviewer_stage_id=7c86c85d-0651-43e2-a748-d69d658418e8, owner_ids=[37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2], stage=1}], priority=1}
                     ],
-                request_configuration_list = {"request_configurations":[{"request_configuration_id":"7c86c85d-0651-43e2-a748-d69d658418e8","organization_id":"w86c85d-0651-43e2-a748-d69d658418e8","condition":null,"allow_requests":true,"auto_approval":false,"require_mfa_to_request":false,"max_duration_minutes":120,"recommended_duration_minutes":120,"require_support_ticket":false,"reviewer_stages":[{"reviewer_stage_id":"7c86c85d-0651-43e2-a748-d69d658418e8","owner_ids":["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],"stage":1}],"priority":0},{"request_configuration_id":"7c86c85d-0651-43e2-a748-d69d658418e9","organization_id":"w86c85d-0651-43e2-a748-d69d658418e8","condition":{"group_id":"1b978423-db0a-4037-a4cf-f79c60cb67b4"},"allow_requests":true,"auto_approval":false,"require_mfa_to_request":false,"max_duration_minutes":120,"recommended_duration_minutes":120,"require_support_ticket":false,"reviewer_stages":[{"reviewer_stage_id":"7c86c85d-0651-43e2-a748-d69d658418e8","owner_ids":["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],"stage":1}],"priority":1}]}
+                request_configuration_list = {request_configurations=[{request_configuration_id=7c86c85d-0651-43e2-a748-d69d658418e8, organization_id=w86c85d-0651-43e2-a748-d69d658418e8, condition=null, allow_requests=true, auto_approval=false, require_mfa_to_request=false, max_duration_minutes=120, recommended_duration_minutes=120, require_support_ticket=false, reviewer_stages=[{reviewer_stage_id=7c86c85d-0651-43e2-a748-d69d658418e8, owner_ids=[37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2], stage=1}], priority=0}, {request_configuration_id=7c86c85d-0651-43e2-a748-d69d658418e9, organization_id=w86c85d-0651-43e2-a748-d69d658418e8, condition={group_id=1b978423-db0a-4037-a4cf-f79c60cb67b4}, allow_requests=true, auto_approval=false, require_mfa_to_request=false, max_duration_minutes=120, recommended_duration_minutes=120, require_support_ticket=false, reviewer_stages=[{reviewer_stage_id=7c86c85d-0651-43e2-a748-d69d658418e8, owner_ids=[37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2], stage=1}], priority=1}]},
+                ticket_propagation = opal_security.models.ticket_propagation_configuration.TicketPropagationConfiguration(
+                    enabled_on_grant = True, 
+                    enabled_on_revocation = True, 
+                    ticket_provider = 'LINEAR', 
+                    ticket_project_id = '', ),
+                custom_request_notification = 'Check your email to register your account.'
             )
         else:
             return CreateConfigurationTemplateInfo(
                 admin_owner_id = '7c86c85d-0651-43e2-a748-d69d658418e8',
-                visibility = {"visibility":"LIMITED","visibility_group_ids":["7870617d-e72a-47f5-a84c-693817ab4567","1520617d-e72a-47f5-a84c-693817ab48ad2"]},
+                visibility = private,
                 require_mfa_to_approve = False,
                 require_mfa_to_connect = False,
                 name = 'Prod AWS Template',

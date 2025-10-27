@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_access_rule**
 > AccessRule create_access_rule(update_access_rule_info)
 
-
-
 Creates a new access rule config for the given group_id.
 
 ### Example
@@ -92,8 +90,6 @@ Name | Type | Description  | Notes
 # **get_access_rule**
 > AccessRule get_access_rule(access_rule_id)
 
-
-
 Returns a list of access rule config given the group_id of the access rule.
 
 ### Example
@@ -170,8 +166,6 @@ Name | Type | Description  | Notes
 
 # **update_access_rule**
 > AccessRule update_access_rule(access_rule_id, update_access_rule_info)
-
-
 
 Updates the access rule config for the given group_id.
 

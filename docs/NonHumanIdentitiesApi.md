@@ -10,8 +10,6 @@ Method | HTTP request | Description
 # **get_nhis**
 > PaginatedResourcesList get_nhis(cursor=cursor, page_size=page_size)
 
-
-
 Returns a list of non-human identities for your organization.
 
 ### Example

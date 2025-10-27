@@ -13,8 +13,6 @@ Method | HTTP request | Description
 # **create_delegation**
 > Delegation create_delegation(create_delegation_request)
 
-
-
 Creates a new request reviewer delegation to delegate access review requests from one user to another.
 
 ### Example
@@ -92,8 +90,6 @@ Name | Type | Description  | Notes
 
 # **delete_delegation**
 > delete_delegation(delegation_id)
-
-
 
 Deletes a delegation by its ID.
 

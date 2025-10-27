@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestUAR(unittest.TestCase):
 
     def make_instance(self, include_optional) -> UAR:
         """Test UAR
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UAR`
@@ -40,10 +40,10 @@ class TestUAR(unittest.TestCase):
                 name = 'Monthly UAR (July)',
                 reviewer_assignment_policy = 'MANUALLY',
                 send_reviewer_assignment_notification = False,
-                deadline = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                deadline = '2022-07-14T06:59:59Z',
                 time_zone = 'America/Los_Angeles',
                 self_review_allowed = False,
-                uar_scope = {"tags":[{"key":"uar_scope","value":"high_priority"}],"names":["demo","api"],"admins":["f454d283-ca87-4a8a-bdbb-df212eca5353","8763d283-ca87-4a8a-bdbb-df212ecab139"]}
+                uar_scope = {filter_operator=ANY, users=[userd283-ca87-4a8a-bdbb-df212eca5353], include_group_bindings=true, tags=[{key=uar_scope, value=high_priority}], names=[demo, api], admins=[f454d283-ca87-4a8a-bdbb-df212eca5353, 8763d283-ca87-4a8a-bdbb-df212ecab139], resource_types=[GCP_CLOUD_SQL_POSTGRES_INSTANCE], group_types=[AWS_SSO_GROUP], apps=[pas2d283-ca87-4a8a-bdbb-df212eca5353, apss2d283-ca87-4a8a-bdbb-df212eca5353], entities=[f454d283-as87-4a8a-bdbb-df212eca5353, f454d283-as87-4a8a-bdbb-df212eca5329]}
             )
         else:
             return UAR(
@@ -51,7 +51,7 @@ class TestUAR(unittest.TestCase):
                 name = 'Monthly UAR (July)',
                 reviewer_assignment_policy = 'MANUALLY',
                 send_reviewer_assignment_notification = False,
-                deadline = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                deadline = '2022-07-14T06:59:59Z',
                 time_zone = 'America/Los_Angeles',
                 self_review_allowed = False,
         )

@@ -42,7 +42,9 @@ class TestPaginatedBundleGroupList(unittest.TestCase):
                 bundle_groups = [
                     opal_security.models.bundle_group.BundleGroup(
                         bundle_id = 'a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1', 
-                        group_id = 'a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1', )
+                        group_id = 'a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1', 
+                        access_level_name = 'Read', 
+                        access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', )
                     ]
             )
         else:
@@ -50,7 +52,9 @@ class TestPaginatedBundleGroupList(unittest.TestCase):
                 bundle_groups = [
                     opal_security.models.bundle_group.BundleGroup(
                         bundle_id = 'a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1', 
-                        group_id = 'a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1', )
+                        group_id = 'a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1', 
+                        access_level_name = 'Read', 
+                        access_level_remote_id = 'arn:aws:iam::490306337630:role/SupportUser', )
                     ],
         )
         """

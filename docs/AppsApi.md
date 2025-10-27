@@ -175,8 +175,6 @@ Name | Type | Description  | Notes
 # **get_sync_errors**
 > List[SyncErrorList] get_sync_errors(app_id=app_id, resource_id=resource_id, group_id=group_id)
 
-
-
 Returns a list of recent sync errors that have occurred since the last successful sync.
 
 ### Example

@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -42,12 +42,14 @@ class TestGroupBindingsApi(unittest.TestCase):
     def test_get_group_binding(self) -> None:
         """Test case for get_group_binding
 
+        Get group binding by ID
         """
         pass
 
     def test_get_group_bindings(self) -> None:
         """Test case for get_group_bindings
 
+        Get group bindings
         """
         pass
 

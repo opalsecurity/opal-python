@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestResourceAccessUser(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ResourceAccessUser:
         """Test ResourceAccessUser
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ResourceAccessUser`
@@ -38,21 +38,22 @@ class TestResourceAccessUser(unittest.TestCase):
             return ResourceAccessUser(
                 resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3',
                 user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac',
-                access_level = {"access_level_name":"AdminRole","access_level_remote_id":"arn:aws:iam::590304332660:role/AdministratorAccess"},
+                access_level = {access_level_name=AdminRole, access_level_remote_id=arn:aws:iam::590304332660:role/AdministratorAccess},
                 full_name = 'Jake Barnes',
                 email = 'jake@company.dev',
                 expiration_date = '2022-01-23T04:56:07Z',
                 has_direct_access = True,
-                num_access_paths = 3
+                num_access_paths = 3,
+                propagation_status = opal_security.models.propagation_status.PropagationStatus(
+                    status = '[SUCCESS]', )
             )
         else:
             return ResourceAccessUser(
                 resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3',
                 user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac',
-                access_level = {"access_level_name":"AdminRole","access_level_remote_id":"arn:aws:iam::590304332660:role/AdministratorAccess"},
+                access_level = {access_level_name=AdminRole, access_level_remote_id=arn:aws:iam::590304332660:role/AdministratorAccess},
                 full_name = 'Jake Barnes',
                 email = 'jake@company.dev',
-                expiration_date = '2022-01-23T04:56:07Z',
                 has_direct_access = True,
                 num_access_paths = 3,
         )

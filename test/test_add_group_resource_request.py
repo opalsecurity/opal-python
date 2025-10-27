@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestAddGroupResourceRequest(unittest.TestCase):
 
     def make_instance(self, include_optional) -> AddGroupResourceRequest:
         """Test AddGroupResourceRequest
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AddGroupResourceRequest`
@@ -36,7 +36,8 @@ class TestAddGroupResourceRequest(unittest.TestCase):
         model = AddGroupResourceRequest()
         if include_optional:
             return AddGroupResourceRequest(
-                access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess'
+                access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess',
+                duration_minutes = 60
             )
         else:
             return AddGroupResourceRequest(

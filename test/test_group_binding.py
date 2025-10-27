@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestGroupBinding(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GroupBinding:
         """Test GroupBinding
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GroupBinding`
@@ -41,7 +41,7 @@ class TestGroupBinding(unittest.TestCase):
                 created_at = '2022-01-23T04:56:07Z',
                 source_group_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353',
                 groups = [
-                    {"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","group_type":"OKTA_GROUP"}
+                    {group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, group_type=OKTA_GROUP}
                     ]
             )
         else:
@@ -51,7 +51,7 @@ class TestGroupBinding(unittest.TestCase):
                 created_at = '2022-01-23T04:56:07Z',
                 source_group_id = 'f454d283-ca87-4a8a-bdbb-df212eca5353',
                 groups = [
-                    {"group_id":"f454d283-ca87-4a8a-bdbb-df212eca5353","group_type":"OKTA_GROUP"}
+                    {group_id=f454d283-ca87-4a8a-bdbb-df212eca5353, group_type=OKTA_GROUP}
                     ],
         )
         """

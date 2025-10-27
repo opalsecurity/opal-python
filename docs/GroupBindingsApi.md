@@ -14,8 +14,6 @@ Method | HTTP request | Description
 # **create_group_binding**
 > GroupBinding create_group_binding(create_group_binding_info)
 
-
-
 Creates a group binding.
 
 ### Example
@@ -93,8 +91,6 @@ Name | Type | Description  | Notes
 
 # **delete_group_binding**
 > delete_group_binding(group_binding_id)
-
-
 
 Deletes a group binding.
 
@@ -331,8 +327,6 @@ Name | Type | Description  | Notes
 
 # **update_group_bindings**
 > update_group_bindings(update_group_binding_info_list)
-
-
 
 Bulk updates a list of group bindings.
 

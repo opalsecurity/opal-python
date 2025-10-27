@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestRequestCustomFieldResponse(unittest.TestCase):
 
     def make_instance(self, include_optional) -> RequestCustomFieldResponse:
         """Test RequestCustomFieldResponse
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RequestCustomFieldResponse`
@@ -37,13 +37,13 @@ class TestRequestCustomFieldResponse(unittest.TestCase):
         if include_optional:
             return RequestCustomFieldResponse(
                 field_name = '',
-                field_type = 'SHORT_TEXT',
+                field_type = SHORT_TEXT,
                 field_value = None
             )
         else:
             return RequestCustomFieldResponse(
                 field_name = '',
-                field_type = 'SHORT_TEXT',
+                field_type = SHORT_TEXT,
                 field_value = None,
         )
         """

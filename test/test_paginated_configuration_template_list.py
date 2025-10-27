@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestPaginatedConfigurationTemplateList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PaginatedConfigurationTemplateList:
         """Test PaginatedConfigurationTemplateList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaginatedConfigurationTemplateList`
@@ -37,7 +37,7 @@ class TestPaginatedConfigurationTemplateList(unittest.TestCase):
         if include_optional:
             return PaginatedConfigurationTemplateList(
                 results = [
-                    {"configuration_template_id":"7c86c85d-0651-43e2-a748-d69d658418e8","admin_owner_id":"7c86c85d-0651-43e2-a748-d69d658418e8","visibility":"private","linked_audit_message_channel_ids":["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],"request_configuration_id":"7c86c85d-0651-43e2-a748-d69d658418e8","member_oncall_schedule_ids":["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],"break_glass_user_ids":["37cb7e41-12ba-46da-92ff-030abe0450b1","37cb7e41-12ba-46da-92ff-030abe0450b2"],"require_mfa_to_approve":false,"require_mfa_to_connect":false,"name":"Prod AWS Template"}
+                    {configuration_template_id=7c86c85d-0651-43e2-a748-d69d658418e8, admin_owner_id=7c86c85d-0651-43e2-a748-d69d658418e8, visibility=private, linked_audit_message_channel_ids=[37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2], request_configuration_id=7c86c85d-0651-43e2-a748-d69d658418e8, member_oncall_schedule_ids=[37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2], break_glass_user_ids=[37cb7e41-12ba-46da-92ff-030abe0450b1, 37cb7e41-12ba-46da-92ff-030abe0450b2], require_mfa_to_approve=false, require_mfa_to_connect=false, name=Prod AWS Template}
                     ]
             )
         else:

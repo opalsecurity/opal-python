@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestGroupUser(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GroupUser:
         """Test GroupUser
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GroupUser`
@@ -37,19 +37,24 @@ class TestGroupUser(unittest.TestCase):
         if include_optional:
             return GroupUser(
                 group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3',
+                group_name = 'API Group',
+                description = 'Group required to request API's',
                 user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac',
-                access_level = {"access_level_name":"Developer","access_level_remote_id":20},
+                access_level = {access_level_name=Developer, access_level_remote_id=20},
                 full_name = 'Jake Barnes',
                 email = 'jake@company.dev',
-                expiration_date = '2022-01-23T04:56:07Z'
+                expiration_date = '2022-01-23T04:56:07Z',
+                propagation_status = opal_security.models.propagation_status.PropagationStatus(
+                    status = '[SUCCESS]', )
             )
         else:
             return GroupUser(
                 group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3',
+                group_name = 'API Group',
+                description = 'Group required to request API's',
                 user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac',
                 full_name = 'Jake Barnes',
                 email = 'jake@company.dev',
-                expiration_date = '2022-01-23T04:56:07Z',
         )
         """
 

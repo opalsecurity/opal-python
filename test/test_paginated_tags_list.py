@@ -3,7 +3,7 @@
 """
     Opal API
 
-    Your Home For Developer Resources.
+    The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
 
     The version of the OpenAPI document: 1.0
     Contact: hello@opal.dev
@@ -28,7 +28,7 @@ class TestPaginatedTagsList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PaginatedTagsList:
         """Test PaginatedTagsList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaginatedTagsList`
@@ -39,13 +39,13 @@ class TestPaginatedTagsList(unittest.TestCase):
                 next = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw',
                 previous = 'cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ',
                 results = [
-                    {"tag_id":"f290a738-5f9f-43c2-ad67-fa31ff0eb946","created_at":"2022-01-23T04:56:07Z","updated_at":"2022-02-23T01:34:07Z","user_creator_id":"d4a7d928-783e-4599-8ec6-088d635a5bcc","key":"database-name","value":"redis_db"}
+                    {tag_id=f290a738-5f9f-43c2-ad67-fa31ff0eb946, created_at=2022-01-23T04:56:07Z, updated_at=2022-02-23T01:34:07Z, user_creator_id=d4a7d928-783e-4599-8ec6-088d635a5bcc, key=database-name, value=redis_db}
                     ]
             )
         else:
             return PaginatedTagsList(
                 results = [
-                    {"tag_id":"f290a738-5f9f-43c2-ad67-fa31ff0eb946","created_at":"2022-01-23T04:56:07Z","updated_at":"2022-02-23T01:34:07Z","user_creator_id":"d4a7d928-783e-4599-8ec6-088d635a5bcc","key":"database-name","value":"redis_db"}
+                    {tag_id=f290a738-5f9f-43c2-ad67-fa31ff0eb946, created_at=2022-01-23T04:56:07Z, updated_at=2022-02-23T01:34:07Z, user_creator_id=d4a7d928-783e-4599-8ec6-088d635a5bcc, key=database-name, value=redis_db}
                     ],
         )
         """

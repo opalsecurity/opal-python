@@ -36,7 +36,9 @@ class TestAddBundleGroupRequest(unittest.TestCase):
         model = AddBundleGroupRequest()
         if include_optional:
             return AddBundleGroupRequest(
-                group_id = '72e75a6f-7183-48c5-94ff-6013f213314b'
+                group_id = '72e75a6f-7183-48c5-94ff-6013f213314b',
+                access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess',
+                access_level_name = 'AdministratorAccess'
             )
         else:
             return AddBundleGroupRequest(
