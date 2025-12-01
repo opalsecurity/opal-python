@@ -27,6 +27,7 @@ from opal_security.models.resource_remote_info_aws_eks_cluster import ResourceRe
 from opal_security.models.resource_remote_info_aws_iam_role import ResourceRemoteInfoAwsIamRole
 from opal_security.models.resource_remote_info_aws_organizational_unit import ResourceRemoteInfoAwsOrganizationalUnit
 from opal_security.models.resource_remote_info_aws_permission_set import ResourceRemoteInfoAwsPermissionSet
+from opal_security.models.resource_remote_info_aws_rds_cluster import ResourceRemoteInfoAwsRdsCluster
 from opal_security.models.resource_remote_info_aws_rds_instance import ResourceRemoteInfoAwsRdsInstance
 from opal_security.models.resource_remote_info_azure_enterprise_app import ResourceRemoteInfoAzureEnterpriseApp
 from opal_security.models.resource_remote_info_azure_entra_id_role import ResourceRemoteInfoAzureEntraIdRole
@@ -44,6 +45,7 @@ from opal_security.models.resource_remote_info_azure_virtual_machine import Reso
 from opal_security.models.resource_remote_info_coupa_role import ResourceRemoteInfoCoupaRole
 from opal_security.models.resource_remote_info_cursor_organization import ResourceRemoteInfoCursorOrganization
 from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector
+from opal_security.models.resource_remote_info_databricks_account_service_principal import ResourceRemoteInfoDatabricksAccountServicePrincipal
 from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_gcp_big_query_dataset import ResourceRemoteInfoGcpBigQueryDataset
 from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
@@ -60,6 +62,7 @@ from opal_security.models.resource_remote_info_github_org_role import ResourceRe
 from opal_security.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole
+from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
 from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
 from opal_security.models.resource_remote_info_okta_standard_role import ResourceRemoteInfoOktaStandardRole
@@ -70,7 +73,12 @@ from opal_security.models.resource_remote_info_pagerduty_role import ResourceRem
 from opal_security.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet
 from opal_security.models.resource_remote_info_salesforce_profile import ResourceRemoteInfoSalesforceProfile
 from opal_security.models.resource_remote_info_salesforce_role import ResourceRemoteInfoSalesforceRole
+from opal_security.models.resource_remote_info_snowflake_database import ResourceRemoteInfoSnowflakeDatabase
+from opal_security.models.resource_remote_info_snowflake_schema import ResourceRemoteInfoSnowflakeSchema
+from opal_security.models.resource_remote_info_snowflake_table import ResourceRemoteInfoSnowflakeTable
+from opal_security.models.resource_remote_info_tailscale_ssh import ResourceRemoteInfoTailscaleSsh
 from opal_security.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole
+from opal_security.models.resource_remote_info_workday_role import ResourceRemoteInfoWorkdayRole
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -78,6 +86,7 @@ class ResourceRemoteInfo(BaseModel):
     """
     Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
     """ # noqa: E501
+    databricks_account_service_principal: Optional[ResourceRemoteInfoDatabricksAccountServicePrincipal] = None
     azure_subscription: Optional[ResourceRemoteInfoAzureSubscription] = None
     azure_resource_group: Optional[ResourceRemoteInfoAzureResourceGroup] = None
     azure_management_group: Optional[ResourceRemoteInfoAzureManagementGroup] = None
@@ -96,6 +105,7 @@ class ResourceRemoteInfo(BaseModel):
     aws_permission_set: Optional[ResourceRemoteInfoAwsPermissionSet] = None
     aws_iam_role: Optional[ResourceRemoteInfoAwsIamRole] = None
     aws_ec2_instance: Optional[ResourceRemoteInfoAwsEc2Instance] = None
+    aws_rds_cluster: Optional[ResourceRemoteInfoAwsRdsCluster] = None
     aws_rds_instance: Optional[ResourceRemoteInfoAwsRdsInstance] = None
     aws_eks_cluster: Optional[ResourceRemoteInfoAwsEksCluster] = None
     custom_connector: Optional[ResourceRemoteInfoCustomConnector] = None
@@ -117,7 +127,13 @@ class ResourceRemoteInfo(BaseModel):
     okta_app: Optional[ResourceRemoteInfoOktaApp] = None
     okta_standard_role: Optional[ResourceRemoteInfoOktaStandardRole] = None
     okta_custom_role: Optional[ResourceRemoteInfoOktaCustomRole] = None
+    snowflake_database: Optional[ResourceRemoteInfoSnowflakeDatabase] = None
+    snowflake_schema: Optional[ResourceRemoteInfoSnowflakeSchema] = None
+    snowflake_table: Optional[ResourceRemoteInfoSnowflakeTable] = None
+    ilevel_advanced_role: Optional[ResourceRemoteInfoIlevelAdvancedRole] = None
+    tailscale_ssh: Optional[ResourceRemoteInfoTailscaleSsh] = None
     pagerduty_role: Optional[ResourceRemoteInfoPagerdutyRole] = None
+    workday_role: Optional[ResourceRemoteInfoWorkdayRole] = None
     salesforce_permission_set: Optional[ResourceRemoteInfoSalesforcePermissionSet] = None
     salesforce_profile: Optional[ResourceRemoteInfoSalesforceProfile] = None
     salesforce_role: Optional[ResourceRemoteInfoSalesforceRole] = None
@@ -130,7 +146,7 @@ class ResourceRemoteInfo(BaseModel):
     anthropic_workspace: Optional[ResourceRemoteInfoAnthropicWorkspace] = None
     oracle_fusion_role: Optional[ResourceRemoteInfoOracleFusionRole] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "pagerduty_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role"]
+    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -173,6 +189,9 @@ class ResourceRemoteInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of databricks_account_service_principal
+        if self.databricks_account_service_principal:
+            _dict['databricks_account_service_principal'] = self.databricks_account_service_principal.to_dict()
         # override the default output from pydantic by calling `to_dict()` of azure_subscription
         if self.azure_subscription:
             _dict['azure_subscription'] = self.azure_subscription.to_dict()
@@ -227,6 +246,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aws_ec2_instance
         if self.aws_ec2_instance:
             _dict['aws_ec2_instance'] = self.aws_ec2_instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of aws_rds_cluster
+        if self.aws_rds_cluster:
+            _dict['aws_rds_cluster'] = self.aws_rds_cluster.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aws_rds_instance
         if self.aws_rds_instance:
             _dict['aws_rds_instance'] = self.aws_rds_instance.to_dict()
@@ -290,9 +312,27 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of okta_custom_role
         if self.okta_custom_role:
             _dict['okta_custom_role'] = self.okta_custom_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of snowflake_database
+        if self.snowflake_database:
+            _dict['snowflake_database'] = self.snowflake_database.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of snowflake_schema
+        if self.snowflake_schema:
+            _dict['snowflake_schema'] = self.snowflake_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of snowflake_table
+        if self.snowflake_table:
+            _dict['snowflake_table'] = self.snowflake_table.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ilevel_advanced_role
+        if self.ilevel_advanced_role:
+            _dict['ilevel_advanced_role'] = self.ilevel_advanced_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tailscale_ssh
+        if self.tailscale_ssh:
+            _dict['tailscale_ssh'] = self.tailscale_ssh.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pagerduty_role
         if self.pagerduty_role:
             _dict['pagerduty_role'] = self.pagerduty_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workday_role
+        if self.workday_role:
+            _dict['workday_role'] = self.workday_role.to_dict()
         # override the default output from pydantic by calling `to_dict()` of salesforce_permission_set
         if self.salesforce_permission_set:
             _dict['salesforce_permission_set'] = self.salesforce_permission_set.to_dict()
@@ -343,6 +383,7 @@ class ResourceRemoteInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "databricks_account_service_principal": ResourceRemoteInfoDatabricksAccountServicePrincipal.from_dict(obj["databricks_account_service_principal"]) if obj.get("databricks_account_service_principal") is not None else None,
             "azure_subscription": ResourceRemoteInfoAzureSubscription.from_dict(obj["azure_subscription"]) if obj.get("azure_subscription") is not None else None,
             "azure_resource_group": ResourceRemoteInfoAzureResourceGroup.from_dict(obj["azure_resource_group"]) if obj.get("azure_resource_group") is not None else None,
             "azure_management_group": ResourceRemoteInfoAzureManagementGroup.from_dict(obj["azure_management_group"]) if obj.get("azure_management_group") is not None else None,
@@ -361,6 +402,7 @@ class ResourceRemoteInfo(BaseModel):
             "aws_permission_set": ResourceRemoteInfoAwsPermissionSet.from_dict(obj["aws_permission_set"]) if obj.get("aws_permission_set") is not None else None,
             "aws_iam_role": ResourceRemoteInfoAwsIamRole.from_dict(obj["aws_iam_role"]) if obj.get("aws_iam_role") is not None else None,
             "aws_ec2_instance": ResourceRemoteInfoAwsEc2Instance.from_dict(obj["aws_ec2_instance"]) if obj.get("aws_ec2_instance") is not None else None,
+            "aws_rds_cluster": ResourceRemoteInfoAwsRdsCluster.from_dict(obj["aws_rds_cluster"]) if obj.get("aws_rds_cluster") is not None else None,
             "aws_rds_instance": ResourceRemoteInfoAwsRdsInstance.from_dict(obj["aws_rds_instance"]) if obj.get("aws_rds_instance") is not None else None,
             "aws_eks_cluster": ResourceRemoteInfoAwsEksCluster.from_dict(obj["aws_eks_cluster"]) if obj.get("aws_eks_cluster") is not None else None,
             "custom_connector": ResourceRemoteInfoCustomConnector.from_dict(obj["custom_connector"]) if obj.get("custom_connector") is not None else None,
@@ -382,7 +424,13 @@ class ResourceRemoteInfo(BaseModel):
             "okta_app": ResourceRemoteInfoOktaApp.from_dict(obj["okta_app"]) if obj.get("okta_app") is not None else None,
             "okta_standard_role": ResourceRemoteInfoOktaStandardRole.from_dict(obj["okta_standard_role"]) if obj.get("okta_standard_role") is not None else None,
             "okta_custom_role": ResourceRemoteInfoOktaCustomRole.from_dict(obj["okta_custom_role"]) if obj.get("okta_custom_role") is not None else None,
+            "snowflake_database": ResourceRemoteInfoSnowflakeDatabase.from_dict(obj["snowflake_database"]) if obj.get("snowflake_database") is not None else None,
+            "snowflake_schema": ResourceRemoteInfoSnowflakeSchema.from_dict(obj["snowflake_schema"]) if obj.get("snowflake_schema") is not None else None,
+            "snowflake_table": ResourceRemoteInfoSnowflakeTable.from_dict(obj["snowflake_table"]) if obj.get("snowflake_table") is not None else None,
+            "ilevel_advanced_role": ResourceRemoteInfoIlevelAdvancedRole.from_dict(obj["ilevel_advanced_role"]) if obj.get("ilevel_advanced_role") is not None else None,
+            "tailscale_ssh": ResourceRemoteInfoTailscaleSsh.from_dict(obj["tailscale_ssh"]) if obj.get("tailscale_ssh") is not None else None,
             "pagerduty_role": ResourceRemoteInfoPagerdutyRole.from_dict(obj["pagerduty_role"]) if obj.get("pagerduty_role") is not None else None,
+            "workday_role": ResourceRemoteInfoWorkdayRole.from_dict(obj["workday_role"]) if obj.get("workday_role") is not None else None,
             "salesforce_permission_set": ResourceRemoteInfoSalesforcePermissionSet.from_dict(obj["salesforce_permission_set"]) if obj.get("salesforce_permission_set") is not None else None,
             "salesforce_profile": ResourceRemoteInfoSalesforceProfile.from_dict(obj["salesforce_profile"]) if obj.get("salesforce_profile") is not None else None,
             "salesforce_role": ResourceRemoteInfoSalesforceRole.from_dict(obj["salesforce_role"]) if obj.get("salesforce_role") is not None else None,

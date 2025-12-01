@@ -19,33 +19,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class ThirdPartyProviderEnum(str, Enum):
+class RDSEngineEnum(str, Enum):
     """
-    The third party provider of the remote user.
+    The database engine for the RDS instance.
     """
 
     """
     allowed enum values
     """
-    AUTH0 = 'AUTH0'
-    SLACK = 'SLACK'
-    GOOGLE_CHAT = 'GOOGLE_CHAT'
-    JIRA = 'JIRA'
-    LINEAR = 'LINEAR'
-    SERVICE_NOW = 'SERVICE_NOW'
-    FRESH_SERVICE = 'FRESH_SERVICE'
-    SHORTCUT = 'SHORTCUT'
-    PAGER_DUTY = 'PAGER_DUTY'
-    OPSGENIE = 'OPSGENIE'
-    GIT_HUB = 'GIT_HUB'
-    GIT_LAB = 'GIT_LAB'
-    GIT_LAB_CONNECTION = 'GIT_LAB_CONNECTION'
-    TELEPORT = 'TELEPORT'
-    SLACK = 'SLACK'
+    MYSQL = 'MYSQL'
+    POSTGRESQL = 'POSTGRESQL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of ThirdPartyProviderEnum from a JSON string"""
+        """Create an instance of RDSEngineEnum from a JSON string"""
         return cls(json.loads(json_str))
 
 

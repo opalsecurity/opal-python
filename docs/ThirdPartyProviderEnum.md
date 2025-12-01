@@ -18,6 +18,8 @@ The third party provider of the remote user.
 
 * `FRESH_SERVICE` (value: `'FRESH_SERVICE'`)
 
+* `SHORTCUT` (value: `'SHORTCUT'`)
+
 * `PAGER_DUTY` (value: `'PAGER_DUTY'`)
 
 * `OPSGENIE` (value: `'OPSGENIE'`)
@@ -29,6 +31,8 @@ The third party provider of the remote user.
 * `GIT_LAB_CONNECTION` (value: `'GIT_LAB_CONNECTION'`)
 
 * `TELEPORT` (value: `'TELEPORT'`)
+
+* `SLACK` (value: `'SLACK'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
