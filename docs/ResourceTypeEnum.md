@@ -142,6 +142,10 @@ The type of the resource.
 
 * `ORACLE_FUSION_ROLE` (value: `'ORACLE_FUSION_ROLE'`)
 
+* `DEVIN_ORGANIZATION` (value: `'DEVIN_ORGANIZATION'`)
+
+* `DEVIN_ROLE` (value: `'DEVIN_ROLE'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
