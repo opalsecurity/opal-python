@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **deadline** | **datetime** | The last day for reviewers to complete their access reviews. | 
 **time_zone** | **str** | The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles. | 
 **self_review_allowed** | **bool** | A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False. | 
+**instantly_action_reviews** | **bool** | A bool representing whether to instantly action changes when reviewers submit their decision. Default is False. | 
 **uar_scope** | [**UARScope**](UARScope.md) |  | [optional] 
 
 ## Example
