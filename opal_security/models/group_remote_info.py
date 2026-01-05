@@ -21,16 +21,23 @@ import json
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.group_remote_info_active_directory_group import GroupRemoteInfoActiveDirectoryGroup
+from opal_security.models.group_remote_info_aws_sso_group import GroupRemoteInfoAwsSsoGroup
 from opal_security.models.group_remote_info_azure_ad_microsoft365_group import GroupRemoteInfoAzureAdMicrosoft365Group
 from opal_security.models.group_remote_info_azure_ad_security_group import GroupRemoteInfoAzureAdSecurityGroup
+from opal_security.models.group_remote_info_connector_group import GroupRemoteInfoConnectorGroup
+from opal_security.models.group_remote_info_databricks_account_group import GroupRemoteInfoDatabricksAccountGroup
+from opal_security.models.group_remote_info_devin_group import GroupRemoteInfoDevinGroup
 from opal_security.models.group_remote_info_duo_group import GroupRemoteInfoDuoGroup
 from opal_security.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam
 from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoGitlabGroup
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
+from opal_security.models.group_remote_info_incidentio_on_call_schedule import GroupRemoteInfoIncidentioOnCallSchedule
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
 from opal_security.models.group_remote_info_okta_group_rule import GroupRemoteInfoOktaGroupRule
+from opal_security.models.group_remote_info_pagerduty_on_call_schedule import GroupRemoteInfoPagerdutyOnCallSchedule
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup
 from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup
 from typing import Optional, Set
 from typing_extensions import Self
@@ -40,6 +47,10 @@ class GroupRemoteInfo(BaseModel):
     Information that defines the remote group. This replaces the deprecated remote_id and metadata fields. If remote_info is provided, a group will be imported into Opal. For group types that support group creation through Opal, a new group will be created if remote_info is not provided.
     """ # noqa: E501
     active_directory_group: Optional[GroupRemoteInfoActiveDirectoryGroup] = None
+    tailscale_group: Optional[GroupRemoteInfoTailscaleGroup] = None
+    aws_sso_group: Optional[GroupRemoteInfoAwsSsoGroup] = None
+    databricks_account_group: Optional[GroupRemoteInfoDatabricksAccountGroup] = None
+    connector_group: Optional[GroupRemoteInfoConnectorGroup] = None
     github_team: Optional[GroupRemoteInfoGithubTeam] = None
     gitlab_group: Optional[GroupRemoteInfoGitlabGroup] = None
     google_group: Optional[GroupRemoteInfoGoogleGroup] = None
@@ -51,8 +62,11 @@ class GroupRemoteInfo(BaseModel):
     snowflake_role: Optional[GroupRemoteInfoSnowflakeRole] = None
     okta_group_rule: Optional[GroupRemoteInfoOktaGroupRule] = None
     workday_user_security_group: Optional[GroupRemoteInfoWorkdayUserSecurityGroup] = None
+    pagerduty_on_call_schedule: Optional[GroupRemoteInfoPagerdutyOnCallSchedule] = None
+    incidentio_on_call_schedule: Optional[GroupRemoteInfoIncidentioOnCallSchedule] = None
+    devin_group: Optional[GroupRemoteInfoDevinGroup] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["active_directory_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group"]
+    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "devin_group"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +112,18 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of active_directory_group
         if self.active_directory_group:
             _dict['active_directory_group'] = self.active_directory_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tailscale_group
+        if self.tailscale_group:
+            _dict['tailscale_group'] = self.tailscale_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of aws_sso_group
+        if self.aws_sso_group:
+            _dict['aws_sso_group'] = self.aws_sso_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of databricks_account_group
+        if self.databricks_account_group:
+            _dict['databricks_account_group'] = self.databricks_account_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of connector_group
+        if self.connector_group:
+            _dict['connector_group'] = self.connector_group.to_dict()
         # override the default output from pydantic by calling `to_dict()` of github_team
         if self.github_team:
             _dict['github_team'] = self.github_team.to_dict()
@@ -131,6 +157,15 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of workday_user_security_group
         if self.workday_user_security_group:
             _dict['workday_user_security_group'] = self.workday_user_security_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of pagerduty_on_call_schedule
+        if self.pagerduty_on_call_schedule:
+            _dict['pagerduty_on_call_schedule'] = self.pagerduty_on_call_schedule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of incidentio_on_call_schedule
+        if self.incidentio_on_call_schedule:
+            _dict['incidentio_on_call_schedule'] = self.incidentio_on_call_schedule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of devin_group
+        if self.devin_group:
+            _dict['devin_group'] = self.devin_group.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -149,6 +184,10 @@ class GroupRemoteInfo(BaseModel):
 
         _obj = cls.model_validate({
             "active_directory_group": GroupRemoteInfoActiveDirectoryGroup.from_dict(obj["active_directory_group"]) if obj.get("active_directory_group") is not None else None,
+            "tailscale_group": GroupRemoteInfoTailscaleGroup.from_dict(obj["tailscale_group"]) if obj.get("tailscale_group") is not None else None,
+            "aws_sso_group": GroupRemoteInfoAwsSsoGroup.from_dict(obj["aws_sso_group"]) if obj.get("aws_sso_group") is not None else None,
+            "databricks_account_group": GroupRemoteInfoDatabricksAccountGroup.from_dict(obj["databricks_account_group"]) if obj.get("databricks_account_group") is not None else None,
+            "connector_group": GroupRemoteInfoConnectorGroup.from_dict(obj["connector_group"]) if obj.get("connector_group") is not None else None,
             "github_team": GroupRemoteInfoGithubTeam.from_dict(obj["github_team"]) if obj.get("github_team") is not None else None,
             "gitlab_group": GroupRemoteInfoGitlabGroup.from_dict(obj["gitlab_group"]) if obj.get("gitlab_group") is not None else None,
             "google_group": GroupRemoteInfoGoogleGroup.from_dict(obj["google_group"]) if obj.get("google_group") is not None else None,
@@ -159,7 +198,10 @@ class GroupRemoteInfo(BaseModel):
             "azure_ad_microsoft_365_group": GroupRemoteInfoAzureAdMicrosoft365Group.from_dict(obj["azure_ad_microsoft_365_group"]) if obj.get("azure_ad_microsoft_365_group") is not None else None,
             "snowflake_role": GroupRemoteInfoSnowflakeRole.from_dict(obj["snowflake_role"]) if obj.get("snowflake_role") is not None else None,
             "okta_group_rule": GroupRemoteInfoOktaGroupRule.from_dict(obj["okta_group_rule"]) if obj.get("okta_group_rule") is not None else None,
-            "workday_user_security_group": GroupRemoteInfoWorkdayUserSecurityGroup.from_dict(obj["workday_user_security_group"]) if obj.get("workday_user_security_group") is not None else None
+            "workday_user_security_group": GroupRemoteInfoWorkdayUserSecurityGroup.from_dict(obj["workday_user_security_group"]) if obj.get("workday_user_security_group") is not None else None,
+            "pagerduty_on_call_schedule": GroupRemoteInfoPagerdutyOnCallSchedule.from_dict(obj["pagerduty_on_call_schedule"]) if obj.get("pagerduty_on_call_schedule") is not None else None,
+            "incidentio_on_call_schedule": GroupRemoteInfoIncidentioOnCallSchedule.from_dict(obj["incidentio_on_call_schedule"]) if obj.get("incidentio_on_call_schedule") is not None else None,
+            "devin_group": GroupRemoteInfoDevinGroup.from_dict(obj["devin_group"]) if obj.get("devin_group") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
