@@ -1174,7 +1174,7 @@ paths:
       description: Removes a containing group from a group.
       operationId: remove_group_containing_group
       parameters:
-        - description: The ID of the group.
+        - description: The ID of the member group to remove.
           example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
           explode: false
           in: path
@@ -4986,6 +4986,10 @@ components:
           description: A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.
           example: False
           type: boolean
+        instantly_action_reviews:
+          description: A bool representing whether to instantly action changes when reviewers submit their decision. Default is False.
+          type: boolean
+          example: False
         uar_scope:
           $ref: "#/components/schemas/UARScope"
       required:
@@ -4996,6 +5000,7 @@ components:
         - send_reviewer_assignment_notification
         - time_zone
         - self_review_allowed
+        - instantly_action_reviews
       type: object
     CreateUARInfo:
       description: Information needed to start a user access review.
@@ -5042,6 +5047,10 @@ components:
           description: A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.
           example: False
           type: boolean
+        instantly_action_reviews:
+          description: A bool representing whether to instantly action changes when reviewers submit their decision. Default is False.
+          type: boolean
+          example: False
         reminder_schedule:
           items:
             type: integer
@@ -5060,11 +5069,14 @@ components:
         - self_review_allowed
       type: object
     UARReviewerAssignmentPolicyEnum:
-      description: A policy for auto-assigning reviewers. If auto-assignment is on, specific assignments can still be manually adjusted after the access review is started. Default is Manually.
+      description: A policy for auto-assigning reviewers. If auto-assignment is on, specific assignments can still be manually adjusted after the access review is started. Default is Manually. BY_OWNING_TEAM_ADMIN assigns reviews to resource admins in round-robin fashion. BY_OWNING_TEAM_ADMIN_ALL assigns reviews to all resource admins. BY_APPROVERS assigns reviews to resource approvers in round-robin fashion. BY_APPROVERS_ALL assigns reviews to all resource approvers.
       enum:
         - MANUALLY
         - BY_OWNING_TEAM_ADMIN
+        - BY_OWNING_TEAM_ADMIN_ALL
         - BY_MANAGER
+        - BY_APPROVERS
+        - BY_APPROVERS_ALL
       example: MANUALLY
       type: string
     TagFilter:
@@ -5541,6 +5553,14 @@ components:
           example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
           format: uuid
           type: string
+        resource_name:
+          description: The name of the resource.
+          example: AdministratorAccess
+          type: string
+        description:
+          description: The description of the resource.
+          example: Full access to all resources and settings.
+          type: string
         user_id:
           description: The ID of the user.
           example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
@@ -5957,12 +5977,14 @@ components:
         - LINEAR
         - SERVICE_NOW
         - FRESH_SERVICE
+        - SHORTCUT
         - PAGER_DUTY
         - OPSGENIE
         - GIT_HUB
         - GIT_LAB
         - GIT_LAB_CONNECTION
         - TELEPORT
+        - SLACK
       example: GIT_HUB
       type: string
     PaginatedGroupsList:
@@ -6043,6 +6065,15 @@ components:
           example: f454d283-ca87-4a8a-bdbb-df212eca5353
           format: uuid
           type: string
+        duration_minutes:
+          description: The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.
+          type: integer
+          maximum: 525960 # One year
+          example: 120
+        access_level_remote_id:
+          description: The updated remote ID of the access level granted to this group.
+          type: string
+          example: arn:aws:iam::590304332660:role/ReadOnlyAccess
       required:
         - containing_group_id
       type: object
@@ -6553,6 +6584,9 @@ components:
         - CONNECTOR_GROUP
         - SNOWFLAKE_ROLE
         - WORKDAY_USER_SECURITY_GROUP
+        - PAGERDUTY_ON_CALL_SCHEDULE
+        - INCIDENTIO_ON_CALL_SCHEDULE
+        - DEVIN_GROUP
       example: OPAL_GROUP
       type: string
     ResourceTypeEnum:
@@ -6627,6 +6661,11 @@ components:
         - ANTHROPIC_WORKSPACE
         - GIT_HUB_ORG
         - ORACLE_FUSION_ROLE
+        - DEVIN_ORGANIZATION
+        - DEVIN_ROLE
+        - VAULT_SECRET
+        - VAULT_POLICY
+        - VAULT_OIDC_ROLE
       example: AWS_IAM_ROLE
       type: string
     VisibilityTypeEnum:
@@ -7074,6 +7113,10 @@ components:
         - SERVICE_NOW
       example: LINEAR
       type: string
+    RDSEngineEnum:
+      type: string
+      description: "The database engine for the RDS instance."
+      enum: [MYSQL, POSTGRESQL]
     GroupRemoteInfo:
       description: Information that defines the remote group. This replaces the deprecated remote_id and metadata fields. If remote_info is provided, a group will be imported into Opal. For group types that support group creation through Opal, a new group will be created if remote_info is not provided.
       properties:
@@ -7083,6 +7126,46 @@ components:
             group_id:
               description: The id of the Google group.
               example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
+              type: string
+          type: object
+          required:
+            - group_id
+        tailscale_group:
+          description: Remote info for Tailscale group.
+          properties:
+            group_id:
+              description: The id of the Tailscale group.
+              example: 898931321
+              type: string
+          type: object
+          required:
+            - group_id
+        aws_sso_group:
+          description: Remote info for AWS SSO group.
+          properties:
+            group_id:
+              description: The id of the AWS SSO group.
+              example: 898931321
+              type: string
+          type: object
+          required:
+            - group_id
+        databricks_account_group:
+          description: Remote info for Databricks account group.
+          properties:
+            group_id:
+              description: The id of the Databricks account group.
+              example: 898931321
+              type: string
+          type: object
+          required:
+            - group_id
+        connector_group:
+          description: Remote info for Connector group.
+          properties:
+            group_id:
+              description: The id of the Connector group.
+              example: 898931321
               type: string
           type: object
           required:
@@ -7202,10 +7285,55 @@ components:
           type: object
           required:
             - group_id
+        pagerduty_on_call_schedule:
+          description: Remote info for PagerDuty on-call schedule group.
+          properties:
+            schedule_id:
+              description: The id of the PagerDuty on-call schedule.
+              example: PNZNINN
+              type: string
+          type: object
+          required:
+            - schedule_id
+        incidentio_on_call_schedule:
+          description: Remote info for Incident.io on-call schedule group.
+          properties:
+            schedule_id:
+              description: The id of the Incident.io on-call schedule.
+              example: 01HZ8XQM9ZQX8RKMZQ8ZQX8RK
+              type: string
+          type: object
+          required:
+            - schedule_id
+        devin_group:
+          description: Remote info for Devin group.
+          properties:
+            group_name:
+              description: The name of the Devin group.
+              example: devin-group-01
+              type: string
+          type: object
+          required:
+            - group_name
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
       properties:
+        databricks_account_service_principal:
+          description: Remote info for Databricks account service principal.
+          properties:
+            application_id:
+              description: The application ID of the service principal.
+              example: 00000000-0000-0000-0000-000000000000
+              type: string
+            resource_id:
+              description: The resource ID of the service principal.
+              example: 00000000-0000-0000-0000-000000000000
+              type: string
+          type: object
+          required:
+            - application_id
+            - resource_id
         azure_subscription:
           description: Remote info for Azure subscription.
           properties:
@@ -7412,6 +7540,40 @@ components:
           required:
             - instance_id
             - region
+        aws_rds_cluster:
+          description: Remote info for AWS RDS cluster.
+          properties:
+            cluster_id:
+              description: The clusterId of the RDS cluster.
+              example: demo-mysql-cluster
+              type: string
+            region:
+              description: The region of the RDS cluster.
+              example: us-east-2
+              type: string
+            resource_id:
+              description: The resourceId of the RDS cluster.
+              example: cluster-AOO8V0XUCNU13XLZXQDQRSN0NQ
+              type: string
+            account_id:
+              description: The id of the AWS account. Required for AWS Organizations.
+              example: 234234234234
+              type: string
+            database_name:
+              description: The name of the database in the RDS cluster. This can be the value of the tag `opal:database-name` or the database name.
+              example: mydatabase
+              type: string
+            engine:
+              allOf:
+                - $ref: "#/components/schemas/RDSEngineEnum"
+          type: object
+          required:
+            - cluster_id
+            - region
+            - resource_id
+            - account_id
+            - database_name
+            - engine
         aws_rds_instance:
           description: Remote info for AWS RDS instance.
           properties:
@@ -7690,6 +7852,71 @@ components:
           type: object
           required:
             - role_id
+        snowflake_database:
+          description: Remote info for Snowflake database.
+          properties:
+            database_name:
+              description: The name of the database.
+              example: mydatabase
+              type: string
+          type: object
+          required:
+            - database_name
+        snowflake_schema:
+          description: Remote info for Snowflake schema.
+          properties:
+            database_name:
+              description: The name of the database the schema is in.
+              example: mydatabase
+              type: string
+            schema_name:
+              description: The name of the schema.
+              example: mycatalogschema
+              type: string
+          type: object
+          required:
+            - database_name
+            - schema_name
+        snowflake_table:
+          description: Remote info for Snowflake table.
+          properties:
+            database_name:
+              description: The name of the database the table is in.
+              example: mydatabase
+              type: string
+            schema_name:
+              description: The name of the schema the table is in.
+              example: mycatalogschema
+              type: string
+            table_name:
+              description: The name of the table.
+              example: myitemstable
+              type: string
+          type: object
+          required:
+            - database_name
+            - schema_name
+            - table_name
+        ilevel_advanced_role:
+          description: Remote info for iLevel Advanced role.
+          properties:
+            role_name:
+              description: The name of the role.
+              example: IT User
+              type: string
+          type: object
+          required:
+            - role_name
+        tailscale_ssh:
+          description: Remote info for Tailscale SSH tag.
+          properties:
+            tag_name:
+              description: The name of the tag.
+              example: admin
+              type: string
+          type: object
+          required:
+            - tag_name
         pagerduty_role:
           description: Remote info for Pagerduty role.
           properties:
@@ -7700,6 +7927,17 @@ components:
           type: object
           required:
             - role_name
+        workday_role:
+          description: Remote info for Workday role.
+          properties:
+            role_id:
+              description: The id of the role.
+              example: 123abc456def
+              type: string
+          type: object
+          required:
+            - role_id
+
         salesforce_permission_set:
           description: Remote info for Salesforce permission set.
           properties:
@@ -7816,6 +8054,26 @@ components:
             role_id:
               description: The id of the role.
               example: 123e4567-e89b-12d3-a456-426614174000
+              type: string
+          type: object
+          required:
+            - role_id
+        devin_organization:
+          description: Remote info for Devin organization.
+          properties:
+            org_id:
+              description: The id of the organization.
+              example: devin-org-01
+              type: string
+          type: object
+          required:
+            - org_id
+        devin_role:
+          description: Remote info for Devin role.
+          properties:
+            role_id:
+              description: The id of the role.
+              example: devin-role-01
               type: string
           type: object
           required:
@@ -8445,10 +8703,12 @@ components:
           description: The stages configuration for this request
           $ref: "#/components/schemas/RequestItemStages"
         reviewer_stages:
-          description: The configured reviewer stages for every item in this request
-          type: array
-          items:
-            $ref: "#/components/schemas/RequestReviewerStages"
+          description: The configured reviewer stages for every item in this request, or an error message if reviewers could not be loaded
+          oneOf:
+            - type: array
+              items:
+                $ref: "#/components/schemas/RequestReviewerStages"
+            - type: string
       required:
         - id
         - created_at
@@ -10331,9 +10591,10 @@ components:
                 example: arn:aws:iam::490306337630:role/SupportUser
                 type: string
               access_level_name:
-                description: The ID of the access level requested on the remote system.
+                description: The ID of the access level requested on the remote system. This field is deprecated and no longer required. We will populate based on the access_level_remote_id.
                 example: arn:aws:iam::490306337630:role/SupportUser
                 type: string
+                deprecated: true
         groups:
           type: array
           items:

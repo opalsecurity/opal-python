@@ -1612,7 +1612,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the member group to remove.
     containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
 
     try:
@@ -1628,7 +1628,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **str**| The ID of the member group to remove. | 
  **containing_group_id** | **str**| The ID of the containing group. | 
 
 ### Return type

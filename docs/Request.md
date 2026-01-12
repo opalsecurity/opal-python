@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **requested_items_list** | [**List[RequestedItem]**](RequestedItem.md) | The list of targets for the request. | [optional] 
 **custom_fields_responses** | [**List[RequestCustomFieldResponse]**](RequestCustomFieldResponse.md) | The responses given to the custom fields associated to the request | [optional] 
 **stages** | [**RequestItemStages**](RequestItemStages.md) | The stages configuration for this request | [optional] 
-**reviewer_stages** | [**List[RequestReviewerStages]**](RequestReviewerStages.md) | The configured reviewer stages for every item in this request | [optional] 
+**reviewer_stages** | [**RequestReviewerStages**](RequestReviewerStages.md) |  | [optional] 
 
 ## Example
 

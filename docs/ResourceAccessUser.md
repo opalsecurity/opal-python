@@ -7,6 +7,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **resource_id** | **str** | The ID of the resource. | 
+**resource_name** | **str** | The name of the resource. | [optional] 
+**description** | **str** | The description of the resource. | [optional] 
 **user_id** | **str** | The ID of the user. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | 
 **full_name** | **str** | The user&#39;s full name. | 
