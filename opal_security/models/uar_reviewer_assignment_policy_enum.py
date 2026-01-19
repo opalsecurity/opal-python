@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class UARReviewerAssignmentPolicyEnum(str, Enum):
     """
-    A policy for auto-assigning reviewers. If auto-assignment is on, specific assignments can still be manually adjusted after the access review is started. Default is Manually.
+    A policy for auto-assigning reviewers. If auto-assignment is on, specific assignments can still be manually adjusted after the access review is started. Default is Manually. BY_OWNING_TEAM_ADMIN assigns reviews to resource admins in round-robin fashion. BY_OWNING_TEAM_ADMIN_ALL assigns reviews to all resource admins. BY_APPROVERS assigns reviews to resource approvers in round-robin fashion. BY_APPROVERS_ALL assigns reviews to all resource approvers.
     """
 
     """
@@ -29,7 +29,10 @@ class UARReviewerAssignmentPolicyEnum(str, Enum):
     """
     MANUALLY = 'MANUALLY'
     BY_OWNING_TEAM_ADMIN = 'BY_OWNING_TEAM_ADMIN'
+    BY_OWNING_TEAM_ADMIN_ALL = 'BY_OWNING_TEAM_ADMIN_ALL'
     BY_MANAGER = 'BY_MANAGER'
+    BY_APPROVERS = 'BY_APPROVERS'
+    BY_APPROVERS_ALL = 'BY_APPROVERS_ALL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

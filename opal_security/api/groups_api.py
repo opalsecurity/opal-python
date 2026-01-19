@@ -5381,7 +5381,7 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the member group to remove.")],
         containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
         _request_timeout: Union[
             None,
@@ -5400,7 +5400,7 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
+        :param group_id: The ID of the member group to remove. (required)
         :type group_id: str
         :param containing_group_id: The ID of the containing group. (required)
         :type containing_group_id: str
@@ -5452,7 +5452,7 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the member group to remove.")],
         containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
         _request_timeout: Union[
             None,
@@ -5471,7 +5471,7 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
+        :param group_id: The ID of the member group to remove. (required)
         :type group_id: str
         :param containing_group_id: The ID of the containing group. (required)
         :type containing_group_id: str
@@ -5523,7 +5523,7 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the member group to remove.")],
         containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
         _request_timeout: Union[
             None,
@@ -5542,7 +5542,7 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
+        :param group_id: The ID of the member group to remove. (required)
         :type group_id: str
         :param containing_group_id: The ID of the containing group. (required)
         :type containing_group_id: str
