@@ -19,7 +19,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +29,10 @@ class GroupContainingGroup(BaseModel):
     # GroupContainingGroup Object ### Description The `GroupContainingGroup` object is used to represent a relationship between a group and a group.
     """ # noqa: E501
     containing_group_id: StrictStr = Field(description="The groupID of the containing group.")
+    duration_minutes: Optional[Annotated[int, Field(le=525960, strict=True)]] = Field(default=None, description="The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.")
+    access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The updated remote ID of the access level granted to this group.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["containing_group_id"]
+    __properties: ClassVar[List[str]] = ["containing_group_id", "duration_minutes", "access_level_remote_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +92,9 @@ class GroupContainingGroup(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "containing_group_id": obj.get("containing_group_id")
+            "containing_group_id": obj.get("containing_group_id"),
+            "duration_minutes": obj.get("duration_minutes"),
+            "access_level_remote_id": obj.get("access_level_remote_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

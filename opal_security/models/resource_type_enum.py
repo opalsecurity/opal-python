@@ -96,6 +96,11 @@ class ResourceTypeEnum(str, Enum):
     ANTHROPIC_WORKSPACE = 'ANTHROPIC_WORKSPACE'
     GIT_HUB_ORG = 'GIT_HUB_ORG'
     ORACLE_FUSION_ROLE = 'ORACLE_FUSION_ROLE'
+    DEVIN_ORGANIZATION = 'DEVIN_ORGANIZATION'
+    DEVIN_ROLE = 'DEVIN_ROLE'
+    VAULT_SECRET = 'VAULT_SECRET'
+    VAULT_POLICY = 'VAULT_POLICY'
+    VAULT_OIDC_ROLE = 'VAULT_OIDC_ROLE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
