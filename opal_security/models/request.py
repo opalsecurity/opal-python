@@ -45,7 +45,7 @@ class Request(BaseModel):
     requested_items_list: Optional[List[RequestedItem]] = Field(default=None, description="The list of targets for the request.")
     custom_fields_responses: Optional[List[RequestCustomFieldResponse]] = Field(default=None, description="The responses given to the custom fields associated to the request")
     stages: Optional[RequestItemStages] = Field(default=None, description="The stages configuration for this request")
-    reviewer_stages: Optional[List[RequestReviewerStages]] = Field(default=None, description="The configured reviewer stages for every item in this request")
+    reviewer_stages: Optional[RequestReviewerStages] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "target_user_id", "target_group_id", "status", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses", "stages", "reviewer_stages"]
 
@@ -107,13 +107,9 @@ class Request(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of stages
         if self.stages:
             _dict['stages'] = self.stages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in reviewer_stages (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of reviewer_stages
         if self.reviewer_stages:
-            for _item_reviewer_stages in self.reviewer_stages:
-                if _item_reviewer_stages:
-                    _items.append(_item_reviewer_stages.to_dict())
-            _dict['reviewer_stages'] = _items
+            _dict['reviewer_stages'] = self.reviewer_stages.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -143,7 +139,7 @@ class Request(BaseModel):
             "requested_items_list": [RequestedItem.from_dict(_item) for _item in obj["requested_items_list"]] if obj.get("requested_items_list") is not None else None,
             "custom_fields_responses": [RequestCustomFieldResponse.from_dict(_item) for _item in obj["custom_fields_responses"]] if obj.get("custom_fields_responses") is not None else None,
             "stages": RequestItemStages.from_dict(obj["stages"]) if obj.get("stages") is not None else None,
-            "reviewer_stages": [RequestReviewerStages.from_dict(_item) for _item in obj["reviewer_stages"]] if obj.get("reviewer_stages") is not None else None
+            "reviewer_stages": RequestReviewerStages.from_dict(obj["reviewer_stages"]) if obj.get("reviewer_stages") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
