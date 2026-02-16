@@ -6,6 +6,7 @@ Information that defines the remote resource. This replaces the deprecated remot
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**databricks_account_service_principal** | [**ResourceRemoteInfoDatabricksAccountServicePrincipal**](ResourceRemoteInfoDatabricksAccountServicePrincipal.md) |  | [optional] 
 **azure_subscription** | [**ResourceRemoteInfoAzureSubscription**](ResourceRemoteInfoAzureSubscription.md) |  | [optional] 
 **azure_resource_group** | [**ResourceRemoteInfoAzureResourceGroup**](ResourceRemoteInfoAzureResourceGroup.md) |  | [optional] 
 **azure_management_group** | [**ResourceRemoteInfoAzureManagementGroup**](ResourceRemoteInfoAzureManagementGroup.md) |  | [optional] 
@@ -24,6 +25,7 @@ Name | Type | Description | Notes
 **aws_permission_set** | [**ResourceRemoteInfoAwsPermissionSet**](ResourceRemoteInfoAwsPermissionSet.md) |  | [optional] 
 **aws_iam_role** | [**ResourceRemoteInfoAwsIamRole**](ResourceRemoteInfoAwsIamRole.md) |  | [optional] 
 **aws_ec2_instance** | [**ResourceRemoteInfoAwsEc2Instance**](ResourceRemoteInfoAwsEc2Instance.md) |  | [optional] 
+**aws_rds_cluster** | [**ResourceRemoteInfoAwsRdsCluster**](ResourceRemoteInfoAwsRdsCluster.md) |  | [optional] 
 **aws_rds_instance** | [**ResourceRemoteInfoAwsRdsInstance**](ResourceRemoteInfoAwsRdsInstance.md) |  | [optional] 
 **aws_eks_cluster** | [**ResourceRemoteInfoAwsEksCluster**](ResourceRemoteInfoAwsEksCluster.md) |  | [optional] 
 **custom_connector** | [**ResourceRemoteInfoCustomConnector**](ResourceRemoteInfoCustomConnector.md) |  | [optional] 
@@ -45,7 +47,13 @@ Name | Type | Description | Notes
 **okta_app** | [**ResourceRemoteInfoOktaApp**](ResourceRemoteInfoOktaApp.md) |  | [optional] 
 **okta_standard_role** | [**ResourceRemoteInfoOktaStandardRole**](ResourceRemoteInfoOktaStandardRole.md) |  | [optional] 
 **okta_custom_role** | [**ResourceRemoteInfoOktaCustomRole**](ResourceRemoteInfoOktaCustomRole.md) |  | [optional] 
+**snowflake_database** | [**ResourceRemoteInfoSnowflakeDatabase**](ResourceRemoteInfoSnowflakeDatabase.md) |  | [optional] 
+**snowflake_schema** | [**ResourceRemoteInfoSnowflakeSchema**](ResourceRemoteInfoSnowflakeSchema.md) |  | [optional] 
+**snowflake_table** | [**ResourceRemoteInfoSnowflakeTable**](ResourceRemoteInfoSnowflakeTable.md) |  | [optional] 
+**ilevel_advanced_role** | [**ResourceRemoteInfoIlevelAdvancedRole**](ResourceRemoteInfoIlevelAdvancedRole.md) |  | [optional] 
+**tailscale_ssh** | [**ResourceRemoteInfoTailscaleSsh**](ResourceRemoteInfoTailscaleSsh.md) |  | [optional] 
 **pagerduty_role** | [**ResourceRemoteInfoPagerdutyRole**](ResourceRemoteInfoPagerdutyRole.md) |  | [optional] 
+**workday_role** | [**ResourceRemoteInfoWorkdayRole**](ResourceRemoteInfoWorkdayRole.md) |  | [optional] 
 **salesforce_permission_set** | [**ResourceRemoteInfoSalesforcePermissionSet**](ResourceRemoteInfoSalesforcePermissionSet.md) |  | [optional] 
 **salesforce_profile** | [**ResourceRemoteInfoSalesforceProfile**](ResourceRemoteInfoSalesforceProfile.md) |  | [optional] 
 **salesforce_role** | [**ResourceRemoteInfoSalesforceRole**](ResourceRemoteInfoSalesforceRole.md) |  | [optional] 
@@ -57,6 +65,8 @@ Name | Type | Description | Notes
 **openai_platform_service_account** | [**ResourceRemoteInfoOpenaiPlatformServiceAccount**](ResourceRemoteInfoOpenaiPlatformServiceAccount.md) |  | [optional] 
 **anthropic_workspace** | [**ResourceRemoteInfoAnthropicWorkspace**](ResourceRemoteInfoAnthropicWorkspace.md) |  | [optional] 
 **oracle_fusion_role** | [**ResourceRemoteInfoOracleFusionRole**](ResourceRemoteInfoOracleFusionRole.md) |  | [optional] 
+**devin_organization** | [**ResourceRemoteInfoDevinOrganization**](ResourceRemoteInfoDevinOrganization.md) |  | [optional] 
+**devin_role** | [**ResourceRemoteInfoDevinRole**](ResourceRemoteInfoDevinRole.md) |  | [optional] 
 
 ## Example
 

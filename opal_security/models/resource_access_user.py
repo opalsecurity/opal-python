@@ -31,6 +31,8 @@ class ResourceAccessUser(BaseModel):
     # Resource Access User Object ### Description The `ResourceAccessUser` object is used to represent a user with access to a resource, either directly or indirectly through group(s).  ### Usage Example Fetch from the `LIST ResourceUsers` endpoint.
     """ # noqa: E501
     resource_id: StrictStr = Field(description="The ID of the resource.")
+    resource_name: Optional[StrictStr] = Field(default=None, description="The name of the resource.")
+    description: Optional[StrictStr] = Field(default=None, description="The description of the resource.")
     user_id: StrictStr = Field(description="The ID of the user.")
     access_level: ResourceAccessLevel
     full_name: StrictStr = Field(description="The user's full name.")
@@ -40,7 +42,7 @@ class ResourceAccessUser(BaseModel):
     num_access_paths: StrictInt = Field(description="The number of ways in which the user has access through this resource (directly and indirectly).")
     propagation_status: Optional[PropagationStatus] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "user_id", "access_level", "full_name", "email", "expiration_date", "has_direct_access", "num_access_paths", "propagation_status"]
+    __properties: ClassVar[List[str]] = ["resource_id", "resource_name", "description", "user_id", "access_level", "full_name", "email", "expiration_date", "has_direct_access", "num_access_paths", "propagation_status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,6 +109,8 @@ class ResourceAccessUser(BaseModel):
 
         _obj = cls.model_validate({
             "resource_id": obj.get("resource_id"),
+            "resource_name": obj.get("resource_name"),
+            "description": obj.get("description"),
             "user_id": obj.get("user_id"),
             "access_level": ResourceAccessLevel.from_dict(obj["access_level"]) if obj.get("access_level") is not None else None,
             "full_name": obj.get("full_name"),

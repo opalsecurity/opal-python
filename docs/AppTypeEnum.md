@@ -6,13 +6,23 @@ The type of an app.
 
 * `ACTIVE_DIRECTORY` (value: `'ACTIVE_DIRECTORY'`)
 
+* `ANTHROPIC` (value: `'ANTHROPIC'`)
+
 * `AZURE_AD` (value: `'AZURE_AD'`)
 
 * `AWS` (value: `'AWS'`)
 
 * `AWS_SSO` (value: `'AWS_SSO'`)
 
+* `COUPA` (value: `'COUPA'`)
+
+* `CURSOR` (value: `'CURSOR'`)
+
 * `CUSTOM` (value: `'CUSTOM'`)
+
+* `DATABRICKS` (value: `'DATABRICKS'`)
+
+* `DATASTAX_ASTRA` (value: `'DATASTAX_ASTRA'`)
 
 * `DUO` (value: `'DUO'`)
 
@@ -26,6 +36,10 @@ The type of an app.
 
 * `GOOGLE_WORKSPACE` (value: `'GOOGLE_WORKSPACE'`)
 
+* `ILEVEL` (value: `'ILEVEL'`)
+
+* `INCIDENTIO` (value: `'INCIDENTIO'`)
+
 * `LDAP` (value: `'LDAP'`)
 
 * `MARIADB` (value: `'MARIADB'`)
@@ -38,11 +52,15 @@ The type of an app.
 
 * `OKTA_DIRECTORY` (value: `'OKTA_DIRECTORY'`)
 
+* `OPENAI_PLATFORM` (value: `'OPENAI_PLATFORM'`)
+
 * `OPAL` (value: `'OPAL'`)
 
 * `PAGERDUTY` (value: `'PAGERDUTY'`)
 
 * `SALESFORCE` (value: `'SALESFORCE'`)
+
+* `SNOWFLAKE` (value: `'SNOWFLAKE'`)
 
 * `TAILSCALE` (value: `'TAILSCALE'`)
 

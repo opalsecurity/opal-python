@@ -7,6 +7,10 @@ Information that defines the remote group. This replaces the deprecated remote_i
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active_directory_group** | [**GroupRemoteInfoActiveDirectoryGroup**](GroupRemoteInfoActiveDirectoryGroup.md) |  | [optional] 
+**tailscale_group** | [**GroupRemoteInfoTailscaleGroup**](GroupRemoteInfoTailscaleGroup.md) |  | [optional] 
+**aws_sso_group** | [**GroupRemoteInfoAwsSsoGroup**](GroupRemoteInfoAwsSsoGroup.md) |  | [optional] 
+**databricks_account_group** | [**GroupRemoteInfoDatabricksAccountGroup**](GroupRemoteInfoDatabricksAccountGroup.md) |  | [optional] 
+**connector_group** | [**GroupRemoteInfoConnectorGroup**](GroupRemoteInfoConnectorGroup.md) |  | [optional] 
 **github_team** | [**GroupRemoteInfoGithubTeam**](GroupRemoteInfoGithubTeam.md) |  | [optional] 
 **gitlab_group** | [**GroupRemoteInfoGitlabGroup**](GroupRemoteInfoGitlabGroup.md) |  | [optional] 
 **google_group** | [**GroupRemoteInfoGoogleGroup**](GroupRemoteInfoGoogleGroup.md) |  | [optional] 
@@ -18,6 +22,10 @@ Name | Type | Description | Notes
 **snowflake_role** | [**GroupRemoteInfoSnowflakeRole**](GroupRemoteInfoSnowflakeRole.md) |  | [optional] 
 **okta_group_rule** | [**GroupRemoteInfoOktaGroupRule**](GroupRemoteInfoOktaGroupRule.md) |  | [optional] 
 **workday_user_security_group** | [**GroupRemoteInfoWorkdayUserSecurityGroup**](GroupRemoteInfoWorkdayUserSecurityGroup.md) |  | [optional] 
+**pagerduty_on_call_schedule** | [**GroupRemoteInfoPagerdutyOnCallSchedule**](GroupRemoteInfoPagerdutyOnCallSchedule.md) |  | [optional] 
+**incidentio_on_call_schedule** | [**GroupRemoteInfoIncidentioOnCallSchedule**](GroupRemoteInfoIncidentioOnCallSchedule.md) |  | [optional] 
+**rootly_on_call_schedule** | [**GroupRemoteInfoRootlyOnCallSchedule**](GroupRemoteInfoRootlyOnCallSchedule.md) |  | [optional] 
+**devin_group** | [**GroupRemoteInfoDevinGroup**](GroupRemoteInfoDevinGroup.md) |  | [optional] 
 
 ## Example
 
