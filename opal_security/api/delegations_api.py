@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.create_delegation_request import CreateDelegationRequest
 from opal_security.models.delegation import Delegation
 from opal_security.models.paginated_delegations_list import PaginatedDelegationsList
@@ -319,7 +320,7 @@ class DelegationsApi:
     @validate_call
     def delete_delegation(
         self,
-        delegation_id: Annotated[StrictStr, Field(description="The ID of the delegation to remove.")],
+        delegation_id: Annotated[UUID, Field(description="The ID of the delegation to remove.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -338,7 +339,7 @@ class DelegationsApi:
         Deletes a delegation by its ID.
 
         :param delegation_id: The ID of the delegation to remove. (required)
-        :type delegation_id: str
+        :type delegation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -386,7 +387,7 @@ class DelegationsApi:
     @validate_call
     def delete_delegation_with_http_info(
         self,
-        delegation_id: Annotated[StrictStr, Field(description="The ID of the delegation to remove.")],
+        delegation_id: Annotated[UUID, Field(description="The ID of the delegation to remove.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,7 +406,7 @@ class DelegationsApi:
         Deletes a delegation by its ID.
 
         :param delegation_id: The ID of the delegation to remove. (required)
-        :type delegation_id: str
+        :type delegation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -453,7 +454,7 @@ class DelegationsApi:
     @validate_call
     def delete_delegation_without_preload_content(
         self,
-        delegation_id: Annotated[StrictStr, Field(description="The ID of the delegation to remove.")],
+        delegation_id: Annotated[UUID, Field(description="The ID of the delegation to remove.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -472,7 +473,7 @@ class DelegationsApi:
         Deletes a delegation by its ID.
 
         :param delegation_id: The ID of the delegation to remove. (required)
-        :type delegation_id: str
+        :type delegation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -573,7 +574,7 @@ class DelegationsApi:
     @validate_call
     def get_delegation(
         self,
-        delegation_id: Annotated[StrictStr, Field(description="The ID of the delegation to retrieve.")],
+        delegation_id: Annotated[UUID, Field(description="The ID of the delegation to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -592,7 +593,7 @@ class DelegationsApi:
         Returns a specific delegation by its ID.
 
         :param delegation_id: The ID of the delegation to retrieve. (required)
-        :type delegation_id: str
+        :type delegation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -640,7 +641,7 @@ class DelegationsApi:
     @validate_call
     def get_delegation_with_http_info(
         self,
-        delegation_id: Annotated[StrictStr, Field(description="The ID of the delegation to retrieve.")],
+        delegation_id: Annotated[UUID, Field(description="The ID of the delegation to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -659,7 +660,7 @@ class DelegationsApi:
         Returns a specific delegation by its ID.
 
         :param delegation_id: The ID of the delegation to retrieve. (required)
-        :type delegation_id: str
+        :type delegation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -707,7 +708,7 @@ class DelegationsApi:
     @validate_call
     def get_delegation_without_preload_content(
         self,
-        delegation_id: Annotated[StrictStr, Field(description="The ID of the delegation to retrieve.")],
+        delegation_id: Annotated[UUID, Field(description="The ID of the delegation to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -726,7 +727,7 @@ class DelegationsApi:
         Returns a specific delegation by its ID.
 
         :param delegation_id: The ID of the delegation to retrieve. (required)
-        :type delegation_id: str
+        :type delegation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -834,8 +835,8 @@ class DelegationsApi:
     @validate_call
     def get_delegations(
         self,
-        delegator_user_id: Annotated[Optional[StrictStr], Field(description="The delegator user ID to filter delegations by the user delegating their access review requests.")] = None,
-        delegate_user_id: Annotated[Optional[StrictStr], Field(description="The delegate user ID to filter delegations by the user being delegated to.")] = None,
+        delegator_user_id: Annotated[Optional[UUID], Field(description="The delegator user ID to filter delegations by the user delegating their access review requests.")] = None,
+        delegate_user_id: Annotated[Optional[UUID], Field(description="The delegate user ID to filter delegations by the user being delegated to.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor to indicate where to start fetching results.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="The maximum number of results to return per page. The default is 200.")] = None,
         _request_timeout: Union[
@@ -856,9 +857,9 @@ class DelegationsApi:
         Returns a list of request reviewer delegations configured for your organization.
 
         :param delegator_user_id: The delegator user ID to filter delegations by the user delegating their access review requests.
-        :type delegator_user_id: str
+        :type delegator_user_id: UUID
         :param delegate_user_id: The delegate user ID to filter delegations by the user being delegated to.
-        :type delegate_user_id: str
+        :type delegate_user_id: UUID
         :param cursor: A cursor to indicate where to start fetching results.
         :type cursor: str
         :param page_size: The maximum number of results to return per page. The default is 200.
@@ -913,8 +914,8 @@ class DelegationsApi:
     @validate_call
     def get_delegations_with_http_info(
         self,
-        delegator_user_id: Annotated[Optional[StrictStr], Field(description="The delegator user ID to filter delegations by the user delegating their access review requests.")] = None,
-        delegate_user_id: Annotated[Optional[StrictStr], Field(description="The delegate user ID to filter delegations by the user being delegated to.")] = None,
+        delegator_user_id: Annotated[Optional[UUID], Field(description="The delegator user ID to filter delegations by the user delegating their access review requests.")] = None,
+        delegate_user_id: Annotated[Optional[UUID], Field(description="The delegate user ID to filter delegations by the user being delegated to.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor to indicate where to start fetching results.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="The maximum number of results to return per page. The default is 200.")] = None,
         _request_timeout: Union[
@@ -935,9 +936,9 @@ class DelegationsApi:
         Returns a list of request reviewer delegations configured for your organization.
 
         :param delegator_user_id: The delegator user ID to filter delegations by the user delegating their access review requests.
-        :type delegator_user_id: str
+        :type delegator_user_id: UUID
         :param delegate_user_id: The delegate user ID to filter delegations by the user being delegated to.
-        :type delegate_user_id: str
+        :type delegate_user_id: UUID
         :param cursor: A cursor to indicate where to start fetching results.
         :type cursor: str
         :param page_size: The maximum number of results to return per page. The default is 200.
@@ -992,8 +993,8 @@ class DelegationsApi:
     @validate_call
     def get_delegations_without_preload_content(
         self,
-        delegator_user_id: Annotated[Optional[StrictStr], Field(description="The delegator user ID to filter delegations by the user delegating their access review requests.")] = None,
-        delegate_user_id: Annotated[Optional[StrictStr], Field(description="The delegate user ID to filter delegations by the user being delegated to.")] = None,
+        delegator_user_id: Annotated[Optional[UUID], Field(description="The delegator user ID to filter delegations by the user delegating their access review requests.")] = None,
+        delegate_user_id: Annotated[Optional[UUID], Field(description="The delegate user ID to filter delegations by the user being delegated to.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor to indicate where to start fetching results.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="The maximum number of results to return per page. The default is 200.")] = None,
         _request_timeout: Union[
@@ -1014,9 +1015,9 @@ class DelegationsApi:
         Returns a list of request reviewer delegations configured for your organization.
 
         :param delegator_user_id: The delegator user ID to filter delegations by the user delegating their access review requests.
-        :type delegator_user_id: str
+        :type delegator_user_id: UUID
         :param delegate_user_id: The delegate user ID to filter delegations by the user being delegated to.
-        :type delegate_user_id: str
+        :type delegate_user_id: UUID
         :param cursor: A cursor to indicate where to start fetching results.
         :type cursor: str
         :param page_size: The maximum number of results to return per page. The default is 200.

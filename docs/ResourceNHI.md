@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **str** | The ID of the resource. | 
-**non_human_identity_id** | **str** | The resource ID of the non-human identity. | 
+**resource_id** | **UUID** | The ID of the resource. | 
+**non_human_identity_id** | **UUID** | The resource ID of the non-human identity. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | [optional] 
 **expiration_date** | **datetime** | The day and time the non-human identity&#39;s access will expire. | [optional] 
 

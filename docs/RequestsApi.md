@@ -17,8 +17,6 @@ Method | HTTP request | Description
 # **approve_request**
 > ApproveRequest200Response approve_request(id, approve_request_request)
 
-
-
 Approve an access request
 
 ### Example
@@ -54,7 +52,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.RequestsApi(api_client)
-    id = 'id_example' # str | The ID of the request to approve
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to approve
     approve_request_request = opal_security.ApproveRequestRequest() # ApproveRequestRequest | Approval parameters
 
     try:
@@ -72,7 +70,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The ID of the request to approve | 
+ **id** | **UUID**| The ID of the request to approve | 
  **approve_request_request** | [**ApproveRequestRequest**](ApproveRequestRequest.md)| Approval parameters | 
 
 ### Return type
@@ -98,8 +96,6 @@ Name | Type | Description  | Notes
 
 # **create_request**
 > CreateRequest200Response create_request(create_request_info)
-
-
 
 Create an access request
 
@@ -179,8 +175,6 @@ Name | Type | Description  | Notes
 # **create_request_comment**
 > ApproveRequest200Response create_request_comment(id, create_request_comment_request)
 
-
-
 Comment on an access request
 
 ### Example
@@ -216,7 +210,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.RequestsApi(api_client)
-    id = 'id_example' # str | The ID of the request to comment on
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to comment on
     create_request_comment_request = opal_security.CreateRequestCommentRequest() # CreateRequestCommentRequest | Comment parameters
 
     try:
@@ -234,7 +228,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The ID of the request to comment on | 
+ **id** | **UUID**| The ID of the request to comment on | 
  **create_request_comment_request** | [**CreateRequestCommentRequest**](CreateRequestCommentRequest.md)| Comment parameters | 
 
 ### Return type
@@ -260,8 +254,6 @@ Name | Type | Description  | Notes
 
 # **deny_request**
 > ApproveRequest200Response deny_request(id, deny_request_request)
-
-
 
 Deny an access request
 
@@ -298,7 +290,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.RequestsApi(api_client)
-    id = 'id_example' # str | The ID of the request to deny
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to deny
     deny_request_request = opal_security.DenyRequestRequest() # DenyRequestRequest | Denial parameters
 
     try:
@@ -316,7 +308,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The ID of the request to deny | 
+ **id** | **UUID**| The ID of the request to deny | 
  **deny_request_request** | [**DenyRequestRequest**](DenyRequestRequest.md)| Denial parameters | 
 
 ### Return type
@@ -379,7 +371,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.RequestsApi(api_client)
-    id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the request.
+    id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the request.
 
     try:
         # Get request by ID
@@ -397,7 +389,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The ID of the request. | 
+ **id** | **UUID**| The ID of the request. | 
 
 ### Return type
 
@@ -423,8 +415,6 @@ Name | Type | Description  | Notes
 # **get_request_comments**
 > RequestCommentList get_request_comments(id)
 
-
-
 Returns a list of comments for a specific request.
 
 ### Example
@@ -433,6 +423,7 @@ Returns a list of comments for a specific request.
 
 ```python
 import opal_security
+from opal_security.models.request_comment_list import RequestCommentList
 from opal_security.rest import ApiException
 from pprint import pprint
 
@@ -458,7 +449,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.RequestsApi(api_client)
-    id = 'id_example' # str | The ID of the request to get comments for
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to get comments for
 
     try:
         api_response = api_instance.get_request_comments(id)
@@ -475,7 +466,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The ID of the request to get comments for | 
+ **id** | **UUID**| The ID of the request to get comments for | 
 
 ### Return type
 
@@ -539,8 +530,8 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.RequestsApi(api_client)
     start_date_filter = '2021-11-01' # str | A start date filter for the events. (optional)
     end_date_filter = '2021-11-12' # str | An end date filter for the events. (optional)
-    requester_id = '37cb7e41-12ba-46da-92ff-030abe0450b1' # str | Filter requests by their requester ID. (optional)
-    target_user_id = '37cb7e41-12ba-46da-92ff-030abe0450b1' # str | Filter requests by their target user ID. (optional)
+    requester_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by their requester ID. (optional)
+    target_user_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by their target user ID. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     show_pending_only = True # bool | Boolean toggle for if it should only show pending requests. (optional)
@@ -563,8 +554,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_date_filter** | **str**| A start date filter for the events. | [optional] 
  **end_date_filter** | **str**| An end date filter for the events. | [optional] 
- **requester_id** | **str**| Filter requests by their requester ID. | [optional] 
- **target_user_id** | **str**| Filter requests by their target user ID. | [optional] 
+ **requester_id** | **UUID**| Filter requests by their requester ID. | [optional] 
+ **target_user_id** | **UUID**| Filter requests by their target user ID. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
  **show_pending_only** | **bool**| Boolean toggle for if it should only show pending requests. | [optional] 
@@ -635,8 +626,8 @@ with opal_security.ApiClient(configuration) as api_client:
     last = 10 # int | Number of results to return before the cursor. Use either first/after or last/before, not both. (optional)
     before = 'Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw==' # str | Cursor to fetch results before. Used with 'last' for backward pagination. (optional)
     status = opal_security.RequestStatusEnum() # RequestStatusEnum | Filter requests by their status. (optional)
-    to = '37cb7e41-12ba-46da-92ff-030abe0450b1' # str | Filter requests assigned to a specific user ID. (optional)
-    var_from = '37cb7e41-12ba-46da-92ff-030abe0450b1' # str | Filter requests made by a specific user ID. (optional)
+    to = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests assigned to a specific user ID. (optional)
+    var_from = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests made by a specific user ID. (optional)
 
     try:
         # Get requests via Relay
@@ -659,8 +650,8 @@ Name | Type | Description  | Notes
  **last** | **int**| Number of results to return before the cursor. Use either first/after or last/before, not both. | [optional] 
  **before** | **str**| Cursor to fetch results before. Used with &#39;last&#39; for backward pagination. | [optional] 
  **status** | [**RequestStatusEnum**](.md)| Filter requests by their status. | [optional] 
- **to** | **str**| Filter requests assigned to a specific user ID. | [optional] 
- **var_from** | **str**| Filter requests made by a specific user ID. | [optional] 
+ **to** | **UUID**| Filter requests assigned to a specific user ID. | [optional] 
+ **var_from** | **UUID**| Filter requests made by a specific user ID. | [optional] 
 
 ### Return type
 

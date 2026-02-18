@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from opal_security.models.rule_clauses import RuleClauses
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +29,10 @@ class AccessRule(BaseModel):
     """
     # Access Rule Object ### Description The `AccessRule` object is used to represent an access rule configuration.  ### Usage Example Get access rule configurations from the `GET Access Rule Configs` endpoint.
     """ # noqa: E501
-    access_rule_id: StrictStr = Field(description="The ID (group ID) of the access rule.")
+    access_rule_id: UUID = Field(description="The ID (group ID) of the access rule.")
     name: StrictStr = Field(description="The name of the access rule.")
     description: StrictStr = Field(description="A description of the group.")
-    admin_owner_id: StrictStr = Field(description="The ID of the owner of the group.")
+    admin_owner_id: UUID = Field(description="The ID of the owner of the group.")
     status: StrictStr = Field(description="The status of the access rule.")
     rule_clauses: RuleClauses = Field(alias="ruleClauses")
     additional_properties: Dict[str, Any] = {}

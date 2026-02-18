@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.sub_event import SubEvent
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +30,8 @@ class Event(BaseModel):
     """
     # Event Object ### Description The `Event` object is used to represent an event.  ### Usage Example Fetch from the `LIST Events` endpoint.
     """ # noqa: E501
-    event_id: StrictStr = Field(description="The ID of the event.")
-    actor_user_id: StrictStr = Field(description="The ID of the actor user.")
+    event_id: UUID = Field(description="The ID of the event.")
+    actor_user_id: UUID = Field(description="The ID of the actor user.")
     actor_name: Optional[Any]
     actor_email: Optional[StrictStr] = Field(default=None, description="The email of the actor user.")
     event_type: StrictStr = Field(description="The event type.")

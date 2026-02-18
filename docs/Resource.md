@@ -6,11 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **str** | The ID of the resource. | 
-**app_id** | **str** | The ID of the app. | [optional] 
+**resource_id** | **UUID** | The ID of the resource. | 
+**app_id** | **UUID** | The ID of the app. | [optional] 
 **name** | **str** | The name of the resource. | [optional] 
 **description** | **str** | A description of the resource. | [optional] 
-**admin_owner_id** | **str** | The ID of the owner of the resource. | [optional] 
+**admin_owner_id** | **UUID** | The ID of the owner of the resource. | [optional] 
 **remote_resource_id** | **str** | The ID of the resource on the remote system. | [optional] 
 **remote_resource_name** | **str** | The name of the resource on the remote system. | [optional] 
 **resource_type** | [**ResourceTypeEnum**](ResourceTypeEnum.md) |  | [optional] 
@@ -23,10 +23,10 @@ Name | Type | Description | Notes
 **require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this resource. | [optional] 
 **require_mfa_to_connect** | **bool** | A bool representing whether or not to require MFA to connect to this resource. | [optional] 
 **auto_approval** | **bool** | A bool representing whether or not to automatically approve requests to this resource. | [optional] 
-**request_template_id** | **str** | The ID of the associated request template. | [optional] 
+**request_template_id** | **UUID** | The ID of the associated request template. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this resource. | [optional] 
-**parent_resource_id** | **str** | The ID of the parent resource. | [optional] 
-**configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
+**parent_resource_id** | **UUID** | The ID of the parent resource. | [optional] 
+**configuration_template_id** | **UUID** | The ID of the associated configuration template. | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of configurations for requests to this resource. | [optional] 
 **request_configuration_list** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of configurations for requests to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **ticket_propagation** | [**TicketPropagationConfiguration**](TicketPropagationConfiguration.md) |  | [optional] 
@@ -35,8 +35,8 @@ Name | Type | Description | Notes
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
 **metadata** | **str** | JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details. | [optional] 
 **remote_info** | [**ResourceRemoteInfo**](ResourceRemoteInfo.md) |  | [optional] 
-**ancestor_resource_ids** | **List[str]** | List of resource IDs that are ancestors of this resource. | [optional] 
-**descendant_resource_ids** | **List[str]** | List of resource IDs that are descendants of this resource. | [optional] 
+**ancestor_resource_ids** | **List[UUID]** | List of resource IDs that are ancestors of this resource. | [optional] 
+**descendant_resource_ids** | **List[UUID]** | List of resource IDs that are descendants of this resource. | [optional] 
 **last_successful_sync** | [**SyncTask**](SyncTask.md) | Information about the last successful sync of this resource. | [optional] [readonly] 
 
 ## Example

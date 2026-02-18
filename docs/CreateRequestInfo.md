@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **resources** | [**List[CreateRequestInfoResourcesInner]**](CreateRequestInfoResourcesInner.md) |  | 
 **groups** | [**List[CreateRequestInfoGroupsInner]**](CreateRequestInfoGroupsInner.md) |  | 
-**target_user_id** | **str** | The ID of the user to be granted access. Should not be specified if target_group_id is specified. | [optional] 
-**target_group_id** | **str** | The ID of the group the request is for.  Should not be specified if target_user_id is specified. | [optional] 
+**target_user_id** | **UUID** | The ID of the user to be granted access. Should not be specified if target_group_id is specified. | [optional] 
+**target_group_id** | **UUID** | The ID of the group the request is for.  Should not be specified if target_user_id is specified. | [optional] 
 **reason** | **str** |  | 
 **support_ticket** | [**CreateRequestInfoSupportTicket**](CreateRequestInfoSupportTicket.md) |  | [optional] 
 **duration_minutes** | **int** | The duration of the request in minutes. -1 represents an indefinite duration | 

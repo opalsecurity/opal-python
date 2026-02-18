@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,9 +30,9 @@ class Session(BaseModel):
     """
     # Session Object ### Description The `Session` object is used to represent an access session. Some resources can be accessed temporarily via a time-bounded session.  ### Usage Example Fetch from the `LIST Sessions` endpoint.
     """ # noqa: E501
-    connection_id: StrictStr = Field(description="The ID of the connection.")
-    user_id: StrictStr = Field(description="The ID of the user.")
-    resource_id: StrictStr = Field(description="The ID of the resource.")
+    connection_id: UUID = Field(description="The ID of the connection.")
+    user_id: UUID = Field(description="The ID of the user.")
+    resource_id: UUID = Field(description="The ID of the resource.")
     access_level: ResourceAccessLevel
     expiration_date: datetime = Field(description="The day and time the user's access will expire.")
     additional_properties: Dict[str, Any] = {}

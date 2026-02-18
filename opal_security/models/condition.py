@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class Condition(BaseModel):
     """
     # Condition Object ### Description The `Condition` object is used to represent a condition.  ### Usage Example Used to match request configurations to users in `RequestConfiguration`
     """ # noqa: E501
-    group_ids: Optional[List[StrictStr]] = Field(default=None, description="The list of group IDs to match.")
+    group_ids: Optional[List[UUID]] = Field(default=None, description="The list of group IDs to match.")
     role_remote_ids: Optional[List[StrictStr]] = Field(default=None, description="The list of role remote IDs to match.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_ids", "role_remote_ids"]

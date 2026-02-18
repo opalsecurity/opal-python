@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.ticket_propagation_configuration import TicketPropagationConfiguration
@@ -32,15 +33,15 @@ class UpdateConfigurationTemplateInfo(BaseModel):
     """
     # UpdateConfigurationTemplateInfo Object ### Description The `ConfigurationTemplate` object is used to represent an update to a configuration template.  ### Usage Example Use in the `PUT Configuration Templates` endpoint.
     """ # noqa: E501
-    configuration_template_id: StrictStr = Field(description="The ID of the configuration template.")
+    configuration_template_id: UUID = Field(description="The ID of the configuration template.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the configuration template.")
-    admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the configuration template.")
+    admin_owner_id: Optional[UUID] = Field(default=None, description="The ID of the owner of the configuration template.")
     visibility: Optional[VisibilityInfo] = Field(default=None, description="The visibility info of the configuration template.")
-    linked_audit_message_channel_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the audit message channels linked to the configuration template.")
+    linked_audit_message_channel_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of the audit message channels linked to the configuration template.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="The request configuration list linked to the configuration template.")
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="The request configuration list linked to the configuration template. Deprecated in favor of `request_configurations`.")
-    member_oncall_schedule_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the on-call schedules linked to the configuration template.")
-    break_glass_user_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the break glass users linked to the configuration template.")
+    member_oncall_schedule_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of the on-call schedules linked to the configuration template.")
+    break_glass_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of the break glass users linked to the configuration template.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to resources associated with this configuration template.")
     ticket_propagation: Optional[TicketPropagationConfiguration] = None

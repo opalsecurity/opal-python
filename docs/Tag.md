@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tag_id** | **str** | The ID of the tag. | 
+**tag_id** | **UUID** | The ID of the tag. | 
 **created_at** | **datetime** | The date the tag was created. | [optional] 
 **updated_at** | **datetime** | The date the tag was last updated. | [optional] 
-**user_creator_id** | **str** | The ID of the user that created the tag. | [optional] 
+**user_creator_id** | **UUID** | The ID of the user that created the tag. | [optional] 
 **key** | **str** | The key of the tag. | [optional] 
 **value** | **str** | The value of the tag. | [optional] 
 

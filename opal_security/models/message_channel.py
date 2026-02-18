@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.message_channel_provider_enum import MessageChannelProviderEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class MessageChannel(BaseModel):
     """
     # MessageChannel Object ### Description The `MessageChannel` object is used to represent a message channel.  ### Usage Example Update a groups message channel from the `UPDATE Groups` endpoint.
     """ # noqa: E501
-    message_channel_id: StrictStr = Field(description="The ID of the message channel.")
+    message_channel_id: UUID = Field(description="The ID of the message channel.")
     third_party_provider: Optional[MessageChannelProviderEnum] = None
     remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the message channel")
     name: Optional[StrictStr] = Field(default=None, description="The name of the message channel.")

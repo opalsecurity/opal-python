@@ -22,8 +22,6 @@ Method | HTTP request | Description
 # **add_bundle_group**
 > BundleGroup add_bundle_group(bundle_id, add_bundle_group_request)
 
-
-
 Adds a group to a bundle.
 
 ### Example
@@ -59,7 +57,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
     add_bundle_group_request = opal_security.AddBundleGroupRequest() # AddBundleGroupRequest | 
 
     try:
@@ -77,7 +75,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
  **add_bundle_group_request** | [**AddBundleGroupRequest**](AddBundleGroupRequest.md)|  | 
 
 ### Return type
@@ -103,8 +101,6 @@ Name | Type | Description  | Notes
 
 # **add_bundle_resource**
 > BundleResource add_bundle_resource(bundle_id, add_bundle_resource_request=add_bundle_resource_request)
-
-
 
 Adds a resource to a bundle.
 
@@ -141,7 +137,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
     add_bundle_resource_request = opal_security.AddBundleResourceRequest() # AddBundleResourceRequest |  (optional)
 
     try:
@@ -159,7 +155,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
  **add_bundle_resource_request** | [**AddBundleResourceRequest**](AddBundleResourceRequest.md)|  | [optional] 
 
 ### Return type
@@ -185,8 +181,6 @@ Name | Type | Description  | Notes
 
 # **create_bundle**
 > Bundle create_bundle(create_bundle_info)
-
-
 
 Creates a bundle.
 
@@ -266,8 +260,6 @@ Name | Type | Description  | Notes
 # **delete_bundle**
 > delete_bundle(bundle_id)
 
-
-
 Deletes a bundle.
 
 ### Example
@@ -301,7 +293,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
 
     try:
         api_instance.delete_bundle(bundle_id)
@@ -316,7 +308,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
 
 ### Return type
 
@@ -378,7 +370,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
 
     try:
         # Get bundle by ID
@@ -396,7 +388,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
 
 ### Return type
 
@@ -421,8 +413,6 @@ Name | Type | Description  | Notes
 
 # **get_bundle_groups**
 > PaginatedBundleGroupList get_bundle_groups(bundle_id, page_size=page_size, cursor=cursor)
-
-
 
 Returns a list of `Group` objects in a given bundle.
 
@@ -458,7 +448,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
     page_size = 200 # int | The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | A cursor indicating where to start fetching items after a specific point. (optional)
 
@@ -477,7 +467,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
  **page_size** | **int**| The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000. | [optional] 
  **cursor** | **str**| A cursor indicating where to start fetching items after a specific point. | [optional] 
 
@@ -504,8 +494,6 @@ Name | Type | Description  | Notes
 
 # **get_bundle_resources**
 > PaginatedBundleResourceList get_bundle_resources(bundle_id, page_size=page_size, cursor=cursor)
-
-
 
 Returns a list of `Resource` objects in a given bundle.
 
@@ -541,7 +529,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
     page_size = 200 # int | The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | A cursor indicating where to start fetching items after a specific point. (optional)
 
@@ -560,7 +548,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
  **page_size** | **int**| The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000. | [optional] 
  **cursor** | **str**| A cursor indicating where to start fetching items after a specific point. | [optional] 
 
@@ -587,8 +575,6 @@ Name | Type | Description  | Notes
 
 # **get_bundle_visibility**
 > VisibilityInfo get_bundle_visibility(bundle_id)
-
-
 
 Gets the visibility of the bundle.
 
@@ -624,7 +610,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
 
     try:
         api_response = api_instance.get_bundle_visibility(bundle_id)
@@ -641,7 +627,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
 
 ### Return type
 
@@ -751,8 +737,6 @@ Name | Type | Description  | Notes
 # **remove_bundle_group**
 > remove_bundle_group(bundle_id, group_id, access_level_remote_id=access_level_remote_id)
 
-
-
 Removes a group from a bundle.
 
 ### Example
@@ -786,8 +770,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
-    group_id = '72e75a6f-7183-48c5-94ff-6013f213314b' # str | The ID of the group to remove.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
+    group_id = UUID('72e75a6f-7183-48c5-94ff-6013f213314b') # UUID | The ID of the group to remove.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to remove. (optional)
 
     try:
@@ -803,8 +787,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
- **group_id** | **str**| The ID of the group to remove. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
+ **group_id** | **UUID**| The ID of the group to remove. | 
  **access_level_remote_id** | **str**| The remote ID of the access level to remove. | [optional] 
 
 ### Return type
@@ -830,8 +814,6 @@ void (empty response body)
 
 # **remove_bundle_resource**
 > remove_bundle_resource(bundle_id, resource_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a resource from a bundle.
 
@@ -866,8 +848,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
-    resource_id = '72e75a6f-7183-48c5-94ff-6013f213314b' # str | The ID of the resource to remove.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
+    resource_id = UUID('72e75a6f-7183-48c5-94ff-6013f213314b') # UUID | The ID of the resource to remove.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used. (optional)
 
     try:
@@ -883,8 +865,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
- **resource_id** | **str**| The ID of the resource to remove. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
+ **resource_id** | **UUID**| The ID of the resource to remove. | 
  **access_level_remote_id** | **str**| The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
 
 ### Return type
@@ -910,8 +892,6 @@ void (empty response body)
 
 # **set_bundle_visibility**
 > set_bundle_visibility(bundle_id, visibility_info)
-
-
 
 Sets the visibility of the bundle.
 
@@ -947,7 +927,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle.
     visibility_info = opal_security.VisibilityInfo() # VisibilityInfo | 
 
     try:
@@ -963,7 +943,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle. | 
+ **bundle_id** | **UUID**| The ID of the bundle. | 
  **visibility_info** | [**VisibilityInfo**](VisibilityInfo.md)|  | 
 
 ### Return type
@@ -989,8 +969,6 @@ void (empty response body)
 
 # **update_bundle**
 > Bundle update_bundle(bundle_id, bundle)
-
-
 
 Updates a bundle.
 
@@ -1026,7 +1004,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.BundlesApi(api_client)
-    bundle_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the bundle to be updated.
+    bundle_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the bundle to be updated.
     bundle = opal_security.Bundle() # Bundle | 
 
     try:
@@ -1044,7 +1022,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bundle_id** | **str**| The ID of the bundle to be updated. | 
+ **bundle_id** | **UUID**| The ID of the bundle to be updated. | 
  **bundle** | [**Bundle**](Bundle.md)|  | 
 
 ### Return type

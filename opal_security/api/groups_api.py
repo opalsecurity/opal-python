@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.add_group_resource_request import AddGroupResourceRequest
 from opal_security.models.add_group_user_request import AddGroupUserRequest
 from opal_security.models.create_group_info import CreateGroupInfo
@@ -66,7 +67,7 @@ class GroupsApi:
     @validate_call
     def add_group_containing_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         group_containing_group: GroupContainingGroup,
         _request_timeout: Union[
             None,
@@ -86,7 +87,7 @@ class GroupsApi:
         Creates a new containing group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param group_containing_group: (required)
         :type group_containing_group: GroupContainingGroup
         :param _request_timeout: timeout setting for this request. If one
@@ -137,7 +138,7 @@ class GroupsApi:
     @validate_call
     def add_group_containing_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         group_containing_group: GroupContainingGroup,
         _request_timeout: Union[
             None,
@@ -157,7 +158,7 @@ class GroupsApi:
         Creates a new containing group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param group_containing_group: (required)
         :type group_containing_group: GroupContainingGroup
         :param _request_timeout: timeout setting for this request. If one
@@ -208,7 +209,7 @@ class GroupsApi:
     @validate_call
     def add_group_containing_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         group_containing_group: GroupContainingGroup,
         _request_timeout: Union[
             None,
@@ -228,7 +229,7 @@ class GroupsApi:
         Creates a new containing group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param group_containing_group: (required)
         :type group_containing_group: GroupContainingGroup
         :param _request_timeout: timeout setting for this request. If one
@@ -355,8 +356,8 @@ class GroupsApi:
     @validate_call
     def add_group_resource(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_resource_request: Optional[AddGroupResourceRequest] = None,
         _request_timeout: Union[
@@ -377,9 +378,9 @@ class GroupsApi:
         Adds a resource to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param add_group_resource_request:
@@ -434,8 +435,8 @@ class GroupsApi:
     @validate_call
     def add_group_resource_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_resource_request: Optional[AddGroupResourceRequest] = None,
         _request_timeout: Union[
@@ -456,9 +457,9 @@ class GroupsApi:
         Adds a resource to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param add_group_resource_request:
@@ -513,8 +514,8 @@ class GroupsApi:
     @validate_call
     def add_group_resource_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_resource_request: Optional[AddGroupResourceRequest] = None,
         _request_timeout: Union[
@@ -535,9 +536,9 @@ class GroupsApi:
         Adds a resource to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param add_group_resource_request:
@@ -676,8 +677,8 @@ class GroupsApi:
     @validate_call
     def add_group_user(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to add.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
         duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_user_request: Optional[AddGroupUserRequest] = None,
@@ -699,9 +700,9 @@ class GroupsApi:
         Adds a user to this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of the user to add. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param duration_minutes: The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.
         :type duration_minutes: int
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
@@ -759,8 +760,8 @@ class GroupsApi:
     @validate_call
     def add_group_user_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to add.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
         duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_user_request: Optional[AddGroupUserRequest] = None,
@@ -782,9 +783,9 @@ class GroupsApi:
         Adds a user to this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of the user to add. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param duration_minutes: The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.
         :type duration_minutes: int
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
@@ -842,8 +843,8 @@ class GroupsApi:
     @validate_call
     def add_group_user_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to add.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
         duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_user_request: Optional[AddGroupUserRequest] = None,
@@ -865,9 +866,9 @@ class GroupsApi:
         Adds a user to this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of the user to add. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param duration_minutes: The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.
         :type duration_minutes: int
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
@@ -1288,7 +1289,7 @@ class GroupsApi:
     @validate_call
     def delete_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1307,7 +1308,7 @@ class GroupsApi:
         Deletes a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1355,7 +1356,7 @@ class GroupsApi:
     @validate_call
     def delete_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1374,7 +1375,7 @@ class GroupsApi:
         Deletes a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1422,7 +1423,7 @@ class GroupsApi:
     @validate_call
     def delete_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1441,7 +1442,7 @@ class GroupsApi:
         Deletes a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1542,8 +1543,8 @@ class GroupsApi:
     @validate_call
     def delete_group_user(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of a user to remove from this group.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1563,9 +1564,9 @@ class GroupsApi:
         Removes a user's access from this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of a user to remove from this group. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1617,8 +1618,8 @@ class GroupsApi:
     @validate_call
     def delete_group_user_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of a user to remove from this group.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1638,9 +1639,9 @@ class GroupsApi:
         Removes a user's access from this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of a user to remove from this group. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1692,8 +1693,8 @@ class GroupsApi:
     @validate_call
     def delete_group_user_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of a user to remove from this group.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1713,9 +1714,9 @@ class GroupsApi:
         Removes a user's access from this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of a user to remove from this group. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1828,7 +1829,7 @@ class GroupsApi:
     @validate_call
     def get_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1847,7 +1848,7 @@ class GroupsApi:
         Returns a `Group` object.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1895,7 +1896,7 @@ class GroupsApi:
     @validate_call
     def get_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1914,7 +1915,7 @@ class GroupsApi:
         Returns a `Group` object.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1962,7 +1963,7 @@ class GroupsApi:
     @validate_call
     def get_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1981,7 +1982,7 @@ class GroupsApi:
         Returns a `Group` object.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2089,8 +2090,8 @@ class GroupsApi:
     @validate_call
     def get_group_containing_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        containing_group_id: Annotated[UUID, Field(description="The ID of the containing group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2109,9 +2110,9 @@ class GroupsApi:
         Gets a specific containing group for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param containing_group_id: The ID of the containing group. (required)
-        :type containing_group_id: str
+        :type containing_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2160,8 +2161,8 @@ class GroupsApi:
     @validate_call
     def get_group_containing_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        containing_group_id: Annotated[UUID, Field(description="The ID of the containing group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2180,9 +2181,9 @@ class GroupsApi:
         Gets a specific containing group for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param containing_group_id: The ID of the containing group. (required)
-        :type containing_group_id: str
+        :type containing_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2231,8 +2232,8 @@ class GroupsApi:
     @validate_call
     def get_group_containing_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        containing_group_id: Annotated[UUID, Field(description="The ID of the containing group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2251,9 +2252,9 @@ class GroupsApi:
         Gets a specific containing group for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param containing_group_id: The ID of the containing group. (required)
-        :type containing_group_id: str
+        :type containing_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2365,7 +2366,7 @@ class GroupsApi:
     @validate_call
     def get_group_containing_groups(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2384,7 +2385,7 @@ class GroupsApi:
         Gets the list of groups that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2432,7 +2433,7 @@ class GroupsApi:
     @validate_call
     def get_group_containing_groups_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2451,7 +2452,7 @@ class GroupsApi:
         Gets the list of groups that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2499,7 +2500,7 @@ class GroupsApi:
     @validate_call
     def get_group_containing_groups_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2518,7 +2519,7 @@ class GroupsApi:
         Gets the list of groups that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2626,7 +2627,7 @@ class GroupsApi:
     @validate_call
     def get_group_message_channels(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2645,7 +2646,7 @@ class GroupsApi:
         Gets the list of audit and reviewer message channels attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2693,7 +2694,7 @@ class GroupsApi:
     @validate_call
     def get_group_message_channels_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2712,7 +2713,7 @@ class GroupsApi:
         Gets the list of audit and reviewer message channels attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2760,7 +2761,7 @@ class GroupsApi:
     @validate_call
     def get_group_message_channels_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2779,7 +2780,7 @@ class GroupsApi:
         Gets the list of audit and reviewer message channels attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2887,7 +2888,7 @@ class GroupsApi:
     @validate_call
     def get_group_on_call_schedules(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2906,7 +2907,7 @@ class GroupsApi:
         Gets the list of on call schedules attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2954,7 +2955,7 @@ class GroupsApi:
     @validate_call
     def get_group_on_call_schedules_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2973,7 +2974,7 @@ class GroupsApi:
         Gets the list of on call schedules attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3021,7 +3022,7 @@ class GroupsApi:
     @validate_call
     def get_group_on_call_schedules_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3040,7 +3041,7 @@ class GroupsApi:
         Gets the list of on call schedules attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3148,7 +3149,7 @@ class GroupsApi:
     @validate_call
     def get_group_resources(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3167,7 +3168,7 @@ class GroupsApi:
         Gets the list of resources that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3215,7 +3216,7 @@ class GroupsApi:
     @validate_call
     def get_group_resources_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3234,7 +3235,7 @@ class GroupsApi:
         Gets the list of resources that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3282,7 +3283,7 @@ class GroupsApi:
     @validate_call
     def get_group_resources_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3301,7 +3302,7 @@ class GroupsApi:
         Gets the list of resources that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3409,7 +3410,7 @@ class GroupsApi:
     @validate_call
     def get_group_reviewer_stages(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3428,7 +3429,7 @@ class GroupsApi:
         Gets the list of reviewer stages for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3477,7 +3478,7 @@ class GroupsApi:
     @validate_call
     def get_group_reviewer_stages_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3496,7 +3497,7 @@ class GroupsApi:
         Gets the list of reviewer stages for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3545,7 +3546,7 @@ class GroupsApi:
     @validate_call
     def get_group_reviewer_stages_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3564,7 +3565,7 @@ class GroupsApi:
         Gets the list of reviewer stages for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3673,7 +3674,7 @@ class GroupsApi:
     @validate_call
     def get_group_reviewers(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3686,13 +3687,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[str]:
+    ) -> List[UUID]:
         """(Deprecated) get_group_reviewers
 
         Gets the list of owner IDs of the reviewers for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3725,7 +3726,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3741,7 +3742,7 @@ class GroupsApi:
     @validate_call
     def get_group_reviewers_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3754,13 +3755,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[str]]:
+    ) -> ApiResponse[List[UUID]]:
         """(Deprecated) get_group_reviewers
 
         Gets the list of owner IDs of the reviewers for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3793,7 +3794,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3809,7 +3810,7 @@ class GroupsApi:
     @validate_call
     def get_group_reviewers_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3828,7 +3829,7 @@ class GroupsApi:
         Gets the list of owner IDs of the reviewers for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3861,7 +3862,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3937,7 +3938,7 @@ class GroupsApi:
     @validate_call
     def get_group_tags(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group whose tags to return.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3956,7 +3957,7 @@ class GroupsApi:
         Returns all tags applied to the group.
 
         :param group_id: The ID of the group whose tags to return. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4004,7 +4005,7 @@ class GroupsApi:
     @validate_call
     def get_group_tags_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group whose tags to return.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4023,7 +4024,7 @@ class GroupsApi:
         Returns all tags applied to the group.
 
         :param group_id: The ID of the group whose tags to return. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4071,7 +4072,7 @@ class GroupsApi:
     @validate_call
     def get_group_tags_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group whose tags to return.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4090,7 +4091,7 @@ class GroupsApi:
         Returns all tags applied to the group.
 
         :param group_id: The ID of the group whose tags to return. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4198,7 +4199,7 @@ class GroupsApi:
     @validate_call
     def get_group_users(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         _request_timeout: Union[
@@ -4219,7 +4220,7 @@ class GroupsApi:
         Gets the list of users for this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -4273,7 +4274,7 @@ class GroupsApi:
     @validate_call
     def get_group_users_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         _request_timeout: Union[
@@ -4294,7 +4295,7 @@ class GroupsApi:
         Gets the list of users for this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -4348,7 +4349,7 @@ class GroupsApi:
     @validate_call
     def get_group_users_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         _request_timeout: Union[
@@ -4369,7 +4370,7 @@ class GroupsApi:
         Gets the list of users for this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -4493,7 +4494,7 @@ class GroupsApi:
     @validate_call
     def get_group_visibility(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4512,7 +4513,7 @@ class GroupsApi:
         Gets the visibility of this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4560,7 +4561,7 @@ class GroupsApi:
     @validate_call
     def get_group_visibility_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4579,7 +4580,7 @@ class GroupsApi:
         Gets the visibility of this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4627,7 +4628,7 @@ class GroupsApi:
     @validate_call
     def get_group_visibility_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4646,7 +4647,7 @@ class GroupsApi:
         Gets the visibility of this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4757,7 +4758,7 @@ class GroupsApi:
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
-        group_ids: Annotated[Optional[List[StrictStr]], Field(description="The group ids to filter by.")] = None,
+        group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
         group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
         _request_timeout: Union[
             None,
@@ -4783,7 +4784,7 @@ class GroupsApi:
         :param group_type_filter: The group type to filter by.
         :type group_type_filter: GroupTypeEnum
         :param group_ids: The group ids to filter by.
-        :type group_ids: List[str]
+        :type group_ids: List[UUID]
         :param group_name: Group name.
         :type group_name: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4840,7 +4841,7 @@ class GroupsApi:
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
-        group_ids: Annotated[Optional[List[StrictStr]], Field(description="The group ids to filter by.")] = None,
+        group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
         group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
         _request_timeout: Union[
             None,
@@ -4866,7 +4867,7 @@ class GroupsApi:
         :param group_type_filter: The group type to filter by.
         :type group_type_filter: GroupTypeEnum
         :param group_ids: The group ids to filter by.
-        :type group_ids: List[str]
+        :type group_ids: List[UUID]
         :param group_name: Group name.
         :type group_name: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4923,7 +4924,7 @@ class GroupsApi:
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
-        group_ids: Annotated[Optional[List[StrictStr]], Field(description="The group ids to filter by.")] = None,
+        group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
         group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
         _request_timeout: Union[
             None,
@@ -4949,7 +4950,7 @@ class GroupsApi:
         :param group_type_filter: The group type to filter by.
         :type group_type_filter: GroupTypeEnum
         :param group_ids: The group ids to filter by.
-        :type group_ids: List[str]
+        :type group_ids: List[UUID]
         :param group_name: Group name.
         :type group_name: str
         :param _request_timeout: timeout setting for this request. If one
@@ -5086,7 +5087,7 @@ class GroupsApi:
     @validate_call
     def get_user_groups(
         self,
-        user_id: Annotated[StrictStr, Field(description="The ID of the user whose groups to return.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user whose groups to return.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         _request_timeout: Union[
@@ -5107,7 +5108,7 @@ class GroupsApi:
         Returns all groups that the user is a member of.
 
         :param user_id: The ID of the user whose groups to return. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -5161,7 +5162,7 @@ class GroupsApi:
     @validate_call
     def get_user_groups_with_http_info(
         self,
-        user_id: Annotated[StrictStr, Field(description="The ID of the user whose groups to return.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user whose groups to return.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         _request_timeout: Union[
@@ -5182,7 +5183,7 @@ class GroupsApi:
         Returns all groups that the user is a member of.
 
         :param user_id: The ID of the user whose groups to return. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -5236,7 +5237,7 @@ class GroupsApi:
     @validate_call
     def get_user_groups_without_preload_content(
         self,
-        user_id: Annotated[StrictStr, Field(description="The ID of the user whose groups to return.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user whose groups to return.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         _request_timeout: Union[
@@ -5257,7 +5258,7 @@ class GroupsApi:
         Returns all groups that the user is a member of.
 
         :param user_id: The ID of the user whose groups to return. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -5381,8 +5382,9 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the member group to remove.")],
+        containing_group_id: Annotated[UUID, Field(description="The ID of the containing group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the member group's access level to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5400,10 +5402,12 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :param group_id: The ID of the member group to remove. (required)
+        :type group_id: UUID
         :param containing_group_id: The ID of the containing group. (required)
-        :type containing_group_id: str
+        :type containing_group_id: UUID
+        :param access_level_remote_id: The remote ID of the member group's access level to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5429,6 +5433,7 @@ class GroupsApi:
         _param = self._remove_group_containing_group_serialize(
             group_id=group_id,
             containing_group_id=containing_group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5452,8 +5457,9 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the member group to remove.")],
+        containing_group_id: Annotated[UUID, Field(description="The ID of the containing group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the member group's access level to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5471,10 +5477,12 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :param group_id: The ID of the member group to remove. (required)
+        :type group_id: UUID
         :param containing_group_id: The ID of the containing group. (required)
-        :type containing_group_id: str
+        :type containing_group_id: UUID
+        :param access_level_remote_id: The remote ID of the member group's access level to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5500,6 +5508,7 @@ class GroupsApi:
         _param = self._remove_group_containing_group_serialize(
             group_id=group_id,
             containing_group_id=containing_group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5523,8 +5532,9 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the member group to remove.")],
+        containing_group_id: Annotated[UUID, Field(description="The ID of the containing group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the member group's access level to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5542,10 +5552,12 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :param group_id: The ID of the member group to remove. (required)
+        :type group_id: UUID
         :param containing_group_id: The ID of the containing group. (required)
-        :type containing_group_id: str
+        :type containing_group_id: UUID
+        :param access_level_remote_id: The remote ID of the member group's access level to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5571,6 +5583,7 @@ class GroupsApi:
         _param = self._remove_group_containing_group_serialize(
             group_id=group_id,
             containing_group_id=containing_group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5591,6 +5604,7 @@ class GroupsApi:
         self,
         group_id,
         containing_group_id,
+        access_level_remote_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5617,6 +5631,10 @@ class GroupsApi:
         if containing_group_id is not None:
             _path_params['containing_group_id'] = containing_group_id
         # process the query parameters
+        if access_level_remote_id is not None:
+            
+            _query_params.append(('access_level_remote_id', access_level_remote_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -5650,7 +5668,7 @@ class GroupsApi:
     @validate_call
     def set_group_message_channels(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         message_channel_id_list: MessageChannelIDList,
         _request_timeout: Union[
             None,
@@ -5664,13 +5682,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[str]:
+    ) -> List[UUID]:
         """set_group_message_channels
 
         Sets the list of audit message channels attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param message_channel_id_list: (required)
         :type message_channel_id_list: MessageChannelIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5705,7 +5723,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5721,7 +5739,7 @@ class GroupsApi:
     @validate_call
     def set_group_message_channels_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         message_channel_id_list: MessageChannelIDList,
         _request_timeout: Union[
             None,
@@ -5735,13 +5753,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[str]]:
+    ) -> ApiResponse[List[UUID]]:
         """set_group_message_channels
 
         Sets the list of audit message channels attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param message_channel_id_list: (required)
         :type message_channel_id_list: MessageChannelIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5776,7 +5794,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5792,7 +5810,7 @@ class GroupsApi:
     @validate_call
     def set_group_message_channels_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         message_channel_id_list: MessageChannelIDList,
         _request_timeout: Union[
             None,
@@ -5812,7 +5830,7 @@ class GroupsApi:
         Sets the list of audit message channels attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param message_channel_id_list: (required)
         :type message_channel_id_list: MessageChannelIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5847,7 +5865,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5939,7 +5957,7 @@ class GroupsApi:
     @validate_call
     def set_group_on_call_schedules(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         on_call_schedule_id_list: OnCallScheduleIDList,
         _request_timeout: Union[
             None,
@@ -5953,13 +5971,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[str]:
+    ) -> List[UUID]:
         """set_group_on_call_schedules
 
         Sets the list of on call schedules attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param on_call_schedule_id_list: (required)
         :type on_call_schedule_id_list: OnCallScheduleIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5994,7 +6012,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6010,7 +6028,7 @@ class GroupsApi:
     @validate_call
     def set_group_on_call_schedules_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         on_call_schedule_id_list: OnCallScheduleIDList,
         _request_timeout: Union[
             None,
@@ -6024,13 +6042,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[str]]:
+    ) -> ApiResponse[List[UUID]]:
         """set_group_on_call_schedules
 
         Sets the list of on call schedules attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param on_call_schedule_id_list: (required)
         :type on_call_schedule_id_list: OnCallScheduleIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6065,7 +6083,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6081,7 +6099,7 @@ class GroupsApi:
     @validate_call
     def set_group_on_call_schedules_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         on_call_schedule_id_list: OnCallScheduleIDList,
         _request_timeout: Union[
             None,
@@ -6101,7 +6119,7 @@ class GroupsApi:
         Sets the list of on call schedules attached to a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param on_call_schedule_id_list: (required)
         :type on_call_schedule_id_list: OnCallScheduleIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6136,7 +6154,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6228,7 +6246,7 @@ class GroupsApi:
     @validate_call
     def set_group_resources(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         update_group_resources_info: UpdateGroupResourcesInfo,
         _request_timeout: Union[
             None,
@@ -6248,7 +6266,7 @@ class GroupsApi:
         Sets the list of resources that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param update_group_resources_info: (required)
         :type update_group_resources_info: UpdateGroupResourcesInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -6299,7 +6317,7 @@ class GroupsApi:
     @validate_call
     def set_group_resources_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         update_group_resources_info: UpdateGroupResourcesInfo,
         _request_timeout: Union[
             None,
@@ -6319,7 +6337,7 @@ class GroupsApi:
         Sets the list of resources that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param update_group_resources_info: (required)
         :type update_group_resources_info: UpdateGroupResourcesInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -6370,7 +6388,7 @@ class GroupsApi:
     @validate_call
     def set_group_resources_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         update_group_resources_info: UpdateGroupResourcesInfo,
         _request_timeout: Union[
             None,
@@ -6390,7 +6408,7 @@ class GroupsApi:
         Sets the list of resources that the group gives access to.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param update_group_resources_info: (required)
         :type update_group_resources_info: UpdateGroupResourcesInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -6510,7 +6528,7 @@ class GroupsApi:
     @validate_call
     def set_group_reviewer_stages(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         reviewer_stage_list: ReviewerStageList,
         _request_timeout: Union[
             None,
@@ -6530,7 +6548,7 @@ class GroupsApi:
         Sets the list of reviewer stages for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param reviewer_stage_list: (required)
         :type reviewer_stage_list: ReviewerStageList
         :param _request_timeout: timeout setting for this request. If one
@@ -6582,7 +6600,7 @@ class GroupsApi:
     @validate_call
     def set_group_reviewer_stages_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         reviewer_stage_list: ReviewerStageList,
         _request_timeout: Union[
             None,
@@ -6602,7 +6620,7 @@ class GroupsApi:
         Sets the list of reviewer stages for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param reviewer_stage_list: (required)
         :type reviewer_stage_list: ReviewerStageList
         :param _request_timeout: timeout setting for this request. If one
@@ -6654,7 +6672,7 @@ class GroupsApi:
     @validate_call
     def set_group_reviewer_stages_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         reviewer_stage_list: ReviewerStageList,
         _request_timeout: Union[
             None,
@@ -6674,7 +6692,7 @@ class GroupsApi:
         Sets the list of reviewer stages for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param reviewer_stage_list: (required)
         :type reviewer_stage_list: ReviewerStageList
         :param _request_timeout: timeout setting for this request. If one
@@ -6802,7 +6820,7 @@ class GroupsApi:
     @validate_call
     def set_group_reviewers(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         reviewer_id_list: ReviewerIDList,
         _request_timeout: Union[
             None,
@@ -6816,13 +6834,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[str]:
+    ) -> List[UUID]:
         """(Deprecated) set_group_reviewers
 
         Sets the list of reviewers for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param reviewer_id_list: (required)
         :type reviewer_id_list: ReviewerIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6858,7 +6876,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6874,7 +6892,7 @@ class GroupsApi:
     @validate_call
     def set_group_reviewers_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         reviewer_id_list: ReviewerIDList,
         _request_timeout: Union[
             None,
@@ -6888,13 +6906,13 @@ class GroupsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[str]]:
+    ) -> ApiResponse[List[UUID]]:
         """(Deprecated) set_group_reviewers
 
         Sets the list of reviewers for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param reviewer_id_list: (required)
         :type reviewer_id_list: ReviewerIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6930,7 +6948,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6946,7 +6964,7 @@ class GroupsApi:
     @validate_call
     def set_group_reviewers_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         reviewer_id_list: ReviewerIDList,
         _request_timeout: Union[
             None,
@@ -6966,7 +6984,7 @@ class GroupsApi:
         Sets the list of reviewers for a group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param reviewer_id_list: (required)
         :type reviewer_id_list: ReviewerIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -7002,7 +7020,7 @@ class GroupsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
+            '200': "List[UUID]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -7094,7 +7112,7 @@ class GroupsApi:
     @validate_call
     def set_group_visibility(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -7114,7 +7132,7 @@ class GroupsApi:
         Sets the visibility of this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -7165,7 +7183,7 @@ class GroupsApi:
     @validate_call
     def set_group_visibility_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -7185,7 +7203,7 @@ class GroupsApi:
         Sets the visibility of this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -7236,7 +7254,7 @@ class GroupsApi:
     @validate_call
     def set_group_visibility_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -7256,7 +7274,7 @@ class GroupsApi:
         Sets the visibility of this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -7383,8 +7401,8 @@ class GroupsApi:
     @validate_call
     def update_group_user(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user whose access is being updated.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user whose access is being updated.")],
         update_group_user_request: UpdateGroupUserRequest,
         _request_timeout: Union[
             None,
@@ -7404,9 +7422,9 @@ class GroupsApi:
         Updates a user's access level or duration in this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of the user whose access is being updated. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_group_user_request: (required)
         :type update_group_user_request: UpdateGroupUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -7458,8 +7476,8 @@ class GroupsApi:
     @validate_call
     def update_group_user_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user whose access is being updated.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user whose access is being updated.")],
         update_group_user_request: UpdateGroupUserRequest,
         _request_timeout: Union[
             None,
@@ -7479,9 +7497,9 @@ class GroupsApi:
         Updates a user's access level or duration in this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of the user whose access is being updated. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_group_user_request: (required)
         :type update_group_user_request: UpdateGroupUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -7533,8 +7551,8 @@ class GroupsApi:
     @validate_call
     def update_group_user_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user whose access is being updated.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user whose access is being updated.")],
         update_group_user_request: UpdateGroupUserRequest,
         _request_timeout: Union[
             None,
@@ -7554,9 +7572,9 @@ class GroupsApi:
         Updates a user's access level or duration in this group.
 
         :param group_id: The ID of the group. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param user_id: The ID of the user whose access is being updated. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_group_user_request: (required)
         :type update_group_user_request: UpdateGroupUserRequest
         :param _request_timeout: timeout setting for this request. If one

@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_message_channel**
 > MessageChannel create_message_channel(create_message_channel_info)
 
-
-
 Creates a `MessageChannel` objects.
 
 ### Example
@@ -128,7 +126,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.MessageChannelsApi(api_client)
-    message_channel_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the message_channel.
+    message_channel_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the message_channel.
 
     try:
         # Get message channel by ID
@@ -146,7 +144,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **message_channel_id** | **str**| The ID of the message_channel. | 
+ **message_channel_id** | **UUID**| The ID of the message_channel. | 
 
 ### Return type
 

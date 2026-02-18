@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.resource_remote_info import ResourceRemoteInfo
 from opal_security.models.resource_type_enum import ResourceTypeEnum
@@ -34,11 +35,11 @@ class Resource(BaseModel):
     """
     # Resource Object ### Description The `Resource` object is used to represent a resource.  ### Usage Example Update from the `UPDATE Resources` endpoint.
     """ # noqa: E501
-    resource_id: StrictStr = Field(description="The ID of the resource.")
-    app_id: Optional[StrictStr] = Field(default=None, description="The ID of the app.")
+    resource_id: UUID = Field(description="The ID of the resource.")
+    app_id: Optional[UUID] = Field(default=None, description="The ID of the app.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the resource.")
     description: Optional[StrictStr] = Field(default=None, description="A description of the resource.")
-    admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the resource.")
+    admin_owner_id: Optional[UUID] = Field(default=None, description="The ID of the owner of the resource.")
     remote_resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource on the remote system.")
     remote_resource_name: Optional[StrictStr] = Field(default=None, description="The name of the resource on the remote system.")
     resource_type: Optional[ResourceTypeEnum] = None
@@ -51,10 +52,10 @@ class Resource(BaseModel):
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this resource.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to this resource.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this resource.")
-    request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template.")
+    request_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated request template.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this resource.")
-    parent_resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the parent resource.")
-    configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
+    parent_resource_id: Optional[UUID] = Field(default=None, description="The ID of the parent resource.")
+    configuration_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated configuration template.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource.")
     request_configuration_list: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource. Deprecated in favor of `request_configurations`.")
     ticket_propagation: Optional[TicketPropagationConfiguration] = None
@@ -63,8 +64,8 @@ class Resource(BaseModel):
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
     metadata: Optional[StrictStr] = Field(default=None, description="JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.")
     remote_info: Optional[ResourceRemoteInfo] = None
-    ancestor_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are ancestors of this resource.")
-    descendant_resource_ids: Optional[List[StrictStr]] = Field(default=None, description="List of resource IDs that are descendants of this resource.")
+    ancestor_resource_ids: Optional[List[UUID]] = Field(default=None, description="List of resource IDs that are ancestors of this resource.")
+    descendant_resource_ids: Optional[List[UUID]] = Field(default=None, description="List of resource IDs that are descendants of this resource.")
     last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this resource.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids", "last_successful_sync"]

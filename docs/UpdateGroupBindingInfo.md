@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_binding_id** | **str** | The ID of the group binding. | 
-**source_group_id** | **str** | The ID of the source group. | 
+**group_binding_id** | **UUID** | The ID of the group binding. | 
+**source_group_id** | **UUID** | The ID of the source group. | 
 **groups** | [**List[CreateGroupBindingInfoGroupsInner]**](CreateGroupBindingInfoGroupsInner.md) | The list of groups. | 
 
 ## Example

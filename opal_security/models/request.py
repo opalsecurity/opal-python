@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse
 from opal_security.models.request_item_stages import RequestItemStages
 from opal_security.models.request_reviewer_stages import RequestReviewerStages
@@ -33,19 +34,19 @@ class Request(BaseModel):
     """
     # Request Object ### Description The `Request` object is used to represent a request.  ### Usage Example Returned from the `GET Requests` endpoint.
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier of the request.")
+    id: UUID = Field(description="The unique identifier of the request.")
     created_at: datetime = Field(description="The date and time the request was created.")
     updated_at: datetime = Field(description="The date and time the request was last updated.")
-    requester_id: StrictStr = Field(description="The unique identifier of the user who created the request.")
-    target_user_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the user who is the target of the request.")
-    target_group_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the group who is the target of the request.")
+    requester_id: UUID = Field(description="The unique identifier of the user who created the request.")
+    target_user_id: Optional[UUID] = Field(default=None, description="The unique identifier of the user who is the target of the request.")
+    target_group_id: Optional[UUID] = Field(default=None, description="The unique identifier of the group who is the target of the request.")
     status: RequestStatusEnum = Field(description="The status of the request.")
     reason: StrictStr = Field(description="The reason for the request.")
     duration_minutes: Optional[StrictInt] = Field(default=None, description="The duration of the request in minutes.")
     requested_items_list: Optional[List[RequestedItem]] = Field(default=None, description="The list of targets for the request.")
     custom_fields_responses: Optional[List[RequestCustomFieldResponse]] = Field(default=None, description="The responses given to the custom fields associated to the request")
     stages: Optional[RequestItemStages] = Field(default=None, description="The stages configuration for this request")
-    reviewer_stages: Optional[List[RequestReviewerStages]] = Field(default=None, description="The configured reviewer stages for every item in this request")
+    reviewer_stages: Optional[RequestReviewerStages] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "target_user_id", "target_group_id", "status", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses", "stages", "reviewer_stages"]
 
@@ -107,13 +108,9 @@ class Request(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of stages
         if self.stages:
             _dict['stages'] = self.stages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in reviewer_stages (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of reviewer_stages
         if self.reviewer_stages:
-            for _item_reviewer_stages in self.reviewer_stages:
-                if _item_reviewer_stages:
-                    _items.append(_item_reviewer_stages.to_dict())
-            _dict['reviewer_stages'] = _items
+            _dict['reviewer_stages'] = self.reviewer_stages.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -143,7 +140,7 @@ class Request(BaseModel):
             "requested_items_list": [RequestedItem.from_dict(_item) for _item in obj["requested_items_list"]] if obj.get("requested_items_list") is not None else None,
             "custom_fields_responses": [RequestCustomFieldResponse.from_dict(_item) for _item in obj["custom_fields_responses"]] if obj.get("custom_fields_responses") is not None else None,
             "stages": RequestItemStages.from_dict(obj["stages"]) if obj.get("stages") is not None else None,
-            "reviewer_stages": [RequestReviewerStages.from_dict(_item) for _item in obj["reviewer_stages"]] if obj.get("reviewer_stages") is not None else None
+            "reviewer_stages": RequestReviewerStages.from_dict(obj["reviewer_stages"]) if obj.get("reviewer_stages") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

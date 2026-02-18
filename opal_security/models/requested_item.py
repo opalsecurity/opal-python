@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class RequestedItem(BaseModel):
     """
     # Requested Item Object ### Description The `RequestedItem` object is used to represent a request target item.  ### Usage Example Returned from the `GET Requests` endpoint.
     """ # noqa: E501
-    resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource requested.")
-    group_id: Optional[StrictStr] = Field(default=None, description="The ID of the group requested.")
+    resource_id: Optional[UUID] = Field(default=None, description="The ID of the resource requested.")
+    group_id: Optional[UUID] = Field(default=None, description="The ID of the group requested.")
     access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level requested.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the access level requested on the remote system.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the target.")

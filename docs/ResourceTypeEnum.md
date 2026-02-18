@@ -142,6 +142,18 @@ The type of the resource.
 
 * `ORACLE_FUSION_ROLE` (value: `'ORACLE_FUSION_ROLE'`)
 
+* `DEVIN_ORGANIZATION` (value: `'DEVIN_ORGANIZATION'`)
+
+* `DEVIN_ROLE` (value: `'DEVIN_ROLE'`)
+
+* `VAULT_SECRET` (value: `'VAULT_SECRET'`)
+
+* `VAULT_POLICY` (value: `'VAULT_POLICY'`)
+
+* `VAULT_OIDC_ROLE` (value: `'VAULT_OIDC_ROLE'`)
+
+* `GIT_HUB_ENTERPRISE_ROLE` (value: `'GIT_HUB_ENTERPRISE_ROLE'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

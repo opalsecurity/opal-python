@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.create_uar_info import CreateUARInfo
 from opal_security.models.paginated_uars_list import PaginatedUARsList
 from opal_security.models.uar import UAR
@@ -319,7 +320,7 @@ class UarsApi:
     @validate_call
     def get_uar(
         self,
-        uar_id: Annotated[StrictStr, Field(description="The ID of the UAR.")],
+        uar_id: Annotated[UUID, Field(description="The ID of the UAR.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -338,7 +339,7 @@ class UarsApi:
         Retrieves a specific UAR.
 
         :param uar_id: The ID of the UAR. (required)
-        :type uar_id: str
+        :type uar_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -386,7 +387,7 @@ class UarsApi:
     @validate_call
     def get_uar_with_http_info(
         self,
-        uar_id: Annotated[StrictStr, Field(description="The ID of the UAR.")],
+        uar_id: Annotated[UUID, Field(description="The ID of the UAR.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,7 +406,7 @@ class UarsApi:
         Retrieves a specific UAR.
 
         :param uar_id: The ID of the UAR. (required)
-        :type uar_id: str
+        :type uar_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -453,7 +454,7 @@ class UarsApi:
     @validate_call
     def get_uar_without_preload_content(
         self,
-        uar_id: Annotated[StrictStr, Field(description="The ID of the UAR.")],
+        uar_id: Annotated[UUID, Field(description="The ID of the UAR.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -472,7 +473,7 @@ class UarsApi:
         Retrieves a specific UAR.
 
         :param uar_id: The ID of the UAR. (required)
-        :type uar_id: str
+        :type uar_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

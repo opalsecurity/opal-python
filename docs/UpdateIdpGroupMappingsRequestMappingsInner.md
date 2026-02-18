@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_id** | **str** |  | [optional] 
+**group_id** | **UUID** |  | [optional] 
 **alias** | **str** |  | [optional] 
 **hidden_from_end_user** | **bool** |  | [optional] 
 

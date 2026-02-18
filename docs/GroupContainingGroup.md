@@ -6,7 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**containing_group_id** | **str** | The groupID of the containing group. | 
+**containing_group_id** | **UUID** | The groupID of the containing group. | 
+**duration_minutes** | **int** | The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite. | [optional] 
+**access_level_remote_id** | **str** | The updated remote ID of the access level granted to this group. | [optional] 
 
 ## Example
 

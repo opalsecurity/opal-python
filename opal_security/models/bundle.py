@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,12 +29,12 @@ class Bundle(BaseModel):
     """
     Bundle
     """ # noqa: E501
-    bundle_id: Optional[StrictStr] = Field(default=None, description="The ID of the bundle.")
+    bundle_id: Optional[UUID] = Field(default=None, description="The ID of the bundle.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the bundle.")
     description: Optional[StrictStr] = Field(default=None, description="The description of the bundle.")
     created_at: Optional[datetime] = Field(default=None, description="The creation timestamp of the bundle, in ISO 8601 format")
     updated_at: Optional[datetime] = Field(default=None, description="The last updated timestamp of the bundle, in ISO 8601 format")
-    admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the bundle.")
+    admin_owner_id: Optional[UUID] = Field(default=None, description="The ID of the owner of the bundle.")
     total_num_items: Optional[StrictInt] = Field(default=None, description="The total number of items in the bundle.")
     total_num_resources: Optional[StrictInt] = Field(default=None, description="The total number of resources in the bundle.")
     total_num_groups: Optional[StrictInt] = Field(default=None, description="The total number of groups in the bundle.")

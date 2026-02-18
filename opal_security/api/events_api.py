@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.paginated_event_list import PaginatedEventList
 
 from opal_security.api_client import ApiClient, RequestSerialized
@@ -45,8 +46,8 @@ class EventsApi:
         self,
         start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
-        actor_filter: Annotated[Optional[StrictStr], Field(description="An actor filter for the events. Supply the ID of the actor.")] = None,
-        object_filter: Annotated[Optional[StrictStr], Field(description="An object filter for the events. Supply the ID of the object.")] = None,
+        actor_filter: Annotated[Optional[UUID], Field(description="An actor filter for the events. Supply the ID of the actor.")] = None,
+        object_filter: Annotated[Optional[UUID], Field(description="An object filter for the events. Supply the ID of the object.")] = None,
         event_type_filter: Annotated[Optional[StrictStr], Field(description="An event type filter for the events.")] = None,
         api_token_filter: Annotated[Optional[StrictStr], Field(description="An API filter for the events. Supply the name and preview of the API token.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
@@ -73,9 +74,9 @@ class EventsApi:
         :param end_date_filter: An end date filter for the events.
         :type end_date_filter: str
         :param actor_filter: An actor filter for the events. Supply the ID of the actor.
-        :type actor_filter: str
+        :type actor_filter: UUID
         :param object_filter: An object filter for the events. Supply the ID of the object.
-        :type object_filter: str
+        :type object_filter: UUID
         :param event_type_filter: An event type filter for the events.
         :type event_type_filter: str
         :param api_token_filter: An API filter for the events. Supply the name and preview of the API token.
@@ -140,8 +141,8 @@ class EventsApi:
         self,
         start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
-        actor_filter: Annotated[Optional[StrictStr], Field(description="An actor filter for the events. Supply the ID of the actor.")] = None,
-        object_filter: Annotated[Optional[StrictStr], Field(description="An object filter for the events. Supply the ID of the object.")] = None,
+        actor_filter: Annotated[Optional[UUID], Field(description="An actor filter for the events. Supply the ID of the actor.")] = None,
+        object_filter: Annotated[Optional[UUID], Field(description="An object filter for the events. Supply the ID of the object.")] = None,
         event_type_filter: Annotated[Optional[StrictStr], Field(description="An event type filter for the events.")] = None,
         api_token_filter: Annotated[Optional[StrictStr], Field(description="An API filter for the events. Supply the name and preview of the API token.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
@@ -168,9 +169,9 @@ class EventsApi:
         :param end_date_filter: An end date filter for the events.
         :type end_date_filter: str
         :param actor_filter: An actor filter for the events. Supply the ID of the actor.
-        :type actor_filter: str
+        :type actor_filter: UUID
         :param object_filter: An object filter for the events. Supply the ID of the object.
-        :type object_filter: str
+        :type object_filter: UUID
         :param event_type_filter: An event type filter for the events.
         :type event_type_filter: str
         :param api_token_filter: An API filter for the events. Supply the name and preview of the API token.
@@ -235,8 +236,8 @@ class EventsApi:
         self,
         start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
-        actor_filter: Annotated[Optional[StrictStr], Field(description="An actor filter for the events. Supply the ID of the actor.")] = None,
-        object_filter: Annotated[Optional[StrictStr], Field(description="An object filter for the events. Supply the ID of the object.")] = None,
+        actor_filter: Annotated[Optional[UUID], Field(description="An actor filter for the events. Supply the ID of the actor.")] = None,
+        object_filter: Annotated[Optional[UUID], Field(description="An object filter for the events. Supply the ID of the object.")] = None,
         event_type_filter: Annotated[Optional[StrictStr], Field(description="An event type filter for the events.")] = None,
         api_token_filter: Annotated[Optional[StrictStr], Field(description="An API filter for the events. Supply the name and preview of the API token.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
@@ -263,9 +264,9 @@ class EventsApi:
         :param end_date_filter: An end date filter for the events.
         :type end_date_filter: str
         :param actor_filter: An actor filter for the events. Supply the ID of the actor.
-        :type actor_filter: str
+        :type actor_filter: UUID
         :param object_filter: An object filter for the events. Supply the ID of the object.
-        :type object_filter: str
+        :type object_filter: UUID
         :param event_type_filter: An event type filter for the events.
         :type event_type_filter: str
         :param api_token_filter: An API filter for the events. Supply the name and preview of the API token.

@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList
 from opal_security.models.request_configuration import RequestConfiguration
 from opal_security.models.risk_sensitivity_enum import RiskSensitivityEnum
@@ -31,22 +32,22 @@ class UpdateGroupInfo(BaseModel):
     """
     # UpdateGroupInfo Object ### Description The `UpdateGroupInfo` object is used as an input to the UpdateGroup API.
     """ # noqa: E501
-    group_id: StrictStr = Field(description="The ID of the group.")
+    group_id: UUID = Field(description="The ID of the group.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the group.")
     description: Optional[StrictStr] = Field(default=None, description="A description of the group.")
-    admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the group.")
+    admin_owner_id: Optional[UUID] = Field(default=None, description="The ID of the owner of the group.")
     max_duration: Optional[StrictInt] = Field(default=None, description="The maximum duration for which the group can be requested (in minutes). Use -1 to set to indefinite. Deprecated in favor of `request_configurations`.")
     recommended_duration: Optional[StrictInt] = Field(default=None, description="The recommended duration for which the group should be requested (in minutes). Will be the default value in a request. Use -1 to set to indefinite and 0 to unset. Deprecated in favor of `request_configurations`.")
     require_manager_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the group require manager approval. Deprecated in favor of `request_configurations`.")
     require_support_ticket: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the group require an access ticket. Deprecated in favor of `request_configurations`.")
-    folder_id: Optional[StrictStr] = Field(default=None, description="The ID of the folder that the group is located in.")
+    folder_id: Optional[UUID] = Field(default=None, description="The ID of the folder that the group is located in.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this group.")
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this group. Deprecated in favor of `request_configurations`.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this group. Deprecated in favor of `request_configurations`.")
-    configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
-    request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
+    configuration_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated configuration template.")
+    request_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this group. Deprecated in favor of `request_configurations`.")
-    group_leader_user_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of User IDs for the group leaders of the group")
+    group_leader_user_ids: Optional[List[UUID]] = Field(default=None, description="A list of User IDs for the group leaders of the group")
     extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used.")
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")

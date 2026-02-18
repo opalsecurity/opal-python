@@ -6,13 +6,14 @@ A user access review.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uar_id** | **str** | The ID of the UAR. | 
+**uar_id** | **UUID** | The ID of the UAR. | 
 **name** | **str** | The name of the UAR. | 
 **reviewer_assignment_policy** | [**UARReviewerAssignmentPolicyEnum**](UARReviewerAssignmentPolicyEnum.md) |  | 
 **send_reviewer_assignment_notification** | **bool** | A bool representing whether to send a notification to reviewers when they&#39;re assigned a new review. Default is False. | 
 **deadline** | **datetime** | The last day for reviewers to complete their access reviews. | 
 **time_zone** | **str** | The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles. | 
 **self_review_allowed** | **bool** | A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False. | 
+**instantly_action_reviews** | **bool** | A bool representing whether to instantly action changes when reviewers submit their decision. Default is False. | 
 **uar_scope** | [**UARScope**](UARScope.md) |  | [optional] 
 
 ## Example

@@ -13,8 +13,6 @@ Method | HTTP request | Description
 # **get_remote_users**
 > PaginatedRemoteUsersList get_remote_users(third_party_provider=third_party_provider, user_id=user_id, remote_id=remote_id, cursor=cursor, page_size=page_size)
 
-
-
 Returns a list of remote users for your organization.
 
 ### Example
@@ -51,7 +49,7 @@ with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.UsersApi(api_client)
     third_party_provider = [opal_security.ThirdPartyProviderEnum()] # List[ThirdPartyProviderEnum] | Filter remote users by their third party provider. (optional)
-    user_id = ['[\"32acc112-21ff-4669-91c2-21e27683eaa1\"]'] # List[str] | Filter remote users by their user ID. (optional)
+    user_id = [["32acc112-21ff-4669-91c2-21e27683eaa1"]] # List[UUID] | Filter remote users by their user ID. (optional)
     remote_id = ['[1234567890]'] # List[str] | Filter remote users by their remote ID. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
@@ -72,7 +70,7 @@ with opal_security.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **third_party_provider** | [**List[ThirdPartyProviderEnum]**](ThirdPartyProviderEnum.md)| Filter remote users by their third party provider. | [optional] 
- **user_id** | [**List[str]**](str.md)| Filter remote users by their user ID. | [optional] 
+ **user_id** | [**List[UUID]**](UUID.md)| Filter remote users by their user ID. | [optional] 
  **remote_id** | [**List[str]**](str.md)| Filter remote users by their remote ID. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
@@ -100,8 +98,6 @@ Name | Type | Description  | Notes
 
 # **get_user_tags**
 > TagsList get_user_tags(user_id)
-
-
 
 Returns all tags applied to the user.
 
@@ -137,7 +133,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.UsersApi(api_client)
-    user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user whose tags to return.
+    user_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the user whose tags to return.
 
     try:
         api_response = api_instance.get_user_tags(user_id)
@@ -154,7 +150,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**| The ID of the user whose tags to return. | 
+ **user_id** | **UUID**| The ID of the user whose tags to return. | 
 
 ### Return type
 
@@ -179,8 +175,6 @@ Name | Type | Description  | Notes
 
 # **get_users**
 > PaginatedUsersList get_users(cursor=cursor, page_size=page_size)
-
-
 
 Returns a list of users for your organization.
 
@@ -261,8 +255,6 @@ Name | Type | Description  | Notes
 # **user**
 > User user(user_id=user_id, email=email)
 
-
-
 Returns a `User` object.
 
 ### Example
@@ -297,7 +289,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.UsersApi(api_client)
-    user_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The user ID of the user. (optional)
+    user_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The user ID of the user. (optional)
     email = 'johndoe@domain.org' # str | The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur. (optional)
 
     try:
@@ -315,7 +307,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**| The user ID of the user. | [optional] 
+ **user_id** | **UUID**| The user ID of the user. | [optional] 
  **email** | **str**| The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur. | [optional] 
 
 ### Return type

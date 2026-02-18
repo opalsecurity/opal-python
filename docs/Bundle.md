@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bundle_id** | **str** | The ID of the bundle. | [optional] [readonly] 
+**bundle_id** | **UUID** | The ID of the bundle. | [optional] [readonly] 
 **name** | **str** | The name of the bundle. | [optional] 
 **description** | **str** | The description of the bundle. | [optional] 
 **created_at** | **datetime** | The creation timestamp of the bundle, in ISO 8601 format | [optional] [readonly] 
 **updated_at** | **datetime** | The last updated timestamp of the bundle, in ISO 8601 format | [optional] [readonly] 
-**admin_owner_id** | **str** | The ID of the owner of the bundle. | [optional] 
+**admin_owner_id** | **UUID** | The ID of the owner of the bundle. | [optional] 
 **total_num_items** | **int** | The total number of items in the bundle. | [optional] [readonly] 
 **total_num_resources** | **int** | The total number of resources in the bundle. | [optional] [readonly] 
 **total_num_groups** | **int** | The total number of groups in the bundle. | [optional] [readonly] 

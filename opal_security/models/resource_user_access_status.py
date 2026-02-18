@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from opal_security.models.resource_user_access_status_enum import ResourceUserAccessStatusEnum
 from typing import Optional, Set
@@ -30,8 +31,8 @@ class ResourceUserAccessStatus(BaseModel):
     """
     # AccessStatus Object ### Description The `AccessStatus` object is used to represent the user's access to the resource.  ### Usage Example View the `AccessStatus` for a resource/user pair to determine if the user has access to the resource.
     """ # noqa: E501
-    resource_id: StrictStr = Field(description="The ID of the resource.")
-    user_id: StrictStr = Field(description="The ID of the user.")
+    resource_id: UUID = Field(description="The ID of the resource.")
+    user_id: UUID = Field(description="The ID of the user.")
     access_level: Optional[ResourceAccessLevel] = None
     status: ResourceUserAccessStatusEnum
     expiration_date: Optional[datetime] = Field(default=None, description="The day and time the user's access will expire.")

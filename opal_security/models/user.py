@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.user_hr_idp_status_enum import UserHrIdpStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class User(BaseModel):
     """
     # User Object ### Description The `User` object is used to represent a user.  ### Usage Example Fetch from the `LIST Sessions` endpoint.
     """ # noqa: E501
-    user_id: StrictStr = Field(description="The ID of the user.")
+    user_id: UUID = Field(description="The ID of the user.")
     email: StrictStr = Field(description="The email of the user.")
     full_name: StrictStr = Field(description="The full name of the user.")
     first_name: StrictStr = Field(description="The first name of the user.")

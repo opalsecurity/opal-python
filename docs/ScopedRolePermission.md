@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**target_ids** | **List[str]** | The IDs of the entities that this permission applies to. If empty of missing, the permission will have untargeted scope. | [optional] 
+**target_ids** | **List[UUID]** | The IDs of the entities that this permission applies to. If empty of missing, the permission will have untargeted scope. | [optional] 
 **target_type** | [**RolePermissionTargetTypeEnum**](RolePermissionTargetTypeEnum.md) |  | 
 **permission_name** | [**RolePermissionNameEnum**](RolePermissionNameEnum.md) |  | 
 **allow_all** | **bool** |  | 

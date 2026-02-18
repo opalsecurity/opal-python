@@ -34,6 +34,7 @@ class ThirdPartyProviderEnum(str, Enum):
     LINEAR = 'LINEAR'
     SERVICE_NOW = 'SERVICE_NOW'
     FRESH_SERVICE = 'FRESH_SERVICE'
+    SHORTCUT = 'SHORTCUT'
     PAGER_DUTY = 'PAGER_DUTY'
     OPSGENIE = 'OPSGENIE'
     GIT_HUB = 'GIT_HUB'

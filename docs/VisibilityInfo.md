@@ -7,7 +7,7 @@ Visibility infomation of an entity.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **visibility** | [**VisibilityTypeEnum**](VisibilityTypeEnum.md) |  | 
-**visibility_group_ids** | **List[str]** |  | [optional] 
+**visibility_group_ids** | **List[UUID]** |  | [optional] 
 
 ## Example
 

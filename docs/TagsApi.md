@@ -20,8 +20,6 @@ Method | HTTP request | Description
 # **add_group_tag**
 > add_group_tag(tag_id, group_id)
 
-
-
 Applies a tag to a group.
 
 ### Example
@@ -55,8 +53,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
-    group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the group to apply the tag to.
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the tag to apply.
+    group_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the group to apply the tag to.
 
     try:
         api_instance.add_group_tag(tag_id, group_id)
@@ -71,8 +69,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The ID of the tag to apply. | 
- **group_id** | **str**| The ID of the group to apply the tag to. | 
+ **tag_id** | **UUID**| The ID of the tag to apply. | 
+ **group_id** | **UUID**| The ID of the group to apply the tag to. | 
 
 ### Return type
 
@@ -97,8 +95,6 @@ void (empty response body)
 
 # **add_resource_tag**
 > add_resource_tag(tag_id, resource_id)
-
-
 
 Applies a tag to a resource.
 
@@ -133,8 +129,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
-    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource to apply the tag to.
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the tag to apply.
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource to apply the tag to.
 
     try:
         api_instance.add_resource_tag(tag_id, resource_id)
@@ -149,8 +145,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The ID of the tag to apply. | 
- **resource_id** | **str**| The ID of the resource to apply the tag to. | 
+ **tag_id** | **UUID**| The ID of the tag to apply. | 
+ **resource_id** | **UUID**| The ID of the resource to apply the tag to. | 
 
 ### Return type
 
@@ -175,8 +171,6 @@ void (empty response body)
 
 # **add_user_tag**
 > add_user_tag(tag_id, user_id, body=body)
-
-
 
 Applies a tag to a user.
 
@@ -211,8 +205,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to apply.
-    user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user to apply the tag to.
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the tag to apply.
+    user_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the user to apply the tag to.
     body = None # object |  (optional)
 
     try:
@@ -228,8 +222,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The ID of the tag to apply. | 
- **user_id** | **str**| The ID of the user to apply the tag to. | 
+ **tag_id** | **UUID**| The ID of the tag to apply. | 
+ **user_id** | **UUID**| The ID of the user to apply the tag to. | 
  **body** | **object**|  | [optional] 
 
 ### Return type
@@ -255,8 +249,6 @@ void (empty response body)
 
 # **create_tag**
 > Tag create_tag(tag_key=tag_key, tag_value=tag_value, admin_owner_id=admin_owner_id, create_tag_info=create_tag_info)
-
-
 
 Creates a tag with the given key and value.
 
@@ -295,7 +287,7 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.TagsApi(api_client)
     tag_key = 'api-scope' # str | The key of the tag to create. (optional)
     tag_value = 'production' # str | The value of the tag to create. (optional)
-    admin_owner_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the owner that manages the tag. (optional)
+    admin_owner_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of the owner that manages the tag. (optional)
     create_tag_info = opal_security.CreateTagInfo() # CreateTagInfo |  (optional)
 
     try:
@@ -315,7 +307,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag_key** | **str**| The key of the tag to create. | [optional] 
  **tag_value** | **str**| The value of the tag to create. | [optional] 
- **admin_owner_id** | **str**| The ID of the owner that manages the tag. | [optional] 
+ **admin_owner_id** | **UUID**| The ID of the owner that manages the tag. | [optional] 
  **create_tag_info** | [**CreateTagInfo**](CreateTagInfo.md)|  | [optional] 
 
 ### Return type
@@ -341,8 +333,6 @@ Name | Type | Description  | Notes
 
 # **delete_tag_by_id**
 > delete_tag_by_id(tag_id)
-
-
 
 UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 
@@ -377,7 +367,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The tag ID
 
     try:
         api_instance.delete_tag_by_id(tag_id)
@@ -392,7 +382,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The tag ID | 
+ **tag_id** | **UUID**| The tag ID | 
 
 ### Return type
 
@@ -417,8 +407,6 @@ void (empty response body)
 
 # **get_tag**
 > Tag get_tag(tag_key, tag_value=tag_value)
-
-
 
 Gets a tag with the given key and value.
 
@@ -535,7 +523,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The tag ID
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The tag ID
 
     try:
         # Get tag by ID
@@ -553,7 +541,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The tag ID | 
+ **tag_id** | **UUID**| The tag ID | 
 
 ### Return type
 
@@ -661,8 +649,6 @@ Name | Type | Description  | Notes
 # **remove_group_tag**
 > remove_group_tag(tag_id, group_id)
 
-
-
 Removes a tag from a group.
 
 ### Example
@@ -696,8 +682,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to remove.
-    group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the group to remove the tag from.
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the tag to remove.
+    group_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the group to remove the tag from.
 
     try:
         api_instance.remove_group_tag(tag_id, group_id)
@@ -712,8 +698,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The ID of the tag to remove. | 
- **group_id** | **str**| The ID of the group to remove the tag from. | 
+ **tag_id** | **UUID**| The ID of the tag to remove. | 
+ **group_id** | **UUID**| The ID of the group to remove the tag from. | 
 
 ### Return type
 
@@ -738,8 +724,6 @@ void (empty response body)
 
 # **remove_resource_tag**
 > remove_resource_tag(tag_id, resource_id)
-
-
 
 Removes a tag from a resource.
 
@@ -774,8 +758,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to remove.
-    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource to remove the tag from.
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the tag to remove.
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource to remove the tag from.
 
     try:
         api_instance.remove_resource_tag(tag_id, resource_id)
@@ -790,8 +774,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The ID of the tag to remove. | 
- **resource_id** | **str**| The ID of the resource to remove the tag from. | 
+ **tag_id** | **UUID**| The ID of the tag to remove. | 
+ **resource_id** | **UUID**| The ID of the resource to remove the tag from. | 
 
 ### Return type
 
@@ -816,8 +800,6 @@ void (empty response body)
 
 # **remove_user_tag**
 > remove_user_tag(tag_id, user_id)
-
-
 
 Removes a tag from a user.
 
@@ -852,8 +834,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.TagsApi(api_client)
-    tag_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the tag to remove.
-    user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user to remove the tag from.
+    tag_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the tag to remove.
+    user_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the user to remove the tag from.
 
     try:
         api_instance.remove_user_tag(tag_id, user_id)
@@ -868,8 +850,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_id** | **str**| The ID of the tag to remove. | 
- **user_id** | **str**| The ID of the user to remove the tag from. | 
+ **tag_id** | **UUID**| The ID of the tag to remove. | 
+ **user_id** | **UUID**| The ID of the user to remove the tag from. | 
 
 ### Return type
 
