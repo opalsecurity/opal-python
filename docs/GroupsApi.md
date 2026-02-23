@@ -1575,7 +1575,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_group_containing_group**
-> remove_group_containing_group(group_id, containing_group_id)
+> remove_group_containing_group(group_id, containing_group_id, access_level_remote_id=access_level_remote_id)
 
 
 
@@ -1612,11 +1612,12 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the member group to remove.
     containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
+    access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the member group's access level to filter by. (optional)
 
     try:
-        api_instance.remove_group_containing_group(group_id, containing_group_id)
+        api_instance.remove_group_containing_group(group_id, containing_group_id, access_level_remote_id=access_level_remote_id)
     except Exception as e:
         print("Exception when calling GroupsApi->remove_group_containing_group: %s\n" % e)
 ```
@@ -1628,8 +1629,9 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **str**| The ID of the member group to remove. | 
  **containing_group_id** | **str**| The ID of the containing group. | 
+ **access_level_remote_id** | **str**| The remote ID of the member group&#39;s access level to filter by. | [optional] 
 
 ### Return type
 
@@ -1648,7 +1650,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | The containing group was successfully removed from the group. |  -  |
+**204** | The member group was successfully removed from the containing group. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

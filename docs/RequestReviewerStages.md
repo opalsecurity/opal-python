@@ -1,16 +1,11 @@
 # RequestReviewerStages
 
-The stages configuration for a request item
+The configured reviewer stages for every item in this request, or an error message if reviewers could not be loaded
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_level_name** | **str** | The name of the access level requested. | [optional] 
-**access_level_remote_id** | **str** | The ID of the access level requested on the remote system. | [optional] 
-**item_name** | **str** | The name of the requested item | 
-**item_id** | **str** | The ID of the resource requested. | 
-**stages** | [**List[RequestStage]**](RequestStage.md) | The stages of review for this request | 
 
 ## Example
 

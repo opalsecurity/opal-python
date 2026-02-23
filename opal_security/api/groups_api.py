@@ -5381,8 +5381,9 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the member group to remove.")],
         containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the member group's access level to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5400,10 +5401,12 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
+        :param group_id: The ID of the member group to remove. (required)
         :type group_id: str
         :param containing_group_id: The ID of the containing group. (required)
         :type containing_group_id: str
+        :param access_level_remote_id: The remote ID of the member group's access level to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5429,6 +5432,7 @@ class GroupsApi:
         _param = self._remove_group_containing_group_serialize(
             group_id=group_id,
             containing_group_id=containing_group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5452,8 +5456,9 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group_with_http_info(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the member group to remove.")],
         containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the member group's access level to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5471,10 +5476,12 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
+        :param group_id: The ID of the member group to remove. (required)
         :type group_id: str
         :param containing_group_id: The ID of the containing group. (required)
         :type containing_group_id: str
+        :param access_level_remote_id: The remote ID of the member group's access level to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5500,6 +5507,7 @@ class GroupsApi:
         _param = self._remove_group_containing_group_serialize(
             group_id=group_id,
             containing_group_id=containing_group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5523,8 +5531,9 @@ class GroupsApi:
     @validate_call
     def remove_group_containing_group_without_preload_content(
         self,
-        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the member group to remove.")],
         containing_group_id: Annotated[StrictStr, Field(description="The ID of the containing group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the member group's access level to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5542,10 +5551,12 @@ class GroupsApi:
 
         Removes a containing group from a group.
 
-        :param group_id: The ID of the group. (required)
+        :param group_id: The ID of the member group to remove. (required)
         :type group_id: str
         :param containing_group_id: The ID of the containing group. (required)
         :type containing_group_id: str
+        :param access_level_remote_id: The remote ID of the member group's access level to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5571,6 +5582,7 @@ class GroupsApi:
         _param = self._remove_group_containing_group_serialize(
             group_id=group_id,
             containing_group_id=containing_group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5591,6 +5603,7 @@ class GroupsApi:
         self,
         group_id,
         containing_group_id,
+        access_level_remote_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5617,6 +5630,10 @@ class GroupsApi:
         if containing_group_id is not None:
             _path_params['containing_group_id'] = containing_group_id
         # process the query parameters
+        if access_level_remote_id is not None:
+            
+            _query_params.append(('access_level_remote_id', access_level_remote_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

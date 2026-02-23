@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group_id** | **str** | The ID of the group. | 
 **resource_id** | **str** | The ID of the resource. | 
+**group_name** | **str** | The name of the group | [optional] 
+**resource_name** | **str** | The name of the resource | [optional] 
+**expiration_date** | **datetime** | The day and time the group&#39;s access will expire. | [optional] 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | 
 
 ## Example

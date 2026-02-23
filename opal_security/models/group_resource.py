@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,9 +31,12 @@ class GroupResource(BaseModel):
     """ # noqa: E501
     group_id: StrictStr = Field(description="The ID of the group.")
     resource_id: StrictStr = Field(description="The ID of the resource.")
+    group_name: Optional[StrictStr] = Field(default=None, description="The name of the group")
+    resource_name: Optional[StrictStr] = Field(default=None, description="The name of the resource")
+    expiration_date: Optional[datetime] = Field(default=None, description="The day and time the group's access will expire.")
     access_level: ResourceAccessLevel
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "resource_id", "access_level"]
+    __properties: ClassVar[List[str]] = ["group_id", "resource_id", "group_name", "resource_name", "expiration_date", "access_level"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +101,9 @@ class GroupResource(BaseModel):
         _obj = cls.model_validate({
             "group_id": obj.get("group_id"),
             "resource_id": obj.get("resource_id"),
+            "group_name": obj.get("group_name"),
+            "resource_name": obj.get("resource_name"),
+            "expiration_date": obj.get("expiration_date"),
             "access_level": ResourceAccessLevel.from_dict(obj["access_level"]) if obj.get("access_level") is not None else None
         })
         # store additional fields in additional_properties
