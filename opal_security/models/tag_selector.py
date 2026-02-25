@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,7 @@ class TagSelector(BaseModel):
     """ # noqa: E501
     key: StrictStr
     value: StrictStr
-    connection_id: StrictStr
+    connection_id: UUID
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["key", "value", "connection_id"]
 

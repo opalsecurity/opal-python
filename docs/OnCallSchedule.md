@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**on_call_schedule_id** | **str** | The ID of the on-call schedule. | [optional] 
+**on_call_schedule_id** | **UUID** | The ID of the on-call schedule. | [optional] 
 **third_party_provider** | [**OnCallScheduleProviderEnum**](OnCallScheduleProviderEnum.md) |  | [optional] 
 **remote_id** | **str** | The remote ID of the on call schedule | [optional] 
 **name** | **str** | The name of the on call schedule. | [optional] 

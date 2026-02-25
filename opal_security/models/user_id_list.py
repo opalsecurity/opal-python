@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class UserIDList(BaseModel):
     """
     A list of user IDs.
     """ # noqa: E501
-    user_ids: List[StrictStr]
+    user_ids: List[UUID]
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["user_ids"]
 

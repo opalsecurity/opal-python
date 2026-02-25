@@ -13,8 +13,6 @@ Method | HTTP request | Description
 # **create_configuration_template**
 > ConfigurationTemplate create_configuration_template(create_configuration_template_info)
 
-
-
 Creates a configuration template.
 
 ### Example
@@ -93,8 +91,6 @@ Name | Type | Description  | Notes
 # **delete_configuration_template**
 > delete_configuration_template(configuration_template_id)
 
-
-
 Deletes a configuration template.
 
 ### Example
@@ -128,7 +124,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ConfigurationTemplatesApi(api_client)
-    configuration_template_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the configuration template.
+    configuration_template_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the configuration template.
 
     try:
         api_instance.delete_configuration_template(configuration_template_id)
@@ -143,7 +139,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **configuration_template_id** | **str**| The ID of the configuration template. | 
+ **configuration_template_id** | **UUID**| The ID of the configuration template. | 
 
 ### Return type
 
@@ -168,8 +164,6 @@ void (empty response body)
 
 # **get_configuration_templates**
 > PaginatedConfigurationTemplateList get_configuration_templates()
-
-
 
 Returns a list of `ConfigurationTemplate` objects.
 
@@ -243,8 +237,6 @@ This endpoint does not need any parameter.
 
 # **update_configuration_template**
 > ConfigurationTemplate update_configuration_template(update_configuration_template_info)
-
-
 
 Update a configuration template.
 

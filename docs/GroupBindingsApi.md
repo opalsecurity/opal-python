@@ -14,8 +14,6 @@ Method | HTTP request | Description
 # **create_group_binding**
 > GroupBinding create_group_binding(create_group_binding_info)
 
-
-
 Creates a group binding.
 
 ### Example
@@ -94,8 +92,6 @@ Name | Type | Description  | Notes
 # **delete_group_binding**
 > delete_group_binding(group_binding_id)
 
-
-
 Deletes a group binding.
 
 ### Example
@@ -129,7 +125,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupBindingsApi(api_client)
-    group_binding_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group binding.
+    group_binding_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group binding.
 
     try:
         api_instance.delete_group_binding(group_binding_id)
@@ -144,7 +140,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_binding_id** | **str**| The ID of the group binding. | 
+ **group_binding_id** | **UUID**| The ID of the group binding. | 
 
 ### Return type
 
@@ -206,7 +202,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupBindingsApi(api_client)
-    group_binding_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group binding.
+    group_binding_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the group binding.
 
     try:
         # Get group binding by ID
@@ -224,7 +220,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_binding_id** | **str**| The ID of the group binding. | 
+ **group_binding_id** | **UUID**| The ID of the group binding. | 
 
 ### Return type
 
@@ -331,8 +327,6 @@ Name | Type | Description  | Notes
 
 # **update_group_bindings**
 > update_group_bindings(update_group_binding_info_list)
-
-
 
 Bulk updates a list of group bindings.
 

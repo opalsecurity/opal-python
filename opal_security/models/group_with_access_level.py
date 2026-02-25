@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class GroupWithAccessLevel(BaseModel):
     """
     Information about a group and corresponding access level
     """ # noqa: E501
-    group_id: StrictStr = Field(description="The ID of the group.")
+    group_id: UUID = Field(description="The ID of the group.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_id", "access_level_remote_id"]

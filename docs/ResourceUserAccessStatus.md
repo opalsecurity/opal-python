@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **str** | The ID of the resource. | 
-**user_id** | **str** | The ID of the user. | 
+**resource_id** | **UUID** | The ID of the resource. | 
+**user_id** | **UUID** | The ID of the user. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | [optional] 
 **status** | [**ResourceUserAccessStatusEnum**](ResourceUserAccessStatusEnum.md) |  | 
 **expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | [optional] 

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.group_type_enum import GroupTypeEnum
 from opal_security.models.resource_type_enum import ResourceTypeEnum
 from opal_security.models.tag_filter import TagFilter
@@ -31,11 +32,11 @@ class UARScope(BaseModel):
     If set, the access review will only contain resources and groups that match at least one of the filters in scope.
     """ # noqa: E501
     group_visibility: Optional[StrictStr] = Field(default=None, description="Specifies what users can see during an Access Review")
-    users: Optional[List[StrictStr]] = Field(default=None, description="The access review will only include the following users. If any users are selected, any entity filters will be applied to only the entities that the selected users have access to.")
+    users: Optional[List[UUID]] = Field(default=None, description="The access review will only include the following users. If any users are selected, any entity filters will be applied to only the entities that the selected users have access to.")
     filter_operator: Optional[StrictStr] = Field(default=None, description="Specifies whether entities must match all (AND) or any (OR) of the filters.")
-    entities: Optional[List[StrictStr]] = Field(default=None, description="This access review will include resources and groups with ids in the given strings.")
-    apps: Optional[List[StrictStr]] = Field(default=None, description="This access review will include items in the specified applications")
-    admins: Optional[List[StrictStr]] = Field(default=None, description="This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.")
+    entities: Optional[List[UUID]] = Field(default=None, description="This access review will include resources and groups with ids in the given strings.")
+    apps: Optional[List[UUID]] = Field(default=None, description="This access review will include items in the specified applications")
+    admins: Optional[List[UUID]] = Field(default=None, description="This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.")
     group_types: Optional[List[GroupTypeEnum]] = Field(default=None, description="This access review will include items of the specified group types")
     resource_types: Optional[List[ResourceTypeEnum]] = Field(default=None, description="This access review will include items of the specified resource types")
     include_group_bindings: Optional[StrictBool] = None

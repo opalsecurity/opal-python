@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class BundleResource(BaseModel):
     """
     BundleResource
     """ # noqa: E501
-    bundle_id: Optional[StrictStr] = Field(default=None, description="The ID of the bundle containing the resource.")
-    resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource within a bundle.")
+    bundle_id: Optional[UUID] = Field(default=None, description="The ID of the bundle containing the resource.")
+    resource_id: Optional[UUID] = Field(default=None, description="The ID of the resource within a bundle.")
     access_level_name: Optional[StrictStr] = Field(default=None, description="The access level of the resource within a bundle.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level of the resource within a bundle.")
     additional_properties: Dict[str, Any] = {}

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bundle_id** | **str** | The ID of the bundle containing the group. | [optional] [readonly] 
-**group_id** | **str** | The ID of the group within a bundle. | [optional] [readonly] 
+**bundle_id** | **UUID** | The ID of the bundle containing the group. | [optional] [readonly] 
+**group_id** | **UUID** | The ID of the group within a bundle. | [optional] [readonly] 
 **access_level_name** | **str** | The access level of the group within a bundle. | [optional] 
 **access_level_remote_id** | **str** | The remote ID of the access level of the group within a bundle. | [optional] 
 

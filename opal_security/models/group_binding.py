@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from opal_security.models.group_binding_group import GroupBindingGroup
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,10 +30,10 @@ class GroupBinding(BaseModel):
     """
     # Group Binding Object ### Description The `GroupBinding` object is used to represent a group binding.  ### Usage Example Get group bindings from the `GET Group Bindings` endpoint.
     """ # noqa: E501
-    group_binding_id: StrictStr = Field(description="The ID of the group binding.")
-    created_by_id: StrictStr = Field(description="The ID of the user that created the group binding.")
+    group_binding_id: UUID = Field(description="The ID of the group binding.")
+    created_by_id: UUID = Field(description="The ID of the user that created the group binding.")
     created_at: datetime = Field(description="The date the group binding was created.")
-    source_group_id: StrictStr = Field(description="The ID of the source group.")
+    source_group_id: UUID = Field(description="The ID of the source group.")
     groups: List[GroupBindingGroup] = Field(description="The list of groups.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_binding_id", "created_by_id", "created_at", "source_group_id", "groups"]

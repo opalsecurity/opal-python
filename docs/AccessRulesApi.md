@@ -12,8 +12,6 @@ Method | HTTP request | Description
 # **create_access_rule**
 > AccessRule create_access_rule(update_access_rule_info)
 
-
-
 Creates a new access rule config for the given group_id.
 
 ### Example
@@ -92,8 +90,6 @@ Name | Type | Description  | Notes
 # **get_access_rule**
 > AccessRule get_access_rule(access_rule_id)
 
-
-
 Returns a list of access rule config given the group_id of the access rule.
 
 ### Example
@@ -128,7 +124,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.AccessRulesApi(api_client)
-    access_rule_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The access rule ID (group ID) of the access rule.
+    access_rule_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The access rule ID (group ID) of the access rule.
 
     try:
         api_response = api_instance.get_access_rule(access_rule_id)
@@ -145,7 +141,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **access_rule_id** | **str**| The access rule ID (group ID) of the access rule. | 
+ **access_rule_id** | **UUID**| The access rule ID (group ID) of the access rule. | 
 
 ### Return type
 
@@ -170,8 +166,6 @@ Name | Type | Description  | Notes
 
 # **update_access_rule**
 > AccessRule update_access_rule(access_rule_id, update_access_rule_info)
-
-
 
 Updates the access rule config for the given group_id.
 
@@ -208,7 +202,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.AccessRulesApi(api_client)
-    access_rule_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The access rule ID (group ID) of the access rule.
+    access_rule_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The access rule ID (group ID) of the access rule.
     update_access_rule_info = opal_security.UpdateAccessRuleInfo() # UpdateAccessRuleInfo | 
 
     try:
@@ -226,7 +220,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **access_rule_id** | **str**| The access rule ID (group ID) of the access rule. | 
+ **access_rule_id** | **UUID**| The access rule ID (group ID) of the access rule. | 
  **update_access_rule_info** | [**UpdateAccessRuleInfo**](UpdateAccessRuleInfo.md)|  | 
 
 ### Return type

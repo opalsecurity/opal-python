@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.group_remote_info import GroupRemoteInfo
 from opal_security.models.group_type_enum import GroupTypeEnum
 from opal_security.models.request_configuration import RequestConfiguration
@@ -33,12 +34,12 @@ class Group(BaseModel):
     """
     # Group Object ### Description The `Group` object is used to represent a group.  ### Usage Example Update from the `UPDATE Groups` endpoint.
     """ # noqa: E501
-    group_id: StrictStr = Field(description="The ID of the group.")
-    app_id: Optional[StrictStr] = Field(default=None, description="The ID of the group's app.")
+    group_id: UUID = Field(description="The ID of the group.")
+    app_id: Optional[UUID] = Field(default=None, description="The ID of the group's app.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the group.")
     description: Optional[StrictStr] = Field(default=None, description="A description of the group.")
-    admin_owner_id: Optional[StrictStr] = Field(default=None, description="The ID of the owner of the group.")
-    group_leader_user_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of User IDs for the group leaders of the group")
+    admin_owner_id: Optional[UUID] = Field(default=None, description="The ID of the owner of the group.")
+    group_leader_user_ids: Optional[List[UUID]] = Field(default=None, description="A list of User IDs for the group leaders of the group")
     remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the remote.")
     remote_name: Optional[StrictStr] = Field(default=None, description="The name of the remote.")
     group_type: Optional[GroupTypeEnum] = None
@@ -50,9 +51,9 @@ class Group(BaseModel):
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this group.")
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this group.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this group.")
-    request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template.")
-    configuration_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated configuration template.")
-    group_binding_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated group binding.")
+    request_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated request template.")
+    configuration_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated configuration template.")
+    group_binding_id: Optional[UUID] = Field(default=None, description="The ID of the associated group binding.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this group.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of request configurations for this group.")
     request_configuration_list: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of request configurations for this group. Deprecated in favor of `request_configurations`.")

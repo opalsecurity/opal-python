@@ -17,8 +17,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.access_rule import AccessRule
 from opal_security.models.update_access_rule_info import UpdateAccessRuleInfo
 
@@ -317,7 +318,7 @@ class AccessRulesApi:
     @validate_call
     def get_access_rule(
         self,
-        access_rule_id: Annotated[StrictStr, Field(description="The access rule ID (group ID) of the access rule.")],
+        access_rule_id: Annotated[UUID, Field(description="The access rule ID (group ID) of the access rule.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -336,7 +337,7 @@ class AccessRulesApi:
         Returns a list of access rule config given the group_id of the access rule.
 
         :param access_rule_id: The access rule ID (group ID) of the access rule. (required)
-        :type access_rule_id: str
+        :type access_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -384,7 +385,7 @@ class AccessRulesApi:
     @validate_call
     def get_access_rule_with_http_info(
         self,
-        access_rule_id: Annotated[StrictStr, Field(description="The access rule ID (group ID) of the access rule.")],
+        access_rule_id: Annotated[UUID, Field(description="The access rule ID (group ID) of the access rule.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -403,7 +404,7 @@ class AccessRulesApi:
         Returns a list of access rule config given the group_id of the access rule.
 
         :param access_rule_id: The access rule ID (group ID) of the access rule. (required)
-        :type access_rule_id: str
+        :type access_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -451,7 +452,7 @@ class AccessRulesApi:
     @validate_call
     def get_access_rule_without_preload_content(
         self,
-        access_rule_id: Annotated[StrictStr, Field(description="The access rule ID (group ID) of the access rule.")],
+        access_rule_id: Annotated[UUID, Field(description="The access rule ID (group ID) of the access rule.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -470,7 +471,7 @@ class AccessRulesApi:
         Returns a list of access rule config given the group_id of the access rule.
 
         :param access_rule_id: The access rule ID (group ID) of the access rule. (required)
-        :type access_rule_id: str
+        :type access_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -578,7 +579,7 @@ class AccessRulesApi:
     @validate_call
     def update_access_rule(
         self,
-        access_rule_id: Annotated[StrictStr, Field(description="The access rule ID (group ID) of the access rule.")],
+        access_rule_id: Annotated[UUID, Field(description="The access rule ID (group ID) of the access rule.")],
         update_access_rule_info: UpdateAccessRuleInfo,
         _request_timeout: Union[
             None,
@@ -598,7 +599,7 @@ class AccessRulesApi:
         Updates the access rule config for the given group_id.
 
         :param access_rule_id: The access rule ID (group ID) of the access rule. (required)
-        :type access_rule_id: str
+        :type access_rule_id: UUID
         :param update_access_rule_info: (required)
         :type update_access_rule_info: UpdateAccessRuleInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -649,7 +650,7 @@ class AccessRulesApi:
     @validate_call
     def update_access_rule_with_http_info(
         self,
-        access_rule_id: Annotated[StrictStr, Field(description="The access rule ID (group ID) of the access rule.")],
+        access_rule_id: Annotated[UUID, Field(description="The access rule ID (group ID) of the access rule.")],
         update_access_rule_info: UpdateAccessRuleInfo,
         _request_timeout: Union[
             None,
@@ -669,7 +670,7 @@ class AccessRulesApi:
         Updates the access rule config for the given group_id.
 
         :param access_rule_id: The access rule ID (group ID) of the access rule. (required)
-        :type access_rule_id: str
+        :type access_rule_id: UUID
         :param update_access_rule_info: (required)
         :type update_access_rule_info: UpdateAccessRuleInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -720,7 +721,7 @@ class AccessRulesApi:
     @validate_call
     def update_access_rule_without_preload_content(
         self,
-        access_rule_id: Annotated[StrictStr, Field(description="The access rule ID (group ID) of the access rule.")],
+        access_rule_id: Annotated[UUID, Field(description="The access rule ID (group ID) of the access rule.")],
         update_access_rule_info: UpdateAccessRuleInfo,
         _request_timeout: Union[
             None,
@@ -740,7 +741,7 @@ class AccessRulesApi:
         Updates the access rule config for the given group_id.
 
         :param access_rule_id: The access rule ID (group ID) of the access rule. (required)
-        :type access_rule_id: str
+        :type access_rule_id: UUID
         :param update_access_rule_info: (required)
         :type update_access_rule_info: UpdateAccessRuleInfo
         :param _request_timeout: timeout setting for this request. If one

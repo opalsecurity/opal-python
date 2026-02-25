@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **str** | The ID of the resource to add. | 
+**resource_id** | **UUID** | The ID of the resource to add. | 
 **access_level_remote_id** | **str** | The remote ID of the access level to grant to this user. Required if the resource being added requires an access level. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
 **access_level_name** | **str** | The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used. | [optional] 
 

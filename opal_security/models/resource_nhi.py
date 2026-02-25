@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +30,8 @@ class ResourceNHI(BaseModel):
     """
     # Resource Non-Human Identity Direct Access Object ### Description This object is used to represent a non-human identity with direct access to a resource.
     """ # noqa: E501
-    resource_id: StrictStr = Field(description="The ID of the resource.")
-    non_human_identity_id: StrictStr = Field(description="The resource ID of the non-human identity.")
+    resource_id: UUID = Field(description="The ID of the resource.")
+    non_human_identity_id: UUID = Field(description="The resource ID of the non-human identity.")
     access_level: Optional[ResourceAccessLevel] = None
     expiration_date: Optional[datetime] = Field(default=None, description="The day and time the non-human identity's access will expire.")
     additional_properties: Dict[str, Any] = {}

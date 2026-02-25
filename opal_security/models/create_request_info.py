@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.create_request_info_custom_metadata_inner import CreateRequestInfoCustomMetadataInner
 from opal_security.models.create_request_info_groups_inner import CreateRequestInfoGroupsInner
 from opal_security.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner
@@ -34,8 +35,8 @@ class CreateRequestInfo(BaseModel):
     """ # noqa: E501
     resources: List[CreateRequestInfoResourcesInner]
     groups: List[CreateRequestInfoGroupsInner]
-    target_user_id: Optional[StrictStr] = Field(default=None, description="The ID of the user to be granted access. Should not be specified if target_group_id is specified.")
-    target_group_id: Optional[StrictStr] = Field(default=None, description="The ID of the group the request is for.  Should not be specified if target_user_id is specified.")
+    target_user_id: Optional[UUID] = Field(default=None, description="The ID of the user to be granted access. Should not be specified if target_group_id is specified.")
+    target_group_id: Optional[UUID] = Field(default=None, description="The ID of the group the request is for.  Should not be specified if target_user_id is specified.")
     reason: StrictStr
     support_ticket: Optional[CreateRequestInfoSupportTicket] = None
     duration_minutes: Annotated[int, Field(strict=True, ge=-1)] = Field(description="The duration of the request in minutes. -1 represents an indefinite duration")

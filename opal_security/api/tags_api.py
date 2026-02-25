@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Any, Dict, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.create_tag_info import CreateTagInfo
 from opal_security.models.paginated_tags_list import PaginatedTagsList
 from opal_security.models.tag import Tag
@@ -45,8 +46,8 @@ class TagsApi:
     @validate_call
     def add_group_tag(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        group_id: Annotated[StrictStr, Field(description="The ID of the group to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group to apply the tag to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,9 +66,9 @@ class TagsApi:
         Applies a tag to a group.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param group_id: The ID of the group to apply the tag to. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -116,8 +117,8 @@ class TagsApi:
     @validate_call
     def add_group_tag_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        group_id: Annotated[StrictStr, Field(description="The ID of the group to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group to apply the tag to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -136,9 +137,9 @@ class TagsApi:
         Applies a tag to a group.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param group_id: The ID of the group to apply the tag to. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -187,8 +188,8 @@ class TagsApi:
     @validate_call
     def add_group_tag_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        group_id: Annotated[StrictStr, Field(description="The ID of the group to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group to apply the tag to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -207,9 +208,9 @@ class TagsApi:
         Applies a tag to a group.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param group_id: The ID of the group to apply the tag to. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -314,8 +315,8 @@ class TagsApi:
     @validate_call
     def add_resource_tag(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource to apply the tag to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -334,9 +335,9 @@ class TagsApi:
         Applies a tag to a resource.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param resource_id: The ID of the resource to apply the tag to. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -385,8 +386,8 @@ class TagsApi:
     @validate_call
     def add_resource_tag_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource to apply the tag to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,9 +406,9 @@ class TagsApi:
         Applies a tag to a resource.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param resource_id: The ID of the resource to apply the tag to. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -456,8 +457,8 @@ class TagsApi:
     @validate_call
     def add_resource_tag_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource to apply the tag to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -476,9 +477,9 @@ class TagsApi:
         Applies a tag to a resource.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param resource_id: The ID of the resource to apply the tag to. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -583,8 +584,8 @@ class TagsApi:
     @validate_call
     def add_user_tag(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to apply the tag to.")],
         body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
@@ -604,9 +605,9 @@ class TagsApi:
         Applies a tag to a user.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: The ID of the user to apply the tag to. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param body:
         :type body: object
         :param _request_timeout: timeout setting for this request. If one
@@ -658,8 +659,8 @@ class TagsApi:
     @validate_call
     def add_user_tag_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to apply the tag to.")],
         body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
@@ -679,9 +680,9 @@ class TagsApi:
         Applies a tag to a user.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: The ID of the user to apply the tag to. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param body:
         :type body: object
         :param _request_timeout: timeout setting for this request. If one
@@ -733,8 +734,8 @@ class TagsApi:
     @validate_call
     def add_user_tag_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to apply.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to apply the tag to.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to apply.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to apply the tag to.")],
         body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
@@ -754,9 +755,9 @@ class TagsApi:
         Applies a tag to a user.
 
         :param tag_id: The ID of the tag to apply. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: The ID of the user to apply the tag to. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param body:
         :type body: object
         :param _request_timeout: timeout setting for this request. If one
@@ -882,7 +883,7 @@ class TagsApi:
         self,
         tag_key: Annotated[Optional[StrictStr], Field(description="The key of the tag to create.")] = None,
         tag_value: Annotated[Optional[StrictStr], Field(description="The value of the tag to create.")] = None,
-        admin_owner_id: Annotated[Optional[StrictStr], Field(description="The ID of the owner that manages the tag.")] = None,
+        admin_owner_id: Annotated[Optional[UUID], Field(description="The ID of the owner that manages the tag.")] = None,
         create_tag_info: Optional[CreateTagInfo] = None,
         _request_timeout: Union[
             None,
@@ -906,7 +907,7 @@ class TagsApi:
         :param tag_value: The value of the tag to create.
         :type tag_value: str
         :param admin_owner_id: The ID of the owner that manages the tag.
-        :type admin_owner_id: str
+        :type admin_owner_id: UUID
         :param create_tag_info:
         :type create_tag_info: CreateTagInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -961,7 +962,7 @@ class TagsApi:
         self,
         tag_key: Annotated[Optional[StrictStr], Field(description="The key of the tag to create.")] = None,
         tag_value: Annotated[Optional[StrictStr], Field(description="The value of the tag to create.")] = None,
-        admin_owner_id: Annotated[Optional[StrictStr], Field(description="The ID of the owner that manages the tag.")] = None,
+        admin_owner_id: Annotated[Optional[UUID], Field(description="The ID of the owner that manages the tag.")] = None,
         create_tag_info: Optional[CreateTagInfo] = None,
         _request_timeout: Union[
             None,
@@ -985,7 +986,7 @@ class TagsApi:
         :param tag_value: The value of the tag to create.
         :type tag_value: str
         :param admin_owner_id: The ID of the owner that manages the tag.
-        :type admin_owner_id: str
+        :type admin_owner_id: UUID
         :param create_tag_info:
         :type create_tag_info: CreateTagInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -1040,7 +1041,7 @@ class TagsApi:
         self,
         tag_key: Annotated[Optional[StrictStr], Field(description="The key of the tag to create.")] = None,
         tag_value: Annotated[Optional[StrictStr], Field(description="The value of the tag to create.")] = None,
-        admin_owner_id: Annotated[Optional[StrictStr], Field(description="The ID of the owner that manages the tag.")] = None,
+        admin_owner_id: Annotated[Optional[UUID], Field(description="The ID of the owner that manages the tag.")] = None,
         create_tag_info: Optional[CreateTagInfo] = None,
         _request_timeout: Union[
             None,
@@ -1064,7 +1065,7 @@ class TagsApi:
         :param tag_value: The value of the tag to create.
         :type tag_value: str
         :param admin_owner_id: The ID of the owner that manages the tag.
-        :type admin_owner_id: str
+        :type admin_owner_id: UUID
         :param create_tag_info:
         :type create_tag_info: CreateTagInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -1205,7 +1206,7 @@ class TagsApi:
     @validate_call
     def delete_tag_by_id(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The tag ID")],
+        tag_id: Annotated[UUID, Field(description="The tag ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1224,7 +1225,7 @@ class TagsApi:
         UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 
         :param tag_id: The tag ID (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1272,7 +1273,7 @@ class TagsApi:
     @validate_call
     def delete_tag_by_id_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The tag ID")],
+        tag_id: Annotated[UUID, Field(description="The tag ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1291,7 +1292,7 @@ class TagsApi:
         UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 
         :param tag_id: The tag ID (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1339,7 +1340,7 @@ class TagsApi:
     @validate_call
     def delete_tag_by_id_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The tag ID")],
+        tag_id: Annotated[UUID, Field(description="The tag ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1358,7 +1359,7 @@ class TagsApi:
         UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 
         :param tag_id: The tag ID (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1739,7 +1740,7 @@ class TagsApi:
     @validate_call
     def get_tag_by_id(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The tag ID")],
+        tag_id: Annotated[UUID, Field(description="The tag ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1758,7 +1759,7 @@ class TagsApi:
         UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
         :param tag_id: The tag ID (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1806,7 +1807,7 @@ class TagsApi:
     @validate_call
     def get_tag_by_id_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The tag ID")],
+        tag_id: Annotated[UUID, Field(description="The tag ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1825,7 +1826,7 @@ class TagsApi:
         UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
         :param tag_id: The tag ID (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1873,7 +1874,7 @@ class TagsApi:
     @validate_call
     def get_tag_by_id_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The tag ID")],
+        tag_id: Annotated[UUID, Field(description="The tag ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1892,7 +1893,7 @@ class TagsApi:
         UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
         :param tag_id: The tag ID (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2280,8 +2281,8 @@ class TagsApi:
     @validate_call
     def remove_group_tag(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        group_id: Annotated[StrictStr, Field(description="The ID of the group to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2300,9 +2301,9 @@ class TagsApi:
         Removes a tag from a group.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param group_id: The ID of the group to remove the tag from. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2351,8 +2352,8 @@ class TagsApi:
     @validate_call
     def remove_group_tag_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        group_id: Annotated[StrictStr, Field(description="The ID of the group to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2371,9 +2372,9 @@ class TagsApi:
         Removes a tag from a group.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param group_id: The ID of the group to remove the tag from. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2422,8 +2423,8 @@ class TagsApi:
     @validate_call
     def remove_group_tag_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        group_id: Annotated[StrictStr, Field(description="The ID of the group to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        group_id: Annotated[UUID, Field(description="The ID of the group to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2442,9 +2443,9 @@ class TagsApi:
         Removes a tag from a group.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param group_id: The ID of the group to remove the tag from. (required)
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2549,8 +2550,8 @@ class TagsApi:
     @validate_call
     def remove_resource_tag(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2569,9 +2570,9 @@ class TagsApi:
         Removes a tag from a resource.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param resource_id: The ID of the resource to remove the tag from. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2620,8 +2621,8 @@ class TagsApi:
     @validate_call
     def remove_resource_tag_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2640,9 +2641,9 @@ class TagsApi:
         Removes a tag from a resource.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param resource_id: The ID of the resource to remove the tag from. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2691,8 +2692,8 @@ class TagsApi:
     @validate_call
     def remove_resource_tag_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        resource_id: Annotated[UUID, Field(description="The ID of the resource to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2711,9 +2712,9 @@ class TagsApi:
         Removes a tag from a resource.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param resource_id: The ID of the resource to remove the tag from. (required)
-        :type resource_id: str
+        :type resource_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2818,8 +2819,8 @@ class TagsApi:
     @validate_call
     def remove_user_tag(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2838,9 +2839,9 @@ class TagsApi:
         Removes a tag from a user.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: The ID of the user to remove the tag from. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2889,8 +2890,8 @@ class TagsApi:
     @validate_call
     def remove_user_tag_with_http_info(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2909,9 +2910,9 @@ class TagsApi:
         Removes a tag from a user.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: The ID of the user to remove the tag from. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2960,8 +2961,8 @@ class TagsApi:
     @validate_call
     def remove_user_tag_without_preload_content(
         self,
-        tag_id: Annotated[StrictStr, Field(description="The ID of the tag to remove.")],
-        user_id: Annotated[StrictStr, Field(description="The ID of the user to remove the tag from.")],
+        tag_id: Annotated[UUID, Field(description="The ID of the tag to remove.")],
+        user_id: Annotated[UUID, Field(description="The ID of the user to remove the tag from.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2980,9 +2981,9 @@ class TagsApi:
         Removes a tag from a user.
 
         :param tag_id: The ID of the tag to remove. (required)
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: The ID of the user to remove the tag from. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.visibility_type_enum import VisibilityTypeEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +30,7 @@ class VisibilityInfo(BaseModel):
     Visibility infomation of an entity.
     """ # noqa: E501
     visibility: VisibilityTypeEnum
-    visibility_group_ids: Optional[List[StrictStr]] = None
+    visibility_group_ids: Optional[List[UUID]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["visibility", "visibility_group_ids"]
 

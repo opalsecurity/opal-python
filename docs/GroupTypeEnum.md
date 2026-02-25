@@ -42,6 +42,16 @@ The type of the group.
 
 * `WORKDAY_USER_SECURITY_GROUP` (value: `'WORKDAY_USER_SECURITY_GROUP'`)
 
+* `PAGERDUTY_ON_CALL_SCHEDULE` (value: `'PAGERDUTY_ON_CALL_SCHEDULE'`)
+
+* `INCIDENTIO_ON_CALL_SCHEDULE` (value: `'INCIDENTIO_ON_CALL_SCHEDULE'`)
+
+* `ROOTLY_ON_CALL_SCHEDULE` (value: `'ROOTLY_ON_CALL_SCHEDULE'`)
+
+* `DEVIN_GROUP` (value: `'DEVIN_GROUP'`)
+
+* `GIT_HUB_ENTERPRISE_TEAM` (value: `'GIT_HUB_ENTERPRISE_TEAM'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

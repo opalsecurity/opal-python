@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class RequestReviewer(BaseModel):
     """
     A reviewer in a request stage
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier of the reviewer")
+    id: UUID = Field(description="The unique identifier of the reviewer")
     full_name: Optional[StrictStr] = Field(default=None, description="The user's full name.")
     status: StrictStr = Field(description="The status of this reviewer's review")
     additional_properties: Dict[str, Any] = {}

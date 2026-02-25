@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **str** | The ID of the resource requested. | [optional] 
-**group_id** | **str** | The ID of the group requested. | [optional] 
+**resource_id** | **UUID** | The ID of the resource requested. | [optional] 
+**group_id** | **UUID** | The ID of the group requested. | [optional] 
 **access_level_name** | **str** | The name of the access level requested. | [optional] 
 **access_level_remote_id** | **str** | The ID of the access level requested on the remote system. | [optional] 
 **name** | **str** | The name of the target. | [optional] 

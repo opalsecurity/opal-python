@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class ResourceWithAccessLevel(BaseModel):
     """
     Information about a resource and corresponding access level
     """ # noqa: E501
-    resource_id: StrictStr = Field(description="The ID of the resource.")
+    resource_id: UUID = Field(description="The ID of the resource.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the resource.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "access_level_remote_id"]

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**delete_resource_nhi**](ResourcesApi.md#delete_resource_nhi) | **DELETE** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 [**delete_resource_user**](ResourcesApi.md#delete_resource_user) | **DELETE** /resources/{resource_id}/users/{user_id} | 
 [**get_resource**](ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | Get resource by ID
+[**get_resource_groups**](ResourcesApi.md#get_resource_groups) | **GET** /resources/{resource_id}/groups | 
 [**get_resource_message_channels**](ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
 [**get_resource_nhis**](ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
 [**get_resource_reviewer_stages**](ResourcesApi.md#get_resource_reviewer_stages) | **GET** /resources/{resource_id}/reviewer-stages | 
@@ -34,8 +35,6 @@ Method | HTTP request | Description
 
 # **add_resource_nhi**
 > ResourceNHI add_resource_nhi(resource_id, non_human_identity_id, add_resource_nhi_request=add_resource_nhi_request)
-
-
 
 Gives a non-human identity access to this resource.
 
@@ -72,8 +71,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    non_human_identity_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The resource ID of the non-human identity to add.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
+    non_human_identity_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The resource ID of the non-human identity to add.
     add_resource_nhi_request = opal_security.AddResourceNhiRequest() # AddResourceNhiRequest |  (optional)
 
     try:
@@ -91,8 +90,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **non_human_identity_id** | **str**| The resource ID of the non-human identity to add. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **non_human_identity_id** | **UUID**| The resource ID of the non-human identity to add. | 
  **add_resource_nhi_request** | [**AddResourceNhiRequest**](AddResourceNhiRequest.md)|  | [optional] 
 
 ### Return type
@@ -118,8 +117,6 @@ Name | Type | Description  | Notes
 
 # **add_resource_user**
 > ResourceUser add_resource_user(resource_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_resource_user_request=add_resource_user_request)
-
-
 
 Adds a user to this resource.
 
@@ -156,8 +153,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user to add.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
+    user_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of the user to add.
     duration_minutes = 60 # int | The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite. (optional)
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. (optional)
     add_resource_user_request = opal_security.AddResourceUserRequest() # AddResourceUserRequest |  (optional)
@@ -177,8 +174,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **user_id** | **str**| The ID of the user to add. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **user_id** | **UUID**| The ID of the user to add. | 
  **duration_minutes** | **int**| The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite. | [optional] 
  **access_level_remote_id** | **str**| The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
  **add_resource_user_request** | [**AddResourceUserRequest**](AddResourceUserRequest.md)|  | [optional] 
@@ -206,8 +203,6 @@ Name | Type | Description  | Notes
 
 # **create_resource**
 > Resource create_resource(create_resource_info)
-
-
 
 Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
 
@@ -287,8 +282,6 @@ Name | Type | Description  | Notes
 # **delete_resource**
 > delete_resource(resource_id)
 
-
-
 Deletes a resource.
 
 ### Example
@@ -322,7 +315,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
 
     try:
         api_instance.delete_resource(resource_id)
@@ -337,7 +330,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
 
 ### Return type
 
@@ -362,8 +355,6 @@ void (empty response body)
 
 # **delete_resource_nhi**
 > delete_resource_nhi(resource_id, non_human_identity_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a non-human identity's direct access from this resource.
 
@@ -398,8 +389,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    non_human_identity_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The resource ID of the non-human identity to remove from this resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
+    non_human_identity_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The resource ID of the non-human identity to remove from this resource.
     access_level_remote_id = 'roles/cloudsql.instanceUser' # str | The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
 
     try:
@@ -415,8 +406,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **non_human_identity_id** | **str**| The resource ID of the non-human identity to remove from this resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **non_human_identity_id** | **UUID**| The resource ID of the non-human identity to remove from this resource. | 
  **access_level_remote_id** | **str**| The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed. | [optional] 
 
 ### Return type
@@ -442,8 +433,6 @@ void (empty response body)
 
 # **delete_resource_user**
 > delete_resource_user(resource_id, user_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a user's direct access from this resource.
 
@@ -478,8 +467,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of a user to remove from this resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
+    user_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of a user to remove from this resource.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
 
     try:
@@ -495,8 +484,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **user_id** | **str**| The ID of a user to remove from this resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **user_id** | **UUID**| The ID of a user to remove from this resource. | 
  **access_level_remote_id** | **str**| The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. | [optional] 
 
 ### Return type
@@ -559,7 +548,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
 
     try:
         # Get resource by ID
@@ -577,7 +566,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
 
 ### Return type
 
@@ -600,10 +589,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_resource_groups**
+> GroupResourceList get_resource_groups(resource_id)
+
+Returns a list of groups that grant access to the resource
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.group_resource_list import GroupResourceList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource that the groups grant access to.
+
+    try:
+        api_response = api_instance.get_resource_groups(resource_id)
+        print("The response of ResourcesApi->get_resource_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource_groups: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **UUID**| The ID of the resource that the groups grant access to. | 
+
+### Return type
+
+[**GroupResourceList**](GroupResourceList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The groups that grant access to the resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_resource_message_channels**
 > MessageChannelList get_resource_message_channels(resource_id)
-
-
 
 Gets the list of audit message channels attached to a resource.
 
@@ -639,7 +703,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
 
     try:
         api_response = api_instance.get_resource_message_channels(resource_id)
@@ -656,7 +720,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
 
 ### Return type
 
@@ -681,8 +745,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_nhis**
 > AccessList get_resource_nhis(resource_id, limit=limit)
-
-
 
 Gets the list of non-human identities with access to this resource.
 
@@ -718,7 +780,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     limit = 200 # int | Limit the number of results returned. (optional)
 
     try:
@@ -736,7 +798,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **limit** | **int**| Limit the number of results returned. | [optional] 
 
 ### Return type
@@ -762,8 +824,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_reviewer_stages**
 > List[ReviewerStage] get_resource_reviewer_stages(resource_id)
-
-
 
 Gets the list reviewer stages for a resource.
 
@@ -799,7 +859,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
 
     try:
         api_response = api_instance.get_resource_reviewer_stages(resource_id)
@@ -816,7 +876,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
 
 ### Return type
 
@@ -840,9 +900,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_resource_reviewers**
-> List[str] get_resource_reviewers(resource_id)
-
-
+> List[UUID] get_resource_reviewers(resource_id)
 
 Gets the list of owner IDs of the reviewers for a resource.
 
@@ -877,7 +935,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
 
     try:
         api_response = api_instance.get_resource_reviewers(resource_id)
@@ -894,11 +952,11 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -919,8 +977,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_scoped_role_permissions**
 > ScopedRolePermissionList get_resource_scoped_role_permissions(resource_id)
-
-
 
 Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 
@@ -956,7 +1012,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource whose scoped role permissions belong to.
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource whose scoped role permissions belong to.
 
     try:
         api_response = api_instance.get_resource_scoped_role_permissions(resource_id)
@@ -973,7 +1029,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource whose scoped role permissions belong to. | 
+ **resource_id** | **UUID**| The ID of the resource whose scoped role permissions belong to. | 
 
 ### Return type
 
@@ -998,8 +1054,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_tags**
 > TagsList get_resource_tags(resource_id)
-
-
 
 Returns all tags applied to the resource.
 
@@ -1035,7 +1089,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource whose tags to return.
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource whose tags to return.
 
     try:
         api_response = api_instance.get_resource_tags(resource_id)
@@ -1052,7 +1106,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource whose tags to return. | 
+ **resource_id** | **UUID**| The ID of the resource whose tags to return. | 
 
 ### Return type
 
@@ -1114,8 +1168,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the resource.
-    user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The ID of the user.
+    resource_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the resource.
+    user_id = UUID('29827fb8-f2dd-4e80-9576-28e31e9934ac') # UUID | The ID of the user.
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
 
     try:
@@ -1134,8 +1188,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **user_id** | **str**| The ID of the user. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **user_id** | **UUID**| The ID of the user. | 
  **cursor** | **str**| The pagination cursor value. | [optional] 
 
 ### Return type
@@ -1199,7 +1253,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     limit = 200 # int | Limit the number of results returned. (optional)
 
     try:
@@ -1218,7 +1272,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **limit** | **int**| Limit the number of results returned. | [optional] 
 
 ### Return type
@@ -1244,8 +1298,6 @@ Name | Type | Description  | Notes
 
 # **get_resource_visibility**
 > VisibilityInfo get_resource_visibility(resource_id)
-
-
 
 Gets the visibility of this resource.
 
@@ -1281,7 +1333,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
 
     try:
         api_response = api_instance.get_resource_visibility(resource_id)
@@ -1298,7 +1350,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
 
 ### Return type
 
@@ -1364,10 +1416,10 @@ with opal_security.ApiClient(configuration) as api_client:
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     resource_type_filter = opal_security.ResourceTypeEnum() # ResourceTypeEnum | The resource type to filter by. Required when remote_id is provided. (optional)
-    resource_ids = ['[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\",\"1b978423-db0a-4037-a4cf-f79c60cb67b3\"]'] # List[str] | The resource ids to filter by. (optional)
+    resource_ids = [["4baf8423-db0a-4037-a4cf-f79c60cb67a5","1b978423-db0a-4037-a4cf-f79c60cb67b3"]] # List[UUID] | The resource ids to filter by. (optional)
     resource_name = 'example-name' # str | Resource name. (optional)
-    parent_resource_id = '[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]' # str | The parent resource id to filter by. (optional)
-    ancestor_resource_id = '[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]' # str | The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. (optional)
+    parent_resource_id = UUID('[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]') # UUID | The parent resource id to filter by. (optional)
+    ancestor_resource_id = UUID('[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]') # UUID | The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. (optional)
     remote_id = 'remote_id_example' # str | Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided. (optional)
 
     try:
@@ -1389,10 +1441,10 @@ Name | Type | Description  | Notes
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
  **resource_type_filter** | [**ResourceTypeEnum**](.md)| The resource type to filter by. Required when remote_id is provided. | [optional] 
- **resource_ids** | [**List[str]**](str.md)| The resource ids to filter by. | [optional] 
+ **resource_ids** | [**List[UUID]**](UUID.md)| The resource ids to filter by. | [optional] 
  **resource_name** | **str**| Resource name. | [optional] 
- **parent_resource_id** | **str**| The parent resource id to filter by. | [optional] 
- **ancestor_resource_id** | **str**| The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. | [optional] 
+ **parent_resource_id** | **UUID**| The parent resource id to filter by. | [optional] 
+ **ancestor_resource_id** | **UUID**| The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. | [optional] 
  **remote_id** | **str**| Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided. | [optional] 
 
 ### Return type
@@ -1418,8 +1470,6 @@ Name | Type | Description  | Notes
 
 # **get_user_resources**
 > ResourceAccessUserList get_user_resources(user_id, limit=limit, cursor=cursor, include_unmanaged=include_unmanaged)
-
-
 
 Gets the list of resources for this user.
 
@@ -1455,7 +1505,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    user_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the user.
+    user_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the user.
     limit = 200 # int | Limit the number of results returned. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     include_unmanaged = false # bool | Include user's access to unmanaged resources. (optional)
@@ -1475,7 +1525,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**| The ID of the user. | 
+ **user_id** | **UUID**| The ID of the user. | 
  **limit** | **int**| Limit the number of results returned. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **include_unmanaged** | **bool**| Include user&#39;s access to unmanaged resources. | [optional] 
@@ -1503,8 +1553,6 @@ Name | Type | Description  | Notes
 
 # **resource_user_access_status_retrieve**
 > ResourceUserAccessStatus resource_user_access_status_retrieve(resource_id, user_id, access_level_remote_id=access_level_remote_id, cursor=cursor, page_size=page_size)
-
-
 
 Get user's access status to a resource.
 
@@ -1540,8 +1588,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource.
-    user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The ID of the user.
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource.
+    user_id = UUID('29827fb8-f2dd-4e80-9576-28e31e9934ac') # UUID | The ID of the user.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
@@ -1561,8 +1609,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **user_id** | **str**| The ID of the user. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **user_id** | **UUID**| The ID of the user. | 
  **access_level_remote_id** | **str**| The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
@@ -1589,9 +1637,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_resource_message_channels**
-> List[str] set_resource_message_channels(resource_id, message_channel_id_list)
-
-
+> List[UUID] set_resource_message_channels(resource_id, message_channel_id_list)
 
 Sets the list of audit message channels attached to a resource.
 
@@ -1627,7 +1673,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     message_channel_id_list = opal_security.MessageChannelIDList() # MessageChannelIDList | 
 
     try:
@@ -1645,12 +1691,12 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **message_channel_id_list** | [**MessageChannelIDList**](MessageChannelIDList.md)|  | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -1671,8 +1717,6 @@ Name | Type | Description  | Notes
 
 # **set_resource_reviewer_stages**
 > List[ReviewerStage] set_resource_reviewer_stages(resource_id, reviewer_stage_list)
-
-
 
 Sets the list of reviewer stages for a resource.
 
@@ -1709,7 +1753,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     reviewer_stage_list = opal_security.ReviewerStageList() # ReviewerStageList | 
 
     try:
@@ -1727,7 +1771,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **reviewer_stage_list** | [**ReviewerStageList**](ReviewerStageList.md)|  | 
 
 ### Return type
@@ -1752,9 +1796,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_resource_reviewers**
-> List[str] set_resource_reviewers(resource_id, reviewer_id_list)
-
-
+> List[UUID] set_resource_reviewers(resource_id, reviewer_id_list)
 
 Sets the list of reviewers for a resource.
 
@@ -1790,7 +1832,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     reviewer_id_list = opal_security.ReviewerIDList() # ReviewerIDList | 
 
     try:
@@ -1808,12 +1850,12 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **reviewer_id_list** | [**ReviewerIDList**](ReviewerIDList.md)|  | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -1834,8 +1876,6 @@ Name | Type | Description  | Notes
 
 # **set_resource_scoped_role_permissions**
 > ScopedRolePermissionList set_resource_scoped_role_permissions(resource_id, scoped_role_permission_list)
-
-
 
 Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
 
@@ -1871,7 +1911,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.
     scoped_role_permission_list = opal_security.ScopedRolePermissionList() # ScopedRolePermissionList | 
 
     try:
@@ -1889,7 +1929,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type. | 
+ **resource_id** | **UUID**| The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type. | 
  **scoped_role_permission_list** | [**ScopedRolePermissionList**](ScopedRolePermissionList.md)|  | 
 
 ### Return type
@@ -1915,8 +1955,6 @@ Name | Type | Description  | Notes
 
 # **set_resource_visibility**
 > VisibilityInfo set_resource_visibility(resource_id, visibility_info)
-
-
 
 Sets the visibility of this resource.
 
@@ -1952,7 +1990,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     visibility_info = opal_security.VisibilityInfo() # VisibilityInfo | 
 
     try:
@@ -1970,7 +2008,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **visibility_info** | [**VisibilityInfo**](VisibilityInfo.md)|  | 
 
 ### Return type
@@ -1996,8 +2034,6 @@ Name | Type | Description  | Notes
 
 # **update_resource_user**
 > ResourceUser update_resource_user(resource_id, user_id, update_resource_user_request)
-
-
 
 Updates a user's access level or duration on this resource.
 
@@ -2034,8 +2070,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.ResourcesApi(api_client)
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
-    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user whose access is being updated.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
+    user_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of the user whose access is being updated.
     update_resource_user_request = opal_security.UpdateResourceUserRequest() # UpdateResourceUserRequest | 
 
     try:
@@ -2053,8 +2089,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The ID of the resource. | 
- **user_id** | **str**| The ID of the user whose access is being updated. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **user_id** | **UUID**| The ID of the user whose access is being updated. | 
  **update_resource_user_request** | [**UpdateResourceUserRequest**](UpdateResourceUserRequest.md)|  | 
 
 ### Return type
@@ -2080,8 +2116,6 @@ Name | Type | Description  | Notes
 
 # **update_resources**
 > UpdateResourceInfoList update_resources(update_resource_info_list)
-
-
 
 Bulk updates a list of resources.
 

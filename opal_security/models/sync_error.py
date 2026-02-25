@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +32,7 @@ class SyncError(BaseModel):
     first_seen: datetime = Field(description="The time when this error was first seen.")
     last_seen: datetime = Field(description="The time when this error was most recently seen.")
     error_message: StrictStr = Field(description="The error message associated with the sync error.")
-    app_id: Optional[StrictStr] = Field(default=None, description="The ID of the app that the error occured for.")
+    app_id: Optional[UUID] = Field(default=None, description="The ID of the app that the error occured for.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["first_seen", "last_seen", "error_message", "app_id"]
 

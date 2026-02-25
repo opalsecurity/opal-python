@@ -1,0 +1,30 @@
+# ResourceRemoteInfoGithubEnterpriseRole
+
+Remote info for GitHub Enterprise role.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**role_id** | **str** | The id of the role. | 
+
+## Example
+
+```python
+from opal_security.models.resource_remote_info_github_enterprise_role import ResourceRemoteInfoGithubEnterpriseRole
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ResourceRemoteInfoGithubEnterpriseRole from a JSON string
+resource_remote_info_github_enterprise_role_instance = ResourceRemoteInfoGithubEnterpriseRole.from_json(json)
+# print the JSON string representation of the object
+print(ResourceRemoteInfoGithubEnterpriseRole.to_json())
+
+# convert the object into a dict
+resource_remote_info_github_enterprise_role_dict = resource_remote_info_github_enterprise_role_instance.to_dict()
+# create an instance of ResourceRemoteInfoGithubEnterpriseRole from a dict
+resource_remote_info_github_enterprise_role_from_dict = ResourceRemoteInfoGithubEnterpriseRole.from_dict(resource_remote_info_github_enterprise_role_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -18,6 +18,8 @@ The third party provider of the remote user.
 
 * `FRESH_SERVICE` (value: `'FRESH_SERVICE'`)
 
+* `SHORTCUT` (value: `'SHORTCUT'`)
+
 * `PAGER_DUTY` (value: `'PAGER_DUTY'`)
 
 * `OPSGENIE` (value: `'OPSGENIE'`)

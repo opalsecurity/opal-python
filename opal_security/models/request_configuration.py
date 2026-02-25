@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.condition import Condition
 from opal_security.models.reviewer_stage import ReviewerStage
 from typing import Optional, Set
@@ -37,7 +38,7 @@ class RequestConfiguration(BaseModel):
     recommended_duration_minutes: Optional[StrictInt] = Field(default=None, description="The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.")
     require_support_ticket: StrictBool = Field(description="A bool representing whether or not access requests to the resource require an access ticket.")
     extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.")
-    request_template_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated request template.")
+    request_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated request template.")
     reviewer_stages: Optional[List[ReviewerStage]] = Field(default=None, description="The list of reviewer stages for the request configuration.")
     priority: StrictInt = Field(description="The priority of the request configuration.")
     additional_properties: Dict[str, Any] = {}

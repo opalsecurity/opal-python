@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class OnCallSchedule(BaseModel):
     """
     # OnCallSchedule Object ### Description The `OnCallSchedule` object is used to represent an on call schedule.  ### Usage Example Update a groups on call schedule from the `UPDATE Groups` endpoint.
     """ # noqa: E501
-    on_call_schedule_id: Optional[StrictStr] = Field(default=None, description="The ID of the on-call schedule.")
+    on_call_schedule_id: Optional[UUID] = Field(default=None, description="The ID of the on-call schedule.")
     third_party_provider: Optional[OnCallScheduleProviderEnum] = None
     remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the on call schedule")
     name: Optional[StrictStr] = Field(default=None, description="The name of the on call schedule.")

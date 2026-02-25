@@ -17,9 +17,10 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from opal_security.models.app import App
 from opal_security.models.app_type_enum import AppTypeEnum
 from opal_security.models.apps_list import AppsList
@@ -46,7 +47,7 @@ class AppsApi:
     @validate_call
     def get_app(
         self,
-        app_id: Annotated[StrictStr, Field(description="The ID of the app.")],
+        app_id: Annotated[UUID, Field(description="The ID of the app.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,7 +66,7 @@ class AppsApi:
         Returns an `App` object.
 
         :param app_id: The ID of the app. (required)
-        :type app_id: str
+        :type app_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -113,7 +114,7 @@ class AppsApi:
     @validate_call
     def get_app_with_http_info(
         self,
-        app_id: Annotated[StrictStr, Field(description="The ID of the app.")],
+        app_id: Annotated[UUID, Field(description="The ID of the app.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -132,7 +133,7 @@ class AppsApi:
         Returns an `App` object.
 
         :param app_id: The ID of the app. (required)
-        :type app_id: str
+        :type app_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -180,7 +181,7 @@ class AppsApi:
     @validate_call
     def get_app_without_preload_content(
         self,
-        app_id: Annotated[StrictStr, Field(description="The ID of the app.")],
+        app_id: Annotated[UUID, Field(description="The ID of the app.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -199,7 +200,7 @@ class AppsApi:
         Returns an `App` object.
 
         :param app_id: The ID of the app. (required)
-        :type app_id: str
+        :type app_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -308,7 +309,7 @@ class AppsApi:
     def get_apps(
         self,
         app_type_filter: Annotated[Optional[List[AppTypeEnum]], Field(description="A list of app types to filter by.")] = None,
-        owner_filter: Annotated[Optional[StrictStr], Field(description="An owner ID to filter by.")] = None,
+        owner_filter: Annotated[Optional[UUID], Field(description="An owner ID to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -329,7 +330,7 @@ class AppsApi:
         :param app_type_filter: A list of app types to filter by.
         :type app_type_filter: List[AppTypeEnum]
         :param owner_filter: An owner ID to filter by.
-        :type owner_filter: str
+        :type owner_filter: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -379,7 +380,7 @@ class AppsApi:
     def get_apps_with_http_info(
         self,
         app_type_filter: Annotated[Optional[List[AppTypeEnum]], Field(description="A list of app types to filter by.")] = None,
-        owner_filter: Annotated[Optional[StrictStr], Field(description="An owner ID to filter by.")] = None,
+        owner_filter: Annotated[Optional[UUID], Field(description="An owner ID to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -400,7 +401,7 @@ class AppsApi:
         :param app_type_filter: A list of app types to filter by.
         :type app_type_filter: List[AppTypeEnum]
         :param owner_filter: An owner ID to filter by.
-        :type owner_filter: str
+        :type owner_filter: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -450,7 +451,7 @@ class AppsApi:
     def get_apps_without_preload_content(
         self,
         app_type_filter: Annotated[Optional[List[AppTypeEnum]], Field(description="A list of app types to filter by.")] = None,
-        owner_filter: Annotated[Optional[StrictStr], Field(description="An owner ID to filter by.")] = None,
+        owner_filter: Annotated[Optional[UUID], Field(description="An owner ID to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -471,7 +472,7 @@ class AppsApi:
         :param app_type_filter: A list of app types to filter by.
         :type app_type_filter: List[AppTypeEnum]
         :param owner_filter: An owner ID to filter by.
-        :type owner_filter: str
+        :type owner_filter: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -588,9 +589,9 @@ class AppsApi:
     @validate_call
     def get_sync_errors(
         self,
-        app_id: Annotated[Optional[StrictStr], Field(description="The ID of the app to list sync errors for.")] = None,
-        resource_id: Annotated[Optional[StrictStr], Field(description="The ID of the resource to list sync errors for.")] = None,
-        group_id: Annotated[Optional[StrictStr], Field(description="The ID of the group to list sync errors for.")] = None,
+        app_id: Annotated[Optional[UUID], Field(description="The ID of the app to list sync errors for.")] = None,
+        resource_id: Annotated[Optional[UUID], Field(description="The ID of the resource to list sync errors for.")] = None,
+        group_id: Annotated[Optional[UUID], Field(description="The ID of the group to list sync errors for.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -609,11 +610,11 @@ class AppsApi:
         Returns a list of recent sync errors that have occurred since the last successful sync.
 
         :param app_id: The ID of the app to list sync errors for.
-        :type app_id: str
+        :type app_id: UUID
         :param resource_id: The ID of the resource to list sync errors for.
-        :type resource_id: str
+        :type resource_id: UUID
         :param group_id: The ID of the group to list sync errors for.
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -663,9 +664,9 @@ class AppsApi:
     @validate_call
     def get_sync_errors_with_http_info(
         self,
-        app_id: Annotated[Optional[StrictStr], Field(description="The ID of the app to list sync errors for.")] = None,
-        resource_id: Annotated[Optional[StrictStr], Field(description="The ID of the resource to list sync errors for.")] = None,
-        group_id: Annotated[Optional[StrictStr], Field(description="The ID of the group to list sync errors for.")] = None,
+        app_id: Annotated[Optional[UUID], Field(description="The ID of the app to list sync errors for.")] = None,
+        resource_id: Annotated[Optional[UUID], Field(description="The ID of the resource to list sync errors for.")] = None,
+        group_id: Annotated[Optional[UUID], Field(description="The ID of the group to list sync errors for.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -684,11 +685,11 @@ class AppsApi:
         Returns a list of recent sync errors that have occurred since the last successful sync.
 
         :param app_id: The ID of the app to list sync errors for.
-        :type app_id: str
+        :type app_id: UUID
         :param resource_id: The ID of the resource to list sync errors for.
-        :type resource_id: str
+        :type resource_id: UUID
         :param group_id: The ID of the group to list sync errors for.
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -738,9 +739,9 @@ class AppsApi:
     @validate_call
     def get_sync_errors_without_preload_content(
         self,
-        app_id: Annotated[Optional[StrictStr], Field(description="The ID of the app to list sync errors for.")] = None,
-        resource_id: Annotated[Optional[StrictStr], Field(description="The ID of the resource to list sync errors for.")] = None,
-        group_id: Annotated[Optional[StrictStr], Field(description="The ID of the group to list sync errors for.")] = None,
+        app_id: Annotated[Optional[UUID], Field(description="The ID of the app to list sync errors for.")] = None,
+        resource_id: Annotated[Optional[UUID], Field(description="The ID of the resource to list sync errors for.")] = None,
+        group_id: Annotated[Optional[UUID], Field(description="The ID of the group to list sync errors for.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -759,11 +760,11 @@ class AppsApi:
         Returns a list of recent sync errors that have occurred since the last successful sync.
 
         :param app_id: The ID of the app to list sync errors for.
-        :type app_id: str
+        :type app_id: UUID
         :param resource_id: The ID of the resource to list sync errors for.
-        :type resource_id: str
+        :type resource_id: UUID
         :param group_id: The ID of the group to list sync errors for.
-        :type group_id: str
+        :type group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class UpdateIdpGroupMappingsRequestMappingsInner(BaseModel):
     """
     UpdateIdpGroupMappingsRequestMappingsInner
     """ # noqa: E501
-    group_id: Optional[StrictStr] = None
+    group_id: Optional[UUID] = None
     alias: Optional[StrictStr] = None
     hidden_from_end_user: Optional[StrictBool] = None
     additional_properties: Dict[str, Any] = {}

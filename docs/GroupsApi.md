@@ -37,8 +37,6 @@ Method | HTTP request | Description
 # **add_group_containing_group**
 > GroupContainingGroup add_group_containing_group(group_id, group_containing_group)
 
-
-
 Creates a new containing group.
 
 ### Example
@@ -73,7 +71,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     group_containing_group = opal_security.GroupContainingGroup() # GroupContainingGroup | 
 
     try:
@@ -91,7 +89,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **group_containing_group** | [**GroupContainingGroup**](GroupContainingGroup.md)|  | 
 
 ### Return type
@@ -117,8 +115,6 @@ Name | Type | Description  | Notes
 
 # **add_group_resource**
 > GroupResource add_group_resource(group_id, resource_id, access_level_remote_id=access_level_remote_id, add_group_resource_request=add_group_resource_request)
-
-
 
 Adds a resource to a group.
 
@@ -155,8 +151,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource.
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. (optional)
     add_group_resource_request = opal_security.AddGroupResourceRequest() # AddGroupResourceRequest |  (optional)
 
@@ -175,8 +171,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
- **resource_id** | **str**| The ID of the resource. | 
+ **group_id** | **UUID**| The ID of the group. | 
+ **resource_id** | **UUID**| The ID of the resource. | 
  **access_level_remote_id** | **str**| The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
  **add_group_resource_request** | [**AddGroupResourceRequest**](AddGroupResourceRequest.md)|  | [optional] 
 
@@ -203,8 +199,6 @@ Name | Type | Description  | Notes
 
 # **add_group_user**
 > GroupUser add_group_user(group_id, user_id, duration_minutes=duration_minutes, access_level_remote_id=access_level_remote_id, add_group_user_request=add_group_user_request)
-
-
 
 Adds a user to this group.
 
@@ -241,8 +235,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user to add.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    user_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of the user to add.
     duration_minutes = 60 # int | The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite. (optional)
     access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. (optional)
     add_group_user_request = opal_security.AddGroupUserRequest() # AddGroupUserRequest |  (optional)
@@ -262,8 +256,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
- **user_id** | **str**| The ID of the user to add. | 
+ **group_id** | **UUID**| The ID of the group. | 
+ **user_id** | **UUID**| The ID of the user to add. | 
  **duration_minutes** | **int**| The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite. | [optional] 
  **access_level_remote_id** | **str**| The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used. | [optional] 
  **add_group_user_request** | [**AddGroupUserRequest**](AddGroupUserRequest.md)|  | [optional] 
@@ -291,8 +285,6 @@ Name | Type | Description  | Notes
 
 # **create_group**
 > Group create_group(create_group_info)
-
-
 
 Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
 
@@ -372,8 +364,6 @@ Name | Type | Description  | Notes
 # **delete_group**
 > delete_group(group_id)
 
-
-
 Deletes a group.
 
 ### Example
@@ -407,7 +397,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_instance.delete_group(group_id)
@@ -422,7 +412,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -447,8 +437,6 @@ void (empty response body)
 
 # **delete_group_user**
 > delete_group_user(group_id, user_id, access_level_remote_id=access_level_remote_id)
-
-
 
 Removes a user's access from this group.
 
@@ -483,8 +471,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of a user to remove from this group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    user_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of a user to remove from this group.
     access_level_remote_id = '30' # str | The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. (optional)
 
     try:
@@ -500,8 +488,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
- **user_id** | **str**| The ID of a user to remove from this group. | 
+ **group_id** | **UUID**| The ID of the group. | 
+ **user_id** | **UUID**| The ID of a user to remove from this group. | 
  **access_level_remote_id** | **str**| The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. | [optional] 
 
 ### Return type
@@ -564,7 +552,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the group.
+    group_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the group.
 
     try:
         # Get group by ID
@@ -582,7 +570,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -644,8 +632,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    containing_group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the containing group.
 
     try:
         # Get nested group by ID
@@ -663,8 +651,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
- **containing_group_id** | **str**| The ID of the containing group. | 
+ **group_id** | **UUID**| The ID of the group. | 
+ **containing_group_id** | **UUID**| The ID of the containing group. | 
 
 ### Return type
 
@@ -726,7 +714,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         # Get nested groups
@@ -744,7 +732,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -769,8 +757,6 @@ Name | Type | Description  | Notes
 
 # **get_group_message_channels**
 > MessageChannelList get_group_message_channels(group_id)
-
-
 
 Gets the list of audit and reviewer message channels attached to a group.
 
@@ -806,7 +792,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_response = api_instance.get_group_message_channels(group_id)
@@ -823,7 +809,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -848,8 +834,6 @@ Name | Type | Description  | Notes
 
 # **get_group_on_call_schedules**
 > OnCallScheduleList get_group_on_call_schedules(group_id)
-
-
 
 Gets the list of on call schedules attached to a group.
 
@@ -885,7 +869,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_response = api_instance.get_group_on_call_schedules(group_id)
@@ -902,7 +886,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -927,8 +911,6 @@ Name | Type | Description  | Notes
 
 # **get_group_resources**
 > GroupResourceList get_group_resources(group_id)
-
-
 
 Gets the list of resources that the group gives access to.
 
@@ -964,7 +946,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_response = api_instance.get_group_resources(group_id)
@@ -981,7 +963,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -1006,8 +988,6 @@ Name | Type | Description  | Notes
 
 # **get_group_reviewer_stages**
 > List[ReviewerStage] get_group_reviewer_stages(group_id)
-
-
 
 Gets the list of reviewer stages for a group.
 
@@ -1043,7 +1023,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_response = api_instance.get_group_reviewer_stages(group_id)
@@ -1060,7 +1040,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -1084,9 +1064,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_group_reviewers**
-> List[str] get_group_reviewers(group_id)
-
-
+> List[UUID] get_group_reviewers(group_id)
 
 Gets the list of owner IDs of the reviewers for a group.
 
@@ -1121,7 +1099,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_response = api_instance.get_group_reviewers(group_id)
@@ -1138,11 +1116,11 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -1163,8 +1141,6 @@ Name | Type | Description  | Notes
 
 # **get_group_tags**
 > TagsList get_group_tags(group_id)
-
-
 
 Returns all tags applied to the group.
 
@@ -1200,7 +1176,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the group whose tags to return.
+    group_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the group whose tags to return.
 
     try:
         api_response = api_instance.get_group_tags(group_id)
@@ -1217,7 +1193,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group whose tags to return. | 
+ **group_id** | **UUID**| The ID of the group whose tags to return. | 
 
 ### Return type
 
@@ -1242,8 +1218,6 @@ Name | Type | Description  | Notes
 
 # **get_group_users**
 > GroupUserList get_group_users(group_id, cursor=cursor, page_size=page_size)
-
-
 
 Gets the list of users for this group.
 
@@ -1279,7 +1253,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
@@ -1298,7 +1272,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
 
@@ -1325,8 +1299,6 @@ Name | Type | Description  | Notes
 
 # **get_group_visibility**
 > VisibilityInfo get_group_visibility(group_id)
-
-
 
 Gets the visibility of this group.
 
@@ -1362,7 +1334,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
 
     try:
         api_response = api_instance.get_group_visibility(group_id)
@@ -1379,7 +1351,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
 
 ### Return type
 
@@ -1445,7 +1417,7 @@ with opal_security.ApiClient(configuration) as api_client:
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     group_type_filter = opal_security.GroupTypeEnum() # GroupTypeEnum | The group type to filter by. (optional)
-    group_ids = ['[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\",\"1b978423-db0a-4037-a4cf-f79c60cb67b3\"]'] # List[str] | The group ids to filter by. (optional)
+    group_ids = [["4baf8423-db0a-4037-a4cf-f79c60cb67a5","1b978423-db0a-4037-a4cf-f79c60cb67b3"]] # List[UUID] | The group ids to filter by. (optional)
     group_name = 'example-name' # str | Group name. (optional)
 
     try:
@@ -1467,7 +1439,7 @@ Name | Type | Description  | Notes
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
  **group_type_filter** | [**GroupTypeEnum**](.md)| The group type to filter by. | [optional] 
- **group_ids** | [**List[str]**](str.md)| The group ids to filter by. | [optional] 
+ **group_ids** | [**List[UUID]**](UUID.md)| The group ids to filter by. | [optional] 
  **group_name** | **str**| Group name. | [optional] 
 
 ### Return type
@@ -1493,8 +1465,6 @@ Name | Type | Description  | Notes
 
 # **get_user_groups**
 > GroupUserList get_user_groups(user_id, cursor=cursor, page_size=page_size)
-
-
 
 Returns all groups that the user is a member of.
 
@@ -1530,7 +1500,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    user_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the user whose groups to return.
+    user_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the user whose groups to return.
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
 
@@ -1549,7 +1519,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**| The ID of the user whose groups to return. | 
+ **user_id** | **UUID**| The ID of the user whose groups to return. | 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
 
@@ -1575,9 +1545,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_group_containing_group**
-> remove_group_containing_group(group_id, containing_group_id)
-
-
+> remove_group_containing_group(group_id, containing_group_id, access_level_remote_id=access_level_remote_id)
 
 Removes a containing group from a group.
 
@@ -1612,11 +1580,12 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    containing_group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the containing group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the member group to remove.
+    containing_group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the containing group.
+    access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The remote ID of the member group's access level to filter by. (optional)
 
     try:
-        api_instance.remove_group_containing_group(group_id, containing_group_id)
+        api_instance.remove_group_containing_group(group_id, containing_group_id, access_level_remote_id=access_level_remote_id)
     except Exception as e:
         print("Exception when calling GroupsApi->remove_group_containing_group: %s\n" % e)
 ```
@@ -1628,8 +1597,9 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
- **containing_group_id** | **str**| The ID of the containing group. | 
+ **group_id** | **UUID**| The ID of the member group to remove. | 
+ **containing_group_id** | **UUID**| The ID of the containing group. | 
+ **access_level_remote_id** | **str**| The remote ID of the member group&#39;s access level to filter by. | [optional] 
 
 ### Return type
 
@@ -1648,14 +1618,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | The containing group was successfully removed from the group. |  -  |
+**204** | The member group was successfully removed from the containing group. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_group_message_channels**
-> List[str] set_group_message_channels(group_id, message_channel_id_list)
-
-
+> List[UUID] set_group_message_channels(group_id, message_channel_id_list)
 
 Sets the list of audit message channels attached to a group.
 
@@ -1691,7 +1659,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     message_channel_id_list = opal_security.MessageChannelIDList() # MessageChannelIDList | 
 
     try:
@@ -1709,12 +1677,12 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **message_channel_id_list** | [**MessageChannelIDList**](MessageChannelIDList.md)|  | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -1734,9 +1702,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_group_on_call_schedules**
-> List[str] set_group_on_call_schedules(group_id, on_call_schedule_id_list)
-
-
+> List[UUID] set_group_on_call_schedules(group_id, on_call_schedule_id_list)
 
 Sets the list of on call schedules attached to a group.
 
@@ -1772,7 +1738,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     on_call_schedule_id_list = opal_security.OnCallScheduleIDList() # OnCallScheduleIDList | 
 
     try:
@@ -1790,12 +1756,12 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **on_call_schedule_id_list** | [**OnCallScheduleIDList**](OnCallScheduleIDList.md)|  | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -1816,8 +1782,6 @@ Name | Type | Description  | Notes
 
 # **set_group_resources**
 > set_group_resources(group_id, update_group_resources_info)
-
-
 
 Sets the list of resources that the group gives access to.
 
@@ -1853,7 +1817,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     update_group_resources_info = opal_security.UpdateGroupResourcesInfo() # UpdateGroupResourcesInfo | 
 
     try:
@@ -1869,7 +1833,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **update_group_resources_info** | [**UpdateGroupResourcesInfo**](UpdateGroupResourcesInfo.md)|  | 
 
 ### Return type
@@ -1895,8 +1859,6 @@ void (empty response body)
 
 # **set_group_reviewer_stages**
 > List[ReviewerStage] set_group_reviewer_stages(group_id, reviewer_stage_list)
-
-
 
 Sets the list of reviewer stages for a group.
 
@@ -1933,7 +1895,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     reviewer_stage_list = opal_security.ReviewerStageList() # ReviewerStageList | 
 
     try:
@@ -1951,7 +1913,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **reviewer_stage_list** | [**ReviewerStageList**](ReviewerStageList.md)|  | 
 
 ### Return type
@@ -1976,9 +1938,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_group_reviewers**
-> List[str] set_group_reviewers(group_id, reviewer_id_list)
-
-
+> List[UUID] set_group_reviewers(group_id, reviewer_id_list)
 
 Sets the list of reviewers for a group.
 
@@ -2014,7 +1974,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     reviewer_id_list = opal_security.ReviewerIDList() # ReviewerIDList | 
 
     try:
@@ -2032,12 +1992,12 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **reviewer_id_list** | [**ReviewerIDList**](ReviewerIDList.md)|  | 
 
 ### Return type
 
-**List[str]**
+**List[UUID]**
 
 ### Authorization
 
@@ -2058,8 +2018,6 @@ Name | Type | Description  | Notes
 
 # **set_group_visibility**
 > VisibilityInfo set_group_visibility(group_id, visibility_info)
-
-
 
 Sets the visibility of this group.
 
@@ -2095,7 +2053,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     visibility_info = opal_security.VisibilityInfo() # VisibilityInfo | 
 
     try:
@@ -2113,7 +2071,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
+ **group_id** | **UUID**| The ID of the group. | 
  **visibility_info** | [**VisibilityInfo**](VisibilityInfo.md)|  | 
 
 ### Return type
@@ -2139,8 +2097,6 @@ Name | Type | Description  | Notes
 
 # **update_group_user**
 > GroupUser update_group_user(group_id, user_id, update_group_user_request)
-
-
 
 Updates a user's access level or duration in this group.
 
@@ -2177,8 +2133,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
-    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
-    user_id = 'f92aa855-cea9-4814-b9d8-f2a60d3e4a06' # str | The ID of the user whose access is being updated.
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    user_id = UUID('f92aa855-cea9-4814-b9d8-f2a60d3e4a06') # UUID | The ID of the user whose access is being updated.
     update_group_user_request = opal_security.UpdateGroupUserRequest() # UpdateGroupUserRequest | 
 
     try:
@@ -2196,8 +2152,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_id** | **str**| The ID of the group. | 
- **user_id** | **str**| The ID of the user whose access is being updated. | 
+ **group_id** | **UUID**| The ID of the group. | 
+ **user_id** | **UUID**| The ID of the user whose access is being updated. | 
  **update_group_user_request** | [**UpdateGroupUserRequest**](UpdateGroupUserRequest.md)|  | 
 
 ### Return type
@@ -2223,8 +2179,6 @@ Name | Type | Description  | Notes
 
 # **update_groups**
 > UpdateGroupInfoList update_groups(update_group_info_list)
-
-
 
 Bulk updates a list of groups.
 

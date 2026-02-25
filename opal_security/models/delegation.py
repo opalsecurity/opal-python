@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,9 +29,9 @@ class Delegation(BaseModel):
     """
     # Delegation Object ### Description The `Delegation` object represents a delegation of access review requests from one user to another.  ### Usage Example List from the `GET Delegations` endpoint. Get from the `GET Delegation` endpoint.
     """ # noqa: E501
-    id: StrictStr = Field(description="The ID of the delegation.")
-    delegator_user_id: StrictStr = Field(description="The ID of the user delegating their access review requests.")
-    delegate_user_id: StrictStr = Field(description="The ID of the user being delegated to.")
+    id: UUID = Field(description="The ID of the delegation.")
+    delegator_user_id: UUID = Field(description="The ID of the user delegating their access review requests.")
+    delegate_user_id: UUID = Field(description="The ID of the user being delegated to.")
     start_time: datetime = Field(description="The start time of the delegation.")
     end_time: datetime = Field(description="The end time of the delegation.")
     reason: StrictStr = Field(description="The reason for the delegation.")

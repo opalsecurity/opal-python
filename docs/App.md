@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app_id** | **str** | The ID of the app. | 
+**app_id** | **UUID** | The ID of the app. | 
 **name** | **str** | The name of the app. | 
 **description** | **str** | A description of the app. | 
-**admin_owner_id** | **str** | The ID of the owner of the app. | 
+**admin_owner_id** | **UUID** | The ID of the owner of the app. | 
 **app_type** | [**AppTypeEnum**](AppTypeEnum.md) |  | 
 **validations** | [**List[AppValidation]**](AppValidation.md) | Validation checks of an apps&#39; configuration and permissions. | [optional] 
 

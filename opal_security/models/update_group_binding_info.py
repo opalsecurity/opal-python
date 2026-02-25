@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from opal_security.models.create_group_binding_info_groups_inner import CreateGroupBindingInfoGroupsInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,8 +29,8 @@ class UpdateGroupBindingInfo(BaseModel):
     """
     # UpdateGroupBindingInfo Object ### Description The `UpdateGroupBindingInfo` object is used as an input to the UpdateGroupBinding API.
     """ # noqa: E501
-    group_binding_id: StrictStr = Field(description="The ID of the group binding.")
-    source_group_id: StrictStr = Field(description="The ID of the source group.")
+    group_binding_id: UUID = Field(description="The ID of the group binding.")
+    source_group_id: UUID = Field(description="The ID of the source group.")
     groups: List[CreateGroupBindingInfoGroupsInner] = Field(description="The list of groups.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_binding_id", "source_group_id", "groups"]
