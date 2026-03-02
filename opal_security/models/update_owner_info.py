@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,12 +27,12 @@ class UpdateOwnerInfo(BaseModel):
     """
     # UpdateOwnerInfo Object ### Description The `UpdateOwnerInfo` object is used as an input to the UpdateOwner API.
     """ # noqa: E501
-    owner_id: UUID = Field(description="The ID of the owner.")
+    owner_id: StrictStr = Field(description="The ID of the owner.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the owner.")
     description: Optional[StrictStr] = Field(default=None, description="A description of the owner.")
     access_request_escalation_period: Optional[StrictInt] = Field(default=None, description="The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy.")
     reviewer_message_channel_id: Optional[StrictStr] = Field(default=None, description="The message channel id for the reviewer channel. Use \"\" to remove an existing message channel.")
-    source_group_id: Optional[UUID] = Field(default=None, description="Sync this owner's user list with a source group. Use \"\" to remove an existing source group.")
+    source_group_id: Optional[StrictStr] = Field(default=None, description="Sync this owner's user list with a source group. Use \"\" to remove an existing source group.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["owner_id", "name", "description", "access_request_escalation_period", "reviewer_message_channel_id", "source_group_id"]
 

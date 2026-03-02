@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **key** | **str** |  | 
 **value** | **str** |  | 
-**connection_id** | **UUID** |  | 
+**connection_id** | **str** |  | 
 
 ## Example
 

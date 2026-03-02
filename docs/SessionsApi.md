@@ -10,6 +10,8 @@ Method | HTTP request | Description
 # **sessions**
 > SessionsList sessions(resource_id, user_id=user_id)
 
+
+
 Returns a list of `Session` objects.
 
 ### Example
@@ -44,7 +46,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.SessionsApi(api_client)
-    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource.
+    resource_id = '1b978423-db0a-4037-a4cf-f79c60cb67b3' # str | The ID of the resource.
     user_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the user you wish to query sessions for. (optional)
 
     try:
@@ -62,7 +64,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | **UUID**| The ID of the resource. | 
+ **resource_id** | **str**| The ID of the resource. | 
  **user_id** | **str**| The ID of the user you wish to query sessions for. | [optional] 
 
 ### Return type

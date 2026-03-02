@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**connection_id** | **UUID** | The ID of the connection. | 
-**user_id** | **UUID** | The ID of the user. | 
-**resource_id** | **UUID** | The ID of the resource. | 
+**connection_id** | **str** | The ID of the connection. | 
+**user_id** | **str** | The ID of the user. | 
+**resource_id** | **str** | The ID of the resource. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | 
 **expiration_date** | **datetime** | The day and time the user&#39;s access will expire. | 
 

@@ -6,7 +6,7 @@ Represents a sync task that has been completed, either successfully or with erro
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** | The ID of the sync task. | 
+**id** | **str** | The ID of the sync task. | 
 **completed_at** | **datetime** | The time when the sync task was completed. | 
 
 ## Example

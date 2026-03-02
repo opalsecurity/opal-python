@@ -6,7 +6,7 @@ A list of user IDs.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_ids** | **List[UUID]** |  | 
+**user_ids** | **List[str]** |  | 
 
 ## Example
 

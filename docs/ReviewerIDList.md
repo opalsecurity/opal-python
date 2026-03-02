@@ -6,7 +6,7 @@ A list of reviewer IDs.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reviewer_ids** | **List[UUID]** |  | 
+**reviewer_ids** | **List[str]** |  | 
 
 ## Example
 

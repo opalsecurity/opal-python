@@ -13,6 +13,8 @@ Method | HTTP request | Description
 # **create_delegation**
 > Delegation create_delegation(create_delegation_request)
 
+
+
 Creates a new request reviewer delegation to delegate access review requests from one user to another.
 
 ### Example
@@ -91,6 +93,8 @@ Name | Type | Description  | Notes
 # **delete_delegation**
 > delete_delegation(delegation_id)
 
+
+
 Deletes a delegation by its ID.
 
 ### Example
@@ -124,7 +128,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.DelegationsApi(api_client)
-    delegation_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the delegation to remove.
+    delegation_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the delegation to remove.
 
     try:
         api_instance.delete_delegation(delegation_id)
@@ -139,7 +143,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delegation_id** | **UUID**| The ID of the delegation to remove. | 
+ **delegation_id** | **str**| The ID of the delegation to remove. | 
 
 ### Return type
 
@@ -201,7 +205,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.DelegationsApi(api_client)
-    delegation_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the delegation to retrieve.
+    delegation_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the delegation to retrieve.
 
     try:
         # Get delegation by ID
@@ -219,7 +223,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delegation_id** | **UUID**| The ID of the delegation to retrieve. | 
+ **delegation_id** | **str**| The ID of the delegation to retrieve. | 
 
 ### Return type
 
@@ -281,8 +285,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.DelegationsApi(api_client)
-    delegator_user_id = UUID('29827fb8-f2dd-4e80-9576-28e31e9934ac') # UUID | The delegator user ID to filter delegations by the user delegating their access review requests. (optional)
-    delegate_user_id = UUID('29827fb8-f2dd-4e80-9576-28e31e9934ac') # UUID | The delegate user ID to filter delegations by the user being delegated to. (optional)
+    delegator_user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The delegator user ID to filter delegations by the user delegating their access review requests. (optional)
+    delegate_user_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The delegate user ID to filter delegations by the user being delegated to. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | A cursor to indicate where to start fetching results. (optional)
     page_size = 200 # int | The maximum number of results to return per page. The default is 200. (optional)
 
@@ -302,8 +306,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delegator_user_id** | **UUID**| The delegator user ID to filter delegations by the user delegating their access review requests. | [optional] 
- **delegate_user_id** | **UUID**| The delegate user ID to filter delegations by the user being delegated to. | [optional] 
+ **delegator_user_id** | **str**| The delegator user ID to filter delegations by the user delegating their access review requests. | [optional] 
+ **delegate_user_id** | **str**| The delegate user ID to filter delegations by the user being delegated to. | [optional] 
  **cursor** | **str**| A cursor to indicate where to start fetching results. | [optional] 
  **page_size** | **int**| The maximum number of results to return per page. The default is 200. | [optional] 
 

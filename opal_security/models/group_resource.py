@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,8 +29,8 @@ class GroupResource(BaseModel):
     """
     # GroupResource Object ### Description The `GroupResource` object is used to represent a relationship between a group and a resource.
     """ # noqa: E501
-    group_id: UUID = Field(description="The ID of the group.")
-    resource_id: UUID = Field(description="The ID of the resource.")
+    group_id: StrictStr = Field(description="The ID of the group.")
+    resource_id: StrictStr = Field(description="The ID of the resource.")
     group_name: Optional[StrictStr] = Field(default=None, description="The name of the group")
     resource_name: Optional[StrictStr] = Field(default=None, description="The name of the resource")
     expiration_date: Optional[datetime] = Field(default=None, description="The day and time the group's access will expire.")

@@ -742,6 +742,35 @@ paths:
         - BearerAuth: []
       tags:
         - events
+  /events/{event_id}:
+    get:
+      summary: Get event by ID
+      description: Returns an `Event` object.
+      operationId: getEvent
+      parameters:
+        - description: The ID of the event.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+          explode: true
+          in: path
+          name: event_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+          description: The requested `Event`.
+        "404":
+          description: Event not found.
+      security:
+        - BearerAuth: []
+      tags:
+        - events
   /groups:
     get:
       summary: Get groups
@@ -1091,13 +1120,23 @@ paths:
             format: uuid
             type: string
           style: simple
+        - description: The access level's remote ID to filter by.
+          example: arn:aws:iam::590304332660:role/AdministratorAccess
+          explode: true
+          in: query
+          name: access_level_remote_id
+          required: false
+          schema:
+            type: string
+          style: form
+
       responses:
         "200":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/GroupContainingGroupList"
-          description: The resources that the group gives access to.
+          description: The groups that the group gives access to.
       security:
         - BearerAuth: []
       tags:

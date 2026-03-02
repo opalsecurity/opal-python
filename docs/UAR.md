@@ -6,7 +6,7 @@ A user access review.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uar_id** | **UUID** | The ID of the UAR. | 
+**uar_id** | **str** | The ID of the UAR. | 
 **name** | **str** | The name of the UAR. | 
 **reviewer_assignment_policy** | [**UARReviewerAssignmentPolicyEnum**](UARReviewerAssignmentPolicyEnum.md) |  | 
 **send_reviewer_assignment_notification** | **bool** | A bool representing whether to send a notification to reviewers when they&#39;re assigned a new review. Default is False. | 

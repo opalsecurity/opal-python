@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
 from opal_security.models.rule_clauses import RuleClauses
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +30,7 @@ class UpdateAccessRuleInfo(BaseModel):
     """ # noqa: E501
     name: StrictStr = Field(description="The name of the access rule.")
     description: StrictStr = Field(description="A description of the group.")
-    admin_owner_id: UUID = Field(description="The ID of the owner of the group.")
+    admin_owner_id: StrictStr = Field(description="The ID of the owner of the group.")
     status: StrictStr = Field(description="The status of the access rule.")
     rule_clauses: RuleClauses = Field(alias="ruleClauses")
     additional_properties: Dict[str, Any] = {}

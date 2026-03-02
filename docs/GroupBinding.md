@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_binding_id** | **UUID** | The ID of the group binding. | 
-**created_by_id** | **UUID** | The ID of the user that created the group binding. | 
+**group_binding_id** | **str** | The ID of the group binding. | 
+**created_by_id** | **str** | The ID of the user that created the group binding. | 
 **created_at** | **datetime** | The date the group binding was created. | 
-**source_group_id** | **UUID** | The ID of the source group. | 
+**source_group_id** | **str** | The ID of the source group. | 
 **groups** | [**List[GroupBindingGroup]**](GroupBindingGroup.md) | The list of groups. | 
 
 ## Example

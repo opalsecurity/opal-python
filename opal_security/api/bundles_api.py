@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.add_bundle_group_request import AddBundleGroupRequest
 from opal_security.models.add_bundle_resource_request import AddBundleResourceRequest
 from opal_security.models.bundle import Bundle
@@ -53,7 +52,7 @@ class BundlesApi:
     @validate_call
     def add_bundle_group(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         add_bundle_group_request: AddBundleGroupRequest,
         _request_timeout: Union[
             None,
@@ -73,7 +72,7 @@ class BundlesApi:
         Adds a group to a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param add_bundle_group_request: (required)
         :type add_bundle_group_request: AddBundleGroupRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -124,7 +123,7 @@ class BundlesApi:
     @validate_call
     def add_bundle_group_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         add_bundle_group_request: AddBundleGroupRequest,
         _request_timeout: Union[
             None,
@@ -144,7 +143,7 @@ class BundlesApi:
         Adds a group to a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param add_bundle_group_request: (required)
         :type add_bundle_group_request: AddBundleGroupRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -195,7 +194,7 @@ class BundlesApi:
     @validate_call
     def add_bundle_group_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         add_bundle_group_request: AddBundleGroupRequest,
         _request_timeout: Union[
             None,
@@ -215,7 +214,7 @@ class BundlesApi:
         Adds a group to a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param add_bundle_group_request: (required)
         :type add_bundle_group_request: AddBundleGroupRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -342,7 +341,7 @@ class BundlesApi:
     @validate_call
     def add_bundle_resource(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         add_bundle_resource_request: Optional[AddBundleResourceRequest] = None,
         _request_timeout: Union[
             None,
@@ -362,7 +361,7 @@ class BundlesApi:
         Adds a resource to a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param add_bundle_resource_request:
         :type add_bundle_resource_request: AddBundleResourceRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -413,7 +412,7 @@ class BundlesApi:
     @validate_call
     def add_bundle_resource_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         add_bundle_resource_request: Optional[AddBundleResourceRequest] = None,
         _request_timeout: Union[
             None,
@@ -433,7 +432,7 @@ class BundlesApi:
         Adds a resource to a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param add_bundle_resource_request:
         :type add_bundle_resource_request: AddBundleResourceRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -484,7 +483,7 @@ class BundlesApi:
     @validate_call
     def add_bundle_resource_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         add_bundle_resource_request: Optional[AddBundleResourceRequest] = None,
         _request_timeout: Union[
             None,
@@ -504,7 +503,7 @@ class BundlesApi:
         Adds a resource to a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param add_bundle_resource_request:
         :type add_bundle_resource_request: AddBundleResourceRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -905,7 +904,7 @@ class BundlesApi:
     @validate_call
     def delete_bundle(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -924,7 +923,7 @@ class BundlesApi:
         Deletes a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -972,7 +971,7 @@ class BundlesApi:
     @validate_call
     def delete_bundle_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -991,7 +990,7 @@ class BundlesApi:
         Deletes a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1039,7 +1038,7 @@ class BundlesApi:
     @validate_call
     def delete_bundle_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1058,7 +1057,7 @@ class BundlesApi:
         Deletes a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1159,7 +1158,7 @@ class BundlesApi:
     @validate_call
     def get_bundle(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1178,7 +1177,7 @@ class BundlesApi:
         Returns a `Bundle` object.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1226,7 +1225,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1245,7 +1244,7 @@ class BundlesApi:
         Returns a `Bundle` object.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1293,7 +1292,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1312,7 +1311,7 @@ class BundlesApi:
         Returns a `Bundle` object.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1420,7 +1419,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_groups(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         page_size: Annotated[Optional[StrictInt], Field(description="The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor indicating where to start fetching items after a specific point.")] = None,
         _request_timeout: Union[
@@ -1441,7 +1440,7 @@ class BundlesApi:
         Returns a list of `Group` objects in a given bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param page_size: The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.
         :type page_size: int
         :param cursor: A cursor indicating where to start fetching items after a specific point.
@@ -1495,7 +1494,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_groups_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         page_size: Annotated[Optional[StrictInt], Field(description="The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor indicating where to start fetching items after a specific point.")] = None,
         _request_timeout: Union[
@@ -1516,7 +1515,7 @@ class BundlesApi:
         Returns a list of `Group` objects in a given bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param page_size: The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.
         :type page_size: int
         :param cursor: A cursor indicating where to start fetching items after a specific point.
@@ -1570,7 +1569,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_groups_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         page_size: Annotated[Optional[StrictInt], Field(description="The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor indicating where to start fetching items after a specific point.")] = None,
         _request_timeout: Union[
@@ -1591,7 +1590,7 @@ class BundlesApi:
         Returns a list of `Group` objects in a given bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param page_size: The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.
         :type page_size: int
         :param cursor: A cursor indicating where to start fetching items after a specific point.
@@ -1715,7 +1714,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_resources(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         page_size: Annotated[Optional[StrictInt], Field(description="The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor indicating where to start fetching items after a specific point.")] = None,
         _request_timeout: Union[
@@ -1736,7 +1735,7 @@ class BundlesApi:
         Returns a list of `Resource` objects in a given bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param page_size: The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.
         :type page_size: int
         :param cursor: A cursor indicating where to start fetching items after a specific point.
@@ -1790,7 +1789,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_resources_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         page_size: Annotated[Optional[StrictInt], Field(description="The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor indicating where to start fetching items after a specific point.")] = None,
         _request_timeout: Union[
@@ -1811,7 +1810,7 @@ class BundlesApi:
         Returns a list of `Resource` objects in a given bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param page_size: The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.
         :type page_size: int
         :param cursor: A cursor indicating where to start fetching items after a specific point.
@@ -1865,7 +1864,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_resources_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         page_size: Annotated[Optional[StrictInt], Field(description="The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="A cursor indicating where to start fetching items after a specific point.")] = None,
         _request_timeout: Union[
@@ -1886,7 +1885,7 @@ class BundlesApi:
         Returns a list of `Resource` objects in a given bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param page_size: The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.
         :type page_size: int
         :param cursor: A cursor indicating where to start fetching items after a specific point.
@@ -2010,7 +2009,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_visibility(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2029,7 +2028,7 @@ class BundlesApi:
         Gets the visibility of the bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2077,7 +2076,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_visibility_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2096,7 +2095,7 @@ class BundlesApi:
         Gets the visibility of the bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2144,7 +2143,7 @@ class BundlesApi:
     @validate_call
     def get_bundle_visibility_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2163,7 +2162,7 @@ class BundlesApi:
         Gets the visibility of the bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2568,8 +2567,8 @@ class BundlesApi:
     @validate_call
     def remove_bundle_group(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group to remove.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group to remove.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to remove.")] = None,
         _request_timeout: Union[
             None,
@@ -2589,9 +2588,9 @@ class BundlesApi:
         Removes a group from a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param group_id: The ID of the group to remove. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param access_level_remote_id: The remote ID of the access level to remove.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2643,8 +2642,8 @@ class BundlesApi:
     @validate_call
     def remove_bundle_group_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group to remove.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group to remove.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to remove.")] = None,
         _request_timeout: Union[
             None,
@@ -2664,9 +2663,9 @@ class BundlesApi:
         Removes a group from a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param group_id: The ID of the group to remove. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param access_level_remote_id: The remote ID of the access level to remove.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2718,8 +2717,8 @@ class BundlesApi:
     @validate_call
     def remove_bundle_group_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group to remove.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group to remove.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to remove.")] = None,
         _request_timeout: Union[
             None,
@@ -2739,9 +2738,9 @@ class BundlesApi:
         Removes a group from a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param group_id: The ID of the group to remove. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param access_level_remote_id: The remote ID of the access level to remove.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2854,8 +2853,8 @@ class BundlesApi:
     @validate_call
     def remove_bundle_resource(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
-        resource_id: Annotated[UUID, Field(description="The ID of the resource to remove.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to remove.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         _request_timeout: Union[
             None,
@@ -2875,9 +2874,9 @@ class BundlesApi:
         Removes a resource from a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param resource_id: The ID of the resource to remove. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param access_level_remote_id: The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2929,8 +2928,8 @@ class BundlesApi:
     @validate_call
     def remove_bundle_resource_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
-        resource_id: Annotated[UUID, Field(description="The ID of the resource to remove.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to remove.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         _request_timeout: Union[
             None,
@@ -2950,9 +2949,9 @@ class BundlesApi:
         Removes a resource from a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param resource_id: The ID of the resource to remove. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param access_level_remote_id: The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3004,8 +3003,8 @@ class BundlesApi:
     @validate_call
     def remove_bundle_resource_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
-        resource_id: Annotated[UUID, Field(description="The ID of the resource to remove.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource to remove.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         _request_timeout: Union[
             None,
@@ -3025,9 +3024,9 @@ class BundlesApi:
         Removes a resource from a bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param resource_id: The ID of the resource to remove. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param access_level_remote_id: The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3140,7 +3139,7 @@ class BundlesApi:
     @validate_call
     def set_bundle_visibility(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -3160,7 +3159,7 @@ class BundlesApi:
         Sets the visibility of the bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -3211,7 +3210,7 @@ class BundlesApi:
     @validate_call
     def set_bundle_visibility_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -3231,7 +3230,7 @@ class BundlesApi:
         Sets the visibility of the bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -3282,7 +3281,7 @@ class BundlesApi:
     @validate_call
     def set_bundle_visibility_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -3302,7 +3301,7 @@ class BundlesApi:
         Sets the visibility of the bundle.
 
         :param bundle_id: The ID of the bundle. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -3422,7 +3421,7 @@ class BundlesApi:
     @validate_call
     def update_bundle(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle to be updated.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle to be updated.")],
         bundle: Bundle,
         _request_timeout: Union[
             None,
@@ -3442,7 +3441,7 @@ class BundlesApi:
         Updates a bundle.
 
         :param bundle_id: The ID of the bundle to be updated. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param bundle: (required)
         :type bundle: Bundle
         :param _request_timeout: timeout setting for this request. If one
@@ -3494,7 +3493,7 @@ class BundlesApi:
     @validate_call
     def update_bundle_with_http_info(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle to be updated.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle to be updated.")],
         bundle: Bundle,
         _request_timeout: Union[
             None,
@@ -3514,7 +3513,7 @@ class BundlesApi:
         Updates a bundle.
 
         :param bundle_id: The ID of the bundle to be updated. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param bundle: (required)
         :type bundle: Bundle
         :param _request_timeout: timeout setting for this request. If one
@@ -3566,7 +3565,7 @@ class BundlesApi:
     @validate_call
     def update_bundle_without_preload_content(
         self,
-        bundle_id: Annotated[UUID, Field(description="The ID of the bundle to be updated.")],
+        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle to be updated.")],
         bundle: Bundle,
         _request_timeout: Union[
             None,
@@ -3586,7 +3585,7 @@ class BundlesApi:
         Updates a bundle.
 
         :param bundle_id: The ID of the bundle to be updated. (required)
-        :type bundle_id: UUID
+        :type bundle_id: str
         :param bundle: (required)
         :type bundle: Bundle
         :param _request_timeout: timeout setting for this request. If one

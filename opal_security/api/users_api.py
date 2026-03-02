@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.paginated_remote_users_list import PaginatedRemoteUsersList
 from opal_security.models.paginated_users_list import PaginatedUsersList
 from opal_security.models.tags_list import TagsList
@@ -49,7 +48,7 @@ class UsersApi:
     def get_remote_users(
         self,
         third_party_provider: Annotated[Optional[List[ThirdPartyProviderEnum]], Field(description="Filter remote users by their third party provider.")] = None,
-        user_id: Annotated[Optional[List[UUID]], Field(description="Filter remote users by their user ID.")] = None,
+        user_id: Annotated[Optional[List[StrictStr]], Field(description="Filter remote users by their user ID.")] = None,
         remote_id: Annotated[Optional[List[StrictStr]], Field(description="Filter remote users by their remote ID.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
@@ -73,7 +72,7 @@ class UsersApi:
         :param third_party_provider: Filter remote users by their third party provider.
         :type third_party_provider: List[ThirdPartyProviderEnum]
         :param user_id: Filter remote users by their user ID.
-        :type user_id: List[UUID]
+        :type user_id: List[str]
         :param remote_id: Filter remote users by their remote ID.
         :type remote_id: List[str]
         :param cursor: The pagination cursor value.
@@ -132,7 +131,7 @@ class UsersApi:
     def get_remote_users_with_http_info(
         self,
         third_party_provider: Annotated[Optional[List[ThirdPartyProviderEnum]], Field(description="Filter remote users by their third party provider.")] = None,
-        user_id: Annotated[Optional[List[UUID]], Field(description="Filter remote users by their user ID.")] = None,
+        user_id: Annotated[Optional[List[StrictStr]], Field(description="Filter remote users by their user ID.")] = None,
         remote_id: Annotated[Optional[List[StrictStr]], Field(description="Filter remote users by their remote ID.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
@@ -156,7 +155,7 @@ class UsersApi:
         :param third_party_provider: Filter remote users by their third party provider.
         :type third_party_provider: List[ThirdPartyProviderEnum]
         :param user_id: Filter remote users by their user ID.
-        :type user_id: List[UUID]
+        :type user_id: List[str]
         :param remote_id: Filter remote users by their remote ID.
         :type remote_id: List[str]
         :param cursor: The pagination cursor value.
@@ -215,7 +214,7 @@ class UsersApi:
     def get_remote_users_without_preload_content(
         self,
         third_party_provider: Annotated[Optional[List[ThirdPartyProviderEnum]], Field(description="Filter remote users by their third party provider.")] = None,
-        user_id: Annotated[Optional[List[UUID]], Field(description="Filter remote users by their user ID.")] = None,
+        user_id: Annotated[Optional[List[StrictStr]], Field(description="Filter remote users by their user ID.")] = None,
         remote_id: Annotated[Optional[List[StrictStr]], Field(description="Filter remote users by their remote ID.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
@@ -239,7 +238,7 @@ class UsersApi:
         :param third_party_provider: Filter remote users by their third party provider.
         :type third_party_provider: List[ThirdPartyProviderEnum]
         :param user_id: Filter remote users by their user ID.
-        :type user_id: List[UUID]
+        :type user_id: List[str]
         :param remote_id: Filter remote users by their remote ID.
         :type remote_id: List[str]
         :param cursor: The pagination cursor value.
@@ -382,7 +381,7 @@ class UsersApi:
     @validate_call
     def get_user_tags(
         self,
-        user_id: Annotated[UUID, Field(description="The ID of the user whose tags to return.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -401,7 +400,7 @@ class UsersApi:
         Returns all tags applied to the user.
 
         :param user_id: The ID of the user whose tags to return. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -449,7 +448,7 @@ class UsersApi:
     @validate_call
     def get_user_tags_with_http_info(
         self,
-        user_id: Annotated[UUID, Field(description="The ID of the user whose tags to return.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -468,7 +467,7 @@ class UsersApi:
         Returns all tags applied to the user.
 
         :param user_id: The ID of the user whose tags to return. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -516,7 +515,7 @@ class UsersApi:
     @validate_call
     def get_user_tags_without_preload_content(
         self,
-        user_id: Annotated[UUID, Field(description="The ID of the user whose tags to return.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -535,7 +534,7 @@ class UsersApi:
         Returns all tags applied to the user.
 
         :param user_id: The ID of the user whose tags to return. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -923,7 +922,7 @@ class UsersApi:
     @validate_call
     def user(
         self,
-        user_id: Annotated[Optional[UUID], Field(description="The user ID of the user.")] = None,
+        user_id: Annotated[Optional[StrictStr], Field(description="The user ID of the user.")] = None,
         email: Annotated[Optional[StrictStr], Field(description="The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.")] = None,
         _request_timeout: Union[
             None,
@@ -943,7 +942,7 @@ class UsersApi:
         Returns a `User` object.
 
         :param user_id: The user ID of the user.
-        :type user_id: UUID
+        :type user_id: str
         :param email: The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.
         :type email: str
         :param _request_timeout: timeout setting for this request. If one
@@ -994,7 +993,7 @@ class UsersApi:
     @validate_call
     def user_with_http_info(
         self,
-        user_id: Annotated[Optional[UUID], Field(description="The user ID of the user.")] = None,
+        user_id: Annotated[Optional[StrictStr], Field(description="The user ID of the user.")] = None,
         email: Annotated[Optional[StrictStr], Field(description="The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.")] = None,
         _request_timeout: Union[
             None,
@@ -1014,7 +1013,7 @@ class UsersApi:
         Returns a `User` object.
 
         :param user_id: The user ID of the user.
-        :type user_id: UUID
+        :type user_id: str
         :param email: The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.
         :type email: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1065,7 +1064,7 @@ class UsersApi:
     @validate_call
     def user_without_preload_content(
         self,
-        user_id: Annotated[Optional[UUID], Field(description="The user ID of the user.")] = None,
+        user_id: Annotated[Optional[StrictStr], Field(description="The user ID of the user.")] = None,
         email: Annotated[Optional[StrictStr], Field(description="The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.")] = None,
         _request_timeout: Union[
             None,
@@ -1085,7 +1084,7 @@ class UsersApi:
         Returns a `User` object.
 
         :param user_id: The user ID of the user.
-        :type user_id: UUID
+        :type user_id: str
         :param email: The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.
         :type email: str
         :param _request_timeout: timeout setting for this request. If one

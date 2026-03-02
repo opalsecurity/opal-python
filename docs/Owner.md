@@ -6,12 +6,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**owner_id** | **UUID** | The ID of the owner. | 
+**owner_id** | **str** | The ID of the owner. | 
 **name** | **str** | The name of the owner. | [optional] 
 **description** | **str** | A description of the owner. | [optional] 
 **access_request_escalation_period** | **int** | The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy. | [optional] 
-**reviewer_message_channel_id** | **UUID** |  | [optional] 
-**source_group_id** | **UUID** |  | [optional] 
+**reviewer_message_channel_id** | **str** |  | [optional] 
+**source_group_id** | **str** |  | [optional] 
 
 ## Example
 

@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,9 +30,9 @@ class CreateOwnerInfo(BaseModel):
     name: StrictStr = Field(description="The name of the owner.")
     description: Optional[StrictStr] = Field(default=None, description="A description of the owner.")
     access_request_escalation_period: Optional[StrictInt] = Field(default=None, description="The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy.")
-    user_ids: List[UUID] = Field(description="Users to add to the created owner. If setting a source_group_id this list must be empty.")
+    user_ids: List[StrictStr] = Field(description="Users to add to the created owner. If setting a source_group_id this list must be empty.")
     reviewer_message_channel_id: Optional[StrictStr] = Field(default=None, description="The message channel id for the reviewer channel.")
-    source_group_id: Optional[UUID] = Field(default=None, description="Sync this owner's user list with a source group.")
+    source_group_id: Optional[StrictStr] = Field(default=None, description="Sync this owner's user list with a source group.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["name", "description", "access_request_escalation_period", "user_ids", "reviewer_message_channel_id", "source_group_id"]
 

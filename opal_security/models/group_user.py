@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.group_access_level import GroupAccessLevel
 from opal_security.models.propagation_status import PropagationStatus
 from typing import Optional, Set
@@ -31,10 +30,10 @@ class GroupUser(BaseModel):
     """
     # Group Access User Object ### Description The `GroupAccessUser` object is used to represent a user with access to a group.  ### Usage Example Fetch from the `LIST GroupUsers` endpoint.
     """ # noqa: E501
-    group_id: UUID = Field(description="The ID of the group.")
+    group_id: StrictStr = Field(description="The ID of the group.")
     group_name: StrictStr = Field(description="The name of the group.")
     description: StrictStr = Field(description="The description of the group.")
-    user_id: UUID = Field(description="The ID of the user.")
+    user_id: StrictStr = Field(description="The ID of the user.")
     access_level: Optional[GroupAccessLevel] = None
     full_name: StrictStr = Field(description="The user's full name.")
     email: StrictStr = Field(description="The user's email.")

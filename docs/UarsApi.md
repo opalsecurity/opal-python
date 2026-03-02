@@ -12,6 +12,8 @@ Method | HTTP request | Description
 # **create_uar**
 > UAR create_uar(create_uar_info)
 
+
+
 Starts a User Access Review.
 
 ### Example
@@ -90,6 +92,8 @@ Name | Type | Description  | Notes
 # **get_uar**
 > UAR get_uar(uar_id)
 
+
+
 Retrieves a specific UAR.
 
 ### Example
@@ -124,7 +128,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.UarsApi(api_client)
-    uar_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the UAR.
+    uar_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the UAR.
 
     try:
         api_response = api_instance.get_uar(uar_id)
@@ -141,7 +145,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uar_id** | **UUID**| The ID of the UAR. | 
+ **uar_id** | **str**| The ID of the UAR. | 
 
 ### Return type
 
@@ -166,6 +170,8 @@ Name | Type | Description  | Notes
 
 # **get_uars**
 > PaginatedUARsList get_uars(cursor=cursor, page_size=page_size)
+
+
 
 Returns a list of `UAR` objects.
 

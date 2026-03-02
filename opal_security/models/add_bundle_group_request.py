@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class AddBundleGroupRequest(BaseModel):
     """
     AddBundleGroupRequest
     """ # noqa: E501
-    group_id: UUID = Field(description="The ID of the group to add.")
+    group_id: StrictStr = Field(description="The ID of the group to add.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level to grant to this user. Required if the group being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.")
     access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.")
     additional_properties: Dict[str, Any] = {}

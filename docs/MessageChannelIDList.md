@@ -6,7 +6,7 @@ A list of message channel IDs.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message_channel_ids** | **List[UUID]** |  | 
+**message_channel_ids** | **List[str]** |  | 
 
 ## Example
 

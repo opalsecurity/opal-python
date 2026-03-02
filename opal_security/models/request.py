@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse
 from opal_security.models.request_item_stages import RequestItemStages
 from opal_security.models.request_reviewer_stages import RequestReviewerStages
@@ -34,12 +33,12 @@ class Request(BaseModel):
     """
     # Request Object ### Description The `Request` object is used to represent a request.  ### Usage Example Returned from the `GET Requests` endpoint.
     """ # noqa: E501
-    id: UUID = Field(description="The unique identifier of the request.")
+    id: StrictStr = Field(description="The unique identifier of the request.")
     created_at: datetime = Field(description="The date and time the request was created.")
     updated_at: datetime = Field(description="The date and time the request was last updated.")
-    requester_id: UUID = Field(description="The unique identifier of the user who created the request.")
-    target_user_id: Optional[UUID] = Field(default=None, description="The unique identifier of the user who is the target of the request.")
-    target_group_id: Optional[UUID] = Field(default=None, description="The unique identifier of the group who is the target of the request.")
+    requester_id: StrictStr = Field(description="The unique identifier of the user who created the request.")
+    target_user_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the user who is the target of the request.")
+    target_group_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the group who is the target of the request.")
     status: RequestStatusEnum = Field(description="The status of the request.")
     reason: StrictStr = Field(description="The reason for the request.")
     duration_minutes: Optional[StrictInt] = Field(default=None, description="The duration of the request in minutes.")

@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum
 from opal_security.models.uar_scope import UARScope
 from typing import Optional, Set
@@ -31,7 +30,7 @@ class UAR(BaseModel):
     """
     A user access review.
     """ # noqa: E501
-    uar_id: UUID = Field(description="The ID of the UAR.")
+    uar_id: StrictStr = Field(description="The ID of the UAR.")
     name: StrictStr = Field(description="The name of the UAR.")
     reviewer_assignment_policy: UARReviewerAssignmentPolicyEnum
     send_reviewer_assignment_notification: StrictBool = Field(description="A bool representing whether to send a notification to reviewers when they're assigned a new review. Default is False.")

@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** | The ID of the delegation. | 
-**delegator_user_id** | **UUID** | The ID of the user delegating their access review requests. | 
-**delegate_user_id** | **UUID** | The ID of the user being delegated to. | 
+**id** | **str** | The ID of the delegation. | 
+**delegator_user_id** | **str** | The ID of the user delegating their access review requests. | 
+**delegate_user_id** | **str** | The ID of the user being delegated to. | 
 **start_time** | **datetime** | The start time of the delegation. | 
 **end_time** | **datetime** | The end time of the delegation. | 
 **reason** | **str** | The reason for the delegation. | 

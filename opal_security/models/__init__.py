@@ -13,6 +13,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 # import models into model package
 from opal_security.models.access import Access
 from opal_security.models.access_list import AccessList
@@ -268,4 +269,3 @@ from opal_security.models.user_id_list import UserIDList
 from opal_security.models.user_list import UserList
 from opal_security.models.visibility_info import VisibilityInfo
 from opal_security.models.visibility_type_enum import VisibilityTypeEnum
-

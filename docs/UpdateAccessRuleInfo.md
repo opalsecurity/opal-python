@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the access rule. | 
 **description** | **str** | A description of the group. | 
-**admin_owner_id** | **UUID** | The ID of the owner of the group. | 
+**admin_owner_id** | **str** | The ID of the owner of the group. | 
 **status** | **str** | The status of the access rule. | 
 **rule_clauses** | [**RuleClauses**](RuleClauses.md) |  | 
 

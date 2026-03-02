@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.create_group_binding_info import CreateGroupBindingInfo
 from opal_security.models.group_binding import GroupBinding
 from opal_security.models.paginated_group_bindings_list import PaginatedGroupBindingsList
@@ -321,7 +320,7 @@ class GroupBindingsApi:
     @validate_call
     def delete_group_binding(
         self,
-        group_binding_id: Annotated[UUID, Field(description="The ID of the group binding.")],
+        group_binding_id: Annotated[StrictStr, Field(description="The ID of the group binding.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -340,7 +339,7 @@ class GroupBindingsApi:
         Deletes a group binding.
 
         :param group_binding_id: The ID of the group binding. (required)
-        :type group_binding_id: UUID
+        :type group_binding_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -388,7 +387,7 @@ class GroupBindingsApi:
     @validate_call
     def delete_group_binding_with_http_info(
         self,
-        group_binding_id: Annotated[UUID, Field(description="The ID of the group binding.")],
+        group_binding_id: Annotated[StrictStr, Field(description="The ID of the group binding.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -407,7 +406,7 @@ class GroupBindingsApi:
         Deletes a group binding.
 
         :param group_binding_id: The ID of the group binding. (required)
-        :type group_binding_id: UUID
+        :type group_binding_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -455,7 +454,7 @@ class GroupBindingsApi:
     @validate_call
     def delete_group_binding_without_preload_content(
         self,
-        group_binding_id: Annotated[UUID, Field(description="The ID of the group binding.")],
+        group_binding_id: Annotated[StrictStr, Field(description="The ID of the group binding.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -474,7 +473,7 @@ class GroupBindingsApi:
         Deletes a group binding.
 
         :param group_binding_id: The ID of the group binding. (required)
-        :type group_binding_id: UUID
+        :type group_binding_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -575,7 +574,7 @@ class GroupBindingsApi:
     @validate_call
     def get_group_binding(
         self,
-        group_binding_id: Annotated[UUID, Field(description="The ID of the group binding.")],
+        group_binding_id: Annotated[StrictStr, Field(description="The ID of the group binding.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -594,7 +593,7 @@ class GroupBindingsApi:
         Returns a `GroupBinding` object.
 
         :param group_binding_id: The ID of the group binding. (required)
-        :type group_binding_id: UUID
+        :type group_binding_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -642,7 +641,7 @@ class GroupBindingsApi:
     @validate_call
     def get_group_binding_with_http_info(
         self,
-        group_binding_id: Annotated[UUID, Field(description="The ID of the group binding.")],
+        group_binding_id: Annotated[StrictStr, Field(description="The ID of the group binding.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -661,7 +660,7 @@ class GroupBindingsApi:
         Returns a `GroupBinding` object.
 
         :param group_binding_id: The ID of the group binding. (required)
-        :type group_binding_id: UUID
+        :type group_binding_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -709,7 +708,7 @@ class GroupBindingsApi:
     @validate_call
     def get_group_binding_without_preload_content(
         self,
-        group_binding_id: Annotated[UUID, Field(description="The ID of the group binding.")],
+        group_binding_id: Annotated[StrictStr, Field(description="The ID of the group binding.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -728,7 +727,7 @@ class GroupBindingsApi:
         Returns a `GroupBinding` object.
 
         :param group_binding_id: The ID of the group binding. (required)
-        :type group_binding_id: UUID
+        :type group_binding_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

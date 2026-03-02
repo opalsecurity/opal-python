@@ -17,6 +17,8 @@ Method | HTTP request | Description
 # **create_owner**
 > Owner create_owner(create_owner_info)
 
+
+
 Creates an owner.
 
 ### Example
@@ -95,6 +97,8 @@ Name | Type | Description  | Notes
 # **delete_owner**
 > delete_owner(owner_id)
 
+
+
 Deletes an owner.
 
 ### Example
@@ -128,7 +132,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.OwnersApi(api_client)
-    owner_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the owner.
+    owner_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the owner.
 
     try:
         api_instance.delete_owner(owner_id)
@@ -143,7 +147,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **owner_id** | **UUID**| The ID of the owner. | 
+ **owner_id** | **str**| The ID of the owner. | 
 
 ### Return type
 
@@ -205,7 +209,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.OwnersApi(api_client)
-    owner_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the owner.
+    owner_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the owner.
 
     try:
         # Get owner by ID
@@ -223,7 +227,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **owner_id** | **UUID**| The ID of the owner. | 
+ **owner_id** | **str**| The ID of the owner. | 
 
 ### Return type
 
@@ -248,6 +252,8 @@ Name | Type | Description  | Notes
 
 # **get_owner_from_name**
 > Owner get_owner_from_name(owner_name)
+
+
 
 Returns an `Owner` object. Does not support owners with `/` in their name, use /owners?name=... instead.
 
@@ -326,6 +332,8 @@ Name | Type | Description  | Notes
 # **get_owner_users**
 > UserList get_owner_users(owner_id)
 
+
+
 Gets the list of users for this owner, in escalation priority order if applicable.
 
 ### Example
@@ -360,7 +368,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.OwnersApi(api_client)
-    owner_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the owner.
+    owner_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the owner.
 
     try:
         api_response = api_instance.get_owner_users(owner_id)
@@ -377,7 +385,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **owner_id** | **UUID**| The ID of the owner. | 
+ **owner_id** | **str**| The ID of the owner. | 
 
 ### Return type
 
@@ -487,6 +495,8 @@ Name | Type | Description  | Notes
 # **set_owner_users**
 > UserList set_owner_users(owner_id, user_id_list)
 
+
+
 Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
 
 ### Example
@@ -522,7 +532,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.OwnersApi(api_client)
-    owner_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the owner.
+    owner_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the owner.
     user_id_list = opal_security.UserIDList() # UserIDList | 
 
     try:
@@ -540,7 +550,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **owner_id** | **UUID**| The ID of the owner. | 
+ **owner_id** | **str**| The ID of the owner. | 
  **user_id_list** | [**UserIDList**](UserIDList.md)|  | 
 
 ### Return type
@@ -566,6 +576,8 @@ Name | Type | Description  | Notes
 
 # **update_owners**
 > UpdateOwnerInfoList update_owners(update_owner_info_list)
+
+
 
 Bulk updates a list of owners.
 

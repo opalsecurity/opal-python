@@ -6,12 +6,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** | The unique identifier of the request. | 
+**id** | **str** | The unique identifier of the request. | 
 **created_at** | **datetime** | The date and time the request was created. | 
 **updated_at** | **datetime** | The date and time the request was last updated. | 
-**requester_id** | **UUID** | The unique identifier of the user who created the request. | 
-**target_user_id** | **UUID** | The unique identifier of the user who is the target of the request. | [optional] 
-**target_group_id** | **UUID** | The unique identifier of the group who is the target of the request. | [optional] 
+**requester_id** | **str** | The unique identifier of the user who created the request. | 
+**target_user_id** | **str** | The unique identifier of the user who is the target of the request. | [optional] 
+**target_group_id** | **str** | The unique identifier of the group who is the target of the request. | [optional] 
 **status** | [**RequestStatusEnum**](RequestStatusEnum.md) | The status of the request. | 
 **reason** | **str** | The reason for the request. | 
 **duration_minutes** | **int** | The duration of the request in minutes. | [optional] 

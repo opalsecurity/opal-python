@@ -6,7 +6,7 @@ A reviewer in a request stage
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** | The unique identifier of the reviewer | 
+**id** | **str** | The unique identifier of the reviewer | 
 **full_name** | **str** | The user&#39;s full name. | [optional] 
 **status** | **str** | The status of this reviewer&#39;s review | 
 

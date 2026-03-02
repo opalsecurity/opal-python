@@ -19,9 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +28,7 @@ class SyncTask(BaseModel):
     """
     Represents a sync task that has been completed, either successfully or with errors.
     """ # noqa: E501
-    id: UUID = Field(description="The ID of the sync task.")
+    id: StrictStr = Field(description="The ID of the sync task.")
     completed_at: datetime = Field(description="The time when the sync task was completed.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "completed_at"]

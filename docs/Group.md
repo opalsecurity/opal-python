@@ -6,12 +6,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_id** | **UUID** | The ID of the group. | 
-**app_id** | **UUID** | The ID of the group&#39;s app. | [optional] 
+**group_id** | **str** | The ID of the group. | 
+**app_id** | **str** | The ID of the group&#39;s app. | [optional] 
 **name** | **str** | The name of the group. | [optional] 
 **description** | **str** | A description of the group. | [optional] 
-**admin_owner_id** | **UUID** | The ID of the owner of the group. | [optional] 
-**group_leader_user_ids** | **List[UUID]** | A list of User IDs for the group leaders of the group | [optional] 
+**admin_owner_id** | **str** | The ID of the owner of the group. | [optional] 
+**group_leader_user_ids** | **List[str]** | A list of User IDs for the group leaders of the group | [optional] 
 **remote_id** | **str** | The ID of the remote. | [optional] 
 **remote_name** | **str** | The name of the remote. | [optional] 
 **group_type** | [**GroupTypeEnum**](GroupTypeEnum.md) |  | [optional] 
@@ -23,9 +23,9 @@ Name | Type | Description | Notes
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this group. | [optional] 
 **require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this group. | [optional] 
 **auto_approval** | **bool** | A bool representing whether or not to automatically approve requests to this group. | [optional] 
-**request_template_id** | **UUID** | The ID of the associated request template. | [optional] 
-**configuration_template_id** | **UUID** | The ID of the associated configuration template. | [optional] 
-**group_binding_id** | **UUID** | The ID of the associated group binding. | [optional] 
+**request_template_id** | **str** | The ID of the associated request template. | [optional] 
+**configuration_template_id** | **str** | The ID of the associated configuration template. | [optional] 
+**group_binding_id** | **str** | The ID of the associated group binding. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this group. | [optional] 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of request configurations for this group. | [optional] 
 **request_configuration_list** | [**List[RequestConfiguration]**](RequestConfiguration.md) | A list of request configurations for this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 

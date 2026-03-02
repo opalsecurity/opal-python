@@ -14,12 +14,9 @@ Method | HTTP request | Description
 # **create_idp_group_mapping**
 > IdpGroupMapping create_idp_group_mapping(app_resource_id, group_id, create_idp_group_mapping_request=create_idp_group_mapping_request)
 
-Creates or updates an individual `IdpGroupMapping` object (upsert operation).
 
-**Behavior:**
-- If the mapping doesn't exist, it will be created with the provided values
-- If the mapping exists, only the fields provided in the request will be updated
 
+Creates or updates an individual `IdpGroupMapping` object (upsert operation).  **Behavior:** - If the mapping doesn't exist, it will be created with the provided values - If the mapping exists, only the fields provided in the request will be updated 
 
 ### Example
 
@@ -54,8 +51,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.IdpGroupMappingsApi(api_client)
-    app_resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the Okta app.
-    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
     create_idp_group_mapping_request = opal_security.CreateIdpGroupMappingRequest() # CreateIdpGroupMappingRequest |  (optional)
 
     try:
@@ -73,8 +70,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_resource_id** | **UUID**| The ID of the Okta app. | 
- **group_id** | **UUID**| The ID of the group. | 
+ **app_resource_id** | **str**| The ID of the Okta app. | 
+ **group_id** | **str**| The ID of the group. | 
  **create_idp_group_mapping_request** | [**CreateIdpGroupMappingRequest**](CreateIdpGroupMappingRequest.md)|  | [optional] 
 
 ### Return type
@@ -100,6 +97,8 @@ Name | Type | Description  | Notes
 
 # **delete_idp_group_mappings**
 > delete_idp_group_mappings(app_resource_id, group_id)
+
+
 
 Deletes an `IdpGroupMapping` object.
 
@@ -134,8 +133,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.IdpGroupMappingsApi(api_client)
-    app_resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the Okta app.
-    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
         api_instance.delete_idp_group_mappings(app_resource_id, group_id)
@@ -150,8 +149,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_resource_id** | **UUID**| The ID of the Okta app. | 
- **group_id** | **UUID**| The ID of the group. | 
+ **app_resource_id** | **str**| The ID of the Okta app. | 
+ **group_id** | **str**| The ID of the group. | 
 
 ### Return type
 
@@ -176,6 +175,8 @@ void (empty response body)
 
 # **get_idp_group_mapping**
 > IdpGroupMapping get_idp_group_mapping(app_resource_id, group_id)
+
+
 
 Gets an `IdpGroupMapping` object for an Okta app and group.
 
@@ -211,8 +212,8 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.IdpGroupMappingsApi(api_client)
-    app_resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the Okta app.
-    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
+    group_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the group.
 
     try:
         api_response = api_instance.get_idp_group_mapping(app_resource_id, group_id)
@@ -229,8 +230,8 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_resource_id** | **UUID**| The ID of the Okta app. | 
- **group_id** | **UUID**| The ID of the group. | 
+ **app_resource_id** | **str**| The ID of the Okta app. | 
+ **group_id** | **str**| The ID of the group. | 
 
 ### Return type
 
@@ -255,6 +256,8 @@ Name | Type | Description  | Notes
 
 # **get_idp_group_mappings**
 > IdpGroupMappingList get_idp_group_mappings(app_resource_id)
+
+
 
 Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 
@@ -290,7 +293,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.IdpGroupMappingsApi(api_client)
-    app_resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the Okta app.
+    app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
 
     try:
         api_response = api_instance.get_idp_group_mappings(app_resource_id)
@@ -307,7 +310,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_resource_id** | **UUID**| The ID of the Okta app. | 
+ **app_resource_id** | **str**| The ID of the Okta app. | 
 
 ### Return type
 
@@ -332,6 +335,8 @@ Name | Type | Description  | Notes
 
 # **update_idp_group_mappings**
 > update_idp_group_mappings(app_resource_id, update_idp_group_mappings_request)
+
+
 
 Updates the list of available `IdpGroupMapping` objects for an Okta app.
 
@@ -367,7 +372,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.IdpGroupMappingsApi(api_client)
-    app_resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the Okta app.
+    app_resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the Okta app.
     update_idp_group_mappings_request = opal_security.UpdateIdpGroupMappingsRequest() # UpdateIdpGroupMappingsRequest | 
 
     try:
@@ -383,7 +388,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_resource_id** | **UUID**| The ID of the Okta app. | 
+ **app_resource_id** | **str**| The ID of the Okta app. | 
  **update_idp_group_mappings_request** | [**UpdateIdpGroupMappingsRequest**](UpdateIdpGroupMappingsRequest.md)|  | 
 
 ### Return type

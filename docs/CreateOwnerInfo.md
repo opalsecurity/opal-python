@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **name** | **str** | The name of the owner. | 
 **description** | **str** | A description of the owner. | [optional] 
 **access_request_escalation_period** | **int** | The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy. | [optional] 
-**user_ids** | **List[UUID]** | Users to add to the created owner. If setting a source_group_id this list must be empty. | 
+**user_ids** | **List[str]** | Users to add to the created owner. If setting a source_group_id this list must be empty. | 
 **reviewer_message_channel_id** | **str** | The message channel id for the reviewer channel. | [optional] 
-**source_group_id** | **UUID** | Sync this owner&#39;s user list with a source group. | [optional] 
+**source_group_id** | **str** | Sync this owner&#39;s user list with a source group. | [optional] 
 
 ## Example
 

@@ -48,7 +48,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.AppsApi(api_client)
-    app_id = UUID('32acc112-21ff-4669-91c2-21e27683eaa1') # UUID | The ID of the app.
+    app_id = '32acc112-21ff-4669-91c2-21e27683eaa1' # str | The ID of the app.
 
     try:
         # Get app by ID
@@ -66,7 +66,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_id** | **UUID**| The ID of the app. | 
+ **app_id** | **str**| The ID of the app. | 
 
 ### Return type
 
@@ -130,7 +130,7 @@ with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.AppsApi(api_client)
     app_type_filter = [opal_security.AppTypeEnum()] # List[AppTypeEnum] | A list of app types to filter by. (optional)
-    owner_filter = UUID('29827fb8-f2dd-4e80-9576-28e31e9934ac') # UUID | An owner ID to filter by. (optional)
+    owner_filter = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | An owner ID to filter by. (optional)
 
     try:
         # Get apps
@@ -149,7 +149,7 @@ with opal_security.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app_type_filter** | [**List[AppTypeEnum]**](AppTypeEnum.md)| A list of app types to filter by. | [optional] 
- **owner_filter** | **UUID**| An owner ID to filter by. | [optional] 
+ **owner_filter** | **str**| An owner ID to filter by. | [optional] 
 
 ### Return type
 
@@ -174,6 +174,8 @@ Name | Type | Description  | Notes
 
 # **get_sync_errors**
 > List[SyncErrorList] get_sync_errors(app_id=app_id, resource_id=resource_id, group_id=group_id)
+
+
 
 Returns a list of recent sync errors that have occurred since the last successful sync.
 
@@ -209,9 +211,9 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.AppsApi(api_client)
-    app_id = UUID('29827fb8-f2dd-4e80-9576-28e31e9934ac') # UUID | The ID of the app to list sync errors for. (optional)
-    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource to list sync errors for. (optional)
-    group_id = UUID('9546209c-42c2-4801-96d7-9ec42df0f59c') # UUID | The ID of the group to list sync errors for. (optional)
+    app_id = '29827fb8-f2dd-4e80-9576-28e31e9934ac' # str | The ID of the app to list sync errors for. (optional)
+    resource_id = '4baf8423-db0a-4037-a4cf-f79c60cb67a5' # str | The ID of the resource to list sync errors for. (optional)
+    group_id = '9546209c-42c2-4801-96d7-9ec42df0f59c' # str | The ID of the group to list sync errors for. (optional)
 
     try:
         api_response = api_instance.get_sync_errors(app_id=app_id, resource_id=resource_id, group_id=group_id)
@@ -228,9 +230,9 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_id** | **UUID**| The ID of the app to list sync errors for. | [optional] 
- **resource_id** | **UUID**| The ID of the resource to list sync errors for. | [optional] 
- **group_id** | **UUID**| The ID of the group to list sync errors for. | [optional] 
+ **app_id** | **str**| The ID of the app to list sync errors for. | [optional] 
+ **resource_id** | **str**| The ID of the resource to list sync errors for. | [optional] 
+ **group_id** | **str**| The ID of the group to list sync errors for. | [optional] 
 
 ### Return type
 

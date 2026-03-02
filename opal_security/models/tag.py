@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,10 +28,10 @@ class Tag(BaseModel):
     """
     # Tag Object ### Description The `Tag` object is used to represent a tag.  ### Usage Example Get tags from the `GET Tag` endpoint.
     """ # noqa: E501
-    tag_id: UUID = Field(description="The ID of the tag.")
+    tag_id: StrictStr = Field(description="The ID of the tag.")
     created_at: Optional[datetime] = Field(default=None, description="The date the tag was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date the tag was last updated.")
-    user_creator_id: Optional[UUID] = Field(default=None, description="The ID of the user that created the tag.")
+    user_creator_id: Optional[StrictStr] = Field(default=None, description="The ID of the user that created the tag.")
     key: Optional[StrictStr] = Field(default=None, description="The key of the tag.")
     value: Optional[StrictStr] = Field(default=None, description="The value of the tag.")
     additional_properties: Dict[str, Any] = {}

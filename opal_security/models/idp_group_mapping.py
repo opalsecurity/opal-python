@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +27,8 @@ class IdpGroupMapping(BaseModel):
     """
     Information about a group mapping.
     """ # noqa: E501
-    app_resource_id: Optional[UUID] = Field(default=None, description="The ID of the app resource.")
-    group_id: UUID = Field(description="The ID of the group.")
+    app_resource_id: Optional[StrictStr] = Field(default=None, description="The ID of the app resource.")
+    group_id: StrictStr = Field(description="The ID of the group.")
     alias: Optional[StrictStr] = Field(default=None, description="The alias of the group.")
     hidden_from_end_user: StrictBool = Field(description="A bool representing whether or not the group is hidden from the end user.")
     additional_properties: Dict[str, Any] = {}

@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.create_owner_info import CreateOwnerInfo
 from opal_security.models.owner import Owner
 from opal_security.models.paginated_owners_list import PaginatedOwnersList
@@ -323,7 +322,7 @@ class OwnersApi:
     @validate_call
     def delete_owner(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -342,7 +341,7 @@ class OwnersApi:
         Deletes an owner.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -390,7 +389,7 @@ class OwnersApi:
     @validate_call
     def delete_owner_with_http_info(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -409,7 +408,7 @@ class OwnersApi:
         Deletes an owner.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -457,7 +456,7 @@ class OwnersApi:
     @validate_call
     def delete_owner_without_preload_content(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -476,7 +475,7 @@ class OwnersApi:
         Deletes an owner.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -577,7 +576,7 @@ class OwnersApi:
     @validate_call
     def get_owner(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -596,7 +595,7 @@ class OwnersApi:
         Returns an `Owner` object.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -644,7 +643,7 @@ class OwnersApi:
     @validate_call
     def get_owner_with_http_info(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -663,7 +662,7 @@ class OwnersApi:
         Returns an `Owner` object.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -711,7 +710,7 @@ class OwnersApi:
     @validate_call
     def get_owner_without_preload_content(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -730,7 +729,7 @@ class OwnersApi:
         Returns an `Owner` object.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1099,7 +1098,7 @@ class OwnersApi:
     @validate_call
     def get_owner_users(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1118,7 +1117,7 @@ class OwnersApi:
         Gets the list of users for this owner, in escalation priority order if applicable.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1166,7 +1165,7 @@ class OwnersApi:
     @validate_call
     def get_owner_users_with_http_info(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1185,7 +1184,7 @@ class OwnersApi:
         Gets the list of users for this owner, in escalation priority order if applicable.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1233,7 +1232,7 @@ class OwnersApi:
     @validate_call
     def get_owner_users_without_preload_content(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1252,7 +1251,7 @@ class OwnersApi:
         Gets the list of users for this owner, in escalation priority order if applicable.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1657,7 +1656,7 @@ class OwnersApi:
     @validate_call
     def set_owner_users(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         user_id_list: UserIDList,
         _request_timeout: Union[
             None,
@@ -1677,7 +1676,7 @@ class OwnersApi:
         Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param user_id_list: (required)
         :type user_id_list: UserIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -1728,7 +1727,7 @@ class OwnersApi:
     @validate_call
     def set_owner_users_with_http_info(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         user_id_list: UserIDList,
         _request_timeout: Union[
             None,
@@ -1748,7 +1747,7 @@ class OwnersApi:
         Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param user_id_list: (required)
         :type user_id_list: UserIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -1799,7 +1798,7 @@ class OwnersApi:
     @validate_call
     def set_owner_users_without_preload_content(
         self,
-        owner_id: Annotated[UUID, Field(description="The ID of the owner.")],
+        owner_id: Annotated[StrictStr, Field(description="The ID of the owner.")],
         user_id_list: UserIDList,
         _request_timeout: Union[
             None,
@@ -1819,7 +1818,7 @@ class OwnersApi:
         Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
 
         :param owner_id: The ID of the owner. (required)
-        :type owner_id: UUID
+        :type owner_id: str
         :param user_id_list: (required)
         :type user_id_list: UserIDList
         :param _request_timeout: timeout setting for this request. If one

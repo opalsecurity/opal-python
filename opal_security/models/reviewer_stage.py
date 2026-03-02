@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +30,7 @@ class ReviewerStage(BaseModel):
     require_manager_approval: StrictBool = Field(description="Whether this reviewer stage should require manager approval.")
     require_admin_approval: Optional[StrictBool] = Field(default=None, description="Whether this reviewer stage should require admin approval.")
     operator: StrictStr = Field(description="The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.")
-    owner_ids: List[UUID]
+    owner_ids: List[StrictStr]
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["require_manager_approval", "require_admin_approval", "operator", "owner_ids"]
 

@@ -17,10 +17,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field
+from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.create_idp_group_mapping_request import CreateIdpGroupMappingRequest
 from opal_security.models.idp_group_mapping import IdpGroupMapping
 from opal_security.models.idp_group_mapping_list import IdpGroupMappingList
@@ -47,8 +46,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def create_idp_group_mapping(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         create_idp_group_mapping_request: Optional[CreateIdpGroupMappingRequest] = None,
         _request_timeout: Union[
             None,
@@ -68,9 +67,9 @@ class IdpGroupMappingsApi:
         Creates or updates an individual `IdpGroupMapping` object (upsert operation).  **Behavior:** - If the mapping doesn't exist, it will be created with the provided values - If the mapping exists, only the fields provided in the request will be updated 
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param create_idp_group_mapping_request:
         :type create_idp_group_mapping_request: CreateIdpGroupMappingRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -122,8 +121,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def create_idp_group_mapping_with_http_info(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         create_idp_group_mapping_request: Optional[CreateIdpGroupMappingRequest] = None,
         _request_timeout: Union[
             None,
@@ -143,9 +142,9 @@ class IdpGroupMappingsApi:
         Creates or updates an individual `IdpGroupMapping` object (upsert operation).  **Behavior:** - If the mapping doesn't exist, it will be created with the provided values - If the mapping exists, only the fields provided in the request will be updated 
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param create_idp_group_mapping_request:
         :type create_idp_group_mapping_request: CreateIdpGroupMappingRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -197,8 +196,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def create_idp_group_mapping_without_preload_content(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         create_idp_group_mapping_request: Optional[CreateIdpGroupMappingRequest] = None,
         _request_timeout: Union[
             None,
@@ -218,9 +217,9 @@ class IdpGroupMappingsApi:
         Creates or updates an individual `IdpGroupMapping` object (upsert operation).  **Behavior:** - If the mapping doesn't exist, it will be created with the provided values - If the mapping exists, only the fields provided in the request will be updated 
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param create_idp_group_mapping_request:
         :type create_idp_group_mapping_request: CreateIdpGroupMappingRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -351,8 +350,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def delete_idp_group_mappings(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -371,9 +370,9 @@ class IdpGroupMappingsApi:
         Deletes an `IdpGroupMapping` object.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -422,8 +421,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def delete_idp_group_mappings_with_http_info(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -442,9 +441,9 @@ class IdpGroupMappingsApi:
         Deletes an `IdpGroupMapping` object.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -493,8 +492,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def delete_idp_group_mappings_without_preload_content(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -513,9 +512,9 @@ class IdpGroupMappingsApi:
         Deletes an `IdpGroupMapping` object.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -620,8 +619,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def get_idp_group_mapping(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -640,9 +639,9 @@ class IdpGroupMappingsApi:
         Gets an `IdpGroupMapping` object for an Okta app and group.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -691,8 +690,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def get_idp_group_mapping_with_http_info(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -711,9 +710,9 @@ class IdpGroupMappingsApi:
         Gets an `IdpGroupMapping` object for an Okta app and group.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -762,8 +761,8 @@ class IdpGroupMappingsApi:
     @validate_call
     def get_idp_group_mapping_without_preload_content(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
-        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
+        group_id: Annotated[StrictStr, Field(description="The ID of the group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -782,9 +781,9 @@ class IdpGroupMappingsApi:
         Gets an `IdpGroupMapping` object for an Okta app and group.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param group_id: The ID of the group. (required)
-        :type group_id: UUID
+        :type group_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -896,7 +895,7 @@ class IdpGroupMappingsApi:
     @validate_call
     def get_idp_group_mappings(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -915,7 +914,7 @@ class IdpGroupMappingsApi:
         Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -963,7 +962,7 @@ class IdpGroupMappingsApi:
     @validate_call
     def get_idp_group_mappings_with_http_info(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -982,7 +981,7 @@ class IdpGroupMappingsApi:
         Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1030,7 +1029,7 @@ class IdpGroupMappingsApi:
     @validate_call
     def get_idp_group_mappings_without_preload_content(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1049,7 +1048,7 @@ class IdpGroupMappingsApi:
         Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1157,7 +1156,7 @@ class IdpGroupMappingsApi:
     @validate_call
     def update_idp_group_mappings(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         update_idp_group_mappings_request: UpdateIdpGroupMappingsRequest,
         _request_timeout: Union[
             None,
@@ -1177,7 +1176,7 @@ class IdpGroupMappingsApi:
         Updates the list of available `IdpGroupMapping` objects for an Okta app.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param update_idp_group_mappings_request: (required)
         :type update_idp_group_mappings_request: UpdateIdpGroupMappingsRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1228,7 +1227,7 @@ class IdpGroupMappingsApi:
     @validate_call
     def update_idp_group_mappings_with_http_info(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         update_idp_group_mappings_request: UpdateIdpGroupMappingsRequest,
         _request_timeout: Union[
             None,
@@ -1248,7 +1247,7 @@ class IdpGroupMappingsApi:
         Updates the list of available `IdpGroupMapping` objects for an Okta app.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param update_idp_group_mappings_request: (required)
         :type update_idp_group_mappings_request: UpdateIdpGroupMappingsRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1299,7 +1298,7 @@ class IdpGroupMappingsApi:
     @validate_call
     def update_idp_group_mappings_without_preload_content(
         self,
-        app_resource_id: Annotated[UUID, Field(description="The ID of the Okta app.")],
+        app_resource_id: Annotated[StrictStr, Field(description="The ID of the Okta app.")],
         update_idp_group_mappings_request: UpdateIdpGroupMappingsRequest,
         _request_timeout: Union[
             None,
@@ -1319,7 +1318,7 @@ class IdpGroupMappingsApi:
         Updates the list of available `IdpGroupMapping` objects for an Okta app.
 
         :param app_resource_id: The ID of the Okta app. (required)
-        :type app_resource_id: UUID
+        :type app_resource_id: str
         :param update_idp_group_mappings_request: (required)
         :type update_idp_group_mappings_request: UpdateIdpGroupMappingsRequest
         :param _request_timeout: timeout setting for this request. If one
