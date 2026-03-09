@@ -6,7 +6,7 @@ Information about a group and corresponding access level
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_id** | **UUID** | The ID of the group. | 
+**group_id** | **str** | The ID of the group. | 
 **access_level_remote_id** | **str** | The ID of the resource. | [optional] 
 
 ## Example

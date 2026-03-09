@@ -7,8 +7,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The date and time the comment was created. | 
-**request_id** | **UUID** | The unique identifier of the request the comment is associated with. | 
-**user_id** | **UUID** | The unique identifier of the user who made the comment. | 
+**request_id** | **str** | The unique identifier of the request the comment is associated with. | 
+**user_id** | **str** | The unique identifier of the user who made the comment. | 
 **user_full_name** | **str** | The user&#39;s full name. | [optional] 
 **user_email** | **str** | The user&#39;s email address. | [optional] 
 **comment** | **str** | The content of the comment. | 

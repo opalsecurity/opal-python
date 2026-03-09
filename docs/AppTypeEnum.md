@@ -20,6 +20,8 @@ The type of an app.
 
 * `CUSTOM` (value: `'CUSTOM'`)
 
+* `CUSTOM_CONNECTOR` (value: `'CUSTOM_CONNECTOR'`)
+
 * `DATABRICKS` (value: `'DATABRICKS'`)
 
 * `DATASTAX_ASTRA` (value: `'DATASTAX_ASTRA'`)

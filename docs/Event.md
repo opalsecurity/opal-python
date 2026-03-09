@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_id** | **UUID** | The ID of the event. | 
-**actor_user_id** | **UUID** | The ID of the actor user. | 
+**event_id** | **str** | The ID of the event. | 
+**actor_user_id** | **str** | The ID of the actor user. | 
 **actor_name** | **object** |  | 
 **actor_email** | **str** | The email of the actor user. | [optional] 
 **event_type** | **str** | The event type. | 
