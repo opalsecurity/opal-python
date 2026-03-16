@@ -17,9 +17,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field
+from pydantic import Field, StrictStr
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.configuration_template import ConfigurationTemplate
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList
@@ -320,7 +319,7 @@ class ConfigurationTemplatesApi:
     @validate_call
     def delete_configuration_template(
         self,
-        configuration_template_id: Annotated[UUID, Field(description="The ID of the configuration template.")],
+        configuration_template_id: Annotated[StrictStr, Field(description="The ID of the configuration template.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -339,7 +338,7 @@ class ConfigurationTemplatesApi:
         Deletes a configuration template.
 
         :param configuration_template_id: The ID of the configuration template. (required)
-        :type configuration_template_id: UUID
+        :type configuration_template_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -387,7 +386,7 @@ class ConfigurationTemplatesApi:
     @validate_call
     def delete_configuration_template_with_http_info(
         self,
-        configuration_template_id: Annotated[UUID, Field(description="The ID of the configuration template.")],
+        configuration_template_id: Annotated[StrictStr, Field(description="The ID of the configuration template.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -406,7 +405,7 @@ class ConfigurationTemplatesApi:
         Deletes a configuration template.
 
         :param configuration_template_id: The ID of the configuration template. (required)
-        :type configuration_template_id: UUID
+        :type configuration_template_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -454,7 +453,7 @@ class ConfigurationTemplatesApi:
     @validate_call
     def delete_configuration_template_without_preload_content(
         self,
-        configuration_template_id: Annotated[UUID, Field(description="The ID of the configuration template.")],
+        configuration_template_id: Annotated[StrictStr, Field(description="The ID of the configuration template.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -473,7 +472,7 @@ class ConfigurationTemplatesApi:
         Deletes a configuration template.
 
         :param configuration_template_id: The ID of the configuration template. (required)
-        :type configuration_template_id: UUID
+        :type configuration_template_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

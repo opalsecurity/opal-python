@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bundle_id** | **UUID** | The ID of the bundle containing the resource. | [optional] [readonly] 
-**resource_id** | **UUID** | The ID of the resource within a bundle. | [optional] [readonly] 
+**bundle_id** | **str** | The ID of the bundle containing the resource. | [optional] [readonly] 
+**resource_id** | **str** | The ID of the resource within a bundle. | [optional] [readonly] 
 **access_level_name** | **str** | The access level of the resource within a bundle. | [optional] 
 **access_level_remote_id** | **str** | The remote ID of the access level of the resource within a bundle. | [optional] 
 

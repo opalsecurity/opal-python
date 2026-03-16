@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_id** | **UUID** | The ID of the group. | 
+**group_id** | **str** | The ID of the group. | 
 **group_type** | [**GroupTypeEnum**](GroupTypeEnum.md) |  | 
 
 ## Example
