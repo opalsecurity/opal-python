@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.access_list import AccessList
 from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest
 from opal_security.models.add_resource_user_request import AddResourceUserRequest
@@ -66,8 +65,8 @@ class ResourcesApi:
     @validate_call
     def add_resource_nhi(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        non_human_identity_id: Annotated[UUID, Field(description="The resource ID of the non-human identity to add.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        non_human_identity_id: Annotated[StrictStr, Field(description="The resource ID of the non-human identity to add.")],
         add_resource_nhi_request: Optional[AddResourceNhiRequest] = None,
         _request_timeout: Union[
             None,
@@ -87,9 +86,9 @@ class ResourcesApi:
         Gives a non-human identity access to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param non_human_identity_id: The resource ID of the non-human identity to add. (required)
-        :type non_human_identity_id: UUID
+        :type non_human_identity_id: str
         :param add_resource_nhi_request:
         :type add_resource_nhi_request: AddResourceNhiRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -141,8 +140,8 @@ class ResourcesApi:
     @validate_call
     def add_resource_nhi_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        non_human_identity_id: Annotated[UUID, Field(description="The resource ID of the non-human identity to add.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        non_human_identity_id: Annotated[StrictStr, Field(description="The resource ID of the non-human identity to add.")],
         add_resource_nhi_request: Optional[AddResourceNhiRequest] = None,
         _request_timeout: Union[
             None,
@@ -162,9 +161,9 @@ class ResourcesApi:
         Gives a non-human identity access to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param non_human_identity_id: The resource ID of the non-human identity to add. (required)
-        :type non_human_identity_id: UUID
+        :type non_human_identity_id: str
         :param add_resource_nhi_request:
         :type add_resource_nhi_request: AddResourceNhiRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -216,8 +215,8 @@ class ResourcesApi:
     @validate_call
     def add_resource_nhi_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        non_human_identity_id: Annotated[UUID, Field(description="The resource ID of the non-human identity to add.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        non_human_identity_id: Annotated[StrictStr, Field(description="The resource ID of the non-human identity to add.")],
         add_resource_nhi_request: Optional[AddResourceNhiRequest] = None,
         _request_timeout: Union[
             None,
@@ -237,9 +236,9 @@ class ResourcesApi:
         Gives a non-human identity access to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param non_human_identity_id: The resource ID of the non-human identity to add. (required)
-        :type non_human_identity_id: UUID
+        :type non_human_identity_id: str
         :param add_resource_nhi_request:
         :type add_resource_nhi_request: AddResourceNhiRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -370,8 +369,8 @@ class ResourcesApi:
     @validate_call
     def add_resource_user(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user to add.")],
         duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_resource_user_request: Optional[AddResourceUserRequest] = None,
@@ -393,9 +392,9 @@ class ResourcesApi:
         Adds a user to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user to add. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param duration_minutes: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
         :type duration_minutes: int
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
@@ -453,8 +452,8 @@ class ResourcesApi:
     @validate_call
     def add_resource_user_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user to add.")],
         duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_resource_user_request: Optional[AddResourceUserRequest] = None,
@@ -476,9 +475,9 @@ class ResourcesApi:
         Adds a user to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user to add. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param duration_minutes: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
         :type duration_minutes: int
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
@@ -536,8 +535,8 @@ class ResourcesApi:
     @validate_call
     def add_resource_user_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user to add.")],
         duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_resource_user_request: Optional[AddResourceUserRequest] = None,
@@ -559,9 +558,9 @@ class ResourcesApi:
         Adds a user to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user to add. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param duration_minutes: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
         :type duration_minutes: int
         :param access_level_remote_id: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
@@ -982,7 +981,7 @@ class ResourcesApi:
     @validate_call
     def delete_resource(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1001,7 +1000,7 @@ class ResourcesApi:
         Deletes a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1049,7 +1048,7 @@ class ResourcesApi:
     @validate_call
     def delete_resource_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1068,7 +1067,7 @@ class ResourcesApi:
         Deletes a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1116,7 +1115,7 @@ class ResourcesApi:
     @validate_call
     def delete_resource_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1135,7 +1134,7 @@ class ResourcesApi:
         Deletes a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1236,8 +1235,8 @@ class ResourcesApi:
     @validate_call
     def delete_resource_nhi(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        non_human_identity_id: Annotated[UUID, Field(description="The resource ID of the non-human identity to remove from this resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        non_human_identity_id: Annotated[StrictStr, Field(description="The resource ID of the non-human identity to remove from this resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1257,9 +1256,9 @@ class ResourcesApi:
         Removes a non-human identity's direct access from this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param non_human_identity_id: The resource ID of the non-human identity to remove from this resource. (required)
-        :type non_human_identity_id: UUID
+        :type non_human_identity_id: str
         :param access_level_remote_id: The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1311,8 +1310,8 @@ class ResourcesApi:
     @validate_call
     def delete_resource_nhi_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        non_human_identity_id: Annotated[UUID, Field(description="The resource ID of the non-human identity to remove from this resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        non_human_identity_id: Annotated[StrictStr, Field(description="The resource ID of the non-human identity to remove from this resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1332,9 +1331,9 @@ class ResourcesApi:
         Removes a non-human identity's direct access from this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param non_human_identity_id: The resource ID of the non-human identity to remove from this resource. (required)
-        :type non_human_identity_id: UUID
+        :type non_human_identity_id: str
         :param access_level_remote_id: The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1386,8 +1385,8 @@ class ResourcesApi:
     @validate_call
     def delete_resource_nhi_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        non_human_identity_id: Annotated[UUID, Field(description="The resource ID of the non-human identity to remove from this resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        non_human_identity_id: Annotated[StrictStr, Field(description="The resource ID of the non-human identity to remove from this resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1407,9 +1406,9 @@ class ResourcesApi:
         Removes a non-human identity's direct access from this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param non_human_identity_id: The resource ID of the non-human identity to remove from this resource. (required)
-        :type non_human_identity_id: UUID
+        :type non_human_identity_id: str
         :param access_level_remote_id: The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1522,8 +1521,8 @@ class ResourcesApi:
     @validate_call
     def delete_resource_user(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of a user to remove from this resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1543,9 +1542,9 @@ class ResourcesApi:
         Removes a user's direct access from this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of a user to remove from this resource. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1597,8 +1596,8 @@ class ResourcesApi:
     @validate_call
     def delete_resource_user_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of a user to remove from this resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1618,9 +1617,9 @@ class ResourcesApi:
         Removes a user's direct access from this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of a user to remove from this resource. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1672,8 +1671,8 @@ class ResourcesApi:
     @validate_call
     def delete_resource_user_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of a user to remove from this resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of a user to remove from this resource.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.")] = None,
         _request_timeout: Union[
             None,
@@ -1693,9 +1692,9 @@ class ResourcesApi:
         Removes a user's direct access from this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of a user to remove from this resource. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param access_level_remote_id: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
         :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1808,7 +1807,7 @@ class ResourcesApi:
     @validate_call
     def get_resource(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1827,7 +1826,7 @@ class ResourcesApi:
         Retrieves a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1875,7 +1874,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1894,7 +1893,7 @@ class ResourcesApi:
         Retrieves a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1942,7 +1941,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1961,7 +1960,7 @@ class ResourcesApi:
         Retrieves a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2069,7 +2068,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_groups(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource that the groups grant access to.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource that the groups grant access to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2088,7 +2087,7 @@ class ResourcesApi:
         Returns a list of groups that grant access to the resource
 
         :param resource_id: The ID of the resource that the groups grant access to. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2136,7 +2135,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_groups_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource that the groups grant access to.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource that the groups grant access to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2155,7 +2154,7 @@ class ResourcesApi:
         Returns a list of groups that grant access to the resource
 
         :param resource_id: The ID of the resource that the groups grant access to. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2203,7 +2202,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_groups_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource that the groups grant access to.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource that the groups grant access to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2222,7 +2221,7 @@ class ResourcesApi:
         Returns a list of groups that grant access to the resource
 
         :param resource_id: The ID of the resource that the groups grant access to. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2330,7 +2329,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_message_channels(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2349,7 +2348,7 @@ class ResourcesApi:
         Gets the list of audit message channels attached to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2397,7 +2396,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_message_channels_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2416,7 +2415,7 @@ class ResourcesApi:
         Gets the list of audit message channels attached to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2464,7 +2463,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_message_channels_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2483,7 +2482,7 @@ class ResourcesApi:
         Gets the list of audit message channels attached to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2591,7 +2590,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_nhis(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         _request_timeout: Union[
             None,
@@ -2611,7 +2610,7 @@ class ResourcesApi:
         Gets the list of non-human identities with access to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2662,7 +2661,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_nhis_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         _request_timeout: Union[
             None,
@@ -2682,7 +2681,7 @@ class ResourcesApi:
         Gets the list of non-human identities with access to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2733,7 +2732,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_nhis_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         _request_timeout: Union[
             None,
@@ -2753,7 +2752,7 @@ class ResourcesApi:
         Gets the list of non-human identities with access to this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2869,7 +2868,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_reviewer_stages(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2888,7 +2887,7 @@ class ResourcesApi:
         Gets the list reviewer stages for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2936,7 +2935,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_reviewer_stages_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2955,7 +2954,7 @@ class ResourcesApi:
         Gets the list reviewer stages for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3003,7 +3002,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_reviewer_stages_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3022,7 +3021,7 @@ class ResourcesApi:
         Gets the list reviewer stages for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3130,7 +3129,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_reviewers(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3143,13 +3142,13 @@ class ResourcesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[UUID]:
+    ) -> List[str]:
         """get_resource_reviewers
 
         Gets the list of owner IDs of the reviewers for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3181,7 +3180,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3197,7 +3196,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_reviewers_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3210,13 +3209,13 @@ class ResourcesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[UUID]]:
+    ) -> ApiResponse[List[str]]:
         """get_resource_reviewers
 
         Gets the list of owner IDs of the reviewers for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3248,7 +3247,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3264,7 +3263,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_reviewers_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3283,7 +3282,7 @@ class ResourcesApi:
         Gets the list of owner IDs of the reviewers for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3315,7 +3314,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3391,7 +3390,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_scoped_role_permissions(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose scoped role permissions belong to.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose scoped role permissions belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3410,7 +3409,7 @@ class ResourcesApi:
         Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 
         :param resource_id: The ID of the resource whose scoped role permissions belong to. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3458,7 +3457,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_scoped_role_permissions_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose scoped role permissions belong to.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose scoped role permissions belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3477,7 +3476,7 @@ class ResourcesApi:
         Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 
         :param resource_id: The ID of the resource whose scoped role permissions belong to. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3525,7 +3524,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_scoped_role_permissions_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose scoped role permissions belong to.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose scoped role permissions belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3544,7 +3543,7 @@ class ResourcesApi:
         Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 
         :param resource_id: The ID of the resource whose scoped role permissions belong to. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3652,7 +3651,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_tags(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose tags to return.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3671,7 +3670,7 @@ class ResourcesApi:
         Returns all tags applied to the resource.
 
         :param resource_id: The ID of the resource whose tags to return. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3719,7 +3718,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_tags_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose tags to return.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3738,7 +3737,7 @@ class ResourcesApi:
         Returns all tags applied to the resource.
 
         :param resource_id: The ID of the resource whose tags to return. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3786,7 +3785,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_tags_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose tags to return.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose tags to return.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3805,7 +3804,7 @@ class ResourcesApi:
         Returns all tags applied to the resource.
 
         :param resource_id: The ID of the resource whose tags to return. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3913,8 +3912,8 @@ class ResourcesApi:
     @validate_call
     def get_resource_user(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         _request_timeout: Union[
             None,
@@ -3934,9 +3933,9 @@ class ResourcesApi:
         Returns information about a specific user's access to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3989,8 +3988,8 @@ class ResourcesApi:
     @validate_call
     def get_resource_user_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         _request_timeout: Union[
             None,
@@ -4010,9 +4009,9 @@ class ResourcesApi:
         Returns information about a specific user's access to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4065,8 +4064,8 @@ class ResourcesApi:
     @validate_call
     def get_resource_user_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         _request_timeout: Union[
             None,
@@ -4086,9 +4085,9 @@ class ResourcesApi:
         Returns information about a specific user's access to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4209,7 +4208,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_users(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         _request_timeout: Union[
             None,
@@ -4229,7 +4228,7 @@ class ResourcesApi:
         Gets the list of users for this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -4280,7 +4279,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_users_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         _request_timeout: Union[
             None,
@@ -4300,7 +4299,7 @@ class ResourcesApi:
         Gets the list of users for this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -4351,7 +4350,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_users_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         _request_timeout: Union[
             None,
@@ -4371,7 +4370,7 @@ class ResourcesApi:
         Gets the list of users for this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -4487,7 +4486,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_visibility(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4506,7 +4505,7 @@ class ResourcesApi:
         Gets the visibility of this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4554,7 +4553,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_visibility_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4573,7 +4572,7 @@ class ResourcesApi:
         Gets the visibility of this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4621,7 +4620,7 @@ class ResourcesApi:
     @validate_call
     def get_resource_visibility_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4640,7 +4639,7 @@ class ResourcesApi:
         Gets the visibility of this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4751,10 +4750,10 @@ class ResourcesApi:
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         resource_type_filter: Annotated[Optional[ResourceTypeEnum], Field(description="The resource type to filter by. Required when remote_id is provided.")] = None,
-        resource_ids: Annotated[Optional[List[UUID]], Field(description="The resource ids to filter by.")] = None,
+        resource_ids: Annotated[Optional[List[StrictStr]], Field(description="The resource ids to filter by.")] = None,
         resource_name: Annotated[Optional[StrictStr], Field(description="Resource name.")] = None,
-        parent_resource_id: Annotated[Optional[UUID], Field(description="The parent resource id to filter by.")] = None,
-        ancestor_resource_id: Annotated[Optional[UUID], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
+        parent_resource_id: Annotated[Optional[StrictStr], Field(description="The parent resource id to filter by.")] = None,
+        ancestor_resource_id: Annotated[Optional[StrictStr], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
         remote_id: Annotated[Optional[StrictStr], Field(description="Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.")] = None,
         _request_timeout: Union[
             None,
@@ -4780,13 +4779,13 @@ class ResourcesApi:
         :param resource_type_filter: The resource type to filter by. Required when remote_id is provided.
         :type resource_type_filter: ResourceTypeEnum
         :param resource_ids: The resource ids to filter by.
-        :type resource_ids: List[UUID]
+        :type resource_ids: List[str]
         :param resource_name: Resource name.
         :type resource_name: str
         :param parent_resource_id: The parent resource id to filter by.
-        :type parent_resource_id: UUID
+        :type parent_resource_id: str
         :param ancestor_resource_id: The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.
-        :type ancestor_resource_id: UUID
+        :type ancestor_resource_id: str
         :param remote_id: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
         :type remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4846,10 +4845,10 @@ class ResourcesApi:
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         resource_type_filter: Annotated[Optional[ResourceTypeEnum], Field(description="The resource type to filter by. Required when remote_id is provided.")] = None,
-        resource_ids: Annotated[Optional[List[UUID]], Field(description="The resource ids to filter by.")] = None,
+        resource_ids: Annotated[Optional[List[StrictStr]], Field(description="The resource ids to filter by.")] = None,
         resource_name: Annotated[Optional[StrictStr], Field(description="Resource name.")] = None,
-        parent_resource_id: Annotated[Optional[UUID], Field(description="The parent resource id to filter by.")] = None,
-        ancestor_resource_id: Annotated[Optional[UUID], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
+        parent_resource_id: Annotated[Optional[StrictStr], Field(description="The parent resource id to filter by.")] = None,
+        ancestor_resource_id: Annotated[Optional[StrictStr], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
         remote_id: Annotated[Optional[StrictStr], Field(description="Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.")] = None,
         _request_timeout: Union[
             None,
@@ -4875,13 +4874,13 @@ class ResourcesApi:
         :param resource_type_filter: The resource type to filter by. Required when remote_id is provided.
         :type resource_type_filter: ResourceTypeEnum
         :param resource_ids: The resource ids to filter by.
-        :type resource_ids: List[UUID]
+        :type resource_ids: List[str]
         :param resource_name: Resource name.
         :type resource_name: str
         :param parent_resource_id: The parent resource id to filter by.
-        :type parent_resource_id: UUID
+        :type parent_resource_id: str
         :param ancestor_resource_id: The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.
-        :type ancestor_resource_id: UUID
+        :type ancestor_resource_id: str
         :param remote_id: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
         :type remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4941,10 +4940,10 @@ class ResourcesApi:
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         resource_type_filter: Annotated[Optional[ResourceTypeEnum], Field(description="The resource type to filter by. Required when remote_id is provided.")] = None,
-        resource_ids: Annotated[Optional[List[UUID]], Field(description="The resource ids to filter by.")] = None,
+        resource_ids: Annotated[Optional[List[StrictStr]], Field(description="The resource ids to filter by.")] = None,
         resource_name: Annotated[Optional[StrictStr], Field(description="Resource name.")] = None,
-        parent_resource_id: Annotated[Optional[UUID], Field(description="The parent resource id to filter by.")] = None,
-        ancestor_resource_id: Annotated[Optional[UUID], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
+        parent_resource_id: Annotated[Optional[StrictStr], Field(description="The parent resource id to filter by.")] = None,
+        ancestor_resource_id: Annotated[Optional[StrictStr], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
         remote_id: Annotated[Optional[StrictStr], Field(description="Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.")] = None,
         _request_timeout: Union[
             None,
@@ -4970,13 +4969,13 @@ class ResourcesApi:
         :param resource_type_filter: The resource type to filter by. Required when remote_id is provided.
         :type resource_type_filter: ResourceTypeEnum
         :param resource_ids: The resource ids to filter by.
-        :type resource_ids: List[UUID]
+        :type resource_ids: List[str]
         :param resource_name: Resource name.
         :type resource_name: str
         :param parent_resource_id: The parent resource id to filter by.
-        :type parent_resource_id: UUID
+        :type parent_resource_id: str
         :param ancestor_resource_id: The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.
-        :type ancestor_resource_id: UUID
+        :type ancestor_resource_id: str
         :param remote_id: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
         :type remote_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -5131,7 +5130,7 @@ class ResourcesApi:
     @validate_call
     def get_user_resources(
         self,
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         include_unmanaged: Annotated[Optional[StrictBool], Field(description="Include user's access to unmanaged resources.")] = None,
@@ -5153,7 +5152,7 @@ class ResourcesApi:
         Gets the list of resources for this user.
 
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param cursor: The pagination cursor value.
@@ -5210,7 +5209,7 @@ class ResourcesApi:
     @validate_call
     def get_user_resources_with_http_info(
         self,
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         include_unmanaged: Annotated[Optional[StrictBool], Field(description="Include user's access to unmanaged resources.")] = None,
@@ -5232,7 +5231,7 @@ class ResourcesApi:
         Gets the list of resources for this user.
 
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param cursor: The pagination cursor value.
@@ -5289,7 +5288,7 @@ class ResourcesApi:
     @validate_call
     def get_user_resources_without_preload_content(
         self,
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         limit: Annotated[Optional[StrictInt], Field(description="Limit the number of results returned.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         include_unmanaged: Annotated[Optional[StrictBool], Field(description="Include user's access to unmanaged resources.")] = None,
@@ -5311,7 +5310,7 @@ class ResourcesApi:
         Gets the list of resources for this user.
 
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param limit: Limit the number of results returned.
         :type limit: int
         :param cursor: The pagination cursor value.
@@ -5443,8 +5442,8 @@ class ResourcesApi:
     @validate_call
     def resource_user_access_status_retrieve(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
@@ -5466,9 +5465,9 @@ class ResourcesApi:
         Get user's access status to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param access_level_remote_id: The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param cursor: The pagination cursor value.
@@ -5527,8 +5526,8 @@ class ResourcesApi:
     @validate_call
     def resource_user_access_status_retrieve_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
@@ -5550,9 +5549,9 @@ class ResourcesApi:
         Get user's access status to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param access_level_remote_id: The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param cursor: The pagination cursor value.
@@ -5611,8 +5610,8 @@ class ResourcesApi:
     @validate_call
     def resource_user_access_status_retrieve_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user.")],
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
@@ -5634,9 +5633,9 @@ class ResourcesApi:
         Get user's access status to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param access_level_remote_id: The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.
         :type access_level_remote_id: str
         :param cursor: The pagination cursor value.
@@ -5773,7 +5772,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_message_channels(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         message_channel_id_list: MessageChannelIDList,
         _request_timeout: Union[
             None,
@@ -5787,13 +5786,13 @@ class ResourcesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[UUID]:
+    ) -> List[str]:
         """set_resource_message_channels
 
         Sets the list of audit message channels attached to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param message_channel_id_list: (required)
         :type message_channel_id_list: MessageChannelIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5828,7 +5827,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5844,7 +5843,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_message_channels_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         message_channel_id_list: MessageChannelIDList,
         _request_timeout: Union[
             None,
@@ -5858,13 +5857,13 @@ class ResourcesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[UUID]]:
+    ) -> ApiResponse[List[str]]:
         """set_resource_message_channels
 
         Sets the list of audit message channels attached to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param message_channel_id_list: (required)
         :type message_channel_id_list: MessageChannelIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5899,7 +5898,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5915,7 +5914,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_message_channels_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         message_channel_id_list: MessageChannelIDList,
         _request_timeout: Union[
             None,
@@ -5935,7 +5934,7 @@ class ResourcesApi:
         Sets the list of audit message channels attached to a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param message_channel_id_list: (required)
         :type message_channel_id_list: MessageChannelIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -5970,7 +5969,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6062,7 +6061,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_reviewer_stages(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         reviewer_stage_list: ReviewerStageList,
         _request_timeout: Union[
             None,
@@ -6082,7 +6081,7 @@ class ResourcesApi:
         Sets the list of reviewer stages for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param reviewer_stage_list: (required)
         :type reviewer_stage_list: ReviewerStageList
         :param _request_timeout: timeout setting for this request. If one
@@ -6133,7 +6132,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_reviewer_stages_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         reviewer_stage_list: ReviewerStageList,
         _request_timeout: Union[
             None,
@@ -6153,7 +6152,7 @@ class ResourcesApi:
         Sets the list of reviewer stages for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param reviewer_stage_list: (required)
         :type reviewer_stage_list: ReviewerStageList
         :param _request_timeout: timeout setting for this request. If one
@@ -6204,7 +6203,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_reviewer_stages_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         reviewer_stage_list: ReviewerStageList,
         _request_timeout: Union[
             None,
@@ -6224,7 +6223,7 @@ class ResourcesApi:
         Sets the list of reviewer stages for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param reviewer_stage_list: (required)
         :type reviewer_stage_list: ReviewerStageList
         :param _request_timeout: timeout setting for this request. If one
@@ -6351,7 +6350,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_reviewers(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         reviewer_id_list: ReviewerIDList,
         _request_timeout: Union[
             None,
@@ -6365,13 +6364,13 @@ class ResourcesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[UUID]:
+    ) -> List[str]:
         """set_resource_reviewers
 
         Sets the list of reviewers for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param reviewer_id_list: (required)
         :type reviewer_id_list: ReviewerIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6406,7 +6405,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6422,7 +6421,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_reviewers_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         reviewer_id_list: ReviewerIDList,
         _request_timeout: Union[
             None,
@@ -6436,13 +6435,13 @@ class ResourcesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[UUID]]:
+    ) -> ApiResponse[List[str]]:
         """set_resource_reviewers
 
         Sets the list of reviewers for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param reviewer_id_list: (required)
         :type reviewer_id_list: ReviewerIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6477,7 +6476,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6493,7 +6492,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_reviewers_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         reviewer_id_list: ReviewerIDList,
         _request_timeout: Union[
             None,
@@ -6513,7 +6512,7 @@ class ResourcesApi:
         Sets the list of reviewers for a resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param reviewer_id_list: (required)
         :type reviewer_id_list: ReviewerIDList
         :param _request_timeout: timeout setting for this request. If one
@@ -6548,7 +6547,7 @@ class ResourcesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UUID]",
+            '200': "List[str]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6640,7 +6639,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_scoped_role_permissions(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.")],
         scoped_role_permission_list: ScopedRolePermissionList,
         _request_timeout: Union[
             None,
@@ -6660,7 +6659,7 @@ class ResourcesApi:
         Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
 
         :param resource_id: The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param scoped_role_permission_list: (required)
         :type scoped_role_permission_list: ScopedRolePermissionList
         :param _request_timeout: timeout setting for this request. If one
@@ -6711,7 +6710,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_scoped_role_permissions_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.")],
         scoped_role_permission_list: ScopedRolePermissionList,
         _request_timeout: Union[
             None,
@@ -6731,7 +6730,7 @@ class ResourcesApi:
         Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
 
         :param resource_id: The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param scoped_role_permission_list: (required)
         :type scoped_role_permission_list: ScopedRolePermissionList
         :param _request_timeout: timeout setting for this request. If one
@@ -6782,7 +6781,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_scoped_role_permissions_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.")],
         scoped_role_permission_list: ScopedRolePermissionList,
         _request_timeout: Union[
             None,
@@ -6802,7 +6801,7 @@ class ResourcesApi:
         Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
 
         :param resource_id: The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param scoped_role_permission_list: (required)
         :type scoped_role_permission_list: ScopedRolePermissionList
         :param _request_timeout: timeout setting for this request. If one
@@ -6929,7 +6928,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_visibility(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -6949,7 +6948,7 @@ class ResourcesApi:
         Sets the visibility of this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -7000,7 +6999,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_visibility_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -7020,7 +7019,7 @@ class ResourcesApi:
         Sets the visibility of this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -7071,7 +7070,7 @@ class ResourcesApi:
     @validate_call
     def set_resource_visibility_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         visibility_info: VisibilityInfo,
         _request_timeout: Union[
             None,
@@ -7091,7 +7090,7 @@ class ResourcesApi:
         Sets the visibility of this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param visibility_info: (required)
         :type visibility_info: VisibilityInfo
         :param _request_timeout: timeout setting for this request. If one
@@ -7218,8 +7217,8 @@ class ResourcesApi:
     @validate_call
     def update_resource_user(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user whose access is being updated.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user whose access is being updated.")],
         update_resource_user_request: UpdateResourceUserRequest,
         _request_timeout: Union[
             None,
@@ -7239,9 +7238,9 @@ class ResourcesApi:
         Updates a user's access level or duration on this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user whose access is being updated. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param update_resource_user_request: (required)
         :type update_resource_user_request: UpdateResourceUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -7293,8 +7292,8 @@ class ResourcesApi:
     @validate_call
     def update_resource_user_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user whose access is being updated.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user whose access is being updated.")],
         update_resource_user_request: UpdateResourceUserRequest,
         _request_timeout: Union[
             None,
@@ -7314,9 +7313,9 @@ class ResourcesApi:
         Updates a user's access level or duration on this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user whose access is being updated. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param update_resource_user_request: (required)
         :type update_resource_user_request: UpdateResourceUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -7368,8 +7367,8 @@ class ResourcesApi:
     @validate_call
     def update_resource_user_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
-        user_id: Annotated[UUID, Field(description="The ID of the user whose access is being updated.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
+        user_id: Annotated[StrictStr, Field(description="The ID of the user whose access is being updated.")],
         update_resource_user_request: UpdateResourceUserRequest,
         _request_timeout: Union[
             None,
@@ -7389,9 +7388,9 @@ class ResourcesApi:
         Updates a user's access level or duration on this resource.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user whose access is being updated. (required)
-        :type user_id: UUID
+        :type user_id: str
         :param update_resource_user_request: (required)
         :type update_resource_user_request: UpdateResourceUserRequest
         :param _request_timeout: timeout setting for this request. If one

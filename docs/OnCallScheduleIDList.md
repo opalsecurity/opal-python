@@ -6,7 +6,7 @@ A list of on call schedule Opal UUIDs. To get the matching remote IDs, use the /
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**on_call_schedule_ids** | **List[UUID]** |  | 
+**on_call_schedule_ids** | **List[str]** |  | 
 
 ## Example
 

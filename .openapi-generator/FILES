@@ -13,6 +13,7 @@ docs/AddGroupResourceRequest.md
 docs/AddGroupUserRequest.md
 docs/AddResourceNhiRequest.md
 docs/AddResourceUserRequest.md
+docs/ApiAccessLevelEnum.md
 docs/App.md
 docs/AppTypeEnum.md
 docs/AppValidation.md
@@ -125,6 +126,7 @@ docs/PaginatedOwnersList.md
 docs/PaginatedRemoteUsersList.md
 docs/PaginatedResourcesList.md
 docs/PaginatedTagsList.md
+docs/PaginatedTokensList.md
 docs/PaginatedUARsList.md
 docs/PaginatedUsersList.md
 docs/PropagationStatus.md
@@ -250,6 +252,8 @@ docs/TagsList.md
 docs/ThirdPartyProviderEnum.md
 docs/TicketPropagationConfiguration.md
 docs/TicketingProviderEnum.md
+docs/Token.md
+docs/TokensApi.md
 docs/UAR.md
 docs/UARReviewerAssignmentPolicyEnum.md
 docs/UARScope.md
@@ -296,6 +300,7 @@ opal_security/api/requests_api.py
 opal_security/api/resources_api.py
 opal_security/api/sessions_api.py
 opal_security/api/tags_api.py
+opal_security/api/tokens_api.py
 opal_security/api/uars_api.py
 opal_security/api/users_api.py
 opal_security/api_client.py
@@ -312,6 +317,7 @@ opal_security/models/add_group_resource_request.py
 opal_security/models/add_group_user_request.py
 opal_security/models/add_resource_nhi_request.py
 opal_security/models/add_resource_user_request.py
+opal_security/models/api_access_level_enum.py
 opal_security/models/app.py
 opal_security/models/app_type_enum.py
 opal_security/models/app_validation.py
@@ -412,6 +418,7 @@ opal_security/models/paginated_owners_list.py
 opal_security/models/paginated_remote_users_list.py
 opal_security/models/paginated_resources_list.py
 opal_security/models/paginated_tags_list.py
+opal_security/models/paginated_tokens_list.py
 opal_security/models/paginated_uars_list.py
 opal_security/models/paginated_users_list.py
 opal_security/models/propagation_status.py
@@ -533,6 +540,7 @@ opal_security/models/tags_list.py
 opal_security/models/third_party_provider_enum.py
 opal_security/models/ticket_propagation_configuration.py
 opal_security/models/ticketing_provider_enum.py
+opal_security/models/token.py
 opal_security/models/uar.py
 opal_security/models/uar_reviewer_assignment_policy_enum.py
 opal_security/models/uar_scope.py
@@ -565,4 +573,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_api_access_level_enum.py
+test/test_paginated_tokens_list.py
+test/test_token.py
+test/test_tokens_api.py
 tox.ini

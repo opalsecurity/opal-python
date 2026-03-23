@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**principal_id** | **UUID** | The ID of the principal with access. | 
+**principal_id** | **str** | The ID of the principal with access. | 
 **principal_type** | [**EntityTypeEnum**](EntityTypeEnum.md) |  | 
-**entity_id** | **UUID** | The ID of the entity being accessed. | 
+**entity_id** | **str** | The ID of the entity being accessed. | 
 **entity_type** | [**EntityTypeEnum**](EntityTypeEnum.md) |  | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | [optional] 
 **expiration_date** | **datetime** | The day and time the principal&#39;s access will expire. | [optional] 
