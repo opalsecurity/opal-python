@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.approve_request200_response import ApproveRequest200Response
 from opal_security.models.approve_request_request import ApproveRequestRequest
 from opal_security.models.create_request200_response import CreateRequest200Response
@@ -54,7 +53,7 @@ class RequestsApi:
     @validate_call
     def approve_request(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to approve")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to approve")],
         approve_request_request: Annotated[ApproveRequestRequest, Field(description="Approval parameters")],
         _request_timeout: Union[
             None,
@@ -74,7 +73,7 @@ class RequestsApi:
         Approve an access request
 
         :param id: The ID of the request to approve (required)
-        :type id: UUID
+        :type id: str
         :param approve_request_request: Approval parameters (required)
         :type approve_request_request: ApproveRequestRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -125,7 +124,7 @@ class RequestsApi:
     @validate_call
     def approve_request_with_http_info(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to approve")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to approve")],
         approve_request_request: Annotated[ApproveRequestRequest, Field(description="Approval parameters")],
         _request_timeout: Union[
             None,
@@ -145,7 +144,7 @@ class RequestsApi:
         Approve an access request
 
         :param id: The ID of the request to approve (required)
-        :type id: UUID
+        :type id: str
         :param approve_request_request: Approval parameters (required)
         :type approve_request_request: ApproveRequestRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -196,7 +195,7 @@ class RequestsApi:
     @validate_call
     def approve_request_without_preload_content(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to approve")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to approve")],
         approve_request_request: Annotated[ApproveRequestRequest, Field(description="Approval parameters")],
         _request_timeout: Union[
             None,
@@ -216,7 +215,7 @@ class RequestsApi:
         Approve an access request
 
         :param id: The ID of the request to approve (required)
-        :type id: UUID
+        :type id: str
         :param approve_request_request: Approval parameters (required)
         :type approve_request_request: ApproveRequestRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -617,7 +616,7 @@ class RequestsApi:
     @validate_call
     def create_request_comment(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to comment on")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to comment on")],
         create_request_comment_request: Annotated[CreateRequestCommentRequest, Field(description="Comment parameters")],
         _request_timeout: Union[
             None,
@@ -637,7 +636,7 @@ class RequestsApi:
         Comment on an access request
 
         :param id: The ID of the request to comment on (required)
-        :type id: UUID
+        :type id: str
         :param create_request_comment_request: Comment parameters (required)
         :type create_request_comment_request: CreateRequestCommentRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -688,7 +687,7 @@ class RequestsApi:
     @validate_call
     def create_request_comment_with_http_info(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to comment on")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to comment on")],
         create_request_comment_request: Annotated[CreateRequestCommentRequest, Field(description="Comment parameters")],
         _request_timeout: Union[
             None,
@@ -708,7 +707,7 @@ class RequestsApi:
         Comment on an access request
 
         :param id: The ID of the request to comment on (required)
-        :type id: UUID
+        :type id: str
         :param create_request_comment_request: Comment parameters (required)
         :type create_request_comment_request: CreateRequestCommentRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -759,7 +758,7 @@ class RequestsApi:
     @validate_call
     def create_request_comment_without_preload_content(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to comment on")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to comment on")],
         create_request_comment_request: Annotated[CreateRequestCommentRequest, Field(description="Comment parameters")],
         _request_timeout: Union[
             None,
@@ -779,7 +778,7 @@ class RequestsApi:
         Comment on an access request
 
         :param id: The ID of the request to comment on (required)
-        :type id: UUID
+        :type id: str
         :param create_request_comment_request: Comment parameters (required)
         :type create_request_comment_request: CreateRequestCommentRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -906,7 +905,7 @@ class RequestsApi:
     @validate_call
     def deny_request(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to deny")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to deny")],
         deny_request_request: Annotated[DenyRequestRequest, Field(description="Denial parameters")],
         _request_timeout: Union[
             None,
@@ -926,7 +925,7 @@ class RequestsApi:
         Deny an access request
 
         :param id: The ID of the request to deny (required)
-        :type id: UUID
+        :type id: str
         :param deny_request_request: Denial parameters (required)
         :type deny_request_request: DenyRequestRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -977,7 +976,7 @@ class RequestsApi:
     @validate_call
     def deny_request_with_http_info(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to deny")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to deny")],
         deny_request_request: Annotated[DenyRequestRequest, Field(description="Denial parameters")],
         _request_timeout: Union[
             None,
@@ -997,7 +996,7 @@ class RequestsApi:
         Deny an access request
 
         :param id: The ID of the request to deny (required)
-        :type id: UUID
+        :type id: str
         :param deny_request_request: Denial parameters (required)
         :type deny_request_request: DenyRequestRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1048,7 +1047,7 @@ class RequestsApi:
     @validate_call
     def deny_request_without_preload_content(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to deny")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to deny")],
         deny_request_request: Annotated[DenyRequestRequest, Field(description="Denial parameters")],
         _request_timeout: Union[
             None,
@@ -1068,7 +1067,7 @@ class RequestsApi:
         Deny an access request
 
         :param id: The ID of the request to deny (required)
-        :type id: UUID
+        :type id: str
         :param deny_request_request: Denial parameters (required)
         :type deny_request_request: DenyRequestRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1195,7 +1194,7 @@ class RequestsApi:
     @validate_call
     def get_request(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request.")],
+        id: Annotated[StrictStr, Field(description="The ID of the request.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1214,7 +1213,7 @@ class RequestsApi:
         Returns a request by ID.
 
         :param id: The ID of the request. (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1262,7 +1261,7 @@ class RequestsApi:
     @validate_call
     def get_request_with_http_info(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request.")],
+        id: Annotated[StrictStr, Field(description="The ID of the request.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1281,7 +1280,7 @@ class RequestsApi:
         Returns a request by ID.
 
         :param id: The ID of the request. (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1329,7 +1328,7 @@ class RequestsApi:
     @validate_call
     def get_request_without_preload_content(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request.")],
+        id: Annotated[StrictStr, Field(description="The ID of the request.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1348,7 +1347,7 @@ class RequestsApi:
         Returns a request by ID.
 
         :param id: The ID of the request. (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1456,7 +1455,7 @@ class RequestsApi:
     @validate_call
     def get_request_comments(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to get comments for")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to get comments for")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1475,7 +1474,7 @@ class RequestsApi:
         Returns a list of comments for a specific request.
 
         :param id: The ID of the request to get comments for (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1523,7 +1522,7 @@ class RequestsApi:
     @validate_call
     def get_request_comments_with_http_info(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to get comments for")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to get comments for")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1542,7 +1541,7 @@ class RequestsApi:
         Returns a list of comments for a specific request.
 
         :param id: The ID of the request to get comments for (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1590,7 +1589,7 @@ class RequestsApi:
     @validate_call
     def get_request_comments_without_preload_content(
         self,
-        id: Annotated[UUID, Field(description="The ID of the request to get comments for")],
+        id: Annotated[StrictStr, Field(description="The ID of the request to get comments for")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1609,7 +1608,7 @@ class RequestsApi:
         Returns a list of comments for a specific request.
 
         :param id: The ID of the request to get comments for (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1719,8 +1718,8 @@ class RequestsApi:
         self,
         start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
-        requester_id: Annotated[Optional[UUID], Field(description="Filter requests by their requester ID.")] = None,
-        target_user_id: Annotated[Optional[UUID], Field(description="Filter requests by their target user ID.")] = None,
+        requester_id: Annotated[Optional[StrictStr], Field(description="Filter requests by their requester ID.")] = None,
+        target_user_id: Annotated[Optional[StrictStr], Field(description="Filter requests by their target user ID.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -1746,9 +1745,9 @@ class RequestsApi:
         :param end_date_filter: An end date filter for the events.
         :type end_date_filter: str
         :param requester_id: Filter requests by their requester ID.
-        :type requester_id: UUID
+        :type requester_id: str
         :param target_user_id: Filter requests by their target user ID.
-        :type target_user_id: UUID
+        :type target_user_id: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -1810,8 +1809,8 @@ class RequestsApi:
         self,
         start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
-        requester_id: Annotated[Optional[UUID], Field(description="Filter requests by their requester ID.")] = None,
-        target_user_id: Annotated[Optional[UUID], Field(description="Filter requests by their target user ID.")] = None,
+        requester_id: Annotated[Optional[StrictStr], Field(description="Filter requests by their requester ID.")] = None,
+        target_user_id: Annotated[Optional[StrictStr], Field(description="Filter requests by their target user ID.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -1837,9 +1836,9 @@ class RequestsApi:
         :param end_date_filter: An end date filter for the events.
         :type end_date_filter: str
         :param requester_id: Filter requests by their requester ID.
-        :type requester_id: UUID
+        :type requester_id: str
         :param target_user_id: Filter requests by their target user ID.
-        :type target_user_id: UUID
+        :type target_user_id: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -1901,8 +1900,8 @@ class RequestsApi:
         self,
         start_date_filter: Annotated[Optional[StrictStr], Field(description="A start date filter for the events.")] = None,
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
-        requester_id: Annotated[Optional[UUID], Field(description="Filter requests by their requester ID.")] = None,
-        target_user_id: Annotated[Optional[UUID], Field(description="Filter requests by their target user ID.")] = None,
+        requester_id: Annotated[Optional[StrictStr], Field(description="Filter requests by their requester ID.")] = None,
+        target_user_id: Annotated[Optional[StrictStr], Field(description="Filter requests by their target user ID.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -1928,9 +1927,9 @@ class RequestsApi:
         :param end_date_filter: An end date filter for the events.
         :type end_date_filter: str
         :param requester_id: Filter requests by their requester ID.
-        :type requester_id: UUID
+        :type requester_id: str
         :param target_user_id: Filter requests by their target user ID.
-        :type target_user_id: UUID
+        :type target_user_id: str
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -2087,8 +2086,8 @@ class RequestsApi:
         last: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return before the cursor. Use either first/after or last/before, not both.")] = None,
         before: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results before. Used with 'last' for backward pagination.")] = None,
         status: Annotated[Optional[RequestStatusEnum], Field(description="Filter requests by their status.")] = None,
-        to: Annotated[Optional[UUID], Field(description="Filter requests assigned to a specific user ID.")] = None,
-        var_from: Annotated[Optional[UUID], Field(description="Filter requests made by a specific user ID.")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Filter requests assigned to a specific user ID.")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Filter requests made by a specific user ID.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2117,9 +2116,9 @@ class RequestsApi:
         :param status: Filter requests by their status.
         :type status: RequestStatusEnum
         :param to: Filter requests assigned to a specific user ID.
-        :type to: UUID
+        :type to: str
         :param var_from: Filter requests made by a specific user ID.
-        :type var_from: UUID
+        :type var_from: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2179,8 +2178,8 @@ class RequestsApi:
         last: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return before the cursor. Use either first/after or last/before, not both.")] = None,
         before: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results before. Used with 'last' for backward pagination.")] = None,
         status: Annotated[Optional[RequestStatusEnum], Field(description="Filter requests by their status.")] = None,
-        to: Annotated[Optional[UUID], Field(description="Filter requests assigned to a specific user ID.")] = None,
-        var_from: Annotated[Optional[UUID], Field(description="Filter requests made by a specific user ID.")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Filter requests assigned to a specific user ID.")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Filter requests made by a specific user ID.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2209,9 +2208,9 @@ class RequestsApi:
         :param status: Filter requests by their status.
         :type status: RequestStatusEnum
         :param to: Filter requests assigned to a specific user ID.
-        :type to: UUID
+        :type to: str
         :param var_from: Filter requests made by a specific user ID.
-        :type var_from: UUID
+        :type var_from: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2271,8 +2270,8 @@ class RequestsApi:
         last: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of results to return before the cursor. Use either first/after or last/before, not both.")] = None,
         before: Annotated[Optional[StrictStr], Field(description="Cursor to fetch results before. Used with 'last' for backward pagination.")] = None,
         status: Annotated[Optional[RequestStatusEnum], Field(description="Filter requests by their status.")] = None,
-        to: Annotated[Optional[UUID], Field(description="Filter requests assigned to a specific user ID.")] = None,
-        var_from: Annotated[Optional[UUID], Field(description="Filter requests made by a specific user ID.")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Filter requests assigned to a specific user ID.")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Filter requests made by a specific user ID.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2301,9 +2300,9 @@ class RequestsApi:
         :param status: Filter requests by their status.
         :type status: RequestStatusEnum
         :param to: Filter requests assigned to a specific user ID.
-        :type to: UUID
+        :type to: str
         :param var_from: Filter requests made by a specific user ID.
-        :type var_from: UUID
+        :type var_from: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

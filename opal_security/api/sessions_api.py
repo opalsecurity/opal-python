@@ -20,7 +20,6 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.sessions_list import SessionsList
 
 from opal_security.api_client import ApiClient, RequestSerialized
@@ -44,7 +43,7 @@ class SessionsApi:
     @validate_call
     def sessions(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         user_id: Annotated[Optional[StrictStr], Field(description="The ID of the user you wish to query sessions for.")] = None,
         _request_timeout: Union[
             None,
@@ -64,7 +63,7 @@ class SessionsApi:
         Returns a list of `Session` objects.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user you wish to query sessions for.
         :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -115,7 +114,7 @@ class SessionsApi:
     @validate_call
     def sessions_with_http_info(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         user_id: Annotated[Optional[StrictStr], Field(description="The ID of the user you wish to query sessions for.")] = None,
         _request_timeout: Union[
             None,
@@ -135,7 +134,7 @@ class SessionsApi:
         Returns a list of `Session` objects.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user you wish to query sessions for.
         :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -186,7 +185,7 @@ class SessionsApi:
     @validate_call
     def sessions_without_preload_content(
         self,
-        resource_id: Annotated[UUID, Field(description="The ID of the resource.")],
+        resource_id: Annotated[StrictStr, Field(description="The ID of the resource.")],
         user_id: Annotated[Optional[StrictStr], Field(description="The ID of the user you wish to query sessions for.")] = None,
         _request_timeout: Union[
             None,
@@ -206,7 +205,7 @@ class SessionsApi:
         Returns a list of `Session` objects.
 
         :param resource_id: The ID of the resource. (required)
-        :type resource_id: UUID
+        :type resource_id: str
         :param user_id: The ID of the user you wish to query sessions for.
         :type user_id: str
         :param _request_timeout: timeout setting for this request. If one

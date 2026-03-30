@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class OnCallScheduleIDList(BaseModel):
     """
     A list of on call schedule Opal UUIDs. To get the matching remote IDs, use the /on-call-schedules endpoints.
     """ # noqa: E501
-    on_call_schedule_ids: List[UUID]
+    on_call_schedule_ids: List[StrictStr]
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["on_call_schedule_ids"]
 

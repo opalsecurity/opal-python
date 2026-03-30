@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** | The ID of the group requested. Should not be specified if resource_id is specified. | 
+**id** | **str** | The ID of the group requested. Should not be specified if resource_id is specified. | 
 **access_level_remote_id** | **str** | The ID of the access level requested on the remote system. | [optional] 
 **access_level_name** | **str** | The ID of the access level requested on the remote system. | [optional] 
 

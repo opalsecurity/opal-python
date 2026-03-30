@@ -12,6 +12,8 @@ Method | HTTP request | Description
 # **create_on_call_schedule**
 > OnCallSchedule create_on_call_schedule(create_on_call_schedule_info)
 
+
+
 Creates a `OnCallSchedule` objects.
 
 ### Example
@@ -126,7 +128,7 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.OnCallSchedulesApi(api_client)
-    on_call_schedule_id = UUID('9546209c-42c2-4801-96d7-9ec42df0f59c') # UUID | The ID of the on_call_schedule.
+    on_call_schedule_id = '9546209c-42c2-4801-96d7-9ec42df0f59c' # str | The ID of the on_call_schedule.
 
     try:
         # Get on call schedule by ID
@@ -144,7 +146,7 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **on_call_schedule_id** | **UUID**| The ID of the on_call_schedule. | 
+ **on_call_schedule_id** | **str**| The ID of the on_call_schedule. | 
 
 ### Return type
 

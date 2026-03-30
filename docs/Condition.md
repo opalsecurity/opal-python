@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group_ids** | **List[UUID]** | The list of group IDs to match. | [optional] 
+**group_ids** | **List[str]** | The list of group IDs to match. | [optional] 
 **role_remote_ids** | **List[str]** | The list of role remote IDs to match. | [optional] 
 
 ## Example

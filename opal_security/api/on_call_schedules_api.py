@@ -17,9 +17,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field
+from pydantic import Field, StrictStr
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.create_on_call_schedule_info import CreateOnCallScheduleInfo
 from opal_security.models.on_call_schedule import OnCallSchedule
 from opal_security.models.on_call_schedule_list import OnCallScheduleList
@@ -319,7 +318,7 @@ class OnCallSchedulesApi:
     @validate_call
     def get_on_call_schedule(
         self,
-        on_call_schedule_id: Annotated[UUID, Field(description="The ID of the on_call_schedule.")],
+        on_call_schedule_id: Annotated[StrictStr, Field(description="The ID of the on_call_schedule.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -338,7 +337,7 @@ class OnCallSchedulesApi:
         Gets a `OnCallSchedule` object.
 
         :param on_call_schedule_id: The ID of the on_call_schedule. (required)
-        :type on_call_schedule_id: UUID
+        :type on_call_schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -386,7 +385,7 @@ class OnCallSchedulesApi:
     @validate_call
     def get_on_call_schedule_with_http_info(
         self,
-        on_call_schedule_id: Annotated[UUID, Field(description="The ID of the on_call_schedule.")],
+        on_call_schedule_id: Annotated[StrictStr, Field(description="The ID of the on_call_schedule.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,7 +404,7 @@ class OnCallSchedulesApi:
         Gets a `OnCallSchedule` object.
 
         :param on_call_schedule_id: The ID of the on_call_schedule. (required)
-        :type on_call_schedule_id: UUID
+        :type on_call_schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -453,7 +452,7 @@ class OnCallSchedulesApi:
     @validate_call
     def get_on_call_schedule_without_preload_content(
         self,
-        on_call_schedule_id: Annotated[UUID, Field(description="The ID of the on_call_schedule.")],
+        on_call_schedule_id: Annotated[StrictStr, Field(description="The ID of the on_call_schedule.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -472,7 +471,7 @@ class OnCallSchedulesApi:
         Gets a `OnCallSchedule` object.
 
         :param on_call_schedule_id: The ID of the on_call_schedule. (required)
-        :type on_call_schedule_id: UUID
+        :type on_call_schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

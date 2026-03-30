@@ -18,6 +18,7 @@ from opal_security.api.requests_api import RequestsApi
 from opal_security.api.resources_api import ResourcesApi
 from opal_security.api.sessions_api import SessionsApi
 from opal_security.api.tags_api import TagsApi
+from opal_security.api.tokens_api import TokensApi
 from opal_security.api.uars_api import UarsApi
 from opal_security.api.users_api import UsersApi
 

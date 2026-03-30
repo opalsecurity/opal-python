@@ -66,6 +66,7 @@ from opal_security.models.resource_remote_info_github_repo import ResourceRemote
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole
 from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole
+from opal_security.models.resource_remote_info_netsuite_role import ResourceRemoteInfoNetsuiteRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
 from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
 from opal_security.models.resource_remote_info_okta_standard_role import ResourceRemoteInfoOktaStandardRole
@@ -151,8 +152,9 @@ class ResourceRemoteInfo(BaseModel):
     oracle_fusion_role: Optional[ResourceRemoteInfoOracleFusionRole] = None
     devin_organization: Optional[ResourceRemoteInfoDevinOrganization] = None
     devin_role: Optional[ResourceRemoteInfoDevinRole] = None
+    netsuite_role: Optional[ResourceRemoteInfoNetsuiteRole] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role"]
+    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -381,6 +383,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of devin_role
         if self.devin_role:
             _dict['devin_role'] = self.devin_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of netsuite_role
+        if self.netsuite_role:
+            _dict['netsuite_role'] = self.netsuite_role.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -459,7 +464,8 @@ class ResourceRemoteInfo(BaseModel):
             "anthropic_workspace": ResourceRemoteInfoAnthropicWorkspace.from_dict(obj["anthropic_workspace"]) if obj.get("anthropic_workspace") is not None else None,
             "oracle_fusion_role": ResourceRemoteInfoOracleFusionRole.from_dict(obj["oracle_fusion_role"]) if obj.get("oracle_fusion_role") is not None else None,
             "devin_organization": ResourceRemoteInfoDevinOrganization.from_dict(obj["devin_organization"]) if obj.get("devin_organization") is not None else None,
-            "devin_role": ResourceRemoteInfoDevinRole.from_dict(obj["devin_role"]) if obj.get("devin_role") is not None else None
+            "devin_role": ResourceRemoteInfoDevinRole.from_dict(obj["devin_role"]) if obj.get("devin_role") is not None else None,
+            "netsuite_role": ResourceRemoteInfoNetsuiteRole.from_dict(obj["netsuite_role"]) if obj.get("netsuite_role") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
