@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.app_type_enum import AppTypeEnum
 from opal_security.models.app_validation import AppValidation
 from typing import Optional, Set
@@ -30,10 +29,10 @@ class App(BaseModel):
     """
     # App Object ### Description The `App` object is used to represent an app to an application.  ### Usage Example List from the `GET Apps` endpoint.
     """ # noqa: E501
-    app_id: UUID = Field(description="The ID of the app.")
+    app_id: StrictStr = Field(description="The ID of the app.")
     name: StrictStr = Field(description="The name of the app.")
     description: StrictStr = Field(description="A description of the app.")
-    admin_owner_id: UUID = Field(description="The ID of the owner of the app.")
+    admin_owner_id: StrictStr = Field(description="The ID of the owner of the app.")
     app_type: AppTypeEnum
     validations: Optional[List[AppValidation]] = Field(default=None, description="Validation checks of an apps' configuration and permissions.")
     additional_properties: Dict[str, Any] = {}

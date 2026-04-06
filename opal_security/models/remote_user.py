@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
 from opal_security.models.third_party_provider_enum import ThirdPartyProviderEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +28,7 @@ class RemoteUser(BaseModel):
     """
     # RemoteUser Object ### Description The `RemoteUser` object is used to represent a remote user.
     """ # noqa: E501
-    user_id: UUID = Field(description="The ID of the user.")
+    user_id: StrictStr = Field(description="The ID of the user.")
     remote_id: StrictStr = Field(description="The ID of the remote user.")
     third_party_provider: ThirdPartyProviderEnum = Field(description="The third party provider of the remote user.")
     additional_properties: Dict[str, Any] = {}

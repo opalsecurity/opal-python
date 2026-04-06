@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
 from opal_security.models.group_type_enum import GroupTypeEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +28,7 @@ class GroupBindingGroup(BaseModel):
     """
     # Group Binding Group Object ### Description The `GroupBindingGroup` object is used to represent a group binding group.  ### Usage Example Get group binding groups from the `GET Group Bindings` endpoint.
     """ # noqa: E501
-    group_id: UUID = Field(description="The ID of the group.")
+    group_id: StrictStr = Field(description="The ID of the group.")
     group_type: GroupTypeEnum
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["group_id", "group_type"]

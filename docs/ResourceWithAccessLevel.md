@@ -6,7 +6,7 @@ Information about a resource and corresponding access level
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **UUID** | The ID of the resource. | 
+**resource_id** | **str** | The ID of the resource. | 
 **access_level_remote_id** | **str** | The ID of the resource. | [optional] 
 
 ## Example

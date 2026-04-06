@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,8 +29,8 @@ class ResourceUser(BaseModel):
     """
     # Resource User Object ### Description The `ResourceUser` object is used to represent a user with direct access to a resource.
     """ # noqa: E501
-    resource_id: UUID = Field(description="The ID of the resource.")
-    user_id: UUID = Field(description="The ID of the user.")
+    resource_id: StrictStr = Field(description="The ID of the resource.")
+    user_id: StrictStr = Field(description="The ID of the user.")
     access_level: ResourceAccessLevel
     full_name: StrictStr = Field(description="The user's full name.")
     email: StrictStr = Field(description="The user's email.")
