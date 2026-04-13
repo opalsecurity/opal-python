@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.role_permission_name_enum import RolePermissionNameEnum
 from opal_security.models.role_permission_target_type_enum import RolePermissionTargetTypeEnum
 from typing import Optional, Set
@@ -30,7 +29,7 @@ class ScopedRolePermission(BaseModel):
     """
     ScopedRolePermission
     """ # noqa: E501
-    target_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of the entities that this permission applies to. If empty of missing, the permission will have untargeted scope.")
+    target_ids: Optional[List[StrictStr]] = Field(default=None, description="The IDs of the entities that this permission applies to. If empty of missing, the permission will have untargeted scope.")
     target_type: RolePermissionTargetTypeEnum
     permission_name: RolePermissionNameEnum
     allow_all: StrictBool

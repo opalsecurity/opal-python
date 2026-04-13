@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class CreateRequestInfoResourcesInner(BaseModel):
     """
     CreateRequestInfoResourcesInner
     """ # noqa: E501
-    id: Optional[UUID] = Field(default=None, description="The ID of the resource requested. Should not be specified if group_id is specified.")
+    id: Optional[StrictStr] = Field(default=None, description="The ID of the resource requested. Should not be specified if group_id is specified.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The ID of the access level requested on the remote system.")
     access_level_name: Optional[StrictStr] = Field(default=None, description="The ID of the access level requested on the remote system. This field is deprecated and no longer required. We will populate based on the access_level_remote_id.")
     additional_properties: Dict[str, Any] = {}

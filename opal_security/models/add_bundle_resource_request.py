@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class AddBundleResourceRequest(BaseModel):
     """
     AddBundleResourceRequest
     """ # noqa: E501
-    resource_id: UUID = Field(description="The ID of the resource to add.")
+    resource_id: StrictStr = Field(description="The ID of the resource to add.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level to grant to this user. Required if the resource being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.")
     access_level_name: Optional[StrictStr] = Field(default=None, description="The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.")
     additional_properties: Dict[str, Any] = {}

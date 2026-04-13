@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,8 +29,8 @@ class RequestComment(BaseModel):
     # Request Comment Object ### Description The `RequestComment` object is used to represent a comment on a request.  ### Usage Example Returned from the `GET Requests` endpoint as part of a `Request` object.
     """ # noqa: E501
     created_at: datetime = Field(description="The date and time the comment was created.")
-    request_id: UUID = Field(description="The unique identifier of the request the comment is associated with.")
-    user_id: UUID = Field(description="The unique identifier of the user who made the comment.")
+    request_id: StrictStr = Field(description="The unique identifier of the request the comment is associated with.")
+    user_id: StrictStr = Field(description="The unique identifier of the user who made the comment.")
     user_full_name: Optional[StrictStr] = Field(default=None, description="The user's full name.")
     user_email: Optional[StrictStr] = Field(default=None, description="The user's email address.")
     comment: StrictStr = Field(description="The content of the comment.")

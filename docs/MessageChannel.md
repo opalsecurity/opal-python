@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message_channel_id** | **UUID** | The ID of the message channel. | 
+**message_channel_id** | **str** | The ID of the message channel. | 
 **third_party_provider** | [**MessageChannelProviderEnum**](MessageChannelProviderEnum.md) |  | [optional] 
 **remote_id** | **str** | The remote ID of the message channel | [optional] 
 **name** | **str** | The name of the message channel. | [optional] 

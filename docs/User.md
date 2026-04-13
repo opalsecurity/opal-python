@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **UUID** | The ID of the user. | 
+**user_id** | **str** | The ID of the user. | 
 **email** | **str** | The email of the user. | 
 **full_name** | **str** | The full name of the user. | 
 **first_name** | **str** | The first name of the user. | 
