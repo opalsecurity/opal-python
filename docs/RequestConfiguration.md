@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **recommended_duration_minutes** | **int** | The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration. | [optional] 
 **require_support_ticket** | **bool** | A bool representing whether or not access requests to the resource require an access ticket. | 
 **extensions_duration_in_minutes** | **int** | The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When &gt; 0, extensions are enabled for the specified duration. | [optional] 
-**request_template_id** | **UUID** | The ID of the associated request template. | [optional] 
+**request_template_id** | **str** | The ID of the associated request template. | [optional] 
 **reviewer_stages** | [**List[ReviewerStage]**](ReviewerStage.md) | The list of reviewer stages for the request configuration. | [optional] 
 **priority** | **int** | The priority of the request configuration. | 
 

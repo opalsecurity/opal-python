@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_rule_id** | **UUID** | The ID (group ID) of the access rule. | 
+**access_rule_id** | **str** | The ID (group ID) of the access rule. | 
 **name** | **str** | The name of the access rule. | 
 **description** | **str** | A description of the group. | 
-**admin_owner_id** | **UUID** | The ID of the owner of the group. | 
+**admin_owner_id** | **str** | The ID of the owner of the group. | 
 **status** | **str** | The status of the access rule. | 
 **rule_clauses** | [**RuleClauses**](RuleClauses.md) |  | 
 

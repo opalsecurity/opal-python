@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resource_id** | **UUID** | The ID of the resource. | 
-**user_id** | **UUID** | The ID of the user. | 
+**resource_id** | **str** | The ID of the resource. | 
+**user_id** | **str** | The ID of the user. | 
 **access_level** | [**ResourceAccessLevel**](ResourceAccessLevel.md) |  | 
 **full_name** | **str** | The user&#39;s full name. | 
 **email** | **str** | The user&#39;s email. | 

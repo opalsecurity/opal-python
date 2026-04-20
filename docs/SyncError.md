@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **first_seen** | **datetime** | The time when this error was first seen. | 
 **last_seen** | **datetime** | The time when this error was most recently seen. | 
 **error_message** | **str** | The error message associated with the sync error. | 
-**app_id** | **UUID** | The ID of the app that the error occured for. | [optional] 
+**app_id** | **str** | The ID of the app that the error occured for. | [optional] 
 
 ## Example
 

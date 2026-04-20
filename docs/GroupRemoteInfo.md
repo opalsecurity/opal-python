@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **incidentio_on_call_schedule** | [**GroupRemoteInfoIncidentioOnCallSchedule**](GroupRemoteInfoIncidentioOnCallSchedule.md) |  | [optional] 
 **rootly_on_call_schedule** | [**GroupRemoteInfoRootlyOnCallSchedule**](GroupRemoteInfoRootlyOnCallSchedule.md) |  | [optional] 
 **devin_group** | [**GroupRemoteInfoDevinGroup**](GroupRemoteInfoDevinGroup.md) |  | [optional] 
+**clickhouse_role** | [**GroupRemoteInfoClickhouseRole**](GroupRemoteInfoClickhouseRole.md) |  | [optional] 
 
 ## Example
 
