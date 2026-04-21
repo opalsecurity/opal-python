@@ -53,6 +53,7 @@ Name | Type | Description | Notes
 **snowflake_table** | [**ResourceRemoteInfoSnowflakeTable**](ResourceRemoteInfoSnowflakeTable.md) |  | [optional] 
 **ilevel_advanced_role** | [**ResourceRemoteInfoIlevelAdvancedRole**](ResourceRemoteInfoIlevelAdvancedRole.md) |  | [optional] 
 **tailscale_ssh** | [**ResourceRemoteInfoTailscaleSsh**](ResourceRemoteInfoTailscaleSsh.md) |  | [optional] 
+**twingate_resource** | [**ResourceRemoteInfoTwingateResource**](ResourceRemoteInfoTwingateResource.md) |  | [optional] 
 **pagerduty_role** | [**ResourceRemoteInfoPagerdutyRole**](ResourceRemoteInfoPagerdutyRole.md) |  | [optional] 
 **workday_role** | [**ResourceRemoteInfoWorkdayRole**](ResourceRemoteInfoWorkdayRole.md) |  | [optional] 
 **salesforce_permission_set** | [**ResourceRemoteInfoSalesforcePermissionSet**](ResourceRemoteInfoSalesforcePermissionSet.md) |  | [optional] 
@@ -68,6 +69,10 @@ Name | Type | Description | Notes
 **oracle_fusion_role** | [**ResourceRemoteInfoOracleFusionRole**](ResourceRemoteInfoOracleFusionRole.md) |  | [optional] 
 **devin_organization** | [**ResourceRemoteInfoDevinOrganization**](ResourceRemoteInfoDevinOrganization.md) |  | [optional] 
 **devin_role** | [**ResourceRemoteInfoDevinRole**](ResourceRemoteInfoDevinRole.md) |  | [optional] 
+**netsuite_role** | [**ResourceRemoteInfoNetsuiteRole**](ResourceRemoteInfoNetsuiteRole.md) |  | [optional] 
+**datadog_role** | [**ResourceRemoteInfoDatadogRole**](ResourceRemoteInfoDatadogRole.md) |  | [optional] 
+**clickhouse_database** | [**ResourceRemoteInfoClickhouseDatabase**](ResourceRemoteInfoClickhouseDatabase.md) |  | [optional] 
+**clickhouse_table** | [**ResourceRemoteInfoClickhouseTable**](ResourceRemoteInfoClickhouseTable.md) |  | [optional] 
 
 ## Example
 

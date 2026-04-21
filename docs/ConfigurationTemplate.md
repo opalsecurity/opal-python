@@ -6,14 +6,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**configuration_template_id** | **UUID** | The ID of the configuration template. | [optional] 
+**configuration_template_id** | **str** | The ID of the configuration template. | [optional] 
 **name** | **str** | The name of the configuration template. | [optional] 
-**admin_owner_id** | **UUID** | The ID of the owner of the configuration template. | [optional] 
+**admin_owner_id** | **str** | The ID of the owner of the configuration template. | [optional] 
 **visibility** | [**VisibilityInfo**](VisibilityInfo.md) | The visibility info of the configuration template. | [optional] 
-**linked_audit_message_channel_ids** | **List[UUID]** | The IDs of the audit message channels linked to the configuration template. | [optional] 
-**request_configuration_id** | **UUID** | The ID of the request configuration linked to the configuration template. | [optional] 
-**member_oncall_schedule_ids** | **List[UUID]** | The IDs of the on-call schedules linked to the configuration template. | [optional] 
-**break_glass_user_ids** | **List[UUID]** | The IDs of the break glass users linked to the configuration template. | [optional] 
+**linked_audit_message_channel_ids** | **List[str]** | The IDs of the audit message channels linked to the configuration template. | [optional] 
+**request_configuration_id** | **str** | The ID of the request configuration linked to the configuration template. | [optional] 
+**member_oncall_schedule_ids** | **List[str]** | The IDs of the on-call schedules linked to the configuration template. | [optional] 
+**break_glass_user_ids** | **List[str]** | The IDs of the break glass users linked to the configuration template. | [optional] 
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template. | [optional] 
 **require_mfa_to_connect** | **bool** | A bool representing whether or not to require MFA to connect to resources associated with this configuration template. | [optional] 
 **ticket_propagation** | [**TicketPropagationConfiguration**](TicketPropagationConfiguration.md) |  | [optional] 

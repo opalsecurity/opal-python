@@ -17,9 +17,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field
+from pydantic import Field, StrictStr
 from typing_extensions import Annotated
-from uuid import UUID
 from opal_security.models.create_message_channel_info import CreateMessageChannelInfo
 from opal_security.models.message_channel import MessageChannel
 from opal_security.models.message_channel_list import MessageChannelList
@@ -319,7 +318,7 @@ class MessageChannelsApi:
     @validate_call
     def get_message_channel(
         self,
-        message_channel_id: Annotated[UUID, Field(description="The ID of the message_channel.")],
+        message_channel_id: Annotated[StrictStr, Field(description="The ID of the message_channel.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -338,7 +337,7 @@ class MessageChannelsApi:
         Gets a `MessageChannel` object.
 
         :param message_channel_id: The ID of the message_channel. (required)
-        :type message_channel_id: UUID
+        :type message_channel_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -386,7 +385,7 @@ class MessageChannelsApi:
     @validate_call
     def get_message_channel_with_http_info(
         self,
-        message_channel_id: Annotated[UUID, Field(description="The ID of the message_channel.")],
+        message_channel_id: Annotated[StrictStr, Field(description="The ID of the message_channel.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,7 +404,7 @@ class MessageChannelsApi:
         Gets a `MessageChannel` object.
 
         :param message_channel_id: The ID of the message_channel. (required)
-        :type message_channel_id: UUID
+        :type message_channel_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -453,7 +452,7 @@ class MessageChannelsApi:
     @validate_call
     def get_message_channel_without_preload_content(
         self,
-        message_channel_id: Annotated[UUID, Field(description="The ID of the message_channel.")],
+        message_channel_id: Annotated[StrictStr, Field(description="The ID of the message_channel.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -472,7 +471,7 @@ class MessageChannelsApi:
         Gets a `MessageChannel` object.
 
         :param message_channel_id: The ID of the message_channel. (required)
-        :type message_channel_id: UUID
+        :type message_channel_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

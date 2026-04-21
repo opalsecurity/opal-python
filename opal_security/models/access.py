@@ -19,9 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from opal_security.models.entity_type_enum import EntityTypeEnum
 from opal_security.models.resource_access_level import ResourceAccessLevel
 from typing import Optional, Set
@@ -31,9 +30,9 @@ class Access(BaseModel):
     """
     # Access Object ### Description The `Access` object is used to represent a principal's access to an entity, either directly or inherited.  ### Usage Example Fetch from the `LIST ResourceNonHumanIdentities` endpoint.
     """ # noqa: E501
-    principal_id: UUID = Field(description="The ID of the principal with access.")
+    principal_id: StrictStr = Field(description="The ID of the principal with access.")
     principal_type: EntityTypeEnum
-    entity_id: UUID = Field(description="The ID of the entity being accessed.")
+    entity_id: StrictStr = Field(description="The ID of the entity being accessed.")
     entity_type: EntityTypeEnum
     access_level: Optional[ResourceAccessLevel] = None
     expiration_date: Optional[datetime] = Field(default=None, description="The day and time the principal's access will expire.")

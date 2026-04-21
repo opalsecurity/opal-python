@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active_directory_group** | [**GroupRemoteInfoActiveDirectoryGroup**](GroupRemoteInfoActiveDirectoryGroup.md) |  | [optional] 
 **tailscale_group** | [**GroupRemoteInfoTailscaleGroup**](GroupRemoteInfoTailscaleGroup.md) |  | [optional] 
+**twingate_group** | [**GroupRemoteInfoTwingateGroup**](GroupRemoteInfoTwingateGroup.md) |  | [optional] 
 **aws_sso_group** | [**GroupRemoteInfoAwsSsoGroup**](GroupRemoteInfoAwsSsoGroup.md) |  | [optional] 
 **databricks_account_group** | [**GroupRemoteInfoDatabricksAccountGroup**](GroupRemoteInfoDatabricksAccountGroup.md) |  | [optional] 
 **connector_group** | [**GroupRemoteInfoConnectorGroup**](GroupRemoteInfoConnectorGroup.md) |  | [optional] 
@@ -27,6 +28,7 @@ Name | Type | Description | Notes
 **incidentio_on_call_schedule** | [**GroupRemoteInfoIncidentioOnCallSchedule**](GroupRemoteInfoIncidentioOnCallSchedule.md) |  | [optional] 
 **rootly_on_call_schedule** | [**GroupRemoteInfoRootlyOnCallSchedule**](GroupRemoteInfoRootlyOnCallSchedule.md) |  | [optional] 
 **devin_group** | [**GroupRemoteInfoDevinGroup**](GroupRemoteInfoDevinGroup.md) |  | [optional] 
+**clickhouse_role** | [**GroupRemoteInfoClickhouseRole**](GroupRemoteInfoClickhouseRole.md) |  | [optional] 
 
 ## Example
 
