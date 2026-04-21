@@ -1721,6 +1721,8 @@ class RequestsApi:
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
         requester_id: Annotated[Optional[UUID], Field(description="Filter requests by their requester ID.")] = None,
         target_user_id: Annotated[Optional[UUID], Field(description="Filter requests by their target user ID.")] = None,
+        resource_id: Annotated[Optional[UUID], Field(description="Filter requests by the resource ID that was requested.")] = None,
+        group_id: Annotated[Optional[UUID], Field(description="Filter requests by the group ID that was requested.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -1749,6 +1751,10 @@ class RequestsApi:
         :type requester_id: UUID
         :param target_user_id: Filter requests by their target user ID.
         :type target_user_id: UUID
+        :param resource_id: Filter requests by the resource ID that was requested.
+        :type resource_id: UUID
+        :param group_id: Filter requests by the group ID that was requested.
+        :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -1782,6 +1788,8 @@ class RequestsApi:
             end_date_filter=end_date_filter,
             requester_id=requester_id,
             target_user_id=target_user_id,
+            resource_id=resource_id,
+            group_id=group_id,
             cursor=cursor,
             page_size=page_size,
             show_pending_only=show_pending_only,
@@ -1812,6 +1820,8 @@ class RequestsApi:
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
         requester_id: Annotated[Optional[UUID], Field(description="Filter requests by their requester ID.")] = None,
         target_user_id: Annotated[Optional[UUID], Field(description="Filter requests by their target user ID.")] = None,
+        resource_id: Annotated[Optional[UUID], Field(description="Filter requests by the resource ID that was requested.")] = None,
+        group_id: Annotated[Optional[UUID], Field(description="Filter requests by the group ID that was requested.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -1840,6 +1850,10 @@ class RequestsApi:
         :type requester_id: UUID
         :param target_user_id: Filter requests by their target user ID.
         :type target_user_id: UUID
+        :param resource_id: Filter requests by the resource ID that was requested.
+        :type resource_id: UUID
+        :param group_id: Filter requests by the group ID that was requested.
+        :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -1873,6 +1887,8 @@ class RequestsApi:
             end_date_filter=end_date_filter,
             requester_id=requester_id,
             target_user_id=target_user_id,
+            resource_id=resource_id,
+            group_id=group_id,
             cursor=cursor,
             page_size=page_size,
             show_pending_only=show_pending_only,
@@ -1903,6 +1919,8 @@ class RequestsApi:
         end_date_filter: Annotated[Optional[StrictStr], Field(description="An end date filter for the events.")] = None,
         requester_id: Annotated[Optional[UUID], Field(description="Filter requests by their requester ID.")] = None,
         target_user_id: Annotated[Optional[UUID], Field(description="Filter requests by their target user ID.")] = None,
+        resource_id: Annotated[Optional[UUID], Field(description="Filter requests by the resource ID that was requested.")] = None,
+        group_id: Annotated[Optional[UUID], Field(description="Filter requests by the group ID that was requested.")] = None,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
         show_pending_only: Annotated[Optional[StrictBool], Field(description="Boolean toggle for if it should only show pending requests.")] = None,
@@ -1931,6 +1949,10 @@ class RequestsApi:
         :type requester_id: UUID
         :param target_user_id: Filter requests by their target user ID.
         :type target_user_id: UUID
+        :param resource_id: Filter requests by the resource ID that was requested.
+        :type resource_id: UUID
+        :param group_id: Filter requests by the group ID that was requested.
+        :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
@@ -1964,6 +1986,8 @@ class RequestsApi:
             end_date_filter=end_date_filter,
             requester_id=requester_id,
             target_user_id=target_user_id,
+            resource_id=resource_id,
+            group_id=group_id,
             cursor=cursor,
             page_size=page_size,
             show_pending_only=show_pending_only,
@@ -1989,6 +2013,8 @@ class RequestsApi:
         end_date_filter,
         requester_id,
         target_user_id,
+        resource_id,
+        group_id,
         cursor,
         page_size,
         show_pending_only,
@@ -2029,6 +2055,14 @@ class RequestsApi:
         if target_user_id is not None:
             
             _query_params.append(('target_user_id', target_user_id))
+            
+        if resource_id is not None:
+            
+            _query_params.append(('resource_id', resource_id))
+            
+        if group_id is not None:
+            
+            _query_params.append(('group_id', group_id))
             
         if cursor is not None:
             

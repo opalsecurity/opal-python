@@ -42,10 +42,13 @@ from opal_security.models.resource_remote_info_azure_storage_container import Re
 from opal_security.models.resource_remote_info_azure_subscription import ResourceRemoteInfoAzureSubscription
 from opal_security.models.resource_remote_info_azure_user_assigned_managed_identity import ResourceRemoteInfoAzureUserAssignedManagedIdentity
 from opal_security.models.resource_remote_info_azure_virtual_machine import ResourceRemoteInfoAzureVirtualMachine
+from opal_security.models.resource_remote_info_clickhouse_database import ResourceRemoteInfoClickhouseDatabase
+from opal_security.models.resource_remote_info_clickhouse_table import ResourceRemoteInfoClickhouseTable
 from opal_security.models.resource_remote_info_coupa_role import ResourceRemoteInfoCoupaRole
 from opal_security.models.resource_remote_info_cursor_organization import ResourceRemoteInfoCursorOrganization
 from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector
 from opal_security.models.resource_remote_info_databricks_account_service_principal import ResourceRemoteInfoDatabricksAccountServicePrincipal
+from opal_security.models.resource_remote_info_datadog_role import ResourceRemoteInfoDatadogRole
 from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_devin_organization import ResourceRemoteInfoDevinOrganization
 from opal_security.models.resource_remote_info_devin_role import ResourceRemoteInfoDevinRole
@@ -66,6 +69,7 @@ from opal_security.models.resource_remote_info_github_repo import ResourceRemote
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole
 from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole
+from opal_security.models.resource_remote_info_netsuite_role import ResourceRemoteInfoNetsuiteRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
 from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole
 from opal_security.models.resource_remote_info_okta_standard_role import ResourceRemoteInfoOktaStandardRole
@@ -81,6 +85,7 @@ from opal_security.models.resource_remote_info_snowflake_schema import ResourceR
 from opal_security.models.resource_remote_info_snowflake_table import ResourceRemoteInfoSnowflakeTable
 from opal_security.models.resource_remote_info_tailscale_ssh import ResourceRemoteInfoTailscaleSsh
 from opal_security.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole
+from opal_security.models.resource_remote_info_twingate_resource import ResourceRemoteInfoTwingateResource
 from opal_security.models.resource_remote_info_workday_role import ResourceRemoteInfoWorkdayRole
 from typing import Optional, Set
 from typing_extensions import Self
@@ -136,6 +141,7 @@ class ResourceRemoteInfo(BaseModel):
     snowflake_table: Optional[ResourceRemoteInfoSnowflakeTable] = None
     ilevel_advanced_role: Optional[ResourceRemoteInfoIlevelAdvancedRole] = None
     tailscale_ssh: Optional[ResourceRemoteInfoTailscaleSsh] = None
+    twingate_resource: Optional[ResourceRemoteInfoTwingateResource] = None
     pagerduty_role: Optional[ResourceRemoteInfoPagerdutyRole] = None
     workday_role: Optional[ResourceRemoteInfoWorkdayRole] = None
     salesforce_permission_set: Optional[ResourceRemoteInfoSalesforcePermissionSet] = None
@@ -151,8 +157,12 @@ class ResourceRemoteInfo(BaseModel):
     oracle_fusion_role: Optional[ResourceRemoteInfoOracleFusionRole] = None
     devin_organization: Optional[ResourceRemoteInfoDevinOrganization] = None
     devin_role: Optional[ResourceRemoteInfoDevinRole] = None
+    netsuite_role: Optional[ResourceRemoteInfoNetsuiteRole] = None
+    datadog_role: Optional[ResourceRemoteInfoDatadogRole] = None
+    clickhouse_database: Optional[ResourceRemoteInfoClickhouseDatabase] = None
+    clickhouse_table: Optional[ResourceRemoteInfoClickhouseTable] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role"]
+    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -336,6 +346,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tailscale_ssh
         if self.tailscale_ssh:
             _dict['tailscale_ssh'] = self.tailscale_ssh.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of twingate_resource
+        if self.twingate_resource:
+            _dict['twingate_resource'] = self.twingate_resource.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pagerduty_role
         if self.pagerduty_role:
             _dict['pagerduty_role'] = self.pagerduty_role.to_dict()
@@ -381,6 +394,18 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of devin_role
         if self.devin_role:
             _dict['devin_role'] = self.devin_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of netsuite_role
+        if self.netsuite_role:
+            _dict['netsuite_role'] = self.netsuite_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of datadog_role
+        if self.datadog_role:
+            _dict['datadog_role'] = self.datadog_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of clickhouse_database
+        if self.clickhouse_database:
+            _dict['clickhouse_database'] = self.clickhouse_database.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of clickhouse_table
+        if self.clickhouse_table:
+            _dict['clickhouse_table'] = self.clickhouse_table.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -445,6 +470,7 @@ class ResourceRemoteInfo(BaseModel):
             "snowflake_table": ResourceRemoteInfoSnowflakeTable.from_dict(obj["snowflake_table"]) if obj.get("snowflake_table") is not None else None,
             "ilevel_advanced_role": ResourceRemoteInfoIlevelAdvancedRole.from_dict(obj["ilevel_advanced_role"]) if obj.get("ilevel_advanced_role") is not None else None,
             "tailscale_ssh": ResourceRemoteInfoTailscaleSsh.from_dict(obj["tailscale_ssh"]) if obj.get("tailscale_ssh") is not None else None,
+            "twingate_resource": ResourceRemoteInfoTwingateResource.from_dict(obj["twingate_resource"]) if obj.get("twingate_resource") is not None else None,
             "pagerduty_role": ResourceRemoteInfoPagerdutyRole.from_dict(obj["pagerduty_role"]) if obj.get("pagerduty_role") is not None else None,
             "workday_role": ResourceRemoteInfoWorkdayRole.from_dict(obj["workday_role"]) if obj.get("workday_role") is not None else None,
             "salesforce_permission_set": ResourceRemoteInfoSalesforcePermissionSet.from_dict(obj["salesforce_permission_set"]) if obj.get("salesforce_permission_set") is not None else None,
@@ -459,7 +485,11 @@ class ResourceRemoteInfo(BaseModel):
             "anthropic_workspace": ResourceRemoteInfoAnthropicWorkspace.from_dict(obj["anthropic_workspace"]) if obj.get("anthropic_workspace") is not None else None,
             "oracle_fusion_role": ResourceRemoteInfoOracleFusionRole.from_dict(obj["oracle_fusion_role"]) if obj.get("oracle_fusion_role") is not None else None,
             "devin_organization": ResourceRemoteInfoDevinOrganization.from_dict(obj["devin_organization"]) if obj.get("devin_organization") is not None else None,
-            "devin_role": ResourceRemoteInfoDevinRole.from_dict(obj["devin_role"]) if obj.get("devin_role") is not None else None
+            "devin_role": ResourceRemoteInfoDevinRole.from_dict(obj["devin_role"]) if obj.get("devin_role") is not None else None,
+            "netsuite_role": ResourceRemoteInfoNetsuiteRole.from_dict(obj["netsuite_role"]) if obj.get("netsuite_role") is not None else None,
+            "datadog_role": ResourceRemoteInfoDatadogRole.from_dict(obj["datadog_role"]) if obj.get("datadog_role") is not None else None,
+            "clickhouse_database": ResourceRemoteInfoClickhouseDatabase.from_dict(obj["clickhouse_database"]) if obj.get("clickhouse_database") is not None else None,
+            "clickhouse_table": ResourceRemoteInfoClickhouseTable.from_dict(obj["clickhouse_table"]) if obj.get("clickhouse_table") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

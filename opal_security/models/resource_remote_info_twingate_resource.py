@@ -18,30 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ReviewerStage(BaseModel):
+class ResourceRemoteInfoTwingateResource(BaseModel):
     """
-    A reviewer stage.
+    Remote info for Twingate resource.
     """ # noqa: E501
-    require_manager_approval: StrictBool = Field(description="Whether this reviewer stage should require manager approval.")
-    require_admin_approval: Optional[StrictBool] = Field(default=None, description="Whether this reviewer stage should require admin approval.")
-    operator: StrictStr = Field(description="The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.")
-    owner_ids: List[UUID] = Field(description="The IDs of owners assigned as reviewers for this stage.")
-    service_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of service users assigned as reviewers for this stage.")
+    resource_id: StrictStr = Field(description="The id of the Twingate resource.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["require_manager_approval", "require_admin_approval", "operator", "owner_ids", "service_user_ids"]
-
-    @field_validator('operator')
-    def operator_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['AND', 'OR']):
-            raise ValueError("must be one of enum values ('AND', 'OR')")
-        return value
+    __properties: ClassVar[List[str]] = ["resource_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,7 +49,7 @@ class ReviewerStage(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ReviewerStage from a JSON string"""
+        """Create an instance of ResourceRemoteInfoTwingateResource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,7 +81,7 @@ class ReviewerStage(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ReviewerStage from a dict"""
+        """Create an instance of ResourceRemoteInfoTwingateResource from a dict"""
         if obj is None:
             return None
 
@@ -101,11 +89,7 @@ class ReviewerStage(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "require_manager_approval": obj.get("require_manager_approval"),
-            "require_admin_approval": obj.get("require_admin_approval"),
-            "operator": obj.get("operator"),
-            "owner_ids": obj.get("owner_ids"),
-            "service_user_ids": obj.get("service_user_ids")
+            "resource_id": obj.get("resource_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

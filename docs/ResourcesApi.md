@@ -1374,7 +1374,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_resources**
-> PaginatedResourcesList get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id, remote_id=remote_id)
+> PaginatedResourcesList get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id, remote_id=remote_id, tag_ids=tag_ids)
 
 Get resources
 
@@ -1421,10 +1421,11 @@ with opal_security.ApiClient(configuration) as api_client:
     parent_resource_id = UUID('[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]') # UUID | The parent resource id to filter by. (optional)
     ancestor_resource_id = UUID('[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]') # UUID | The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. (optional)
     remote_id = 'remote_id_example' # str | Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided. (optional)
+    tag_ids = None # List[UUID] | The IDs of the tags to filter by. Returns only resources that have any of these tags applied. (optional)
 
     try:
         # Get resources
-        api_response = api_instance.get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id, remote_id=remote_id)
+        api_response = api_instance.get_resources(cursor=cursor, page_size=page_size, resource_type_filter=resource_type_filter, resource_ids=resource_ids, resource_name=resource_name, parent_resource_id=parent_resource_id, ancestor_resource_id=ancestor_resource_id, remote_id=remote_id, tag_ids=tag_ids)
         print("The response of ResourcesApi->get_resources:\n")
         pprint(api_response)
     except Exception as e:
@@ -1446,6 +1447,7 @@ Name | Type | Description  | Notes
  **parent_resource_id** | **UUID**| The parent resource id to filter by. | [optional] 
  **ancestor_resource_id** | **UUID**| The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource. | [optional] 
  **remote_id** | **str**| Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided. | [optional] 
+ **tag_ids** | [**List[UUID]**](UUID.md)| The IDs of the tags to filter by. Returns only resources that have any of these tags applied. | [optional] 
 
 ### Return type
 

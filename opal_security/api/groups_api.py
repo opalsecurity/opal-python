@@ -2367,6 +2367,7 @@ class GroupsApi:
     def get_group_containing_groups(
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The access level's remote ID to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2386,6 +2387,8 @@ class GroupsApi:
 
         :param group_id: The ID of the group. (required)
         :type group_id: UUID
+        :param access_level_remote_id: The access level's remote ID to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2410,6 +2413,7 @@ class GroupsApi:
 
         _param = self._get_group_containing_groups_serialize(
             group_id=group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2434,6 +2438,7 @@ class GroupsApi:
     def get_group_containing_groups_with_http_info(
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The access level's remote ID to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2453,6 +2458,8 @@ class GroupsApi:
 
         :param group_id: The ID of the group. (required)
         :type group_id: UUID
+        :param access_level_remote_id: The access level's remote ID to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2477,6 +2484,7 @@ class GroupsApi:
 
         _param = self._get_group_containing_groups_serialize(
             group_id=group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2501,6 +2509,7 @@ class GroupsApi:
     def get_group_containing_groups_without_preload_content(
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The access level's remote ID to filter by.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2520,6 +2529,8 @@ class GroupsApi:
 
         :param group_id: The ID of the group. (required)
         :type group_id: UUID
+        :param access_level_remote_id: The access level's remote ID to filter by.
+        :type access_level_remote_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2544,6 +2555,7 @@ class GroupsApi:
 
         _param = self._get_group_containing_groups_serialize(
             group_id=group_id,
+            access_level_remote_id=access_level_remote_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2563,6 +2575,7 @@ class GroupsApi:
     def _get_group_containing_groups_serialize(
         self,
         group_id,
+        access_level_remote_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2587,6 +2600,10 @@ class GroupsApi:
         if group_id is not None:
             _path_params['group_id'] = group_id
         # process the query parameters
+        if access_level_remote_id is not None:
+            
+            _query_params.append(('access_level_remote_id', access_level_remote_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -4760,6 +4777,7 @@ class GroupsApi:
         group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
         group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
         group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only groups that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4787,6 +4805,8 @@ class GroupsApi:
         :type group_ids: List[UUID]
         :param group_name: Group name.
         :type group_name: str
+        :param tag_ids: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4815,6 +4835,7 @@ class GroupsApi:
             group_type_filter=group_type_filter,
             group_ids=group_ids,
             group_name=group_name,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4843,6 +4864,7 @@ class GroupsApi:
         group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
         group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
         group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only groups that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4870,6 +4892,8 @@ class GroupsApi:
         :type group_ids: List[UUID]
         :param group_name: Group name.
         :type group_name: str
+        :param tag_ids: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4898,6 +4922,7 @@ class GroupsApi:
             group_type_filter=group_type_filter,
             group_ids=group_ids,
             group_name=group_name,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4926,6 +4951,7 @@ class GroupsApi:
         group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
         group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
         group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only groups that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4953,6 +4979,8 @@ class GroupsApi:
         :type group_ids: List[UUID]
         :param group_name: Group name.
         :type group_name: str
+        :param tag_ids: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4981,6 +5009,7 @@ class GroupsApi:
             group_type_filter=group_type_filter,
             group_ids=group_ids,
             group_name=group_name,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5004,6 +5033,7 @@ class GroupsApi:
         group_type_filter,
         group_ids,
         group_name,
+        tag_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -5014,6 +5044,7 @@ class GroupsApi:
 
         _collection_formats: Dict[str, str] = {
             'group_ids': 'csv',
+            'tag_ids': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -5046,6 +5077,10 @@ class GroupsApi:
         if group_name is not None:
             
             _query_params.append(('group_name', group_name))
+            
+        if tag_ids is not None:
+            
+            _query_params.append(('tag_ids', tag_ids))
             
         # process the header parameters
         # process the form parameters
