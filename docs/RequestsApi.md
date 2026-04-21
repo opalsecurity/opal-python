@@ -490,7 +490,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_requests**
-> RequestList get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+> RequestList get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, resource_id=resource_id, group_id=group_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
 
 Get requests
 
@@ -532,13 +532,15 @@ with opal_security.ApiClient(configuration) as api_client:
     end_date_filter = '2021-11-12' # str | An end date filter for the events. (optional)
     requester_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by their requester ID. (optional)
     target_user_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by their target user ID. (optional)
+    resource_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by the resource ID that was requested. (optional)
+    group_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by the group ID that was requested. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     show_pending_only = True # bool | Boolean toggle for if it should only show pending requests. (optional)
 
     try:
         # Get requests
-        api_response = api_instance.get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+        api_response = api_instance.get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, resource_id=resource_id, group_id=group_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
         print("The response of RequestsApi->get_requests:\n")
         pprint(api_response)
     except Exception as e:
@@ -556,6 +558,8 @@ Name | Type | Description  | Notes
  **end_date_filter** | **str**| An end date filter for the events. | [optional] 
  **requester_id** | **UUID**| Filter requests by their requester ID. | [optional] 
  **target_user_id** | **UUID**| Filter requests by their target user ID. | [optional] 
+ **resource_id** | **UUID**| Filter requests by the resource ID that was requested. | [optional] 
+ **group_id** | **UUID**| Filter requests by the group ID that was requested. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
  **show_pending_only** | **bool**| Boolean toggle for if it should only show pending requests. | [optional] 

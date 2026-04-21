@@ -35,6 +35,7 @@ class AppTypeEnum(str, Enum):
     COUPA = 'COUPA'
     CURSOR = 'CURSOR'
     CUSTOM = 'CUSTOM'
+    CUSTOM_CONNECTOR = 'CUSTOM_CONNECTOR'
     DATABRICKS = 'DATABRICKS'
     DATASTAX_ASTRA = 'DATASTAX_ASTRA'
     DUO = 'DUO'
@@ -50,6 +51,8 @@ class AppTypeEnum(str, Enum):
     MONGO = 'MONGO'
     MONGO_ATLAS = 'MONGO_ATLAS'
     MYSQL = 'MYSQL'
+    NETSUITE = 'NETSUITE'
+    DATADOG = 'DATADOG'
     OKTA_DIRECTORY = 'OKTA_DIRECTORY'
     OPENAI_PLATFORM = 'OPENAI_PLATFORM'
     OPAL = 'OPAL'
@@ -58,6 +61,7 @@ class AppTypeEnum(str, Enum):
     SNOWFLAKE = 'SNOWFLAKE'
     TAILSCALE = 'TAILSCALE'
     TELEPORT = 'TELEPORT'
+    TWINGATE = 'TWINGATE'
     WORKDAY = 'WORKDAY'
 
     @classmethod

@@ -645,6 +645,7 @@ class UsersApi:
         self,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only users that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -666,6 +667,8 @@ class UsersApi:
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
         :type page_size: int
+        :param tag_ids: The IDs of the tags to filter by. Returns only users that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -691,6 +694,7 @@ class UsersApi:
         _param = self._get_users_serialize(
             cursor=cursor,
             page_size=page_size,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -716,6 +720,7 @@ class UsersApi:
         self,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only users that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -737,6 +742,8 @@ class UsersApi:
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
         :type page_size: int
+        :param tag_ids: The IDs of the tags to filter by. Returns only users that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -762,6 +769,7 @@ class UsersApi:
         _param = self._get_users_serialize(
             cursor=cursor,
             page_size=page_size,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -787,6 +795,7 @@ class UsersApi:
         self,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only users that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -808,6 +817,8 @@ class UsersApi:
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
         :type page_size: int
+        :param tag_ids: The IDs of the tags to filter by. Returns only users that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -833,6 +844,7 @@ class UsersApi:
         _param = self._get_users_serialize(
             cursor=cursor,
             page_size=page_size,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -853,6 +865,7 @@ class UsersApi:
         self,
         cursor,
         page_size,
+        tag_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -862,6 +875,7 @@ class UsersApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'tag_ids': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -882,6 +896,10 @@ class UsersApi:
         if page_size is not None:
             
             _query_params.append(('page_size', page_size))
+            
+        if tag_ids is not None:
+            
+            _query_params.append(('tag_ids', tag_ids))
             
         # process the header parameters
         # process the form parameters

@@ -18,30 +18,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
+from opal_security.models.api_access_level_enum import ApiAccessLevelEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ReviewerStage(BaseModel):
+class Token(BaseModel):
     """
-    A reviewer stage.
+    A first-party API token.
     """ # noqa: E501
-    require_manager_approval: StrictBool = Field(description="Whether this reviewer stage should require manager approval.")
-    require_admin_approval: Optional[StrictBool] = Field(default=None, description="Whether this reviewer stage should require admin approval.")
-    operator: StrictStr = Field(description="The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.")
-    owner_ids: List[UUID] = Field(description="The IDs of owners assigned as reviewers for this stage.")
-    service_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of service users assigned as reviewers for this stage.")
+    token_id: UUID = Field(description="The ID of the API token.")
+    created_at: datetime = Field(description="The date and time the token was created.")
+    token_label: StrictStr = Field(description="A human-readable label for the token.")
+    creator_user_id: UUID = Field(description="The ID of the user who created the token.")
+    user_id: UUID = Field(description="The ID of the user the token authenticates as.")
+    last_used_at: Optional[datetime] = Field(default=None, description="The date and time the token was last used.")
+    access_level: ApiAccessLevelEnum
+    expires_at: Optional[datetime] = Field(default=None, description="The date and time the token expires.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["require_manager_approval", "require_admin_approval", "operator", "owner_ids", "service_user_ids"]
-
-    @field_validator('operator')
-    def operator_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['AND', 'OR']):
-            raise ValueError("must be one of enum values ('AND', 'OR')")
-        return value
+    __properties: ClassVar[List[str]] = ["token_id", "created_at", "token_label", "creator_user_id", "user_id", "last_used_at", "access_level", "expires_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,7 +59,7 @@ class ReviewerStage(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ReviewerStage from a JSON string"""
+        """Create an instance of Token from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,7 +91,7 @@ class ReviewerStage(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ReviewerStage from a dict"""
+        """Create an instance of Token from a dict"""
         if obj is None:
             return None
 
@@ -101,11 +99,14 @@ class ReviewerStage(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "require_manager_approval": obj.get("require_manager_approval"),
-            "require_admin_approval": obj.get("require_admin_approval"),
-            "operator": obj.get("operator"),
-            "owner_ids": obj.get("owner_ids"),
-            "service_user_ids": obj.get("service_user_ids")
+            "token_id": obj.get("token_id"),
+            "created_at": obj.get("created_at"),
+            "token_label": obj.get("token_label"),
+            "creator_user_id": obj.get("creator_user_id"),
+            "user_id": obj.get("user_id"),
+            "last_used_at": obj.get("last_used_at"),
+            "access_level": obj.get("access_level"),
+            "expires_at": obj.get("expires_at")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -36,6 +36,7 @@ __all__ = [
     "ResourcesApi",
     "SessionsApi",
     "TagsApi",
+    "TokensApi",
     "UarsApi",
     "UsersApi",
     "ApiResponse",
@@ -56,6 +57,7 @@ __all__ = [
     "AddGroupUserRequest",
     "AddResourceNhiRequest",
     "AddResourceUserRequest",
+    "ApiAccessLevelEnum",
     "App",
     "AppTypeEnum",
     "AppValidation",
@@ -108,6 +110,7 @@ __all__ = [
     "GroupRemoteInfoAwsSsoGroup",
     "GroupRemoteInfoAzureAdMicrosoft365Group",
     "GroupRemoteInfoAzureAdSecurityGroup",
+    "GroupRemoteInfoClickhouseRole",
     "GroupRemoteInfoConnectorGroup",
     "GroupRemoteInfoDatabricksAccountGroup",
     "GroupRemoteInfoDevinGroup",
@@ -124,6 +127,7 @@ __all__ = [
     "GroupRemoteInfoRootlyOnCallSchedule",
     "GroupRemoteInfoSnowflakeRole",
     "GroupRemoteInfoTailscaleGroup",
+    "GroupRemoteInfoTwingateGroup",
     "GroupRemoteInfoWorkdayUserSecurityGroup",
     "GroupResource",
     "GroupResourceList",
@@ -156,6 +160,7 @@ __all__ = [
     "PaginatedRemoteUsersList",
     "PaginatedResourcesList",
     "PaginatedTagsList",
+    "PaginatedTokensList",
     "PaginatedUARsList",
     "PaginatedUsersList",
     "PropagationStatus",
@@ -207,10 +212,13 @@ __all__ = [
     "ResourceRemoteInfoAzureSubscription",
     "ResourceRemoteInfoAzureUserAssignedManagedIdentity",
     "ResourceRemoteInfoAzureVirtualMachine",
+    "ResourceRemoteInfoClickhouseDatabase",
+    "ResourceRemoteInfoClickhouseTable",
     "ResourceRemoteInfoCoupaRole",
     "ResourceRemoteInfoCursorOrganization",
     "ResourceRemoteInfoCustomConnector",
     "ResourceRemoteInfoDatabricksAccountServicePrincipal",
+    "ResourceRemoteInfoDatadogRole",
     "ResourceRemoteInfoDatastaxAstraRole",
     "ResourceRemoteInfoDevinOrganization",
     "ResourceRemoteInfoDevinRole",
@@ -231,6 +239,7 @@ __all__ = [
     "ResourceRemoteInfoGitlabProject",
     "ResourceRemoteInfoGoogleWorkspaceRole",
     "ResourceRemoteInfoIlevelAdvancedRole",
+    "ResourceRemoteInfoNetsuiteRole",
     "ResourceRemoteInfoOktaApp",
     "ResourceRemoteInfoOktaCustomRole",
     "ResourceRemoteInfoOktaStandardRole",
@@ -246,6 +255,7 @@ __all__ = [
     "ResourceRemoteInfoSnowflakeTable",
     "ResourceRemoteInfoTailscaleSsh",
     "ResourceRemoteInfoTeleportRole",
+    "ResourceRemoteInfoTwingateResource",
     "ResourceRemoteInfoWorkdayRole",
     "ResourceTypeEnum",
     "ResourceUser",
@@ -277,6 +287,7 @@ __all__ = [
     "ThirdPartyProviderEnum",
     "TicketPropagationConfiguration",
     "TicketingProviderEnum",
+    "Token",
     "UAR",
     "UARReviewerAssignmentPolicyEnum",
     "UARScope",
@@ -321,6 +332,7 @@ from opal_security.api.requests_api import RequestsApi as RequestsApi
 from opal_security.api.resources_api import ResourcesApi as ResourcesApi
 from opal_security.api.sessions_api import SessionsApi as SessionsApi
 from opal_security.api.tags_api import TagsApi as TagsApi
+from opal_security.api.tokens_api import TokensApi as TokensApi
 from opal_security.api.uars_api import UarsApi as UarsApi
 from opal_security.api.users_api import UsersApi as UsersApi
 
@@ -345,6 +357,7 @@ from opal_security.models.add_group_resource_request import AddGroupResourceRequ
 from opal_security.models.add_group_user_request import AddGroupUserRequest as AddGroupUserRequest
 from opal_security.models.add_resource_nhi_request import AddResourceNhiRequest as AddResourceNhiRequest
 from opal_security.models.add_resource_user_request import AddResourceUserRequest as AddResourceUserRequest
+from opal_security.models.api_access_level_enum import ApiAccessLevelEnum as ApiAccessLevelEnum
 from opal_security.models.app import App as App
 from opal_security.models.app_type_enum import AppTypeEnum as AppTypeEnum
 from opal_security.models.app_validation import AppValidation as AppValidation
@@ -397,6 +410,7 @@ from opal_security.models.group_remote_info_active_directory_group import GroupR
 from opal_security.models.group_remote_info_aws_sso_group import GroupRemoteInfoAwsSsoGroup as GroupRemoteInfoAwsSsoGroup
 from opal_security.models.group_remote_info_azure_ad_microsoft365_group import GroupRemoteInfoAzureAdMicrosoft365Group as GroupRemoteInfoAzureAdMicrosoft365Group
 from opal_security.models.group_remote_info_azure_ad_security_group import GroupRemoteInfoAzureAdSecurityGroup as GroupRemoteInfoAzureAdSecurityGroup
+from opal_security.models.group_remote_info_clickhouse_role import GroupRemoteInfoClickhouseRole as GroupRemoteInfoClickhouseRole
 from opal_security.models.group_remote_info_connector_group import GroupRemoteInfoConnectorGroup as GroupRemoteInfoConnectorGroup
 from opal_security.models.group_remote_info_databricks_account_group import GroupRemoteInfoDatabricksAccountGroup as GroupRemoteInfoDatabricksAccountGroup
 from opal_security.models.group_remote_info_devin_group import GroupRemoteInfoDevinGroup as GroupRemoteInfoDevinGroup
@@ -413,6 +427,7 @@ from opal_security.models.group_remote_info_pagerduty_on_call_schedule import Gr
 from opal_security.models.group_remote_info_rootly_on_call_schedule import GroupRemoteInfoRootlyOnCallSchedule as GroupRemoteInfoRootlyOnCallSchedule
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole as GroupRemoteInfoSnowflakeRole
 from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup as GroupRemoteInfoTailscaleGroup
+from opal_security.models.group_remote_info_twingate_group import GroupRemoteInfoTwingateGroup as GroupRemoteInfoTwingateGroup
 from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup as GroupRemoteInfoWorkdayUserSecurityGroup
 from opal_security.models.group_resource import GroupResource as GroupResource
 from opal_security.models.group_resource_list import GroupResourceList as GroupResourceList
@@ -445,6 +460,7 @@ from opal_security.models.paginated_owners_list import PaginatedOwnersList as Pa
 from opal_security.models.paginated_remote_users_list import PaginatedRemoteUsersList as PaginatedRemoteUsersList
 from opal_security.models.paginated_resources_list import PaginatedResourcesList as PaginatedResourcesList
 from opal_security.models.paginated_tags_list import PaginatedTagsList as PaginatedTagsList
+from opal_security.models.paginated_tokens_list import PaginatedTokensList as PaginatedTokensList
 from opal_security.models.paginated_uars_list import PaginatedUARsList as PaginatedUARsList
 from opal_security.models.paginated_users_list import PaginatedUsersList as PaginatedUsersList
 from opal_security.models.propagation_status import PropagationStatus as PropagationStatus
@@ -496,10 +512,13 @@ from opal_security.models.resource_remote_info_azure_storage_container import Re
 from opal_security.models.resource_remote_info_azure_subscription import ResourceRemoteInfoAzureSubscription as ResourceRemoteInfoAzureSubscription
 from opal_security.models.resource_remote_info_azure_user_assigned_managed_identity import ResourceRemoteInfoAzureUserAssignedManagedIdentity as ResourceRemoteInfoAzureUserAssignedManagedIdentity
 from opal_security.models.resource_remote_info_azure_virtual_machine import ResourceRemoteInfoAzureVirtualMachine as ResourceRemoteInfoAzureVirtualMachine
+from opal_security.models.resource_remote_info_clickhouse_database import ResourceRemoteInfoClickhouseDatabase as ResourceRemoteInfoClickhouseDatabase
+from opal_security.models.resource_remote_info_clickhouse_table import ResourceRemoteInfoClickhouseTable as ResourceRemoteInfoClickhouseTable
 from opal_security.models.resource_remote_info_coupa_role import ResourceRemoteInfoCoupaRole as ResourceRemoteInfoCoupaRole
 from opal_security.models.resource_remote_info_cursor_organization import ResourceRemoteInfoCursorOrganization as ResourceRemoteInfoCursorOrganization
 from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector as ResourceRemoteInfoCustomConnector
 from opal_security.models.resource_remote_info_databricks_account_service_principal import ResourceRemoteInfoDatabricksAccountServicePrincipal as ResourceRemoteInfoDatabricksAccountServicePrincipal
+from opal_security.models.resource_remote_info_datadog_role import ResourceRemoteInfoDatadogRole as ResourceRemoteInfoDatadogRole
 from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole as ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_devin_organization import ResourceRemoteInfoDevinOrganization as ResourceRemoteInfoDevinOrganization
 from opal_security.models.resource_remote_info_devin_role import ResourceRemoteInfoDevinRole as ResourceRemoteInfoDevinRole
@@ -520,6 +539,7 @@ from opal_security.models.resource_remote_info_github_repo import ResourceRemote
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject as ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole as ResourceRemoteInfoGoogleWorkspaceRole
 from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole as ResourceRemoteInfoIlevelAdvancedRole
+from opal_security.models.resource_remote_info_netsuite_role import ResourceRemoteInfoNetsuiteRole as ResourceRemoteInfoNetsuiteRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp as ResourceRemoteInfoOktaApp
 from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole as ResourceRemoteInfoOktaCustomRole
 from opal_security.models.resource_remote_info_okta_standard_role import ResourceRemoteInfoOktaStandardRole as ResourceRemoteInfoOktaStandardRole
@@ -535,6 +555,7 @@ from opal_security.models.resource_remote_info_snowflake_schema import ResourceR
 from opal_security.models.resource_remote_info_snowflake_table import ResourceRemoteInfoSnowflakeTable as ResourceRemoteInfoSnowflakeTable
 from opal_security.models.resource_remote_info_tailscale_ssh import ResourceRemoteInfoTailscaleSsh as ResourceRemoteInfoTailscaleSsh
 from opal_security.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole as ResourceRemoteInfoTeleportRole
+from opal_security.models.resource_remote_info_twingate_resource import ResourceRemoteInfoTwingateResource as ResourceRemoteInfoTwingateResource
 from opal_security.models.resource_remote_info_workday_role import ResourceRemoteInfoWorkdayRole as ResourceRemoteInfoWorkdayRole
 from opal_security.models.resource_type_enum import ResourceTypeEnum as ResourceTypeEnum
 from opal_security.models.resource_user import ResourceUser as ResourceUser
@@ -566,6 +587,7 @@ from opal_security.models.tags_list import TagsList as TagsList
 from opal_security.models.third_party_provider_enum import ThirdPartyProviderEnum as ThirdPartyProviderEnum
 from opal_security.models.ticket_propagation_configuration import TicketPropagationConfiguration as TicketPropagationConfiguration
 from opal_security.models.ticketing_provider_enum import TicketingProviderEnum as TicketingProviderEnum
+from opal_security.models.token import Token as Token
 from opal_security.models.uar import UAR as UAR
 from opal_security.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum as UARReviewerAssignmentPolicyEnum
 from opal_security.models.uar_scope import UARScope as UARScope

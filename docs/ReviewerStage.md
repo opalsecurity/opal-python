@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **require_manager_approval** | **bool** | Whether this reviewer stage should require manager approval. | 
 **require_admin_approval** | **bool** | Whether this reviewer stage should require admin approval. | [optional] 
 **operator** | **str** | The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. | 
-**owner_ids** | **List[UUID]** |  | 
+**owner_ids** | **List[UUID]** | The IDs of owners assigned as reviewers for this stage. | 
+**service_user_ids** | **List[UUID]** | The IDs of service users assigned as reviewers for this stage. | [optional] 
 
 ## Example
 

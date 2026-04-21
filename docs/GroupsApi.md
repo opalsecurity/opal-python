@@ -676,7 +676,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_group_containing_groups**
-> GroupContainingGroupList get_group_containing_groups(group_id)
+> GroupContainingGroupList get_group_containing_groups(group_id, access_level_remote_id=access_level_remote_id)
 
 Get nested groups
 
@@ -715,10 +715,11 @@ with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.GroupsApi(api_client)
     group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
+    access_level_remote_id = 'arn:aws:iam::590304332660:role/AdministratorAccess' # str | The access level's remote ID to filter by. (optional)
 
     try:
         # Get nested groups
-        api_response = api_instance.get_group_containing_groups(group_id)
+        api_response = api_instance.get_group_containing_groups(group_id, access_level_remote_id=access_level_remote_id)
         print("The response of GroupsApi->get_group_containing_groups:\n")
         pprint(api_response)
     except Exception as e:
@@ -733,6 +734,7 @@ with opal_security.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **UUID**| The ID of the group. | 
+ **access_level_remote_id** | **str**| The access level&#39;s remote ID to filter by. | [optional] 
 
 ### Return type
 
@@ -751,7 +753,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The resources that the group gives access to. |  -  |
+**200** | The groups that the group gives access to. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1375,7 +1377,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_groups**
-> PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
+> PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name, tag_ids=tag_ids)
 
 Get groups
 
@@ -1419,10 +1421,11 @@ with opal_security.ApiClient(configuration) as api_client:
     group_type_filter = opal_security.GroupTypeEnum() # GroupTypeEnum | The group type to filter by. (optional)
     group_ids = [["4baf8423-db0a-4037-a4cf-f79c60cb67a5","1b978423-db0a-4037-a4cf-f79c60cb67b3"]] # List[UUID] | The group ids to filter by. (optional)
     group_name = 'example-name' # str | Group name. (optional)
+    tag_ids = None # List[UUID] | The IDs of the tags to filter by. Returns only groups that have any of these tags applied. (optional)
 
     try:
         # Get groups
-        api_response = api_instance.get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name)
+        api_response = api_instance.get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name, tag_ids=tag_ids)
         print("The response of GroupsApi->get_groups:\n")
         pprint(api_response)
     except Exception as e:
@@ -1441,6 +1444,7 @@ Name | Type | Description  | Notes
  **group_type_filter** | [**GroupTypeEnum**](.md)| The group type to filter by. | [optional] 
  **group_ids** | [**List[UUID]**](UUID.md)| The group ids to filter by. | [optional] 
  **group_name** | **str**| Group name. | [optional] 
+ **tag_ids** | [**List[UUID]**](UUID.md)| The IDs of the tags to filter by. Returns only groups that have any of these tags applied. | [optional] 
 
 ### Return type
 

@@ -18,30 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
+from opal_security.models.token import Token
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ReviewerStage(BaseModel):
+class PaginatedTokensList(BaseModel):
     """
-    A reviewer stage.
+    PaginatedTokensList
     """ # noqa: E501
-    require_manager_approval: StrictBool = Field(description="Whether this reviewer stage should require manager approval.")
-    require_admin_approval: Optional[StrictBool] = Field(default=None, description="Whether this reviewer stage should require admin approval.")
-    operator: StrictStr = Field(description="The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.")
-    owner_ids: List[UUID] = Field(description="The IDs of owners assigned as reviewers for this stage.")
-    service_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of service users assigned as reviewers for this stage.")
+    next: Optional[StrictStr] = Field(default=None, description="The cursor with which to continue pagination if additional result pages exist.")
+    previous: Optional[StrictStr] = Field(default=None, description="The cursor used to obtain the current result page.")
+    results: List[Token]
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["require_manager_approval", "require_admin_approval", "operator", "owner_ids", "service_user_ids"]
-
-    @field_validator('operator')
-    def operator_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['AND', 'OR']):
-            raise ValueError("must be one of enum values ('AND', 'OR')")
-        return value
+    __properties: ClassVar[List[str]] = ["next", "previous", "results"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,7 +52,7 @@ class ReviewerStage(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ReviewerStage from a JSON string"""
+        """Create an instance of PaginatedTokensList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,6 +75,13 @@ class ReviewerStage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
+        _items = []
+        if self.results:
+            for _item_results in self.results:
+                if _item_results:
+                    _items.append(_item_results.to_dict())
+            _dict['results'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -93,7 +91,7 @@ class ReviewerStage(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ReviewerStage from a dict"""
+        """Create an instance of PaginatedTokensList from a dict"""
         if obj is None:
             return None
 
@@ -101,11 +99,9 @@ class ReviewerStage(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "require_manager_approval": obj.get("require_manager_approval"),
-            "require_admin_approval": obj.get("require_admin_approval"),
-            "operator": obj.get("operator"),
-            "owner_ids": obj.get("owner_ids"),
-            "service_user_ids": obj.get("service_user_ids")
+            "next": obj.get("next"),
+            "previous": obj.get("previous"),
+            "results": [Token.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
