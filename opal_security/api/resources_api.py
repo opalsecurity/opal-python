@@ -4756,6 +4756,7 @@ class ResourcesApi:
         parent_resource_id: Annotated[Optional[UUID], Field(description="The parent resource id to filter by.")] = None,
         ancestor_resource_id: Annotated[Optional[UUID], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
         remote_id: Annotated[Optional[StrictStr], Field(description="Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only resources that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4789,6 +4790,8 @@ class ResourcesApi:
         :type ancestor_resource_id: UUID
         :param remote_id: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
         :type remote_id: str
+        :param tag_ids: The IDs of the tags to filter by. Returns only resources that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4820,6 +4823,7 @@ class ResourcesApi:
             parent_resource_id=parent_resource_id,
             ancestor_resource_id=ancestor_resource_id,
             remote_id=remote_id,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4851,6 +4855,7 @@ class ResourcesApi:
         parent_resource_id: Annotated[Optional[UUID], Field(description="The parent resource id to filter by.")] = None,
         ancestor_resource_id: Annotated[Optional[UUID], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
         remote_id: Annotated[Optional[StrictStr], Field(description="Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only resources that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4884,6 +4889,8 @@ class ResourcesApi:
         :type ancestor_resource_id: UUID
         :param remote_id: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
         :type remote_id: str
+        :param tag_ids: The IDs of the tags to filter by. Returns only resources that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4915,6 +4922,7 @@ class ResourcesApi:
             parent_resource_id=parent_resource_id,
             ancestor_resource_id=ancestor_resource_id,
             remote_id=remote_id,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4946,6 +4954,7 @@ class ResourcesApi:
         parent_resource_id: Annotated[Optional[UUID], Field(description="The parent resource id to filter by.")] = None,
         ancestor_resource_id: Annotated[Optional[UUID], Field(description="The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.")] = None,
         remote_id: Annotated[Optional[StrictStr], Field(description="Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.")] = None,
+        tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only resources that have any of these tags applied.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4979,6 +4988,8 @@ class ResourcesApi:
         :type ancestor_resource_id: UUID
         :param remote_id: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
         :type remote_id: str
+        :param tag_ids: The IDs of the tags to filter by. Returns only resources that have any of these tags applied.
+        :type tag_ids: List[UUID]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5010,6 +5021,7 @@ class ResourcesApi:
             parent_resource_id=parent_resource_id,
             ancestor_resource_id=ancestor_resource_id,
             remote_id=remote_id,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5036,6 +5048,7 @@ class ResourcesApi:
         parent_resource_id,
         ancestor_resource_id,
         remote_id,
+        tag_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -5046,6 +5059,7 @@ class ResourcesApi:
 
         _collection_formats: Dict[str, str] = {
             'resource_ids': 'csv',
+            'tag_ids': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -5090,6 +5104,10 @@ class ResourcesApi:
         if remote_id is not None:
             
             _query_params.append(('remote_id', remote_id))
+            
+        if tag_ids is not None:
+            
+            _query_params.append(('tag_ids', tag_ids))
             
         # process the header parameters
         # process the form parameters

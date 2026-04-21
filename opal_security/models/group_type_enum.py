@@ -51,6 +51,9 @@ class GroupTypeEnum(str, Enum):
     ROOTLY_ON_CALL_SCHEDULE = 'ROOTLY_ON_CALL_SCHEDULE'
     DEVIN_GROUP = 'DEVIN_GROUP'
     GIT_HUB_ENTERPRISE_TEAM = 'GIT_HUB_ENTERPRISE_TEAM'
+    GRAFANA_TEAM = 'GRAFANA_TEAM'
+    CLICKHOUSE_ROLE = 'CLICKHOUSE_ROLE'
+    TWINGATE_GROUP = 'TWINGATE_GROUP'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

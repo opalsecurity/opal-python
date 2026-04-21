@@ -168,6 +168,7 @@ Class | Method | HTTP request | Description
 *DelegationsApi* | [**get_delegation**](docs/DelegationsApi.md#get_delegation) | **GET** /delegations/{delegation_id} | Get delegation by ID
 *DelegationsApi* | [**get_delegations**](docs/DelegationsApi.md#get_delegations) | **GET** /delegations | Get delegations
 *EventsApi* | [**events**](docs/EventsApi.md#events) | **GET** /events | 
+*EventsApi* | [**get_event**](docs/EventsApi.md#get_event) | **GET** /events/{event_id} | Get event by ID
 *GroupBindingsApi* | [**create_group_binding**](docs/GroupBindingsApi.md#create_group_binding) | **POST** /group-bindings | 
 *GroupBindingsApi* | [**delete_group_binding**](docs/GroupBindingsApi.md#delete_group_binding) | **DELETE** /group-bindings/{group_binding_id} | 
 *GroupBindingsApi* | [**get_group_binding**](docs/GroupBindingsApi.md#get_group_binding) | **GET** /group-bindings/{group_binding_id} | Get group binding by ID
@@ -268,6 +269,8 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**remove_group_tag**](docs/TagsApi.md#remove_group_tag) | **DELETE** /tags/{tag_id}/groups/{group_id} | 
 *TagsApi* | [**remove_resource_tag**](docs/TagsApi.md#remove_resource_tag) | **DELETE** /tags/{tag_id}/resources/{resource_id} | 
 *TagsApi* | [**remove_user_tag**](docs/TagsApi.md#remove_user_tag) | **DELETE** /tags/{tag_id}/users/{user_id} | 
+*TokensApi* | [**delete_token**](docs/TokensApi.md#delete_token) | **DELETE** /tokens/{token_id} | Delete token
+*TokensApi* | [**get_tokens**](docs/TokensApi.md#get_tokens) | **GET** /tokens | Get tokens
 *UarsApi* | [**create_uar**](docs/UarsApi.md#create_uar) | **POST** /uar | 
 *UarsApi* | [**get_uar**](docs/UarsApi.md#get_uar) | **GET** /uar/{uar_id} | 
 *UarsApi* | [**get_uars**](docs/UarsApi.md#get_uars) | **GET** /uars | 
@@ -288,6 +291,7 @@ Class | Method | HTTP request | Description
  - [AddGroupUserRequest](docs/AddGroupUserRequest.md)
  - [AddResourceNhiRequest](docs/AddResourceNhiRequest.md)
  - [AddResourceUserRequest](docs/AddResourceUserRequest.md)
+ - [ApiAccessLevelEnum](docs/ApiAccessLevelEnum.md)
  - [App](docs/App.md)
  - [AppTypeEnum](docs/AppTypeEnum.md)
  - [AppValidation](docs/AppValidation.md)
@@ -340,6 +344,7 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoAwsSsoGroup](docs/GroupRemoteInfoAwsSsoGroup.md)
  - [GroupRemoteInfoAzureAdMicrosoft365Group](docs/GroupRemoteInfoAzureAdMicrosoft365Group.md)
  - [GroupRemoteInfoAzureAdSecurityGroup](docs/GroupRemoteInfoAzureAdSecurityGroup.md)
+ - [GroupRemoteInfoClickhouseRole](docs/GroupRemoteInfoClickhouseRole.md)
  - [GroupRemoteInfoConnectorGroup](docs/GroupRemoteInfoConnectorGroup.md)
  - [GroupRemoteInfoDatabricksAccountGroup](docs/GroupRemoteInfoDatabricksAccountGroup.md)
  - [GroupRemoteInfoDevinGroup](docs/GroupRemoteInfoDevinGroup.md)
@@ -356,6 +361,7 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoRootlyOnCallSchedule](docs/GroupRemoteInfoRootlyOnCallSchedule.md)
  - [GroupRemoteInfoSnowflakeRole](docs/GroupRemoteInfoSnowflakeRole.md)
  - [GroupRemoteInfoTailscaleGroup](docs/GroupRemoteInfoTailscaleGroup.md)
+ - [GroupRemoteInfoTwingateGroup](docs/GroupRemoteInfoTwingateGroup.md)
  - [GroupRemoteInfoWorkdayUserSecurityGroup](docs/GroupRemoteInfoWorkdayUserSecurityGroup.md)
  - [GroupResource](docs/GroupResource.md)
  - [GroupResourceList](docs/GroupResourceList.md)
@@ -388,6 +394,7 @@ Class | Method | HTTP request | Description
  - [PaginatedRemoteUsersList](docs/PaginatedRemoteUsersList.md)
  - [PaginatedResourcesList](docs/PaginatedResourcesList.md)
  - [PaginatedTagsList](docs/PaginatedTagsList.md)
+ - [PaginatedTokensList](docs/PaginatedTokensList.md)
  - [PaginatedUARsList](docs/PaginatedUARsList.md)
  - [PaginatedUsersList](docs/PaginatedUsersList.md)
  - [PropagationStatus](docs/PropagationStatus.md)
@@ -439,10 +446,13 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoAzureSubscription](docs/ResourceRemoteInfoAzureSubscription.md)
  - [ResourceRemoteInfoAzureUserAssignedManagedIdentity](docs/ResourceRemoteInfoAzureUserAssignedManagedIdentity.md)
  - [ResourceRemoteInfoAzureVirtualMachine](docs/ResourceRemoteInfoAzureVirtualMachine.md)
+ - [ResourceRemoteInfoClickhouseDatabase](docs/ResourceRemoteInfoClickhouseDatabase.md)
+ - [ResourceRemoteInfoClickhouseTable](docs/ResourceRemoteInfoClickhouseTable.md)
  - [ResourceRemoteInfoCoupaRole](docs/ResourceRemoteInfoCoupaRole.md)
  - [ResourceRemoteInfoCursorOrganization](docs/ResourceRemoteInfoCursorOrganization.md)
  - [ResourceRemoteInfoCustomConnector](docs/ResourceRemoteInfoCustomConnector.md)
  - [ResourceRemoteInfoDatabricksAccountServicePrincipal](docs/ResourceRemoteInfoDatabricksAccountServicePrincipal.md)
+ - [ResourceRemoteInfoDatadogRole](docs/ResourceRemoteInfoDatadogRole.md)
  - [ResourceRemoteInfoDatastaxAstraRole](docs/ResourceRemoteInfoDatastaxAstraRole.md)
  - [ResourceRemoteInfoDevinOrganization](docs/ResourceRemoteInfoDevinOrganization.md)
  - [ResourceRemoteInfoDevinRole](docs/ResourceRemoteInfoDevinRole.md)
@@ -463,6 +473,7 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoGitlabProject](docs/ResourceRemoteInfoGitlabProject.md)
  - [ResourceRemoteInfoGoogleWorkspaceRole](docs/ResourceRemoteInfoGoogleWorkspaceRole.md)
  - [ResourceRemoteInfoIlevelAdvancedRole](docs/ResourceRemoteInfoIlevelAdvancedRole.md)
+ - [ResourceRemoteInfoNetsuiteRole](docs/ResourceRemoteInfoNetsuiteRole.md)
  - [ResourceRemoteInfoOktaApp](docs/ResourceRemoteInfoOktaApp.md)
  - [ResourceRemoteInfoOktaCustomRole](docs/ResourceRemoteInfoOktaCustomRole.md)
  - [ResourceRemoteInfoOktaStandardRole](docs/ResourceRemoteInfoOktaStandardRole.md)
@@ -478,6 +489,7 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoSnowflakeTable](docs/ResourceRemoteInfoSnowflakeTable.md)
  - [ResourceRemoteInfoTailscaleSsh](docs/ResourceRemoteInfoTailscaleSsh.md)
  - [ResourceRemoteInfoTeleportRole](docs/ResourceRemoteInfoTeleportRole.md)
+ - [ResourceRemoteInfoTwingateResource](docs/ResourceRemoteInfoTwingateResource.md)
  - [ResourceRemoteInfoWorkdayRole](docs/ResourceRemoteInfoWorkdayRole.md)
  - [ResourceTypeEnum](docs/ResourceTypeEnum.md)
  - [ResourceUser](docs/ResourceUser.md)
@@ -509,6 +521,7 @@ Class | Method | HTTP request | Description
  - [ThirdPartyProviderEnum](docs/ThirdPartyProviderEnum.md)
  - [TicketPropagationConfiguration](docs/TicketPropagationConfiguration.md)
  - [TicketingProviderEnum](docs/TicketingProviderEnum.md)
+ - [Token](docs/Token.md)
  - [UAR](docs/UAR.md)
  - [UARReviewerAssignmentPolicyEnum](docs/UARReviewerAssignmentPolicyEnum.md)
  - [UARScope](docs/UARScope.md)

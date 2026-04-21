@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_users**
-> PaginatedUsersList get_users(cursor=cursor, page_size=page_size)
+> PaginatedUsersList get_users(cursor=cursor, page_size=page_size, tag_ids=tag_ids)
 
 Returns a list of users for your organization.
 
@@ -212,9 +212,10 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.UsersApi(api_client)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
+    tag_ids = None # List[UUID] | The IDs of the tags to filter by. Returns only users that have any of these tags applied. (optional)
 
     try:
-        api_response = api_instance.get_users(cursor=cursor, page_size=page_size)
+        api_response = api_instance.get_users(cursor=cursor, page_size=page_size, tag_ids=tag_ids)
         print("The response of UsersApi->get_users:\n")
         pprint(api_response)
     except Exception as e:
@@ -230,6 +231,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
+ **tag_ids** | [**List[UUID]**](UUID.md)| The IDs of the tags to filter by. Returns only users that have any of these tags applied. | [optional] 
 
 ### Return type
 
