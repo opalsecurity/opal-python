@@ -119,6 +119,7 @@ __all__ = [
     "GroupRemoteInfoGithubTeam",
     "GroupRemoteInfoGitlabGroup",
     "GroupRemoteInfoGoogleGroup",
+    "GroupRemoteInfoGrafanaTeam",
     "GroupRemoteInfoIncidentioOnCallSchedule",
     "GroupRemoteInfoLdapGroup",
     "GroupRemoteInfoOktaGroup",
@@ -238,6 +239,9 @@ __all__ = [
     "ResourceRemoteInfoGithubRepo",
     "ResourceRemoteInfoGitlabProject",
     "ResourceRemoteInfoGoogleWorkspaceRole",
+    "ResourceRemoteInfoGrafanaDashboard",
+    "ResourceRemoteInfoGrafanaFolder",
+    "ResourceRemoteInfoGrafanaRole",
     "ResourceRemoteInfoIlevelAdvancedRole",
     "ResourceRemoteInfoNetsuiteRole",
     "ResourceRemoteInfoOktaApp",
@@ -419,6 +423,7 @@ from opal_security.models.group_remote_info_github_enterprise_team import GroupR
 from opal_security.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam as GroupRemoteInfoGithubTeam
 from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoGitlabGroup as GroupRemoteInfoGitlabGroup
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup as GroupRemoteInfoGoogleGroup
+from opal_security.models.group_remote_info_grafana_team import GroupRemoteInfoGrafanaTeam as GroupRemoteInfoGrafanaTeam
 from opal_security.models.group_remote_info_incidentio_on_call_schedule import GroupRemoteInfoIncidentioOnCallSchedule as GroupRemoteInfoIncidentioOnCallSchedule
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup as GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup as GroupRemoteInfoOktaGroup
@@ -538,6 +543,9 @@ from opal_security.models.resource_remote_info_github_org_role import ResourceRe
 from opal_security.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo as ResourceRemoteInfoGithubRepo
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject as ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole as ResourceRemoteInfoGoogleWorkspaceRole
+from opal_security.models.resource_remote_info_grafana_dashboard import ResourceRemoteInfoGrafanaDashboard as ResourceRemoteInfoGrafanaDashboard
+from opal_security.models.resource_remote_info_grafana_folder import ResourceRemoteInfoGrafanaFolder as ResourceRemoteInfoGrafanaFolder
+from opal_security.models.resource_remote_info_grafana_role import ResourceRemoteInfoGrafanaRole as ResourceRemoteInfoGrafanaRole
 from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole as ResourceRemoteInfoIlevelAdvancedRole
 from opal_security.models.resource_remote_info_netsuite_role import ResourceRemoteInfoNetsuiteRole as ResourceRemoteInfoNetsuiteRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp as ResourceRemoteInfoOktaApp

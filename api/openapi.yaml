@@ -7612,6 +7612,16 @@ components:
           type: object
           required:
             - role_id
+        grafana_team:
+          description: Remote info for Grafana team.
+          properties:
+            team_id:
+              description: The ID of the team.
+              example: 2323
+              type: string
+          type: object
+          required:
+            - team_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
@@ -8440,6 +8450,36 @@ components:
           required:
             - database_name
             - table_name
+        grafana_folder:
+          description: Remote info for Grafana folder.
+          properties:
+            folder_uid:
+              description: The UID of the Grafana folder.
+              example: fffRTXX
+              type: string
+          type: object
+          required:
+            - folder_uid
+        grafana_dashboard:
+          description: Remote info for Grafana dashboard.
+          properties:
+            dashboard_uid:
+              description: The UID of the Grafana dashboard.
+              example: dddRTXX
+              type: string
+          type: object
+          required:
+            - dashboard_uid
+        grafana_role:
+          description: Remote info for Grafana role(fixed or custom).
+          properties:
+            role_uid:
+              description: The UID of the Grafana role.
+              example: rrfRTXX
+              type: string
+          type: object
+          required:
+            - role_uid
       type: object
     RiskSensitivityEnum:
       type: string

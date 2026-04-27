@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **rootly_on_call_schedule** | [**GroupRemoteInfoRootlyOnCallSchedule**](GroupRemoteInfoRootlyOnCallSchedule.md) |  | [optional] 
 **devin_group** | [**GroupRemoteInfoDevinGroup**](GroupRemoteInfoDevinGroup.md) |  | [optional] 
 **clickhouse_role** | [**GroupRemoteInfoClickhouseRole**](GroupRemoteInfoClickhouseRole.md) |  | [optional] 
+**grafana_team** | [**GroupRemoteInfoGrafanaTeam**](GroupRemoteInfoGrafanaTeam.md) |  | [optional] 
 
 ## Example
 
