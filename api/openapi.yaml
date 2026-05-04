@@ -6213,17 +6213,41 @@ components:
         results:
           - group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
             app_id: b5a5ca27-0ea3-4d86-9199-2126d57d1fbd
+            name: Payments Production Admin
             description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
             admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            group_leader_user_ids:
+              - 7c86c85d-0651-43e2-a748-d69d658418e8
+            remote_id: 037m2jsg218b2wb
+            remote_name: Finance Team
+            group_type: ACTIVE_DIRECTORY_GROUP
             max_duration: 120
+            recommended_duration: 60
+            extensions_duration_in_minutes: 60
             require_manager_approval: False
             require_support_ticket: False
+            require_mfa_to_approve: False
+            require_mfa_to_request: False
+            auto_approval: False
+            is_requestable: True
           - group_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
+            app_id: a7c3e291-1234-4abc-9def-1234567890ab
+            name: Integrations On-Call
             description: Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.
             admin_owner_id: 4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3
+            group_leader_user_ids: []
+            remote_id: pagerduty-schedule:P123XYZ
+            remote_name: Integrations On-Call
+            group_type: PAGERDUTY_ON_CALL_SCHEDULE
             max_duration: 360
+            recommended_duration: 120
+            extensions_duration_in_minutes: 0
             require_manager_approval: False
             require_support_ticket: True
+            require_mfa_to_approve: False
+            require_mfa_to_request: False
+            auto_approval: False
+            is_requestable: True
       properties:
         next:
           description:
@@ -6321,13 +6345,23 @@ components:
       example:
         group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
         app_id: b5a5ca27-0ea3-4d86-9199-2126d57d1fbd
-        remote_id: 037m2jsg218b2wb
-        remote_name: Finance Team
+        name: Payments Production Admin
         description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
         admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        group_leader_user_ids:
+          - 7c86c85d-0651-43e2-a748-d69d658418e8
+        remote_id: 037m2jsg218b2wb
+        remote_name: Finance Team
+        group_type: ACTIVE_DIRECTORY_GROUP
         max_duration: 120
+        recommended_duration: 60
+        extensions_duration_in_minutes: 60
         require_manager_approval: False
         require_support_ticket: False
+        require_mfa_to_approve: False
+        require_mfa_to_request: False
+        auto_approval: False
+        is_requestable: True
       properties:
         group_id:
           description: The ID of the group.
@@ -6825,6 +6859,7 @@ components:
         - GRAFANA_TEAM
         - CLICKHOUSE_ROLE
         - TWINGATE_GROUP
+        - TWINGATE_GROUP_SYNCED
       example: OPAL_GROUP
       type: string
     ResourceTypeEnum:
@@ -7407,6 +7442,16 @@ components:
           type: object
           required:
             - group_id
+        twingate_group_synced:
+          description: Remote info for Twingate synced group.
+          properties:
+            group_id:
+              description: The id of the Twingate synced group.
+              example: R3JvdXA6MTIzNA==
+              type: string
+          type: object
+          required:
+            - group_id
         aws_sso_group:
           description: Remote info for AWS SSO group.
           properties:
@@ -7612,6 +7657,16 @@ components:
           type: object
           required:
             - role_id
+        grafana_team:
+          description: Remote info for Grafana team.
+          properties:
+            team_id:
+              description: The ID of the team.
+              example: 2323
+              type: string
+          type: object
+          required:
+            - team_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
@@ -8440,6 +8495,36 @@ components:
           required:
             - database_name
             - table_name
+        grafana_folder:
+          description: Remote info for Grafana folder.
+          properties:
+            folder_uid:
+              description: The UID of the Grafana folder.
+              example: fffRTXX
+              type: string
+          type: object
+          required:
+            - folder_uid
+        grafana_dashboard:
+          description: Remote info for Grafana dashboard.
+          properties:
+            dashboard_uid:
+              description: The UID of the Grafana dashboard.
+              example: dddRTXX
+              type: string
+          type: object
+          required:
+            - dashboard_uid
+        grafana_role:
+          description: Remote info for Grafana role(fixed or custom).
+          properties:
+            role_uid:
+              description: The UID of the Grafana role.
+              example: rrfRTXX
+              type: string
+          type: object
+          required:
+            - role_uid
       type: object
     RiskSensitivityEnum:
       type: string
@@ -9675,6 +9760,12 @@ components:
           type: integer
           example: 120
           deprecated: true
+        parent_resource_id:
+          description: The ID of the parent resource.
+          example: f454d283-ca67-4a8a-bdbb-df212eca5345
+          format: uuid
+          type: string
+          nullable: true
         request_configurations:
           type: array
           items:

@@ -33,6 +33,7 @@ from opal_security.models.group_remote_info_github_enterprise_team import GroupR
 from opal_security.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam
 from opal_security.models.group_remote_info_gitlab_group import GroupRemoteInfoGitlabGroup
 from opal_security.models.group_remote_info_google_group import GroupRemoteInfoGoogleGroup
+from opal_security.models.group_remote_info_grafana_team import GroupRemoteInfoGrafanaTeam
 from opal_security.models.group_remote_info_incidentio_on_call_schedule import GroupRemoteInfoIncidentioOnCallSchedule
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
@@ -42,6 +43,7 @@ from opal_security.models.group_remote_info_rootly_on_call_schedule import Group
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
 from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup
 from opal_security.models.group_remote_info_twingate_group import GroupRemoteInfoTwingateGroup
+from opal_security.models.group_remote_info_twingate_group_synced import GroupRemoteInfoTwingateGroupSynced
 from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup
 from typing import Optional, Set
 from typing_extensions import Self
@@ -53,6 +55,7 @@ class GroupRemoteInfo(BaseModel):
     active_directory_group: Optional[GroupRemoteInfoActiveDirectoryGroup] = None
     tailscale_group: Optional[GroupRemoteInfoTailscaleGroup] = None
     twingate_group: Optional[GroupRemoteInfoTwingateGroup] = None
+    twingate_group_synced: Optional[GroupRemoteInfoTwingateGroupSynced] = None
     aws_sso_group: Optional[GroupRemoteInfoAwsSsoGroup] = None
     databricks_account_group: Optional[GroupRemoteInfoDatabricksAccountGroup] = None
     connector_group: Optional[GroupRemoteInfoConnectorGroup] = None
@@ -73,8 +76,9 @@ class GroupRemoteInfo(BaseModel):
     rootly_on_call_schedule: Optional[GroupRemoteInfoRootlyOnCallSchedule] = None
     devin_group: Optional[GroupRemoteInfoDevinGroup] = None
     clickhouse_role: Optional[GroupRemoteInfoClickhouseRole] = None
+    grafana_team: Optional[GroupRemoteInfoGrafanaTeam] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "twingate_group", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "github_enterprise_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "rootly_on_call_schedule", "devin_group", "clickhouse_role"]
+    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "twingate_group", "twingate_group_synced", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "github_enterprise_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "rootly_on_call_schedule", "devin_group", "clickhouse_role", "grafana_team"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,6 +130,9 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of twingate_group
         if self.twingate_group:
             _dict['twingate_group'] = self.twingate_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of twingate_group_synced
+        if self.twingate_group_synced:
+            _dict['twingate_group_synced'] = self.twingate_group_synced.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aws_sso_group
         if self.aws_sso_group:
             _dict['aws_sso_group'] = self.aws_sso_group.to_dict()
@@ -186,6 +193,9 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of clickhouse_role
         if self.clickhouse_role:
             _dict['clickhouse_role'] = self.clickhouse_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of grafana_team
+        if self.grafana_team:
+            _dict['grafana_team'] = self.grafana_team.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -206,6 +216,7 @@ class GroupRemoteInfo(BaseModel):
             "active_directory_group": GroupRemoteInfoActiveDirectoryGroup.from_dict(obj["active_directory_group"]) if obj.get("active_directory_group") is not None else None,
             "tailscale_group": GroupRemoteInfoTailscaleGroup.from_dict(obj["tailscale_group"]) if obj.get("tailscale_group") is not None else None,
             "twingate_group": GroupRemoteInfoTwingateGroup.from_dict(obj["twingate_group"]) if obj.get("twingate_group") is not None else None,
+            "twingate_group_synced": GroupRemoteInfoTwingateGroupSynced.from_dict(obj["twingate_group_synced"]) if obj.get("twingate_group_synced") is not None else None,
             "aws_sso_group": GroupRemoteInfoAwsSsoGroup.from_dict(obj["aws_sso_group"]) if obj.get("aws_sso_group") is not None else None,
             "databricks_account_group": GroupRemoteInfoDatabricksAccountGroup.from_dict(obj["databricks_account_group"]) if obj.get("databricks_account_group") is not None else None,
             "connector_group": GroupRemoteInfoConnectorGroup.from_dict(obj["connector_group"]) if obj.get("connector_group") is not None else None,
@@ -225,7 +236,8 @@ class GroupRemoteInfo(BaseModel):
             "incidentio_on_call_schedule": GroupRemoteInfoIncidentioOnCallSchedule.from_dict(obj["incidentio_on_call_schedule"]) if obj.get("incidentio_on_call_schedule") is not None else None,
             "rootly_on_call_schedule": GroupRemoteInfoRootlyOnCallSchedule.from_dict(obj["rootly_on_call_schedule"]) if obj.get("rootly_on_call_schedule") is not None else None,
             "devin_group": GroupRemoteInfoDevinGroup.from_dict(obj["devin_group"]) if obj.get("devin_group") is not None else None,
-            "clickhouse_role": GroupRemoteInfoClickhouseRole.from_dict(obj["clickhouse_role"]) if obj.get("clickhouse_role") is not None else None
+            "clickhouse_role": GroupRemoteInfoClickhouseRole.from_dict(obj["clickhouse_role"]) if obj.get("clickhouse_role") is not None else None,
+            "grafana_team": GroupRemoteInfoGrafanaTeam.from_dict(obj["grafana_team"]) if obj.get("grafana_team") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
