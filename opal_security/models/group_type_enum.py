@@ -54,6 +54,7 @@ class GroupTypeEnum(str, Enum):
     GRAFANA_TEAM = 'GRAFANA_TEAM'
     CLICKHOUSE_ROLE = 'CLICKHOUSE_ROLE'
     TWINGATE_GROUP = 'TWINGATE_GROUP'
+    TWINGATE_GROUP_SYNCED = 'TWINGATE_GROUP_SYNCED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

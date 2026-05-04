@@ -81,6 +81,7 @@ docs/GroupRemoteInfoGithubEnterpriseTeam.md
 docs/GroupRemoteInfoGithubTeam.md
 docs/GroupRemoteInfoGitlabGroup.md
 docs/GroupRemoteInfoGoogleGroup.md
+docs/GroupRemoteInfoGrafanaTeam.md
 docs/GroupRemoteInfoIncidentioOnCallSchedule.md
 docs/GroupRemoteInfoLdapGroup.md
 docs/GroupRemoteInfoOktaGroup.md
@@ -90,6 +91,7 @@ docs/GroupRemoteInfoRootlyOnCallSchedule.md
 docs/GroupRemoteInfoSnowflakeRole.md
 docs/GroupRemoteInfoTailscaleGroup.md
 docs/GroupRemoteInfoTwingateGroup.md
+docs/GroupRemoteInfoTwingateGroupSynced.md
 docs/GroupRemoteInfoWorkdayUserSecurityGroup.md
 docs/GroupResource.md
 docs/GroupResourceList.md
@@ -207,6 +209,9 @@ docs/ResourceRemoteInfoGithubOrgRole.md
 docs/ResourceRemoteInfoGithubRepo.md
 docs/ResourceRemoteInfoGitlabProject.md
 docs/ResourceRemoteInfoGoogleWorkspaceRole.md
+docs/ResourceRemoteInfoGrafanaDashboard.md
+docs/ResourceRemoteInfoGrafanaFolder.md
+docs/ResourceRemoteInfoGrafanaRole.md
 docs/ResourceRemoteInfoIlevelAdvancedRole.md
 docs/ResourceRemoteInfoNetsuiteRole.md
 docs/ResourceRemoteInfoOktaApp.md
@@ -386,6 +391,7 @@ opal_security/models/group_remote_info_github_enterprise_team.py
 opal_security/models/group_remote_info_github_team.py
 opal_security/models/group_remote_info_gitlab_group.py
 opal_security/models/group_remote_info_google_group.py
+opal_security/models/group_remote_info_grafana_team.py
 opal_security/models/group_remote_info_incidentio_on_call_schedule.py
 opal_security/models/group_remote_info_ldap_group.py
 opal_security/models/group_remote_info_okta_group.py
@@ -395,6 +401,7 @@ opal_security/models/group_remote_info_rootly_on_call_schedule.py
 opal_security/models/group_remote_info_snowflake_role.py
 opal_security/models/group_remote_info_tailscale_group.py
 opal_security/models/group_remote_info_twingate_group.py
+opal_security/models/group_remote_info_twingate_group_synced.py
 opal_security/models/group_remote_info_workday_user_security_group.py
 opal_security/models/group_resource.py
 opal_security/models/group_resource_list.py
@@ -505,6 +512,9 @@ opal_security/models/resource_remote_info_github_org_role.py
 opal_security/models/resource_remote_info_github_repo.py
 opal_security/models/resource_remote_info_gitlab_project.py
 opal_security/models/resource_remote_info_google_workspace_role.py
+opal_security/models/resource_remote_info_grafana_dashboard.py
+opal_security/models/resource_remote_info_grafana_folder.py
+opal_security/models/resource_remote_info_grafana_role.py
 opal_security/models/resource_remote_info_ilevel_advanced_role.py
 opal_security/models/resource_remote_info_netsuite_role.py
 opal_security/models/resource_remote_info_okta_app.py
@@ -587,15 +597,9 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_api_access_level_enum.py
-test/test_group_remote_info_clickhouse_role.py
-test/test_group_remote_info_twingate_group.py
-test/test_paginated_tokens_list.py
-test/test_resource_remote_info_clickhouse_database.py
-test/test_resource_remote_info_clickhouse_table.py
-test/test_resource_remote_info_datadog_role.py
-test/test_resource_remote_info_netsuite_role.py
-test/test_resource_remote_info_twingate_resource.py
-test/test_token.py
-test/test_tokens_api.py
+test/test_group_remote_info_grafana_team.py
+test/test_group_remote_info_twingate_group_synced.py
+test/test_resource_remote_info_grafana_dashboard.py
+test/test_resource_remote_info_grafana_folder.py
+test/test_resource_remote_info_grafana_role.py
 tox.ini

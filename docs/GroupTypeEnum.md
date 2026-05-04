@@ -58,6 +58,8 @@ The type of the group.
 
 * `TWINGATE_GROUP` (value: `'TWINGATE_GROUP'`)
 
+* `TWINGATE_GROUP_SYNCED` (value: `'TWINGATE_GROUP_SYNCED'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

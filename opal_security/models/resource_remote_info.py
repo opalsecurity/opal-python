@@ -68,6 +68,9 @@ from opal_security.models.resource_remote_info_github_org_role import ResourceRe
 from opal_security.models.resource_remote_info_github_repo import ResourceRemoteInfoGithubRepo
 from opal_security.models.resource_remote_info_gitlab_project import ResourceRemoteInfoGitlabProject
 from opal_security.models.resource_remote_info_google_workspace_role import ResourceRemoteInfoGoogleWorkspaceRole
+from opal_security.models.resource_remote_info_grafana_dashboard import ResourceRemoteInfoGrafanaDashboard
+from opal_security.models.resource_remote_info_grafana_folder import ResourceRemoteInfoGrafanaFolder
+from opal_security.models.resource_remote_info_grafana_role import ResourceRemoteInfoGrafanaRole
 from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole
 from opal_security.models.resource_remote_info_netsuite_role import ResourceRemoteInfoNetsuiteRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp
@@ -161,8 +164,11 @@ class ResourceRemoteInfo(BaseModel):
     datadog_role: Optional[ResourceRemoteInfoDatadogRole] = None
     clickhouse_database: Optional[ResourceRemoteInfoClickhouseDatabase] = None
     clickhouse_table: Optional[ResourceRemoteInfoClickhouseTable] = None
+    grafana_folder: Optional[ResourceRemoteInfoGrafanaFolder] = None
+    grafana_dashboard: Optional[ResourceRemoteInfoGrafanaDashboard] = None
+    grafana_role: Optional[ResourceRemoteInfoGrafanaRole] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table"]
+    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table", "grafana_folder", "grafana_dashboard", "grafana_role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -406,6 +412,15 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of clickhouse_table
         if self.clickhouse_table:
             _dict['clickhouse_table'] = self.clickhouse_table.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of grafana_folder
+        if self.grafana_folder:
+            _dict['grafana_folder'] = self.grafana_folder.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of grafana_dashboard
+        if self.grafana_dashboard:
+            _dict['grafana_dashboard'] = self.grafana_dashboard.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of grafana_role
+        if self.grafana_role:
+            _dict['grafana_role'] = self.grafana_role.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -489,7 +504,10 @@ class ResourceRemoteInfo(BaseModel):
             "netsuite_role": ResourceRemoteInfoNetsuiteRole.from_dict(obj["netsuite_role"]) if obj.get("netsuite_role") is not None else None,
             "datadog_role": ResourceRemoteInfoDatadogRole.from_dict(obj["datadog_role"]) if obj.get("datadog_role") is not None else None,
             "clickhouse_database": ResourceRemoteInfoClickhouseDatabase.from_dict(obj["clickhouse_database"]) if obj.get("clickhouse_database") is not None else None,
-            "clickhouse_table": ResourceRemoteInfoClickhouseTable.from_dict(obj["clickhouse_table"]) if obj.get("clickhouse_table") is not None else None
+            "clickhouse_table": ResourceRemoteInfoClickhouseTable.from_dict(obj["clickhouse_table"]) if obj.get("clickhouse_table") is not None else None,
+            "grafana_folder": ResourceRemoteInfoGrafanaFolder.from_dict(obj["grafana_folder"]) if obj.get("grafana_folder") is not None else None,
+            "grafana_dashboard": ResourceRemoteInfoGrafanaDashboard.from_dict(obj["grafana_dashboard"]) if obj.get("grafana_dashboard") is not None else None,
+            "grafana_role": ResourceRemoteInfoGrafanaRole.from_dict(obj["grafana_role"]) if obj.get("grafana_role") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
