@@ -6,6 +6,7 @@ from opal_security.api.apps_api import AppsApi
 from opal_security.api.bundles_api import BundlesApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
 from opal_security.api.delegations_api import DelegationsApi
+from opal_security.api.event_streams_api import EventStreamsApi
 from opal_security.api.events_api import EventsApi
 from opal_security.api.group_bindings_api import GroupBindingsApi
 from opal_security.api.groups_api import GroupsApi
@@ -13,6 +14,7 @@ from opal_security.api.idp_group_mappings_api import IdpGroupMappingsApi
 from opal_security.api.message_channels_api import MessageChannelsApi
 from opal_security.api.non_human_identities_api import NonHumanIdentitiesApi
 from opal_security.api.on_call_schedules_api import OnCallSchedulesApi
+from opal_security.api.opal_queries_api import OpalQueriesApi
 from opal_security.api.owners_api import OwnersApi
 from opal_security.api.requests_api import RequestsApi
 from opal_security.api.resources_api import ResourcesApi

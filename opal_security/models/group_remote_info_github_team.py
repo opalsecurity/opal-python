@@ -29,8 +29,9 @@ class GroupRemoteInfoGithubTeam(BaseModel):
     """ # noqa: E501
     team_id: Optional[StrictStr] = Field(default=None, description="The id of the GitHub team.")
     team_slug: StrictStr = Field(description="The slug of the GitHub team.")
+    org_name: Optional[StrictStr] = Field(default=None, description="GitHub team's org name, required only for Enterprise")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["team_id", "team_slug"]
+    __properties: ClassVar[List[str]] = ["team_id", "team_slug", "org_name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +92,8 @@ class GroupRemoteInfoGithubTeam(BaseModel):
 
         _obj = cls.model_validate({
             "team_id": obj.get("team_id"),
-            "team_slug": obj.get("team_slug")
+            "team_slug": obj.get("team_slug"),
+            "org_name": obj.get("org_name")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

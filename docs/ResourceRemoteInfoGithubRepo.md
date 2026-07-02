@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **repo_id** | **str** | The id of the repository. | [optional] 
 **repo_name** | **str** | The name of the repository. | 
+**org_name** | **str** | GitHub repo&#39;s org name, required only for Enterprise. | [optional] 
 
 ## Example
 

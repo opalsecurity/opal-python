@@ -29,8 +29,9 @@ class ResourceRemoteInfoGithubRepo(BaseModel):
     """ # noqa: E501
     repo_id: Optional[StrictStr] = Field(default=None, description="The id of the repository.")
     repo_name: StrictStr = Field(description="The name of the repository.")
+    org_name: Optional[StrictStr] = Field(default=None, description="GitHub repo's org name, required only for Enterprise.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["repo_id", "repo_name"]
+    __properties: ClassVar[List[str]] = ["repo_id", "repo_name", "org_name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +92,8 @@ class ResourceRemoteInfoGithubRepo(BaseModel):
 
         _obj = cls.model_validate({
             "repo_id": obj.get("repo_id"),
-            "repo_name": obj.get("repo_name")
+            "repo_name": obj.get("repo_name"),
+            "org_name": obj.get("org_name")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

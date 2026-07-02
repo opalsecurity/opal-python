@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **selectors** | [**List[TagSelector]**](TagSelector.md) |  | 
+**attribute_selectors** | [**List[UserAttributeSelector]**](UserAttributeSelector.md) |  | [optional] 
 
 ## Example
 

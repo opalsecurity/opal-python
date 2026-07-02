@@ -172,6 +172,10 @@ The type of the resource.
 
 * `TWINGATE_RESOURCE` (value: `'TWINGATE_RESOURCE'`)
 
+* `ZENDESK_ROLE` (value: `'ZENDESK_ROLE'`)
+
+* `HUBSPOT_ROLE` (value: `'HUBSPOT_ROLE'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

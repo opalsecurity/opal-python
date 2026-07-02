@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**duration_minutes** | **int** | The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite. | 
+**duration_minutes** | **int** | The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite, or a negative value to revoke access. | 
 **access_level_remote_id** | **str** | The updated remote ID of the access level granted to this user. | [optional] 
 
 ## Example

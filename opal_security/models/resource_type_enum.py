@@ -111,6 +111,8 @@ class ResourceTypeEnum(str, Enum):
     CLICKHOUSE_DATABASE = 'CLICKHOUSE_DATABASE'
     CLICKHOUSE_TABLE = 'CLICKHOUSE_TABLE'
     TWINGATE_RESOURCE = 'TWINGATE_RESOURCE'
+    ZENDESK_ROLE = 'ZENDESK_ROLE'
+    HUBSPOT_ROLE = 'HUBSPOT_ROLE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

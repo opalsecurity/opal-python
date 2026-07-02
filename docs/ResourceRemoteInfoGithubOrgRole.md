@@ -7,6 +7,7 @@ Remote info for GitHub organization role.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **role_id** | **str** | The id of the role. | 
+**org_name** | **str** | GitHub org role&#39;s org name, required only for Enterprise. | [optional] 
 
 ## Example
 
