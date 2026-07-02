@@ -27,7 +27,7 @@ from typing_extensions import Self
 
 class AccessRule(BaseModel):
     """
-    # Access Rule Object ### Description The `AccessRule` object is used to represent an access rule configuration.  ### Usage Example Get access rule configurations from the `GET Access Rule Configs` endpoint.
+    # Access Rule Object ### Description The `AccessRule` object is used to represent an access rule configuration.  ### Usage Example List access rules from the `GET /access-rules` endpoint, or retrieve a single access rule from the `GET /access-rules/{access_rule_id}` endpoint.
     """ # noqa: E501
     access_rule_id: UUID = Field(description="The ID (group ID) of the access rule.")
     name: StrictStr = Field(description="The name of the access rule.")

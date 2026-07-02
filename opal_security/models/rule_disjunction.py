@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.tag_selector import TagSelector
+from opal_security.models.user_attribute_selector import UserAttributeSelector
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,8 +30,9 @@ class RuleDisjunction(BaseModel):
     RuleDisjunction
     """ # noqa: E501
     selectors: List[TagSelector]
+    attribute_selectors: Optional[List[UserAttributeSelector]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["selectors"]
+    __properties: ClassVar[List[str]] = ["selectors", "attribute_selectors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +82,13 @@ class RuleDisjunction(BaseModel):
                 if _item_selectors:
                     _items.append(_item_selectors.to_dict())
             _dict['selectors'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in attribute_selectors (list)
+        _items = []
+        if self.attribute_selectors:
+            for _item_attribute_selectors in self.attribute_selectors:
+                if _item_attribute_selectors:
+                    _items.append(_item_attribute_selectors.to_dict())
+            _dict['attribute_selectors'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -97,7 +106,8 @@ class RuleDisjunction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "selectors": [TagSelector.from_dict(_item) for _item in obj["selectors"]] if obj.get("selectors") is not None else None
+            "selectors": [TagSelector.from_dict(_item) for _item in obj["selectors"]] if obj.get("selectors") is not None else None,
+            "attribute_selectors": [UserAttributeSelector.from_dict(_item) for _item in obj["attribute_selectors"]] if obj.get("attribute_selectors") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

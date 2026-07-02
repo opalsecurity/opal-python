@@ -142,6 +142,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccessRulesApi* | [**create_access_rule**](docs/AccessRulesApi.md#create_access_rule) | **POST** /access-rules | 
 *AccessRulesApi* | [**get_access_rule**](docs/AccessRulesApi.md#get_access_rule) | **GET** /access-rules/{access_rule_id} | 
+*AccessRulesApi* | [**get_access_rules**](docs/AccessRulesApi.md#get_access_rules) | **GET** /access-rules | 
 *AccessRulesApi* | [**update_access_rule**](docs/AccessRulesApi.md#update_access_rule) | **PUT** /access-rules/{access_rule_id} | 
 *AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /apps/{app_id} | Get app by ID
 *AppsApi* | [**get_apps**](docs/AppsApi.md#get_apps) | **GET** /apps | Get apps
@@ -167,6 +168,10 @@ Class | Method | HTTP request | Description
 *DelegationsApi* | [**delete_delegation**](docs/DelegationsApi.md#delete_delegation) | **DELETE** /delegations/{delegation_id} | 
 *DelegationsApi* | [**get_delegation**](docs/DelegationsApi.md#get_delegation) | **GET** /delegations/{delegation_id} | Get delegation by ID
 *DelegationsApi* | [**get_delegations**](docs/DelegationsApi.md#get_delegations) | **GET** /delegations | Get delegations
+*EventStreamsApi* | [**create_event_stream**](docs/EventStreamsApi.md#create_event_stream) | **POST** /event-streams | Create event stream
+*EventStreamsApi* | [**delete_event_stream**](docs/EventStreamsApi.md#delete_event_stream) | **DELETE** /event-streams/{event_stream_id} | Delete event stream
+*EventStreamsApi* | [**get_event_streams**](docs/EventStreamsApi.md#get_event_streams) | **GET** /event-streams | Get event streams
+*EventStreamsApi* | [**update_event_stream**](docs/EventStreamsApi.md#update_event_stream) | **PUT** /event-streams/{event_stream_id} | Update event stream
 *EventsApi* | [**events**](docs/EventsApi.md#events) | **GET** /events | 
 *EventsApi* | [**get_event**](docs/EventsApi.md#get_event) | **GET** /events/{event_id} | Get event by ID
 *GroupBindingsApi* | [**create_group_binding**](docs/GroupBindingsApi.md#create_group_binding) | **POST** /group-bindings | 
@@ -214,6 +219,7 @@ Class | Method | HTTP request | Description
 *OnCallSchedulesApi* | [**create_on_call_schedule**](docs/OnCallSchedulesApi.md#create_on_call_schedule) | **POST** /on-call-schedules | 
 *OnCallSchedulesApi* | [**get_on_call_schedule**](docs/OnCallSchedulesApi.md#get_on_call_schedule) | **GET** /on-call-schedules/{on_call_schedule_id} | Get on call schedule by ID
 *OnCallSchedulesApi* | [**get_on_call_schedules**](docs/OnCallSchedulesApi.md#get_on_call_schedules) | **GET** /on-call-schedules | Get on call schedules
+*OpalQueriesApi* | [**run_opal_query**](docs/OpalQueriesApi.md#run_opal_query) | **POST** /queries/run | Run an ad-hoc OpalQuery
 *OwnersApi* | [**create_owner**](docs/OwnersApi.md#create_owner) | **POST** /owners | 
 *OwnersApi* | [**delete_owner**](docs/OwnersApi.md#delete_owner) | **DELETE** /owners/{owner_id} | 
 *OwnersApi* | [**get_owner**](docs/OwnersApi.md#get_owner) | **GET** /owners/{owner_id} | Get owner by ID
@@ -283,7 +289,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Access](docs/Access.md)
+ - [AccessEntityFilters](docs/AccessEntityFilters.md)
  - [AccessList](docs/AccessList.md)
+ - [AccessRelationshipFilters](docs/AccessRelationshipFilters.md)
  - [AccessRule](docs/AccessRule.md)
  - [AddBundleGroupRequest](docs/AddBundleGroupRequest.md)
  - [AddBundleResourceRequest](docs/AddBundleResourceRequest.md)
@@ -310,6 +318,7 @@ Class | Method | HTTP request | Description
  - [CreateBundleInfo](docs/CreateBundleInfo.md)
  - [CreateConfigurationTemplateInfo](docs/CreateConfigurationTemplateInfo.md)
  - [CreateDelegationRequest](docs/CreateDelegationRequest.md)
+ - [CreateEventStreamInfo](docs/CreateEventStreamInfo.md)
  - [CreateGroupBindingInfo](docs/CreateGroupBindingInfo.md)
  - [CreateGroupBindingInfoGroupsInner](docs/CreateGroupBindingInfoGroupsInner.md)
  - [CreateGroupInfo](docs/CreateGroupInfo.md)
@@ -330,8 +339,15 @@ Class | Method | HTTP request | Description
  - [CreateUARInfo](docs/CreateUARInfo.md)
  - [Delegation](docs/Delegation.md)
  - [DenyRequestRequest](docs/DenyRequestRequest.md)
+ - [EntityItemTypeEnum](docs/EntityItemTypeEnum.md)
+ - [EntityNameFilter](docs/EntityNameFilter.md)
+ - [EntityTagFilter](docs/EntityTagFilter.md)
  - [EntityTypeEnum](docs/EntityTypeEnum.md)
  - [Event](docs/Event.md)
+ - [EventStream](docs/EventStream.md)
+ - [EventStreamConnection](docs/EventStreamConnection.md)
+ - [EventStreamConnectionTypeEnum](docs/EventStreamConnectionTypeEnum.md)
+ - [EventStreamList](docs/EventStreamList.md)
  - [GetResourceUser200Response](docs/GetResourceUser200Response.md)
  - [Group](docs/Group.md)
  - [GroupAccessLevel](docs/GroupAccessLevel.md)
@@ -353,16 +369,22 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoGithubTeam](docs/GroupRemoteInfoGithubTeam.md)
  - [GroupRemoteInfoGitlabGroup](docs/GroupRemoteInfoGitlabGroup.md)
  - [GroupRemoteInfoGoogleGroup](docs/GroupRemoteInfoGoogleGroup.md)
+ - [GroupRemoteInfoGrafanaTeam](docs/GroupRemoteInfoGrafanaTeam.md)
+ - [GroupRemoteInfoHubspotTeam](docs/GroupRemoteInfoHubspotTeam.md)
  - [GroupRemoteInfoIncidentioOnCallSchedule](docs/GroupRemoteInfoIncidentioOnCallSchedule.md)
  - [GroupRemoteInfoLdapGroup](docs/GroupRemoteInfoLdapGroup.md)
  - [GroupRemoteInfoOktaGroup](docs/GroupRemoteInfoOktaGroup.md)
  - [GroupRemoteInfoOktaGroupRule](docs/GroupRemoteInfoOktaGroupRule.md)
  - [GroupRemoteInfoPagerdutyOnCallSchedule](docs/GroupRemoteInfoPagerdutyOnCallSchedule.md)
  - [GroupRemoteInfoRootlyOnCallSchedule](docs/GroupRemoteInfoRootlyOnCallSchedule.md)
+ - [GroupRemoteInfoSlackUserGroup](docs/GroupRemoteInfoSlackUserGroup.md)
  - [GroupRemoteInfoSnowflakeRole](docs/GroupRemoteInfoSnowflakeRole.md)
  - [GroupRemoteInfoTailscaleGroup](docs/GroupRemoteInfoTailscaleGroup.md)
  - [GroupRemoteInfoTwingateGroup](docs/GroupRemoteInfoTwingateGroup.md)
+ - [GroupRemoteInfoTwingateGroupSynced](docs/GroupRemoteInfoTwingateGroupSynced.md)
  - [GroupRemoteInfoWorkdayUserSecurityGroup](docs/GroupRemoteInfoWorkdayUserSecurityGroup.md)
+ - [GroupRemoteInfoZendeskGroup](docs/GroupRemoteInfoZendeskGroup.md)
+ - [GroupRemoteInfoZendeskOrganization](docs/GroupRemoteInfoZendeskOrganization.md)
  - [GroupResource](docs/GroupResource.md)
  - [GroupResourceList](docs/GroupResourceList.md)
  - [GroupTypeEnum](docs/GroupTypeEnum.md)
@@ -379,8 +401,14 @@ Class | Method | HTTP request | Description
  - [OnCallScheduleIDList](docs/OnCallScheduleIDList.md)
  - [OnCallScheduleList](docs/OnCallScheduleList.md)
  - [OnCallScheduleProviderEnum](docs/OnCallScheduleProviderEnum.md)
+ - [OpalNodeQuery](docs/OpalNodeQuery.md)
+ - [OpalNodeQueryBody](docs/OpalNodeQueryBody.md)
+ - [OpalNodeQueryResults](docs/OpalNodeQueryResults.md)
+ - [OpalQueryResultEdge](docs/OpalQueryResultEdge.md)
+ - [OpalQueryResultNode](docs/OpalQueryResultNode.md)
  - [Owner](docs/Owner.md)
  - [PageInfo](docs/PageInfo.md)
+ - [PaginatedAccessRulesList](docs/PaginatedAccessRulesList.md)
  - [PaginatedAssignedRequestList](docs/PaginatedAssignedRequestList.md)
  - [PaginatedBundleGroupList](docs/PaginatedBundleGroupList.md)
  - [PaginatedBundleList](docs/PaginatedBundleList.md)
@@ -472,6 +500,10 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoGithubRepo](docs/ResourceRemoteInfoGithubRepo.md)
  - [ResourceRemoteInfoGitlabProject](docs/ResourceRemoteInfoGitlabProject.md)
  - [ResourceRemoteInfoGoogleWorkspaceRole](docs/ResourceRemoteInfoGoogleWorkspaceRole.md)
+ - [ResourceRemoteInfoGrafanaDashboard](docs/ResourceRemoteInfoGrafanaDashboard.md)
+ - [ResourceRemoteInfoGrafanaFolder](docs/ResourceRemoteInfoGrafanaFolder.md)
+ - [ResourceRemoteInfoGrafanaRole](docs/ResourceRemoteInfoGrafanaRole.md)
+ - [ResourceRemoteInfoHubspotRole](docs/ResourceRemoteInfoHubspotRole.md)
  - [ResourceRemoteInfoIlevelAdvancedRole](docs/ResourceRemoteInfoIlevelAdvancedRole.md)
  - [ResourceRemoteInfoNetsuiteRole](docs/ResourceRemoteInfoNetsuiteRole.md)
  - [ResourceRemoteInfoOktaApp](docs/ResourceRemoteInfoOktaApp.md)
@@ -491,6 +523,7 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoTeleportRole](docs/ResourceRemoteInfoTeleportRole.md)
  - [ResourceRemoteInfoTwingateResource](docs/ResourceRemoteInfoTwingateResource.md)
  - [ResourceRemoteInfoWorkdayRole](docs/ResourceRemoteInfoWorkdayRole.md)
+ - [ResourceRemoteInfoZendeskRole](docs/ResourceRemoteInfoZendeskRole.md)
  - [ResourceTypeEnum](docs/ResourceTypeEnum.md)
  - [ResourceUser](docs/ResourceUser.md)
  - [ResourceUserAccessStatus](docs/ResourceUserAccessStatus.md)
@@ -510,6 +543,7 @@ Class | Method | HTTP request | Description
  - [ScopedRolePermissionList](docs/ScopedRolePermissionList.md)
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
+ - [StringMatchType](docs/StringMatchType.md)
  - [SubEvent](docs/SubEvent.md)
  - [SyncError](docs/SyncError.md)
  - [SyncErrorList](docs/SyncErrorList.md)
@@ -527,6 +561,7 @@ Class | Method | HTTP request | Description
  - [UARScope](docs/UARScope.md)
  - [UpdateAccessRuleInfo](docs/UpdateAccessRuleInfo.md)
  - [UpdateConfigurationTemplateInfo](docs/UpdateConfigurationTemplateInfo.md)
+ - [UpdateEventStreamInfo](docs/UpdateEventStreamInfo.md)
  - [UpdateGroupBindingInfo](docs/UpdateGroupBindingInfo.md)
  - [UpdateGroupBindingInfoList](docs/UpdateGroupBindingInfoList.md)
  - [UpdateGroupInfo](docs/UpdateGroupInfo.md)
@@ -541,11 +576,17 @@ Class | Method | HTTP request | Description
  - [UpdateResourceInfoList](docs/UpdateResourceInfoList.md)
  - [UpdateResourceUserRequest](docs/UpdateResourceUserRequest.md)
  - [User](docs/User.md)
+ - [UserAttributeSelector](docs/UserAttributeSelector.md)
  - [UserHrIdpStatusEnum](docs/UserHrIdpStatusEnum.md)
  - [UserIDList](docs/UserIDList.md)
  - [UserList](docs/UserList.md)
  - [VisibilityInfo](docs/VisibilityInfo.md)
  - [VisibilityTypeEnum](docs/VisibilityTypeEnum.md)
+ - [WebhookApiKeyCredential](docs/WebhookApiKeyCredential.md)
+ - [WebhookApiKeyLocationEnum](docs/WebhookApiKeyLocationEnum.md)
+ - [WebhookAuthTypeEnum](docs/WebhookAuthTypeEnum.md)
+ - [WebhookCredentials](docs/WebhookCredentials.md)
+ - [WebhookHmacCredential](docs/WebhookHmacCredential.md)
 
 
 <a id="documentation-for-authorization"></a>

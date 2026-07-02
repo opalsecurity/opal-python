@@ -73,6 +73,11 @@ Name | Type | Description | Notes
 **datadog_role** | [**ResourceRemoteInfoDatadogRole**](ResourceRemoteInfoDatadogRole.md) |  | [optional] 
 **clickhouse_database** | [**ResourceRemoteInfoClickhouseDatabase**](ResourceRemoteInfoClickhouseDatabase.md) |  | [optional] 
 **clickhouse_table** | [**ResourceRemoteInfoClickhouseTable**](ResourceRemoteInfoClickhouseTable.md) |  | [optional] 
+**grafana_folder** | [**ResourceRemoteInfoGrafanaFolder**](ResourceRemoteInfoGrafanaFolder.md) |  | [optional] 
+**grafana_dashboard** | [**ResourceRemoteInfoGrafanaDashboard**](ResourceRemoteInfoGrafanaDashboard.md) |  | [optional] 
+**grafana_role** | [**ResourceRemoteInfoGrafanaRole**](ResourceRemoteInfoGrafanaRole.md) |  | [optional] 
+**zendesk_role** | [**ResourceRemoteInfoZendeskRole**](ResourceRemoteInfoZendeskRole.md) |  | [optional] 
+**hubspot_role** | [**ResourceRemoteInfoHubspotRole**](ResourceRemoteInfoHubspotRole.md) |  | [optional] 
 
 ## Example
 

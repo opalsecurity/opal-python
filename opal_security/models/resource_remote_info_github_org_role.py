@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +28,9 @@ class ResourceRemoteInfoGithubOrgRole(BaseModel):
     Remote info for GitHub organization role.
     """ # noqa: E501
     role_id: StrictStr = Field(description="The id of the role.")
+    org_name: Optional[StrictStr] = Field(default=None, description="GitHub org role's org name, required only for Enterprise.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["role_id"]
+    __properties: ClassVar[List[str]] = ["role_id", "org_name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +90,8 @@ class ResourceRemoteInfoGithubOrgRole(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "role_id": obj.get("role_id")
+            "role_id": obj.get("role_id"),
+            "org_name": obj.get("org_name")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

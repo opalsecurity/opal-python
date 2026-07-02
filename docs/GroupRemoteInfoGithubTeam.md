@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **team_id** | **str** | The id of the GitHub team. | [optional] 
 **team_slug** | **str** | The slug of the GitHub team. | 
+**org_name** | **str** | GitHub team&#39;s org name, required only for Enterprise | [optional] 
 
 ## Example
 

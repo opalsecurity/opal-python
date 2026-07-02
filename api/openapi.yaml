@@ -4,7 +4,9 @@ info:
     email: hello@opal.dev
     name: Opal Team
     url: https://www.opal.dev/
-  description: The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
+  description:
+    The Opal API is a RESTful API that allows you to interact with the
+    Opal Security platform programmatically.
   title: Opal API
   version: "1.0"
 servers:
@@ -22,6 +24,8 @@ tags:
     description: Operations related to configuration templates
   - name: delegations
     description: Operations related to request reviewer delegations
+  - name: event-streams
+    description: Operations related to event streaming connections
   - name: events
     description: Operations related to events
   - name: groups
@@ -36,6 +40,8 @@ tags:
     description: Operations related to non-human identities
   - name: on-call-schedules
     description: Operations related to on-call schedules
+  - name: opal-queries
+    description: Operations related to OpalQuery
   - name: owners
     description: Operations related to owners
   - name: requests
@@ -126,7 +132,9 @@ paths:
       description: Returns a list of `Bundle` objects.
       operationId: getBundles
       parameters:
-        - description: The maximum number of bundles to return from the beginning of the list. Default is 200, max is 1000.
+        - description:
+            The maximum number of bundles to return from the beginning of the
+            list. Default is 200, max is 1000.
           example: 200
           explode: true
           in: query
@@ -135,7 +143,9 @@ paths:
           schema:
             type: integer
           style: form
-        - description: A cursor indicating where to start fetching items after a specific point.
+        - description:
+            A cursor indicating where to start fetching items after a specific
+            point.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           explode: true
           in: query
@@ -278,7 +288,9 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The maximum number of resources to return from the beginning of the list. Default is 200, max is 1000.
+        - description:
+            The maximum number of resources to return from the beginning of the
+            list. Default is 200, max is 1000.
           example: 200
           explode: true
           in: query
@@ -287,7 +299,9 @@ paths:
           schema:
             type: integer
           style: form
-        - description: A cursor indicating where to start fetching items after a specific point.
+        - description:
+            A cursor indicating where to start fetching items after a specific
+            point.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           explode: true
           in: query
@@ -331,11 +345,17 @@ paths:
                   format: uuid
                   type: string
                 access_level_remote_id:
-                  description: The remote ID of the access level to grant to this user. Required if the resource being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.
+                  description:
+                    The remote ID of the access level to grant to this user. Required
+                    if the resource being added requires an access level. If
+                    omitted, the default access level remote ID value (empty
+                    string) is used.
                   example: arn:aws:iam::590304332660:role/AdministratorAccess
                   type: string
                 access_level_name:
-                  description: The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.
+                  description:
+                    The name of the access level to grant to this user. If omitted, the
+                    default access level name value (empty string) is used.
                   example: AdministratorAccess
                   type: string
               required:
@@ -372,7 +392,9 @@ paths:
           schema:
             format: uuid
             type: string
-        - description: The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.
+        - description:
+            The remote ID of the access level to grant. If omitted, the default
+            access level remote ID value (empty string) is used.
           example: arn:aws:iam::590304332660:role/AdministratorAccess
           explode: true
           in: query
@@ -402,7 +424,9 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The maximum number of groups to return from the beginning of the list. Default is 200, max is 1000.
+        - description:
+            The maximum number of groups to return from the beginning of the
+            list. Default is 200, max is 1000.
           example: 200
           explode: true
           in: query
@@ -411,7 +435,9 @@ paths:
           schema:
             type: integer
           style: form
-        - description: A cursor indicating where to start fetching items after a specific point.
+        - description:
+            A cursor indicating where to start fetching items after a specific
+            point.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           explode: true
           in: query
@@ -455,11 +481,17 @@ paths:
                   format: uuid
                   type: string
                 access_level_remote_id:
-                  description: The remote ID of the access level to grant to this user. Required if the group being added requires an access level. If omitted, the default access level remote ID value (empty string) is used.
+                  description:
+                    The remote ID of the access level to grant to this user. Required
+                    if the group being added requires an access level. If
+                    omitted, the default access level remote ID value (empty
+                    string) is used.
                   example: arn:aws:iam::590304332660:role/AdministratorAccess
                   type: string
                 access_level_name:
-                  description: The name of the access level to grant to this user. If omitted, the default access level name value (empty string) is used.
+                  description:
+                    The name of the access level to grant to this user. If omitted, the
+                    default access level name value (empty string) is used.
                   example: AdministratorAccess
                   type: string
               required:
@@ -554,7 +586,10 @@ paths:
         content:
           application/json:
             schema:
-              description: The visibility details of the bundle. Setting to LIMITED visibility with no visibility groups will make bundle only visible to admins and users with access.
+              description:
+                The visibility details of the bundle. Setting to LIMITED visibility
+                with no visibility groups will make bundle only visible to
+                admins and users with access.
               $ref: "#/components/schemas/VisibilityInfo"
       responses:
         "200":
@@ -641,6 +676,98 @@ paths:
         - BearerAuth: []
       tags:
         - configuration-templates
+  /event-streams:
+    get:
+      summary: Get event streams
+      description: Returns a list of configured event streaming connections for your organization.
+      operationId: getEventStreams
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventStreamList"
+          description: A list of event streams for your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - event-streams
+    post:
+      summary: Create event stream
+      description: Creates a new event streaming connection.
+      operationId: createEventStream
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventStreamInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventStream"
+          description: The event stream just created. Credentials are returned in clear text only on creation.
+      security:
+        - BearerAuth: []
+      tags:
+        - event-streams
+  /event-streams/{event_stream_id}:
+    put:
+      summary: Update event stream
+      description: Updates an existing event streaming connection.
+      operationId: updateEventStream
+      parameters:
+        - description: The ID of the event stream.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: event_stream_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEventStreamInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventStream"
+          description: The updated event stream.
+      security:
+        - BearerAuth: []
+      tags:
+        - event-streams
+    delete:
+      summary: Delete event stream
+      description: Deletes an event streaming connection.
+      operationId: deleteEventStream
+      parameters:
+        - description: The ID of the event stream.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: event_stream_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The event stream was successfully deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - event-streams
   /events:
     get:
       description: Returns a list of `Event` objects.
@@ -705,7 +832,9 @@ paths:
           schema:
             type: string
           style: form
-        - description: An API filter for the events. Supply the name and preview of the API token.
+        - description:
+            An API filter for the events. Supply the name and preview of the
+            API token.
           example: fullaccess:**************************M_g==
           explode: true
           in: query
@@ -831,7 +960,9 @@ paths:
           schema:
             type: string
           style: form
-        - description: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
+        - description:
+            The IDs of the tags to filter by. Returns only groups that have any
+            of these tags applied.
           in: query
           name: tag_ids
           required: false
@@ -873,7 +1004,8 @@ paths:
       tags:
         - groups
     post:
-      description: Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
+      description: Creates an Opal group or [imports a remote
+        group](https://docs.opal.dev/reference/end-system-objects).
       operationId: createGroup
       requestBody:
         required: true
@@ -1286,7 +1418,10 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
+        - description:
+            The remote ID of the access level to grant to this user. If
+            omitted, the default access level remote ID value (empty string) is
+            used.
           example: arn:aws:iam::590304332660:role/AdministratorAccess
           explode: true
           in: query
@@ -1306,11 +1441,16 @@ paths:
                 duration_minutes: 60
               properties:
                 access_level_remote_id:
-                  description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
+                  description:
+                    The remote ID of the access level to grant to this user. If
+                    omitted, the default access level remote ID value (empty
+                    string) is used.
                   example: arn:aws:iam::590304332660:role/AdministratorAccess
                   type: string
                 duration_minutes:
-                  description: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
+                  description:
+                    The duration for which the resource can be accessed (in minutes).
+                    Use 0 to set to indefinite.
                   example: 60
                   type: integer
                   maximum: 525960 # One year
@@ -1621,7 +1761,10 @@ paths:
                 access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
               properties:
                 duration_minutes:
-                  description: The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.
+                  description:
+                    The updated duration for which the group can be accessed (in
+                    minutes). Use 0 for indefinite, or a negative value to
+                    revoke access.
                   type: integer
                   maximum: 525960 # One year
                   example: 120
@@ -1666,7 +1809,9 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.
+        - description:
+            The duration for which the group can be accessed (in minutes). Use
+            0 to set to indefinite.
           example: 60
           explode: true
           in: query
@@ -1677,7 +1822,10 @@ paths:
             maximum: 525960 # One year
           style: form
           deprecated: true
-        - description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
+        - description:
+            The remote ID of the access level to grant to this user. If
+            omitted, the default access level remote ID value (empty string) is
+            used.
           example: arn:aws:iam::590304332660:role/AdministratorAccess
           explode: true
           in: query
@@ -1697,11 +1845,16 @@ paths:
                 access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
               properties:
                 duration_minutes:
-                  description: The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.
+                  description:
+                    The duration for which the group can be accessed (in minutes). Use
+                    0 to set to indefinite.
                   example: 60
                   type: integer
                 access_level_remote_id:
-                  description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
+                  description:
+                    The remote ID of the access level to grant to this user. If
+                    omitted, the default access level remote ID value (empty
+                    string) is used.
                   example: arn:aws:iam::590304332660:role/AdministratorAccess
                   type: string
               required:
@@ -1742,7 +1895,10 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+        - description:
+            The remote ID of the access level for which this user has direct
+            access. If omitted, the default access level remote ID value (empty
+            string) is assumed.
           example: 30
           explode: true
           in: query
@@ -1925,7 +2081,9 @@ paths:
         - group-bindings
   /idp-group-mappings/{app_resource_id}:
     get:
-      description: Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
+      description:
+        Returns the configured set of available `IdpGroupMapping` objects
+        for an Okta app.
       operationId: getIdpGroupMappings
       parameters:
         - description: The ID of the Okta app.
@@ -1944,7 +2102,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/IdpGroupMappingList"
-          description: The configured set of available `IdpGroupMapping` objects for an Okta app.
+          description:
+            The configured set of available `IdpGroupMapping` objects for an
+            Okta app.
       security:
         - BearerAuth: []
       tags:
@@ -1986,7 +2146,9 @@ paths:
               type: object
       responses:
         "200":
-          description: The updated set of available `IdpGroupMapping` objects for an Okta app.
+          description:
+            The updated set of available `IdpGroupMapping` objects for an Okta
+            app.
       security:
         - BearerAuth: []
       tags:
@@ -2253,7 +2415,9 @@ paths:
         - owners
   /owners/name/{owner_name}:
     get:
-      description: Returns an `Owner` object. Does not support owners with `/` in their name, use /owners?name=... instead.
+      description:
+        Returns an `Owner` object. Does not support owners with `/` in
+        their name, use /owners?name=... instead.
       operationId: getOwnerFromName
       parameters:
         - description: The name of the owner.
@@ -2278,7 +2442,9 @@ paths:
         - owners
   /owners/{owner_id}/users:
     get:
-      description: Gets the list of users for this owner, in escalation priority order if applicable.
+      description:
+        Gets the list of users for this owner, in escalation priority order
+        if applicable.
       operationId: get_owner_users
       parameters:
         - description: The ID of the owner.
@@ -2303,7 +2469,11 @@ paths:
       tags:
         - owners
     put:
-      description: Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
+      description:
+        Sets the list of users for this owner. If escalation is enabled,
+        the order of this list is the escalation priority order of the users. If
+        the owner has a source group, adding or removing users from this list
+        won't be possible.
       operationId: set_owner_users
       parameters:
         - description: The ID of the owner.
@@ -2336,7 +2506,9 @@ paths:
   /requests:
     get:
       summary: Get requests
-      description: Returns a list of requests for your organization that is visible by the admin.
+      description:
+        Returns a list of requests for your organization that is visible by
+        the admin.
       operationId: getRequests
       parameters:
         - description: A start date filter for the events.
@@ -2475,7 +2647,8 @@ paths:
       operationId: getRequestsRelay
       deprecated: true
       parameters:
-        - description: Number of results to return after the cursor. Use either first/after or last/before, not both.
+        - description: Number of results to return after the cursor. Use either
+            first/after or last/before, not both.
           example: 10
           in: query
           name: first
@@ -2484,14 +2657,19 @@ paths:
             type: integer
             minimum: 1
             maximum: 100
-        - description: Cursor to fetch results after. Used with 'first' for forward pagination.
-          example: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+        - description:
+            Cursor to fetch results after. Used with 'first' for forward
+            pagination.
+          example:
+            "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N\
+            2ZhNjFhYjk4Nw=="
           in: query
           name: after
           required: false
           schema:
             type: string
-        - description: Number of results to return before the cursor. Use either first/after or last/before, not both.
+        - description: Number of results to return before the cursor. Use either
+            first/after or last/before, not both.
           example: 10
           in: query
           name: last
@@ -2500,8 +2678,12 @@ paths:
             type: integer
             minimum: 1
             maximum: 100
-        - description: Cursor to fetch results before. Used with 'last' for backward pagination.
-          example: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+        - description:
+            Cursor to fetch results before. Used with 'last' for backward
+            pagination.
+          example:
+            "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N\
+            2ZhNjFhYjk4Nw=="
           in: query
           name: before
           required: false
@@ -2782,7 +2964,9 @@ paths:
             format: uuid
             type: string
           style: form
-        - description: The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.
+        - description:
+            The ancestor resource id to filter by. Returns all resources that
+            are descendants of the specified resource.
           example:
             - 4baf8423-db0a-4037-a4cf-f79c60cb67a5
           explode: false
@@ -2793,14 +2977,19 @@ paths:
             format: uuid
             type: string
           style: form
-        - description: Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
+        - description:
+            Filter resources by their remote id. This will return all resources
+            that have a remote id that matches the provided remote id. Note that
+            this requires resource_type_filter to be provided.
           in: query
           name: remote_id
           required: false
           schema:
             type: string
           style: form
-        - description: The IDs of the tags to filter by. Returns only resources that have any of these tags applied.
+        - description:
+            The IDs of the tags to filter by. Returns only resources that have
+            any of these tags applied.
           in: query
           name: tag_ids
           required: false
@@ -2843,7 +3032,9 @@ paths:
       tags:
         - resources
     post:
-      description: Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
+      description: Creates a resource. See
+        [here](https://docs.opal.dev/reference/end-system-objects) for details
+        about importing resources.
       operationId: createResource
       requestBody:
         required: true
@@ -3297,12 +3488,16 @@ paths:
                 access_level_remote_id: roles/cloudsql.instanceUser
               properties:
                 duration_minutes:
-                  description: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
+                  description:
+                    The duration for which the resource can be accessed (in minutes).
+                    Use 0 to set to indefinite.
                   example: 60
                   type: integer
                   maximum: 525960 # One year
                 access_level_remote_id:
-                  description: The remote ID of the access level to grant. If omitted, the default access level remote ID value (empty string) is used.
+                  description:
+                    The remote ID of the access level to grant. If omitted, the default
+                    access level remote ID value (empty string) is used.
                   example: roles/cloudsql.instanceUser
                   type: string
               required:
@@ -3314,7 +3509,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResourceNHI"
-          description: Details about the access that the non-human identity was granted to the resource.
+          description:
+            Details about the access that the non-human identity was granted to
+            the resource.
       security:
         - BearerAuth: []
       tags:
@@ -3333,7 +3530,9 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The resource ID of the non-human identity to remove from this resource.
+        - description:
+            The resource ID of the non-human identity to remove from this
+            resource.
           example: f92aa855-cea9-4814-b9d8-f2a60d3e4a06
           explode: false
           in: path
@@ -3343,7 +3542,10 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The remote ID of the access level for which this non-human identity has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+        - description:
+            The remote ID of the access level for which this non-human identity
+            has direct access. If omitted, the default access level remote ID
+            value (empty string) is assumed.
           example: roles/cloudsql.instanceUser
           explode: true
           in: query
@@ -3354,7 +3556,9 @@ paths:
           style: form
       responses:
         "200":
-          description: This non-human identity's access was successfully removed from this resource.
+          description:
+            This non-human identity's access was successfully removed from this
+            resource.
       security:
         - BearerAuth: []
       tags:
@@ -3384,7 +3588,9 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
+        - description:
+            The duration for which the resource can be accessed (in minutes).
+            Use 0 to set to indefinite.
           example: 60
           explode: true
           in: query
@@ -3395,7 +3601,10 @@ paths:
             maximum: 525960 # One year
           style: form
           deprecated: true
-        - description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
+        - description:
+            The remote ID of the access level to grant to this user. If
+            omitted, the default access level remote ID value (empty string) is
+            used.
           example: arn:aws:iam::590304332660:role/AdministratorAccess
           explode: true
           in: query
@@ -3415,12 +3624,17 @@ paths:
                 access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
               properties:
                 duration_minutes:
-                  description: The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.
+                  description:
+                    The duration for which the resource can be accessed (in minutes).
+                    Use 0 to set to indefinite.
                   example: 60
                   type: integer
                   maximum: 525960 # One year
                 access_level_remote_id:
-                  description: The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.
+                  description:
+                    The remote ID of the access level to grant to this user. If
+                    omitted, the default access level remote ID value (empty
+                    string) is used.
                   example: arn:aws:iam::590304332660:role/AdministratorAccess
                   type: string
               required:
@@ -3470,7 +3684,9 @@ paths:
                 access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
               properties:
                 duration_minutes:
-                  description: The updated duration for which the resource can be accessed (in minutes). Use 0 for indefinite.
+                  description:
+                    The updated duration for which the resource can be accessed (in
+                    minutes). Use 0 for indefinite.
                   type: integer
                   maximum: 525960 # One year
                   example: 120
@@ -3515,7 +3731,10 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+        - description:
+            The remote ID of the access level for which this user has direct
+            access. If omitted, the default access level remote ID value (empty
+            string) is assumed.
           example: arn:aws:iam::590304332660:role/AdministratorAccess
           explode: true
           in: query
@@ -3617,7 +3836,10 @@ paths:
             format: uuid
             type: string
           style: simple
-        - description: The remote ID of the access level that you wish to query for the resource. If omitted, the default access level remote ID value (empty string) is used.
+        - description:
+            The remote ID of the access level that you wish to query for the
+            resource. If omitted, the default access level remote ID value
+            (empty string) is used.
           example: arn:aws:iam::590304332660:role/AdministratorAccess
           explode: true
           in: query
@@ -3684,7 +3906,9 @@ paths:
         - resources
   /resources/{resource_id}/scoped-role-permissions:
     get:
-      description: Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
+      description:
+        Returns all the scoped role permissions that apply to the given
+        resource. Only OPAL_SCOPED_ROLE resource type supports this field.
       operationId: get_resource_scoped_role_permissions
       parameters:
         - description: The ID of the resource whose scoped role permissions belong to.
@@ -3712,7 +3936,9 @@ paths:
       description: Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
       operationId: set_resource_scoped_role_permissions
       parameters:
-        - description: The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.
+        - description:
+            The ID of the resource whose scoped role permissions belong to.
+            Must be of OPAL_SCOPED_ROLE resource type.
           name: resource_id
           example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
           explode: false
@@ -3868,7 +4094,10 @@ paths:
             format: uuid
             type: string
           style: form
-        - description: The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.
+        - description:
+            The email of the user. If both user ID and email are provided, user
+            ID will take precedence. If neither are provided, an error will
+            occur.
           example: johndoe@domain.org
           explode: true
           in: query
@@ -3912,7 +4141,9 @@ paths:
             type: integer
             maximum: 1000
           style: form
-        - description: The IDs of the tags to filter by. Returns only users that have any of these tags applied.
+        - description:
+            The IDs of the tags to filter by. Returns only users that have any
+            of these tags applied.
           in: query
           name: tag_ids
           required: false
@@ -4026,6 +4257,39 @@ paths:
       tags:
         - users
   /access-rules:
+    get:
+      description: Returns a list of access rules for your organization.
+      operationId: get_access_rules
+      parameters:
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page. Default is 200.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedAccessRulesList"
+          description: One page of access rules for your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - access-rules
     post:
       description: Creates a new access rule config for the given group_id.
       operationId: create_access_rule
@@ -4048,7 +4312,9 @@ paths:
         - access-rules
   /access-rules/{access_rule_id}:
     get:
-      description: Returns a list of access rule config given the group_id of the access rule.
+      description:
+        Returns a list of access rule config given the group_id of the
+        access rule.
       operationId: get_access_rule
       parameters:
         - description: The access rule ID (group ID) of the access rule.
@@ -4595,10 +4861,37 @@ paths:
         - BearerAuth: []
       tags:
         - on-call-schedules
+  /queries/run:
+    post:
+      summary: Run an ad-hoc OpalQuery
+      description: Runs an ad-hoc OpalQuery and returns the results. Currently
+        supports NODE queries (users, resources, groups). This endpoint is only
+        available to our OpalQuery beta group. Please contact Opal support if
+        you'd like to be added to the beta.
+      operationId: runOpalQuery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RunOpalQueryRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpalQueryResults"
+          description: The results of the OpalQuery.
+      security:
+        - BearerAuth: []
+      tags:
+        - opal-queries
   /tokens:
     get:
       summary: Get tokens
-      description: Returns a list of first-party API tokens for your organization. Requires admin access.
+      description:
+        Returns a list of first-party API tokens for your organization.
+        Requires admin access.
       operationId: getTokens
       parameters:
         - description: The pagination cursor value.
@@ -4655,7 +4948,9 @@ paths:
   /tokens/{token_id}:
     delete:
       summary: Delete token
-      description: Deletes a first-party API token. Admins can delete any token. Non-admins can only delete their own tokens when the organization allows all users to create API tokens.
+      description: Deletes a first-party API token. Admins can delete any token.
+        Non-admins can only delete their own tokens when the organization allows
+        all users to create API tokens.
       operationId: deleteToken
       parameters:
         - description: The ID of the token to delete.
@@ -4764,7 +5059,9 @@ paths:
         - uars
   /sync_errors:
     get:
-      description: Returns a list of recent sync errors that have occurred since the last successful sync.
+      description:
+        Returns a list of recent sync errors that have occurred since the
+        last successful sync.
       operationId: getSyncErrors
       parameters:
         - description: The ID of the app to list sync errors for.
@@ -4813,10 +5110,14 @@ paths:
   /delegations:
     get:
       summary: Get delegations
-      description: Returns a list of request reviewer delegations configured for your organization.
+      description:
+        Returns a list of request reviewer delegations configured for your
+        organization.
       operationId: getDelegations
       parameters:
-        - description: The delegator user ID to filter delegations by the user delegating their access review requests.
+        - description:
+            The delegator user ID to filter delegations by the user delegating
+            their access review requests.
           example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
           explode: true
           in: query
@@ -4826,7 +5127,9 @@ paths:
             format: uuid
             type: string
           style: form
-        - description: The delegate user ID to filter delegations by the user being delegated to.
+        - description:
+            The delegate user ID to filter delegations by the user being
+            delegated to.
           example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
           explode: true
           in: query
@@ -4867,7 +5170,9 @@ paths:
       tags:
         - delegations
     post:
-      description: Creates a new request reviewer delegation to delegate access review requests from one user to another.
+      description:
+        Creates a new request reviewer delegation to delegate access review
+        requests from one user to another.
       operationId: createDelegation
       requestBody:
         required: true
@@ -4937,6 +5242,291 @@ paths:
 
 components:
   schemas:
+    AccessEntityFilters:
+      type: object
+      description:
+        Filters for matching entities by type, name, tag, IDs, connections,
+        or access levels. Supports recursive logical composition via
+        allOf/anyOf.
+      properties:
+        entityTypes:
+          type: array
+          description: Filter by entity type. Only RESOURCE, GROUP, and USER are
+            queryable via OpalQuery.
+          items:
+            type: string
+            enum: [RESOURCE, GROUP, USER]
+        entityItemTypes:
+          type: array
+          description: Filter by entity item types.
+          items:
+            $ref: "#/components/schemas/EntityItemTypeEnum"
+        entityName:
+          $ref: "#/components/schemas/EntityNameFilter"
+        entityTag:
+          $ref: "#/components/schemas/EntityTagFilter"
+        entityIDs:
+          type: array
+          description: Filter by specific entity UUIDs.
+          items:
+            type: string
+            format: uuid
+        importedFromApp:
+          type: array
+          description: Filter by app IDs from which returned nodes will be imported from.
+          items:
+            type: string
+            format: uuid
+        roleRemoteIds:
+          type: array
+          description: Filter by role remote IDs. Can only be applied within a hasAccessTo clause.
+          items:
+            type: string
+        roleNames:
+          type: array
+          description: Filter by role display names (e.g. "Admin", "Read"). Can only be applied within a hasAccessTo clause.
+          items:
+            type: string
+        allOf:
+          type: array
+          description: >
+            A list of nested filters that must all match (logical AND). Each
+             item has the same shape as this object — scalar fields like
+             `entityTypes` or `entityTag`, and can further nest `allOf`,
+             `anyOf`, or `not`.
+          items:
+            $ref: "#/components/schemas/AccessEntityFilters"
+        anyOf:
+          type: array
+          description: >
+            A list of nested filters where at least one must match (logical
+             OR). Each item has the same shape as this object.
+          items:
+            $ref: "#/components/schemas/AccessEntityFilters"
+        not:
+          description: >
+            Excludes entities matching the embedded filter (logical NOT). Pass
+            a filter object with the same shape as this one — typically a
+            single scalar field, like `{not: {entityTypes: ["RESOURCE"]}}` to
+            exclude resources.
+          type: object
+          x-go-type: AccessEntityFilters
+
+    RunOpalQueryRequest:
+      description:
+        Request body for running an ad-hoc OpalQuery. The `type` field
+        determines which query schema applies.
+      oneOf:
+        - $ref: "#/components/schemas/OpalNodeQuery"
+      discriminator:
+        propertyName: type
+        mapping:
+          NODE: "#/components/schemas/OpalNodeQuery"
+      # example:
+      #   type: NODE
+      #   query:
+      #     nodeFilters:
+      #       entityTypes: [RESOURCE]
+      #       allOf:
+      #         - entityTag:
+      #             key: env
+      #             value: prod
+      #         - entityTag:
+      #             key: team
+      #             value: platform
+      #       not:
+      #         entityItemTypes: [AWS_IAM_ROLE]
+      #     accessFilters:
+      #       isAccessibleBy:
+      #         entityTypes: [USER]
+      #         entityTag:
+      #           key: contractor
+      #   first: 50
+
+    OpalNodeQuery:
+      type: object
+      required:
+        - type
+      description:
+        Request body for a NODE-type OpalQuery. Returns entities (users,
+        resources, groups) matching the given filters.
+      example:
+        type: NODE
+        query:
+          nodeFilters:
+            entityTypes: [RESOURCE]
+            entityTag:
+              key: env
+              value: prod
+          accessFilters:
+            isAccessibleBy:
+              entityTypes: [USER]
+              entityTag:
+                key: contractor
+        first: 50
+      properties:
+        type:
+          type: string
+          enum:
+            - NODE
+        query:
+          $ref: "#/components/schemas/OpalNodeQueryBody"
+        first:
+          type: integer
+          description: Maximum number of results to return. Defaults to 200.
+          example: 200
+        after:
+          type: string
+          description: Cursor from a previous response to fetch the next page of results.
+          example: 29827fb8-f2dd-4e80-9576-28e31e9934ac
+
+    OpalNodeQueryBody:
+      type: object
+      description: The filter body for a NODE-type OpalQuery.
+      properties:
+        nodeFilters:
+          $ref: "#/components/schemas/AccessEntityFilters"
+        accessFilters:
+          $ref: "#/components/schemas/AccessRelationshipFilters"
+
+    OpalQueryResultNode:
+      type: object
+      required:
+        - id
+        - name
+        - entityType
+        - entityItemType
+      description: A matched entity from an OpalQuery result.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The entity's unique identifier.
+        name:
+          type: string
+          description: The display name of the entity.
+        entityType:
+          type: string
+          enum:
+            - USER
+            - GROUP
+            - RESOURCE
+          description: The top-level entity type.
+        entityItemType:
+          $ref: "#/components/schemas/EntityItemTypeEnum"
+
+    OpalQueryResultEdge:
+      type: object
+      required:
+        - node
+        - cursor
+      description:
+        A single result edge from an OpalQuery, containing the matched
+        entity and its pagination cursor.
+      properties:
+        node:
+          $ref: "#/components/schemas/OpalQueryResultNode"
+        cursor:
+          type: string
+          description: Opaque cursor for this entity, used for pagination.
+
+    OpalQueryResults:
+      description:
+        Paginated results of an OpalQuery. The `type` field discriminates
+        which result schema applies and mirrors the `type` field on the request.
+      oneOf:
+        - $ref: "#/components/schemas/OpalNodeQueryResults"
+      discriminator:
+        propertyName: type
+        mapping:
+          NODE: "#/components/schemas/OpalNodeQueryResults"
+
+    OpalNodeQueryResults:
+      type: object
+      required:
+        - type
+        - edges
+        - pageInfo
+      description:
+        Paginated results of a NODE-type OpalQuery — one edge per matched
+        entity (user, resource, or group).
+      properties:
+        type:
+          type: string
+          enum:
+            - NODE
+        edges:
+          type: array
+          description: List of matched entities.
+          items:
+            $ref: "#/components/schemas/OpalQueryResultEdge"
+        pageInfo:
+          $ref: "#/components/schemas/PageInfo"
+
+    AccessRelationshipFilters:
+      type: object
+      description: >
+        Filters the returned nodes by the access edges connected to them.
+        When `isAccessibleBy` and `hasAccessTo` are provided, the returned nodes
+        must satisfy both edge constraints simultaneously.
+      properties:
+        isAccessibleBy:
+          description:
+            Inbound-edge filter. The returned node must be accessible by at
+            least one entity matching this filter.
+          $ref: "#/components/schemas/AccessEntityFilters"
+        hasAccessTo:
+          description:
+            Outbound-edge filter. The returned node must have access to at
+            least one entity matching this filter.
+          $ref: "#/components/schemas/AccessEntityFilters"
+
+    EntityNameFilter:
+      type: object
+      required:
+        - stringMatchType
+        - string
+      description: Filters entities by name using a string match strategy.
+      properties:
+        stringMatchType:
+          $ref: "#/components/schemas/StringMatchType"
+        string:
+          type: string
+          description: The string value to match against the entity name.
+          example: engineering
+
+    EntityTagFilter:
+      type: object
+      required:
+        - key
+      description:
+        Filters entities by a tag key/value pair, optionally scoped to a
+        connection.
+      properties:
+        key:
+          type: string
+          description: The tag key to filter by.
+          example: team
+        value:
+          type: string
+          description:
+            The tag value to filter by. If omitted, matches any value for the
+            given key.
+          example: platform
+        connectionId:
+          type: string
+          format: uuid
+          description: If specified, filters by tags associated with this connection.
+
+    StringMatchType:
+      type: string
+      description: How to match a string value against entity names.
+      enum:
+        - CONTAINS
+        - EQUALS
+        - STARTS_WITH
+        - ENDS_WITH
+
     PaginatedAssignedRequestList:
       type: object
       required:
@@ -5000,7 +5590,9 @@ components:
           type: integer
           description: The total number of items available
     UARScope:
-      description: If set, the access review will only contain resources and groups that match at least one of the filters in scope.
+      description:
+        If set, the access review will only contain resources and groups
+        that match at least one of the filters in scope.
       example:
         filter_operator: ANY
         users:
@@ -5031,18 +5623,25 @@ components:
           type: string
           enum: [STRICT, VIEW_VISIBLE_AND_ASSIGNED, VIEW_ALL]
         users:
-          description: The access review will only include the following users. If any users are selected, any entity filters will be applied to only the entities that the selected users have access to.
+          description:
+            The access review will only include the following users. If any
+            users are selected, any entity filters will be applied to only the
+            entities that the selected users have access to.
           items:
             example: userd283-ca87-4a8a-bdbb-df212eca5353
             type: string
             format: uuid
           type: array
         filter_operator:
-          description: Specifies whether entities must match all (AND) or any (OR) of the filters.
+          description:
+            Specifies whether entities must match all (AND) or any (OR) of the
+            filters.
           type: string
           enum: [ANY, ALL]
         entities:
-          description: This access review will include resources and groups with ids in the given strings.
+          description:
+            This access review will include resources and groups with ids in
+            the given strings.
           items:
             example: f454d283-as87-4a8a-bdbb-df212eca5353
             type: string
@@ -5056,7 +5655,9 @@ components:
             format: uuid
           type: array
         admins:
-          description: This access review will include resources and groups who are owned by one of the owners corresponding to the given IDs.
+          description:
+            This access review will include resources and groups who are owned
+            by one of the owners corresponding to the given IDs.
           items:
             example: f454d283-ca87-4a8a-bdbb-df212eca5353
             type: string
@@ -5076,12 +5677,16 @@ components:
           type: boolean
           example: False
         tags:
-          description: This access review will include resources and groups who are tagged with one of the given tags.
+          description:
+            This access review will include resources and groups who are tagged
+            with one of the given tags.
           items:
             $ref: "#/components/schemas/TagFilter"
           type: array
         names:
-          description: This access review will include resources and groups whose name contains one of the given strings.
+          description:
+            This access review will include resources and groups whose name
+            contains one of the given strings.
           items:
             example: demo
             type: string
@@ -5128,8 +5733,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -5177,7 +5782,9 @@ components:
         reviewer_assignment_policy:
           $ref: "#/components/schemas/UARReviewerAssignmentPolicyEnum"
         send_reviewer_assignment_notification:
-          description: A bool representing whether to send a notification to reviewers when they're assigned a new review. Default is False.
+          description:
+            A bool representing whether to send a notification to reviewers
+            when they're assigned a new review. Default is False.
           example: False
           type: boolean
         deadline:
@@ -5186,15 +5793,22 @@ components:
           type: string
           format: date-time
         time_zone:
-          description: The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles.
+          description:
+            The time zone name (as defined by the IANA Time Zone database) used
+            in the access review deadline and exported audit report. Default is
+            America/Los_Angeles.
           example: America/Los_Angeles
           type: string
         self_review_allowed:
-          description: A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.
+          description:
+            A bool representing whether to present a warning when a user is the
+            only reviewer for themself. Default is False.
           example: False
           type: boolean
         instantly_action_reviews:
-          description: A bool representing whether to instantly action changes when reviewers submit their decision. Default is False.
+          description:
+            A bool representing whether to instantly action changes when
+            reviewers submit their decision. Default is False.
           type: boolean
           example: False
         uar_scope:
@@ -5238,7 +5852,9 @@ components:
         reviewer_assignment_policy:
           $ref: "#/components/schemas/UARReviewerAssignmentPolicyEnum"
         send_reviewer_assignment_notification:
-          description: A bool representing whether to send a notification to reviewers when they're assigned a new review. Default is False.
+          description:
+            A bool representing whether to send a notification to reviewers
+            when they're assigned a new review. Default is False.
           example: False
           type: boolean
         deadline:
@@ -5247,15 +5863,22 @@ components:
           type: string
           format: date-time
         time_zone:
-          description: The time zone name (as defined by the IANA Time Zone database) used in the access review deadline and exported audit report. Default is America/Los_Angeles.
+          description:
+            The time zone name (as defined by the IANA Time Zone database) used
+            in the access review deadline and exported audit report. Default is
+            America/Los_Angeles.
           example: America/Los_Angeles
           type: string
         self_review_allowed:
-          description: A bool representing whether to present a warning when a user is the only reviewer for themself. Default is False.
+          description:
+            A bool representing whether to present a warning when a user is the
+            only reviewer for themself. Default is False.
           example: False
           type: boolean
         instantly_action_reviews:
-          description: A bool representing whether to instantly action changes when reviewers submit their decision. Default is False.
+          description:
+            A bool representing whether to instantly action changes when
+            reviewers submit their decision. Default is False.
           type: boolean
           example: False
         reminder_schedule:
@@ -5276,7 +5899,14 @@ components:
         - self_review_allowed
       type: object
     UARReviewerAssignmentPolicyEnum:
-      description: A policy for auto-assigning reviewers. If auto-assignment is on, specific assignments can still be manually adjusted after the access review is started. Default is Manually. BY_OWNING_TEAM_ADMIN assigns reviews to resource admins in round-robin fashion. BY_OWNING_TEAM_ADMIN_ALL assigns reviews to all resource admins. BY_APPROVERS assigns reviews to resource approvers in round-robin fashion. BY_APPROVERS_ALL assigns reviews to all resource approvers.
+      description:
+        A policy for auto-assigning reviewers. If auto-assignment is on,
+        specific assignments can still be manually adjusted after the access
+        review is started. Default is Manually. BY_OWNING_TEAM_ADMIN assigns
+        reviews to resource admins in round-robin fashion.
+        BY_OWNING_TEAM_ADMIN_ALL assigns reviews to all resource admins.
+        BY_APPROVERS assigns reviews to resource approvers in round-robin
+        fashion. BY_APPROVERS_ALL assigns reviews to all resource approvers.
       enum:
         - MANUALLY
         - BY_OWNING_TEAM_ADMIN
@@ -5379,18 +6009,22 @@ components:
         - AZURE_AD
         - AWS
         - AWS_SSO
+        - CLICKHOUSE
         - COUPA
         - CURSOR
         - CUSTOM
         - CUSTOM_CONNECTOR
         - DATABRICKS
         - DATASTAX_ASTRA
+        - DEVIN
         - DUO
         - GCP
         - GIT_HUB
         - GIT_LAB
         - GOOGLE_GROUPS
         - GOOGLE_WORKSPACE
+        - GRAFANA
+        - HUBSPOT
         - ILEVEL
         - INCIDENTIO
         - LDAP
@@ -5400,16 +6034,23 @@ components:
         - MYSQL
         - NETSUITE
         - DATADOG
+        - OKTA_CIAM
         - OKTA_DIRECTORY
         - OPENAI_PLATFORM
         - OPAL
+        - ORACLE_FUSION
         - PAGERDUTY
+        - POSTGRES
+        - ROOTLY
         - SALESFORCE
         - SNOWFLAKE
+        - SLACK
         - TAILSCALE
         - TELEPORT
         - TWINGATE
+        - VAULT
         - WORKDAY
+        - ZENDESK
       example: OKTA_DIRECTORY
       type: string
     EntityTypeEnum:
@@ -5496,7 +6137,9 @@ components:
         key: "iam:GetRole"
         name: "Opal's service account is missing the 'iam:GetRole' permission."
         usage_reason: "Opal uses the 'iam:GetRole' permissions to view access to resources."
-        details: "403 Google API Error. Service account is not authorized to access role assignments."
+        details:
+          "403 Google API Error. Service account is not authorized to access role
+          assignments."
         severity: HIGH
         status: FAILED
         updated_at: 2021-01-06T20:00:00Z
@@ -5506,15 +6149,21 @@ components:
           example: "iam:GetUser"
           type: string
         name:
-          description: The human-readable description of whether the validation has the permissions.
+          description:
+            The human-readable description of whether the validation has the
+            permissions.
           example: "Opal's service account is missing the 'iam:GetUser' description."
         usage_reason:
           description: The reason for needing the validation.
           example: Opal uses the 'iam:GetUser' permission to import users.
           type: string
         details:
-          description: Extra details regarding the validation. Could be an error message or restrictions on permissions.
-          example: 403 Google API Error. Service account is not authorized to access role assignments.
+          description:
+            Extra details regarding the validation. Could be an error message
+            or restrictions on permissions.
+          example:
+            403 Google API Error. Service account is not authorized to access role
+            assignments.
           type: string
         severity:
           $ref: "#/components/schemas/AppValidationSeverityEnum"
@@ -5586,8 +6235,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -5621,8 +6270,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -5803,11 +6452,15 @@ components:
           nullable: true
           type: string
         has_direct_access:
-          description: The user has direct access to this resources (vs. indirectly, like through a group).
+          description:
+            The user has direct access to this resources (vs. indirectly, like
+            through a group).
           example: true
           type: boolean
         num_access_paths:
-          description: The number of ways in which the user has access through this resource (directly and indirectly).
+          description:
+            The number of ways in which the user has access through this
+            resource (directly and indirectly).
           example: 3
           format: int32
           type: integer
@@ -5885,11 +6538,15 @@ components:
           nullable: true
           type: string
         has_direct_access:
-          description: The principal has direct access to this entity (vs. inherited access).
+          description:
+            The principal has direct access to this entity (vs. inherited
+            access).
           example: true
           type: boolean
         num_access_paths:
-          description: The number of ways in which the principal has access to this entity (directly and inherited).
+          description:
+            The number of ways in which the principal has access to this entity
+            (directly and inherited).
           example: 3
           format: int32
           type: integer
@@ -5949,8 +6606,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -6024,8 +6681,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -6055,8 +6712,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -6213,22 +6870,52 @@ components:
         results:
           - group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
             app_id: b5a5ca27-0ea3-4d86-9199-2126d57d1fbd
-            description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+            name: Payments Production Admin
+            description:
+              This group represents Active Directory group "Payments Production
+              Admin". We use this AD group to facilitate staging deployments and
+              qualifying new releases.
             admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+            group_leader_user_ids:
+              - 7c86c85d-0651-43e2-a748-d69d658418e8
+            remote_id: 037m2jsg218b2wb
+            remote_name: Finance Team
+            group_type: ACTIVE_DIRECTORY_GROUP
             max_duration: 120
+            recommended_duration: 60
+            extensions_duration_in_minutes: 60
             require_manager_approval: False
             require_support_ticket: False
+            require_mfa_to_approve: False
+            require_mfa_to_request: False
+            auto_approval: False
+            is_requestable: True
           - group_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
-            description: Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.
+            app_id: a7c3e291-1234-4abc-9def-1234567890ab
+            name: Integrations On-Call
+            description:
+              Manages the Integrations Team on-call privileged resources. This
+              group is automatically synced with the on-call rotation defined in
+              PagerDuty.
             admin_owner_id: 4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3
+            group_leader_user_ids: []
+            remote_id: pagerduty-schedule:P123XYZ
+            remote_name: Integrations On-Call
+            group_type: PAGERDUTY_ON_CALL_SCHEDULE
             max_duration: 360
+            recommended_duration: 120
+            extensions_duration_in_minutes: 0
             require_manager_approval: False
             require_support_ticket: True
+            require_mfa_to_approve: False
+            require_mfa_to_request: False
+            auto_approval: False
+            is_requestable: True
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -6299,7 +6986,9 @@ components:
           format: uuid
           type: string
         duration_minutes:
-          description: The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.
+          description:
+            The updated duration for which the group can be accessed (in
+            minutes). Use 0 for indefinite.
           type: integer
           maximum: 525960 # One year
           example: 120
@@ -6321,13 +7010,26 @@ components:
       example:
         group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
         app_id: b5a5ca27-0ea3-4d86-9199-2126d57d1fbd
+        name: Payments Production Admin
+        description:
+          This group represents Active Directory group "Payments Production
+          Admin". We use this AD group to facilitate staging deployments and
+          qualifying new releases.
+        admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        group_leader_user_ids:
+          - 7c86c85d-0651-43e2-a748-d69d658418e8
         remote_id: 037m2jsg218b2wb
         remote_name: Finance Team
-        description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
-        admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        group_type: ACTIVE_DIRECTORY_GROUP
         max_duration: 120
+        recommended_duration: 60
+        extensions_duration_in_minutes: 60
         require_manager_approval: False
         require_support_ticket: False
+        require_mfa_to_approve: False
+        require_mfa_to_request: False
+        auto_approval: False
+        is_requestable: True
       properties:
         group_id:
           description: The ID of the group.
@@ -6345,7 +7047,10 @@ components:
           type: string
         description:
           description: A description of the group.
-          example: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+          example:
+            This group represents Active Directory group "Payments Production
+            Admin". We use this AD group to facilitate staging deployments and
+            qualifying new releases.
           type: string
         admin_owner_id:
           description: The ID of the owner of the group.
@@ -6369,36 +7074,53 @@ components:
         group_type:
           $ref: "#/components/schemas/GroupTypeEnum"
         max_duration:
-          description: The maximum duration for which the group can be requested (in minutes).
+          description:
+            The maximum duration for which the group can be requested (in
+            minutes).
           type: integer
           example: 120
         recommended_duration:
-          description: The recommended duration for which the group should be requested (in minutes). -1 represents an indefinite duration.
+          description:
+            The recommended duration for which the group should be requested
+            (in minutes). -1 represents an indefinite duration.
           type: integer
           example: 120
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+          description:
+            The duration for which access can be extended (in minutes). Set to
+            0 to disable extensions. When > 0, extensions are enabled for the
+            specified duration.
           type: integer
           example: 120
         require_manager_approval:
-          description: A bool representing whether or not access requests to the group require manager approval.
+          description:
+            A bool representing whether or not access requests to the group
+            require manager approval.
           example: False
           type: boolean
           deprecated: true
         require_support_ticket:
-          description: A bool representing whether or not access requests to the group require an access ticket.
+          description:
+            A bool representing whether or not access requests to the group
+            require an access ticket.
           example: False
           type: boolean
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this group.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this group.
           example: False
           type: boolean
         require_mfa_to_request:
-          description: A bool representing whether or not to require MFA for requesting access to this group.
+          description:
+            A bool representing whether or not to require MFA for requesting
+            access to this group.
           example: False
           type: boolean
         auto_approval:
-          description: A bool representing whether or not to automatically approve requests to this group.
+          description:
+            A bool representing whether or not to automatically approve
+            requests to this group.
           example: False
           type: boolean
         request_template_id:
@@ -6417,7 +7139,9 @@ components:
           format: uuid
           type: string
         is_requestable:
-          description: A bool representing whether or not to allow access requests to this group.
+          description:
+            A bool representing whether or not to allow access requests to this
+            group.
           example: False
           type: boolean
         request_configurations:
@@ -6427,14 +7151,20 @@ components:
           items:
             $ref: "#/components/schemas/RequestConfiguration"
         request_configuration_list:
-          description: A list of request configurations for this group. Deprecated in favor of `request_configurations`.
+          description:
+            A list of request configurations for this group. Deprecated in
+            favor of `request_configurations`.
           deprecated: true
           example: []
           type: array
           items:
             $ref: "#/components/schemas/RequestConfiguration"
         metadata:
-          description: JSON metadata about the remote group. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.
+          description:
+            JSON metadata about the remote group. Only set for items linked to
+            remote systems. See [this
+            guide](https://docs.opal.dev/reference/end-system-objects) for
+            details.
           deprecated: true
           example: |-
             { "okta_directory_group": { "group_id": "00g4bs66kwtpe1g12345" } }
@@ -6442,13 +7172,17 @@ components:
         remote_info:
           $ref: "#/components/schemas/GroupRemoteInfo"
         custom_request_notification:
-          description: Custom request notification sent to the requester when the request is approved.
+          description:
+            Custom request notification sent to the requester when the request
+            is approved.
           type: string
           maxLength: 800
           nullable: true
           example: "Check your email to register your account."
         risk_sensitivity:
-          description: The risk sensitivity level for the group. When an override is set, this field will match that.
+          description:
+            The risk sensitivity level for the group. When an override is set,
+            this field will match that.
           readOnly: true
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
@@ -6484,8 +7218,8 @@ components:
           type: array
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -6581,14 +7315,18 @@ components:
         - description
       type: object
     PropagationStatus:
-      description: The state of whether the push action was propagated to the remote system. If this is null, the access was synced from the remote system.
+      description:
+        The state of whether the push action was propagated to the remote
+        system. If this is null, the access was synced from the remote system.
       properties:
         status:
           $ref: "#/components/schemas/PropagationStatusEnum"
       required:
         - status
     PropagationStatusEnum:
-      description: The status of whether the user has been synced to the group or resource in the remote system.
+      description:
+        The status of whether the user has been synced to the group or
+        resource in the remote system.
       enum:
         - SUCCESS
         - ERR_REMOTE_INTERNAL_ERROR
@@ -6618,14 +7356,20 @@ components:
       example:
         groups:
           - group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
-            description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+            description:
+              This group represents Active Directory group "Payments Production
+              Admin". We use this AD group to facilitate staging deployments and
+              qualifying new releases.
             name: api-group
             admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
             max_duration: 120
             require_manager_approval: False
             require_support_ticket: False
           - group_id: 99d0b81d-14be-4cf6-bd27-348b4af1d11b
-            description: Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.
+            description:
+              Manages the Integrations Team on-call privileged resources. This
+              group is automatically synced with the on-call rotation defined in
+              PagerDuty.
             name: on-call-integrations
             admin_owner_id: 4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3
             max_duration: 360
@@ -6647,7 +7391,10 @@ components:
         The `UpdateGroupInfo` object is used as an input to the UpdateGroup API.
       example:
         group_id: f454d283-ca87-4a87-bdbb-df212eca5353
-        description: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+        description:
+          This group represents Active Directory group "Payments Production
+          Admin". We use this AD group to facilitate staging deployments and
+          qualifying new releases.
         name: api-group
         admin_owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
         max_duration: 120
@@ -6665,7 +7412,10 @@ components:
           type: string
         description:
           description: A description of the group.
-          example: This group represents Active Directory group "Payments Production Admin". We use this AD group to facilitate staging deployments and qualifying new releases.
+          example:
+            This group represents Active Directory group "Payments Production
+            Admin". We use this AD group to facilitate staging deployments and
+            qualifying new releases.
           type: string
         admin_owner_id:
           description: The ID of the owner of the group.
@@ -6673,22 +7423,35 @@ components:
           format: uuid
           type: string
         max_duration:
-          description: The maximum duration for which the group can be requested (in minutes). Use -1 to set to indefinite. Deprecated in favor of `request_configurations`.
+          description:
+            The maximum duration for which the group can be requested (in
+            minutes). Use -1 to set to indefinite. Deprecated in favor of
+            `request_configurations`.
           type: integer
           example: 120
           deprecated: true
         recommended_duration:
-          description: The recommended duration for which the group should be requested (in minutes). Will be the default value in a request. Use -1 to set to indefinite and 0 to unset. Deprecated in favor of `request_configurations`.
+          description:
+            The recommended duration for which the group should be requested
+            (in minutes). Will be the default value in a request. Use -1 to set
+            to indefinite and 0 to unset. Deprecated in favor of
+            `request_configurations`.
           type: integer
           example: 120
           deprecated: true
         require_manager_approval:
-          description: A bool representing whether or not access requests to the group require manager approval. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not access requests to the group
+            require manager approval. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
         require_support_ticket:
-          description: A bool representing whether or not access requests to the group require an access ticket. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not access requests to the group
+            require an access ticket. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
@@ -6699,16 +7462,24 @@ components:
           type: string
           deprecated: true
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this group.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this group.
           example: False
           type: boolean
         require_mfa_to_request:
-          description: A bool representing whether or not to require MFA for requesting access to this group. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not to require MFA for requesting
+            access to this group. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
         auto_approval:
-          description: A bool representing whether or not to automatically approve requests to this group. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not to automatically approve
+            requests to this group. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
@@ -6718,13 +7489,17 @@ components:
           format: uuid
           type: string
         request_template_id:
-          description: The ID of the associated request template. Deprecated in favor of `request_configurations`.
+          description:
+            The ID of the associated request template. Deprecated in favor of
+            `request_configurations`.
           example: 06851574-e50d-40ca-8c78-f72ae6ab4304
           format: uuid
           type: string
           deprecated: true
         is_requestable:
-          description: A bool representing whether or not to allow access requests to this group. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not to allow access requests to this
+            group. Deprecated in favor of `request_configurations`.
           example: False
           type: boolean
           deprecated: true
@@ -6735,7 +7510,10 @@ components:
             format: uuid
           type: array
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.
+          description:
+            The duration for which access can be extended (in minutes).
+            Deprecated, set the extension duration in the request_configuration
+            you want it to apply to.
           type: integer
           example: 120
           deprecated: true
@@ -6743,9 +7521,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/RequestConfiguration"
-          description: The request configuration list of the configuration template. If not provided, the default request configuration will be used.
+          description:
+            The request configuration list of the configuration template. If
+            not provided, the default request configuration will be used.
         request_configuration_list:
-          description: The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.
+          description:
+            The request configuration list of the configuration template. If
+            not provided, the default request configuration will be used.
+            Deprecated in favor of `request_configurations`.
           $ref: "#/components/schemas/CreateRequestConfigurationInfoList"
           deprecated: true
           example:
@@ -6784,7 +7567,9 @@ components:
                     stage: 1
                 priority: 1
         custom_request_notification:
-          description: Custom request notification sent to the requester when the request is approved.
+          description:
+            Custom request notification sent to the requester when the request
+            is approved.
           type: string
           maxLength: 800
           nullable: true
@@ -6824,7 +7609,12 @@ components:
         - GIT_HUB_ENTERPRISE_TEAM
         - GRAFANA_TEAM
         - CLICKHOUSE_ROLE
+        - SLACK_USER_GROUP
         - TWINGATE_GROUP
+        - TWINGATE_GROUP_SYNCED
+        - ZENDESK_GROUP
+        - ZENDESK_ORGANIZATION
+        - HUBSPOT_TEAM
       example: OPAL_GROUP
       type: string
     ResourceTypeEnum:
@@ -6914,7 +7704,98 @@ components:
         - CLICKHOUSE_DATABASE
         - CLICKHOUSE_TABLE
         - TWINGATE_RESOURCE
+        - ZENDESK_ROLE
+        - HUBSPOT_ROLE
       example: AWS_IAM_ROLE
+      type: string
+    EntityItemTypeEnum:
+      description: Granular subtype of an entity.
+      enum:
+        - USER
+        - SERVICE_USER
+        - ACTIVE_DIRECTORY_GROUP
+        - AWS_SSO_GROUP
+        - DUO_GROUP
+        - GIT_HUB_TEAM
+        - GIT_LAB_GROUP
+        - GOOGLE_GROUPS_GROUP
+        - GOOGLE_GROUPS_GKE_GROUP
+        - LDAP_GROUP
+        - OKTA_GROUP
+        - OKTA_GROUP_RULE
+        - TAILSCALE_GROUP
+        - TWINGATE_GROUP
+        - TWINGATE_GROUP_SYNCED
+        - OPAL_GROUP
+        - OPAL_ACCESS_RULE
+        - AZURE_AD_SECURITY_GROUP
+        - AZURE_AD_MICROSOFT_365_GROUP
+        - CONNECTOR_GROUP
+        - SNOWFLAKE_ROLE
+        - WORKDAY_USER_SECURITY_GROUP
+        - DATABRICKS_ACCOUNT_GROUP
+        - AWS_IAM_ROLE
+        - AWS_EC2_INSTANCE
+        - AWS_EKS_CLUSTER
+        - AWS_RDS_POSTGRES_INSTANCE
+        - AWS_RDS_POSTGRES_CLUSTER
+        - AWS_RDS_MYSQL_INSTANCE
+        - AWS_RDS_MYSQL_CLUSTER
+        - AWS_ACCOUNT
+        - AWS_SSO_PERMISSION_SET
+        - AZURE_MANAGEMENT_GROUP
+        - AZURE_RESOURCE_GROUP
+        - AZURE_SUBSCRIPTION
+        - AZURE_VIRTUAL_MACHINE
+        - AZURE_STORAGE_ACCOUNT
+        - AZURE_STORAGE_CONTAINER
+        - AZURE_SQL_SERVER
+        - AZURE_SQL_MANAGED_INSTANCE
+        - AZURE_SQL_DATABASE
+        - AZURE_SQL_MANAGED_DATABASE
+        - AZURE_USER_ASSIGNED_MANAGED_Identity
+        - AZURE_ENTRA_ID_ROLE
+        - AZURE_ENTERPRISE_APP
+        - CUSTOM
+        - CUSTOM_CONNECTOR
+        - GCP_ORGANIZATION
+        - GCP_BUCKET
+        - GCP_COMPUTE_INSTANCE
+        - GCP_BIG_QUERY_DATASET
+        - GCP_BIG_QUERY_TABLE
+        - GCP_FOLDER
+        - GCP_GKE_CLUSTER
+        - GCP_PROJECT
+        - GCP_CLOUD_SQL_POSTGRES_INSTANCE
+        - GCP_CLOUD_SQL_MYSQL_INSTANCE
+        - GCP_SERVICE_ACCOUNT
+        - GIT_HUB_REPO
+        - GIT_HUB_ORG_ROLE
+        - GIT_LAB_PROJECT
+        - GOOGLE_WORKSPACE_ROLE
+        - MONGO_INSTANCE
+        - MONGO_ATLAS_INSTANCE
+        - OKTA_APP
+        - OKTA_ROLE
+        - OPAL_ROLE
+        - OPAL_SCOPED_ROLE
+        - PAGERDUTY_ROLE
+        - TAILSCALE_SSH
+        - TWINGATE_RESOURCE
+        - SALESFORCE_PERMISSION_SET
+        - SALESFORCE_PROFILE
+        - SALESFORCE_ROLE
+        - SNOWFLAKE_DATABASE
+        - SNOWFLAKE_SCHEMA
+        - SNOWFLAKE_TABLE
+        - WORKDAY_ROLE
+        - MYSQL_INSTANCE
+        - MARIADB_INSTANCE
+        - POSTGRES_INSTANCE
+        - TELEPORT_ROLE
+        - DATABRICKS_ACCOUNT_SERVICE_PRINCIPAL
+        - ILEVEL_ADVANCED_ROLE
+      example: OPAL_ROLE
       type: string
     VisibilityTypeEnum:
       description: The visibility level of the entity.
@@ -6997,7 +7878,9 @@ components:
           example: finance-team
           type: string
         hidden_from_end_user:
-          description: A bool representing whether or not the group is hidden from the end user.
+          description:
+            A bool representing whether or not the group is hidden from the end
+            user.
           example: False
           type: boolean
       required:
@@ -7161,7 +8044,9 @@ components:
       required:
         - message_channel_ids
     OnCallScheduleIDList:
-      description: A list of on call schedule Opal UUIDs. To get the matching remote IDs, use the /on-call-schedules endpoints.
+      description:
+        A list of on call schedule Opal UUIDs. To get the matching remote
+        IDs, use the /on-call-schedules endpoints.
       example:
         on_call_schedule_ids:
           - 9546209c-42c2-4801-96d7-9ec42df0f59c
@@ -7218,7 +8103,9 @@ components:
           example: False
           type: boolean
         operator:
-          description: The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.
+          description:
+            The operator of the reviewer stage. Admin and manager approval are
+            also treated as reviewers.
           enum:
             - AND
             - OR
@@ -7375,7 +8262,11 @@ components:
       description: "The database engine for the RDS instance."
       enum: [MYSQL, POSTGRESQL]
     GroupRemoteInfo:
-      description: Information that defines the remote group. This replaces the deprecated remote_id and metadata fields. If remote_info is provided, a group will be imported into Opal. For group types that support group creation through Opal, a new group will be created if remote_info is not provided.
+      description: Information that defines the remote group. This replaces the
+        deprecated remote_id and metadata fields. If remote_info is provided, a
+        group will be imported into Opal. For group types that support group
+        creation through Opal, a new group will be created if remote_info is not
+        provided.
       properties:
         active_directory_group:
           description: Remote info for Active Directory group.
@@ -7402,6 +8293,16 @@ components:
           properties:
             group_id:
               description: The id of the Twingate group.
+              example: R3JvdXA6MTIzNA==
+              type: string
+          type: object
+          required:
+            - group_id
+        twingate_group_synced:
+          description: Remote info for Twingate synced group.
+          properties:
+            group_id:
+              description: The id of the Twingate synced group.
               example: R3JvdXA6MTIzNA==
               type: string
           type: object
@@ -7448,6 +8349,9 @@ components:
             team_slug:
               description: The slug of the GitHub team.
               example: opal-security
+              type: string
+            org_name:
+              description: GitHub team's org name, required only for Enterprise
               type: string
           type: object
           required:
@@ -7612,9 +8516,61 @@ components:
           type: object
           required:
             - role_id
+        grafana_team:
+          description: Remote info for Grafana team.
+          properties:
+            team_id:
+              description: The ID of the team.
+              example: 2323
+              type: string
+          type: object
+          required:
+            - team_id
+        zendesk_group:
+          description: Remote info for Zendesk group.
+          properties:
+            group_id:
+              description: The ID of the Zendesk group.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - group_id
+        slack_user_group:
+          description: Remote info for Slack user group.
+          properties:
+            group_id:
+              description: The id of the Slack user group.
+              example: S0614TZR7
+              type: string
+          type: object
+          required:
+            - group_id
+        zendesk_organization:
+          description: Remote info for Zendesk organization.
+          properties:
+            organization_id:
+              description: The ID of the Zendesk organization.
+              example: "67890"
+              type: string
+          type: object
+          required:
+            - organization_id
+        hubspot_team:
+          description: Remote info for HubSpot team.
+          properties:
+            team_id:
+              description: The ID of the HubSpot team.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - team_id
       type: object
     ResourceRemoteInfo:
-      description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
+      description:
+        Information that defines the remote resource. This replaces the
+        deprecated remote_id and metadata fields.
       properties:
         databricks_account_service_principal:
           description: Remote info for Databricks account service principal.
@@ -7745,7 +8701,9 @@ components:
           description: Remote info for Azure Enterprise App.
           properties:
             resource_id:
-              description: The remote application identifier (service principal or application object ID).
+              description:
+                The remote application identifier (service principal or application
+                object ID).
               example: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
               type: string
           type: object
@@ -7783,7 +8741,9 @@ components:
               example: 234234234234
               type: string
             organizational_unit_id:
-              description: The id of the AWS organizational unit. Required only if customer has OUs enabled.
+              description:
+                The id of the AWS organizational unit. Required only if customer
+                has OUs enabled.
               example: ou-1234
               type: string
           type: object
@@ -7797,7 +8757,9 @@ components:
               example: arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9
               type: string
             account_id:
-              description: The ID of an AWS account to which this permission set is provisioned.
+              description:
+                The ID of an AWS account to which this permission set is
+                provisioned.
               example: 234234234234
               type: string
           type: object
@@ -7857,7 +8819,9 @@ components:
               example: 234234234234
               type: string
             database_name:
-              description: The name of the database in the RDS cluster. This can be the value of the tag `opal:database-name` or the database name.
+              description:
+                The name of the database in the RDS cluster. This can be the value
+                of the tag `opal:database-name` or the database name.
               example: mydatabase
               type: string
             engine:
@@ -7917,7 +8881,9 @@ components:
               example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
               type: string
             can_have_usage_events:
-              description: A bool representing whether or not the resource can have usage data.
+              description:
+                A bool representing whether or not the resource can have usage
+                data.
               example: False
               type: boolean
           type: object
@@ -8053,7 +9019,7 @@ components:
               type: string
             service_account_id:
               description: The id of the service account.
-              example: 103561576023829463298
+              example: 103561576023829460000
               type: string
             project_id:
               description: The id of the project the service account is in.
@@ -8086,6 +9052,9 @@ components:
               description: The name of the repository.
               example: Opal Security
               type: string
+            org_name:
+              description: GitHub repo's org name, required only for Enterprise.
+              type: string
           type: object
           required:
             - repo_name
@@ -8095,6 +9064,9 @@ components:
             role_id:
               description: The id of the role.
               example: 112233
+              type: string
+            org_name:
+              description: GitHub org role's org name, required only for Enterprise.
               type: string
           type: object
           required:
@@ -8440,10 +9412,62 @@ components:
           required:
             - database_name
             - table_name
+        grafana_folder:
+          description: Remote info for Grafana folder.
+          properties:
+            folder_uid:
+              description: The UID of the Grafana folder.
+              example: fffRTXX
+              type: string
+          type: object
+          required:
+            - folder_uid
+        grafana_dashboard:
+          description: Remote info for Grafana dashboard.
+          properties:
+            dashboard_uid:
+              description: The UID of the Grafana dashboard.
+              example: dddRTXX
+              type: string
+          type: object
+          required:
+            - dashboard_uid
+        grafana_role:
+          description: Remote info for Grafana role(fixed or custom).
+          properties:
+            role_uid:
+              description: The UID of the Grafana role.
+              example: rrfRTXX
+              type: string
+          type: object
+          required:
+            - role_uid
+        zendesk_role:
+          description: Remote info for Zendesk custom role.
+          properties:
+            role_id:
+              description: The ID of the Zendesk custom role.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - role_id
+        hubspot_role:
+          description: Remote info for HubSpot role.
+          properties:
+            role_id:
+              description: The ID of the HubSpot role.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - role_id
       type: object
     RiskSensitivityEnum:
       type: string
-      description: "Indicates the level of potential impact misuse or unauthorized access may incur."
+      description:
+        "Indicates the level of potential impact misuse or unauthorized
+        access may incur."
       enum: [UNKNOWN, CRITICAL, HIGH, MEDIUM, LOW, NONE]
     CreateResourceInfo:
       description: |-
@@ -8487,7 +9511,11 @@ components:
           $ref: "#/components/schemas/ResourceRemoteInfo"
         remote_resource_id:
           deprecated: true
-          description: Deprecated - use remote_info instead. The ID of the resource on the remote system. Include only for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details on how to specify this field.
+          description:
+            Deprecated - use remote_info instead. The ID of the resource on the
+            remote system. Include only for items linked to remote systems. See
+            [this guide](https://docs.opal.dev/reference/end-system-objects) for
+            details on how to specify this field.
           example: API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345
           type: string
         metadata:
@@ -8801,7 +9829,11 @@ components:
           $ref: "#/components/schemas/GroupRemoteInfo"
         remote_group_id:
           deprecated: true
-          description: Deprecated - use remote_info instead. The ID of the group on the remote system. Include only for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details on how to specify this field.
+          description:
+            Deprecated - use remote_info instead. The ID of the group on the
+            remote system. Include only for items linked to remote systems. See
+            [this guide](https://docs.opal.dev/reference/end-system-objects) for
+            details on how to specify this field.
           example: 00g4fixjd6Bc9w012345
           type: string
         metadata:
@@ -8937,8 +9969,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -9065,7 +10097,9 @@ components:
           description: The stages configuration for this request
           $ref: "#/components/schemas/RequestItemStages"
         reviewer_stages:
-          description: The configured reviewer stages for every item in this request, or an error message if reviewers could not be loaded
+          description:
+            The configured reviewer stages for every item in this request, or
+            an error message if reviewers could not be loaded
           oneOf:
             - type: array
               items:
@@ -9340,7 +10374,9 @@ components:
           items:
             $ref: "#/components/schemas/Request"
         cursor:
-          description: The cursor to use in the next request to get the next page of results.
+          description:
+            The cursor to use in the next request to get the next page of
+            results.
           type: string
           example: eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0=
     Resource:
@@ -9401,40 +10437,59 @@ components:
         resource_type:
           $ref: "#/components/schemas/ResourceTypeEnum"
         max_duration:
-          description: The maximum duration for which the resource can be requested (in minutes).
+          description:
+            The maximum duration for which the resource can be requested (in
+            minutes).
           type: integer
           example: 120
         recommended_duration:
-          description: The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.
+          description:
+            The recommended duration for which the resource should be requested
+            (in minutes). -1 represents an indefinite duration.
           type: integer
           example: 120
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+          description:
+            The duration for which access can be extended (in minutes). Set to
+            0 to disable extensions. When > 0, extensions are enabled for the
+            specified duration.
           type: integer
           example: 120
         require_manager_approval:
-          description: A bool representing whether or not access requests to the resource require manager approval.
+          description:
+            A bool representing whether or not access requests to the resource
+            require manager approval.
           example: False
           type: boolean
           deprecated: true
         require_support_ticket:
-          description: A bool representing whether or not access requests to the resource require an access ticket.
+          description:
+            A bool representing whether or not access requests to the resource
+            require an access ticket.
           example: False
           type: boolean
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this resource.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this resource.
           example: False
           type: boolean
         require_mfa_to_request:
-          description: A bool representing whether or not to require MFA for requesting access to this resource.
+          description:
+            A bool representing whether or not to require MFA for requesting
+            access to this resource.
           example: False
           type: boolean
         require_mfa_to_connect:
-          description: A bool representing whether or not to require MFA to connect to this resource.
+          description:
+            A bool representing whether or not to require MFA to connect to
+            this resource.
           example: False
           type: boolean
         auto_approval:
-          description: A bool representing whether or not to automatically approve requests to this resource.
+          description:
+            A bool representing whether or not to automatically approve
+            requests to this resource.
           example: False
           type: boolean
         request_template_id:
@@ -9443,7 +10498,9 @@ components:
           format: uuid
           type: string
         is_requestable:
-          description: A bool representing whether or not to allow access requests to this resource.
+          description:
+            A bool representing whether or not to allow access requests to this
+            resource.
           example: False
           type: boolean
         parent_resource_id:
@@ -9462,7 +10519,9 @@ components:
             $ref: "#/components/schemas/RequestConfiguration"
           description: A list of configurations for requests to this resource.
         request_configuration_list:
-          description: A list of configurations for requests to this resource. Deprecated in favor of `request_configurations`.
+          description:
+            A list of configurations for requests to this resource. Deprecated
+            in favor of `request_configurations`.
           deprecated: true
           items:
             $ref: "#/components/schemas/RequestConfiguration"
@@ -9475,7 +10534,9 @@ components:
           maxLength: 800
           nullable: true
         risk_sensitivity:
-          description: The risk sensitivity level for the resource. When an override is set, this field will match that.
+          description:
+            The risk sensitivity level for the resource. When an override is
+            set, this field will match that.
           readOnly: true
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
@@ -9483,7 +10544,11 @@ components:
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
         metadata:
-          description: JSON metadata about the remote resource. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.
+          description:
+            JSON metadata about the remote resource. Only set for items linked
+            to remote systems. See [this
+            guide](https://docs.opal.dev/reference/end-system-objects) for
+            details.
           deprecated: true
           example: |-
             {
@@ -9532,7 +10597,9 @@ components:
               example: arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9
               type: string
             account_id:
-              description: The ID of an AWS account to which this permission set is provisioned.
+              description:
+                The ID of an AWS account to which this permission set is
+                provisioned.
               example: 234234234234
               type: string
           required:
@@ -9600,22 +10667,34 @@ components:
           format: uuid
           type: string
         max_duration:
-          description: The maximum duration for which the resource can be requested (in minutes). Use -1 to set to indefinite. Deprecated in favor of `request_configurations`.
+          description:
+            The maximum duration for which the resource can be requested (in
+            minutes). Use -1 to set to indefinite. Deprecated in favor of
+            `request_configurations`.
           type: integer
           example: 120
           deprecated: true
         recommended_duration:
-          description: The recommended duration for which the resource should be requested (in minutes). Will be the default value in a request. Use -1 to set to indefinite and 0 to unset. Deprecated in favor of `request_configurations`.
+          description:
+            The recommended duration for which the resource should be requested
+            (in minutes). Will be the default value in a request. Use -1 to set
+            to indefinite and 0 to unset. Deprecated in favor of
+            `request_configurations`.
           type: integer
           example: 120
           deprecated: true
         require_manager_approval:
-          description: A bool representing whether or not access requests to the resource require manager approval.
+          description:
+            A bool representing whether or not access requests to the resource
+            require manager approval.
           example: False
           type: boolean
           deprecated: true
         require_support_ticket:
-          description: A bool representing whether or not access requests to the resource require an access ticket. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not access requests to the resource
+            require an access ticket. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
@@ -9626,20 +10705,30 @@ components:
           type: string
           deprecated: true
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this resource.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this resource.
           example: False
           type: boolean
         require_mfa_to_request:
-          description: A bool representing whether or not to require MFA for requesting access to this resource. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not to require MFA for requesting
+            access to this resource. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
         require_mfa_to_connect:
-          description: A bool representing whether or not to require MFA to connect to this resource.
+          description:
+            A bool representing whether or not to require MFA to connect to
+            this resource.
           example: False
           type: boolean
         auto_approval:
-          description: A bool representing whether or not to automatically approve requests to this resource. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not to automatically approve
+            requests to this resource. Deprecated in favor of
+            `request_configurations`.
           example: False
           type: boolean
           deprecated: true
@@ -9660,28 +10749,46 @@ components:
           format: uuid
           type: string
         request_template_id:
-          description: The ID of the associated request template. Deprecated in favor of `request_configurations`.
+          description:
+            The ID of the associated request template. Deprecated in favor of
+            `request_configurations`.
           example: 06851574-e50d-40ca-8c78-f72ae6ab4304
           format: uuid
           type: string
           deprecated: true
         is_requestable:
-          description: A bool representing whether or not to allow access requests to this resource. Deprecated in favor of `request_configurations`.
+          description:
+            A bool representing whether or not to allow access requests to this
+            resource. Deprecated in favor of `request_configurations`.
           example: False
           type: boolean
           deprecated: true
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.
+          description:
+            The duration for which access can be extended (in minutes).
+            Deprecated, set the extension duration in the request_configuration
+            you want it to apply to.
           type: integer
           example: 120
           deprecated: true
+        parent_resource_id:
+          description: The ID of the parent resource.
+          example: f454d283-ca67-4a8a-bdbb-df212eca5345
+          format: uuid
+          type: string
+          nullable: true
         request_configurations:
           type: array
           items:
             $ref: "#/components/schemas/RequestConfiguration"
-          description: A list of configurations for requests to this resource. If not provided, the default request configuration will be used.
+          description:
+            A list of configurations for requests to this resource. If not
+            provided, the default request configuration will be used.
         request_configuration_list:
-          description: A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.
+          description:
+            A list of configurations for requests to this resource. If not
+            provided, the default request configuration will be used. Deprecated
+            in favor of `request_configurations`.
           $ref: "#/components/schemas/CreateRequestConfigurationInfoList"
           deprecated: true
           example:
@@ -9744,8 +10851,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -9882,8 +10989,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -10098,6 +11205,23 @@ components:
         - name
         - admin_owner_id
         - description
+    PaginatedAccessRulesList:
+      properties:
+        next:
+          description: The cursor with which to continue pagination if additional result pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          type: string
+        previous:
+          description: The cursor used to retrieve the previous page of results.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/AccessRule"
+          type: array
+      required:
+        - results
+      type: object
     AccessRule:
       description: |-
         # Access Rule Object
@@ -10105,7 +11229,7 @@ components:
         The `AccessRule` object is used to represent an access rule configuration.
 
         ### Usage Example
-        Get access rule configurations from the `GET Access Rule Configs` endpoint.
+        List access rules from the `GET /access-rules` endpoint, or retrieve a single access rule from the `GET /access-rules/{access_rule_id}` endpoint.
       properties:
         access_rule_id:
           description: The ID (group ID) of the access rule.
@@ -10164,6 +11288,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/TagSelector"
+        attribute_selectors:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserAttributeSelector"
       required:
         - selectors
     TagSelector:
@@ -10179,6 +11307,19 @@ components:
         - key
         - value
         - connection_id
+    UserAttributeSelector:
+      properties:
+        attribute:
+          type: string
+          enum:
+            - HR_IDP_STATUS
+        values:
+          type: array
+          items:
+            type: string
+      required:
+        - attribute
+        - values
     PaginatedOwnersList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -10195,8 +11336,8 @@ components:
       properties:
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -10237,7 +11378,9 @@ components:
           example: This owner represents the API team owners.
           type: string
         access_request_escalation_period:
-          description: The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy.
+          description:
+            The amount of time (in minutes) before the next reviewer is
+            notified. Use 0 to remove escalation policy.
           type: integer
           example: 120
         reviewer_message_channel_id:
@@ -10275,11 +11418,15 @@ components:
           example: This owner represents the API team owners.
           type: string
         access_request_escalation_period:
-          description: The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy.
+          description:
+            The amount of time (in minutes) before the next reviewer is
+            notified. Use 0 to remove escalation policy.
           type: integer
           example: 120
         user_ids:
-          description: Users to add to the created owner. If setting a source_group_id this list must be empty.
+          description:
+            Users to add to the created owner. If setting a source_group_id
+            this list must be empty.
           example:
             - 7870617d-e72a-47f5-a84c-693817ab4567
             - 1520617d-e72a-47f5-a84c-693817ab48ad2
@@ -10345,15 +11492,21 @@ components:
           example: This owner represents the API team owners.
           type: string
         access_request_escalation_period:
-          description: The amount of time (in minutes) before the next reviewer is notified. Use 0 to remove escalation policy.
+          description:
+            The amount of time (in minutes) before the next reviewer is
+            notified. Use 0 to remove escalation policy.
           example: 120
           type: integer
         reviewer_message_channel_id:
-          description: The message channel id for the reviewer channel. Use "" to remove an existing message channel.
+          description:
+            The message channel id for the reviewer channel. Use "" to remove
+            an existing message channel.
           example: 37cb7e41-12ba-46da-92ff-030abe0450b1
           type: string
         source_group_id:
-          description: Sync this owner's user list with a source group. Use "" to remove an existing source group.
+          description:
+            Sync this owner's user list with a source group. Use "" to remove
+            an existing source group.
           example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
           format: uuid
           type: string
@@ -10422,31 +11575,46 @@ components:
           description: The condition for the request configuration.
           $ref: "#/components/schemas/Condition"
         allow_requests:
-          description: A bool representing whether or not to allow requests for this resource.
+          description:
+            A bool representing whether or not to allow requests for this
+            resource.
           example: True
           type: boolean
         auto_approval:
-          description: A bool representing whether or not to automatically approve requests for this resource.
+          description:
+            A bool representing whether or not to automatically approve
+            requests for this resource.
           example: False
           type: boolean
         require_mfa_to_request:
-          description: A bool representing whether or not to require MFA for requesting access to this resource.
+          description:
+            A bool representing whether or not to require MFA for requesting
+            access to this resource.
           example: False
           type: boolean
         max_duration_minutes:
-          description: The maximum duration for which the resource can be requested (in minutes).
+          description:
+            The maximum duration for which the resource can be requested (in
+            minutes).
           type: integer
           example: 120
         recommended_duration_minutes:
-          description: The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.
+          description:
+            The recommended duration for which the resource should be requested
+            (in minutes). -1 represents an indefinite duration.
           type: integer
           example: 120
         require_support_ticket:
-          description: A bool representing whether or not access requests to the resource require an access ticket.
+          description:
+            A bool representing whether or not access requests to the resource
+            require an access ticket.
           example: False
           type: boolean
         extensions_duration_in_minutes:
-          description: The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+          description:
+            The duration for which access can be extended (in minutes). Set to
+            0 to disable extensions. When > 0, extensions are enabled for the
+            specified duration.
           type: integer
           example: 120
         request_template_id:
@@ -10575,7 +11743,9 @@ components:
           example: private
           $ref: "#/components/schemas/VisibilityInfo"
         linked_audit_message_channel_ids:
-          description: The IDs of the audit message channels linked to the configuration template.
+          description:
+            The IDs of the audit message channels linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10584,7 +11754,9 @@ components:
             format: uuid
           type: array
         member_oncall_schedule_ids:
-          description: The IDs of the on-call schedules linked to the configuration template.
+          description:
+            The IDs of the on-call schedules linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10593,7 +11765,9 @@ components:
             format: uuid
           type: array
         break_glass_user_ids:
-          description: The IDs of the break glass users linked to the configuration template.
+          description:
+            The IDs of the break glass users linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10602,11 +11776,15 @@ components:
             format: uuid
           type: array
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this configuration template.
           example: False
           type: boolean
         require_mfa_to_connect:
-          description: A bool representing whether or not to require MFA to connect to resources associated with this configuration template.
+          description:
+            A bool representing whether or not to require MFA to connect to
+            resources associated with this configuration template.
           example: False
           type: boolean
         name:
@@ -10617,9 +11795,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/RequestConfiguration"
-          description: The request configuration list of the configuration template. If not provided, the default request configuration will be used.
+          description:
+            The request configuration list of the configuration template. If
+            not provided, the default request configuration will be used.
         request_configuration_list:
-          description: The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.
+          description:
+            The request configuration list of the configuration template. If
+            not provided, the default request configuration will be used.
+            Deprecated in favor of `request_configurations`.
           $ref: "#/components/schemas/CreateRequestConfigurationInfoList"
           deprecated: true
           example:
@@ -10660,7 +11843,9 @@ components:
         ticket_propagation:
           $ref: "#/components/schemas/TicketPropagationConfiguration"
         custom_request_notification:
-          description: Custom request notification sent upon request approval for this configuration template.
+          description:
+            Custom request notification sent upon request approval for this
+            configuration template.
           type: string
           maxLength: 800
           nullable: true
@@ -10710,7 +11895,9 @@ components:
           example: private
           $ref: "#/components/schemas/VisibilityInfo"
         linked_audit_message_channel_ids:
-          description: The IDs of the audit message channels linked to the configuration template.
+          description:
+            The IDs of the audit message channels linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10719,12 +11906,16 @@ components:
             format: uuid
           type: array
         request_configuration_id:
-          description: The ID of the request configuration linked to the configuration template.
+          description:
+            The ID of the request configuration linked to the configuration
+            template.
           example: 7c86c85d-0651-43e2-a748-d69d658418e8
           format: uuid
           type: string
         member_oncall_schedule_ids:
-          description: The IDs of the on-call schedules linked to the configuration template.
+          description:
+            The IDs of the on-call schedules linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 7c86c85d-0651-43e2-a748-d69d658418e8
@@ -10733,7 +11924,9 @@ components:
             format: uuid
           type: array
         break_glass_user_ids:
-          description: The IDs of the break glass users linked to the configuration template.
+          description:
+            The IDs of the break glass users linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10742,23 +11935,31 @@ components:
             format: uuid
           type: array
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this configuration template.
           example: False
           type: boolean
         require_mfa_to_connect:
-          description: A bool representing whether or not to require MFA to connect to resources associated with this configuration template.
+          description:
+            A bool representing whether or not to require MFA to connect to
+            resources associated with this configuration template.
           example: False
           type: boolean
         ticket_propagation:
           $ref: "#/components/schemas/TicketPropagationConfiguration"
         custom_request_notification:
-          description: Custom request notification sent upon request approval for this configuration template.
+          description:
+            Custom request notification sent upon request approval for this
+            configuration template.
           type: string
           maxLength: 800
           nullable: true
           example: "Check your email to register your account."
     TicketPropagationConfiguration:
-      description: Configuration for ticket propagation, when enabled, a ticket will be created for access changes related to the users in this resource.
+      description:
+        Configuration for ticket propagation, when enabled, a ticket will
+        be created for access changes related to the users in this resource.
       type: object
       properties:
         enabled_on_grant:
@@ -10819,7 +12020,9 @@ components:
           example: private
           $ref: "#/components/schemas/VisibilityInfo"
         linked_audit_message_channel_ids:
-          description: The IDs of the audit message channels linked to the configuration template.
+          description:
+            The IDs of the audit message channels linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10833,7 +12036,9 @@ components:
             $ref: "#/components/schemas/RequestConfiguration"
           description: The request configuration list linked to the configuration template.
         request_configuration_list:
-          description: The request configuration list linked to the configuration template. Deprecated in favor of `request_configurations`.
+          description:
+            The request configuration list linked to the configuration
+            template. Deprecated in favor of `request_configurations`.
           $ref: "#/components/schemas/CreateRequestConfigurationInfoList"
           deprecated: true
           example:
@@ -10872,7 +12077,9 @@ components:
                     stage: 1
                 priority: 1
         member_oncall_schedule_ids:
-          description: The IDs of the on-call schedules linked to the configuration template.
+          description:
+            The IDs of the on-call schedules linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 7c86c85d-0651-43e2-a748-d69d658418e8
@@ -10881,7 +12088,9 @@ components:
             format: uuid
           type: array
         break_glass_user_ids:
-          description: The IDs of the break glass users linked to the configuration template.
+          description:
+            The IDs of the break glass users linked to the configuration
+            template.
           example:
             - 37cb7e41-12ba-46da-92ff-030abe0450b1
             - 37cb7e41-12ba-46da-92ff-030abe0450b2
@@ -10890,17 +12099,23 @@ components:
             format: uuid
           type: array
         require_mfa_to_approve:
-          description: A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.
+          description:
+            A bool representing whether or not to require MFA for reviewers to
+            approve requests for this configuration template.
           example: False
           type: boolean
         require_mfa_to_connect:
-          description: A bool representing whether or not to require MFA to connect to resources associated with this configuration template.
+          description:
+            A bool representing whether or not to require MFA to connect to
+            resources associated with this configuration template.
           example: False
           type: boolean
         ticket_propagation:
           $ref: "#/components/schemas/TicketPropagationConfiguration"
         custom_request_notification:
-          description: Custom request notification sent upon request approval for this configuration template.
+          description:
+            Custom request notification sent upon request approval for this
+            configuration template.
           type: string
           maxLength: 800
           nullable: true
@@ -10944,7 +12159,9 @@ components:
             type: object
             properties:
               id:
-                description: The ID of the resource requested. Should not be specified if group_id is specified.
+                description:
+                  The ID of the resource requested. Should not be specified if
+                  group_id is specified.
                 example: group283-ca87-4a8a-bdbb-df212eca5353
                 format: uuid
                 type: string
@@ -10953,7 +12170,10 @@ components:
                 example: arn:aws:iam::490306337630:role/SupportUser
                 type: string
               access_level_name:
-                description: The ID of the access level requested on the remote system. This field is deprecated and no longer required. We will populate based on the access_level_remote_id.
+                description:
+                  The ID of the access level requested on the remote system. This
+                  field is deprecated and no longer required. We will populate
+                  based on the access_level_remote_id.
                 example: arn:aws:iam::490306337630:role/SupportUser
                 type: string
                 deprecated: true
@@ -10963,7 +12183,9 @@ components:
             type: object
             properties:
               id:
-                description: The ID of the group requested. Should not be specified if resource_id is specified.
+                description:
+                  The ID of the group requested. Should not be specified if
+                  resource_id is specified.
                 example: f454d283-ca87-4a8a-bdbb-df212eca5353
                 format: uuid
                 type: string
@@ -10978,12 +12200,16 @@ components:
             required:
               - id
         target_user_id:
-          description: The ID of the user to be granted access. Should not be specified if target_group_id is specified.
+          description:
+            The ID of the user to be granted access. Should not be specified if
+            target_group_id is specified.
           example: userd283-ca87-4a8a-bdbb-df212eca5353
           format: uuid
           type: string
         target_group_id:
-          description: The ID of the group the request is for.  Should not be specified if target_user_id is specified.
+          description:
+            The ID of the group the request is for.  Should not be specified if
+            target_user_id is specified.
           example: userd283-ca87-4a8a-bdbb-df212eca5353
           format: uuid
           type: string
@@ -11006,7 +12232,9 @@ components:
             - identifier
             - url
         duration_minutes:
-          description: The duration of the request in minutes. -1 represents an indefinite duration
+          description:
+            The duration of the request in minutes. -1 represents an indefinite
+            duration
           type: integer
           minimum: -1
         custom_metadata:
@@ -11161,8 +12389,8 @@ components:
           type: string
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -11217,8 +12445,8 @@ components:
           type: string
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -11273,8 +12501,8 @@ components:
           type: string
         next:
           description:
-            The cursor with which to continue pagination if additional
-            result pages exist.
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -11309,7 +12537,9 @@ components:
       type: object
       properties:
         target_ids:
-          description: The IDs of the entities that this permission applies to. If empty of missing, the permission will have untargeted scope.
+          description:
+            The IDs of the entities that this permission applies to. If empty
+            of missing, the permission will have untargeted scope.
           example:
             - a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1
             - 8294e9c9-deb6-48e9-9c99-da2a1e04a87f
@@ -11329,7 +12559,9 @@ components:
         - allow_all
     SyncTask:
       type: object
-      description: Represents a sync task that has been completed, either successfully or with errors.
+      description:
+        Represents a sync task that has been completed, either successfully
+        or with errors.
       properties:
         id:
           description: The ID of the sync task.
@@ -11421,7 +12653,9 @@ components:
           items:
             $ref: "#/components/schemas/Delegation"
         next:
-          description: The cursor with which to continue pagination if additional result pages exist.
+          description:
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string
@@ -11436,7 +12670,8 @@ components:
           type: integer
     CreateDelegationRequest:
       type: object
-      description: Request body for creating a new delegation of access review requests from one user to another.
+      description: Request body for creating a new delegation of access review
+        requests from one user to another.
       properties:
         delegator_user_id:
           description: The ID of the user delegating their access review requests.
@@ -11474,6 +12709,161 @@ components:
         - READ_ONLY
         - FULL_ACCESS
       type: string
+    EventStreamConnectionTypeEnum:
+      description: The type of event stream connection.
+      enum:
+        - WEBHOOK
+      type: string
+    WebhookAuthTypeEnum:
+      description: The authentication type for webhook connections.
+      enum:
+        - NONE
+        - API_KEY
+        - HMAC
+      type: string
+    WebhookApiKeyLocationEnum:
+      description: Where the API key is placed in webhook requests.
+      enum:
+        - HEADER
+        - QUERY_PARAM
+      type: string
+    WebhookApiKeyCredential:
+      description: An API key credential for webhook authentication.
+      properties:
+        id:
+          description: The unique identifier for the credential.
+          format: uuid
+          type: string
+        name:
+          description: The name of the API key.
+          type: string
+        value:
+          description: The value of the API key.
+          type: string
+        location:
+          $ref: "#/components/schemas/WebhookApiKeyLocationEnum"
+      required:
+        - id
+        - name
+        - value
+        - location
+      type: object
+    WebhookHmacCredential:
+      description: An HMAC credential for webhook authentication.
+      properties:
+        id:
+          description: The unique identifier for the credential.
+          format: uuid
+          type: string
+        secret:
+          description: The HMAC secret value.
+          type: string
+        created_at:
+          description: When the credential was created.
+          format: date-time
+          type: string
+      required:
+        - id
+        - secret
+        - created_at
+      type: object
+    WebhookCredentials:
+      description: Authentication credentials for a webhook connection.
+      properties:
+        auth_type:
+          $ref: "#/components/schemas/WebhookAuthTypeEnum"
+        api_key_credentials:
+          description: API key credentials, present when auth_type is API_KEY.
+          items:
+            $ref: "#/components/schemas/WebhookApiKeyCredential"
+          type: array
+        hmac_credential_1:
+          description: Primary HMAC credential, present when auth_type is HMAC.
+          nullable: true
+          $ref: "#/components/schemas/WebhookHmacCredential"
+        hmac_credential_2:
+          description: Secondary HMAC credential for rotation, present when auth_type is HMAC.
+          nullable: true
+          $ref: "#/components/schemas/WebhookHmacCredential"
+      required:
+        - auth_type
+      type: object
+    EventStreamConnection:
+      description: The connection configuration for an event stream.
+      properties:
+        name:
+          description: The name of the connection.
+          type: string
+        connection_type:
+          $ref: "#/components/schemas/EventStreamConnectionTypeEnum"
+        enabled:
+          description: Whether the connection is enabled.
+          type: boolean
+        webhook_url:
+          description: The webhook URL, present when connection_type is WEBHOOK.
+          type: string
+        credentials:
+          $ref: "#/components/schemas/WebhookCredentials"
+      required:
+        - name
+        - connection_type
+        - enabled
+      type: object
+    EventStream:
+      description: An event streaming connection that publishes events to an external system.
+      properties:
+        event_stream_id:
+          description: The ID of the event stream.
+          format: uuid
+          type: string
+        connection:
+          $ref: "#/components/schemas/EventStreamConnection"
+      required:
+        - event_stream_id
+        - connection
+      type: object
+    EventStreamList:
+      description: A list of event streams.
+      properties:
+        event_streams:
+          items:
+            $ref: "#/components/schemas/EventStream"
+          type: array
+      required:
+        - event_streams
+      type: object
+    CreateEventStreamInfo:
+      description: Information needed to create an event stream.
+      properties:
+        name:
+          description: The name for the event stream.
+          type: string
+        connection_type:
+          $ref: "#/components/schemas/EventStreamConnectionTypeEnum"
+        webhook_url:
+          description: The webhook URL. Required when connection_type is WEBHOOK.
+          type: string
+        credentials:
+          $ref: "#/components/schemas/WebhookCredentials"
+      required:
+        - name
+        - connection_type
+      type: object
+    UpdateEventStreamInfo:
+      description: Information needed to update an event stream.
+      properties:
+        name:
+          description: Updated name for the event stream.
+          type: string
+        enabled:
+          description: Whether the event stream should be enabled.
+          type: boolean
+        webhook_url:
+          description: Updated webhook URL.
+          type: string
+        credentials:
+          $ref: "#/components/schemas/WebhookCredentials"
+      type: object
     Token:
       description: A first-party API token.
       example:
@@ -11544,7 +12934,9 @@ components:
             access_level: READ_ONLY
       properties:
         next:
-          description: The cursor with which to continue pagination if additional result pages exist.
+          description:
+            The cursor with which to continue pagination if additional result
+            pages exist.
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
           nullable: true
           type: string

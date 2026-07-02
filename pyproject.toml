@@ -1,6 +1,6 @@
 [project]
 name = "opal_security"
-dynamic = ["version"]
+version = "1.0.0"
 description = "Opal API"
 authors = [
   {name = "Opal Team",email = "hello@opal.dev"},
@@ -32,7 +32,7 @@ mypy = ">= 1.5"
 
 
 [build-system]
-requires = ["setuptools", "setuptools_scm"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.pylint.'MESSAGES CONTROL']
