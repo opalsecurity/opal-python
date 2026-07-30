@@ -21,3 +21,8 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# pyproject.toml is hand-maintained: it uses setuptools_scm dynamic versioning
+# (PLAT-193) so releases derive their version from git tags. Regenerating it
+# would revert to a hardcoded version and silently break PyPI publishing.
+pyproject.toml
