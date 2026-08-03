@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **slack_user_group** | [**GroupRemoteInfoSlackUserGroup**](GroupRemoteInfoSlackUserGroup.md) |  | [optional] 
 **zendesk_organization** | [**GroupRemoteInfoZendeskOrganization**](GroupRemoteInfoZendeskOrganization.md) |  | [optional] 
 **hubspot_team** | [**GroupRemoteInfoHubspotTeam**](GroupRemoteInfoHubspotTeam.md) |  | [optional] 
+**tableau_group** | [**GroupRemoteInfoTableauGroup**](GroupRemoteInfoTableauGroup.md) |  | [optional] 
 
 ## Example
 

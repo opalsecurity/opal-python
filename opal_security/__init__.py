@@ -22,6 +22,7 @@ __all__ = [
     "AccessRulesApi",
     "AppsApi",
     "BundlesApi",
+    "CampaignsApi",
     "ConfigurationTemplatesApi",
     "DelegationsApi",
     "EventStreamsApi",
@@ -75,9 +76,16 @@ __all__ = [
     "Bundle",
     "BundleGroup",
     "BundleResource",
+    "Campaign",
+    "CampaignConfiguration",
+    "CampaignGroupAssetVisibilityPolicyEnum",
+    "CampaignRevokeOnEnum",
+    "CampaignStatusEnum",
     "Condition",
     "ConfigurationTemplate",
     "CreateBundleInfo",
+    "CreateCampaignConfigurationInfo",
+    "CreateCampaignInfo",
     "CreateConfigurationTemplateInfo",
     "CreateDelegationRequest",
     "CreateEventStreamInfo",
@@ -101,6 +109,7 @@ __all__ = [
     "CreateUARInfo",
     "Delegation",
     "DenyRequestRequest",
+    "EntityAdminFilter",
     "EntityItemTypeEnum",
     "EntityNameFilter",
     "EntityTagFilter",
@@ -141,6 +150,7 @@ __all__ = [
     "GroupRemoteInfoRootlyOnCallSchedule",
     "GroupRemoteInfoSlackUserGroup",
     "GroupRemoteInfoSnowflakeRole",
+    "GroupRemoteInfoTableauGroup",
     "GroupRemoteInfoTailscaleGroup",
     "GroupRemoteInfoTwingateGroup",
     "GroupRemoteInfoTwingateGroupSynced",
@@ -155,6 +165,7 @@ __all__ = [
     "GroupWithAccessLevel",
     "IdpGroupMapping",
     "IdpGroupMappingList",
+    "IdpStatusFilter",
     "MessageChannel",
     "MessageChannelIDList",
     "MessageChannelList",
@@ -163,11 +174,18 @@ __all__ = [
     "OnCallScheduleIDList",
     "OnCallScheduleList",
     "OnCallScheduleProviderEnum",
+    "OpalAccessPathEdgeFilter",
+    "OpalAccessPathQuery",
+    "OpalAccessPathQueryBody",
+    "OpalAccessPathQueryResults",
+    "OpalAccessPathResultEdge",
+    "OpalAccessPathResultNode",
     "OpalNodeQuery",
     "OpalNodeQueryBody",
     "OpalNodeQueryResults",
     "OpalQueryResultEdge",
     "OpalQueryResultNode",
+    "OpalQueryResults",
     "Owner",
     "PageInfo",
     "PaginatedAccessRulesList",
@@ -175,6 +193,7 @@ __all__ = [
     "PaginatedBundleGroupList",
     "PaginatedBundleList",
     "PaginatedBundleResourceList",
+    "PaginatedCampaignsList",
     "PaginatedConfigurationTemplateList",
     "PaginatedDelegationsList",
     "PaginatedEventList",
@@ -214,6 +233,8 @@ __all__ = [
     "ResourceAccessUserList",
     "ResourceNHI",
     "ResourceRemoteInfo",
+    "ResourceRemoteInfoAlicloudEcsInstance",
+    "ResourceRemoteInfoAlicloudRamRole",
     "ResourceRemoteInfoAnthropicWorkspace",
     "ResourceRemoteInfoAwsAccount",
     "ResourceRemoteInfoAwsEc2Instance",
@@ -301,10 +322,12 @@ __all__ = [
     "RuleClauses",
     "RuleConjunction",
     "RuleDisjunction",
+    "RunOpalQueryRequest",
     "ScopedRolePermission",
     "ScopedRolePermissionList",
     "Session",
     "SessionsList",
+    "StopCampaignRequest",
     "StringMatchType",
     "SubEvent",
     "SyncError",
@@ -322,6 +345,8 @@ __all__ = [
     "UARReviewerAssignmentPolicyEnum",
     "UARScope",
     "UpdateAccessRuleInfo",
+    "UpdateCampaignConfigurationInfo",
+    "UpdateCampaignInfo",
     "UpdateConfigurationTemplateInfo",
     "UpdateEventStreamInfo",
     "UpdateGroupBindingInfo",
@@ -355,6 +380,7 @@ __all__ = [
 from opal_security.api.access_rules_api import AccessRulesApi as AccessRulesApi
 from opal_security.api.apps_api import AppsApi as AppsApi
 from opal_security.api.bundles_api import BundlesApi as BundlesApi
+from opal_security.api.campaigns_api import CampaignsApi as CampaignsApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi as ConfigurationTemplatesApi
 from opal_security.api.delegations_api import DelegationsApi as DelegationsApi
 from opal_security.api.event_streams_api import EventStreamsApi as EventStreamsApi
@@ -412,9 +438,16 @@ from opal_security.models.aws_permission_set_metadata_aws_permission_set import 
 from opal_security.models.bundle import Bundle as Bundle
 from opal_security.models.bundle_group import BundleGroup as BundleGroup
 from opal_security.models.bundle_resource import BundleResource as BundleResource
+from opal_security.models.campaign import Campaign as Campaign
+from opal_security.models.campaign_configuration import CampaignConfiguration as CampaignConfiguration
+from opal_security.models.campaign_group_asset_visibility_policy_enum import CampaignGroupAssetVisibilityPolicyEnum as CampaignGroupAssetVisibilityPolicyEnum
+from opal_security.models.campaign_revoke_on_enum import CampaignRevokeOnEnum as CampaignRevokeOnEnum
+from opal_security.models.campaign_status_enum import CampaignStatusEnum as CampaignStatusEnum
 from opal_security.models.condition import Condition as Condition
 from opal_security.models.configuration_template import ConfigurationTemplate as ConfigurationTemplate
 from opal_security.models.create_bundle_info import CreateBundleInfo as CreateBundleInfo
+from opal_security.models.create_campaign_configuration_info import CreateCampaignConfigurationInfo as CreateCampaignConfigurationInfo
+from opal_security.models.create_campaign_info import CreateCampaignInfo as CreateCampaignInfo
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo as CreateConfigurationTemplateInfo
 from opal_security.models.create_delegation_request import CreateDelegationRequest as CreateDelegationRequest
 from opal_security.models.create_event_stream_info import CreateEventStreamInfo as CreateEventStreamInfo
@@ -438,6 +471,7 @@ from opal_security.models.create_tag_info import CreateTagInfo as CreateTagInfo
 from opal_security.models.create_uar_info import CreateUARInfo as CreateUARInfo
 from opal_security.models.delegation import Delegation as Delegation
 from opal_security.models.deny_request_request import DenyRequestRequest as DenyRequestRequest
+from opal_security.models.entity_admin_filter import EntityAdminFilter as EntityAdminFilter
 from opal_security.models.entity_item_type_enum import EntityItemTypeEnum as EntityItemTypeEnum
 from opal_security.models.entity_name_filter import EntityNameFilter as EntityNameFilter
 from opal_security.models.entity_tag_filter import EntityTagFilter as EntityTagFilter
@@ -478,6 +512,7 @@ from opal_security.models.group_remote_info_pagerduty_on_call_schedule import Gr
 from opal_security.models.group_remote_info_rootly_on_call_schedule import GroupRemoteInfoRootlyOnCallSchedule as GroupRemoteInfoRootlyOnCallSchedule
 from opal_security.models.group_remote_info_slack_user_group import GroupRemoteInfoSlackUserGroup as GroupRemoteInfoSlackUserGroup
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole as GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_tableau_group import GroupRemoteInfoTableauGroup as GroupRemoteInfoTableauGroup
 from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup as GroupRemoteInfoTailscaleGroup
 from opal_security.models.group_remote_info_twingate_group import GroupRemoteInfoTwingateGroup as GroupRemoteInfoTwingateGroup
 from opal_security.models.group_remote_info_twingate_group_synced import GroupRemoteInfoTwingateGroupSynced as GroupRemoteInfoTwingateGroupSynced
@@ -492,6 +527,7 @@ from opal_security.models.group_user_list import GroupUserList as GroupUserList
 from opal_security.models.group_with_access_level import GroupWithAccessLevel as GroupWithAccessLevel
 from opal_security.models.idp_group_mapping import IdpGroupMapping as IdpGroupMapping
 from opal_security.models.idp_group_mapping_list import IdpGroupMappingList as IdpGroupMappingList
+from opal_security.models.idp_status_filter import IdpStatusFilter as IdpStatusFilter
 from opal_security.models.message_channel import MessageChannel as MessageChannel
 from opal_security.models.message_channel_id_list import MessageChannelIDList as MessageChannelIDList
 from opal_security.models.message_channel_list import MessageChannelList as MessageChannelList
@@ -500,11 +536,18 @@ from opal_security.models.on_call_schedule import OnCallSchedule as OnCallSchedu
 from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList as OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList as OnCallScheduleList
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum as OnCallScheduleProviderEnum
+from opal_security.models.opal_access_path_edge_filter import OpalAccessPathEdgeFilter as OpalAccessPathEdgeFilter
+from opal_security.models.opal_access_path_query import OpalAccessPathQuery as OpalAccessPathQuery
+from opal_security.models.opal_access_path_query_body import OpalAccessPathQueryBody as OpalAccessPathQueryBody
+from opal_security.models.opal_access_path_query_results import OpalAccessPathQueryResults as OpalAccessPathQueryResults
+from opal_security.models.opal_access_path_result_edge import OpalAccessPathResultEdge as OpalAccessPathResultEdge
+from opal_security.models.opal_access_path_result_node import OpalAccessPathResultNode as OpalAccessPathResultNode
 from opal_security.models.opal_node_query import OpalNodeQuery as OpalNodeQuery
 from opal_security.models.opal_node_query_body import OpalNodeQueryBody as OpalNodeQueryBody
 from opal_security.models.opal_node_query_results import OpalNodeQueryResults as OpalNodeQueryResults
 from opal_security.models.opal_query_result_edge import OpalQueryResultEdge as OpalQueryResultEdge
 from opal_security.models.opal_query_result_node import OpalQueryResultNode as OpalQueryResultNode
+from opal_security.models.opal_query_results import OpalQueryResults as OpalQueryResults
 from opal_security.models.owner import Owner as Owner
 from opal_security.models.page_info import PageInfo as PageInfo
 from opal_security.models.paginated_access_rules_list import PaginatedAccessRulesList as PaginatedAccessRulesList
@@ -512,6 +555,7 @@ from opal_security.models.paginated_assigned_request_list import PaginatedAssign
 from opal_security.models.paginated_bundle_group_list import PaginatedBundleGroupList as PaginatedBundleGroupList
 from opal_security.models.paginated_bundle_list import PaginatedBundleList as PaginatedBundleList
 from opal_security.models.paginated_bundle_resource_list import PaginatedBundleResourceList as PaginatedBundleResourceList
+from opal_security.models.paginated_campaigns_list import PaginatedCampaignsList as PaginatedCampaignsList
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList as PaginatedConfigurationTemplateList
 from opal_security.models.paginated_delegations_list import PaginatedDelegationsList as PaginatedDelegationsList
 from opal_security.models.paginated_event_list import PaginatedEventList as PaginatedEventList
@@ -551,6 +595,8 @@ from opal_security.models.resource_access_user import ResourceAccessUser as Reso
 from opal_security.models.resource_access_user_list import ResourceAccessUserList as ResourceAccessUserList
 from opal_security.models.resource_nhi import ResourceNHI as ResourceNHI
 from opal_security.models.resource_remote_info import ResourceRemoteInfo as ResourceRemoteInfo
+from opal_security.models.resource_remote_info_alicloud_ecs_instance import ResourceRemoteInfoAlicloudEcsInstance as ResourceRemoteInfoAlicloudEcsInstance
+from opal_security.models.resource_remote_info_alicloud_ram_role import ResourceRemoteInfoAlicloudRamRole as ResourceRemoteInfoAlicloudRamRole
 from opal_security.models.resource_remote_info_anthropic_workspace import ResourceRemoteInfoAnthropicWorkspace as ResourceRemoteInfoAnthropicWorkspace
 from opal_security.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount as ResourceRemoteInfoAwsAccount
 from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance as ResourceRemoteInfoAwsEc2Instance
@@ -638,10 +684,12 @@ from opal_security.models.role_permission_target_type_enum import RolePermission
 from opal_security.models.rule_clauses import RuleClauses as RuleClauses
 from opal_security.models.rule_conjunction import RuleConjunction as RuleConjunction
 from opal_security.models.rule_disjunction import RuleDisjunction as RuleDisjunction
+from opal_security.models.run_opal_query_request import RunOpalQueryRequest as RunOpalQueryRequest
 from opal_security.models.scoped_role_permission import ScopedRolePermission as ScopedRolePermission
 from opal_security.models.scoped_role_permission_list import ScopedRolePermissionList as ScopedRolePermissionList
 from opal_security.models.session import Session as Session
 from opal_security.models.sessions_list import SessionsList as SessionsList
+from opal_security.models.stop_campaign_request import StopCampaignRequest as StopCampaignRequest
 from opal_security.models.string_match_type import StringMatchType as StringMatchType
 from opal_security.models.sub_event import SubEvent as SubEvent
 from opal_security.models.sync_error import SyncError as SyncError
@@ -659,6 +707,8 @@ from opal_security.models.uar import UAR as UAR
 from opal_security.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum as UARReviewerAssignmentPolicyEnum
 from opal_security.models.uar_scope import UARScope as UARScope
 from opal_security.models.update_access_rule_info import UpdateAccessRuleInfo as UpdateAccessRuleInfo
+from opal_security.models.update_campaign_configuration_info import UpdateCampaignConfigurationInfo as UpdateCampaignConfigurationInfo
+from opal_security.models.update_campaign_info import UpdateCampaignInfo as UpdateCampaignInfo
 from opal_security.models.update_configuration_template_info import UpdateConfigurationTemplateInfo as UpdateConfigurationTemplateInfo
 from opal_security.models.update_event_stream_info import UpdateEventStreamInfo as UpdateEventStreamInfo
 from opal_security.models.update_group_binding_info import UpdateGroupBindingInfo as UpdateGroupBindingInfo

@@ -4218,7 +4218,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
-        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4240,7 +4240,7 @@ class GroupsApi:
         :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
-        :param page_size: Number of results to return per page. Default is 200.
+        :param page_size: Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.
         :type page_size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4293,7 +4293,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
-        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4315,7 +4315,7 @@ class GroupsApi:
         :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
-        :param page_size: Number of results to return per page. Default is 200.
+        :param page_size: Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.
         :type page_size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4368,7 +4368,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
-        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4390,7 +4390,7 @@ class GroupsApi:
         :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
-        :param page_size: Number of results to return per page. Default is 200.
+        :param page_size: Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.
         :type page_size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

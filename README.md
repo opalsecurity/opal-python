@@ -160,6 +160,13 @@ Class | Method | HTTP request | Description
 *BundlesApi* | [**remove_bundle_resource**](docs/BundlesApi.md#remove_bundle_resource) | **DELETE** /bundles/{bundle_id}/resources/{resource_id} | 
 *BundlesApi* | [**set_bundle_visibility**](docs/BundlesApi.md#set_bundle_visibility) | **PUT** /bundles/{bundle_id}/visibility | 
 *BundlesApi* | [**update_bundle**](docs/BundlesApi.md#update_bundle) | **PUT** /bundles/{bundle_id} | 
+*CampaignsApi* | [**create_campaign**](docs/CampaignsApi.md#create_campaign) | **POST** /campaigns | 
+*CampaignsApi* | [**end_campaign**](docs/CampaignsApi.md#end_campaign) | **POST** /campaigns/{campaign_id}/end | End campaign
+*CampaignsApi* | [**get_campaign**](docs/CampaignsApi.md#get_campaign) | **GET** /campaigns/{campaign_id} | Get campaign by ID
+*CampaignsApi* | [**get_campaigns**](docs/CampaignsApi.md#get_campaigns) | **GET** /campaigns | 
+*CampaignsApi* | [**start_campaign**](docs/CampaignsApi.md#start_campaign) | **POST** /campaigns/{campaign_id}/start | Start campaign
+*CampaignsApi* | [**stop_campaign**](docs/CampaignsApi.md#stop_campaign) | **POST** /campaigns/{campaign_id}/stop | Stop campaign
+*CampaignsApi* | [**update_campaign**](docs/CampaignsApi.md#update_campaign) | **PUT** /campaigns/{campaign_id} | Update campaign
 *ConfigurationTemplatesApi* | [**create_configuration_template**](docs/ConfigurationTemplatesApi.md#create_configuration_template) | **POST** /configuration-templates | 
 *ConfigurationTemplatesApi* | [**delete_configuration_template**](docs/ConfigurationTemplatesApi.md#delete_configuration_template) | **DELETE** /configuration-templates/{configuration_template_id} | 
 *ConfigurationTemplatesApi* | [**get_configuration_templates**](docs/ConfigurationTemplatesApi.md#get_configuration_templates) | **GET** /configuration-templates | 
@@ -313,9 +320,16 @@ Class | Method | HTTP request | Description
  - [Bundle](docs/Bundle.md)
  - [BundleGroup](docs/BundleGroup.md)
  - [BundleResource](docs/BundleResource.md)
+ - [Campaign](docs/Campaign.md)
+ - [CampaignConfiguration](docs/CampaignConfiguration.md)
+ - [CampaignGroupAssetVisibilityPolicyEnum](docs/CampaignGroupAssetVisibilityPolicyEnum.md)
+ - [CampaignRevokeOnEnum](docs/CampaignRevokeOnEnum.md)
+ - [CampaignStatusEnum](docs/CampaignStatusEnum.md)
  - [Condition](docs/Condition.md)
  - [ConfigurationTemplate](docs/ConfigurationTemplate.md)
  - [CreateBundleInfo](docs/CreateBundleInfo.md)
+ - [CreateCampaignConfigurationInfo](docs/CreateCampaignConfigurationInfo.md)
+ - [CreateCampaignInfo](docs/CreateCampaignInfo.md)
  - [CreateConfigurationTemplateInfo](docs/CreateConfigurationTemplateInfo.md)
  - [CreateDelegationRequest](docs/CreateDelegationRequest.md)
  - [CreateEventStreamInfo](docs/CreateEventStreamInfo.md)
@@ -339,6 +353,7 @@ Class | Method | HTTP request | Description
  - [CreateUARInfo](docs/CreateUARInfo.md)
  - [Delegation](docs/Delegation.md)
  - [DenyRequestRequest](docs/DenyRequestRequest.md)
+ - [EntityAdminFilter](docs/EntityAdminFilter.md)
  - [EntityItemTypeEnum](docs/EntityItemTypeEnum.md)
  - [EntityNameFilter](docs/EntityNameFilter.md)
  - [EntityTagFilter](docs/EntityTagFilter.md)
@@ -379,6 +394,7 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoRootlyOnCallSchedule](docs/GroupRemoteInfoRootlyOnCallSchedule.md)
  - [GroupRemoteInfoSlackUserGroup](docs/GroupRemoteInfoSlackUserGroup.md)
  - [GroupRemoteInfoSnowflakeRole](docs/GroupRemoteInfoSnowflakeRole.md)
+ - [GroupRemoteInfoTableauGroup](docs/GroupRemoteInfoTableauGroup.md)
  - [GroupRemoteInfoTailscaleGroup](docs/GroupRemoteInfoTailscaleGroup.md)
  - [GroupRemoteInfoTwingateGroup](docs/GroupRemoteInfoTwingateGroup.md)
  - [GroupRemoteInfoTwingateGroupSynced](docs/GroupRemoteInfoTwingateGroupSynced.md)
@@ -393,6 +409,7 @@ Class | Method | HTTP request | Description
  - [GroupWithAccessLevel](docs/GroupWithAccessLevel.md)
  - [IdpGroupMapping](docs/IdpGroupMapping.md)
  - [IdpGroupMappingList](docs/IdpGroupMappingList.md)
+ - [IdpStatusFilter](docs/IdpStatusFilter.md)
  - [MessageChannel](docs/MessageChannel.md)
  - [MessageChannelIDList](docs/MessageChannelIDList.md)
  - [MessageChannelList](docs/MessageChannelList.md)
@@ -401,11 +418,18 @@ Class | Method | HTTP request | Description
  - [OnCallScheduleIDList](docs/OnCallScheduleIDList.md)
  - [OnCallScheduleList](docs/OnCallScheduleList.md)
  - [OnCallScheduleProviderEnum](docs/OnCallScheduleProviderEnum.md)
+ - [OpalAccessPathEdgeFilter](docs/OpalAccessPathEdgeFilter.md)
+ - [OpalAccessPathQuery](docs/OpalAccessPathQuery.md)
+ - [OpalAccessPathQueryBody](docs/OpalAccessPathQueryBody.md)
+ - [OpalAccessPathQueryResults](docs/OpalAccessPathQueryResults.md)
+ - [OpalAccessPathResultEdge](docs/OpalAccessPathResultEdge.md)
+ - [OpalAccessPathResultNode](docs/OpalAccessPathResultNode.md)
  - [OpalNodeQuery](docs/OpalNodeQuery.md)
  - [OpalNodeQueryBody](docs/OpalNodeQueryBody.md)
  - [OpalNodeQueryResults](docs/OpalNodeQueryResults.md)
  - [OpalQueryResultEdge](docs/OpalQueryResultEdge.md)
  - [OpalQueryResultNode](docs/OpalQueryResultNode.md)
+ - [OpalQueryResults](docs/OpalQueryResults.md)
  - [Owner](docs/Owner.md)
  - [PageInfo](docs/PageInfo.md)
  - [PaginatedAccessRulesList](docs/PaginatedAccessRulesList.md)
@@ -413,6 +437,7 @@ Class | Method | HTTP request | Description
  - [PaginatedBundleGroupList](docs/PaginatedBundleGroupList.md)
  - [PaginatedBundleList](docs/PaginatedBundleList.md)
  - [PaginatedBundleResourceList](docs/PaginatedBundleResourceList.md)
+ - [PaginatedCampaignsList](docs/PaginatedCampaignsList.md)
  - [PaginatedConfigurationTemplateList](docs/PaginatedConfigurationTemplateList.md)
  - [PaginatedDelegationsList](docs/PaginatedDelegationsList.md)
  - [PaginatedEventList](docs/PaginatedEventList.md)
@@ -452,6 +477,8 @@ Class | Method | HTTP request | Description
  - [ResourceAccessUserList](docs/ResourceAccessUserList.md)
  - [ResourceNHI](docs/ResourceNHI.md)
  - [ResourceRemoteInfo](docs/ResourceRemoteInfo.md)
+ - [ResourceRemoteInfoAlicloudEcsInstance](docs/ResourceRemoteInfoAlicloudEcsInstance.md)
+ - [ResourceRemoteInfoAlicloudRamRole](docs/ResourceRemoteInfoAlicloudRamRole.md)
  - [ResourceRemoteInfoAnthropicWorkspace](docs/ResourceRemoteInfoAnthropicWorkspace.md)
  - [ResourceRemoteInfoAwsAccount](docs/ResourceRemoteInfoAwsAccount.md)
  - [ResourceRemoteInfoAwsEc2Instance](docs/ResourceRemoteInfoAwsEc2Instance.md)
@@ -539,10 +566,12 @@ Class | Method | HTTP request | Description
  - [RuleClauses](docs/RuleClauses.md)
  - [RuleConjunction](docs/RuleConjunction.md)
  - [RuleDisjunction](docs/RuleDisjunction.md)
+ - [RunOpalQueryRequest](docs/RunOpalQueryRequest.md)
  - [ScopedRolePermission](docs/ScopedRolePermission.md)
  - [ScopedRolePermissionList](docs/ScopedRolePermissionList.md)
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
+ - [StopCampaignRequest](docs/StopCampaignRequest.md)
  - [StringMatchType](docs/StringMatchType.md)
  - [SubEvent](docs/SubEvent.md)
  - [SyncError](docs/SyncError.md)
@@ -560,6 +589,8 @@ Class | Method | HTTP request | Description
  - [UARReviewerAssignmentPolicyEnum](docs/UARReviewerAssignmentPolicyEnum.md)
  - [UARScope](docs/UARScope.md)
  - [UpdateAccessRuleInfo](docs/UpdateAccessRuleInfo.md)
+ - [UpdateCampaignConfigurationInfo](docs/UpdateCampaignConfigurationInfo.md)
+ - [UpdateCampaignInfo](docs/UpdateCampaignInfo.md)
  - [UpdateConfigurationTemplateInfo](docs/UpdateConfigurationTemplateInfo.md)
  - [UpdateEventStreamInfo](docs/UpdateEventStreamInfo.md)
  - [UpdateGroupBindingInfo](docs/UpdateGroupBindingInfo.md)

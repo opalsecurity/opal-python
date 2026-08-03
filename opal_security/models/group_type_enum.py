@@ -59,6 +59,7 @@ class GroupTypeEnum(str, Enum):
     ZENDESK_GROUP = 'ZENDESK_GROUP'
     ZENDESK_ORGANIZATION = 'ZENDESK_ORGANIZATION'
     HUBSPOT_TEAM = 'HUBSPOT_TEAM'
+    TABLEAU_GROUP = 'TABLEAU_GROUP'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

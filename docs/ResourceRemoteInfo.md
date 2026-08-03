@@ -78,6 +78,8 @@ Name | Type | Description | Notes
 **grafana_role** | [**ResourceRemoteInfoGrafanaRole**](ResourceRemoteInfoGrafanaRole.md) |  | [optional] 
 **zendesk_role** | [**ResourceRemoteInfoZendeskRole**](ResourceRemoteInfoZendeskRole.md) |  | [optional] 
 **hubspot_role** | [**ResourceRemoteInfoHubspotRole**](ResourceRemoteInfoHubspotRole.md) |  | [optional] 
+**alicloud_ram_role** | [**ResourceRemoteInfoAlicloudRamRole**](ResourceRemoteInfoAlicloudRamRole.md) |  | [optional] 
+**alicloud_ecs_instance** | [**ResourceRemoteInfoAlicloudEcsInstance**](ResourceRemoteInfoAlicloudEcsInstance.md) |  | [optional] 
 
 ## Example
 

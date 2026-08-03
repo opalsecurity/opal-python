@@ -4,6 +4,7 @@
 from opal_security.api.access_rules_api import AccessRulesApi
 from opal_security.api.apps_api import AppsApi
 from opal_security.api.bundles_api import BundlesApi
+from opal_security.api.campaigns_api import CampaignsApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi
 from opal_security.api.delegations_api import DelegationsApi
 from opal_security.api.event_streams_api import EventStreamsApi
