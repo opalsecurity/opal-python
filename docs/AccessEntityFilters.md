@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **entity_item_types** | [**List[EntityItemTypeEnum]**](EntityItemTypeEnum.md) | Filter by entity item types. | [optional] 
 **entity_name** | [**EntityNameFilter**](EntityNameFilter.md) |  | [optional] 
 **entity_tag** | [**EntityTagFilter**](EntityTagFilter.md) |  | [optional] 
+**hr_idp_status** | [**IdpStatusFilter**](IdpStatusFilter.md) |  | [optional] 
+**entity_admin_owner** | [**EntityAdminFilter**](EntityAdminFilter.md) |  | [optional] 
 **entity_ids** | **List[UUID]** | Filter by specific entity UUIDs. | [optional] 
 **imported_from_app** | **List[UUID]** | Filter by app IDs from which returned nodes will be imported from. | [optional] 
 **role_remote_ids** | **List[str]** | Filter by role remote IDs. Can only be applied within a hasAccessTo clause. | [optional] 

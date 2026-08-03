@@ -20,6 +20,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.resource_remote_info_alicloud_ecs_instance import ResourceRemoteInfoAlicloudEcsInstance
+from opal_security.models.resource_remote_info_alicloud_ram_role import ResourceRemoteInfoAlicloudRamRole
 from opal_security.models.resource_remote_info_anthropic_workspace import ResourceRemoteInfoAnthropicWorkspace
 from opal_security.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
 from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
@@ -171,8 +173,10 @@ class ResourceRemoteInfo(BaseModel):
     grafana_role: Optional[ResourceRemoteInfoGrafanaRole] = None
     zendesk_role: Optional[ResourceRemoteInfoZendeskRole] = None
     hubspot_role: Optional[ResourceRemoteInfoHubspotRole] = None
+    alicloud_ram_role: Optional[ResourceRemoteInfoAlicloudRamRole] = None
+    alicloud_ecs_instance: Optional[ResourceRemoteInfoAlicloudEcsInstance] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table", "grafana_folder", "grafana_dashboard", "grafana_role", "zendesk_role", "hubspot_role"]
+    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table", "grafana_folder", "grafana_dashboard", "grafana_role", "zendesk_role", "hubspot_role", "alicloud_ram_role", "alicloud_ecs_instance"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -431,6 +435,12 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of hubspot_role
         if self.hubspot_role:
             _dict['hubspot_role'] = self.hubspot_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of alicloud_ram_role
+        if self.alicloud_ram_role:
+            _dict['alicloud_ram_role'] = self.alicloud_ram_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of alicloud_ecs_instance
+        if self.alicloud_ecs_instance:
+            _dict['alicloud_ecs_instance'] = self.alicloud_ecs_instance.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -519,7 +529,9 @@ class ResourceRemoteInfo(BaseModel):
             "grafana_dashboard": ResourceRemoteInfoGrafanaDashboard.from_dict(obj["grafana_dashboard"]) if obj.get("grafana_dashboard") is not None else None,
             "grafana_role": ResourceRemoteInfoGrafanaRole.from_dict(obj["grafana_role"]) if obj.get("grafana_role") is not None else None,
             "zendesk_role": ResourceRemoteInfoZendeskRole.from_dict(obj["zendesk_role"]) if obj.get("zendesk_role") is not None else None,
-            "hubspot_role": ResourceRemoteInfoHubspotRole.from_dict(obj["hubspot_role"]) if obj.get("hubspot_role") is not None else None
+            "hubspot_role": ResourceRemoteInfoHubspotRole.from_dict(obj["hubspot_role"]) if obj.get("hubspot_role") is not None else None,
+            "alicloud_ram_role": ResourceRemoteInfoAlicloudRamRole.from_dict(obj["alicloud_ram_role"]) if obj.get("alicloud_ram_role") is not None else None,
+            "alicloud_ecs_instance": ResourceRemoteInfoAlicloudEcsInstance.from_dict(obj["alicloud_ecs_instance"]) if obj.get("alicloud_ecs_instance") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

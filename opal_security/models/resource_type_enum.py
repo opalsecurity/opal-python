@@ -113,6 +113,8 @@ class ResourceTypeEnum(str, Enum):
     TWINGATE_RESOURCE = 'TWINGATE_RESOURCE'
     ZENDESK_ROLE = 'ZENDESK_ROLE'
     HUBSPOT_ROLE = 'HUBSPOT_ROLE'
+    ALICLOUD_RAM_ROLE = 'ALICLOUD_RAM_ROLE'
+    ALICLOUD_ECS_INSTANCE = 'ALICLOUD_ECS_INSTANCE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

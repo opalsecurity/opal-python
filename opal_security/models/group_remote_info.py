@@ -43,6 +43,7 @@ from opal_security.models.group_remote_info_pagerduty_on_call_schedule import Gr
 from opal_security.models.group_remote_info_rootly_on_call_schedule import GroupRemoteInfoRootlyOnCallSchedule
 from opal_security.models.group_remote_info_slack_user_group import GroupRemoteInfoSlackUserGroup
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_tableau_group import GroupRemoteInfoTableauGroup
 from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup
 from opal_security.models.group_remote_info_twingate_group import GroupRemoteInfoTwingateGroup
 from opal_security.models.group_remote_info_twingate_group_synced import GroupRemoteInfoTwingateGroupSynced
@@ -85,8 +86,9 @@ class GroupRemoteInfo(BaseModel):
     slack_user_group: Optional[GroupRemoteInfoSlackUserGroup] = None
     zendesk_organization: Optional[GroupRemoteInfoZendeskOrganization] = None
     hubspot_team: Optional[GroupRemoteInfoHubspotTeam] = None
+    tableau_group: Optional[GroupRemoteInfoTableauGroup] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "twingate_group", "twingate_group_synced", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "github_enterprise_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "rootly_on_call_schedule", "devin_group", "clickhouse_role", "grafana_team", "zendesk_group", "slack_user_group", "zendesk_organization", "hubspot_team"]
+    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "twingate_group", "twingate_group_synced", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "github_enterprise_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "rootly_on_call_schedule", "devin_group", "clickhouse_role", "grafana_team", "zendesk_group", "slack_user_group", "zendesk_organization", "hubspot_team", "tableau_group"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -216,6 +218,9 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of hubspot_team
         if self.hubspot_team:
             _dict['hubspot_team'] = self.hubspot_team.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tableau_group
+        if self.tableau_group:
+            _dict['tableau_group'] = self.tableau_group.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -261,7 +266,8 @@ class GroupRemoteInfo(BaseModel):
             "zendesk_group": GroupRemoteInfoZendeskGroup.from_dict(obj["zendesk_group"]) if obj.get("zendesk_group") is not None else None,
             "slack_user_group": GroupRemoteInfoSlackUserGroup.from_dict(obj["slack_user_group"]) if obj.get("slack_user_group") is not None else None,
             "zendesk_organization": GroupRemoteInfoZendeskOrganization.from_dict(obj["zendesk_organization"]) if obj.get("zendesk_organization") is not None else None,
-            "hubspot_team": GroupRemoteInfoHubspotTeam.from_dict(obj["hubspot_team"]) if obj.get("hubspot_team") is not None else None
+            "hubspot_team": GroupRemoteInfoHubspotTeam.from_dict(obj["hubspot_team"]) if obj.get("hubspot_team") is not None else None,
+            "tableau_group": GroupRemoteInfoTableauGroup.from_dict(obj["tableau_group"]) if obj.get("tableau_group") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

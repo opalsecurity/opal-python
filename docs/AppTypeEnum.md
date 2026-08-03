@@ -28,6 +28,8 @@ The type of an app.
 
 * `DATASTAX_ASTRA` (value: `'DATASTAX_ASTRA'`)
 
+* `ALICLOUD` (value: `'ALICLOUD'`)
+
 * `DEVIN` (value: `'DEVIN'`)
 
 * `DUO` (value: `'DUO'`)
@@ -85,6 +87,8 @@ The type of an app.
 * `SNOWFLAKE` (value: `'SNOWFLAKE'`)
 
 * `SLACK` (value: `'SLACK'`)
+
+* `TABLEAU` (value: `'TABLEAU'`)
 
 * `TAILSCALE` (value: `'TAILSCALE'`)
 

@@ -1257,7 +1257,7 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.GroupsApi(api_client)
     group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
-    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
+    page_size = 200 # int | Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`. (optional)
 
     try:
         api_response = api_instance.get_group_users(group_id, cursor=cursor, page_size=page_size)
@@ -1276,7 +1276,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **UUID**| The ID of the group. | 
  **cursor** | **str**| The pagination cursor value. | [optional] 
- **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
+ **page_size** | **int**| Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a &#x60;next&#x60; cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no &#x60;next&#x60; cursor. For large groups, prefer setting page_size and following &#x60;next&#x60;. | [optional] 
 
 ### Return type
 
