@@ -22,13 +22,19 @@ The type of an app.
 
 * `CUSTOM` (value: `'CUSTOM'`)
 
+* `CONFLUENCE` (value: `'CONFLUENCE'`)
+
 * `CUSTOM_CONNECTOR` (value: `'CUSTOM_CONNECTOR'`)
 
 * `DATABRICKS` (value: `'DATABRICKS'`)
 
 * `DATASTAX_ASTRA` (value: `'DATASTAX_ASTRA'`)
 
+* `ALICLOUD` (value: `'ALICLOUD'`)
+
 * `DEVIN` (value: `'DEVIN'`)
+
+* `DOCUSIGN` (value: `'DOCUSIGN'`)
 
 * `DUO` (value: `'DUO'`)
 
@@ -49,6 +55,8 @@ The type of an app.
 * `ILEVEL` (value: `'ILEVEL'`)
 
 * `INCIDENTIO` (value: `'INCIDENTIO'`)
+
+* `JIRA` (value: `'JIRA'`)
 
 * `LDAP` (value: `'LDAP'`)
 
@@ -86,6 +94,8 @@ The type of an app.
 
 * `SLACK` (value: `'SLACK'`)
 
+* `TABLEAU` (value: `'TABLEAU'`)
+
 * `TAILSCALE` (value: `'TAILSCALE'`)
 
 * `TELEPORT` (value: `'TELEPORT'`)
@@ -97,6 +107,8 @@ The type of an app.
 * `WORKDAY` (value: `'WORKDAY'`)
 
 * `ZENDESK` (value: `'ZENDESK'`)
+
+* `ZOOM` (value: `'ZOOM'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

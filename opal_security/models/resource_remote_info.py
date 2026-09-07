@@ -20,6 +20,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from opal_security.models.resource_remote_info_alicloud_ecs_instance import ResourceRemoteInfoAlicloudEcsInstance
+from opal_security.models.resource_remote_info_alicloud_ram_role import ResourceRemoteInfoAlicloudRamRole
 from opal_security.models.resource_remote_info_anthropic_workspace import ResourceRemoteInfoAnthropicWorkspace
 from opal_security.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount
 from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance
@@ -52,8 +54,10 @@ from opal_security.models.resource_remote_info_datadog_role import ResourceRemot
 from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_devin_organization import ResourceRemoteInfoDevinOrganization
 from opal_security.models.resource_remote_info_devin_role import ResourceRemoteInfoDevinRole
+from opal_security.models.resource_remote_info_docusign_permission_profile import ResourceRemoteInfoDocusignPermissionProfile
 from opal_security.models.resource_remote_info_gcp_big_query_dataset import ResourceRemoteInfoGcpBigQueryDataset
 from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable
+from opal_security.models.resource_remote_info_gcp_billing_account import ResourceRemoteInfoGcpBillingAccount
 from opal_security.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket
 from opal_security.models.resource_remote_info_gcp_compute_instance import ResourceRemoteInfoGcpComputeInstance
 from opal_security.models.resource_remote_info_gcp_folder import ResourceRemoteInfoGcpFolder
@@ -92,6 +96,8 @@ from opal_security.models.resource_remote_info_teleport_role import ResourceRemo
 from opal_security.models.resource_remote_info_twingate_resource import ResourceRemoteInfoTwingateResource
 from opal_security.models.resource_remote_info_workday_role import ResourceRemoteInfoWorkdayRole
 from opal_security.models.resource_remote_info_zendesk_role import ResourceRemoteInfoZendeskRole
+from opal_security.models.resource_remote_info_zoom_license import ResourceRemoteInfoZoomLicense
+from opal_security.models.resource_remote_info_zoom_role import ResourceRemoteInfoZoomRole
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -131,6 +137,7 @@ class ResourceRemoteInfo(BaseModel):
     gcp_gke_cluster: Optional[ResourceRemoteInfoGcpGkeCluster] = None
     gcp_project: Optional[ResourceRemoteInfoGcpProject] = None
     gcp_sql_instance: Optional[ResourceRemoteInfoGcpSqlInstance] = None
+    gcp_billing_account: Optional[ResourceRemoteInfoGcpBillingAccount] = None
     gcp_service_account: Optional[ResourceRemoteInfoGcpServiceAccount] = None
     google_workspace_role: Optional[ResourceRemoteInfoGoogleWorkspaceRole] = None
     github_repo: Optional[ResourceRemoteInfoGithubRepo] = None
@@ -151,6 +158,7 @@ class ResourceRemoteInfo(BaseModel):
     workday_role: Optional[ResourceRemoteInfoWorkdayRole] = None
     salesforce_permission_set: Optional[ResourceRemoteInfoSalesforcePermissionSet] = None
     salesforce_profile: Optional[ResourceRemoteInfoSalesforceProfile] = None
+    docusign_permission_profile: Optional[ResourceRemoteInfoDocusignPermissionProfile] = None
     salesforce_role: Optional[ResourceRemoteInfoSalesforceRole] = None
     teleport_role: Optional[ResourceRemoteInfoTeleportRole] = None
     datastax_astra_role: Optional[ResourceRemoteInfoDatastaxAstraRole] = None
@@ -171,8 +179,12 @@ class ResourceRemoteInfo(BaseModel):
     grafana_role: Optional[ResourceRemoteInfoGrafanaRole] = None
     zendesk_role: Optional[ResourceRemoteInfoZendeskRole] = None
     hubspot_role: Optional[ResourceRemoteInfoHubspotRole] = None
+    alicloud_ram_role: Optional[ResourceRemoteInfoAlicloudRamRole] = None
+    alicloud_ecs_instance: Optional[ResourceRemoteInfoAlicloudEcsInstance] = None
+    zoom_role: Optional[ResourceRemoteInfoZoomRole] = None
+    zoom_license: Optional[ResourceRemoteInfoZoomLicense] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table", "grafana_folder", "grafana_dashboard", "grafana_role", "zendesk_role", "hubspot_role"]
+    __properties: ClassVar[List[str]] = ["databricks_account_service_principal", "azure_subscription", "azure_resource_group", "azure_management_group", "azure_virtual_machine", "azure_storage_account", "azure_storage_container", "azure_sql_server", "azure_sql_database", "azure_sql_managed_instance", "azure_sql_managed_database", "azure_user_assigned_managed_identity", "azure_enterprise_app", "azure_entra_id_role", "aws_organizational_unit", "aws_account", "aws_permission_set", "aws_iam_role", "aws_ec2_instance", "aws_rds_cluster", "aws_rds_instance", "aws_eks_cluster", "custom_connector", "gcp_organization", "gcp_bucket", "gcp_compute_instance", "gcp_big_query_dataset", "gcp_big_query_table", "gcp_folder", "gcp_gke_cluster", "gcp_project", "gcp_sql_instance", "gcp_billing_account", "gcp_service_account", "google_workspace_role", "github_repo", "github_org_role", "github_org", "github_enterprise_role", "gitlab_project", "okta_app", "okta_standard_role", "okta_custom_role", "snowflake_database", "snowflake_schema", "snowflake_table", "ilevel_advanced_role", "tailscale_ssh", "twingate_resource", "pagerduty_role", "workday_role", "salesforce_permission_set", "salesforce_profile", "docusign_permission_profile", "salesforce_role", "teleport_role", "datastax_astra_role", "coupa_role", "cursor_organization", "openai_platform_project", "openai_platform_service_account", "anthropic_workspace", "oracle_fusion_role", "devin_organization", "devin_role", "netsuite_role", "datadog_role", "clickhouse_database", "clickhouse_table", "grafana_folder", "grafana_dashboard", "grafana_role", "zendesk_role", "hubspot_role", "alicloud_ram_role", "alicloud_ecs_instance", "zoom_role", "zoom_license"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -311,6 +323,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gcp_sql_instance
         if self.gcp_sql_instance:
             _dict['gcp_sql_instance'] = self.gcp_sql_instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_billing_account
+        if self.gcp_billing_account:
+            _dict['gcp_billing_account'] = self.gcp_billing_account.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gcp_service_account
         if self.gcp_service_account:
             _dict['gcp_service_account'] = self.gcp_service_account.to_dict()
@@ -371,6 +386,9 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of salesforce_profile
         if self.salesforce_profile:
             _dict['salesforce_profile'] = self.salesforce_profile.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of docusign_permission_profile
+        if self.docusign_permission_profile:
+            _dict['docusign_permission_profile'] = self.docusign_permission_profile.to_dict()
         # override the default output from pydantic by calling `to_dict()` of salesforce_role
         if self.salesforce_role:
             _dict['salesforce_role'] = self.salesforce_role.to_dict()
@@ -431,6 +449,18 @@ class ResourceRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of hubspot_role
         if self.hubspot_role:
             _dict['hubspot_role'] = self.hubspot_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of alicloud_ram_role
+        if self.alicloud_ram_role:
+            _dict['alicloud_ram_role'] = self.alicloud_ram_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of alicloud_ecs_instance
+        if self.alicloud_ecs_instance:
+            _dict['alicloud_ecs_instance'] = self.alicloud_ecs_instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of zoom_role
+        if self.zoom_role:
+            _dict['zoom_role'] = self.zoom_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of zoom_license
+        if self.zoom_license:
+            _dict['zoom_license'] = self.zoom_license.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -480,6 +510,7 @@ class ResourceRemoteInfo(BaseModel):
             "gcp_gke_cluster": ResourceRemoteInfoGcpGkeCluster.from_dict(obj["gcp_gke_cluster"]) if obj.get("gcp_gke_cluster") is not None else None,
             "gcp_project": ResourceRemoteInfoGcpProject.from_dict(obj["gcp_project"]) if obj.get("gcp_project") is not None else None,
             "gcp_sql_instance": ResourceRemoteInfoGcpSqlInstance.from_dict(obj["gcp_sql_instance"]) if obj.get("gcp_sql_instance") is not None else None,
+            "gcp_billing_account": ResourceRemoteInfoGcpBillingAccount.from_dict(obj["gcp_billing_account"]) if obj.get("gcp_billing_account") is not None else None,
             "gcp_service_account": ResourceRemoteInfoGcpServiceAccount.from_dict(obj["gcp_service_account"]) if obj.get("gcp_service_account") is not None else None,
             "google_workspace_role": ResourceRemoteInfoGoogleWorkspaceRole.from_dict(obj["google_workspace_role"]) if obj.get("google_workspace_role") is not None else None,
             "github_repo": ResourceRemoteInfoGithubRepo.from_dict(obj["github_repo"]) if obj.get("github_repo") is not None else None,
@@ -500,6 +531,7 @@ class ResourceRemoteInfo(BaseModel):
             "workday_role": ResourceRemoteInfoWorkdayRole.from_dict(obj["workday_role"]) if obj.get("workday_role") is not None else None,
             "salesforce_permission_set": ResourceRemoteInfoSalesforcePermissionSet.from_dict(obj["salesforce_permission_set"]) if obj.get("salesforce_permission_set") is not None else None,
             "salesforce_profile": ResourceRemoteInfoSalesforceProfile.from_dict(obj["salesforce_profile"]) if obj.get("salesforce_profile") is not None else None,
+            "docusign_permission_profile": ResourceRemoteInfoDocusignPermissionProfile.from_dict(obj["docusign_permission_profile"]) if obj.get("docusign_permission_profile") is not None else None,
             "salesforce_role": ResourceRemoteInfoSalesforceRole.from_dict(obj["salesforce_role"]) if obj.get("salesforce_role") is not None else None,
             "teleport_role": ResourceRemoteInfoTeleportRole.from_dict(obj["teleport_role"]) if obj.get("teleport_role") is not None else None,
             "datastax_astra_role": ResourceRemoteInfoDatastaxAstraRole.from_dict(obj["datastax_astra_role"]) if obj.get("datastax_astra_role") is not None else None,
@@ -519,7 +551,11 @@ class ResourceRemoteInfo(BaseModel):
             "grafana_dashboard": ResourceRemoteInfoGrafanaDashboard.from_dict(obj["grafana_dashboard"]) if obj.get("grafana_dashboard") is not None else None,
             "grafana_role": ResourceRemoteInfoGrafanaRole.from_dict(obj["grafana_role"]) if obj.get("grafana_role") is not None else None,
             "zendesk_role": ResourceRemoteInfoZendeskRole.from_dict(obj["zendesk_role"]) if obj.get("zendesk_role") is not None else None,
-            "hubspot_role": ResourceRemoteInfoHubspotRole.from_dict(obj["hubspot_role"]) if obj.get("hubspot_role") is not None else None
+            "hubspot_role": ResourceRemoteInfoHubspotRole.from_dict(obj["hubspot_role"]) if obj.get("hubspot_role") is not None else None,
+            "alicloud_ram_role": ResourceRemoteInfoAlicloudRamRole.from_dict(obj["alicloud_ram_role"]) if obj.get("alicloud_ram_role") is not None else None,
+            "alicloud_ecs_instance": ResourceRemoteInfoAlicloudEcsInstance.from_dict(obj["alicloud_ecs_instance"]) if obj.get("alicloud_ecs_instance") is not None else None,
+            "zoom_role": ResourceRemoteInfoZoomRole.from_dict(obj["zoom_role"]) if obj.get("zoom_role") is not None else None,
+            "zoom_license": ResourceRemoteInfoZoomLicense.from_dict(obj["zoom_license"]) if obj.get("zoom_license") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

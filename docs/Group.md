@@ -34,6 +34,8 @@ Name | Type | Description | Notes
 **custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
 **risk_sensitivity** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) | The risk sensitivity level for the group. When an override is set, this field will match that. | [optional] [readonly] 
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
+**match_remote_name** | **bool** | A bool representing whether or not the group&#39;s name is synced from the end system. When true, the name is overwritten with the remote name on each sync. Defaults to false. | [optional] 
+**match_remote_description** | **bool** | A bool representing whether or not the group&#39;s description is synced from the end system. When true, the description is overwritten with the remote description on each sync. Defaults to false. | [optional] 
 **last_successful_sync** | [**SyncTask**](SyncTask.md) | Information about the last successful sync of this group. | [optional] [readonly] 
 
 ## Example

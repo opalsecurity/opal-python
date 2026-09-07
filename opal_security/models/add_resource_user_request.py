@@ -28,7 +28,7 @@ class AddResourceUserRequest(BaseModel):
     """
     AddResourceUserRequest
     """ # noqa: E501
-    duration_minutes: Annotated[int, Field(le=525960, strict=True)] = Field(description="The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.")
+    duration_minutes: Annotated[int, Field(le=153722867, strict=True)] = Field(description="The duration for which the resource can be accessed (in minutes). Use 0 to set to indefinite.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["duration_minutes", "access_level_remote_id"]

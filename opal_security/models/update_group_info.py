@@ -53,8 +53,10 @@ class UpdateGroupInfo(BaseModel):
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent to the requester when the request is approved.")
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
+    match_remote_name: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the group's name should be synced from the end system. When true, the name is overwritten with the remote name on each sync, so a `name` provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged.")
+    match_remote_description: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the group's description should be synced from the end system. When true, the description is overwritten with the remote description on each sync, so a `description` provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "configuration_template_id", "request_template_id", "is_requestable", "group_leader_user_ids", "extensions_duration_in_minutes", "request_configurations", "request_configuration_list", "custom_request_notification", "risk_sensitivity_override"]
+    __properties: ClassVar[List[str]] = ["group_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "configuration_template_id", "request_template_id", "is_requestable", "group_leader_user_ids", "extensions_duration_in_minutes", "request_configurations", "request_configuration_list", "custom_request_notification", "risk_sensitivity_override", "match_remote_name", "match_remote_description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -144,7 +146,9 @@ class UpdateGroupInfo(BaseModel):
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None,
             "request_configuration_list": CreateRequestConfigurationInfoList.from_dict(obj["request_configuration_list"]) if obj.get("request_configuration_list") is not None else None,
             "custom_request_notification": obj.get("custom_request_notification"),
-            "risk_sensitivity_override": obj.get("risk_sensitivity_override")
+            "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
+            "match_remote_name": obj.get("match_remote_name"),
+            "match_remote_description": obj.get("match_remote_description")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

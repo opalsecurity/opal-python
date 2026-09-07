@@ -120,6 +120,8 @@ Granular subtype of an entity.
 
 * `GCP_SERVICE_ACCOUNT` (value: `'GCP_SERVICE_ACCOUNT'`)
 
+* `GCP_BILLING_ACCOUNT` (value: `'GCP_BILLING_ACCOUNT'`)
+
 * `GIT_HUB_REPO` (value: `'GIT_HUB_REPO'`)
 
 * `GIT_HUB_ORG_ROLE` (value: `'GIT_HUB_ORG_ROLE'`)

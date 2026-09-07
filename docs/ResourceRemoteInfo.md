@@ -38,6 +38,7 @@ Name | Type | Description | Notes
 **gcp_gke_cluster** | [**ResourceRemoteInfoGcpGkeCluster**](ResourceRemoteInfoGcpGkeCluster.md) |  | [optional] 
 **gcp_project** | [**ResourceRemoteInfoGcpProject**](ResourceRemoteInfoGcpProject.md) |  | [optional] 
 **gcp_sql_instance** | [**ResourceRemoteInfoGcpSqlInstance**](ResourceRemoteInfoGcpSqlInstance.md) |  | [optional] 
+**gcp_billing_account** | [**ResourceRemoteInfoGcpBillingAccount**](ResourceRemoteInfoGcpBillingAccount.md) |  | [optional] 
 **gcp_service_account** | [**ResourceRemoteInfoGcpServiceAccount**](ResourceRemoteInfoGcpServiceAccount.md) |  | [optional] 
 **google_workspace_role** | [**ResourceRemoteInfoGoogleWorkspaceRole**](ResourceRemoteInfoGoogleWorkspaceRole.md) |  | [optional] 
 **github_repo** | [**ResourceRemoteInfoGithubRepo**](ResourceRemoteInfoGithubRepo.md) |  | [optional] 
@@ -58,6 +59,7 @@ Name | Type | Description | Notes
 **workday_role** | [**ResourceRemoteInfoWorkdayRole**](ResourceRemoteInfoWorkdayRole.md) |  | [optional] 
 **salesforce_permission_set** | [**ResourceRemoteInfoSalesforcePermissionSet**](ResourceRemoteInfoSalesforcePermissionSet.md) |  | [optional] 
 **salesforce_profile** | [**ResourceRemoteInfoSalesforceProfile**](ResourceRemoteInfoSalesforceProfile.md) |  | [optional] 
+**docusign_permission_profile** | [**ResourceRemoteInfoDocusignPermissionProfile**](ResourceRemoteInfoDocusignPermissionProfile.md) |  | [optional] 
 **salesforce_role** | [**ResourceRemoteInfoSalesforceRole**](ResourceRemoteInfoSalesforceRole.md) |  | [optional] 
 **teleport_role** | [**ResourceRemoteInfoTeleportRole**](ResourceRemoteInfoTeleportRole.md) |  | [optional] 
 **datastax_astra_role** | [**ResourceRemoteInfoDatastaxAstraRole**](ResourceRemoteInfoDatastaxAstraRole.md) |  | [optional] 
@@ -78,6 +80,10 @@ Name | Type | Description | Notes
 **grafana_role** | [**ResourceRemoteInfoGrafanaRole**](ResourceRemoteInfoGrafanaRole.md) |  | [optional] 
 **zendesk_role** | [**ResourceRemoteInfoZendeskRole**](ResourceRemoteInfoZendeskRole.md) |  | [optional] 
 **hubspot_role** | [**ResourceRemoteInfoHubspotRole**](ResourceRemoteInfoHubspotRole.md) |  | [optional] 
+**alicloud_ram_role** | [**ResourceRemoteInfoAlicloudRamRole**](ResourceRemoteInfoAlicloudRamRole.md) |  | [optional] 
+**alicloud_ecs_instance** | [**ResourceRemoteInfoAlicloudEcsInstance**](ResourceRemoteInfoAlicloudEcsInstance.md) |  | [optional] 
+**zoom_role** | [**ResourceRemoteInfoZoomRole**](ResourceRemoteInfoZoomRole.md) |  | [optional] 
+**zoom_license** | [**ResourceRemoteInfoZoomLicense**](ResourceRemoteInfoZoomLicense.md) |  | [optional] 
 
 ## Example
 

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**delete_group**](GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
 [**delete_group_user**](GroupsApi.md#delete_group_user) | **DELETE** /groups/{group_id}/users/{user_id} | 
 [**get_group**](GroupsApi.md#get_group) | **GET** /groups/{group_id} | Get group by ID
+[**get_group_access_levels**](GroupsApi.md#get_group_access_levels) | **GET** /groups/{group_id}/access_levels | Get group access levels
 [**get_group_containing_group**](GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | Get nested group by ID
 [**get_group_containing_groups**](GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | Get nested groups
 [**get_group_message_channels**](GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
@@ -590,6 +591,87 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested &#x60;Group&#x60;. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_group_access_levels**
+> GroupAccessLevelList get_group_access_levels(group_id)
+
+Get group access levels
+
+Returns the list of access levels defined for the group. Groups that only offer default (unnamed) access return an empty list.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.group_access_level_list import GroupAccessLevelList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.GroupsApi(api_client)
+    group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group whose access levels to return.
+
+    try:
+        # Get group access levels
+        api_response = api_instance.get_group_access_levels(group_id)
+        print("The response of GroupsApi->get_group_access_levels:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GroupsApi->get_group_access_levels: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **UUID**| The ID of the group whose access levels to return. | 
+
+### Return type
+
+[**GroupAccessLevelList**](GroupAccessLevelList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The access levels defined for the group. |  -  |
+**404** | Group not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1257,7 +1339,7 @@ with opal_security.ApiClient(configuration) as api_client:
     api_instance = opal_security.GroupsApi(api_client)
     group_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the group.
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
-    page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
+    page_size = 200 # int | Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`. (optional)
 
     try:
         api_response = api_instance.get_group_users(group_id, cursor=cursor, page_size=page_size)
@@ -1276,7 +1358,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **UUID**| The ID of the group. | 
  **cursor** | **str**| The pagination cursor value. | [optional] 
- **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
+ **page_size** | **int**| Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a &#x60;next&#x60; cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no &#x60;next&#x60; cursor. For large groups, prefer setting page_size and following &#x60;next&#x60;. | [optional] 
 
 ### Return type
 
@@ -1377,7 +1459,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_groups**
-> PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name, tag_ids=tag_ids)
+> PaginatedGroupsList get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name, tag_ids=tag_ids, requestable=requestable)
 
 Get groups
 
@@ -1422,10 +1504,11 @@ with opal_security.ApiClient(configuration) as api_client:
     group_ids = [["4baf8423-db0a-4037-a4cf-f79c60cb67a5","1b978423-db0a-4037-a4cf-f79c60cb67b3"]] # List[UUID] | The group ids to filter by. (optional)
     group_name = 'example-name' # str | Group name. (optional)
     tag_ids = None # List[UUID] | The IDs of the tags to filter by. Returns only groups that have any of these tags applied. (optional)
+    requestable = true # bool | If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group. (optional)
 
     try:
         # Get groups
-        api_response = api_instance.get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name, tag_ids=tag_ids)
+        api_response = api_instance.get_groups(cursor=cursor, page_size=page_size, group_type_filter=group_type_filter, group_ids=group_ids, group_name=group_name, tag_ids=tag_ids, requestable=requestable)
         print("The response of GroupsApi->get_groups:\n")
         pprint(api_response)
     except Exception as e:
@@ -1445,6 +1528,7 @@ Name | Type | Description  | Notes
  **group_ids** | [**List[UUID]**](UUID.md)| The group ids to filter by. | [optional] 
  **group_name** | **str**| Group name. | [optional] 
  **tag_ids** | [**List[UUID]**](UUID.md)| The IDs of the tags to filter by. Returns only groups that have any of these tags applied. | [optional] 
+ **requestable** | **bool**| If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group. | [optional] 
 
 ### Return type
 

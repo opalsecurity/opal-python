@@ -20,6 +20,8 @@ tags:
     description: Operations related to apps
   - name: bundles
     description: Operations related to bundles
+  - name: campaigns
+    description: Operations related to access review campaigns
   - name: configuration-templates
     description: Operations related to configuration templates
   - name: delegations
@@ -48,6 +50,9 @@ tags:
     description: Operations related to requests
   - name: resources
     description: Operations related to resources
+  - name: paladin
+    description: Operations related to Paladin
+
   - name: sessions
     description: Operations related to sessions
   - name: tags
@@ -55,7 +60,8 @@ tags:
   - name: tokens
     description: Operations related to API tokens
   - name: uars
-    description: Operations related to UARs
+    description:
+      Operations related to UARs. Deprecated in favor of the `campaigns` API.
   - name: users
     description: Operations related to users
 paths:
@@ -598,6 +604,329 @@ paths:
         - BearerAuth: []
       tags:
         - bundles
+  /campaigns:
+    get:
+      description: Returns a list of `Campaign` objects.
+      operationId: getCampaigns
+      parameters:
+        - description: The pagination cursor value.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          explode: true
+          in: query
+          name: cursor
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Number of results to return per page. Default is 200.
+          example: 200
+          explode: true
+          in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+            maximum: 1000
+          style: form
+        - description: Campaign name to filter by. Returns campaigns whose names contain this substring (case-insensitive).
+          example: Q3 Access Review
+          explode: true
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Filter by campaign status. Status is derived from lifecycle timestamps and review progress.
+          example: ONGOING
+          explode: true
+          in: query
+          name: status
+          required: false
+          schema:
+            $ref: "#/components/schemas/CampaignStatusEnum"
+          style: form
+        - description: Include campaigns created after this timestamp (exclusive). ISO 8601 format.
+          example: 2026-01-01T00:00:00Z
+          explode: true
+          in: query
+          name: created_at_after
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns created before this timestamp (exclusive). ISO 8601 format.
+          example: 2026-12-31T23:59:59Z
+          explode: true
+          in: query
+          name: created_at_before
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns started after this timestamp (exclusive). ISO 8601 format.
+          example: 2026-01-01T00:00:00Z
+          explode: true
+          in: query
+          name: started_at_after
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns started before this timestamp (exclusive). ISO 8601 format.
+          example: 2026-12-31T23:59:59Z
+          explode: true
+          in: query
+          name: started_at_before
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns ended after this timestamp (exclusive). ISO 8601 format.
+          example: 2026-01-01T00:00:00Z
+          explode: true
+          in: query
+          name: ended_at_after
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns ended before this timestamp (exclusive). ISO 8601 format.
+          example: 2026-12-31T23:59:59Z
+          explode: true
+          in: query
+          name: ended_at_before
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns stopped after this timestamp (exclusive). ISO 8601 format.
+          example: 2026-01-01T00:00:00Z
+          explode: true
+          in: query
+          name: stopped_at_after
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+        - description: Include campaigns stopped before this timestamp (exclusive). ISO 8601 format.
+          example: 2026-12-31T23:59:59Z
+          explode: true
+          in: query
+          name: stopped_at_before
+          required: false
+          schema:
+            type: string
+            format: date-time
+          style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedCampaignsList"
+          description: A list of campaigns for your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
+    post:
+      description: |
+        Creates a campaign. Campaign scope only supports direct access edges:
+        `configuration.query.edgeFilter.directOnly` defaults to `true`, is
+        always stored as `true`, and passing `false` returns 400.
+      operationId: createCampaign
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCampaignInfo"
+      responses:
+        "201":
+          description: The campaign successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
+  /campaigns/{campaign_id}:
+    get:
+      summary: Get campaign by ID
+      description: Returns a `Campaign` object.
+      operationId: getCampaign
+      parameters:
+        - description: The ID of the campaign.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          explode: true
+          in: path
+          name: campaign_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+          description: The requested `Campaign`.
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
+    put:
+      summary: Update campaign
+      description: |
+        Partially updates a campaign. Omitted fields are left unchanged.
+        `configuration.query` and `configuration.reviewer_assignment_policy`
+        cannot be updated after create; including either field returns 400.
+        `configuration.cron_expression` and
+        `configuration.recurring_duration_days` may only be set on template
+        campaigns; setting them on a one-off campaign returns 400.
+        `configuration.is_template` is immutable and not accepted on update.
+        Configuration updates on a stopped or ended (non-template) campaign
+        return 400. Name-only updates are still allowed.
+      operationId: updateCampaign
+      parameters:
+        - description: The ID of the campaign.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          explode: true
+          in: path
+          name: campaign_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCampaignInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+          description: The updated `Campaign`.
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
+  /campaigns/{campaign_id}/start:
+    post:
+      summary: Start campaign
+      description: |
+        Starts a draft campaign immediately, setting `started_at` and
+        `started_by_user_id`. Returns 400 if the campaign is not in draft
+        state, or if it is a recurring template (`is_template: true`) —
+        templates spawn draft campaigns on their schedule and cannot be
+        started directly.
+      operationId: startCampaign
+      parameters:
+        - description: The ID of the campaign.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          explode: true
+          in: path
+          name: campaign_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+          description: The started `Campaign`.
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
+  /campaigns/{campaign_id}/stop:
+    post:
+      summary: Stop campaign
+      description: |
+        Stops an ongoing campaign immediately, setting `stopped_at` and
+        `stopped_by_user_id`. Returns 400 if the campaign has not started or
+        has already stopped.
+      operationId: stopCampaign
+      parameters:
+        - description: The ID of the campaign.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          explode: true
+          in: path
+          name: campaign_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StopCampaignRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+          description: The stopped `Campaign`.
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
+  /campaigns/{campaign_id}/end:
+    post:
+      summary: End campaign
+      description: |
+        Ends a stopped campaign, setting `ended_at` and `ended_by_user_id`,
+        applying pending access changes, and queuing report generation.
+        Returns 400 unless the campaign is started and stopped and not already
+        ended.
+      operationId: endCampaign
+      parameters:
+        - description: The ID of the campaign.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          explode: true
+          in: path
+          name: campaign_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+          description: The ended `Campaign`.
+      security:
+        - BearerAuth: []
+      tags:
+        - campaigns
   /configuration-templates:
     get:
       description: Returns a list of `ConfigurationTemplate` objects.
@@ -971,6 +1300,17 @@ paths:
             items:
               format: uuid
               type: string
+        - description:
+            If true, only return groups that allow access requests. Does not check
+            whether the caller is permitted to request the group.
+          example: true
+          explode: true
+          in: query
+          name: requestable
+          required: false
+          schema:
+            type: boolean
+          style: form
       responses:
         "200":
           content:
@@ -1190,6 +1530,37 @@ paths:
                   type: string
                 type: array
           description: The updated on call schedule IDs for the group.
+      security:
+        - BearerAuth: []
+      tags:
+        - groups
+  /groups/{group_id}/access_levels:
+    get:
+      summary: Get group access levels
+      description:
+        Returns the list of access levels defined for the group. Groups that
+        only offer default (unnamed) access return an empty list.
+      operationId: get_group_access_levels
+      parameters:
+        - description: The ID of the group whose access levels to return.
+          name: group_id
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupAccessLevelList"
+          description: The access levels defined for the group.
+        "404":
+          description: Group not found.
       security:
         - BearerAuth: []
       tags:
@@ -1453,7 +1824,7 @@ paths:
                     Use 0 to set to indefinite.
                   example: 60
                   type: integer
-                  maximum: 525960 # One year
+                  maximum: 153722867 # Largest duration Opal can represent (~292 years)
                   minimum: 0
               type: object
       responses:
@@ -1706,7 +2077,13 @@ paths:
           schema:
             type: string
           style: form
-        - description: Number of results to return per page. Default is 200.
+        - description:
+            Number of results to return per page, up to 1000. When set (or when a
+            cursor is provided), the response contains a single page of results and
+            a `next` cursor; the default page size is 200. When both page_size and
+            cursor are omitted, the entire group membership is returned in one
+            response with no `next` cursor. For large groups, prefer setting
+            page_size and following `next`.
           example: 200
           explode: true
           in: query
@@ -1766,7 +2143,7 @@ paths:
                     minutes). Use 0 for indefinite, or a negative value to
                     revoke access.
                   type: integer
-                  maximum: 525960 # One year
+                  maximum: 153722867 # Largest duration Opal can represent (~292 years)
                   example: 120
                 access_level_remote_id:
                   description: The updated remote ID of the access level granted to this user.
@@ -1819,7 +2196,7 @@ paths:
           required: false
           schema:
             type: integer
-            maximum: 525960 # One year
+            maximum: 153722867 # Largest duration Opal can represent (~292 years)
           style: form
           deprecated: true
         - description:
@@ -2503,6 +2880,109 @@ paths:
         - BearerAuth: []
       tags:
         - owners
+  /request-templates:
+    get:
+      description: Returns a list of `RequestTemplate` objects.
+      operationId: getRequestTemplates
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedRequestTemplateList"
+          description: One page worth of request templates for your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - request-templates
+    post:
+      description: Creates a request template.
+      operationId: createRequestTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRequestTemplateInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestTemplate"
+          description: The request template just created.
+      security:
+        - BearerAuth: []
+      tags:
+        - request-templates
+    put:
+      description: Updates a request template.
+      operationId: updateRequestTemplate
+      requestBody:
+        description: Request template to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRequestTemplateInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestTemplate"
+          description: The request template just updated.
+      security:
+        - BearerAuth: []
+      tags:
+        - request-templates
+  /request-templates/{request_template_id}:
+    get:
+      description: Returns a `RequestTemplate` object.
+      operationId: getRequestTemplate
+      parameters:
+        - description: The ID of the request template.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: request_template_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestTemplate"
+          description: The requested request template.
+      security:
+        - BearerAuth: []
+      tags:
+        - request-templates
+    delete:
+      description: Deletes a request template.
+      operationId: deleteRequestTemplate
+      parameters:
+        - description: The ID of the request template.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: request_template_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The request template was successfully deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - request-templates
   /requests:
     get:
       summary: Get requests
@@ -3493,7 +3973,7 @@ paths:
                     Use 0 to set to indefinite.
                   example: 60
                   type: integer
-                  maximum: 525960 # One year
+                  maximum: 153722867 # Largest duration Opal can represent (~292 years)
                 access_level_remote_id:
                   description:
                     The remote ID of the access level to grant. If omitted, the default
@@ -3598,7 +4078,7 @@ paths:
           required: false
           schema:
             type: integer
-            maximum: 525960 # One year
+            maximum: 153722867 # Largest duration Opal can represent (~292 years)
           style: form
           deprecated: true
         - description:
@@ -3629,7 +4109,7 @@ paths:
                     Use 0 to set to indefinite.
                   example: 60
                   type: integer
-                  maximum: 525960 # One year
+                  maximum: 153722867 # Largest duration Opal can represent (~292 years)
                 access_level_remote_id:
                   description:
                     The remote ID of the access level to grant to this user. If
@@ -3688,7 +4168,7 @@ paths:
                     The updated duration for which the resource can be accessed (in
                     minutes). Use 0 for indefinite.
                   type: integer
-                  maximum: 525960 # One year
+                  maximum: 153722867 # Largest duration Opal can represent (~292 years)
                   example: 120
                 access_level_remote_id:
                   description: The updated remote ID of the access level granted to this user.
@@ -3965,6 +4445,140 @@ paths:
         - BearerAuth: []
       tags:
         - resources
+  /resources/{resource_id}/custom-access-levels:
+    get:
+      description: Returns all custom access levels for a resource. If the resource is a parent type (e.g. GitHubOrg), returns aggregated roles across child resources.
+      operationId: get_resource_custom_access_levels
+      parameters:
+        - description: The ID of the resource.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceCustomAccessLevelList"
+          description: The custom access levels for the resource.
+        "400":
+          description: Unsupported resource type.
+        "404":
+          description: Resource not found or access denied.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+    post:
+      description: Creates a custom access level on a resource. If the resource is a parent type, the role is created on all child resources.
+      operationId: create_resource_custom_access_level
+      parameters:
+        - description: The ID of the resource.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateResourceCustomAccessLevelInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceCustomAccessLevelResponse"
+          description: The created custom access level.
+        "400":
+          description: Unsupported resource type.
+        "404":
+          description: Resource not found or access denied.
+        "409":
+          description: A custom access level with this remote ID already exists.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /resources/{resource_id}/custom-access-levels/{access_level_remote_id}:
+    patch:
+      description: Updates a custom access level identified by its remote ID. If the resource is a parent type, the update fans out to all child resources.
+      operationId: update_resource_custom_access_level
+      parameters:
+        - description: The ID of the resource.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+        - description: The remote ID of the access level.
+          name: access_level_remote_id
+          example: admin
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateResourceCustomAccessLevelInfo"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceCustomAccessLevelResponse"
+          description: The updated custom access level.
+        "400":
+          description: Unsupported resource type.
+        "404":
+          description: Resource or access level not found, or access denied.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+    delete:
+      description: Deletes a custom access level identified by its remote ID. If the resource is a parent type, the deletion fans out to all child resources.
+      operationId: delete_resource_custom_access_level
+      parameters:
+        - description: The ID of the resource.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+        - description: The remote ID of the access level.
+          name: access_level_remote_id
+          example: admin
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully deleted.
+        "400":
+          description: Unsupported resource type.
+        "404":
+          description: Resource or access level not found, or access denied.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
   /resources/users/{user_id}:
     get:
       description: Gets the list of resources for this user.
@@ -4044,6 +4658,264 @@ paths:
         - BearerAuth: []
       tags:
         - resources
+  /resources/{resource_id}/access_levels:
+    get:
+      summary: Get resource access levels
+      description:
+        Returns the list of access levels defined for the resource. Resources
+        that only offer default (unnamed) access return an empty list.
+      operationId: get_resource_access_levels
+      parameters:
+        - description: The ID of the resource whose access levels to return.
+          name: resource_id
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceAccessLevelList"
+          description: The access levels defined for the resource.
+        "404":
+          description: Resource not found.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+  /paladin:
+    post:
+      summary: Create Paladin
+      description: Creates a new `Paladin`.
+      operationId: createPaladin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePaladinInfo"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Paladin"
+          description: The created Paladin.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+  /paladin/{paladin_id}:
+    get:
+      summary: Get Paladin by ID
+      description: Returns a `Paladin` object.
+      operationId: getPaladin
+      parameters:
+        - description: The ID of the Paladin.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: paladin_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Paladin"
+          description: The Paladin associated with the passed-in ID.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+    put:
+      summary: Update Paladin
+      description: Updates a `Paladin` object.
+      operationId: updatePaladin
+      parameters:
+        - description: The ID of the Paladin.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: paladin_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePaladinInfo"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Paladin"
+          description: The updated Paladin.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+    delete:
+      summary: Delete Paladin
+      description: Deletes a Paladin, removing the underlying service user.
+      operationId: deletePaladin
+      parameters:
+        - description: The ID of the Paladin.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: paladin_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The Paladin was deleted.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+  /paladin/name/{paladin_name}:
+    get:
+      summary: Get Paladins by name
+      description:
+        Returns all Paladins whose name exactly matches the given name. Names
+        are not unique, so the result is a list and may be empty.
+      operationId: getPaladinFromName
+      parameters:
+        - description: The name of the Paladin.
+          example: paladin-agent-1
+          explode: true
+          in: path
+          name: paladin_name
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaladinList"
+          description: The list of Paladins matching the passed-in name.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+  /paladin/{paladin_id}/context-sources:
+    get:
+      summary: List Paladin context sources
+      description:
+        Returns the context sources (Slack channels and documents) configured
+        for a Paladin.
+      operationId: listPaladinContextSources
+      parameters:
+        - description: The ID of the Paladin.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: paladin_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaladinContextSourceList"
+          description: The context sources configured for the Paladin.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+    post:
+      summary: Add a Paladin context source
+      description:
+        Configures a context source (a Slack channel or a document) for a
+        Paladin to read. Idempotent, so re-adding an existing source returns it.
+      operationId: createPaladinContextSource
+      parameters:
+        - description: The ID of the Paladin.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: paladin_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePaladinContextSourceInfo"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaladinContextSource"
+          description: The configured context source.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
+  /paladin/{paladin_id}/context-sources/{context_source_id}:
+    delete:
+      summary: Remove a Paladin context source
+      description: Removes a context source from a Paladin.
+      operationId: deletePaladinContextSource
+      parameters:
+        - description: The ID of the Paladin.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          explode: true
+          in: path
+          name: paladin_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+        - description: The ID of the context source.
+          example: 8a1f2c3d-4b5e-6f70-8192-a3b4c5d6e7f8
+          explode: true
+          in: path
+          name: context_source_id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The context source was removed.
+      security:
+        - BearerAuth: []
+      tags:
+        - paladin
   /sessions:
     get:
       description: Returns a list of `Session` objects.
@@ -4226,6 +5098,22 @@ paths:
               schema:
                 $ref: "#/components/schemas/PaginatedRemoteUsersList"
           description: One page worth users in your organization.
+      security:
+        - BearerAuth: []
+      tags:
+        - users
+  /users/whoami:
+    get:
+      description:
+        Returns the user that the provided API token authenticates as.
+      operationId: getUserWhoami
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: The user that the API token authenticates as.
       security:
         - BearerAuth: []
       tags:
@@ -4864,8 +5752,9 @@ paths:
   /queries/run:
     post:
       summary: Run an ad-hoc OpalQuery
-      description: Runs an ad-hoc OpalQuery and returns the results. Currently
-        supports NODE queries (users, resources, groups). This endpoint is only
+      description: Runs an ad-hoc OpalQuery and returns the results. Supports
+        NODE queries (users, resources, groups) and ACCESS_PATH queries
+        (principal-to-entitlement access edges). This endpoint is only
         available to our OpalQuery beta group. Please contact Opal support if
         you'd like to be added to the beta.
       operationId: runOpalQuery
@@ -4976,7 +5865,9 @@ paths:
         - tokens
   /uars:
     get:
-      description: Returns a list of `UAR` objects.
+      deprecated: true
+      description:
+        Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`.
       operationId: getUARs
       parameters:
         - description: The pagination cursor value.
@@ -5011,7 +5902,9 @@ paths:
         - uars
   /uar:
     post:
-      description: Starts a User Access Review.
+      deprecated: true
+      description:
+        Starts a User Access Review. Deprecated in favor of `POST /campaigns`.
       operationId: create_uar
       requestBody:
         description: The settings of the UAR.
@@ -5033,7 +5926,10 @@ paths:
         - uars
   /uar/{uar_id}:
     get:
-      description: Retrieves a specific UAR.
+      deprecated: true
+      description:
+        Retrieves a specific UAR. Deprecated in favor of
+        `GET /campaigns/{campaign_id}`.
       operationId: get_uar
       parameters:
         - description: The ID of the UAR.
@@ -5265,6 +6161,10 @@ components:
           $ref: "#/components/schemas/EntityNameFilter"
         entityTag:
           $ref: "#/components/schemas/EntityTagFilter"
+        hrIdpStatus:
+          $ref: "#/components/schemas/IdpStatusFilter"
+        entityAdminOwner:
+          $ref: "#/components/schemas/EntityAdminFilter"
         entityIDs:
           type: array
           description: Filter by specific entity UUIDs.
@@ -5318,10 +6218,12 @@ components:
         determines which query schema applies.
       oneOf:
         - $ref: "#/components/schemas/OpalNodeQuery"
+        - $ref: "#/components/schemas/OpalAccessPathQuery"
       discriminator:
         propertyName: type
         mapping:
           NODE: "#/components/schemas/OpalNodeQuery"
+          ACCESS_PATH: "#/components/schemas/OpalAccessPathQuery"
       # example:
       #   type: NODE
       #   query:
@@ -5436,10 +6338,12 @@ components:
         which result schema applies and mirrors the `type` field on the request.
       oneOf:
         - $ref: "#/components/schemas/OpalNodeQueryResults"
+        - $ref: "#/components/schemas/OpalAccessPathQueryResults"
       discriminator:
         propertyName: type
         mapping:
           NODE: "#/components/schemas/OpalNodeQueryResults"
+          ACCESS_PATH: "#/components/schemas/OpalAccessPathQueryResults"
 
     OpalNodeQueryResults:
       type: object
@@ -5462,6 +6366,189 @@ components:
             $ref: "#/components/schemas/OpalQueryResultEdge"
         pageInfo:
           $ref: "#/components/schemas/PageInfo"
+
+    OpalAccessPathQuery:
+      type: object
+      required:
+        - type
+      description:
+        Request body for an ACCESS_PATH-type OpalQuery. Returns principal-to-
+        entitlement access paths matching the given edge filters.
+      example:
+        type: ACCESS_PATH
+        query:
+          principalFilter:
+            entityTypes: [USER]
+          entitlementFilter:
+            entityItemTypes: [AWS_IAM_ROLE]
+          edgeFilter:
+            directOnly: true
+        first: 50
+      properties:
+        type:
+          type: string
+          enum:
+            - ACCESS_PATH
+        query:
+          $ref: "#/components/schemas/OpalAccessPathQueryBody"
+        first:
+          type: integer
+          description: Maximum number of results to return. Defaults to 200.
+          example: 200
+        after:
+          type: string
+          description:
+            Opaque cursor from a previous ACCESS_PATH response to fetch the
+            next page of results.
+        includeCount:
+          type: boolean
+          description:
+            When true, populate totalCount in the response. Defaults to false.
+          example: false
+
+    OpalAccessPathQueryBody:
+      type: object
+      description:
+        Edge-query filters for an ACCESS_PATH OpalQuery. At least one of
+        principalFilter or entitlementFilter is required.
+      properties:
+        principalFilter:
+          $ref: "#/components/schemas/AccessEntityFilters"
+        entitlementFilter:
+          $ref: "#/components/schemas/AccessEntityFilters"
+        principalAccessFilters:
+          description: >
+            Advanced access filter on the principal side of each path. Restricts
+            results to principals that additionally satisfy these access-edge
+            constraints: `hasAccessTo` keeps only principals that also have
+            access to a matching entity; `isAccessibleBy` keeps only principals
+            that are also accessible by a matching entity. Only takes effect when
+            `principalFilter` is also supplied (it refines that filter); on its
+            own it has no effect.
+          $ref: "#/components/schemas/AccessRelationshipFilters"
+        entitlementAccessFilters:
+          description: >
+            Advanced access filter on the entitlement side of each path.
+            Restricts results to entitlements that additionally satisfy these
+            access-edge constraints: `hasAccessTo` keeps only entitlements that
+            also have access to a matching entity; `isAccessibleBy` keeps only
+            entitlements that are also accessible by a matching entity. Only
+            takes effect when `entitlementFilter` is also supplied (it refines
+            that filter); on its own it has no effect.
+          $ref: "#/components/schemas/AccessRelationshipFilters"
+        accessLevelRemoteIds:
+          type: array
+          description: Filter by access-level remote IDs on the terminal edge.
+          items:
+            type: string
+        accessLevelNames:
+          type: array
+          description: Filter by access-level display names on the terminal edge.
+          items:
+            type: string
+        edgeFilter:
+          $ref: "#/components/schemas/OpalAccessPathEdgeFilter"
+
+    OpalAccessPathEdgeFilter:
+      type: object
+      description: Constraints on the access path edges themselves.
+      properties:
+        directOnly:
+          type: boolean
+          description:
+            When true, only return direct (depth-1) principal-to-entitlement
+            edges.
+          example: true
+        accessDurationType:
+          type: string
+          description: Constrain results by whether the terminal access expires.
+          enum:
+            - EXPIRING_ONLY
+            - PERMANENT_ONLY
+          example: EXPIRING_ONLY
+
+    OpalAccessPathResultNode:
+      type: object
+      required:
+        - principalId
+        - entitlementId
+        - depth
+        - path
+      description: A matched access path from an ACCESS_PATH OpalQuery.
+      properties:
+        principalId:
+          type: string
+          format: uuid
+          description: The principal entity ID.
+        entitlementId:
+          type: string
+          format: uuid
+          description: The entitlement entity ID.
+        accessLevelRemoteId:
+          type: string
+          nullable: true
+          description: Remote ID of the terminal access level.
+        accessLevelName:
+          type: string
+          nullable: true
+          description: Display name of the terminal access level.
+        expiration:
+          type: string
+          format: date-time
+          nullable: true
+          description: Expiration of the terminal access, if any.
+        depth:
+          type: integer
+          description: Number of hops from principal to entitlement (path length - 1).
+        path:
+          type: array
+          description: Entity IDs along the path from principal to entitlement.
+          items:
+            type: string
+            format: uuid
+
+    OpalAccessPathResultEdge:
+      type: object
+      required:
+        - node
+        - cursor
+      description:
+        A single ACCESS_PATH result edge containing the matched path and its
+        pagination cursor.
+      properties:
+        node:
+          $ref: "#/components/schemas/OpalAccessPathResultNode"
+        cursor:
+          type: string
+          description: Opaque cursor for this path, used for pagination.
+
+    OpalAccessPathQueryResults:
+      type: object
+      required:
+        - type
+        - edges
+        - pageInfo
+      description:
+        Paginated results of an ACCESS_PATH-type OpalQuery — one edge per
+        matched principal-to-entitlement access path.
+      properties:
+        type:
+          type: string
+          enum:
+            - ACCESS_PATH
+        edges:
+          type: array
+          description: List of matched access paths.
+          items:
+            $ref: "#/components/schemas/OpalAccessPathResultEdge"
+        pageInfo:
+          $ref: "#/components/schemas/PageInfo"
+        totalCount:
+          type: integer
+          nullable: true
+          description:
+            Exact total number of matching paths when includeCount was true on
+            the request; otherwise null.
 
     AccessRelationshipFilters:
       type: object
@@ -5518,14 +6605,60 @@ components:
           format: uuid
           description: If specified, filters by tags associated with this connection.
 
+    IdpStatusFilter:
+      type: object
+      description: >
+        Filters USER entities by their HR/IDP lifecycle status. Only applies to
+        USER entities; GROUP and RESOURCE entities never match, in either
+        polarity. `statuses` combine with OR. `not` inverts the match within the
+        user domain (e.g. "IDP status is NOT active"), so it still returns only
+        users rather than sweeping in groups/resources.
+      properties:
+        statuses:
+          type: array
+          description: Match users whose HR/IDP status is one of these values.
+          items:
+            $ref: "#/components/schemas/UserHrIdpStatusEnum"
+        not:
+          type: boolean
+          description:
+            Invert the match within the user domain (e.g. "IDP status is NOT
+            active").
+
+    EntityAdminFilter:
+      type: object
+      required:
+        - ownerIDs
+      description: >
+        Filters GROUP and RESOURCE entities by their admin owner. USER entities
+        never match, in either polarity. `not` inverts the match within the
+        resource/group domain (self-negating, like IdpStatusFilter): omit it (or
+        false) to include entities owned by the given owners, set it true to
+        exclude them.
+      properties:
+        ownerIDs:
+          type: array
+          description: The owner (group) UUIDs to match entities against.
+          items:
+            type: string
+            format: uuid
+        not:
+          type: boolean
+          description:
+            Invert the match — return resources/groups NOT owned by the given
+            owners.
+
     StringMatchType:
       type: string
-      description: How to match a string value against entity names.
+      description: >-
+        How to match a string value against entity names. REGEX matches the
+        value as a case-insensitive regular expression.
       enum:
         - CONTAINS
         - EQUALS
         - STARTS_WITH
         - ENDS_WITH
+        - REGEX
 
     PaginatedAssignedRequestList:
       type: object
@@ -5691,6 +6824,593 @@ components:
             example: demo
             type: string
           type: array
+      type: object
+    CampaignStatusEnum:
+      description: The current status of a campaign.
+      enum:
+        - DRAFT
+        - ONGOING
+        - COMPLETED
+        - STOPPED
+        - ENDED
+      example: ONGOING
+      type: string
+    CampaignRevokeOnEnum:
+      description: When access decisions take effect during a campaign.
+      enum:
+        - ACTION
+        - END
+        - NONE
+      example: END
+      type: string
+    CampaignGroupAssetVisibilityPolicyEnum:
+      description: Controls what group assets reviewers can see during the campaign.
+      enum:
+        - STRICT
+        - VIEW_VISIBLE_AND_ASSIGNED
+        - VIEW_ALL
+      example: STRICT
+      type: string
+    CampaignConfiguration:
+      description: Configuration for an access review campaign.
+      example:
+        configuration_id: 39a4d283-ca87-4a8a-bdbb-df212eca5fdb
+        created_at: 2026-07-01T00:00:00Z
+        updated_at: 2026-07-01T00:00:00Z
+        query: null
+        reviewer_assignment_policy: MANUALLY
+        allow_self_review: false
+        send_reviewer_assignment_notification: true
+        allow_reviewer_reassignment: false
+        start_date: null
+        end_date: 2026-09-30T00:00:00Z
+        timezone: America/Los_Angeles
+        revoke_on: END
+        reminder_schedule: [7, 3, 1]
+        reminder_include_manager: true
+        require_reason_on_denial: false
+        hide_ai_suggestions: false
+        custom_start_message: null
+        group_asset_visibility_policy: STRICT
+        is_template: false
+        cron_expression: null
+        next_scheduled_run: null
+        last_scheduled_run: null
+        recurring_duration_days: null
+      properties:
+        configuration_id:
+          description: The ID of the campaign configuration.
+          example: 39a4d283-ca87-4a8a-bdbb-df212eca5fdb
+          format: uuid
+          type: string
+        created_at:
+          description: The creation time of the configuration.
+          example: 2026-07-01T00:00:00Z
+          format: date-time
+          type: string
+        updated_at:
+          description: The last updated time of the configuration.
+          example: 2026-07-01T00:00:00Z
+          format: date-time
+          type: string
+        query:
+          description:
+            Access-path query defining the scope of access to review. Uses the
+            same principalFilter / entitlementFilter shape as ACCESS_PATH
+            OpalQuery.
+          allOf:
+            - $ref: "#/components/schemas/OpalAccessPathQueryBody"
+          nullable: true
+        reviewer_assignment_policy:
+          $ref: "#/components/schemas/UARReviewerAssignmentPolicyEnum"
+        allow_self_review:
+          description: Whether reviewers can review their own access.
+          example: false
+          type: boolean
+        send_reviewer_assignment_notification:
+          description: Whether to notify reviewers upon assignment.
+          example: true
+          type: boolean
+        allow_reviewer_reassignment:
+          description: Whether reviewers may reassign their reviews to another user.
+          example: false
+          type: boolean
+        start_date:
+          description: Scheduled start date of the campaign.
+          example: 2026-07-02T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        end_date:
+          description: Scheduled end date of the campaign.
+          example: 2026-09-30T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        timezone:
+          description:
+            IANA timezone used to interpret campaign deadlines (e.g.
+            America/Los_Angeles).
+          example: America/Los_Angeles
+          type: string
+        revoke_on:
+          $ref: "#/components/schemas/CampaignRevokeOnEnum"
+        reminder_schedule:
+          description: Days before end date to send reminder notifications.
+          example: [7, 3, 1]
+          items:
+            type: integer
+          type: array
+        reminder_include_manager:
+          description: Whether to include the reviewer's manager in reminders.
+          example: true
+          type: boolean
+        require_reason_on_denial:
+          description:
+            Whether reviewers must provide a reason when denying (revoking)
+            access.
+          example: false
+          type: boolean
+        hide_ai_suggestions:
+          description: Whether AI suggestions are hidden from reviewers.
+          example: false
+          type: boolean
+        custom_start_message:
+          description:
+            Optional custom message included when notifying reviewers that the
+            campaign started.
+          example: Please complete your reviews by Friday.
+          nullable: true
+          type: string
+        group_asset_visibility_policy:
+          $ref: "#/components/schemas/CampaignGroupAssetVisibilityPolicyEnum"
+        is_template:
+          description:
+            Whether this configuration is a recurring schedule template.
+          example: false
+          type: boolean
+        cron_expression:
+          description:
+            Cron expression driving the recurring schedule. Null for one-off
+            campaigns.
+          example: 0 9 1 * *
+          nullable: true
+          type: string
+        next_scheduled_run:
+          description: Next time a draft will be generated from this template.
+          example: 2026-08-01T16:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        last_scheduled_run:
+          description: Most recent time a draft was generated from this template.
+          example: 2026-07-01T16:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        recurring_duration_days:
+          description:
+            Deadline window in days applied to each draft generated from this
+            template.
+          example: 14
+          nullable: true
+          type: integer
+      required:
+        - configuration_id
+        - created_at
+        - updated_at
+        - reviewer_assignment_policy
+        - allow_self_review
+        - send_reviewer_assignment_notification
+        - allow_reviewer_reassignment
+        - timezone
+        - revoke_on
+        - reminder_include_manager
+        - require_reason_on_denial
+        - hide_ai_suggestions
+        - group_asset_visibility_policy
+        - is_template
+      type: object
+    CreateCampaignConfigurationInfo:
+      description:
+        Configuration to apply when creating a campaign. `query` is required;
+        other omitted fields use defaults.
+      example:
+        query:
+          principalFilter:
+            entityTypes: [USER]
+        end_date: 2026-09-30T00:00:00Z
+        timezone: America/Los_Angeles
+        allow_self_review: false
+      properties:
+        query:
+          description: |
+            Access-path query defining the scope of access to review. Required.
+            Uses the same principalFilter / entitlementFilter shape as
+            ACCESS_PATH OpalQuery. Must include at least one of
+            principalFilter or entitlementFilter.
+
+            Campaign scope only supports direct access edges:
+            `edgeFilter.directOnly` defaults to `true`, is always stored as
+            `true`, and passing `false` returns 400.
+          allOf:
+            - $ref: "#/components/schemas/OpalAccessPathQueryBody"
+        reviewer_assignment_policy:
+          $ref: "#/components/schemas/UARReviewerAssignmentPolicyEnum"
+        allow_self_review:
+          description: Whether reviewers can review their own access.
+          example: false
+          type: boolean
+        send_reviewer_assignment_notification:
+          description: Whether to notify reviewers upon assignment.
+          example: true
+          type: boolean
+        allow_reviewer_reassignment:
+          description: Whether reviewers may reassign their reviews to another user.
+          example: false
+          type: boolean
+        start_date:
+          description: Scheduled start date of the campaign.
+          example: 2026-07-02T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        end_date:
+          description: Scheduled end date of the campaign.
+          example: 2026-09-30T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        timezone:
+          description:
+            IANA timezone used to interpret campaign deadlines (e.g.
+            America/Los_Angeles).
+          example: America/Los_Angeles
+          type: string
+        revoke_on:
+          $ref: "#/components/schemas/CampaignRevokeOnEnum"
+        reminder_schedule:
+          description: Days before end date to send reminder notifications.
+          example: [7, 3, 1]
+          items:
+            type: integer
+          type: array
+        reminder_include_manager:
+          description: Whether to include the reviewer's manager in reminders.
+          example: true
+          type: boolean
+        require_reason_on_denial:
+          description:
+            Whether reviewers must provide a reason when denying (revoking)
+            access.
+          example: false
+          type: boolean
+        hide_ai_suggestions:
+          description: Whether AI suggestions are hidden from reviewers.
+          example: false
+          type: boolean
+        custom_start_message:
+          description:
+            Optional custom message included when notifying reviewers that the
+            campaign started.
+          example: Please complete your reviews by Friday.
+          nullable: true
+          type: string
+        group_asset_visibility_policy:
+          $ref: "#/components/schemas/CampaignGroupAssetVisibilityPolicyEnum"
+        is_template:
+          description:
+            Whether this configuration is a recurring schedule template.
+          example: false
+          type: boolean
+        cron_expression:
+          description:
+            Cron expression driving the recurring schedule. Null for one-off
+            campaigns.
+          example: 0 9 1 * *
+          nullable: true
+          type: string
+        recurring_duration_days:
+          description:
+            Deadline window in days applied to each draft generated from this
+            template.
+          example: 14
+          nullable: true
+          type: integer
+        excluded_role_assignment_ids:
+          description:
+            Role assignment IDs to exclude from the campaign scope during
+            population.
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+        - query
+      type: object
+    CreateCampaignInfo:
+      description: |-
+        # CreateCampaignInfo Object
+        ### Description
+        The `CreateCampaignInfo` object is used to create a campaign.
+
+        ### Usage Example
+        Use in the `POST Campaigns` endpoint.
+      example:
+        name: Q3 Access Review
+        configuration:
+          query:
+            principalFilter:
+              entityTypes: [USER]
+          end_date: 2026-09-30T00:00:00Z
+          timezone: America/Los_Angeles
+      properties:
+        name:
+          description: The name of the campaign.
+          example: Q3 Access Review
+          type: string
+        configuration:
+          description:
+            Configuration for the campaign. Required; must include a query.
+            Other omitted fields use defaults.
+          allOf:
+            - $ref: "#/components/schemas/CreateCampaignConfigurationInfo"
+      required:
+        - name
+        - configuration
+      type: object
+    UpdateCampaignConfigurationInfo:
+      description: |
+        Configuration fields to update on a campaign. All fields are optional;
+        omitted fields are left unchanged. `query` and
+        `reviewer_assignment_policy` are set at create time and cannot be
+        updated here; including either field returns 400.
+        `cron_expression` and `recurring_duration_days` may only be set when
+        the campaign is a template; setting them on a one-off campaign returns
+        400. `is_template` is immutable and not accepted on update.
+      example:
+        end_date: 2026-09-30T00:00:00Z
+        timezone: America/Los_Angeles
+        allow_self_review: false
+      properties:
+        allow_self_review:
+          description: Whether reviewers can review their own access.
+          example: false
+          type: boolean
+        send_reviewer_assignment_notification:
+          description: Whether to notify reviewers upon assignment.
+          example: true
+          type: boolean
+        allow_reviewer_reassignment:
+          description: Whether reviewers may reassign their reviews to another user.
+          example: false
+          type: boolean
+        start_date:
+          description: |
+            Scheduled start date of the campaign. May only be updated while the
+            campaign has not started (started_at is null). When set, the date's
+            calendar day in the campaign timezone must be at least tomorrow.
+          example: 2026-07-02T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        end_date:
+          description: |
+            Scheduled end date of the campaign. When set, the date's calendar
+            day in the campaign timezone must be at least tomorrow.
+          example: 2026-09-30T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        timezone:
+          description:
+            IANA timezone used to interpret campaign deadlines (e.g.
+            America/Los_Angeles).
+          example: America/Los_Angeles
+          type: string
+        revoke_on:
+          $ref: "#/components/schemas/CampaignRevokeOnEnum"
+        reminder_schedule:
+          description: Days before end date to send reminder notifications.
+          example: [7, 3, 1]
+          items:
+            type: integer
+          type: array
+        reminder_include_manager:
+          description: Whether to include the reviewer's manager in reminders.
+          example: true
+          type: boolean
+        require_reason_on_denial:
+          description:
+            Whether reviewers must provide a reason when denying (revoking)
+            access.
+          example: false
+          type: boolean
+        hide_ai_suggestions:
+          description: Whether AI suggestions are hidden from reviewers.
+          example: false
+          type: boolean
+        custom_start_message:
+          description:
+            Optional custom message included when notifying reviewers that the
+            campaign started.
+          example: Please complete your reviews by Friday.
+          nullable: true
+          type: string
+        group_asset_visibility_policy:
+          $ref: "#/components/schemas/CampaignGroupAssetVisibilityPolicyEnum"
+        cron_expression:
+          description:
+            Cron expression driving the recurring schedule. Only valid on
+            template campaigns. Pass an empty string to clear the active months
+            (next_scheduled_run is cleared); the campaign remains a template.
+          example: 0 9 1 * *
+          nullable: true
+          type: string
+        recurring_duration_days:
+          description:
+            Deadline window in days applied to each draft generated from this
+            template. Only valid on template campaigns.
+          example: 14
+          nullable: true
+          type: integer
+      type: object
+    UpdateCampaignInfo:
+      description: |-
+        # UpdateCampaignInfo Object
+        ### Description
+        The `UpdateCampaignInfo` object is used to partially update a campaign.
+        Omitted fields are left unchanged.
+
+        ### Usage Example
+        Use in the `PUT Campaign` endpoint.
+      example:
+        name: Q3 Access Review (Updated)
+        configuration:
+          end_date: 2026-09-30T00:00:00Z
+          timezone: America/Los_Angeles
+      properties:
+        name:
+          description: The name of the campaign.
+          example: Q3 Access Review (Updated)
+          type: string
+        configuration:
+          description: Configuration fields to create or update.
+          allOf:
+            - $ref: "#/components/schemas/UpdateCampaignConfigurationInfo"
+      type: object
+    Campaign:
+      description: An access review campaign.
+      example:
+        campaign_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+        name: Q3 Access Review
+        status: DRAFT
+        is_template: false
+        created_at: 2026-07-01T00:00:00Z
+        updated_at: 2026-07-01T00:00:00Z
+        created_by_user_id: 32acc112-21ff-4669-91c2-21e27683eaa1
+        configuration: null
+        started_at: null
+        started_by_user_id: null
+        stopped_at: null
+        stopped_by_user_id: null
+        ended_at: null
+        ended_by_user_id: null
+      properties:
+        campaign_id:
+          description: The ID of the campaign.
+          example: f454d283-ca87-4a8a-bdbb-df212eca5353
+          format: uuid
+          type: string
+        name:
+          description: The name of the campaign.
+          example: Q3 Access Review
+          type: string
+        status:
+          $ref: "#/components/schemas/CampaignStatusEnum"
+        is_template:
+          description:
+            Whether this campaign is a recurring schedule template. Templates
+            spawn draft campaigns on schedule rather than being reviewed directly.
+          example: false
+          type: boolean
+        created_at:
+          description: The creation time of the campaign.
+          example: 2026-07-01T00:00:00Z
+          format: date-time
+          type: string
+        updated_at:
+          description: The last updated time of the campaign.
+          example: 2026-07-01T00:00:00Z
+          format: date-time
+          type: string
+        created_by_user_id:
+          description: The ID of the user who created the campaign.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          format: uuid
+          type: string
+        configuration:
+          description: The campaign's configuration, if set.
+          allOf:
+            - $ref: "#/components/schemas/CampaignConfiguration"
+          nullable: true
+        started_at:
+          description: The time the campaign was started, if started.
+          example: 2026-07-02T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        started_by_user_id:
+          description: The ID of the user who started the campaign, if started.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          format: uuid
+          nullable: true
+          type: string
+        stopped_at:
+          description: The time the campaign was manually stopped, if stopped.
+          example: 2026-07-10T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        stopped_by_user_id:
+          description: The ID of the user who stopped the campaign, if stopped.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          format: uuid
+          nullable: true
+          type: string
+        ended_at:
+          description: The time the campaign reached its scheduled end, if ended.
+          example: 2026-07-14T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        ended_by_user_id:
+          description: The ID of the user who ended the campaign, if ended.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          format: uuid
+          nullable: true
+          type: string
+      required:
+        - campaign_id
+        - name
+        - status
+        - is_template
+        - created_at
+        - updated_at
+        - created_by_user_id
+      type: object
+    PaginatedCampaignsList:
+      description: A list of campaigns.
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+          - campaign_id: f454d283-ca87-4a8a-bdbb-df212eca5353
+            name: Q3 Access Review
+            status: DRAFT
+            is_template: false
+            created_at: 2026-07-01T00:00:00Z
+            updated_at: 2026-07-01T00:00:00Z
+            created_by_user_id: 32acc112-21ff-4669-91c2-21e27683eaa1
+      properties:
+        next:
+          description:
+            The cursor with which to continue pagination if additional result
+            pages exist.
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          description: The cursor used to obtain the current result page.
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/Campaign"
+          type: array
+      required:
+        - results
       type: object
     PaginatedUARsList:
       description: A list of UARs.
@@ -6013,10 +7733,13 @@ components:
         - COUPA
         - CURSOR
         - CUSTOM
+        - CONFLUENCE
         - CUSTOM_CONNECTOR
         - DATABRICKS
         - DATASTAX_ASTRA
+        - ALICLOUD
         - DEVIN
+        - DOCUSIGN
         - DUO
         - GCP
         - GIT_HUB
@@ -6027,6 +7750,7 @@ components:
         - HUBSPOT
         - ILEVEL
         - INCIDENTIO
+        - JIRA
         - LDAP
         - MARIADB
         - MONGO
@@ -6045,12 +7769,14 @@ components:
         - SALESFORCE
         - SNOWFLAKE
         - SLACK
+        - TABLEAU
         - TAILSCALE
         - TELEPORT
         - TWINGATE
         - VAULT
         - WORKDAY
         - ZENDESK
+        - ZOOM
       example: OKTA_DIRECTORY
       type: string
     EntityTypeEnum:
@@ -6285,6 +8011,99 @@ components:
             $ref: "#/components/schemas/ResourceAccessUser"
           type: array
       type: object
+    ResourceCustomAccessLevelResponse:
+      description: A custom access level for a resource.
+      properties:
+        resource_custom_access_level_id:
+          description: The unique ID of the custom access level.
+          type: string
+          format: uuid
+        resource_id:
+          description: The resource this access level belongs to.
+          type: string
+          format: uuid
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        policy:
+          description: The policy document for this access level.
+          type: string
+          nullable: true
+        requestable_by_default:
+          description: Whether this role is requestable.
+          type: boolean
+        stackable_sensitivity_index:
+          description: The sensitivity index in the access hierarchy. Null if unranked.
+          type: integer
+          nullable: true
+        member_resource_ids:
+          description: When addressed via a parent resource, lists the child resource IDs that back this aggregated entry.
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - resource_custom_access_level_id
+        - resource_id
+        - access_level
+        - requestable_by_default
+      type: object
+    ResourceCustomAccessLevelList:
+      description: A list of custom access levels.
+      properties:
+        custom_access_levels:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceCustomAccessLevelResponse"
+      required:
+        - custom_access_levels
+      type: object
+    CreateResourceCustomAccessLevelInfo:
+      description: Info for creating a custom access level.
+      properties:
+        access_level:
+          $ref: "#/components/schemas/ResourceAccessLevel"
+        policy:
+          description: The policy document.
+          type: string
+          nullable: true
+        requestable_by_default:
+          description: Whether the role is requestable. Defaults to false.
+          type: boolean
+        stackable_sensitivity_index:
+          description: The sensitivity index. Null to leave unranked.
+          type: integer
+          nullable: true
+      required:
+        - access_level
+      type: object
+    UpdateResourceCustomAccessLevelInfo:
+      description: Info for updating a custom access level.
+      properties:
+        access_level_name:
+          description: The new human-readable name.
+          type: string
+        policy:
+          description: The new policy document.
+          type: string
+          nullable: true
+        requestable_by_default:
+          description: Whether the role is requestable.
+          type: boolean
+        stackable_sensitivity_index:
+          description: The new sensitivity index.
+          type: integer
+          nullable: true
+        clear_stackable_sensitivity_index:
+          description: Set to true to remove from the hierarchy.
+          type: boolean
+      type: object
     ResourceAccessLevel:
       description: |-
         # Access Level Object
@@ -6309,6 +8128,20 @@ components:
       required:
         - access_level_name
         - access_level_remote_id
+      type: object
+    ResourceAccessLevelList:
+      description: A list of access levels defined for a resource.
+      example:
+        results:
+          - access_level_name: AdminRole
+            access_level_remote_id: arn:aws:iam::590304332660:role/AdministratorAccess
+          - access_level_name: ReadOnly
+            access_level_remote_id: arn:aws:iam::590304332660:role/ReadOnlyAccess
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/ResourceAccessLevel"
+          type: array
       type: object
     ResourceUserAccessStatus:
       description: |-
@@ -6620,6 +8453,273 @@ components:
           items:
             $ref: "#/components/schemas/Session"
           type: array
+      type: object
+    Paladin:
+      description: |-
+        # Paladin Object
+        ### Description
+        The `Paladin` object represents a Paladin, Opal's AI access-request
+        reviewer.
+      example:
+        paladin_id: 32acc112-21ff-4669-91c2-21e27683eaa1
+        name: paladin-agent-1
+        owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+        monitor_mode: true
+        admin_view_only: false
+        enabled_connectors:
+          - SLACK
+      properties:
+        paladin_id:
+          description:
+            The ID of the Paladin. Use this value as a reviewer in a request
+            configuration's service_user_ids.
+          example: 32acc112-21ff-4669-91c2-21e27683eaa1
+          format: uuid
+          type: string
+        name:
+          description: The name of the Paladin.
+          example: paladin-agent-1
+          type: string
+        owner_id:
+          description: The ID of the owner of the Paladin.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        monitor_mode:
+          description:
+            When true, the Paladin reasons about requests but takes no action.
+            Shown as "Monitor mode" in the UI.
+          type: boolean
+        admin_view_only:
+          description:
+            When true, the Paladin's recommendations are visible only to admins.
+            Only meaningful when monitor_mode is true.
+          type: boolean
+        enabled_connectors:
+          description: The connectors the Paladin is allowed to use.
+          type: array
+          items:
+            $ref: "#/components/schemas/PaladinConnector"
+        instructions:
+          description:
+            The free-form instructions that guide the Paladin's decisions.
+          example: Approve read-only access; escalate anything that grants write access.
+          type: string
+      required:
+        - paladin_id
+        - name
+        - owner_id
+        - monitor_mode
+        - admin_view_only
+        - enabled_connectors
+        - instructions
+      type: object
+    PaladinList:
+      description: |-
+        # PaladinList Object
+        ### Description
+        A list of `Paladin` objects.
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/Paladin"
+          type: array
+      required:
+        - results
+      type: object
+    PaladinConnector:
+      description: A connector a Paladin is allowed to use.
+      enum:
+        - NOTION
+        - JIRA
+        - LINEAR
+        - SERVICE_NOW
+        - NOTION_TICKETS
+        - FRESH_SERVICE
+        - SHORTCUT
+        - SLACK
+        - PAGER_DUTY
+        - CONFLUENCE
+        - FLEET_DM
+      type: string
+    PaladinContextSourceKind:
+      description:
+        The kind of source a Paladin can read. A SLACK_CHANNEL is a Slack
+        channel; a DOCUMENT is a Notion or Confluence page.
+      enum:
+        - SLACK_CHANNEL
+        - DOCUMENT
+      type: string
+    PaladinContextSourceProvider:
+      description: The integration a Paladin context source comes from.
+      enum:
+        - SLACK
+        - NOTION
+        - CONFLUENCE
+      type: string
+    PaladinContextSource:
+      description: |-
+        # PaladinContextSource Object
+        ### Description
+        A context source (a Slack channel or a document) that a Paladin is
+        configured to read during access-request review.
+      example:
+        id: 8a1f2c3d-4b5e-6f70-8192-a3b4c5d6e7f8
+        paladin_id: 32acc112-21ff-4669-91c2-21e27683eaa1
+        source_kind: SLACK_CHANNEL
+        third_party_provider: SLACK
+        remote_id: C0123456789
+        name: "#access-requests"
+        url: https://example.slack.com/archives/C0123456789
+      properties:
+        id:
+          description: The ID of the context source.
+          format: uuid
+          type: string
+        paladin_id:
+          description: The ID of the Paladin this source belongs to.
+          format: uuid
+          type: string
+        source_kind:
+          $ref: "#/components/schemas/PaladinContextSourceKind"
+        third_party_provider:
+          $ref: "#/components/schemas/PaladinContextSourceProvider"
+        remote_id:
+          description:
+            The provider's identifier for the source. The Slack channel ID for
+            a channel, or the Notion/Confluence page ID for a document.
+          type: string
+        name:
+          description: A human-readable name for the source.
+          type: string
+        url:
+          description: A link to the source.
+          type: string
+      required:
+        - id
+        - paladin_id
+        - source_kind
+        - third_party_provider
+        - remote_id
+        - name
+        - url
+      type: object
+    PaladinContextSourceList:
+      description: |-
+        # PaladinContextSourceList Object
+        ### Description
+        A list of `PaladinContextSource` objects.
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/PaladinContextSource"
+          type: array
+      required:
+        - results
+      type: object
+    CreatePaladinContextSourceInfo:
+      description: Information for adding a context source to a Paladin.
+      example:
+        source_kind: SLACK_CHANNEL
+        third_party_provider: SLACK
+        remote_id: C0123456789
+        name: "#access-requests"
+      properties:
+        source_kind:
+          $ref: "#/components/schemas/PaladinContextSourceKind"
+        third_party_provider:
+          $ref: "#/components/schemas/PaladinContextSourceProvider"
+        remote_id:
+          description:
+            The provider's identifier for the source. The Slack channel ID for
+            a channel, or the Notion/Confluence page ID for a document.
+          type: string
+        name:
+          description: An optional human-readable name for the source.
+          type: string
+        url:
+          description: An optional link to the source.
+          type: string
+      required:
+        - source_kind
+        - third_party_provider
+        - remote_id
+      type: object
+    CreatePaladinInfo:
+      description: Information for creating a Paladin.
+      example:
+        name: paladin-agent-1
+        owner_id: 7c86c85d-0651-43e2-a748-d69d658418e8
+      properties:
+        name:
+          description: The name of the Paladin.
+          example: paladin-agent-1
+          type: string
+        owner_id:
+          description: The ID of the owner of the Paladin.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        monitor_mode:
+          description:
+            When true, the Paladin reasons about requests but takes no action.
+            Defaults to true.
+          type: boolean
+          default: true
+        admin_view_only:
+          description:
+            When true, recommendations are visible only to admins. Only
+            meaningful when monitor_mode is true. Defaults to false.
+          type: boolean
+          default: false
+        enabled_connectors:
+          description: The connectors the Paladin is allowed to use.
+          type: array
+          items:
+            $ref: "#/components/schemas/PaladinConnector"
+        instructions:
+          description:
+            The free-form instructions that guide the Paladin's decisions.
+            Optional; if omitted the Paladin is created without instructions.
+          type: string
+      required:
+        - name
+        - owner_id
+      type: object
+    UpdatePaladinInfo:
+      description: Information for updating a Paladin.
+      example:
+        name: paladin-agent-1
+      properties:
+        name:
+          description: The name of the Paladin.
+          example: paladin-agent-1
+          type: string
+        monitor_mode:
+          description:
+            When true, the Paladin reasons about requests but takes no action.
+            If omitted, the existing value is preserved.
+          type: boolean
+        admin_view_only:
+          description:
+            When true, recommendations are visible only to admins. Only
+            meaningful when monitor_mode is true. If omitted, the existing value
+            is preserved.
+          type: boolean
+        enabled_connectors:
+          description:
+            The connectors the Paladin is allowed to use. If omitted, the
+            existing connectors are preserved.
+          type: array
+          items:
+            $ref: "#/components/schemas/PaladinConnector"
+        instructions:
+          description:
+            The free-form instructions that guide the Paladin's decisions. If
+            omitted, the existing instructions are preserved.
+          type: string
+      required:
+        - name
       type: object
     Session:
       description: |-
@@ -6990,7 +9090,7 @@ components:
             The updated duration for which the group can be accessed (in
             minutes). Use 0 for indefinite.
           type: integer
-          maximum: 525960 # One year
+          maximum: 153722867 # Largest duration Opal can represent (~292 years)
           example: 120
         access_level_remote_id:
           description: The updated remote ID of the access level granted to this group.
@@ -7189,6 +9289,21 @@ components:
         risk_sensitivity_override:
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
+        match_remote_name:
+          description:
+            A bool representing whether or not the group's name is synced from
+            the end system. When true, the name is overwritten with the remote
+            name on each sync. Defaults to false.
+          example: False
+          type: boolean
+        match_remote_description:
+          description:
+            A bool representing whether or not the group's description is
+            synced from the end system. When true, the description is
+            overwritten with the remote description on each sync. Defaults to
+            false.
+          example: False
+          type: boolean
         last_successful_sync:
           readOnly: true
           description: Information about the last successful sync of this group.
@@ -7253,6 +9368,20 @@ components:
       required:
         - access_level_name
         - access_level_remote_id
+      type: object
+    GroupAccessLevelList:
+      description: A list of access levels defined for a group.
+      example:
+        results:
+          - access_level_name: Developer
+            access_level_remote_id: "30"
+          - access_level_name: Maintainer
+            access_level_remote_id: "40"
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/GroupAccessLevel"
+          type: array
       type: object
     GroupUser:
       description: |-
@@ -7349,6 +9478,7 @@ components:
         - ERR_DRY_RUN_MODE_ENABLED
         - ERR_HR_IDP_PROVIDER_NOT_LINKED
         - ERR_REMOTE_UNRECOVERABLE_ERROR
+        - ERR_REMOTE_TICKET_NOT_FOUND
       example:
         - SUCCESS
       type: string
@@ -7577,6 +9707,25 @@ components:
         risk_sensitivity_override:
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
+        match_remote_name:
+          description:
+            A bool representing whether or not the group's name should be
+            synced from the end system. When true, the name is overwritten
+            with the remote name on each sync, so a `name` provided together
+            with this field set to true will be replaced at the next sync. If
+            not provided, the current value is left unchanged.
+          example: False
+          type: boolean
+        match_remote_description:
+          description:
+            A bool representing whether or not the group's description should
+            be synced from the end system. When true, the description is
+            overwritten with the remote description on each sync, so a
+            `description` provided together with this field set to true will
+            be replaced at the next sync. If not provided, the current value
+            is left unchanged.
+          example: False
+          type: boolean
       required:
         - group_id
       type: object
@@ -7615,6 +9764,11 @@ components:
         - ZENDESK_GROUP
         - ZENDESK_ORGANIZATION
         - HUBSPOT_TEAM
+        - TABLEAU_GROUP
+        - CONFLUENCE_GROUP
+        - JIRA_GROUP
+        - DOCUSIGN_GROUP
+        - ZOOM_GROUP
       example: OPAL_GROUP
       type: string
     ResourceTypeEnum:
@@ -7657,6 +9811,7 @@ components:
         - GCP_BIG_QUERY_DATASET
         - GCP_BIG_QUERY_TABLE
         - GCP_SERVICE_ACCOUNT
+        - GCP_BILLING_ACCOUNT
         - GIT_HUB_REPO
         - GIT_HUB_ORG_ROLE
         - GIT_LAB_PROJECT
@@ -7706,6 +9861,11 @@ components:
         - TWINGATE_RESOURCE
         - ZENDESK_ROLE
         - HUBSPOT_ROLE
+        - ALICLOUD_RAM_ROLE
+        - ALICLOUD_ECS_INSTANCE
+        - DOCUSIGN_PERMISSION_PROFILE
+        - ZOOM_ROLE
+        - ZOOM_LICENSE
       example: AWS_IAM_ROLE
       type: string
     EntityItemTypeEnum:
@@ -7769,6 +9929,7 @@ components:
         - GCP_CLOUD_SQL_POSTGRES_INSTANCE
         - GCP_CLOUD_SQL_MYSQL_INSTANCE
         - GCP_SERVICE_ACCOUNT
+        - GCP_BILLING_ACCOUNT
         - GIT_HUB_REPO
         - GIT_HUB_ORG_ROLE
         - GIT_LAB_PROJECT
@@ -8566,6 +10727,66 @@ components:
           type: object
           required:
             - team_id
+        tableau_group:
+          description: Remote info for Tableau group.
+          properties:
+            group_id:
+              description: The ID of the Tableau group.
+              example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              type: string
+          type: object
+          required:
+            - group_id
+        confluence_group:
+          description: Remote info for Confluence group.
+          properties:
+            group_id:
+              description: The ID of the Confluence group.
+              example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              type: string
+          type: object
+          required:
+            - group_id
+        jira_group:
+          description: Remote info for Jira group.
+          properties:
+            group_id:
+              description: The ID of the Jira group.
+              example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              type: string
+          type: object
+          required:
+            - group_id
+        docusign_group:
+          description: Remote info for Docusign group.
+          properties:
+            group_id:
+              description: The ID of the Docusign group.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - group_id
+        zoom_group:
+          description: Remote info for Zoom group.
+          properties:
+            group_id:
+              description: The ID of the Zoom group.
+              example: "SoBVexyrQjqCkcxjpBWi6w"
+              type: string
+          type: object
+          required:
+            - group_id
+        docusign_signing_group:
+          description: Remote info for Docusign signing group.
+          properties:
+            signing_group_id:
+              description: The ID of the Docusign signing group.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - signing_group_id
       type: object
     ResourceRemoteInfo:
       description:
@@ -9010,6 +11231,16 @@ components:
           required:
             - instance_id
             - project_id
+        gcp_billing_account:
+          description: Remote info for a GCP billing account.
+          properties:
+            billing_account_id:
+              description: The resource name of the billing account.
+              example: billingAccounts/012345-567890-ABCDEF
+              type: string
+          type: object
+          required:
+            - billing_account_id
         gcp_service_account:
           description: Remote info for a GCP service account.
           properties:
@@ -9252,6 +11483,16 @@ components:
           required:
             - profile_id
             - user_license_id
+        docusign_permission_profile:
+          description: Remote info for Docusign permission profile.
+          properties:
+            permission_profile_id:
+              description: The ID of the Docusign permission profile.
+              example: "12345"
+              type: string
+          type: object
+          required:
+            - permission_profile_id
         salesforce_role:
           description: Remote info for Salesforce role.
           properties:
@@ -9462,6 +11703,46 @@ components:
           type: object
           required:
             - role_id
+        alicloud_ram_role:
+          description: Remote info for AliCloud RAM role.
+          properties:
+            role_arn:
+              description: The ARN of the AliCloud RAM role.
+              example: "acs:ram::1234567890:role/MyRole"
+              type: string
+          type: object
+          required:
+            - role_arn
+        alicloud_ecs_instance:
+          description: Remote info for AliCloud ECS instance.
+          properties:
+            instance_id:
+              description: The ID of the ECS instance.
+              example: "i-bp1a1234567890abcd"
+              type: string
+          type: object
+          required:
+            - instance_id
+        zoom_role:
+          description: Remote info for Zoom role.
+          properties:
+            role_id:
+              description: The ID of the Zoom role.
+              example: "0"
+              type: string
+          type: object
+          required:
+            - role_id
+        zoom_license:
+          description: Remote info for Zoom license (user type).
+          properties:
+            license_type:
+              description: The Zoom user type representing the license (e.g. "2" for Licensed).
+              example: "2"
+              type: string
+          type: object
+          required:
+            - license_type
       type: object
     RiskSensitivityEnum:
       type: string
@@ -9760,6 +12041,24 @@ components:
         risk_sensitivity_override:
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
+        match_remote_name:
+          description:
+            A bool representing whether or not the resource's name should be
+            synced from the end system. When true, the name is overwritten
+            with the remote name on each sync, so a `name` provided together
+            with this field set to true will be replaced at the next sync.
+            Defaults to false.
+          example: False
+          type: boolean
+        match_remote_description:
+          description:
+            A bool representing whether or not the resource's description
+            should be synced from the end system. When true, the description
+            is overwritten with the remote description on each sync, so a
+            `description` provided together with this field set to true will
+            be replaced at the next sync. Defaults to false.
+          example: False
+          type: boolean
       required:
         - name
         - resource_type
@@ -9939,6 +12238,24 @@ components:
         risk_sensitivity_override:
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
+        match_remote_name:
+          description:
+            A bool representing whether or not the group's name should be
+            synced from the end system. When true, the name is overwritten
+            with the remote name on each sync, so a `name` provided together
+            with this field set to true will be replaced at the next sync.
+            Defaults to false.
+          example: False
+          type: boolean
+        match_remote_description:
+          description:
+            A bool representing whether or not the group's description should
+            be synced from the end system. When true, the description is
+            overwritten with the remote description on each sync, so a
+            `description` provided together with this field set to true will
+            be replaced at the next sync. Defaults to false.
+          example: False
+          type: boolean
       required:
         - name
         - group_type
@@ -10331,13 +12648,197 @@ components:
         - field_name
         - field_type
         - field_value
+    RequestTemplateCustomFieldCalloutMetadata:
+      description:
+        The message shown to a requester by a `CALLOUT` field, and how prominently to
+        show it.
+      type: object
+      properties:
+        severity:
+          description: How prominently the message is shown.
+          enum:
+            - INFO
+            - WARNING
+            - ERROR
+          type: string
+          example: WARNING
+        text:
+          description: The message shown to the requester.
+          type: string
+          example: This role grants access to production customer data.
+      required:
+        - severity
+        - text
+    RequestTemplateCustomFieldMultiChoiceMetadata:
+      description: The options a requester can pick from in a `MULTI_CHOICE` or `MULTI_SELECT` field.
+      type: object
+      properties:
+        options:
+          items:
+            type: string
+          type: array
+          example:
+            - Incident response
+            - Scheduled maintenance
+      required:
+        - options
+    RequestTemplateCustomFieldInput:
+      description:
+        A field to put on a request template. Separate from `RequestTemplateCustomField`
+        because a callout's name may be omitted on write, while a field read back always
+        has one.
+      type: object
+      properties:
+        name:
+          description:
+            The label shown to the requester. Required for every type except `CALLOUT`,
+            which is display-only -- its name is an internal identifier, never displayed,
+            and is generated if omitted.
+          type: string
+          example: Why do you need this access?
+        description:
+          description: Helper text shown beneath the field.
+          type: string
+          nullable: true
+        type:
+          $ref: "#/components/schemas/RequestTemplateCustomFieldTypeEnum"
+        required:
+          description:
+            Whether the requester must answer. Ignored for `CALLOUT` fields, which
+            collect no answer.
+          type: boolean
+          example: true
+        metadata:
+          $ref: "#/components/schemas/RequestTemplateCustomFieldMetadata"
+      required:
+        - type
+    RequestTemplateCustomFieldMetadata:
+      description:
+        Extra configuration for field types that need it. Exactly one member is set, and
+        which one is determined by the field's `type`.
+      type: object
+      properties:
+        callout_data:
+          $ref: "#/components/schemas/RequestTemplateCustomFieldCalloutMetadata"
+        multi_choice_data:
+          $ref: "#/components/schemas/RequestTemplateCustomFieldMultiChoiceMetadata"
+    RequestTemplateCustomField:
+      description: A field on a request template.
+      type: object
+      properties:
+        name:
+          description:
+            The label shown to the requester. `CALLOUT` fields are display-only, so
+            their name is an internal identifier and is never displayed.
+          type: string
+          example: Why do you need this access?
+        description:
+          description: Helper text shown beneath the field.
+          type: string
+          nullable: true
+        type:
+          $ref: "#/components/schemas/RequestTemplateCustomFieldTypeEnum"
+        required:
+          description:
+            Whether the requester must answer. Always false for `CALLOUT` fields, which
+            collect no answer.
+          type: boolean
+          example: true
+        metadata:
+          $ref: "#/components/schemas/RequestTemplateCustomFieldMetadata"
+      required:
+        - name
+        - type
+    RequestTemplate:
+      description: A template describing what a requester is asked when requesting access.
+      type: object
+      properties:
+        request_template_id:
+          description: The ID of the request template.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        name:
+          description: The name of the request template.
+          example: Production access questions
+          type: string
+        custom_fields:
+          description: The fields on this template, in the order they are shown.
+          items:
+            $ref: "#/components/schemas/RequestTemplateCustomField"
+          type: array
+      required:
+        - request_template_id
+        - name
+    PaginatedRequestTemplateList:
+      type: object
+      properties:
+        next:
+          description: The cursor with which to continue pagination if additional result pages exist.
+          type: string
+          nullable: true
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzAyMTMlMkIwMCUzQTAw
+        previous:
+          description: The cursor used to obtain the current result page.
+          type: string
+          nullable: true
+          example: cj0xJnA9MjAyMS0wMS0wNSswMyUzQTI0JTNBNTMuNDMwMjEz
+        results:
+          items:
+            $ref: "#/components/schemas/RequestTemplate"
+          type: array
+    CreateRequestTemplateInfo:
+      description: Information for creating a request template.
+      type: object
+      properties:
+        name:
+          description: The name of the request template.
+          example: Production access questions
+          type: string
+        custom_fields:
+          description: The fields to put on the template, in the order they are shown.
+          items:
+            $ref: "#/components/schemas/RequestTemplateCustomFieldInput"
+          type: array
+      required:
+        - name
+    UpdateRequestTemplateInfo:
+      description:
+        Information for updating a request template. Omitted properties are left
+        unchanged, but `custom_fields` replaces the template's fields wholesale when
+        provided.
+      type: object
+      properties:
+        request_template_id:
+          description: The ID of the request template to update.
+          example: 7c86c85d-0651-43e2-a748-d69d658418e8
+          format: uuid
+          type: string
+        name:
+          description: The new name of the request template.
+          type: string
+        custom_fields:
+          description:
+            The complete set of fields for the template. Any field not included is
+            removed.
+          items:
+            $ref: "#/components/schemas/RequestTemplateCustomFieldInput"
+          type: array
+      required:
+        - request_template_id
     RequestTemplateCustomFieldTypeEnum:
-      description: The type of the custom request field.
+      description:
+        The type of the custom request field. `CALLOUT` fields are display-only --
+        they
+        show a message to the requester and collect no answer, so they never appear in a
+        request's `custom_fields`.
       enum:
         - SHORT_TEXT
         - LONG_TEXT
         - BOOLEAN
         - MULTI_CHOICE
+        - MULTI_SELECT
+        - CALLOUT
       type: string
     RequestList:
       description: |-
@@ -10579,6 +13080,21 @@ components:
           example:
             - f454d283-ca67-4a8a-bdbb-df212eca5347
             - f454d283-ca67-4a8a-bdbb-df212eca5348
+        match_remote_name:
+          description:
+            A bool representing whether or not the resource's name is synced
+            from the end system. When true, the name is overwritten with the
+            remote name on each sync. Defaults to false.
+          example: False
+          type: boolean
+        match_remote_description:
+          description:
+            A bool representing whether or not the resource's description is
+            synced from the end system. When true, the description is
+            overwritten with the remote description on each sync. Defaults to
+            false.
+          example: False
+          type: boolean
         last_successful_sync:
           readOnly: true
           description: Information about the last successful sync of this resource.
@@ -10743,6 +13259,25 @@ components:
         risk_sensitivity_override:
           allOf:
             - $ref: "#/components/schemas/RiskSensitivityEnum"
+        match_remote_name:
+          description:
+            A bool representing whether or not the resource's name should be
+            synced from the end system. When true, the name is overwritten
+            with the remote name on each sync, so a `name` provided together
+            with this field set to true will be replaced at the next sync. If
+            not provided, the current value is left unchanged.
+          example: False
+          type: boolean
+        match_remote_description:
+          description:
+            A bool representing whether or not the resource's description
+            should be synced from the end system. When true, the description
+            is overwritten with the remote description on each sync, so a
+            `description` provided together with this field set to true will
+            be replaced at the next sync. If not provided, the current value
+            is left unchanged.
+          example: False
+          type: boolean
         configuration_template_id:
           description: The ID of the associated configuration template.
           example: 06851574-e50d-40ca-8c78-f72ae6ab4304
@@ -11595,7 +14130,8 @@ components:
         max_duration_minutes:
           description:
             The maximum duration for which the resource can be requested (in
-            minutes).
+            minutes). Capped at 1 year (525600) unless a longer maximum has been
+            enabled for your organization. Use -1 for an indefinite duration.
           type: integer
           example: 120
         recommended_duration_minutes:
@@ -12951,6 +15487,13 @@ components:
           type: array
       required:
         - results
+      type: object
+    StopCampaignRequest:
+      properties:
+        revoke_unreviewed:
+          default: false
+          description: Revoke all unreviewed access grants. Access grants with no reviewer decision will be immediately revoked.
+          type: boolean
       type: object
   securitySchemes:
     BearerAuth:

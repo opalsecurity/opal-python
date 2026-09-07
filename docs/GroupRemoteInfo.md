@@ -35,6 +35,12 @@ Name | Type | Description | Notes
 **slack_user_group** | [**GroupRemoteInfoSlackUserGroup**](GroupRemoteInfoSlackUserGroup.md) |  | [optional] 
 **zendesk_organization** | [**GroupRemoteInfoZendeskOrganization**](GroupRemoteInfoZendeskOrganization.md) |  | [optional] 
 **hubspot_team** | [**GroupRemoteInfoHubspotTeam**](GroupRemoteInfoHubspotTeam.md) |  | [optional] 
+**tableau_group** | [**GroupRemoteInfoTableauGroup**](GroupRemoteInfoTableauGroup.md) |  | [optional] 
+**confluence_group** | [**GroupRemoteInfoConfluenceGroup**](GroupRemoteInfoConfluenceGroup.md) |  | [optional] 
+**jira_group** | [**GroupRemoteInfoJiraGroup**](GroupRemoteInfoJiraGroup.md) |  | [optional] 
+**docusign_group** | [**GroupRemoteInfoDocusignGroup**](GroupRemoteInfoDocusignGroup.md) |  | [optional] 
+**zoom_group** | [**GroupRemoteInfoZoomGroup**](GroupRemoteInfoZoomGroup.md) |  | [optional] 
+**docusign_signing_group** | [**GroupRemoteInfoDocusignSigningGroup**](GroupRemoteInfoDocusignSigningGroup.md) |  | [optional] 
 
 ## Example
 
