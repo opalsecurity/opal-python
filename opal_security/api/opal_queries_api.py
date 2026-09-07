@@ -17,8 +17,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from opal_security.models.opal_node_query import OpalNodeQuery
-from opal_security.models.opal_node_query_results import OpalNodeQueryResults
+from opal_security.models.opal_query_results import OpalQueryResults
+from opal_security.models.run_opal_query_request import RunOpalQueryRequest
 
 from opal_security.api_client import ApiClient, RequestSerialized
 from opal_security.api_response import ApiResponse
@@ -41,7 +41,7 @@ class OpalQueriesApi:
     @validate_call
     def run_opal_query(
         self,
-        body: OpalNodeQuery,
+        run_opal_query_request: RunOpalQueryRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -54,13 +54,13 @@ class OpalQueriesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> OpalNodeQueryResults:
+    ) -> OpalQueryResults:
         """Run an ad-hoc OpalQuery
 
-        Runs an ad-hoc OpalQuery and returns the results. Currently supports NODE queries (users, resources, groups). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
+        Runs an ad-hoc OpalQuery and returns the results. Supports NODE queries (users, resources, groups) and ACCESS_PATH queries (principal-to-entitlement access edges). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
 
-        :param body: (required)
-        :type body: OpalNodeQuery
+        :param run_opal_query_request: (required)
+        :type run_opal_query_request: RunOpalQueryRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -84,7 +84,7 @@ class OpalQueriesApi:
         """ # noqa: E501
 
         _param = self._run_opal_query_serialize(
-            body=body,
+            run_opal_query_request=run_opal_query_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -92,7 +92,7 @@ class OpalQueriesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "OpalNodeQueryResults",
+            '200': "OpalQueryResults",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -108,7 +108,7 @@ class OpalQueriesApi:
     @validate_call
     def run_opal_query_with_http_info(
         self,
-        body: OpalNodeQuery,
+        run_opal_query_request: RunOpalQueryRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -121,13 +121,13 @@ class OpalQueriesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[OpalNodeQueryResults]:
+    ) -> ApiResponse[OpalQueryResults]:
         """Run an ad-hoc OpalQuery
 
-        Runs an ad-hoc OpalQuery and returns the results. Currently supports NODE queries (users, resources, groups). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
+        Runs an ad-hoc OpalQuery and returns the results. Supports NODE queries (users, resources, groups) and ACCESS_PATH queries (principal-to-entitlement access edges). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
 
-        :param body: (required)
-        :type body: OpalNodeQuery
+        :param run_opal_query_request: (required)
+        :type run_opal_query_request: RunOpalQueryRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -151,7 +151,7 @@ class OpalQueriesApi:
         """ # noqa: E501
 
         _param = self._run_opal_query_serialize(
-            body=body,
+            run_opal_query_request=run_opal_query_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -159,7 +159,7 @@ class OpalQueriesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "OpalNodeQueryResults",
+            '200': "OpalQueryResults",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -175,7 +175,7 @@ class OpalQueriesApi:
     @validate_call
     def run_opal_query_without_preload_content(
         self,
-        body: OpalNodeQuery,
+        run_opal_query_request: RunOpalQueryRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -191,10 +191,10 @@ class OpalQueriesApi:
     ) -> RESTResponseType:
         """Run an ad-hoc OpalQuery
 
-        Runs an ad-hoc OpalQuery and returns the results. Currently supports NODE queries (users, resources, groups). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
+        Runs an ad-hoc OpalQuery and returns the results. Supports NODE queries (users, resources, groups) and ACCESS_PATH queries (principal-to-entitlement access edges). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
 
-        :param body: (required)
-        :type body: OpalNodeQuery
+        :param run_opal_query_request: (required)
+        :type run_opal_query_request: RunOpalQueryRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -218,7 +218,7 @@ class OpalQueriesApi:
         """ # noqa: E501
 
         _param = self._run_opal_query_serialize(
-            body=body,
+            run_opal_query_request=run_opal_query_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -226,7 +226,7 @@ class OpalQueriesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "OpalNodeQueryResults",
+            '200': "OpalQueryResults",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -237,7 +237,7 @@ class OpalQueriesApi:
 
     def _run_opal_query_serialize(
         self,
-        body,
+        run_opal_query_request,
         _request_auth,
         _content_type,
         _headers,
@@ -263,8 +263,8 @@ class OpalQueriesApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if body is not None:
-            _body_params = body
+        if run_opal_query_request is not None:
+            _body_params = run_opal_query_request
 
 
         # set the HTTP header `Accept`

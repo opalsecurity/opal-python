@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_remote_users**](UsersApi.md#get_remote_users) | **GET** /users/remote_users | 
 [**get_user_tags**](UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
+[**get_user_whoami**](UsersApi.md#get_user_whoami) | **GET** /users/whoami | 
 [**get_users**](UsersApi.md#get_users) | **GET** /users | 
 [**user**](UsersApi.md#user) | **GET** /user | 
 
@@ -170,6 +171,79 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The tags applied to the user. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user_whoami**
+> User get_user_whoami()
+
+Returns the user that the provided API token authenticates as.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.user import User
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.UsersApi(api_client)
+
+    try:
+        api_response = api_instance.get_user_whoami()
+        print("The response of UsersApi->get_user_whoami:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UsersApi->get_user_whoami: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The user that the API token authenticates as. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

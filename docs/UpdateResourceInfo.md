@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **ticket_propagation** | [**TicketPropagationConfiguration**](TicketPropagationConfiguration.md) |  | [optional] 
 **custom_request_notification** | **str** | Custom request notification sent upon request approval. | [optional] 
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
+**match_remote_name** | **bool** | A bool representing whether or not the resource&#39;s name should be synced from the end system. When true, the name is overwritten with the remote name on each sync, so a &#x60;name&#x60; provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged. | [optional] 
+**match_remote_description** | **bool** | A bool representing whether or not the resource&#39;s description should be synced from the end system. When true, the description is overwritten with the remote description on each sync, so a &#x60;description&#x60; provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged. | [optional] 
 **configuration_template_id** | **UUID** | The ID of the associated configuration template. | [optional] 
 **request_template_id** | **UUID** | The ID of the associated request template. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this resource. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 

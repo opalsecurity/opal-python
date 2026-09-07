@@ -78,6 +78,8 @@ The type of the resource.
 
 * `GCP_SERVICE_ACCOUNT` (value: `'GCP_SERVICE_ACCOUNT'`)
 
+* `GCP_BILLING_ACCOUNT` (value: `'GCP_BILLING_ACCOUNT'`)
+
 * `GIT_HUB_REPO` (value: `'GIT_HUB_REPO'`)
 
 * `GIT_HUB_ORG_ROLE` (value: `'GIT_HUB_ORG_ROLE'`)
@@ -175,6 +177,16 @@ The type of the resource.
 * `ZENDESK_ROLE` (value: `'ZENDESK_ROLE'`)
 
 * `HUBSPOT_ROLE` (value: `'HUBSPOT_ROLE'`)
+
+* `ALICLOUD_RAM_ROLE` (value: `'ALICLOUD_RAM_ROLE'`)
+
+* `ALICLOUD_ECS_INSTANCE` (value: `'ALICLOUD_ECS_INSTANCE'`)
+
+* `DOCUSIGN_PERMISSION_PROFILE` (value: `'DOCUSIGN_PERMISSION_PROFILE'`)
+
+* `ZOOM_ROLE` (value: `'ZOOM_ROLE'`)
+
+* `ZOOM_LICENSE` (value: `'ZOOM_LICENSE'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

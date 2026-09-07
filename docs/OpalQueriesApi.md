@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **run_opal_query**
-> OpalNodeQueryResults run_opal_query(body)
+> OpalQueryResults run_opal_query(run_opal_query_request)
 
 Run an ad-hoc OpalQuery
 
-Runs an ad-hoc OpalQuery and returns the results. Currently supports NODE queries (users, resources, groups). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
+Runs an ad-hoc OpalQuery and returns the results. Supports NODE queries (users, resources, groups) and ACCESS_PATH queries (principal-to-entitlement access edges). This endpoint is only available to our OpalQuery beta group. Please contact Opal support if you'd like to be added to the beta.
 
 ### Example
 
@@ -20,8 +20,8 @@ Runs an ad-hoc OpalQuery and returns the results. Currently supports NODE querie
 
 ```python
 import opal_security
-from opal_security.models.opal_node_query import OpalNodeQuery
-from opal_security.models.opal_node_query_results import OpalNodeQueryResults
+from opal_security.models.opal_query_results import OpalQueryResults
+from opal_security.models.run_opal_query_request import RunOpalQueryRequest
 from opal_security.rest import ApiException
 from pprint import pprint
 
@@ -47,11 +47,11 @@ configuration = opal.Configuration(
 with opal_security.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = opal_security.OpalQueriesApi(api_client)
-    body = opal_security.OpalNodeQuery() # OpalNodeQuery | 
+    run_opal_query_request = opal_security.RunOpalQueryRequest() # RunOpalQueryRequest | 
 
     try:
         # Run an ad-hoc OpalQuery
-        api_response = api_instance.run_opal_query(body)
+        api_response = api_instance.run_opal_query(run_opal_query_request)
         print("The response of OpalQueriesApi->run_opal_query:\n")
         pprint(api_response)
     except Exception as e:
@@ -65,11 +65,11 @@ with opal_security.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **OpalNodeQuery**|  | 
+ **run_opal_query_request** | [**RunOpalQueryRequest**](RunOpalQueryRequest.md)|  | 
 
 ### Return type
 
-[**OpalNodeQueryResults**](OpalNodeQueryResults.md)
+[**OpalQueryResults**](OpalQueryResults.md)
 
 ### Authorization
 

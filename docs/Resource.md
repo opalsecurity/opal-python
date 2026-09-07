@@ -37,6 +37,8 @@ Name | Type | Description | Notes
 **remote_info** | [**ResourceRemoteInfo**](ResourceRemoteInfo.md) |  | [optional] 
 **ancestor_resource_ids** | **List[UUID]** | List of resource IDs that are ancestors of this resource. | [optional] 
 **descendant_resource_ids** | **List[UUID]** | List of resource IDs that are descendants of this resource. | [optional] 
+**match_remote_name** | **bool** | A bool representing whether or not the resource&#39;s name is synced from the end system. When true, the name is overwritten with the remote name on each sync. Defaults to false. | [optional] 
+**match_remote_description** | **bool** | A bool representing whether or not the resource&#39;s description is synced from the end system. When true, the description is overwritten with the remote description on each sync. Defaults to false. | [optional] 
 **last_successful_sync** | [**SyncTask**](SyncTask.md) | Information about the last successful sync of this resource. | [optional] [readonly] 
 
 ## Example

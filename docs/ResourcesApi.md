@@ -7,10 +7,14 @@ Method | HTTP request | Description
 [**add_resource_nhi**](ResourcesApi.md#add_resource_nhi) | **POST** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 [**add_resource_user**](ResourcesApi.md#add_resource_user) | **POST** /resources/{resource_id}/users/{user_id} | 
 [**create_resource**](ResourcesApi.md#create_resource) | **POST** /resources | 
+[**create_resource_custom_access_level**](ResourcesApi.md#create_resource_custom_access_level) | **POST** /resources/{resource_id}/custom-access-levels | 
 [**delete_resource**](ResourcesApi.md#delete_resource) | **DELETE** /resources/{resource_id} | 
+[**delete_resource_custom_access_level**](ResourcesApi.md#delete_resource_custom_access_level) | **DELETE** /resources/{resource_id}/custom-access-levels/{access_level_remote_id} | 
 [**delete_resource_nhi**](ResourcesApi.md#delete_resource_nhi) | **DELETE** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 [**delete_resource_user**](ResourcesApi.md#delete_resource_user) | **DELETE** /resources/{resource_id}/users/{user_id} | 
 [**get_resource**](ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | Get resource by ID
+[**get_resource_access_levels**](ResourcesApi.md#get_resource_access_levels) | **GET** /resources/{resource_id}/access_levels | Get resource access levels
+[**get_resource_custom_access_levels**](ResourcesApi.md#get_resource_custom_access_levels) | **GET** /resources/{resource_id}/custom-access-levels | 
 [**get_resource_groups**](ResourcesApi.md#get_resource_groups) | **GET** /resources/{resource_id}/groups | 
 [**get_resource_message_channels**](ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
 [**get_resource_nhis**](ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
@@ -29,6 +33,7 @@ Method | HTTP request | Description
 [**set_resource_reviewers**](ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
 [**set_resource_scoped_role_permissions**](ResourcesApi.md#set_resource_scoped_role_permissions) | **PUT** /resources/{resource_id}/scoped-role-permissions | 
 [**set_resource_visibility**](ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
+[**update_resource_custom_access_level**](ResourcesApi.md#update_resource_custom_access_level) | **PATCH** /resources/{resource_id}/custom-access-levels/{access_level_remote_id} | 
 [**update_resource_user**](ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 [**update_resources**](ResourcesApi.md#update_resources) | **PUT** /resources | 
 
@@ -279,6 +284,89 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_resource_custom_access_level**
+> ResourceCustomAccessLevelResponse create_resource_custom_access_level(resource_id, create_resource_custom_access_level_info)
+
+Creates a custom access level on a resource. If the resource is a parent type, the role is created on all child resources.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.create_resource_custom_access_level_info import CreateResourceCustomAccessLevelInfo
+from opal_security.models.resource_custom_access_level_response import ResourceCustomAccessLevelResponse
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource.
+    create_resource_custom_access_level_info = opal_security.CreateResourceCustomAccessLevelInfo() # CreateResourceCustomAccessLevelInfo | 
+
+    try:
+        api_response = api_instance.create_resource_custom_access_level(resource_id, create_resource_custom_access_level_info)
+        print("The response of ResourcesApi->create_resource_custom_access_level:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->create_resource_custom_access_level: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **create_resource_custom_access_level_info** | [**CreateResourceCustomAccessLevelInfo**](CreateResourceCustomAccessLevelInfo.md)|  | 
+
+### Return type
+
+[**ResourceCustomAccessLevelResponse**](ResourceCustomAccessLevelResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created custom access level. |  -  |
+**400** | Unsupported resource type. |  -  |
+**404** | Resource not found or access denied. |  -  |
+**409** | A custom access level with this remote ID already exists. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_resource**
 > delete_resource(resource_id)
 
@@ -350,6 +438,84 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The resource was successfully deleted. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_resource_custom_access_level**
+> delete_resource_custom_access_level(resource_id, access_level_remote_id)
+
+Deletes a custom access level identified by its remote ID. If the resource is a parent type, the deletion fans out to all child resources.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource.
+    access_level_remote_id = 'admin' # str | The remote ID of the access level.
+
+    try:
+        api_instance.delete_resource_custom_access_level(resource_id, access_level_remote_id)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->delete_resource_custom_access_level: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **access_level_remote_id** | **str**| The remote ID of the access level. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully deleted. |  -  |
+**400** | Unsupported resource type. |  -  |
+**404** | Resource or access level not found, or access denied. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -586,6 +752,166 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_resource_access_levels**
+> ResourceAccessLevelList get_resource_access_levels(resource_id)
+
+Get resource access levels
+
+Returns the list of access levels defined for the resource. Resources that only offer default (unnamed) access return an empty list.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.resource_access_level_list import ResourceAccessLevelList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = UUID('4baf8423-db0a-4037-a4cf-f79c60cb67a5') # UUID | The ID of the resource whose access levels to return.
+
+    try:
+        # Get resource access levels
+        api_response = api_instance.get_resource_access_levels(resource_id)
+        print("The response of ResourcesApi->get_resource_access_levels:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource_access_levels: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **UUID**| The ID of the resource whose access levels to return. | 
+
+### Return type
+
+[**ResourceAccessLevelList**](ResourceAccessLevelList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The access levels defined for the resource. |  -  |
+**404** | Resource not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_resource_custom_access_levels**
+> ResourceCustomAccessLevelList get_resource_custom_access_levels(resource_id)
+
+Returns all custom access levels for a resource. If the resource is a parent type (e.g. GitHubOrg), returns aggregated roles across child resources.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.resource_custom_access_level_list import ResourceCustomAccessLevelList
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource.
+
+    try:
+        api_response = api_instance.get_resource_custom_access_levels(resource_id)
+        print("The response of ResourcesApi->get_resource_custom_access_levels:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource_custom_access_levels: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **UUID**| The ID of the resource. | 
+
+### Return type
+
+[**ResourceCustomAccessLevelList**](ResourceCustomAccessLevelList.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The custom access levels for the resource. |  -  |
+**400** | Unsupported resource type. |  -  |
+**404** | Resource not found or access denied. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2031,6 +2357,90 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The visibility info of this resource. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_resource_custom_access_level**
+> ResourceCustomAccessLevelResponse update_resource_custom_access_level(resource_id, access_level_remote_id, update_resource_custom_access_level_info)
+
+Updates a custom access level identified by its remote ID. If the resource is a parent type, the update fans out to all child resources.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.resource_custom_access_level_response import ResourceCustomAccessLevelResponse
+from opal_security.models.update_resource_custom_access_level_info import UpdateResourceCustomAccessLevelInfo
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.ResourcesApi(api_client)
+    resource_id = UUID('1b978423-db0a-4037-a4cf-f79c60cb67b3') # UUID | The ID of the resource.
+    access_level_remote_id = 'admin' # str | The remote ID of the access level.
+    update_resource_custom_access_level_info = opal_security.UpdateResourceCustomAccessLevelInfo() # UpdateResourceCustomAccessLevelInfo | 
+
+    try:
+        api_response = api_instance.update_resource_custom_access_level(resource_id, access_level_remote_id, update_resource_custom_access_level_info)
+        print("The response of ResourcesApi->update_resource_custom_access_level:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->update_resource_custom_access_level: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **UUID**| The ID of the resource. | 
+ **access_level_remote_id** | **str**| The remote ID of the access level. | 
+ **update_resource_custom_access_level_info** | [**UpdateResourceCustomAccessLevelInfo**](UpdateResourceCustomAccessLevelInfo.md)|  | 
+
+### Return type
+
+[**ResourceCustomAccessLevelResponse**](ResourceCustomAccessLevelResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated custom access level. |  -  |
+**400** | Unsupported resource type. |  -  |
+**404** | Resource or access level not found, or access denied. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
