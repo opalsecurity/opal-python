@@ -34,7 +34,7 @@ class RequestConfiguration(BaseModel):
     allow_requests: StrictBool = Field(description="A bool representing whether or not to allow requests for this resource.")
     auto_approval: StrictBool = Field(description="A bool representing whether or not to automatically approve requests for this resource.")
     require_mfa_to_request: StrictBool = Field(description="A bool representing whether or not to require MFA for requesting access to this resource.")
-    max_duration_minutes: Optional[StrictInt] = Field(default=None, description="The maximum duration for which the resource can be requested (in minutes).")
+    max_duration_minutes: Optional[StrictInt] = Field(default=None, description="The maximum duration for which the resource can be requested (in minutes). Capped at 1 year (525600) unless a longer maximum has been enabled for your organization. Use -1 for an indefinite duration.")
     recommended_duration_minutes: Optional[StrictInt] = Field(default=None, description="The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.")
     require_support_ticket: StrictBool = Field(description="A bool representing whether or not access requests to the resource require an access ticket.")
     extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.")

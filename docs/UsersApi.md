@@ -4,11 +4,95 @@ All URIs are relative to *https://api.opal.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**delete_user**](UsersApi.md#delete_user) | **DELETE** /users/{user_id} | 
 [**get_remote_users**](UsersApi.md#get_remote_users) | **GET** /users/remote_users | 
 [**get_user_tags**](UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
+[**get_user_whoami**](UsersApi.md#get_user_whoami) | **GET** /users/whoami | 
 [**get_users**](UsersApi.md#get_users) | **GET** /users | 
+[**invite_user**](UsersApi.md#invite_user) | **POST** /users | 
+[**update_user**](UsersApi.md#update_user) | **PATCH** /users/{user_id} | 
 [**user**](UsersApi.md#user) | **GET** /user | 
 
+
+# **delete_user**
+> User delete_user(user_id)
+
+Deletes a user from your organization.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.user import User
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.UsersApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the user to delete.
+
+    try:
+        api_response = api_instance.delete_user(user_id)
+        print("The response of UsersApi->delete_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UsersApi->delete_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**| The ID of the user to delete. | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deleted user. |  -  |
+**403** | The caller is not authorized to delete the user. |  -  |
+**404** | The user was not found. |  -  |
+**409** | The user cannot be deleted in its current state. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_remote_users**
 > PaginatedRemoteUsersList get_remote_users(third_party_provider=third_party_provider, user_id=user_id, remote_id=remote_id, cursor=cursor, page_size=page_size)
@@ -173,6 +257,79 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_user_whoami**
+> User get_user_whoami()
+
+Returns the user that the provided API token authenticates as.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.user import User
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.UsersApi(api_client)
+
+    try:
+        api_response = api_instance.get_user_whoami()
+        print("The response of UsersApi->get_user_whoami:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UsersApi->get_user_whoami: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The user that the API token authenticates as. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_users**
 > PaginatedUsersList get_users(cursor=cursor, page_size=page_size, tag_ids=tag_ids)
 
@@ -251,6 +408,171 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | One page worth users in your organization. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **invite_user**
+> User invite_user(invite_user_info)
+
+Invites a user to your organization.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.invite_user_info import InviteUserInfo
+from opal_security.models.user import User
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.UsersApi(api_client)
+    invite_user_info = opal_security.InviteUserInfo() # InviteUserInfo | 
+
+    try:
+        api_response = api_instance.invite_user(invite_user_info)
+        print("The response of UsersApi->invite_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UsersApi->invite_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invite_user_info** | [**InviteUserInfo**](InviteUserInfo.md)|  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The invited user. |  -  |
+**400** | The invite input is invalid. |  -  |
+**403** | The caller is not authorized to invite users. |  -  |
+**409** | The user already belongs to another organization. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_user**
+> User update_user(user_id, update_user_info)
+
+Updates a user's position or manager.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.update_user_info import UpdateUserInfo
+from opal_security.models.user import User
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.UsersApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the user to update.
+    update_user_info = opal_security.UpdateUserInfo() # UpdateUserInfo | 
+
+    try:
+        api_response = api_instance.update_user(user_id, update_user_info)
+        print("The response of UsersApi->update_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UsersApi->update_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**| The ID of the user to update. | 
+ **update_user_info** | [**UpdateUserInfo**](UpdateUserInfo.md)|  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated user. |  -  |
+**400** | The update input is invalid. |  -  |
+**403** | The caller is not authorized to update the user. |  -  |
+**404** | The user was not found. |  -  |
+**409** | The user is managed by an identity provider or is immutable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

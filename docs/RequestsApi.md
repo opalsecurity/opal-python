@@ -5,6 +5,7 @@ All URIs are relative to *https://api.opal.dev/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**approve_request**](RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
+[**cancel_request**](RequestsApi.md#cancel_request) | **POST** /requests/{id}/cancel | Cancel request
 [**create_request**](RequestsApi.md#create_request) | **POST** /requests | 
 [**create_request_comment**](RequestsApi.md#create_request_comment) | **POST** /requests/{id}/comments | 
 [**deny_request**](RequestsApi.md#deny_request) | **POST** /requests/{id}/deny | 
@@ -12,6 +13,8 @@ Method | HTTP request | Description
 [**get_request_comments**](RequestsApi.md#get_request_comments) | **GET** /requests/{id}/comments | 
 [**get_requests**](RequestsApi.md#get_requests) | **GET** /requests | Get requests
 [**get_requests_relay**](RequestsApi.md#get_requests_relay) | **GET** /requests/relay | Get requests via Relay
+[**remind_request**](RequestsApi.md#remind_request) | **POST** /requests/{id}/remind | Send request reminder
+[**remind_request_reviewer**](RequestsApi.md#remind_request_reviewer) | **POST** /requests/{id}/reviewers/{reviewer_id}/remind | Send reminder to a reviewer
 
 
 # **approve_request**
@@ -91,6 +94,89 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Request successfully approved |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cancel_request**
+> Request cancel_request(id)
+
+Cancel request
+
+Cancels a pending access request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.request import Request
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to cancel.
+
+    try:
+        # Cancel request
+        api_response = api_instance.cancel_request(id)
+        print("The response of RequestsApi->cancel_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->cancel_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request to cancel. | 
+
+### Return type
+
+[**Request**](Request.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The canceled request. |  -  |
+**403** | The authenticated user cannot cancel this request. |  -  |
+**404** | The request was not found. |  -  |
+**409** | The request has already been actioned. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -675,6 +761,174 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A paginated list of requests using Relay-style cursor pagination. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remind_request**
+> RemindRequest200Response remind_request(id)
+
+Send request reminder
+
+Sends a reminder to all pending reviewers of the request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.remind_request200_response import RemindRequest200Response
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request whose reviewers should be reminded.
+
+    try:
+        # Send request reminder
+        api_response = api_instance.remind_request(id)
+        print("The response of RequestsApi->remind_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->remind_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request whose reviewers should be reminded. | 
+
+### Return type
+
+[**RemindRequest200Response**](RemindRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The reminder was sent, or the request was already resolved. |  -  |
+**400** | Unknown JSON fields in the request body. |  -  |
+**404** | The request was not found. |  -  |
+**429** | The reviewer reminder cooldown has not elapsed. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remind_request_reviewer**
+> RemindRequest200Response remind_request_reviewer(id, reviewer_id)
+
+Send reminder to a reviewer
+
+Sends a reminder to one pending reviewer of the request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.remind_request200_response import RemindRequest200Response
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request whose reviewer should be reminded.
+    reviewer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the pending reviewer to remind.
+
+    try:
+        # Send reminder to a reviewer
+        api_response = api_instance.remind_request_reviewer(id, reviewer_id)
+        print("The response of RequestsApi->remind_request_reviewer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->remind_request_reviewer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request whose reviewer should be reminded. | 
+ **reviewer_id** | **UUID**| The ID of the pending reviewer to remind. | 
+
+### Return type
+
+[**RemindRequest200Response**](RemindRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The reminder was sent, or the request was already resolved. |  -  |
+**400** | Unknown JSON fields, or the user is not a pending reviewer of the request. |  -  |
+**404** | The request was not found. |  -  |
+**429** | The reviewer reminder cooldown has not elapsed. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -68,6 +68,18 @@ The type of the group.
 
 * `HUBSPOT_TEAM` (value: `'HUBSPOT_TEAM'`)
 
+* `TABLEAU_GROUP` (value: `'TABLEAU_GROUP'`)
+
+* `CONFLUENCE_GROUP` (value: `'CONFLUENCE_GROUP'`)
+
+* `JIRA_GROUP` (value: `'JIRA_GROUP'`)
+
+* `DOCUSIGN_GROUP` (value: `'DOCUSIGN_GROUP'`)
+
+* `ZOOM_GROUP` (value: `'ZOOM_GROUP'`)
+
+* `LINEAR_TEAM` (value: `'LINEAR_TEAM'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
