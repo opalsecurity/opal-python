@@ -21,9 +21,11 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
+from opal_security.models.entity_admin_filter import EntityAdminFilter
 from opal_security.models.entity_item_type_enum import EntityItemTypeEnum
 from opal_security.models.entity_name_filter import EntityNameFilter
 from opal_security.models.entity_tag_filter import EntityTagFilter
+from opal_security.models.idp_status_filter import IdpStatusFilter
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,6 +37,8 @@ class AccessEntityFilters(BaseModel):
     entity_item_types: Optional[List[EntityItemTypeEnum]] = Field(default=None, description="Filter by entity item types.", alias="entityItemTypes")
     entity_name: Optional[EntityNameFilter] = Field(default=None, alias="entityName")
     entity_tag: Optional[EntityTagFilter] = Field(default=None, alias="entityTag")
+    hr_idp_status: Optional[IdpStatusFilter] = Field(default=None, alias="hrIdpStatus")
+    entity_admin_owner: Optional[EntityAdminFilter] = Field(default=None, alias="entityAdminOwner")
     entity_ids: Optional[List[UUID]] = Field(default=None, description="Filter by specific entity UUIDs.", alias="entityIDs")
     imported_from_app: Optional[List[UUID]] = Field(default=None, description="Filter by app IDs from which returned nodes will be imported from.", alias="importedFromApp")
     role_remote_ids: Optional[List[StrictStr]] = Field(default=None, description="Filter by role remote IDs. Can only be applied within a hasAccessTo clause.", alias="roleRemoteIds")
@@ -43,7 +47,7 @@ class AccessEntityFilters(BaseModel):
     any_of: Optional[List[AccessEntityFilters]] = Field(default=None, description="A list of nested filters where at least one must match (logical  OR). Each item has the same shape as this object. ", alias="anyOf")
     var_not: Optional[Dict[str, Any]] = Field(default=None, description="Excludes entities matching the embedded filter (logical NOT). Pass a filter object with the same shape as this one — typically a single scalar field, like `{not: {entityTypes: [\"RESOURCE\"]}}` to exclude resources. ", alias="not")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["entityTypes", "entityItemTypes", "entityName", "entityTag", "entityIDs", "importedFromApp", "roleRemoteIds", "roleNames", "allOf", "anyOf", "not"]
+    __properties: ClassVar[List[str]] = ["entityTypes", "entityItemTypes", "entityName", "entityTag", "hrIdpStatus", "entityAdminOwner", "entityIDs", "importedFromApp", "roleRemoteIds", "roleNames", "allOf", "anyOf", "not"]
 
     @field_validator('entity_types')
     def entity_types_validate_enum(cls, value):
@@ -103,6 +107,12 @@ class AccessEntityFilters(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of entity_tag
         if self.entity_tag:
             _dict['entityTag'] = self.entity_tag.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of hr_idp_status
+        if self.hr_idp_status:
+            _dict['hrIdpStatus'] = self.hr_idp_status.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of entity_admin_owner
+        if self.entity_admin_owner:
+            _dict['entityAdminOwner'] = self.entity_admin_owner.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in all_of (list)
         _items = []
         if self.all_of:
@@ -138,6 +148,8 @@ class AccessEntityFilters(BaseModel):
             "entityItemTypes": obj.get("entityItemTypes"),
             "entityName": EntityNameFilter.from_dict(obj["entityName"]) if obj.get("entityName") is not None else None,
             "entityTag": EntityTagFilter.from_dict(obj["entityTag"]) if obj.get("entityTag") is not None else None,
+            "hrIdpStatus": IdpStatusFilter.from_dict(obj["hrIdpStatus"]) if obj.get("hrIdpStatus") is not None else None,
+            "entityAdminOwner": EntityAdminFilter.from_dict(obj["entityAdminOwner"]) if obj.get("entityAdminOwner") is not None else None,
             "entityIDs": obj.get("entityIDs"),
             "importedFromApp": obj.get("importedFromApp"),
             "roleRemoteIds": obj.get("roleRemoteIds"),

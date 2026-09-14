@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class StringMatchType(str, Enum):
     """
-    How to match a string value against entity names.
+    How to match a string value against entity names. REGEX matches the value as a case-insensitive regular expression.
     """
 
     """
@@ -31,6 +31,7 @@ class StringMatchType(str, Enum):
     EQUALS = 'EQUALS'
     STARTS_WITH = 'STARTS_WITH'
     ENDS_WITH = 'ENDS_WITH'
+    REGEX = 'REGEX'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
