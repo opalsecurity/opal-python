@@ -78,6 +78,8 @@ The type of the resource.
 
 * `GCP_SERVICE_ACCOUNT` (value: `'GCP_SERVICE_ACCOUNT'`)
 
+* `GCP_BILLING_ACCOUNT` (value: `'GCP_BILLING_ACCOUNT'`)
+
 * `GIT_HUB_REPO` (value: `'GIT_HUB_REPO'`)
 
 * `GIT_HUB_ORG_ROLE` (value: `'GIT_HUB_ORG_ROLE'`)
@@ -170,11 +172,45 @@ The type of the resource.
 
 * `CLICKHOUSE_TABLE` (value: `'CLICKHOUSE_TABLE'`)
 
+* `CLICKHOUSE_CONSOLE_ROLE` (value: `'CLICKHOUSE_CONSOLE_ROLE'`)
+
 * `TWINGATE_RESOURCE` (value: `'TWINGATE_RESOURCE'`)
 
 * `ZENDESK_ROLE` (value: `'ZENDESK_ROLE'`)
 
 * `HUBSPOT_ROLE` (value: `'HUBSPOT_ROLE'`)
+
+* `ALICLOUD_RAM_ROLE` (value: `'ALICLOUD_RAM_ROLE'`)
+
+* `ALICLOUD_ECS_INSTANCE` (value: `'ALICLOUD_ECS_INSTANCE'`)
+
+* `DOCUSIGN_PERMISSION_PROFILE` (value: `'DOCUSIGN_PERMISSION_PROFILE'`)
+
+* `ZOOM_ROLE` (value: `'ZOOM_ROLE'`)
+
+* `ZOOM_LICENSE` (value: `'ZOOM_LICENSE'`)
+
+* `LINEAR_ORGANIZATION` (value: `'LINEAR_ORGANIZATION'`)
+
+* `LINEAR_PROJECT` (value: `'LINEAR_PROJECT'`)
+
+* `RAMP_FUND` (value: `'RAMP_FUND'`)
+
+* `RAMP_ROLE` (value: `'RAMP_ROLE'`)
+
+* `WRIKE_USER_TYPE` (value: `'WRIKE_USER_TYPE'`)
+
+* `DATABRICKS_CATALOG` (value: `'DATABRICKS_CATALOG'`)
+
+* `DATABRICKS_SCHEMA` (value: `'DATABRICKS_SCHEMA'`)
+
+* `DATABRICKS_VOLUME` (value: `'DATABRICKS_VOLUME'`)
+
+* `DATABRICKS_FUNCTION` (value: `'DATABRICKS_FUNCTION'`)
+
+* `DATABRICKS_MODEL` (value: `'DATABRICKS_MODEL'`)
+
+* `DATABRICKS_SERVICE` (value: `'DATABRICKS_SERVICE'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

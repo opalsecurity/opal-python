@@ -120,6 +120,8 @@ Granular subtype of an entity.
 
 * `GCP_SERVICE_ACCOUNT` (value: `'GCP_SERVICE_ACCOUNT'`)
 
+* `GCP_BILLING_ACCOUNT` (value: `'GCP_BILLING_ACCOUNT'`)
+
 * `GIT_HUB_REPO` (value: `'GIT_HUB_REPO'`)
 
 * `GIT_HUB_ORG_ROLE` (value: `'GIT_HUB_ORG_ROLE'`)
@@ -171,6 +173,18 @@ Granular subtype of an entity.
 * `DATABRICKS_ACCOUNT_SERVICE_PRINCIPAL` (value: `'DATABRICKS_ACCOUNT_SERVICE_PRINCIPAL'`)
 
 * `ILEVEL_ADVANCED_ROLE` (value: `'ILEVEL_ADVANCED_ROLE'`)
+
+* `DATABRICKS_CATALOG` (value: `'DATABRICKS_CATALOG'`)
+
+* `DATABRICKS_SCHEMA` (value: `'DATABRICKS_SCHEMA'`)
+
+* `DATABRICKS_VOLUME` (value: `'DATABRICKS_VOLUME'`)
+
+* `DATABRICKS_FUNCTION` (value: `'DATABRICKS_FUNCTION'`)
+
+* `DATABRICKS_MODEL` (value: `'DATABRICKS_MODEL'`)
+
+* `DATABRICKS_SERVICE` (value: `'DATABRICKS_SERVICE'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

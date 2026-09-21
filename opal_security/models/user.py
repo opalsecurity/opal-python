@@ -35,9 +35,10 @@ class User(BaseModel):
     first_name: StrictStr = Field(description="The first name of the user.")
     last_name: StrictStr = Field(description="The last name of the user.")
     position: StrictStr = Field(description="The user's position.")
+    manager_id: Optional[UUID] = Field(default=None, description="The ID of the user's manager. Null if the user has no manager.")
     hr_idp_status: Optional[UserHrIdpStatusEnum] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["user_id", "email", "full_name", "first_name", "last_name", "position", "hr_idp_status"]
+    __properties: ClassVar[List[str]] = ["user_id", "email", "full_name", "first_name", "last_name", "position", "manager_id", "hr_idp_status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,6 +104,7 @@ class User(BaseModel):
             "first_name": obj.get("first_name"),
             "last_name": obj.get("last_name"),
             "position": obj.get("position"),
+            "manager_id": obj.get("manager_id"),
             "hr_idp_status": obj.get("hr_idp_status")
         })
         # store additional fields in additional_properties

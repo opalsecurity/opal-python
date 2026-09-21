@@ -22,6 +22,7 @@ __all__ = [
     "AccessRulesApi",
     "AppsApi",
     "BundlesApi",
+    "CampaignsApi",
     "ConfigurationTemplatesApi",
     "DelegationsApi",
     "EventStreamsApi",
@@ -34,6 +35,8 @@ __all__ = [
     "OnCallSchedulesApi",
     "OpalQueriesApi",
     "OwnersApi",
+    "PaladinApi",
+    "RequestTemplatesApi",
     "RequestsApi",
     "ResourcesApi",
     "SessionsApi",
@@ -75,9 +78,26 @@ __all__ = [
     "Bundle",
     "BundleGroup",
     "BundleResource",
+    "Campaign",
+    "CampaignConfiguration",
+    "CampaignGroupAssetVisibilityPolicyEnum",
+    "CampaignItem",
+    "CampaignItemAdminOverride",
+    "CampaignItemReview",
+    "CampaignItemReviewDecisionEnum",
+    "CampaignItemReviewerAssignment",
+    "CampaignItemReviewerAssignmentSourceEnum",
+    "CampaignItemReviewerSourceRemoval",
+    "CampaignItemStatusEnum",
+    "CampaignItemTargetTypeEnum",
+    "CampaignItemUnassignedPresetMessage",
+    "CampaignRevokeOnEnum",
+    "CampaignStatusEnum",
     "Condition",
     "ConfigurationTemplate",
     "CreateBundleInfo",
+    "CreateCampaignConfigurationInfo",
+    "CreateCampaignInfo",
     "CreateConfigurationTemplateInfo",
     "CreateDelegationRequest",
     "CreateEventStreamInfo",
@@ -88,6 +108,8 @@ __all__ = [
     "CreateMessageChannelInfo",
     "CreateOnCallScheduleInfo",
     "CreateOwnerInfo",
+    "CreatePaladinContextSourceInfo",
+    "CreatePaladinInfo",
     "CreateRequest200Response",
     "CreateRequestCommentRequest",
     "CreateRequestConfigurationInfoList",
@@ -96,11 +118,15 @@ __all__ = [
     "CreateRequestInfoGroupsInner",
     "CreateRequestInfoResourcesInner",
     "CreateRequestInfoSupportTicket",
+    "CreateRequestTemplateInfo",
+    "CreateResourceCustomAccessLevelInfo",
     "CreateResourceInfo",
     "CreateTagInfo",
     "CreateUARInfo",
     "Delegation",
     "DenyRequestRequest",
+    "EntityAdminFilter",
+    "EntityDescriptionFilter",
     "EntityItemTypeEnum",
     "EntityNameFilter",
     "EntityTagFilter",
@@ -113,6 +139,7 @@ __all__ = [
     "GetResourceUser200Response",
     "Group",
     "GroupAccessLevel",
+    "GroupAccessLevelList",
     "GroupBinding",
     "GroupBindingGroup",
     "GroupContainingGroup",
@@ -123,9 +150,12 @@ __all__ = [
     "GroupRemoteInfoAzureAdMicrosoft365Group",
     "GroupRemoteInfoAzureAdSecurityGroup",
     "GroupRemoteInfoClickhouseRole",
+    "GroupRemoteInfoConfluenceGroup",
     "GroupRemoteInfoConnectorGroup",
     "GroupRemoteInfoDatabricksAccountGroup",
     "GroupRemoteInfoDevinGroup",
+    "GroupRemoteInfoDocusignGroup",
+    "GroupRemoteInfoDocusignSigningGroup",
     "GroupRemoteInfoDuoGroup",
     "GroupRemoteInfoGithubEnterpriseTeam",
     "GroupRemoteInfoGithubTeam",
@@ -134,19 +164,26 @@ __all__ = [
     "GroupRemoteInfoGrafanaTeam",
     "GroupRemoteInfoHubspotTeam",
     "GroupRemoteInfoIncidentioOnCallSchedule",
+    "GroupRemoteInfoJiraGroup",
     "GroupRemoteInfoLdapGroup",
+    "GroupRemoteInfoLinearTeam",
     "GroupRemoteInfoOktaGroup",
     "GroupRemoteInfoOktaGroupRule",
     "GroupRemoteInfoPagerdutyOnCallSchedule",
+    "GroupRemoteInfoRampDepartment",
+    "GroupRemoteInfoRampLocation",
     "GroupRemoteInfoRootlyOnCallSchedule",
     "GroupRemoteInfoSlackUserGroup",
     "GroupRemoteInfoSnowflakeRole",
+    "GroupRemoteInfoTableauGroup",
     "GroupRemoteInfoTailscaleGroup",
     "GroupRemoteInfoTwingateGroup",
     "GroupRemoteInfoTwingateGroupSynced",
     "GroupRemoteInfoWorkdayUserSecurityGroup",
+    "GroupRemoteInfoWrikeGroup",
     "GroupRemoteInfoZendeskGroup",
     "GroupRemoteInfoZendeskOrganization",
+    "GroupRemoteInfoZoomGroup",
     "GroupResource",
     "GroupResourceList",
     "GroupTypeEnum",
@@ -155,6 +192,8 @@ __all__ = [
     "GroupWithAccessLevel",
     "IdpGroupMapping",
     "IdpGroupMappingList",
+    "IdpStatusFilter",
+    "InviteUserInfo",
     "MessageChannel",
     "MessageChannelIDList",
     "MessageChannelList",
@@ -163,11 +202,19 @@ __all__ = [
     "OnCallScheduleIDList",
     "OnCallScheduleList",
     "OnCallScheduleProviderEnum",
+    "OpalAccessPathDetail",
+    "OpalAccessPathEdgeFilter",
+    "OpalAccessPathQueryBody",
+    "OpalAccessQuery",
+    "OpalAccessQueryResults",
+    "OpalAccessResultEdge",
+    "OpalAccessResultNode",
     "OpalNodeQuery",
     "OpalNodeQueryBody",
     "OpalNodeQueryResults",
     "OpalQueryResultEdge",
     "OpalQueryResultNode",
+    "OpalQueryResults",
     "Owner",
     "PageInfo",
     "PaginatedAccessRulesList",
@@ -175,6 +222,8 @@ __all__ = [
     "PaginatedBundleGroupList",
     "PaginatedBundleList",
     "PaginatedBundleResourceList",
+    "PaginatedCampaignItemsList",
+    "PaginatedCampaignsList",
     "PaginatedConfigurationTemplateList",
     "PaginatedDelegationsList",
     "PaginatedEventList",
@@ -182,14 +231,24 @@ __all__ = [
     "PaginatedGroupsList",
     "PaginatedOwnersList",
     "PaginatedRemoteUsersList",
+    "PaginatedRequestTemplateList",
     "PaginatedResourcesList",
     "PaginatedTagsList",
     "PaginatedTokensList",
     "PaginatedUARsList",
     "PaginatedUsersList",
+    "PaginatedViewerCampaignItemsList",
+    "Paladin",
+    "PaladinConnector",
+    "PaladinContextSource",
+    "PaladinContextSourceKind",
+    "PaladinContextSourceList",
+    "PaladinContextSourceProvider",
+    "PaladinList",
     "PropagationStatus",
     "PropagationStatusEnum",
     "RDSEngineEnum",
+    "RemindRequest200Response",
     "RemoteUser",
     "Request",
     "RequestApprovalEnum",
@@ -206,14 +265,25 @@ __all__ = [
     "RequestReviewerStages",
     "RequestStage",
     "RequestStatusEnum",
+    "RequestTemplate",
+    "RequestTemplateCustomField",
+    "RequestTemplateCustomFieldCalloutMetadata",
+    "RequestTemplateCustomFieldInput",
+    "RequestTemplateCustomFieldMetadata",
+    "RequestTemplateCustomFieldMultiChoiceMetadata",
     "RequestTemplateCustomFieldTypeEnum",
     "RequestedItem",
     "Resource",
     "ResourceAccessLevel",
+    "ResourceAccessLevelList",
     "ResourceAccessUser",
     "ResourceAccessUserList",
+    "ResourceCustomAccessLevelList",
+    "ResourceCustomAccessLevelResponse",
     "ResourceNHI",
     "ResourceRemoteInfo",
+    "ResourceRemoteInfoAlicloudEcsInstance",
+    "ResourceRemoteInfoAlicloudRamRole",
     "ResourceRemoteInfoAnthropicWorkspace",
     "ResourceRemoteInfoAwsAccount",
     "ResourceRemoteInfoAwsEc2Instance",
@@ -236,18 +306,27 @@ __all__ = [
     "ResourceRemoteInfoAzureSubscription",
     "ResourceRemoteInfoAzureUserAssignedManagedIdentity",
     "ResourceRemoteInfoAzureVirtualMachine",
+    "ResourceRemoteInfoClickhouseConsoleRole",
     "ResourceRemoteInfoClickhouseDatabase",
     "ResourceRemoteInfoClickhouseTable",
     "ResourceRemoteInfoCoupaRole",
     "ResourceRemoteInfoCursorOrganization",
     "ResourceRemoteInfoCustomConnector",
     "ResourceRemoteInfoDatabricksAccountServicePrincipal",
+    "ResourceRemoteInfoDatabricksCatalog",
+    "ResourceRemoteInfoDatabricksFunction",
+    "ResourceRemoteInfoDatabricksModel",
+    "ResourceRemoteInfoDatabricksSchema",
+    "ResourceRemoteInfoDatabricksService",
+    "ResourceRemoteInfoDatabricksVolume",
     "ResourceRemoteInfoDatadogRole",
     "ResourceRemoteInfoDatastaxAstraRole",
     "ResourceRemoteInfoDevinOrganization",
     "ResourceRemoteInfoDevinRole",
+    "ResourceRemoteInfoDocusignPermissionProfile",
     "ResourceRemoteInfoGcpBigQueryDataset",
     "ResourceRemoteInfoGcpBigQueryTable",
+    "ResourceRemoteInfoGcpBillingAccount",
     "ResourceRemoteInfoGcpBucket",
     "ResourceRemoteInfoGcpComputeInstance",
     "ResourceRemoteInfoGcpFolder",
@@ -267,6 +346,8 @@ __all__ = [
     "ResourceRemoteInfoGrafanaRole",
     "ResourceRemoteInfoHubspotRole",
     "ResourceRemoteInfoIlevelAdvancedRole",
+    "ResourceRemoteInfoLinearOrganization",
+    "ResourceRemoteInfoLinearProject",
     "ResourceRemoteInfoNetsuiteRole",
     "ResourceRemoteInfoOktaApp",
     "ResourceRemoteInfoOktaCustomRole",
@@ -275,6 +356,8 @@ __all__ = [
     "ResourceRemoteInfoOpenaiPlatformServiceAccount",
     "ResourceRemoteInfoOracleFusionRole",
     "ResourceRemoteInfoPagerdutyRole",
+    "ResourceRemoteInfoRampFund",
+    "ResourceRemoteInfoRampRole",
     "ResourceRemoteInfoSalesforcePermissionSet",
     "ResourceRemoteInfoSalesforceProfile",
     "ResourceRemoteInfoSalesforceRole",
@@ -285,7 +368,10 @@ __all__ = [
     "ResourceRemoteInfoTeleportRole",
     "ResourceRemoteInfoTwingateResource",
     "ResourceRemoteInfoWorkdayRole",
+    "ResourceRemoteInfoWrikeUserType",
     "ResourceRemoteInfoZendeskRole",
+    "ResourceRemoteInfoZoomLicense",
+    "ResourceRemoteInfoZoomRole",
     "ResourceTypeEnum",
     "ResourceUser",
     "ResourceUserAccessStatus",
@@ -301,10 +387,13 @@ __all__ = [
     "RuleClauses",
     "RuleConjunction",
     "RuleDisjunction",
+    "RunOpalQueryRequest",
     "ScopedRolePermission",
     "ScopedRolePermissionList",
     "Session",
     "SessionsList",
+    "SortDirectionEnum",
+    "StopCampaignRequest",
     "StringMatchType",
     "SubEvent",
     "SyncError",
@@ -322,6 +411,10 @@ __all__ = [
     "UARReviewerAssignmentPolicyEnum",
     "UARScope",
     "UpdateAccessRuleInfo",
+    "UpdateCampaignConfigurationInfo",
+    "UpdateCampaignInfo",
+    "UpdateCampaignItemReviewersInfo",
+    "UpdateCampaignItemReviewersResult",
     "UpdateConfigurationTemplateInfo",
     "UpdateEventStreamInfo",
     "UpdateGroupBindingInfo",
@@ -334,14 +427,23 @@ __all__ = [
     "UpdateIdpGroupMappingsRequestMappingsInner",
     "UpdateOwnerInfo",
     "UpdateOwnerInfoList",
+    "UpdatePaladinInfo",
+    "UpdateRequestTemplateInfo",
+    "UpdateResourceCustomAccessLevelInfo",
     "UpdateResourceInfo",
     "UpdateResourceInfoList",
     "UpdateResourceUserRequest",
+    "UpdateUserInfo",
     "User",
     "UserAttributeSelector",
     "UserHrIdpStatusEnum",
     "UserIDList",
     "UserList",
+    "UserProductRoleEnum",
+    "ViewerCampaignItem",
+    "ViewerCampaignItemReviewDecisionEnum",
+    "ViewerCampaignItemSortFieldEnum",
+    "ViewerCampaignItemStatusEnum",
     "VisibilityInfo",
     "VisibilityTypeEnum",
     "WebhookApiKeyCredential",
@@ -355,6 +457,7 @@ __all__ = [
 from opal_security.api.access_rules_api import AccessRulesApi as AccessRulesApi
 from opal_security.api.apps_api import AppsApi as AppsApi
 from opal_security.api.bundles_api import BundlesApi as BundlesApi
+from opal_security.api.campaigns_api import CampaignsApi as CampaignsApi
 from opal_security.api.configuration_templates_api import ConfigurationTemplatesApi as ConfigurationTemplatesApi
 from opal_security.api.delegations_api import DelegationsApi as DelegationsApi
 from opal_security.api.event_streams_api import EventStreamsApi as EventStreamsApi
@@ -367,6 +470,8 @@ from opal_security.api.non_human_identities_api import NonHumanIdentitiesApi as 
 from opal_security.api.on_call_schedules_api import OnCallSchedulesApi as OnCallSchedulesApi
 from opal_security.api.opal_queries_api import OpalQueriesApi as OpalQueriesApi
 from opal_security.api.owners_api import OwnersApi as OwnersApi
+from opal_security.api.paladin_api import PaladinApi as PaladinApi
+from opal_security.api.request_templates_api import RequestTemplatesApi as RequestTemplatesApi
 from opal_security.api.requests_api import RequestsApi as RequestsApi
 from opal_security.api.resources_api import ResourcesApi as ResourcesApi
 from opal_security.api.sessions_api import SessionsApi as SessionsApi
@@ -412,9 +517,26 @@ from opal_security.models.aws_permission_set_metadata_aws_permission_set import 
 from opal_security.models.bundle import Bundle as Bundle
 from opal_security.models.bundle_group import BundleGroup as BundleGroup
 from opal_security.models.bundle_resource import BundleResource as BundleResource
+from opal_security.models.campaign import Campaign as Campaign
+from opal_security.models.campaign_configuration import CampaignConfiguration as CampaignConfiguration
+from opal_security.models.campaign_group_asset_visibility_policy_enum import CampaignGroupAssetVisibilityPolicyEnum as CampaignGroupAssetVisibilityPolicyEnum
+from opal_security.models.campaign_item import CampaignItem as CampaignItem
+from opal_security.models.campaign_item_admin_override import CampaignItemAdminOverride as CampaignItemAdminOverride
+from opal_security.models.campaign_item_review import CampaignItemReview as CampaignItemReview
+from opal_security.models.campaign_item_review_decision_enum import CampaignItemReviewDecisionEnum as CampaignItemReviewDecisionEnum
+from opal_security.models.campaign_item_reviewer_assignment import CampaignItemReviewerAssignment as CampaignItemReviewerAssignment
+from opal_security.models.campaign_item_reviewer_assignment_source_enum import CampaignItemReviewerAssignmentSourceEnum as CampaignItemReviewerAssignmentSourceEnum
+from opal_security.models.campaign_item_reviewer_source_removal import CampaignItemReviewerSourceRemoval as CampaignItemReviewerSourceRemoval
+from opal_security.models.campaign_item_status_enum import CampaignItemStatusEnum as CampaignItemStatusEnum
+from opal_security.models.campaign_item_target_type_enum import CampaignItemTargetTypeEnum as CampaignItemTargetTypeEnum
+from opal_security.models.campaign_item_unassigned_preset_message import CampaignItemUnassignedPresetMessage as CampaignItemUnassignedPresetMessage
+from opal_security.models.campaign_revoke_on_enum import CampaignRevokeOnEnum as CampaignRevokeOnEnum
+from opal_security.models.campaign_status_enum import CampaignStatusEnum as CampaignStatusEnum
 from opal_security.models.condition import Condition as Condition
 from opal_security.models.configuration_template import ConfigurationTemplate as ConfigurationTemplate
 from opal_security.models.create_bundle_info import CreateBundleInfo as CreateBundleInfo
+from opal_security.models.create_campaign_configuration_info import CreateCampaignConfigurationInfo as CreateCampaignConfigurationInfo
+from opal_security.models.create_campaign_info import CreateCampaignInfo as CreateCampaignInfo
 from opal_security.models.create_configuration_template_info import CreateConfigurationTemplateInfo as CreateConfigurationTemplateInfo
 from opal_security.models.create_delegation_request import CreateDelegationRequest as CreateDelegationRequest
 from opal_security.models.create_event_stream_info import CreateEventStreamInfo as CreateEventStreamInfo
@@ -425,6 +547,8 @@ from opal_security.models.create_idp_group_mapping_request import CreateIdpGroup
 from opal_security.models.create_message_channel_info import CreateMessageChannelInfo as CreateMessageChannelInfo
 from opal_security.models.create_on_call_schedule_info import CreateOnCallScheduleInfo as CreateOnCallScheduleInfo
 from opal_security.models.create_owner_info import CreateOwnerInfo as CreateOwnerInfo
+from opal_security.models.create_paladin_context_source_info import CreatePaladinContextSourceInfo as CreatePaladinContextSourceInfo
+from opal_security.models.create_paladin_info import CreatePaladinInfo as CreatePaladinInfo
 from opal_security.models.create_request200_response import CreateRequest200Response as CreateRequest200Response
 from opal_security.models.create_request_comment_request import CreateRequestCommentRequest as CreateRequestCommentRequest
 from opal_security.models.create_request_configuration_info_list import CreateRequestConfigurationInfoList as CreateRequestConfigurationInfoList
@@ -433,11 +557,15 @@ from opal_security.models.create_request_info_custom_metadata_inner import Creat
 from opal_security.models.create_request_info_groups_inner import CreateRequestInfoGroupsInner as CreateRequestInfoGroupsInner
 from opal_security.models.create_request_info_resources_inner import CreateRequestInfoResourcesInner as CreateRequestInfoResourcesInner
 from opal_security.models.create_request_info_support_ticket import CreateRequestInfoSupportTicket as CreateRequestInfoSupportTicket
+from opal_security.models.create_request_template_info import CreateRequestTemplateInfo as CreateRequestTemplateInfo
+from opal_security.models.create_resource_custom_access_level_info import CreateResourceCustomAccessLevelInfo as CreateResourceCustomAccessLevelInfo
 from opal_security.models.create_resource_info import CreateResourceInfo as CreateResourceInfo
 from opal_security.models.create_tag_info import CreateTagInfo as CreateTagInfo
 from opal_security.models.create_uar_info import CreateUARInfo as CreateUARInfo
 from opal_security.models.delegation import Delegation as Delegation
 from opal_security.models.deny_request_request import DenyRequestRequest as DenyRequestRequest
+from opal_security.models.entity_admin_filter import EntityAdminFilter as EntityAdminFilter
+from opal_security.models.entity_description_filter import EntityDescriptionFilter as EntityDescriptionFilter
 from opal_security.models.entity_item_type_enum import EntityItemTypeEnum as EntityItemTypeEnum
 from opal_security.models.entity_name_filter import EntityNameFilter as EntityNameFilter
 from opal_security.models.entity_tag_filter import EntityTagFilter as EntityTagFilter
@@ -450,6 +578,7 @@ from opal_security.models.event_stream_list import EventStreamList as EventStrea
 from opal_security.models.get_resource_user200_response import GetResourceUser200Response as GetResourceUser200Response
 from opal_security.models.group import Group as Group
 from opal_security.models.group_access_level import GroupAccessLevel as GroupAccessLevel
+from opal_security.models.group_access_level_list import GroupAccessLevelList as GroupAccessLevelList
 from opal_security.models.group_binding import GroupBinding as GroupBinding
 from opal_security.models.group_binding_group import GroupBindingGroup as GroupBindingGroup
 from opal_security.models.group_containing_group import GroupContainingGroup as GroupContainingGroup
@@ -460,9 +589,12 @@ from opal_security.models.group_remote_info_aws_sso_group import GroupRemoteInfo
 from opal_security.models.group_remote_info_azure_ad_microsoft365_group import GroupRemoteInfoAzureAdMicrosoft365Group as GroupRemoteInfoAzureAdMicrosoft365Group
 from opal_security.models.group_remote_info_azure_ad_security_group import GroupRemoteInfoAzureAdSecurityGroup as GroupRemoteInfoAzureAdSecurityGroup
 from opal_security.models.group_remote_info_clickhouse_role import GroupRemoteInfoClickhouseRole as GroupRemoteInfoClickhouseRole
+from opal_security.models.group_remote_info_confluence_group import GroupRemoteInfoConfluenceGroup as GroupRemoteInfoConfluenceGroup
 from opal_security.models.group_remote_info_connector_group import GroupRemoteInfoConnectorGroup as GroupRemoteInfoConnectorGroup
 from opal_security.models.group_remote_info_databricks_account_group import GroupRemoteInfoDatabricksAccountGroup as GroupRemoteInfoDatabricksAccountGroup
 from opal_security.models.group_remote_info_devin_group import GroupRemoteInfoDevinGroup as GroupRemoteInfoDevinGroup
+from opal_security.models.group_remote_info_docusign_group import GroupRemoteInfoDocusignGroup as GroupRemoteInfoDocusignGroup
+from opal_security.models.group_remote_info_docusign_signing_group import GroupRemoteInfoDocusignSigningGroup as GroupRemoteInfoDocusignSigningGroup
 from opal_security.models.group_remote_info_duo_group import GroupRemoteInfoDuoGroup as GroupRemoteInfoDuoGroup
 from opal_security.models.group_remote_info_github_enterprise_team import GroupRemoteInfoGithubEnterpriseTeam as GroupRemoteInfoGithubEnterpriseTeam
 from opal_security.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam as GroupRemoteInfoGithubTeam
@@ -471,19 +603,26 @@ from opal_security.models.group_remote_info_google_group import GroupRemoteInfoG
 from opal_security.models.group_remote_info_grafana_team import GroupRemoteInfoGrafanaTeam as GroupRemoteInfoGrafanaTeam
 from opal_security.models.group_remote_info_hubspot_team import GroupRemoteInfoHubspotTeam as GroupRemoteInfoHubspotTeam
 from opal_security.models.group_remote_info_incidentio_on_call_schedule import GroupRemoteInfoIncidentioOnCallSchedule as GroupRemoteInfoIncidentioOnCallSchedule
+from opal_security.models.group_remote_info_jira_group import GroupRemoteInfoJiraGroup as GroupRemoteInfoJiraGroup
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup as GroupRemoteInfoLdapGroup
+from opal_security.models.group_remote_info_linear_team import GroupRemoteInfoLinearTeam as GroupRemoteInfoLinearTeam
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup as GroupRemoteInfoOktaGroup
 from opal_security.models.group_remote_info_okta_group_rule import GroupRemoteInfoOktaGroupRule as GroupRemoteInfoOktaGroupRule
 from opal_security.models.group_remote_info_pagerduty_on_call_schedule import GroupRemoteInfoPagerdutyOnCallSchedule as GroupRemoteInfoPagerdutyOnCallSchedule
+from opal_security.models.group_remote_info_ramp_department import GroupRemoteInfoRampDepartment as GroupRemoteInfoRampDepartment
+from opal_security.models.group_remote_info_ramp_location import GroupRemoteInfoRampLocation as GroupRemoteInfoRampLocation
 from opal_security.models.group_remote_info_rootly_on_call_schedule import GroupRemoteInfoRootlyOnCallSchedule as GroupRemoteInfoRootlyOnCallSchedule
 from opal_security.models.group_remote_info_slack_user_group import GroupRemoteInfoSlackUserGroup as GroupRemoteInfoSlackUserGroup
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole as GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_tableau_group import GroupRemoteInfoTableauGroup as GroupRemoteInfoTableauGroup
 from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup as GroupRemoteInfoTailscaleGroup
 from opal_security.models.group_remote_info_twingate_group import GroupRemoteInfoTwingateGroup as GroupRemoteInfoTwingateGroup
 from opal_security.models.group_remote_info_twingate_group_synced import GroupRemoteInfoTwingateGroupSynced as GroupRemoteInfoTwingateGroupSynced
 from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup as GroupRemoteInfoWorkdayUserSecurityGroup
+from opal_security.models.group_remote_info_wrike_group import GroupRemoteInfoWrikeGroup as GroupRemoteInfoWrikeGroup
 from opal_security.models.group_remote_info_zendesk_group import GroupRemoteInfoZendeskGroup as GroupRemoteInfoZendeskGroup
 from opal_security.models.group_remote_info_zendesk_organization import GroupRemoteInfoZendeskOrganization as GroupRemoteInfoZendeskOrganization
+from opal_security.models.group_remote_info_zoom_group import GroupRemoteInfoZoomGroup as GroupRemoteInfoZoomGroup
 from opal_security.models.group_resource import GroupResource as GroupResource
 from opal_security.models.group_resource_list import GroupResourceList as GroupResourceList
 from opal_security.models.group_type_enum import GroupTypeEnum as GroupTypeEnum
@@ -492,6 +631,8 @@ from opal_security.models.group_user_list import GroupUserList as GroupUserList
 from opal_security.models.group_with_access_level import GroupWithAccessLevel as GroupWithAccessLevel
 from opal_security.models.idp_group_mapping import IdpGroupMapping as IdpGroupMapping
 from opal_security.models.idp_group_mapping_list import IdpGroupMappingList as IdpGroupMappingList
+from opal_security.models.idp_status_filter import IdpStatusFilter as IdpStatusFilter
+from opal_security.models.invite_user_info import InviteUserInfo as InviteUserInfo
 from opal_security.models.message_channel import MessageChannel as MessageChannel
 from opal_security.models.message_channel_id_list import MessageChannelIDList as MessageChannelIDList
 from opal_security.models.message_channel_list import MessageChannelList as MessageChannelList
@@ -500,11 +641,19 @@ from opal_security.models.on_call_schedule import OnCallSchedule as OnCallSchedu
 from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList as OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList as OnCallScheduleList
 from opal_security.models.on_call_schedule_provider_enum import OnCallScheduleProviderEnum as OnCallScheduleProviderEnum
+from opal_security.models.opal_access_path_detail import OpalAccessPathDetail as OpalAccessPathDetail
+from opal_security.models.opal_access_path_edge_filter import OpalAccessPathEdgeFilter as OpalAccessPathEdgeFilter
+from opal_security.models.opal_access_path_query_body import OpalAccessPathQueryBody as OpalAccessPathQueryBody
+from opal_security.models.opal_access_query import OpalAccessQuery as OpalAccessQuery
+from opal_security.models.opal_access_query_results import OpalAccessQueryResults as OpalAccessQueryResults
+from opal_security.models.opal_access_result_edge import OpalAccessResultEdge as OpalAccessResultEdge
+from opal_security.models.opal_access_result_node import OpalAccessResultNode as OpalAccessResultNode
 from opal_security.models.opal_node_query import OpalNodeQuery as OpalNodeQuery
 from opal_security.models.opal_node_query_body import OpalNodeQueryBody as OpalNodeQueryBody
 from opal_security.models.opal_node_query_results import OpalNodeQueryResults as OpalNodeQueryResults
 from opal_security.models.opal_query_result_edge import OpalQueryResultEdge as OpalQueryResultEdge
 from opal_security.models.opal_query_result_node import OpalQueryResultNode as OpalQueryResultNode
+from opal_security.models.opal_query_results import OpalQueryResults as OpalQueryResults
 from opal_security.models.owner import Owner as Owner
 from opal_security.models.page_info import PageInfo as PageInfo
 from opal_security.models.paginated_access_rules_list import PaginatedAccessRulesList as PaginatedAccessRulesList
@@ -512,6 +661,8 @@ from opal_security.models.paginated_assigned_request_list import PaginatedAssign
 from opal_security.models.paginated_bundle_group_list import PaginatedBundleGroupList as PaginatedBundleGroupList
 from opal_security.models.paginated_bundle_list import PaginatedBundleList as PaginatedBundleList
 from opal_security.models.paginated_bundle_resource_list import PaginatedBundleResourceList as PaginatedBundleResourceList
+from opal_security.models.paginated_campaign_items_list import PaginatedCampaignItemsList as PaginatedCampaignItemsList
+from opal_security.models.paginated_campaigns_list import PaginatedCampaignsList as PaginatedCampaignsList
 from opal_security.models.paginated_configuration_template_list import PaginatedConfigurationTemplateList as PaginatedConfigurationTemplateList
 from opal_security.models.paginated_delegations_list import PaginatedDelegationsList as PaginatedDelegationsList
 from opal_security.models.paginated_event_list import PaginatedEventList as PaginatedEventList
@@ -519,14 +670,24 @@ from opal_security.models.paginated_group_bindings_list import PaginatedGroupBin
 from opal_security.models.paginated_groups_list import PaginatedGroupsList as PaginatedGroupsList
 from opal_security.models.paginated_owners_list import PaginatedOwnersList as PaginatedOwnersList
 from opal_security.models.paginated_remote_users_list import PaginatedRemoteUsersList as PaginatedRemoteUsersList
+from opal_security.models.paginated_request_template_list import PaginatedRequestTemplateList as PaginatedRequestTemplateList
 from opal_security.models.paginated_resources_list import PaginatedResourcesList as PaginatedResourcesList
 from opal_security.models.paginated_tags_list import PaginatedTagsList as PaginatedTagsList
 from opal_security.models.paginated_tokens_list import PaginatedTokensList as PaginatedTokensList
 from opal_security.models.paginated_uars_list import PaginatedUARsList as PaginatedUARsList
 from opal_security.models.paginated_users_list import PaginatedUsersList as PaginatedUsersList
+from opal_security.models.paginated_viewer_campaign_items_list import PaginatedViewerCampaignItemsList as PaginatedViewerCampaignItemsList
+from opal_security.models.paladin import Paladin as Paladin
+from opal_security.models.paladin_connector import PaladinConnector as PaladinConnector
+from opal_security.models.paladin_context_source import PaladinContextSource as PaladinContextSource
+from opal_security.models.paladin_context_source_kind import PaladinContextSourceKind as PaladinContextSourceKind
+from opal_security.models.paladin_context_source_list import PaladinContextSourceList as PaladinContextSourceList
+from opal_security.models.paladin_context_source_provider import PaladinContextSourceProvider as PaladinContextSourceProvider
+from opal_security.models.paladin_list import PaladinList as PaladinList
 from opal_security.models.propagation_status import PropagationStatus as PropagationStatus
 from opal_security.models.propagation_status_enum import PropagationStatusEnum as PropagationStatusEnum
 from opal_security.models.rds_engine_enum import RDSEngineEnum as RDSEngineEnum
+from opal_security.models.remind_request200_response import RemindRequest200Response as RemindRequest200Response
 from opal_security.models.remote_user import RemoteUser as RemoteUser
 from opal_security.models.request import Request as Request
 from opal_security.models.request_approval_enum import RequestApprovalEnum as RequestApprovalEnum
@@ -543,14 +704,25 @@ from opal_security.models.request_reviewer import RequestReviewer as RequestRevi
 from opal_security.models.request_reviewer_stages import RequestReviewerStages as RequestReviewerStages
 from opal_security.models.request_stage import RequestStage as RequestStage
 from opal_security.models.request_status_enum import RequestStatusEnum as RequestStatusEnum
+from opal_security.models.request_template import RequestTemplate as RequestTemplate
+from opal_security.models.request_template_custom_field import RequestTemplateCustomField as RequestTemplateCustomField
+from opal_security.models.request_template_custom_field_callout_metadata import RequestTemplateCustomFieldCalloutMetadata as RequestTemplateCustomFieldCalloutMetadata
+from opal_security.models.request_template_custom_field_input import RequestTemplateCustomFieldInput as RequestTemplateCustomFieldInput
+from opal_security.models.request_template_custom_field_metadata import RequestTemplateCustomFieldMetadata as RequestTemplateCustomFieldMetadata
+from opal_security.models.request_template_custom_field_multi_choice_metadata import RequestTemplateCustomFieldMultiChoiceMetadata as RequestTemplateCustomFieldMultiChoiceMetadata
 from opal_security.models.request_template_custom_field_type_enum import RequestTemplateCustomFieldTypeEnum as RequestTemplateCustomFieldTypeEnum
 from opal_security.models.requested_item import RequestedItem as RequestedItem
 from opal_security.models.resource import Resource as Resource
 from opal_security.models.resource_access_level import ResourceAccessLevel as ResourceAccessLevel
+from opal_security.models.resource_access_level_list import ResourceAccessLevelList as ResourceAccessLevelList
 from opal_security.models.resource_access_user import ResourceAccessUser as ResourceAccessUser
 from opal_security.models.resource_access_user_list import ResourceAccessUserList as ResourceAccessUserList
+from opal_security.models.resource_custom_access_level_list import ResourceCustomAccessLevelList as ResourceCustomAccessLevelList
+from opal_security.models.resource_custom_access_level_response import ResourceCustomAccessLevelResponse as ResourceCustomAccessLevelResponse
 from opal_security.models.resource_nhi import ResourceNHI as ResourceNHI
 from opal_security.models.resource_remote_info import ResourceRemoteInfo as ResourceRemoteInfo
+from opal_security.models.resource_remote_info_alicloud_ecs_instance import ResourceRemoteInfoAlicloudEcsInstance as ResourceRemoteInfoAlicloudEcsInstance
+from opal_security.models.resource_remote_info_alicloud_ram_role import ResourceRemoteInfoAlicloudRamRole as ResourceRemoteInfoAlicloudRamRole
 from opal_security.models.resource_remote_info_anthropic_workspace import ResourceRemoteInfoAnthropicWorkspace as ResourceRemoteInfoAnthropicWorkspace
 from opal_security.models.resource_remote_info_aws_account import ResourceRemoteInfoAwsAccount as ResourceRemoteInfoAwsAccount
 from opal_security.models.resource_remote_info_aws_ec2_instance import ResourceRemoteInfoAwsEc2Instance as ResourceRemoteInfoAwsEc2Instance
@@ -573,18 +745,27 @@ from opal_security.models.resource_remote_info_azure_storage_container import Re
 from opal_security.models.resource_remote_info_azure_subscription import ResourceRemoteInfoAzureSubscription as ResourceRemoteInfoAzureSubscription
 from opal_security.models.resource_remote_info_azure_user_assigned_managed_identity import ResourceRemoteInfoAzureUserAssignedManagedIdentity as ResourceRemoteInfoAzureUserAssignedManagedIdentity
 from opal_security.models.resource_remote_info_azure_virtual_machine import ResourceRemoteInfoAzureVirtualMachine as ResourceRemoteInfoAzureVirtualMachine
+from opal_security.models.resource_remote_info_clickhouse_console_role import ResourceRemoteInfoClickhouseConsoleRole as ResourceRemoteInfoClickhouseConsoleRole
 from opal_security.models.resource_remote_info_clickhouse_database import ResourceRemoteInfoClickhouseDatabase as ResourceRemoteInfoClickhouseDatabase
 from opal_security.models.resource_remote_info_clickhouse_table import ResourceRemoteInfoClickhouseTable as ResourceRemoteInfoClickhouseTable
 from opal_security.models.resource_remote_info_coupa_role import ResourceRemoteInfoCoupaRole as ResourceRemoteInfoCoupaRole
 from opal_security.models.resource_remote_info_cursor_organization import ResourceRemoteInfoCursorOrganization as ResourceRemoteInfoCursorOrganization
 from opal_security.models.resource_remote_info_custom_connector import ResourceRemoteInfoCustomConnector as ResourceRemoteInfoCustomConnector
 from opal_security.models.resource_remote_info_databricks_account_service_principal import ResourceRemoteInfoDatabricksAccountServicePrincipal as ResourceRemoteInfoDatabricksAccountServicePrincipal
+from opal_security.models.resource_remote_info_databricks_catalog import ResourceRemoteInfoDatabricksCatalog as ResourceRemoteInfoDatabricksCatalog
+from opal_security.models.resource_remote_info_databricks_function import ResourceRemoteInfoDatabricksFunction as ResourceRemoteInfoDatabricksFunction
+from opal_security.models.resource_remote_info_databricks_model import ResourceRemoteInfoDatabricksModel as ResourceRemoteInfoDatabricksModel
+from opal_security.models.resource_remote_info_databricks_schema import ResourceRemoteInfoDatabricksSchema as ResourceRemoteInfoDatabricksSchema
+from opal_security.models.resource_remote_info_databricks_service import ResourceRemoteInfoDatabricksService as ResourceRemoteInfoDatabricksService
+from opal_security.models.resource_remote_info_databricks_volume import ResourceRemoteInfoDatabricksVolume as ResourceRemoteInfoDatabricksVolume
 from opal_security.models.resource_remote_info_datadog_role import ResourceRemoteInfoDatadogRole as ResourceRemoteInfoDatadogRole
 from opal_security.models.resource_remote_info_datastax_astra_role import ResourceRemoteInfoDatastaxAstraRole as ResourceRemoteInfoDatastaxAstraRole
 from opal_security.models.resource_remote_info_devin_organization import ResourceRemoteInfoDevinOrganization as ResourceRemoteInfoDevinOrganization
 from opal_security.models.resource_remote_info_devin_role import ResourceRemoteInfoDevinRole as ResourceRemoteInfoDevinRole
+from opal_security.models.resource_remote_info_docusign_permission_profile import ResourceRemoteInfoDocusignPermissionProfile as ResourceRemoteInfoDocusignPermissionProfile
 from opal_security.models.resource_remote_info_gcp_big_query_dataset import ResourceRemoteInfoGcpBigQueryDataset as ResourceRemoteInfoGcpBigQueryDataset
 from opal_security.models.resource_remote_info_gcp_big_query_table import ResourceRemoteInfoGcpBigQueryTable as ResourceRemoteInfoGcpBigQueryTable
+from opal_security.models.resource_remote_info_gcp_billing_account import ResourceRemoteInfoGcpBillingAccount as ResourceRemoteInfoGcpBillingAccount
 from opal_security.models.resource_remote_info_gcp_bucket import ResourceRemoteInfoGcpBucket as ResourceRemoteInfoGcpBucket
 from opal_security.models.resource_remote_info_gcp_compute_instance import ResourceRemoteInfoGcpComputeInstance as ResourceRemoteInfoGcpComputeInstance
 from opal_security.models.resource_remote_info_gcp_folder import ResourceRemoteInfoGcpFolder as ResourceRemoteInfoGcpFolder
@@ -604,6 +785,8 @@ from opal_security.models.resource_remote_info_grafana_folder import ResourceRem
 from opal_security.models.resource_remote_info_grafana_role import ResourceRemoteInfoGrafanaRole as ResourceRemoteInfoGrafanaRole
 from opal_security.models.resource_remote_info_hubspot_role import ResourceRemoteInfoHubspotRole as ResourceRemoteInfoHubspotRole
 from opal_security.models.resource_remote_info_ilevel_advanced_role import ResourceRemoteInfoIlevelAdvancedRole as ResourceRemoteInfoIlevelAdvancedRole
+from opal_security.models.resource_remote_info_linear_organization import ResourceRemoteInfoLinearOrganization as ResourceRemoteInfoLinearOrganization
+from opal_security.models.resource_remote_info_linear_project import ResourceRemoteInfoLinearProject as ResourceRemoteInfoLinearProject
 from opal_security.models.resource_remote_info_netsuite_role import ResourceRemoteInfoNetsuiteRole as ResourceRemoteInfoNetsuiteRole
 from opal_security.models.resource_remote_info_okta_app import ResourceRemoteInfoOktaApp as ResourceRemoteInfoOktaApp
 from opal_security.models.resource_remote_info_okta_custom_role import ResourceRemoteInfoOktaCustomRole as ResourceRemoteInfoOktaCustomRole
@@ -612,6 +795,8 @@ from opal_security.models.resource_remote_info_openai_platform_project import Re
 from opal_security.models.resource_remote_info_openai_platform_service_account import ResourceRemoteInfoOpenaiPlatformServiceAccount as ResourceRemoteInfoOpenaiPlatformServiceAccount
 from opal_security.models.resource_remote_info_oracle_fusion_role import ResourceRemoteInfoOracleFusionRole as ResourceRemoteInfoOracleFusionRole
 from opal_security.models.resource_remote_info_pagerduty_role import ResourceRemoteInfoPagerdutyRole as ResourceRemoteInfoPagerdutyRole
+from opal_security.models.resource_remote_info_ramp_fund import ResourceRemoteInfoRampFund as ResourceRemoteInfoRampFund
+from opal_security.models.resource_remote_info_ramp_role import ResourceRemoteInfoRampRole as ResourceRemoteInfoRampRole
 from opal_security.models.resource_remote_info_salesforce_permission_set import ResourceRemoteInfoSalesforcePermissionSet as ResourceRemoteInfoSalesforcePermissionSet
 from opal_security.models.resource_remote_info_salesforce_profile import ResourceRemoteInfoSalesforceProfile as ResourceRemoteInfoSalesforceProfile
 from opal_security.models.resource_remote_info_salesforce_role import ResourceRemoteInfoSalesforceRole as ResourceRemoteInfoSalesforceRole
@@ -622,7 +807,10 @@ from opal_security.models.resource_remote_info_tailscale_ssh import ResourceRemo
 from opal_security.models.resource_remote_info_teleport_role import ResourceRemoteInfoTeleportRole as ResourceRemoteInfoTeleportRole
 from opal_security.models.resource_remote_info_twingate_resource import ResourceRemoteInfoTwingateResource as ResourceRemoteInfoTwingateResource
 from opal_security.models.resource_remote_info_workday_role import ResourceRemoteInfoWorkdayRole as ResourceRemoteInfoWorkdayRole
+from opal_security.models.resource_remote_info_wrike_user_type import ResourceRemoteInfoWrikeUserType as ResourceRemoteInfoWrikeUserType
 from opal_security.models.resource_remote_info_zendesk_role import ResourceRemoteInfoZendeskRole as ResourceRemoteInfoZendeskRole
+from opal_security.models.resource_remote_info_zoom_license import ResourceRemoteInfoZoomLicense as ResourceRemoteInfoZoomLicense
+from opal_security.models.resource_remote_info_zoom_role import ResourceRemoteInfoZoomRole as ResourceRemoteInfoZoomRole
 from opal_security.models.resource_type_enum import ResourceTypeEnum as ResourceTypeEnum
 from opal_security.models.resource_user import ResourceUser as ResourceUser
 from opal_security.models.resource_user_access_status import ResourceUserAccessStatus as ResourceUserAccessStatus
@@ -638,10 +826,13 @@ from opal_security.models.role_permission_target_type_enum import RolePermission
 from opal_security.models.rule_clauses import RuleClauses as RuleClauses
 from opal_security.models.rule_conjunction import RuleConjunction as RuleConjunction
 from opal_security.models.rule_disjunction import RuleDisjunction as RuleDisjunction
+from opal_security.models.run_opal_query_request import RunOpalQueryRequest as RunOpalQueryRequest
 from opal_security.models.scoped_role_permission import ScopedRolePermission as ScopedRolePermission
 from opal_security.models.scoped_role_permission_list import ScopedRolePermissionList as ScopedRolePermissionList
 from opal_security.models.session import Session as Session
 from opal_security.models.sessions_list import SessionsList as SessionsList
+from opal_security.models.sort_direction_enum import SortDirectionEnum as SortDirectionEnum
+from opal_security.models.stop_campaign_request import StopCampaignRequest as StopCampaignRequest
 from opal_security.models.string_match_type import StringMatchType as StringMatchType
 from opal_security.models.sub_event import SubEvent as SubEvent
 from opal_security.models.sync_error import SyncError as SyncError
@@ -659,6 +850,10 @@ from opal_security.models.uar import UAR as UAR
 from opal_security.models.uar_reviewer_assignment_policy_enum import UARReviewerAssignmentPolicyEnum as UARReviewerAssignmentPolicyEnum
 from opal_security.models.uar_scope import UARScope as UARScope
 from opal_security.models.update_access_rule_info import UpdateAccessRuleInfo as UpdateAccessRuleInfo
+from opal_security.models.update_campaign_configuration_info import UpdateCampaignConfigurationInfo as UpdateCampaignConfigurationInfo
+from opal_security.models.update_campaign_info import UpdateCampaignInfo as UpdateCampaignInfo
+from opal_security.models.update_campaign_item_reviewers_info import UpdateCampaignItemReviewersInfo as UpdateCampaignItemReviewersInfo
+from opal_security.models.update_campaign_item_reviewers_result import UpdateCampaignItemReviewersResult as UpdateCampaignItemReviewersResult
 from opal_security.models.update_configuration_template_info import UpdateConfigurationTemplateInfo as UpdateConfigurationTemplateInfo
 from opal_security.models.update_event_stream_info import UpdateEventStreamInfo as UpdateEventStreamInfo
 from opal_security.models.update_group_binding_info import UpdateGroupBindingInfo as UpdateGroupBindingInfo
@@ -671,14 +866,23 @@ from opal_security.models.update_idp_group_mappings_request import UpdateIdpGrou
 from opal_security.models.update_idp_group_mappings_request_mappings_inner import UpdateIdpGroupMappingsRequestMappingsInner as UpdateIdpGroupMappingsRequestMappingsInner
 from opal_security.models.update_owner_info import UpdateOwnerInfo as UpdateOwnerInfo
 from opal_security.models.update_owner_info_list import UpdateOwnerInfoList as UpdateOwnerInfoList
+from opal_security.models.update_paladin_info import UpdatePaladinInfo as UpdatePaladinInfo
+from opal_security.models.update_request_template_info import UpdateRequestTemplateInfo as UpdateRequestTemplateInfo
+from opal_security.models.update_resource_custom_access_level_info import UpdateResourceCustomAccessLevelInfo as UpdateResourceCustomAccessLevelInfo
 from opal_security.models.update_resource_info import UpdateResourceInfo as UpdateResourceInfo
 from opal_security.models.update_resource_info_list import UpdateResourceInfoList as UpdateResourceInfoList
 from opal_security.models.update_resource_user_request import UpdateResourceUserRequest as UpdateResourceUserRequest
+from opal_security.models.update_user_info import UpdateUserInfo as UpdateUserInfo
 from opal_security.models.user import User as User
 from opal_security.models.user_attribute_selector import UserAttributeSelector as UserAttributeSelector
 from opal_security.models.user_hr_idp_status_enum import UserHrIdpStatusEnum as UserHrIdpStatusEnum
 from opal_security.models.user_id_list import UserIDList as UserIDList
 from opal_security.models.user_list import UserList as UserList
+from opal_security.models.user_product_role_enum import UserProductRoleEnum as UserProductRoleEnum
+from opal_security.models.viewer_campaign_item import ViewerCampaignItem as ViewerCampaignItem
+from opal_security.models.viewer_campaign_item_review_decision_enum import ViewerCampaignItemReviewDecisionEnum as ViewerCampaignItemReviewDecisionEnum
+from opal_security.models.viewer_campaign_item_sort_field_enum import ViewerCampaignItemSortFieldEnum as ViewerCampaignItemSortFieldEnum
+from opal_security.models.viewer_campaign_item_status_enum import ViewerCampaignItemStatusEnum as ViewerCampaignItemStatusEnum
 from opal_security.models.visibility_info import VisibilityInfo as VisibilityInfo
 from opal_security.models.visibility_type_enum import VisibilityTypeEnum as VisibilityTypeEnum
 from opal_security.models.webhook_api_key_credential import WebhookApiKeyCredential as WebhookApiKeyCredential
