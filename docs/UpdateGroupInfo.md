@@ -27,6 +27,8 @@ Name | Type | Description | Notes
 **request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
+**match_remote_name** | **bool** | A bool representing whether or not the group&#39;s name should be synced from the end system. When true, the name is overwritten with the remote name on each sync, so a &#x60;name&#x60; provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged. | [optional] 
+**match_remote_description** | **bool** | A bool representing whether or not the group&#39;s description should be synced from the end system. When true, the description is overwritten with the remote description on each sync, so a &#x60;description&#x60; provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged. | [optional] 
 
 ## Example
 
