@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class OpalNodeQuery(BaseModel):
     """
-    Request body for a NODE-type OpalQuery. Returns entities (users, resources, groups) matching the given filters.
+    Use a Node query to retrieve entities — users, resources, or groups — that match a set of filters. You can filter by entity type, tags, and access relationships. Results are paginated and returned as a list of entity edges. 
     """ # noqa: E501
     type: StrictStr
     query: Optional[OpalNodeQueryBody] = None
