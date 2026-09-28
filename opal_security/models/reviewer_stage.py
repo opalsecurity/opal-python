@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
+from opal_security.models.reviewer_stage_escalation import ReviewerStageEscalation
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,11 +31,12 @@ class ReviewerStage(BaseModel):
     """ # noqa: E501
     require_manager_approval: StrictBool = Field(description="Whether this reviewer stage should require manager approval.")
     require_admin_approval: Optional[StrictBool] = Field(default=None, description="Whether this reviewer stage should require admin approval.")
-    operator: StrictStr = Field(description="The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.")
+    operator: StrictStr = Field(description="The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. A stage that sets `escalation` must use `OR`; `AND` is rejected there, because the escalation timer joins the stage as an additional reviewer and would otherwise become a required approver that stalls every request until the timeout.")
     owner_ids: List[UUID] = Field(description="The IDs of owners assigned as reviewers for this stage.")
     service_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of service users assigned as reviewers for this stage.")
+    escalation: Optional[ReviewerStageEscalation] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["require_manager_approval", "require_admin_approval", "operator", "owner_ids", "service_user_ids"]
+    __properties: ClassVar[List[str]] = ["require_manager_approval", "require_admin_approval", "operator", "owner_ids", "service_user_ids", "escalation"]
 
     @field_validator('operator')
     def operator_validate_enum(cls, value):
@@ -84,6 +86,9 @@ class ReviewerStage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of escalation
+        if self.escalation:
+            _dict['escalation'] = self.escalation.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -105,7 +110,8 @@ class ReviewerStage(BaseModel):
             "require_admin_approval": obj.get("require_admin_approval"),
             "operator": obj.get("operator"),
             "owner_ids": obj.get("owner_ids"),
-            "service_user_ids": obj.get("service_user_ids")
+            "service_user_ids": obj.get("service_user_ids"),
+            "escalation": ReviewerStageEscalation.from_dict(obj["escalation"]) if obj.get("escalation") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
