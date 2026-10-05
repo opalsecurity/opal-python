@@ -28,7 +28,7 @@ class UpdateResourceUserRequest(BaseModel):
     """
     UpdateResourceUserRequest
     """ # noqa: E501
-    duration_minutes: Annotated[int, Field(le=525960, strict=True)] = Field(description="The updated duration for which the resource can be accessed (in minutes). Use 0 for indefinite.")
+    duration_minutes: Annotated[int, Field(le=153722867, strict=True)] = Field(description="The updated duration for which the resource can be accessed (in minutes). Use 0 for indefinite.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The updated remote ID of the access level granted to this user.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["duration_minutes", "access_level_remote_id"]

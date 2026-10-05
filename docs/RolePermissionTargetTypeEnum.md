@@ -18,6 +18,8 @@ The type of the target for the role permission.
 
 * `OWNER` (value: `'OWNER'`)
 
+* `EVENT` (value: `'EVENT'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
