@@ -30,7 +30,7 @@ class GroupContainingGroup(BaseModel):
     # GroupContainingGroup Object ### Description The `GroupContainingGroup` object is used to represent a relationship between a group and a group.
     """ # noqa: E501
     containing_group_id: UUID = Field(description="The groupID of the containing group.")
-    duration_minutes: Optional[Annotated[int, Field(le=525960, strict=True)]] = Field(default=None, description="The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.")
+    duration_minutes: Optional[Annotated[int, Field(le=153722867, strict=True)]] = Field(default=None, description="The updated duration for which the group can be accessed (in minutes). Use 0 for indefinite.")
     access_level_remote_id: Optional[StrictStr] = Field(default=None, description="The updated remote ID of the access level granted to this group.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["containing_group_id", "duration_minutes", "access_level_remote_id"]

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **first_name** | **str** | The first name of the user. | 
 **last_name** | **str** | The last name of the user. | 
 **position** | **str** | The user&#39;s position. | 
+**manager_id** | **UUID** | The ID of the user&#39;s manager. Null if the user has no manager. | [optional] 
 **hr_idp_status** | [**UserHrIdpStatusEnum**](UserHrIdpStatusEnum.md) |  | [optional] 
 
 ## Example

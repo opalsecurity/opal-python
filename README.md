@@ -144,9 +144,12 @@ Class | Method | HTTP request | Description
 *AccessRulesApi* | [**get_access_rule**](docs/AccessRulesApi.md#get_access_rule) | **GET** /access-rules/{access_rule_id} | 
 *AccessRulesApi* | [**get_access_rules**](docs/AccessRulesApi.md#get_access_rules) | **GET** /access-rules | 
 *AccessRulesApi* | [**update_access_rule**](docs/AccessRulesApi.md#update_access_rule) | **PUT** /access-rules/{access_rule_id} | 
+*AppsApi* | [**create_app**](docs/AppsApi.md#create_app) | **POST** /apps | Create app
+*AppsApi* | [**delete_app**](docs/AppsApi.md#delete_app) | **DELETE** /apps/{app_id} | Delete app
 *AppsApi* | [**get_app**](docs/AppsApi.md#get_app) | **GET** /apps/{app_id} | Get app by ID
 *AppsApi* | [**get_apps**](docs/AppsApi.md#get_apps) | **GET** /apps | Get apps
 *AppsApi* | [**get_sync_errors**](docs/AppsApi.md#get_sync_errors) | **GET** /sync_errors | 
+*AppsApi* | [**update_app**](docs/AppsApi.md#update_app) | **PUT** /apps/{app_id} | Update app
 *BundlesApi* | [**add_bundle_group**](docs/BundlesApi.md#add_bundle_group) | **POST** /bundles/{bundle_id}/groups | 
 *BundlesApi* | [**add_bundle_resource**](docs/BundlesApi.md#add_bundle_resource) | **POST** /bundles/{bundle_id}/resources | 
 *BundlesApi* | [**create_bundle**](docs/BundlesApi.md#create_bundle) | **POST** /bundles | 
@@ -160,6 +163,17 @@ Class | Method | HTTP request | Description
 *BundlesApi* | [**remove_bundle_resource**](docs/BundlesApi.md#remove_bundle_resource) | **DELETE** /bundles/{bundle_id}/resources/{resource_id} | 
 *BundlesApi* | [**set_bundle_visibility**](docs/BundlesApi.md#set_bundle_visibility) | **PUT** /bundles/{bundle_id}/visibility | 
 *BundlesApi* | [**update_bundle**](docs/BundlesApi.md#update_bundle) | **PUT** /bundles/{bundle_id} | 
+*CampaignsApi* | [**create_campaign**](docs/CampaignsApi.md#create_campaign) | **POST** /campaigns | 
+*CampaignsApi* | [**end_campaign**](docs/CampaignsApi.md#end_campaign) | **POST** /campaigns/{campaign_id}/end | End campaign
+*CampaignsApi* | [**get_campaign**](docs/CampaignsApi.md#get_campaign) | **GET** /campaigns/{campaign_id} | Get campaign by ID
+*CampaignsApi* | [**get_campaign_items**](docs/CampaignsApi.md#get_campaign_items) | **GET** /campaigns/{campaign_id}/items | List campaign items
+*CampaignsApi* | [**get_campaign_viewer_items**](docs/CampaignsApi.md#get_campaign_viewer_items) | **GET** /campaigns/{campaign_id}/viewer-items | List viewer campaign items
+*CampaignsApi* | [**get_campaigns**](docs/CampaignsApi.md#get_campaigns) | **GET** /campaigns | 
+*CampaignsApi* | [**review_campaign_items**](docs/CampaignsApi.md#review_campaign_items) | **POST** /campaigns/{campaign_id}/reviews | Submit campaign item review decisions
+*CampaignsApi* | [**start_campaign**](docs/CampaignsApi.md#start_campaign) | **POST** /campaigns/{campaign_id}/start | Start campaign
+*CampaignsApi* | [**stop_campaign**](docs/CampaignsApi.md#stop_campaign) | **POST** /campaigns/{campaign_id}/stop | Stop campaign
+*CampaignsApi* | [**update_campaign**](docs/CampaignsApi.md#update_campaign) | **PUT** /campaigns/{campaign_id} | Update campaign
+*CampaignsApi* | [**update_campaign_item_reviewers**](docs/CampaignsApi.md#update_campaign_item_reviewers) | **POST** /campaigns/{campaign_id}/item-reviewers | Update campaign item reviewers
 *ConfigurationTemplatesApi* | [**create_configuration_template**](docs/ConfigurationTemplatesApi.md#create_configuration_template) | **POST** /configuration-templates | 
 *ConfigurationTemplatesApi* | [**delete_configuration_template**](docs/ConfigurationTemplatesApi.md#delete_configuration_template) | **DELETE** /configuration-templates/{configuration_template_id} | 
 *ConfigurationTemplatesApi* | [**get_configuration_templates**](docs/ConfigurationTemplatesApi.md#get_configuration_templates) | **GET** /configuration-templates | 
@@ -186,6 +200,7 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**delete_group**](docs/GroupsApi.md#delete_group) | **DELETE** /groups/{group_id} | 
 *GroupsApi* | [**delete_group_user**](docs/GroupsApi.md#delete_group_user) | **DELETE** /groups/{group_id}/users/{user_id} | 
 *GroupsApi* | [**get_group**](docs/GroupsApi.md#get_group) | **GET** /groups/{group_id} | Get group by ID
+*GroupsApi* | [**get_group_access_levels**](docs/GroupsApi.md#get_group_access_levels) | **GET** /groups/{group_id}/access_levels | Get group access levels
 *GroupsApi* | [**get_group_containing_group**](docs/GroupsApi.md#get_group_containing_group) | **GET** /groups/{group_id}/containing-groups/{containing_group_id} | Get nested group by ID
 *GroupsApi* | [**get_group_containing_groups**](docs/GroupsApi.md#get_group_containing_groups) | **GET** /groups/{group_id}/containing-groups | Get nested groups
 *GroupsApi* | [**get_group_message_channels**](docs/GroupsApi.md#get_group_message_channels) | **GET** /groups/{group_id}/message-channels | 
@@ -220,6 +235,12 @@ Class | Method | HTTP request | Description
 *OnCallSchedulesApi* | [**get_on_call_schedule**](docs/OnCallSchedulesApi.md#get_on_call_schedule) | **GET** /on-call-schedules/{on_call_schedule_id} | Get on call schedule by ID
 *OnCallSchedulesApi* | [**get_on_call_schedules**](docs/OnCallSchedulesApi.md#get_on_call_schedules) | **GET** /on-call-schedules | Get on call schedules
 *OpalQueriesApi* | [**run_opal_query**](docs/OpalQueriesApi.md#run_opal_query) | **POST** /queries/run | Run an ad-hoc OpalQuery
+*OpalScriptsApi* | [**create_opal_script**](docs/OpalScriptsApi.md#create_opal_script) | **POST** /opal-scripts | Create OpalScript
+*OpalScriptsApi* | [**delete_opal_script**](docs/OpalScriptsApi.md#delete_opal_script) | **DELETE** /opal-scripts/{opal_script_id} | Delete OpalScript
+*OpalScriptsApi* | [**get_opal_script**](docs/OpalScriptsApi.md#get_opal_script) | **GET** /opal-scripts/{opal_script_id} | Get OpalScript by ID
+*OpalScriptsApi* | [**get_opal_script_from_name**](docs/OpalScriptsApi.md#get_opal_script_from_name) | **GET** /opal-scripts/name/{opal_script_name} | Get OpalScript by name
+*OpalScriptsApi* | [**get_opal_scripts**](docs/OpalScriptsApi.md#get_opal_scripts) | **GET** /opal-scripts | List OpalScripts
+*OpalScriptsApi* | [**update_opal_script**](docs/OpalScriptsApi.md#update_opal_script) | **PUT** /opal-scripts/{opal_script_id} | Update OpalScript
 *OwnersApi* | [**create_owner**](docs/OwnersApi.md#create_owner) | **POST** /owners | 
 *OwnersApi* | [**delete_owner**](docs/OwnersApi.md#delete_owner) | **DELETE** /owners/{owner_id} | 
 *OwnersApi* | [**get_owner**](docs/OwnersApi.md#get_owner) | **GET** /owners/{owner_id} | Get owner by ID
@@ -228,21 +249,42 @@ Class | Method | HTTP request | Description
 *OwnersApi* | [**get_owners**](docs/OwnersApi.md#get_owners) | **GET** /owners | Get owners
 *OwnersApi* | [**set_owner_users**](docs/OwnersApi.md#set_owner_users) | **PUT** /owners/{owner_id}/users | 
 *OwnersApi* | [**update_owners**](docs/OwnersApi.md#update_owners) | **PUT** /owners | 
+*PaladinApi* | [**create_paladin**](docs/PaladinApi.md#create_paladin) | **POST** /paladin | Create Paladin
+*PaladinApi* | [**create_paladin_context_source**](docs/PaladinApi.md#create_paladin_context_source) | **POST** /paladin/{paladin_id}/context-sources | Add a Paladin context source
+*PaladinApi* | [**delete_paladin**](docs/PaladinApi.md#delete_paladin) | **DELETE** /paladin/{paladin_id} | Delete Paladin
+*PaladinApi* | [**delete_paladin_context_source**](docs/PaladinApi.md#delete_paladin_context_source) | **DELETE** /paladin/{paladin_id}/context-sources/{context_source_id} | Remove a Paladin context source
+*PaladinApi* | [**get_paladin**](docs/PaladinApi.md#get_paladin) | **GET** /paladin/{paladin_id} | Get Paladin by ID
+*PaladinApi* | [**get_paladin_from_name**](docs/PaladinApi.md#get_paladin_from_name) | **GET** /paladin/name/{paladin_name} | Get Paladins by name
+*PaladinApi* | [**list_paladin_context_sources**](docs/PaladinApi.md#list_paladin_context_sources) | **GET** /paladin/{paladin_id}/context-sources | List Paladin context sources
+*PaladinApi* | [**update_paladin**](docs/PaladinApi.md#update_paladin) | **PUT** /paladin/{paladin_id} | Update Paladin
+*RequestTemplatesApi* | [**create_request_template**](docs/RequestTemplatesApi.md#create_request_template) | **POST** /request-templates | 
+*RequestTemplatesApi* | [**delete_request_template**](docs/RequestTemplatesApi.md#delete_request_template) | **DELETE** /request-templates/{request_template_id} | 
+*RequestTemplatesApi* | [**get_request_template**](docs/RequestTemplatesApi.md#get_request_template) | **GET** /request-templates/{request_template_id} | 
+*RequestTemplatesApi* | [**get_request_templates**](docs/RequestTemplatesApi.md#get_request_templates) | **GET** /request-templates | 
+*RequestTemplatesApi* | [**update_request_template**](docs/RequestTemplatesApi.md#update_request_template) | **PUT** /request-templates | 
 *RequestsApi* | [**approve_request**](docs/RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
+*RequestsApi* | [**cancel_request**](docs/RequestsApi.md#cancel_request) | **POST** /requests/{id}/cancel | Cancel request
 *RequestsApi* | [**create_request**](docs/RequestsApi.md#create_request) | **POST** /requests | 
 *RequestsApi* | [**create_request_comment**](docs/RequestsApi.md#create_request_comment) | **POST** /requests/{id}/comments | 
 *RequestsApi* | [**deny_request**](docs/RequestsApi.md#deny_request) | **POST** /requests/{id}/deny | 
+*RequestsApi* | [**escalate_request**](docs/RequestsApi.md#escalate_request) | **POST** /requests/{id}/escalate | Escalate request to skip-manager
 *RequestsApi* | [**get_request**](docs/RequestsApi.md#get_request) | **GET** /requests/{id} | Get request by ID
 *RequestsApi* | [**get_request_comments**](docs/RequestsApi.md#get_request_comments) | **GET** /requests/{id}/comments | 
 *RequestsApi* | [**get_requests**](docs/RequestsApi.md#get_requests) | **GET** /requests | Get requests
 *RequestsApi* | [**get_requests_relay**](docs/RequestsApi.md#get_requests_relay) | **GET** /requests/relay | Get requests via Relay
+*RequestsApi* | [**remind_request**](docs/RequestsApi.md#remind_request) | **POST** /requests/{id}/remind | Send request reminder
+*RequestsApi* | [**remind_request_reviewer**](docs/RequestsApi.md#remind_request_reviewer) | **POST** /requests/{id}/reviewers/{reviewer_id}/remind | Send reminder to a reviewer
 *ResourcesApi* | [**add_resource_nhi**](docs/ResourcesApi.md#add_resource_nhi) | **POST** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 *ResourcesApi* | [**add_resource_user**](docs/ResourcesApi.md#add_resource_user) | **POST** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**create_resource**](docs/ResourcesApi.md#create_resource) | **POST** /resources | 
+*ResourcesApi* | [**create_resource_custom_access_level**](docs/ResourcesApi.md#create_resource_custom_access_level) | **POST** /resources/{resource_id}/custom-access-levels | 
 *ResourcesApi* | [**delete_resource**](docs/ResourcesApi.md#delete_resource) | **DELETE** /resources/{resource_id} | 
+*ResourcesApi* | [**delete_resource_custom_access_level**](docs/ResourcesApi.md#delete_resource_custom_access_level) | **DELETE** /resources/{resource_id}/custom-access-levels/{access_level_remote_id} | 
 *ResourcesApi* | [**delete_resource_nhi**](docs/ResourcesApi.md#delete_resource_nhi) | **DELETE** /resources/{resource_id}/non-human-identities/{non_human_identity_id} | 
 *ResourcesApi* | [**delete_resource_user**](docs/ResourcesApi.md#delete_resource_user) | **DELETE** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**get_resource**](docs/ResourcesApi.md#get_resource) | **GET** /resources/{resource_id} | Get resource by ID
+*ResourcesApi* | [**get_resource_access_levels**](docs/ResourcesApi.md#get_resource_access_levels) | **GET** /resources/{resource_id}/access_levels | Get resource access levels
+*ResourcesApi* | [**get_resource_custom_access_levels**](docs/ResourcesApi.md#get_resource_custom_access_levels) | **GET** /resources/{resource_id}/custom-access-levels | 
 *ResourcesApi* | [**get_resource_groups**](docs/ResourcesApi.md#get_resource_groups) | **GET** /resources/{resource_id}/groups | 
 *ResourcesApi* | [**get_resource_message_channels**](docs/ResourcesApi.md#get_resource_message_channels) | **GET** /resources/{resource_id}/message-channels | 
 *ResourcesApi* | [**get_resource_nhis**](docs/ResourcesApi.md#get_resource_nhis) | **GET** /resources/{resource_id}/non-human-identities | 
@@ -261,6 +303,7 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**set_resource_reviewers**](docs/ResourcesApi.md#set_resource_reviewers) | **PUT** /resources/{resource_id}/reviewers | 
 *ResourcesApi* | [**set_resource_scoped_role_permissions**](docs/ResourcesApi.md#set_resource_scoped_role_permissions) | **PUT** /resources/{resource_id}/scoped-role-permissions | 
 *ResourcesApi* | [**set_resource_visibility**](docs/ResourcesApi.md#set_resource_visibility) | **PUT** /resources/{resource_id}/visibility | 
+*ResourcesApi* | [**update_resource_custom_access_level**](docs/ResourcesApi.md#update_resource_custom_access_level) | **PATCH** /resources/{resource_id}/custom-access-levels/{access_level_remote_id} | 
 *ResourcesApi* | [**update_resource_user**](docs/ResourcesApi.md#update_resource_user) | **PUT** /resources/{resource_id}/users/{user_id} | 
 *ResourcesApi* | [**update_resources**](docs/ResourcesApi.md#update_resources) | **PUT** /resources | 
 *SessionsApi* | [**sessions**](docs/SessionsApi.md#sessions) | **GET** /sessions | 
@@ -275,14 +318,20 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**remove_group_tag**](docs/TagsApi.md#remove_group_tag) | **DELETE** /tags/{tag_id}/groups/{group_id} | 
 *TagsApi* | [**remove_resource_tag**](docs/TagsApi.md#remove_resource_tag) | **DELETE** /tags/{tag_id}/resources/{resource_id} | 
 *TagsApi* | [**remove_user_tag**](docs/TagsApi.md#remove_user_tag) | **DELETE** /tags/{tag_id}/users/{user_id} | 
+*TokensApi* | [**create_token**](docs/TokensApi.md#create_token) | **POST** /tokens | Create token
 *TokensApi* | [**delete_token**](docs/TokensApi.md#delete_token) | **DELETE** /tokens/{token_id} | Delete token
 *TokensApi* | [**get_tokens**](docs/TokensApi.md#get_tokens) | **GET** /tokens | Get tokens
 *UarsApi* | [**create_uar**](docs/UarsApi.md#create_uar) | **POST** /uar | 
 *UarsApi* | [**get_uar**](docs/UarsApi.md#get_uar) | **GET** /uar/{uar_id} | 
 *UarsApi* | [**get_uars**](docs/UarsApi.md#get_uars) | **GET** /uars | 
+*UsersApi* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /users/{user_id} | 
 *UsersApi* | [**get_remote_users**](docs/UsersApi.md#get_remote_users) | **GET** /users/remote_users | 
+*UsersApi* | [**get_user_by_id**](docs/UsersApi.md#get_user_by_id) | **GET** /users/{user_id} | Get user by ID
 *UsersApi* | [**get_user_tags**](docs/UsersApi.md#get_user_tags) | **GET** /users/{user_id}/tags | 
+*UsersApi* | [**get_user_whoami**](docs/UsersApi.md#get_user_whoami) | **GET** /users/whoami | 
 *UsersApi* | [**get_users**](docs/UsersApi.md#get_users) | **GET** /users | 
+*UsersApi* | [**invite_user**](docs/UsersApi.md#invite_user) | **POST** /users | 
+*UsersApi* | [**update_user**](docs/UsersApi.md#update_user) | **PATCH** /users/{user_id} | 
 *UsersApi* | [**user**](docs/UsersApi.md#user) | **GET** /user | 
 
 
@@ -313,10 +362,30 @@ Class | Method | HTTP request | Description
  - [Bundle](docs/Bundle.md)
  - [BundleGroup](docs/BundleGroup.md)
  - [BundleResource](docs/BundleResource.md)
+ - [Campaign](docs/Campaign.md)
+ - [CampaignConfiguration](docs/CampaignConfiguration.md)
+ - [CampaignGroupAssetVisibilityPolicyEnum](docs/CampaignGroupAssetVisibilityPolicyEnum.md)
+ - [CampaignItem](docs/CampaignItem.md)
+ - [CampaignItemAdminOverride](docs/CampaignItemAdminOverride.md)
+ - [CampaignItemReview](docs/CampaignItemReview.md)
+ - [CampaignItemReviewDecisionEnum](docs/CampaignItemReviewDecisionEnum.md)
+ - [CampaignItemReviewResult](docs/CampaignItemReviewResult.md)
+ - [CampaignItemReviewerAssignment](docs/CampaignItemReviewerAssignment.md)
+ - [CampaignItemReviewerAssignmentSourceEnum](docs/CampaignItemReviewerAssignmentSourceEnum.md)
+ - [CampaignItemReviewerSourceRemoval](docs/CampaignItemReviewerSourceRemoval.md)
+ - [CampaignItemStatusEnum](docs/CampaignItemStatusEnum.md)
+ - [CampaignItemTargetTypeEnum](docs/CampaignItemTargetTypeEnum.md)
+ - [CampaignItemUnassignedPresetMessage](docs/CampaignItemUnassignedPresetMessage.md)
+ - [CampaignRevokeOnEnum](docs/CampaignRevokeOnEnum.md)
+ - [CampaignStatusEnum](docs/CampaignStatusEnum.md)
  - [Condition](docs/Condition.md)
  - [ConfigurationTemplate](docs/ConfigurationTemplate.md)
+ - [CreateAppInfo](docs/CreateAppInfo.md)
  - [CreateBundleInfo](docs/CreateBundleInfo.md)
+ - [CreateCampaignConfigurationInfo](docs/CreateCampaignConfigurationInfo.md)
+ - [CreateCampaignInfo](docs/CreateCampaignInfo.md)
  - [CreateConfigurationTemplateInfo](docs/CreateConfigurationTemplateInfo.md)
+ - [CreateCustomConnectorInfo](docs/CreateCustomConnectorInfo.md)
  - [CreateDelegationRequest](docs/CreateDelegationRequest.md)
  - [CreateEventStreamInfo](docs/CreateEventStreamInfo.md)
  - [CreateGroupBindingInfo](docs/CreateGroupBindingInfo.md)
@@ -325,7 +394,10 @@ Class | Method | HTTP request | Description
  - [CreateIdpGroupMappingRequest](docs/CreateIdpGroupMappingRequest.md)
  - [CreateMessageChannelInfo](docs/CreateMessageChannelInfo.md)
  - [CreateOnCallScheduleInfo](docs/CreateOnCallScheduleInfo.md)
+ - [CreateOpalScriptInfo](docs/CreateOpalScriptInfo.md)
  - [CreateOwnerInfo](docs/CreateOwnerInfo.md)
+ - [CreatePaladinContextSourceInfo](docs/CreatePaladinContextSourceInfo.md)
+ - [CreatePaladinInfo](docs/CreatePaladinInfo.md)
  - [CreateRequest200Response](docs/CreateRequest200Response.md)
  - [CreateRequestCommentRequest](docs/CreateRequestCommentRequest.md)
  - [CreateRequestConfigurationInfoList](docs/CreateRequestConfigurationInfoList.md)
@@ -334,15 +406,23 @@ Class | Method | HTTP request | Description
  - [CreateRequestInfoGroupsInner](docs/CreateRequestInfoGroupsInner.md)
  - [CreateRequestInfoResourcesInner](docs/CreateRequestInfoResourcesInner.md)
  - [CreateRequestInfoSupportTicket](docs/CreateRequestInfoSupportTicket.md)
+ - [CreateRequestTemplateInfo](docs/CreateRequestTemplateInfo.md)
+ - [CreateResourceCustomAccessLevelInfo](docs/CreateResourceCustomAccessLevelInfo.md)
  - [CreateResourceInfo](docs/CreateResourceInfo.md)
  - [CreateTagInfo](docs/CreateTagInfo.md)
+ - [CreateTokenInfo](docs/CreateTokenInfo.md)
+ - [CreateTokenResponse](docs/CreateTokenResponse.md)
  - [CreateUARInfo](docs/CreateUARInfo.md)
+ - [CustomConnectorAppConfig](docs/CustomConnectorAppConfig.md)
  - [Delegation](docs/Delegation.md)
  - [DenyRequestRequest](docs/DenyRequestRequest.md)
+ - [EntityAdminFilter](docs/EntityAdminFilter.md)
+ - [EntityDescriptionFilter](docs/EntityDescriptionFilter.md)
  - [EntityItemTypeEnum](docs/EntityItemTypeEnum.md)
  - [EntityNameFilter](docs/EntityNameFilter.md)
  - [EntityTagFilter](docs/EntityTagFilter.md)
  - [EntityTypeEnum](docs/EntityTypeEnum.md)
+ - [EscalateRequest200Response](docs/EscalateRequest200Response.md)
  - [Event](docs/Event.md)
  - [EventStream](docs/EventStream.md)
  - [EventStreamConnection](docs/EventStreamConnection.md)
@@ -351,6 +431,7 @@ Class | Method | HTTP request | Description
  - [GetResourceUser200Response](docs/GetResourceUser200Response.md)
  - [Group](docs/Group.md)
  - [GroupAccessLevel](docs/GroupAccessLevel.md)
+ - [GroupAccessLevelList](docs/GroupAccessLevelList.md)
  - [GroupBinding](docs/GroupBinding.md)
  - [GroupBindingGroup](docs/GroupBindingGroup.md)
  - [GroupContainingGroup](docs/GroupContainingGroup.md)
@@ -358,12 +439,16 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfo](docs/GroupRemoteInfo.md)
  - [GroupRemoteInfoActiveDirectoryGroup](docs/GroupRemoteInfoActiveDirectoryGroup.md)
  - [GroupRemoteInfoAwsSsoGroup](docs/GroupRemoteInfoAwsSsoGroup.md)
+ - [GroupRemoteInfoAxiomGroup](docs/GroupRemoteInfoAxiomGroup.md)
  - [GroupRemoteInfoAzureAdMicrosoft365Group](docs/GroupRemoteInfoAzureAdMicrosoft365Group.md)
  - [GroupRemoteInfoAzureAdSecurityGroup](docs/GroupRemoteInfoAzureAdSecurityGroup.md)
  - [GroupRemoteInfoClickhouseRole](docs/GroupRemoteInfoClickhouseRole.md)
+ - [GroupRemoteInfoConfluenceGroup](docs/GroupRemoteInfoConfluenceGroup.md)
  - [GroupRemoteInfoConnectorGroup](docs/GroupRemoteInfoConnectorGroup.md)
  - [GroupRemoteInfoDatabricksAccountGroup](docs/GroupRemoteInfoDatabricksAccountGroup.md)
  - [GroupRemoteInfoDevinGroup](docs/GroupRemoteInfoDevinGroup.md)
+ - [GroupRemoteInfoDocusignGroup](docs/GroupRemoteInfoDocusignGroup.md)
+ - [GroupRemoteInfoDocusignSigningGroup](docs/GroupRemoteInfoDocusignSigningGroup.md)
  - [GroupRemoteInfoDuoGroup](docs/GroupRemoteInfoDuoGroup.md)
  - [GroupRemoteInfoGithubEnterpriseTeam](docs/GroupRemoteInfoGithubEnterpriseTeam.md)
  - [GroupRemoteInfoGithubTeam](docs/GroupRemoteInfoGithubTeam.md)
@@ -372,19 +457,26 @@ Class | Method | HTTP request | Description
  - [GroupRemoteInfoGrafanaTeam](docs/GroupRemoteInfoGrafanaTeam.md)
  - [GroupRemoteInfoHubspotTeam](docs/GroupRemoteInfoHubspotTeam.md)
  - [GroupRemoteInfoIncidentioOnCallSchedule](docs/GroupRemoteInfoIncidentioOnCallSchedule.md)
+ - [GroupRemoteInfoJiraGroup](docs/GroupRemoteInfoJiraGroup.md)
  - [GroupRemoteInfoLdapGroup](docs/GroupRemoteInfoLdapGroup.md)
+ - [GroupRemoteInfoLinearTeam](docs/GroupRemoteInfoLinearTeam.md)
  - [GroupRemoteInfoOktaGroup](docs/GroupRemoteInfoOktaGroup.md)
  - [GroupRemoteInfoOktaGroupRule](docs/GroupRemoteInfoOktaGroupRule.md)
  - [GroupRemoteInfoPagerdutyOnCallSchedule](docs/GroupRemoteInfoPagerdutyOnCallSchedule.md)
+ - [GroupRemoteInfoRampDepartment](docs/GroupRemoteInfoRampDepartment.md)
+ - [GroupRemoteInfoRampLocation](docs/GroupRemoteInfoRampLocation.md)
  - [GroupRemoteInfoRootlyOnCallSchedule](docs/GroupRemoteInfoRootlyOnCallSchedule.md)
  - [GroupRemoteInfoSlackUserGroup](docs/GroupRemoteInfoSlackUserGroup.md)
  - [GroupRemoteInfoSnowflakeRole](docs/GroupRemoteInfoSnowflakeRole.md)
+ - [GroupRemoteInfoTableauGroup](docs/GroupRemoteInfoTableauGroup.md)
  - [GroupRemoteInfoTailscaleGroup](docs/GroupRemoteInfoTailscaleGroup.md)
  - [GroupRemoteInfoTwingateGroup](docs/GroupRemoteInfoTwingateGroup.md)
  - [GroupRemoteInfoTwingateGroupSynced](docs/GroupRemoteInfoTwingateGroupSynced.md)
  - [GroupRemoteInfoWorkdayUserSecurityGroup](docs/GroupRemoteInfoWorkdayUserSecurityGroup.md)
+ - [GroupRemoteInfoWrikeGroup](docs/GroupRemoteInfoWrikeGroup.md)
  - [GroupRemoteInfoZendeskGroup](docs/GroupRemoteInfoZendeskGroup.md)
  - [GroupRemoteInfoZendeskOrganization](docs/GroupRemoteInfoZendeskOrganization.md)
+ - [GroupRemoteInfoZoomGroup](docs/GroupRemoteInfoZoomGroup.md)
  - [GroupResource](docs/GroupResource.md)
  - [GroupResourceList](docs/GroupResourceList.md)
  - [GroupTypeEnum](docs/GroupTypeEnum.md)
@@ -393,6 +485,8 @@ Class | Method | HTTP request | Description
  - [GroupWithAccessLevel](docs/GroupWithAccessLevel.md)
  - [IdpGroupMapping](docs/IdpGroupMapping.md)
  - [IdpGroupMappingList](docs/IdpGroupMappingList.md)
+ - [IdpStatusFilter](docs/IdpStatusFilter.md)
+ - [InviteUserInfo](docs/InviteUserInfo.md)
  - [MessageChannel](docs/MessageChannel.md)
  - [MessageChannelIDList](docs/MessageChannelIDList.md)
  - [MessageChannelList](docs/MessageChannelList.md)
@@ -401,11 +495,22 @@ Class | Method | HTTP request | Description
  - [OnCallScheduleIDList](docs/OnCallScheduleIDList.md)
  - [OnCallScheduleList](docs/OnCallScheduleList.md)
  - [OnCallScheduleProviderEnum](docs/OnCallScheduleProviderEnum.md)
+ - [OpalAccessPathDetail](docs/OpalAccessPathDetail.md)
+ - [OpalAccessPathEdgeFilter](docs/OpalAccessPathEdgeFilter.md)
+ - [OpalAccessPathQueryBody](docs/OpalAccessPathQueryBody.md)
+ - [OpalAccessQuery](docs/OpalAccessQuery.md)
+ - [OpalAccessQueryResults](docs/OpalAccessQueryResults.md)
+ - [OpalAccessResultEdge](docs/OpalAccessResultEdge.md)
+ - [OpalAccessResultNode](docs/OpalAccessResultNode.md)
  - [OpalNodeQuery](docs/OpalNodeQuery.md)
  - [OpalNodeQueryBody](docs/OpalNodeQueryBody.md)
  - [OpalNodeQueryResults](docs/OpalNodeQueryResults.md)
  - [OpalQueryResultEdge](docs/OpalQueryResultEdge.md)
  - [OpalQueryResultNode](docs/OpalQueryResultNode.md)
+ - [OpalQueryResults](docs/OpalQueryResults.md)
+ - [OpalScript](docs/OpalScript.md)
+ - [OpalScriptList](docs/OpalScriptList.md)
+ - [OpalScriptTypeEnum](docs/OpalScriptTypeEnum.md)
  - [Owner](docs/Owner.md)
  - [PageInfo](docs/PageInfo.md)
  - [PaginatedAccessRulesList](docs/PaginatedAccessRulesList.md)
@@ -413,6 +518,8 @@ Class | Method | HTTP request | Description
  - [PaginatedBundleGroupList](docs/PaginatedBundleGroupList.md)
  - [PaginatedBundleList](docs/PaginatedBundleList.md)
  - [PaginatedBundleResourceList](docs/PaginatedBundleResourceList.md)
+ - [PaginatedCampaignItemsList](docs/PaginatedCampaignItemsList.md)
+ - [PaginatedCampaignsList](docs/PaginatedCampaignsList.md)
  - [PaginatedConfigurationTemplateList](docs/PaginatedConfigurationTemplateList.md)
  - [PaginatedDelegationsList](docs/PaginatedDelegationsList.md)
  - [PaginatedEventList](docs/PaginatedEventList.md)
@@ -420,11 +527,20 @@ Class | Method | HTTP request | Description
  - [PaginatedGroupsList](docs/PaginatedGroupsList.md)
  - [PaginatedOwnersList](docs/PaginatedOwnersList.md)
  - [PaginatedRemoteUsersList](docs/PaginatedRemoteUsersList.md)
+ - [PaginatedRequestTemplateList](docs/PaginatedRequestTemplateList.md)
  - [PaginatedResourcesList](docs/PaginatedResourcesList.md)
  - [PaginatedTagsList](docs/PaginatedTagsList.md)
  - [PaginatedTokensList](docs/PaginatedTokensList.md)
  - [PaginatedUARsList](docs/PaginatedUARsList.md)
  - [PaginatedUsersList](docs/PaginatedUsersList.md)
+ - [PaginatedViewerCampaignItemsList](docs/PaginatedViewerCampaignItemsList.md)
+ - [Paladin](docs/Paladin.md)
+ - [PaladinConnector](docs/PaladinConnector.md)
+ - [PaladinContextSource](docs/PaladinContextSource.md)
+ - [PaladinContextSourceKind](docs/PaladinContextSourceKind.md)
+ - [PaladinContextSourceList](docs/PaladinContextSourceList.md)
+ - [PaladinContextSourceProvider](docs/PaladinContextSourceProvider.md)
+ - [PaladinList](docs/PaladinList.md)
  - [PropagationStatus](docs/PropagationStatus.md)
  - [PropagationStatusEnum](docs/PropagationStatusEnum.md)
  - [RDSEngineEnum](docs/RDSEngineEnum.md)
@@ -444,14 +560,25 @@ Class | Method | HTTP request | Description
  - [RequestReviewerStages](docs/RequestReviewerStages.md)
  - [RequestStage](docs/RequestStage.md)
  - [RequestStatusEnum](docs/RequestStatusEnum.md)
+ - [RequestTemplate](docs/RequestTemplate.md)
+ - [RequestTemplateCustomField](docs/RequestTemplateCustomField.md)
+ - [RequestTemplateCustomFieldCalloutMetadata](docs/RequestTemplateCustomFieldCalloutMetadata.md)
+ - [RequestTemplateCustomFieldInput](docs/RequestTemplateCustomFieldInput.md)
+ - [RequestTemplateCustomFieldMetadata](docs/RequestTemplateCustomFieldMetadata.md)
+ - [RequestTemplateCustomFieldMultiChoiceMetadata](docs/RequestTemplateCustomFieldMultiChoiceMetadata.md)
  - [RequestTemplateCustomFieldTypeEnum](docs/RequestTemplateCustomFieldTypeEnum.md)
  - [RequestedItem](docs/RequestedItem.md)
  - [Resource](docs/Resource.md)
  - [ResourceAccessLevel](docs/ResourceAccessLevel.md)
+ - [ResourceAccessLevelList](docs/ResourceAccessLevelList.md)
  - [ResourceAccessUser](docs/ResourceAccessUser.md)
  - [ResourceAccessUserList](docs/ResourceAccessUserList.md)
+ - [ResourceCustomAccessLevelList](docs/ResourceCustomAccessLevelList.md)
+ - [ResourceCustomAccessLevelResponse](docs/ResourceCustomAccessLevelResponse.md)
  - [ResourceNHI](docs/ResourceNHI.md)
  - [ResourceRemoteInfo](docs/ResourceRemoteInfo.md)
+ - [ResourceRemoteInfoAlicloudEcsInstance](docs/ResourceRemoteInfoAlicloudEcsInstance.md)
+ - [ResourceRemoteInfoAlicloudRamRole](docs/ResourceRemoteInfoAlicloudRamRole.md)
  - [ResourceRemoteInfoAnthropicWorkspace](docs/ResourceRemoteInfoAnthropicWorkspace.md)
  - [ResourceRemoteInfoAwsAccount](docs/ResourceRemoteInfoAwsAccount.md)
  - [ResourceRemoteInfoAwsEc2Instance](docs/ResourceRemoteInfoAwsEc2Instance.md)
@@ -461,6 +588,8 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoAwsPermissionSet](docs/ResourceRemoteInfoAwsPermissionSet.md)
  - [ResourceRemoteInfoAwsRdsCluster](docs/ResourceRemoteInfoAwsRdsCluster.md)
  - [ResourceRemoteInfoAwsRdsInstance](docs/ResourceRemoteInfoAwsRdsInstance.md)
+ - [ResourceRemoteInfoAxiomCustomRole](docs/ResourceRemoteInfoAxiomCustomRole.md)
+ - [ResourceRemoteInfoAxiomRole](docs/ResourceRemoteInfoAxiomRole.md)
  - [ResourceRemoteInfoAzureEnterpriseApp](docs/ResourceRemoteInfoAzureEnterpriseApp.md)
  - [ResourceRemoteInfoAzureEntraIdRole](docs/ResourceRemoteInfoAzureEntraIdRole.md)
  - [ResourceRemoteInfoAzureManagementGroup](docs/ResourceRemoteInfoAzureManagementGroup.md)
@@ -474,18 +603,27 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoAzureSubscription](docs/ResourceRemoteInfoAzureSubscription.md)
  - [ResourceRemoteInfoAzureUserAssignedManagedIdentity](docs/ResourceRemoteInfoAzureUserAssignedManagedIdentity.md)
  - [ResourceRemoteInfoAzureVirtualMachine](docs/ResourceRemoteInfoAzureVirtualMachine.md)
+ - [ResourceRemoteInfoClickhouseConsoleRole](docs/ResourceRemoteInfoClickhouseConsoleRole.md)
  - [ResourceRemoteInfoClickhouseDatabase](docs/ResourceRemoteInfoClickhouseDatabase.md)
  - [ResourceRemoteInfoClickhouseTable](docs/ResourceRemoteInfoClickhouseTable.md)
  - [ResourceRemoteInfoCoupaRole](docs/ResourceRemoteInfoCoupaRole.md)
  - [ResourceRemoteInfoCursorOrganization](docs/ResourceRemoteInfoCursorOrganization.md)
  - [ResourceRemoteInfoCustomConnector](docs/ResourceRemoteInfoCustomConnector.md)
  - [ResourceRemoteInfoDatabricksAccountServicePrincipal](docs/ResourceRemoteInfoDatabricksAccountServicePrincipal.md)
+ - [ResourceRemoteInfoDatabricksCatalog](docs/ResourceRemoteInfoDatabricksCatalog.md)
+ - [ResourceRemoteInfoDatabricksFunction](docs/ResourceRemoteInfoDatabricksFunction.md)
+ - [ResourceRemoteInfoDatabricksModel](docs/ResourceRemoteInfoDatabricksModel.md)
+ - [ResourceRemoteInfoDatabricksSchema](docs/ResourceRemoteInfoDatabricksSchema.md)
+ - [ResourceRemoteInfoDatabricksService](docs/ResourceRemoteInfoDatabricksService.md)
+ - [ResourceRemoteInfoDatabricksVolume](docs/ResourceRemoteInfoDatabricksVolume.md)
  - [ResourceRemoteInfoDatadogRole](docs/ResourceRemoteInfoDatadogRole.md)
  - [ResourceRemoteInfoDatastaxAstraRole](docs/ResourceRemoteInfoDatastaxAstraRole.md)
  - [ResourceRemoteInfoDevinOrganization](docs/ResourceRemoteInfoDevinOrganization.md)
  - [ResourceRemoteInfoDevinRole](docs/ResourceRemoteInfoDevinRole.md)
+ - [ResourceRemoteInfoDocusignPermissionProfile](docs/ResourceRemoteInfoDocusignPermissionProfile.md)
  - [ResourceRemoteInfoGcpBigQueryDataset](docs/ResourceRemoteInfoGcpBigQueryDataset.md)
  - [ResourceRemoteInfoGcpBigQueryTable](docs/ResourceRemoteInfoGcpBigQueryTable.md)
+ - [ResourceRemoteInfoGcpBillingAccount](docs/ResourceRemoteInfoGcpBillingAccount.md)
  - [ResourceRemoteInfoGcpBucket](docs/ResourceRemoteInfoGcpBucket.md)
  - [ResourceRemoteInfoGcpComputeInstance](docs/ResourceRemoteInfoGcpComputeInstance.md)
  - [ResourceRemoteInfoGcpFolder](docs/ResourceRemoteInfoGcpFolder.md)
@@ -505,6 +643,8 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoGrafanaRole](docs/ResourceRemoteInfoGrafanaRole.md)
  - [ResourceRemoteInfoHubspotRole](docs/ResourceRemoteInfoHubspotRole.md)
  - [ResourceRemoteInfoIlevelAdvancedRole](docs/ResourceRemoteInfoIlevelAdvancedRole.md)
+ - [ResourceRemoteInfoLinearOrganization](docs/ResourceRemoteInfoLinearOrganization.md)
+ - [ResourceRemoteInfoLinearProject](docs/ResourceRemoteInfoLinearProject.md)
  - [ResourceRemoteInfoNetsuiteRole](docs/ResourceRemoteInfoNetsuiteRole.md)
  - [ResourceRemoteInfoOktaApp](docs/ResourceRemoteInfoOktaApp.md)
  - [ResourceRemoteInfoOktaCustomRole](docs/ResourceRemoteInfoOktaCustomRole.md)
@@ -513,6 +653,8 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoOpenaiPlatformServiceAccount](docs/ResourceRemoteInfoOpenaiPlatformServiceAccount.md)
  - [ResourceRemoteInfoOracleFusionRole](docs/ResourceRemoteInfoOracleFusionRole.md)
  - [ResourceRemoteInfoPagerdutyRole](docs/ResourceRemoteInfoPagerdutyRole.md)
+ - [ResourceRemoteInfoRampFund](docs/ResourceRemoteInfoRampFund.md)
+ - [ResourceRemoteInfoRampRole](docs/ResourceRemoteInfoRampRole.md)
  - [ResourceRemoteInfoSalesforcePermissionSet](docs/ResourceRemoteInfoSalesforcePermissionSet.md)
  - [ResourceRemoteInfoSalesforceProfile](docs/ResourceRemoteInfoSalesforceProfile.md)
  - [ResourceRemoteInfoSalesforceRole](docs/ResourceRemoteInfoSalesforceRole.md)
@@ -522,16 +664,25 @@ Class | Method | HTTP request | Description
  - [ResourceRemoteInfoTailscaleSsh](docs/ResourceRemoteInfoTailscaleSsh.md)
  - [ResourceRemoteInfoTeleportRole](docs/ResourceRemoteInfoTeleportRole.md)
  - [ResourceRemoteInfoTwingateResource](docs/ResourceRemoteInfoTwingateResource.md)
+ - [ResourceRemoteInfoVercelProject](docs/ResourceRemoteInfoVercelProject.md)
+ - [ResourceRemoteInfoVercelRole](docs/ResourceRemoteInfoVercelRole.md)
  - [ResourceRemoteInfoWorkdayRole](docs/ResourceRemoteInfoWorkdayRole.md)
+ - [ResourceRemoteInfoWrikeUserType](docs/ResourceRemoteInfoWrikeUserType.md)
  - [ResourceRemoteInfoZendeskRole](docs/ResourceRemoteInfoZendeskRole.md)
+ - [ResourceRemoteInfoZoomLicense](docs/ResourceRemoteInfoZoomLicense.md)
+ - [ResourceRemoteInfoZoomRole](docs/ResourceRemoteInfoZoomRole.md)
  - [ResourceTypeEnum](docs/ResourceTypeEnum.md)
  - [ResourceUser](docs/ResourceUser.md)
  - [ResourceUserAccessStatus](docs/ResourceUserAccessStatus.md)
  - [ResourceUserAccessStatusEnum](docs/ResourceUserAccessStatusEnum.md)
  - [ResourceWithAccessLevel](docs/ResourceWithAccessLevel.md)
+ - [ReviewCampaignItemDecisionInfo](docs/ReviewCampaignItemDecisionInfo.md)
+ - [ReviewCampaignItemsInfo](docs/ReviewCampaignItemsInfo.md)
+ - [ReviewCampaignItemsResponse](docs/ReviewCampaignItemsResponse.md)
  - [ReviewStageOperator](docs/ReviewStageOperator.md)
  - [ReviewerIDList](docs/ReviewerIDList.md)
  - [ReviewerStage](docs/ReviewerStage.md)
+ - [ReviewerStageEscalation](docs/ReviewerStageEscalation.md)
  - [ReviewerStageList](docs/ReviewerStageList.md)
  - [RiskSensitivityEnum](docs/RiskSensitivityEnum.md)
  - [RolePermissionNameEnum](docs/RolePermissionNameEnum.md)
@@ -539,10 +690,13 @@ Class | Method | HTTP request | Description
  - [RuleClauses](docs/RuleClauses.md)
  - [RuleConjunction](docs/RuleConjunction.md)
  - [RuleDisjunction](docs/RuleDisjunction.md)
+ - [RunOpalQueryRequest](docs/RunOpalQueryRequest.md)
  - [ScopedRolePermission](docs/ScopedRolePermission.md)
  - [ScopedRolePermissionList](docs/ScopedRolePermissionList.md)
  - [Session](docs/Session.md)
  - [SessionsList](docs/SessionsList.md)
+ - [SortDirectionEnum](docs/SortDirectionEnum.md)
+ - [StopCampaignRequest](docs/StopCampaignRequest.md)
  - [StringMatchType](docs/StringMatchType.md)
  - [SubEvent](docs/SubEvent.md)
  - [SyncError](docs/SyncError.md)
@@ -560,7 +714,13 @@ Class | Method | HTTP request | Description
  - [UARReviewerAssignmentPolicyEnum](docs/UARReviewerAssignmentPolicyEnum.md)
  - [UARScope](docs/UARScope.md)
  - [UpdateAccessRuleInfo](docs/UpdateAccessRuleInfo.md)
+ - [UpdateAppInfo](docs/UpdateAppInfo.md)
+ - [UpdateCampaignConfigurationInfo](docs/UpdateCampaignConfigurationInfo.md)
+ - [UpdateCampaignInfo](docs/UpdateCampaignInfo.md)
+ - [UpdateCampaignItemReviewersInfo](docs/UpdateCampaignItemReviewersInfo.md)
+ - [UpdateCampaignItemReviewersResult](docs/UpdateCampaignItemReviewersResult.md)
  - [UpdateConfigurationTemplateInfo](docs/UpdateConfigurationTemplateInfo.md)
+ - [UpdateCustomConnectorInfo](docs/UpdateCustomConnectorInfo.md)
  - [UpdateEventStreamInfo](docs/UpdateEventStreamInfo.md)
  - [UpdateGroupBindingInfo](docs/UpdateGroupBindingInfo.md)
  - [UpdateGroupBindingInfoList](docs/UpdateGroupBindingInfoList.md)
@@ -570,16 +730,26 @@ Class | Method | HTTP request | Description
  - [UpdateGroupUserRequest](docs/UpdateGroupUserRequest.md)
  - [UpdateIdpGroupMappingsRequest](docs/UpdateIdpGroupMappingsRequest.md)
  - [UpdateIdpGroupMappingsRequestMappingsInner](docs/UpdateIdpGroupMappingsRequestMappingsInner.md)
+ - [UpdateOpalScriptInfo](docs/UpdateOpalScriptInfo.md)
  - [UpdateOwnerInfo](docs/UpdateOwnerInfo.md)
  - [UpdateOwnerInfoList](docs/UpdateOwnerInfoList.md)
+ - [UpdatePaladinInfo](docs/UpdatePaladinInfo.md)
+ - [UpdateRequestTemplateInfo](docs/UpdateRequestTemplateInfo.md)
+ - [UpdateResourceCustomAccessLevelInfo](docs/UpdateResourceCustomAccessLevelInfo.md)
  - [UpdateResourceInfo](docs/UpdateResourceInfo.md)
  - [UpdateResourceInfoList](docs/UpdateResourceInfoList.md)
  - [UpdateResourceUserRequest](docs/UpdateResourceUserRequest.md)
+ - [UpdateUserInfo](docs/UpdateUserInfo.md)
  - [User](docs/User.md)
  - [UserAttributeSelector](docs/UserAttributeSelector.md)
  - [UserHrIdpStatusEnum](docs/UserHrIdpStatusEnum.md)
  - [UserIDList](docs/UserIDList.md)
  - [UserList](docs/UserList.md)
+ - [UserProductRoleEnum](docs/UserProductRoleEnum.md)
+ - [ViewerCampaignItem](docs/ViewerCampaignItem.md)
+ - [ViewerCampaignItemReviewDecisionEnum](docs/ViewerCampaignItemReviewDecisionEnum.md)
+ - [ViewerCampaignItemSortFieldEnum](docs/ViewerCampaignItemSortFieldEnum.md)
+ - [ViewerCampaignItemStatusEnum](docs/ViewerCampaignItemStatusEnum.md)
  - [VisibilityInfo](docs/VisibilityInfo.md)
  - [VisibilityTypeEnum](docs/VisibilityTypeEnum.md)
  - [WebhookApiKeyCredential](docs/WebhookApiKeyCredential.md)
