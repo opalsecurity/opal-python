@@ -62,9 +62,11 @@ class Group(BaseModel):
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent to the requester when the request is approved.")
     risk_sensitivity: Optional[RiskSensitivityEnum] = Field(default=None, description="The risk sensitivity level for the group. When an override is set, this field will match that.")
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
+    match_remote_name: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the group's name is synced from the end system. When true, the name is overwritten with the remote name on each sync. Defaults to false.")
+    match_remote_description: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the group's description is synced from the end system. When true, the description is overwritten with the remote description on each sync. Defaults to false.")
     last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this group.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "last_successful_sync"]
+    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "match_remote_name", "match_remote_description", "last_successful_sync"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -176,6 +178,8 @@ class Group(BaseModel):
             "custom_request_notification": obj.get("custom_request_notification"),
             "risk_sensitivity": obj.get("risk_sensitivity"),
             "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
+            "match_remote_name": obj.get("match_remote_name"),
+            "match_remote_description": obj.get("match_remote_description"),
             "last_successful_sync": SyncTask.from_dict(obj["last_successful_sync"]) if obj.get("last_successful_sync") is not None else None
         })
         # store additional fields in additional_properties
