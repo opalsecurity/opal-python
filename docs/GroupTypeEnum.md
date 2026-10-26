@@ -68,6 +68,42 @@ The type of the group.
 
 * `HUBSPOT_TEAM` (value: `'HUBSPOT_TEAM'`)
 
+* `TABLEAU_GROUP` (value: `'TABLEAU_GROUP'`)
+
+* `CONFLUENCE_GROUP` (value: `'CONFLUENCE_GROUP'`)
+
+* `JIRA_GROUP` (value: `'JIRA_GROUP'`)
+
+* `DOCUSIGN_GROUP` (value: `'DOCUSIGN_GROUP'`)
+
+* `ZOOM_GROUP` (value: `'ZOOM_GROUP'`)
+
+* `LINEAR_TEAM` (value: `'LINEAR_TEAM'`)
+
+* `RAMP_DEPARTMENT` (value: `'RAMP_DEPARTMENT'`)
+
+* `RAMP_LOCATION` (value: `'RAMP_LOCATION'`)
+
+* `WRIKE_GROUP` (value: `'WRIKE_GROUP'`)
+
+* `AXIOM_GROUP` (value: `'AXIOM_GROUP'`)
+
+* `ASANA_TEAM` (value: `'ASANA_TEAM'`)
+
+* `BITWARDEN_GROUP` (value: `'BITWARDEN_GROUP'`)
+
+* `BOX_GROUP` (value: `'BOX_GROUP'`)
+
+* `CALENDLY_GROUP` (value: `'CALENDLY_GROUP'`)
+
+* `SQUARE_LOCATION` (value: `'SQUARE_LOCATION'`)
+
+* `SQUARE_JOB` (value: `'SQUARE_JOB'`)
+
+* `RIPPLING_TEAM` (value: `'RIPPLING_TEAM'`)
+
+* `RIPPLING_SUPERGROUP` (value: `'RIPPLING_SUPERGROUP'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

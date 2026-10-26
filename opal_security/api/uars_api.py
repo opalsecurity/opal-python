@@ -60,9 +60,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UAR:
-        """create_uar
+        """(Deprecated) create_uar
 
-        Starts a User Access Review.
+        Starts a User Access Review. Deprecated in favor of `POST /campaigns`.
 
         :param create_uar_info: The settings of the UAR. (required)
         :type create_uar_info: CreateUARInfo
@@ -87,6 +87,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("POST /uar is deprecated.", DeprecationWarning)
 
         _param = self._create_uar_serialize(
             create_uar_info=create_uar_info,
@@ -127,9 +128,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UAR]:
-        """create_uar
+        """(Deprecated) create_uar
 
-        Starts a User Access Review.
+        Starts a User Access Review. Deprecated in favor of `POST /campaigns`.
 
         :param create_uar_info: The settings of the UAR. (required)
         :type create_uar_info: CreateUARInfo
@@ -154,6 +155,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("POST /uar is deprecated.", DeprecationWarning)
 
         _param = self._create_uar_serialize(
             create_uar_info=create_uar_info,
@@ -194,9 +196,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """create_uar
+        """(Deprecated) create_uar
 
-        Starts a User Access Review.
+        Starts a User Access Review. Deprecated in favor of `POST /campaigns`.
 
         :param create_uar_info: The settings of the UAR. (required)
         :type create_uar_info: CreateUARInfo
@@ -221,6 +223,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("POST /uar is deprecated.", DeprecationWarning)
 
         _param = self._create_uar_serialize(
             create_uar_info=create_uar_info,
@@ -334,9 +337,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UAR:
-        """get_uar
+        """(Deprecated) get_uar
 
-        Retrieves a specific UAR.
+        Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`.
 
         :param uar_id: The ID of the UAR. (required)
         :type uar_id: UUID
@@ -361,6 +364,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /uar/{uar_id} is deprecated.", DeprecationWarning)
 
         _param = self._get_uar_serialize(
             uar_id=uar_id,
@@ -401,9 +405,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UAR]:
-        """get_uar
+        """(Deprecated) get_uar
 
-        Retrieves a specific UAR.
+        Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`.
 
         :param uar_id: The ID of the UAR. (required)
         :type uar_id: UUID
@@ -428,6 +432,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /uar/{uar_id} is deprecated.", DeprecationWarning)
 
         _param = self._get_uar_serialize(
             uar_id=uar_id,
@@ -468,9 +473,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_uar
+        """(Deprecated) get_uar
 
-        Retrieves a specific UAR.
+        Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`.
 
         :param uar_id: The ID of the UAR. (required)
         :type uar_id: UUID
@@ -495,6 +500,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /uar/{uar_id} is deprecated.", DeprecationWarning)
 
         _param = self._get_uar_serialize(
             uar_id=uar_id,
@@ -596,9 +602,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedUARsList:
-        """get_uars
+        """(Deprecated) get_uars
 
-        Returns a list of `UAR` objects.
+        Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`.
 
         :param cursor: The pagination cursor value.
         :type cursor: str
@@ -625,6 +631,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /uars is deprecated.", DeprecationWarning)
 
         _param = self._get_uars_serialize(
             cursor=cursor,
@@ -667,9 +674,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedUARsList]:
-        """get_uars
+        """(Deprecated) get_uars
 
-        Returns a list of `UAR` objects.
+        Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`.
 
         :param cursor: The pagination cursor value.
         :type cursor: str
@@ -696,6 +703,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /uars is deprecated.", DeprecationWarning)
 
         _param = self._get_uars_serialize(
             cursor=cursor,
@@ -738,9 +746,9 @@ class UarsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_uars
+        """(Deprecated) get_uars
 
-        Returns a list of `UAR` objects.
+        Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`.
 
         :param cursor: The pagination cursor value.
         :type cursor: str
@@ -767,6 +775,7 @@ class UarsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /uars is deprecated.", DeprecationWarning)
 
         _param = self._get_uars_serialize(
             cursor=cursor,

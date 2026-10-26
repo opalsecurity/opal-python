@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from opal_security.models.app_type_enum import AppTypeEnum
 from opal_security.models.app_validation import AppValidation
+from opal_security.models.custom_connector_app_config import CustomConnectorAppConfig
+from opal_security.models.visibility_type_enum import VisibilityTypeEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,9 +37,13 @@ class App(BaseModel):
     description: StrictStr = Field(description="A description of the app.")
     admin_owner_id: UUID = Field(description="The ID of the owner of the app.")
     app_type: AppTypeEnum
+    visibility: Optional[VisibilityTypeEnum] = None
+    visibility_group_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of groups that can see this app when visibility is `LIMITED`. Must be empty when visibility is `GLOBAL`.")
+    import_visibility: Optional[VisibilityTypeEnum] = Field(default=None, description="The visibility level of items imported from this app.")
     validations: Optional[List[AppValidation]] = Field(default=None, description="Validation checks of an apps' configuration and permissions.")
+    custom_connector: Optional[CustomConnectorAppConfig] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["app_id", "name", "description", "admin_owner_id", "app_type", "validations"]
+    __properties: ClassVar[List[str]] = ["app_id", "name", "description", "admin_owner_id", "app_type", "visibility", "visibility_group_ids", "import_visibility", "validations", "custom_connector"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +93,9 @@ class App(BaseModel):
                 if _item_validations:
                     _items.append(_item_validations.to_dict())
             _dict['validations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of custom_connector
+        if self.custom_connector:
+            _dict['custom_connector'] = self.custom_connector.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -109,7 +118,11 @@ class App(BaseModel):
             "description": obj.get("description"),
             "admin_owner_id": obj.get("admin_owner_id"),
             "app_type": obj.get("app_type"),
-            "validations": [AppValidation.from_dict(_item) for _item in obj["validations"]] if obj.get("validations") is not None else None
+            "visibility": obj.get("visibility"),
+            "visibility_group_ids": obj.get("visibility_group_ids"),
+            "import_visibility": obj.get("import_visibility"),
+            "validations": [AppValidation.from_dict(_item) for _item in obj["validations"]] if obj.get("validations") is not None else None,
+            "custom_connector": CustomConnectorAppConfig.from_dict(obj["custom_connector"]) if obj.get("custom_connector") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
