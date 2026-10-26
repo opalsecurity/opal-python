@@ -21,13 +21,21 @@ import json
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from opal_security.models.group_remote_info_active_directory_group import GroupRemoteInfoActiveDirectoryGroup
+from opal_security.models.group_remote_info_asana_team import GroupRemoteInfoAsanaTeam
 from opal_security.models.group_remote_info_aws_sso_group import GroupRemoteInfoAwsSsoGroup
+from opal_security.models.group_remote_info_axiom_group import GroupRemoteInfoAxiomGroup
 from opal_security.models.group_remote_info_azure_ad_microsoft365_group import GroupRemoteInfoAzureAdMicrosoft365Group
 from opal_security.models.group_remote_info_azure_ad_security_group import GroupRemoteInfoAzureAdSecurityGroup
+from opal_security.models.group_remote_info_bitwarden_group import GroupRemoteInfoBitwardenGroup
+from opal_security.models.group_remote_info_box_group import GroupRemoteInfoBoxGroup
+from opal_security.models.group_remote_info_calendly_group import GroupRemoteInfoCalendlyGroup
 from opal_security.models.group_remote_info_clickhouse_role import GroupRemoteInfoClickhouseRole
+from opal_security.models.group_remote_info_confluence_group import GroupRemoteInfoConfluenceGroup
 from opal_security.models.group_remote_info_connector_group import GroupRemoteInfoConnectorGroup
 from opal_security.models.group_remote_info_databricks_account_group import GroupRemoteInfoDatabricksAccountGroup
 from opal_security.models.group_remote_info_devin_group import GroupRemoteInfoDevinGroup
+from opal_security.models.group_remote_info_docusign_group import GroupRemoteInfoDocusignGroup
+from opal_security.models.group_remote_info_docusign_signing_group import GroupRemoteInfoDocusignSigningGroup
 from opal_security.models.group_remote_info_duo_group import GroupRemoteInfoDuoGroup
 from opal_security.models.group_remote_info_github_enterprise_team import GroupRemoteInfoGithubEnterpriseTeam
 from opal_security.models.group_remote_info_github_team import GroupRemoteInfoGithubTeam
@@ -36,19 +44,30 @@ from opal_security.models.group_remote_info_google_group import GroupRemoteInfoG
 from opal_security.models.group_remote_info_grafana_team import GroupRemoteInfoGrafanaTeam
 from opal_security.models.group_remote_info_hubspot_team import GroupRemoteInfoHubspotTeam
 from opal_security.models.group_remote_info_incidentio_on_call_schedule import GroupRemoteInfoIncidentioOnCallSchedule
+from opal_security.models.group_remote_info_jira_group import GroupRemoteInfoJiraGroup
 from opal_security.models.group_remote_info_ldap_group import GroupRemoteInfoLdapGroup
+from opal_security.models.group_remote_info_linear_team import GroupRemoteInfoLinearTeam
 from opal_security.models.group_remote_info_okta_group import GroupRemoteInfoOktaGroup
 from opal_security.models.group_remote_info_okta_group_rule import GroupRemoteInfoOktaGroupRule
 from opal_security.models.group_remote_info_pagerduty_on_call_schedule import GroupRemoteInfoPagerdutyOnCallSchedule
+from opal_security.models.group_remote_info_ramp_department import GroupRemoteInfoRampDepartment
+from opal_security.models.group_remote_info_ramp_location import GroupRemoteInfoRampLocation
+from opal_security.models.group_remote_info_rippling_supergroup import GroupRemoteInfoRipplingSupergroup
+from opal_security.models.group_remote_info_rippling_team import GroupRemoteInfoRipplingTeam
 from opal_security.models.group_remote_info_rootly_on_call_schedule import GroupRemoteInfoRootlyOnCallSchedule
 from opal_security.models.group_remote_info_slack_user_group import GroupRemoteInfoSlackUserGroup
 from opal_security.models.group_remote_info_snowflake_role import GroupRemoteInfoSnowflakeRole
+from opal_security.models.group_remote_info_square_job import GroupRemoteInfoSquareJob
+from opal_security.models.group_remote_info_square_location import GroupRemoteInfoSquareLocation
+from opal_security.models.group_remote_info_tableau_group import GroupRemoteInfoTableauGroup
 from opal_security.models.group_remote_info_tailscale_group import GroupRemoteInfoTailscaleGroup
 from opal_security.models.group_remote_info_twingate_group import GroupRemoteInfoTwingateGroup
 from opal_security.models.group_remote_info_twingate_group_synced import GroupRemoteInfoTwingateGroupSynced
 from opal_security.models.group_remote_info_workday_user_security_group import GroupRemoteInfoWorkdayUserSecurityGroup
+from opal_security.models.group_remote_info_wrike_group import GroupRemoteInfoWrikeGroup
 from opal_security.models.group_remote_info_zendesk_group import GroupRemoteInfoZendeskGroup
 from opal_security.models.group_remote_info_zendesk_organization import GroupRemoteInfoZendeskOrganization
+from opal_security.models.group_remote_info_zoom_group import GroupRemoteInfoZoomGroup
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -85,8 +104,27 @@ class GroupRemoteInfo(BaseModel):
     slack_user_group: Optional[GroupRemoteInfoSlackUserGroup] = None
     zendesk_organization: Optional[GroupRemoteInfoZendeskOrganization] = None
     hubspot_team: Optional[GroupRemoteInfoHubspotTeam] = None
+    tableau_group: Optional[GroupRemoteInfoTableauGroup] = None
+    confluence_group: Optional[GroupRemoteInfoConfluenceGroup] = None
+    jira_group: Optional[GroupRemoteInfoJiraGroup] = None
+    docusign_group: Optional[GroupRemoteInfoDocusignGroup] = None
+    zoom_group: Optional[GroupRemoteInfoZoomGroup] = None
+    ramp_department: Optional[GroupRemoteInfoRampDepartment] = None
+    ramp_location: Optional[GroupRemoteInfoRampLocation] = None
+    wrike_group: Optional[GroupRemoteInfoWrikeGroup] = None
+    axiom_group: Optional[GroupRemoteInfoAxiomGroup] = None
+    docusign_signing_group: Optional[GroupRemoteInfoDocusignSigningGroup] = None
+    linear_team: Optional[GroupRemoteInfoLinearTeam] = None
+    asana_team: Optional[GroupRemoteInfoAsanaTeam] = None
+    bitwarden_group: Optional[GroupRemoteInfoBitwardenGroup] = None
+    box_group: Optional[GroupRemoteInfoBoxGroup] = None
+    calendly_group: Optional[GroupRemoteInfoCalendlyGroup] = None
+    square_location: Optional[GroupRemoteInfoSquareLocation] = None
+    square_job: Optional[GroupRemoteInfoSquareJob] = None
+    rippling_team: Optional[GroupRemoteInfoRipplingTeam] = None
+    rippling_supergroup: Optional[GroupRemoteInfoRipplingSupergroup] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "twingate_group", "twingate_group_synced", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "github_enterprise_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "rootly_on_call_schedule", "devin_group", "clickhouse_role", "grafana_team", "zendesk_group", "slack_user_group", "zendesk_organization", "hubspot_team"]
+    __properties: ClassVar[List[str]] = ["active_directory_group", "tailscale_group", "twingate_group", "twingate_group_synced", "aws_sso_group", "databricks_account_group", "connector_group", "github_team", "github_enterprise_team", "gitlab_group", "google_group", "ldap_group", "okta_group", "duo_group", "azure_ad_security_group", "azure_ad_microsoft_365_group", "snowflake_role", "okta_group_rule", "workday_user_security_group", "pagerduty_on_call_schedule", "incidentio_on_call_schedule", "rootly_on_call_schedule", "devin_group", "clickhouse_role", "grafana_team", "zendesk_group", "slack_user_group", "zendesk_organization", "hubspot_team", "tableau_group", "confluence_group", "jira_group", "docusign_group", "zoom_group", "ramp_department", "ramp_location", "wrike_group", "axiom_group", "docusign_signing_group", "linear_team", "asana_team", "bitwarden_group", "box_group", "calendly_group", "square_location", "square_job", "rippling_team", "rippling_supergroup"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -216,6 +254,63 @@ class GroupRemoteInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of hubspot_team
         if self.hubspot_team:
             _dict['hubspot_team'] = self.hubspot_team.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tableau_group
+        if self.tableau_group:
+            _dict['tableau_group'] = self.tableau_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of confluence_group
+        if self.confluence_group:
+            _dict['confluence_group'] = self.confluence_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of jira_group
+        if self.jira_group:
+            _dict['jira_group'] = self.jira_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of docusign_group
+        if self.docusign_group:
+            _dict['docusign_group'] = self.docusign_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of zoom_group
+        if self.zoom_group:
+            _dict['zoom_group'] = self.zoom_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ramp_department
+        if self.ramp_department:
+            _dict['ramp_department'] = self.ramp_department.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ramp_location
+        if self.ramp_location:
+            _dict['ramp_location'] = self.ramp_location.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of wrike_group
+        if self.wrike_group:
+            _dict['wrike_group'] = self.wrike_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of axiom_group
+        if self.axiom_group:
+            _dict['axiom_group'] = self.axiom_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of docusign_signing_group
+        if self.docusign_signing_group:
+            _dict['docusign_signing_group'] = self.docusign_signing_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of linear_team
+        if self.linear_team:
+            _dict['linear_team'] = self.linear_team.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asana_team
+        if self.asana_team:
+            _dict['asana_team'] = self.asana_team.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of bitwarden_group
+        if self.bitwarden_group:
+            _dict['bitwarden_group'] = self.bitwarden_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of box_group
+        if self.box_group:
+            _dict['box_group'] = self.box_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of calendly_group
+        if self.calendly_group:
+            _dict['calendly_group'] = self.calendly_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of square_location
+        if self.square_location:
+            _dict['square_location'] = self.square_location.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of square_job
+        if self.square_job:
+            _dict['square_job'] = self.square_job.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rippling_team
+        if self.rippling_team:
+            _dict['rippling_team'] = self.rippling_team.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rippling_supergroup
+        if self.rippling_supergroup:
+            _dict['rippling_supergroup'] = self.rippling_supergroup.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -261,7 +356,26 @@ class GroupRemoteInfo(BaseModel):
             "zendesk_group": GroupRemoteInfoZendeskGroup.from_dict(obj["zendesk_group"]) if obj.get("zendesk_group") is not None else None,
             "slack_user_group": GroupRemoteInfoSlackUserGroup.from_dict(obj["slack_user_group"]) if obj.get("slack_user_group") is not None else None,
             "zendesk_organization": GroupRemoteInfoZendeskOrganization.from_dict(obj["zendesk_organization"]) if obj.get("zendesk_organization") is not None else None,
-            "hubspot_team": GroupRemoteInfoHubspotTeam.from_dict(obj["hubspot_team"]) if obj.get("hubspot_team") is not None else None
+            "hubspot_team": GroupRemoteInfoHubspotTeam.from_dict(obj["hubspot_team"]) if obj.get("hubspot_team") is not None else None,
+            "tableau_group": GroupRemoteInfoTableauGroup.from_dict(obj["tableau_group"]) if obj.get("tableau_group") is not None else None,
+            "confluence_group": GroupRemoteInfoConfluenceGroup.from_dict(obj["confluence_group"]) if obj.get("confluence_group") is not None else None,
+            "jira_group": GroupRemoteInfoJiraGroup.from_dict(obj["jira_group"]) if obj.get("jira_group") is not None else None,
+            "docusign_group": GroupRemoteInfoDocusignGroup.from_dict(obj["docusign_group"]) if obj.get("docusign_group") is not None else None,
+            "zoom_group": GroupRemoteInfoZoomGroup.from_dict(obj["zoom_group"]) if obj.get("zoom_group") is not None else None,
+            "ramp_department": GroupRemoteInfoRampDepartment.from_dict(obj["ramp_department"]) if obj.get("ramp_department") is not None else None,
+            "ramp_location": GroupRemoteInfoRampLocation.from_dict(obj["ramp_location"]) if obj.get("ramp_location") is not None else None,
+            "wrike_group": GroupRemoteInfoWrikeGroup.from_dict(obj["wrike_group"]) if obj.get("wrike_group") is not None else None,
+            "axiom_group": GroupRemoteInfoAxiomGroup.from_dict(obj["axiom_group"]) if obj.get("axiom_group") is not None else None,
+            "docusign_signing_group": GroupRemoteInfoDocusignSigningGroup.from_dict(obj["docusign_signing_group"]) if obj.get("docusign_signing_group") is not None else None,
+            "linear_team": GroupRemoteInfoLinearTeam.from_dict(obj["linear_team"]) if obj.get("linear_team") is not None else None,
+            "asana_team": GroupRemoteInfoAsanaTeam.from_dict(obj["asana_team"]) if obj.get("asana_team") is not None else None,
+            "bitwarden_group": GroupRemoteInfoBitwardenGroup.from_dict(obj["bitwarden_group"]) if obj.get("bitwarden_group") is not None else None,
+            "box_group": GroupRemoteInfoBoxGroup.from_dict(obj["box_group"]) if obj.get("box_group") is not None else None,
+            "calendly_group": GroupRemoteInfoCalendlyGroup.from_dict(obj["calendly_group"]) if obj.get("calendly_group") is not None else None,
+            "square_location": GroupRemoteInfoSquareLocation.from_dict(obj["square_location"]) if obj.get("square_location") is not None else None,
+            "square_job": GroupRemoteInfoSquareJob.from_dict(obj["square_job"]) if obj.get("square_job") is not None else None,
+            "rippling_team": GroupRemoteInfoRipplingTeam.from_dict(obj["rippling_team"]) if obj.get("rippling_team") is not None else None,
+            "rippling_supergroup": GroupRemoteInfoRipplingSupergroup.from_dict(obj["rippling_supergroup"]) if obj.get("rippling_supergroup") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

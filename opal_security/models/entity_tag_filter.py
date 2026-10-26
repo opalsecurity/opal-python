@@ -29,7 +29,7 @@ class EntityTagFilter(BaseModel):
     Filters entities by a tag key/value pair, optionally scoped to a connection.
     """ # noqa: E501
     key: StrictStr = Field(description="The tag key to filter by.")
-    value: Optional[StrictStr] = Field(default=None, description="The tag value to filter by. If omitted, matches any value for the given key.")
+    value: Optional[StrictStr] = Field(default=None, description="The tag value to filter by. If omitted, matches only tags with no value; use entityTagKey to match any value for a key.")
     connection_id: Optional[UUID] = Field(default=None, description="If specified, filters by tags associated with this connection.", alias="connectionId")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["key", "value", "connectionId"]

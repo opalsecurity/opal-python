@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **break_glass_user_ids** | **List[UUID]** | The IDs of the break glass users linked to the configuration template. | [optional] 
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template. | 
 **require_mfa_to_connect** | **bool** | A bool representing whether or not to require MFA to connect to resources associated with this configuration template. | 
+**requires_forfeit_reason** | **bool** | A bool representing whether or not a reason is required when forfeiting access to resources or groups using this configuration template. | [optional] 
 **name** | **str** | The name of the configuration template. | 
 **request_configurations** | [**List[RequestConfiguration]**](RequestConfiguration.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. | [optional] 
 **request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 

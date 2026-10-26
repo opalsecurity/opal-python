@@ -49,6 +49,7 @@ class Resource(BaseModel):
     require_manager_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the resource require manager approval.")
     require_support_ticket: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the resource require an access ticket.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this resource.")
+    requires_forfeit_reason: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not a reason is required when forfeiting access to this resource.")
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this resource.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to this resource.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this resource.")
@@ -66,9 +67,11 @@ class Resource(BaseModel):
     remote_info: Optional[ResourceRemoteInfo] = None
     ancestor_resource_ids: Optional[List[UUID]] = Field(default=None, description="List of resource IDs that are ancestors of this resource.")
     descendant_resource_ids: Optional[List[UUID]] = Field(default=None, description="List of resource IDs that are descendants of this resource.")
+    match_remote_name: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the resource's name is synced from the end system. When true, the name is overwritten with the remote name on each sync. Defaults to false.")
+    match_remote_description: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the resource's description is synced from the end system. When true, the description is overwritten with the remote description on each sync. Defaults to false.")
     last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this resource.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids", "last_successful_sync"]
+    __properties: ClassVar[List[str]] = ["resource_id", "app_id", "name", "description", "admin_owner_id", "remote_resource_id", "remote_resource_name", "resource_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "requires_forfeit_reason", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "request_template_id", "is_requestable", "parent_resource_id", "configuration_template_id", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "metadata", "remote_info", "ancestor_resource_ids", "descendant_resource_ids", "match_remote_name", "match_remote_description", "last_successful_sync"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -169,6 +172,7 @@ class Resource(BaseModel):
             "require_manager_approval": obj.get("require_manager_approval"),
             "require_support_ticket": obj.get("require_support_ticket"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
+            "requires_forfeit_reason": obj.get("requires_forfeit_reason"),
             "require_mfa_to_request": obj.get("require_mfa_to_request"),
             "require_mfa_to_connect": obj.get("require_mfa_to_connect"),
             "auto_approval": obj.get("auto_approval"),
@@ -186,6 +190,8 @@ class Resource(BaseModel):
             "remote_info": ResourceRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
             "ancestor_resource_ids": obj.get("ancestor_resource_ids"),
             "descendant_resource_ids": obj.get("descendant_resource_ids"),
+            "match_remote_name": obj.get("match_remote_name"),
+            "match_remote_description": obj.get("match_remote_description"),
             "last_successful_sync": SyncTask.from_dict(obj["last_successful_sync"]) if obj.get("last_successful_sync") is not None else None
         })
         # store additional fields in additional_properties
