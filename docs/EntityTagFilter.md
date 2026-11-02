@@ -7,7 +7,7 @@ Filters entities by a tag key/value pair, optionally scoped to a connection.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **key** | **str** | The tag key to filter by. | 
-**value** | **str** | The tag value to filter by. If omitted, matches any value for the given key. | [optional] 
+**value** | **str** | The tag value to filter by. If omitted, matches only tags with no value; use entityTagKey to match any value for a key. | [optional] 
 **connection_id** | **UUID** | If specified, filters by tags associated with this connection. | [optional] 
 
 ## Example

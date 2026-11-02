@@ -41,10 +41,11 @@ class ConfigurationTemplate(BaseModel):
     break_glass_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of the break glass users linked to the configuration template.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to resources associated with this configuration template.")
+    requires_forfeit_reason: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not a reason is required when forfeiting access to resources or groups using this configuration template.")
     ticket_propagation: Optional[TicketPropagationConfiguration] = None
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval for this configuration template.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["configuration_template_id", "name", "admin_owner_id", "visibility", "linked_audit_message_channel_ids", "request_configuration_id", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect", "ticket_propagation", "custom_request_notification"]
+    __properties: ClassVar[List[str]] = ["configuration_template_id", "name", "admin_owner_id", "visibility", "linked_audit_message_channel_ids", "request_configuration_id", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect", "requires_forfeit_reason", "ticket_propagation", "custom_request_notification"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,6 +121,7 @@ class ConfigurationTemplate(BaseModel):
             "break_glass_user_ids": obj.get("break_glass_user_ids"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
             "require_mfa_to_connect": obj.get("require_mfa_to_connect"),
+            "requires_forfeit_reason": obj.get("requires_forfeit_reason"),
             "ticket_propagation": TicketPropagationConfiguration.from_dict(obj["ticket_propagation"]) if obj.get("ticket_propagation") is not None else None,
             "custom_request_notification": obj.get("custom_request_notification")
         })

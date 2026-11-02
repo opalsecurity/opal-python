@@ -43,13 +43,16 @@ class UpdateResourceInfo(BaseModel):
     require_support_ticket: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the resource require an access ticket. Deprecated in favor of `request_configurations`.")
     folder_id: Optional[UUID] = Field(default=None, description="The ID of the folder that the resource is located in.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this resource.")
+    requires_forfeit_reason: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not a reason is required when forfeiting access to this resource.")
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this resource. Deprecated in favor of `request_configurations`.")
     require_mfa_to_connect: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA to connect to this resource.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this resource. Deprecated in favor of `request_configurations`.")
     ticket_propagation: Optional[TicketPropagationConfiguration] = None
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval.")
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
-    configuration_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated configuration template.")
+    match_remote_name: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the resource's name should be synced from the end system. When true, the name is overwritten with the remote name on each sync, so a `name` provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged.")
+    match_remote_description: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the resource's description should be synced from the end system. When true, the description is overwritten with the remote description on each sync, so a `description` provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged.")
+    configuration_template_id: Optional[UUID] = Field(default=None, description="Deprecated. Use `PUT /resources/{resource_id}/configuration-template` instead; that endpoint exposes attach, re-point, and detach as a single idempotent REST sub-resource and is the Terraform-friendly surface for managing this linkage. This field remains honored on the main PUT for now: set to a UUID to attach or re-point, set to `null` to unlink (forks the template into a private configuration that preserves the current settings), omit to leave linkage unchanged. Scheduled for removal in a future major version.")
     request_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated request template. Deprecated in favor of `request_configurations`.")
     is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this resource. Deprecated in favor of `request_configurations`.")
     extensions_duration_in_minutes: Optional[StrictInt] = Field(default=None, description="The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.")
@@ -57,7 +60,7 @@ class UpdateResourceInfo(BaseModel):
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used.")
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="A list of configurations for requests to this resource. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resource_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "ticket_propagation", "custom_request_notification", "risk_sensitivity_override", "configuration_template_id", "request_template_id", "is_requestable", "extensions_duration_in_minutes", "parent_resource_id", "request_configurations", "request_configuration_list"]
+    __properties: ClassVar[List[str]] = ["resource_id", "name", "description", "admin_owner_id", "max_duration", "recommended_duration", "require_manager_approval", "require_support_ticket", "folder_id", "require_mfa_to_approve", "requires_forfeit_reason", "require_mfa_to_request", "require_mfa_to_connect", "auto_approval", "ticket_propagation", "custom_request_notification", "risk_sensitivity_override", "match_remote_name", "match_remote_description", "configuration_template_id", "request_template_id", "is_requestable", "extensions_duration_in_minutes", "parent_resource_id", "request_configurations", "request_configuration_list"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -140,12 +143,15 @@ class UpdateResourceInfo(BaseModel):
             "require_support_ticket": obj.get("require_support_ticket"),
             "folder_id": obj.get("folder_id"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
+            "requires_forfeit_reason": obj.get("requires_forfeit_reason"),
             "require_mfa_to_request": obj.get("require_mfa_to_request"),
             "require_mfa_to_connect": obj.get("require_mfa_to_connect"),
             "auto_approval": obj.get("auto_approval"),
             "ticket_propagation": TicketPropagationConfiguration.from_dict(obj["ticket_propagation"]) if obj.get("ticket_propagation") is not None else None,
             "custom_request_notification": obj.get("custom_request_notification"),
             "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
+            "match_remote_name": obj.get("match_remote_name"),
+            "match_remote_description": obj.get("match_remote_description"),
             "configuration_template_id": obj.get("configuration_template_id"),
             "request_template_id": obj.get("request_template_id"),
             "is_requestable": obj.get("is_requestable"),

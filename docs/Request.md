@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **created_at** | **datetime** | The date and time the request was created. | 
 **updated_at** | **datetime** | The date and time the request was last updated. | 
 **requester_id** | **UUID** | The unique identifier of the user who created the request. | 
+**initiated_by_user_id** | **UUID** | The unique identifier of the user the caller asserted asked for this access. Unverified - Opal records the claim as given. Absent unless the caller supplied it. | [optional] 
 **target_user_id** | **UUID** | The unique identifier of the user who is the target of the request. | [optional] 
 **target_group_id** | **UUID** | The unique identifier of the group who is the target of the request. | [optional] 
 **status** | [**RequestStatusEnum**](RequestStatusEnum.md) | The status of the request. | 
+**source** | **str** | The channel that created the request. Omitted when the source was not recorded. MCP counts only OAuth sessions. An agent using an API token or a person&#39;s credentials is counted as API, CLI, or WEB. | [optional] 
 **reason** | **str** | The reason for the request. | 
 **duration_minutes** | **int** | The duration of the request in minutes. | [optional] 
 **requested_items_list** | [**List[RequestedItem]**](RequestedItem.md) | The list of targets for the request. | [optional] 

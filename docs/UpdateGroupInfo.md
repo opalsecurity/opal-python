@@ -16,9 +16,10 @@ Name | Type | Description | Notes
 **require_support_ticket** | **bool** | A bool representing whether or not access requests to the group require an access ticket. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **folder_id** | **UUID** | The ID of the folder that the group is located in. | [optional] 
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this group. | [optional] 
+**requires_forfeit_reason** | **bool** | A bool representing whether or not a reason is required when forfeiting access to this group. | [optional] 
 **require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **auto_approval** | **bool** | A bool representing whether or not to automatically approve requests to this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
-**configuration_template_id** | **UUID** | The ID of the associated configuration template. | [optional] 
+**configuration_template_id** | **UUID** | Deprecated. Use &#x60;PUT /groups/{group_id}/configuration-template&#x60; instead; that endpoint exposes attach, re-point, and detach as a single idempotent REST sub-resource and is the Terraform-friendly surface for managing this linkage. This field remains honored on the main PUT for now: set to a UUID to attach or re-point, set to &#x60;null&#x60; to unlink (forks the template into a private configuration that preserves the current settings), omit to leave linkage unchanged. Scheduled for removal in a future major version. | [optional] 
 **request_template_id** | **UUID** | The ID of the associated request template. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **is_requestable** | **bool** | A bool representing whether or not to allow access requests to this group. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **group_leader_user_ids** | **List[UUID]** | A list of User IDs for the group leaders of the group | [optional] 
@@ -27,6 +28,8 @@ Name | Type | Description | Notes
 **request_configuration_list** | [**CreateRequestConfigurationInfoList**](CreateRequestConfigurationInfoList.md) | The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of &#x60;request_configurations&#x60;. | [optional] 
 **custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
+**match_remote_name** | **bool** | A bool representing whether or not the group&#39;s name should be synced from the end system. When true, the name is overwritten with the remote name on each sync, so a &#x60;name&#x60; provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged. | [optional] 
+**match_remote_description** | **bool** | A bool representing whether or not the group&#39;s description should be synced from the end system. When true, the description is overwritten with the remote description on each sync, so a &#x60;description&#x60; provided together with this field set to true will be replaced at the next sync. If not provided, the current value is left unchanged. | [optional] 
 
 ## Example
 
