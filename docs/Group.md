@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **require_manager_approval** | **bool** | A bool representing whether or not access requests to the group require manager approval. | [optional] 
 **require_support_ticket** | **bool** | A bool representing whether or not access requests to the group require an access ticket. | [optional] 
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this group. | [optional] 
+**requires_forfeit_reason** | **bool** | A bool representing whether or not a reason is required when forfeiting access to this group. | [optional] 
 **require_mfa_to_request** | **bool** | A bool representing whether or not to require MFA for requesting access to this group. | [optional] 
 **auto_approval** | **bool** | A bool representing whether or not to automatically approve requests to this group. | [optional] 
 **request_template_id** | **UUID** | The ID of the associated request template. | [optional] 
@@ -34,6 +35,8 @@ Name | Type | Description | Notes
 **custom_request_notification** | **str** | Custom request notification sent to the requester when the request is approved. | [optional] 
 **risk_sensitivity** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) | The risk sensitivity level for the group. When an override is set, this field will match that. | [optional] [readonly] 
 **risk_sensitivity_override** | [**RiskSensitivityEnum**](RiskSensitivityEnum.md) |  | [optional] 
+**match_remote_name** | **bool** | A bool representing whether or not the group&#39;s name is synced from the end system. When true, the name is overwritten with the remote name on each sync. Defaults to false. | [optional] 
+**match_remote_description** | **bool** | A bool representing whether or not the group&#39;s description is synced from the end system. When true, the description is overwritten with the remote description on each sync. Defaults to false. | [optional] 
 **last_successful_sync** | [**SyncTask**](SyncTask.md) | Information about the last successful sync of this group. | [optional] [readonly] 
 
 ## Example

@@ -40,13 +40,14 @@ class CreateConfigurationTemplateInfo(BaseModel):
     break_glass_user_ids: Optional[List[UUID]] = Field(default=None, description="The IDs of the break glass users linked to the configuration template.")
     require_mfa_to_approve: StrictBool = Field(description="A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.")
     require_mfa_to_connect: StrictBool = Field(description="A bool representing whether or not to require MFA to connect to resources associated with this configuration template.")
+    requires_forfeit_reason: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not a reason is required when forfeiting access to resources or groups using this configuration template.")
     name: StrictStr = Field(description="The name of the configuration template.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used.")
     request_configuration_list: Optional[CreateRequestConfigurationInfoList] = Field(default=None, description="The request configuration list of the configuration template. If not provided, the default request configuration will be used. Deprecated in favor of `request_configurations`.")
     ticket_propagation: Optional[TicketPropagationConfiguration] = None
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent upon request approval for this configuration template.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["admin_owner_id", "visibility", "linked_audit_message_channel_ids", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect", "name", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification"]
+    __properties: ClassVar[List[str]] = ["admin_owner_id", "visibility", "linked_audit_message_channel_ids", "member_oncall_schedule_ids", "break_glass_user_ids", "require_mfa_to_approve", "require_mfa_to_connect", "requires_forfeit_reason", "name", "request_configurations", "request_configuration_list", "ticket_propagation", "custom_request_notification"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,6 +130,7 @@ class CreateConfigurationTemplateInfo(BaseModel):
             "break_glass_user_ids": obj.get("break_glass_user_ids"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
             "require_mfa_to_connect": obj.get("require_mfa_to_connect"),
+            "requires_forfeit_reason": obj.get("requires_forfeit_reason"),
             "name": obj.get("name"),
             "request_configurations": [RequestConfiguration.from_dict(_item) for _item in obj["request_configurations"]] if obj.get("request_configurations") is not None else None,
             "request_configuration_list": CreateRequestConfigurationInfoList.from_dict(obj["request_configuration_list"]) if obj.get("request_configuration_list") is not None else None,

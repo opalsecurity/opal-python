@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group_ids** | **List[UUID]** | The list of group IDs to match. | [optional] 
 **role_remote_ids** | **List[str]** | The list of role remote IDs to match. | [optional] 
+**opal_script_id** | **UUID** | The ID of a &#x60;REQUEST_CONFIGURATION_CONDITION&#x60; OpalScript that decides whether this request configuration applies. Cannot be combined with &#x60;group_ids&#x60; or &#x60;role_remote_ids&#x60;. | [optional] 
 
 ## Example
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from opal_security.models.request_custom_field_response import RequestCustomFieldResponse
@@ -38,9 +38,11 @@ class Request(BaseModel):
     created_at: datetime = Field(description="The date and time the request was created.")
     updated_at: datetime = Field(description="The date and time the request was last updated.")
     requester_id: UUID = Field(description="The unique identifier of the user who created the request.")
+    initiated_by_user_id: Optional[UUID] = Field(default=None, description="The unique identifier of the user the caller asserted asked for this access. Unverified - Opal records the claim as given. Absent unless the caller supplied it.")
     target_user_id: Optional[UUID] = Field(default=None, description="The unique identifier of the user who is the target of the request.")
     target_group_id: Optional[UUID] = Field(default=None, description="The unique identifier of the group who is the target of the request.")
     status: RequestStatusEnum = Field(description="The status of the request.")
+    source: Optional[StrictStr] = Field(default=None, description="The channel that created the request. Omitted when the source was not recorded. MCP counts only OAuth sessions. An agent using an API token or a person's credentials is counted as API, CLI, or WEB.")
     reason: StrictStr = Field(description="The reason for the request.")
     duration_minutes: Optional[StrictInt] = Field(default=None, description="The duration of the request in minutes.")
     requested_items_list: Optional[List[RequestedItem]] = Field(default=None, description="The list of targets for the request.")
@@ -48,7 +50,17 @@ class Request(BaseModel):
     stages: Optional[RequestItemStages] = Field(default=None, description="The stages configuration for this request")
     reviewer_stages: Optional[RequestReviewerStages] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "target_user_id", "target_group_id", "status", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses", "stages", "reviewer_stages"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "updated_at", "requester_id", "initiated_by_user_id", "target_user_id", "target_group_id", "status", "source", "reason", "duration_minutes", "requested_items_list", "custom_fields_responses", "stages", "reviewer_stages"]
+
+    @field_validator('source')
+    def source_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['WEB', 'SLACK', 'MICROSOFT_TEAMS', 'CLI', 'API', 'MCP', 'ACCESS_REVIEW']):
+            raise ValueError("must be one of enum values ('WEB', 'SLACK', 'MICROSOFT_TEAMS', 'CLI', 'API', 'MCP', 'ACCESS_REVIEW')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -132,9 +144,11 @@ class Request(BaseModel):
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
             "requester_id": obj.get("requester_id"),
+            "initiated_by_user_id": obj.get("initiated_by_user_id"),
             "target_user_id": obj.get("target_user_id"),
             "target_group_id": obj.get("target_group_id"),
             "status": obj.get("status"),
+            "source": obj.get("source"),
             "reason": obj.get("reason"),
             "duration_minutes": obj.get("duration_minutes"),
             "requested_items_list": [RequestedItem.from_dict(_item) for _item in obj["requested_items_list"]] if obj.get("requested_items_list") is not None else None,

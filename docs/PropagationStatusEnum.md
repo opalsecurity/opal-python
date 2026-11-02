@@ -46,6 +46,10 @@ The status of whether the user has been synced to the group or resource in the r
 
 * `ERR_REMOTE_UNRECOVERABLE_ERROR` (value: `'ERR_REMOTE_UNRECOVERABLE_ERROR'`)
 
+* `ERR_REMOTE_TICKET_NOT_FOUND` (value: `'ERR_REMOTE_TICKET_NOT_FOUND'`)
+
+* `ERR_CONNECTION_VALIDATION_FAILED` (value: `'ERR_CONNECTION_VALIDATION_FAILED'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

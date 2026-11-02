@@ -58,6 +58,8 @@ The type of the group.
 
 * `SLACK_USER_GROUP` (value: `'SLACK_USER_GROUP'`)
 
+* `CURSOR_GROUP` (value: `'CURSOR_GROUP'`)
+
 * `TWINGATE_GROUP` (value: `'TWINGATE_GROUP'`)
 
 * `TWINGATE_GROUP_SYNCED` (value: `'TWINGATE_GROUP_SYNCED'`)
@@ -67,6 +69,46 @@ The type of the group.
 * `ZENDESK_ORGANIZATION` (value: `'ZENDESK_ORGANIZATION'`)
 
 * `HUBSPOT_TEAM` (value: `'HUBSPOT_TEAM'`)
+
+* `TABLEAU_GROUP` (value: `'TABLEAU_GROUP'`)
+
+* `CONFLUENCE_GROUP` (value: `'CONFLUENCE_GROUP'`)
+
+* `JIRA_GROUP` (value: `'JIRA_GROUP'`)
+
+* `DOCUSIGN_GROUP` (value: `'DOCUSIGN_GROUP'`)
+
+* `ZOOM_GROUP` (value: `'ZOOM_GROUP'`)
+
+* `LINEAR_TEAM` (value: `'LINEAR_TEAM'`)
+
+* `RAMP_DEPARTMENT` (value: `'RAMP_DEPARTMENT'`)
+
+* `RAMP_LOCATION` (value: `'RAMP_LOCATION'`)
+
+* `WRIKE_GROUP` (value: `'WRIKE_GROUP'`)
+
+* `AXIOM_GROUP` (value: `'AXIOM_GROUP'`)
+
+* `ASANA_TEAM` (value: `'ASANA_TEAM'`)
+
+* `BITWARDEN_GROUP` (value: `'BITWARDEN_GROUP'`)
+
+* `BOX_GROUP` (value: `'BOX_GROUP'`)
+
+* `CALENDLY_GROUP` (value: `'CALENDLY_GROUP'`)
+
+* `ONELOGIN_ROLE` (value: `'ONELOGIN_ROLE'`)
+
+* `ONELOGIN_GROUP` (value: `'ONELOGIN_GROUP'`)
+
+* `SQUARE_LOCATION` (value: `'SQUARE_LOCATION'`)
+
+* `SQUARE_JOB` (value: `'SQUARE_JOB'`)
+
+* `RIPPLING_TEAM` (value: `'RIPPLING_TEAM'`)
+
+* `RIPPLING_SUPERGROUP` (value: `'RIPPLING_SUPERGROUP'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
