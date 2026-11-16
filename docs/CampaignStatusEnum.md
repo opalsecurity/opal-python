@@ -1,0 +1,19 @@
+# CampaignStatusEnum
+
+The current status of a campaign.
+
+## Enum
+
+* `DRAFT` (value: `'DRAFT'`)
+
+* `ONGOING` (value: `'ONGOING'`)
+
+* `COMPLETED` (value: `'COMPLETED'`)
+
+* `STOPPED` (value: `'STOPPED'`)
+
+* `ENDED` (value: `'ENDED'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

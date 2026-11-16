@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **description** | **str** | A description of the app. | 
 **admin_owner_id** | **UUID** | The ID of the owner of the app. | 
 **app_type** | [**AppTypeEnum**](AppTypeEnum.md) |  | 
+**visibility** | [**VisibilityTypeEnum**](VisibilityTypeEnum.md) |  | [optional] 
+**visibility_group_ids** | **List[UUID]** | The IDs of groups that can see this app when visibility is &#x60;LIMITED&#x60;. Must be empty when visibility is &#x60;GLOBAL&#x60;. | [optional] 
+**import_visibility** | [**VisibilityTypeEnum**](VisibilityTypeEnum.md) | The visibility level of items imported from this app. | [optional] 
 **validations** | [**List[AppValidation]**](AppValidation.md) | Validation checks of an apps&#39; configuration and permissions. | [optional] 
+**custom_connector** | [**CustomConnectorAppConfig**](CustomConnectorAppConfig.md) |  | [optional] 
 
 ## Example
 

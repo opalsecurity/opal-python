@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from opal_security.models.rule_clauses import RuleClauses
 from typing import Optional, Set
@@ -35,8 +35,9 @@ class AccessRule(BaseModel):
     admin_owner_id: UUID = Field(description="The ID of the owner of the group.")
     status: StrictStr = Field(description="The status of the access rule.")
     rule_clauses: RuleClauses = Field(alias="ruleClauses")
+    uses_opal_query: Optional[StrictBool] = Field(default=None, description="True when the access rule uses an Opal Query, which the API can't describe yet. Its `ruleClauses` are then empty; view the rule in Opal.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["access_rule_id", "name", "description", "admin_owner_id", "status", "ruleClauses"]
+    __properties: ClassVar[List[str]] = ["access_rule_id", "name", "description", "admin_owner_id", "status", "ruleClauses", "uses_opal_query"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -111,7 +112,8 @@ class AccessRule(BaseModel):
             "description": obj.get("description"),
             "admin_owner_id": obj.get("admin_owner_id"),
             "status": obj.get("status"),
-            "ruleClauses": RuleClauses.from_dict(obj["ruleClauses"]) if obj.get("ruleClauses") is not None else None
+            "ruleClauses": RuleClauses.from_dict(obj["ruleClauses"]) if obj.get("ruleClauses") is not None else None,
+            "uses_opal_query": obj.get("uses_opal_query")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

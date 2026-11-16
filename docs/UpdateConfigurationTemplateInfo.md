@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **break_glass_user_ids** | **List[UUID]** | The IDs of the break glass users linked to the configuration template. | [optional] 
 **require_mfa_to_approve** | **bool** | A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template. | [optional] 
 **require_mfa_to_connect** | **bool** | A bool representing whether or not to require MFA to connect to resources associated with this configuration template. | [optional] 
+**requires_forfeit_reason** | **bool** | A bool representing whether or not a reason is required when forfeiting access to resources or groups using this configuration template. | [optional] 
 **ticket_propagation** | [**TicketPropagationConfiguration**](TicketPropagationConfiguration.md) |  | [optional] 
 **custom_request_notification** | **str** | Custom request notification sent upon request approval for this configuration template. | [optional] 
 

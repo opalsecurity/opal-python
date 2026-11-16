@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.request_approval_enum import RequestApprovalEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +29,11 @@ class DenyRequestRequest(BaseModel):
     """
     DenyRequestRequest
     """ # noqa: E501
+    acting_user_id: Optional[UUID] = Field(default=None, description="Deny as this Opal user instead of the caller. Only for service users an admin has allowed to act for users, in organizations with the feature enabled. The user must be active in the identity provider and be a reviewer on the request's current stage and not the request's target; the decision counts as theirs. ADMIN level is rejected.")
     comment: StrictStr = Field(description="Comment for the denial")
     level: Optional[RequestApprovalEnum] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["comment", "level"]
+    __properties: ClassVar[List[str]] = ["acting_user_id", "comment", "level"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +93,7 @@ class DenyRequestRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "acting_user_id": obj.get("acting_user_id"),
             "comment": obj.get("comment"),
             "level": obj.get("level")
         })

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **admin_owner_id** | **UUID** | The ID of the owner of the group. | 
 **status** | **str** | The status of the access rule. | 
 **rule_clauses** | [**RuleClauses**](RuleClauses.md) |  | 
+**uses_opal_query** | **bool** | True when the access rule uses an Opal Query, which the API can&#39;t describe yet. Its &#x60;ruleClauses&#x60; are then empty; view the rule in Opal. | [optional] 
 
 ## Example
 

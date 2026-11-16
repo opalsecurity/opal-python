@@ -19,7 +19,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,9 +28,10 @@ class CreateRequestCommentRequest(BaseModel):
     """
     CreateRequestCommentRequest
     """ # noqa: E501
+    acting_user_id: Optional[UUID] = Field(default=None, description="Comment as this Opal user instead of the caller. Only for service users an admin has allowed to act for users, in organizations with the feature enabled. The user must be active in the identity provider and be the request's requester, target or initiated_by user, an admin, or a reviewer who can act on or has acted on the request.")
     comment: StrictStr = Field(description="comment")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["comment"]
+    __properties: ClassVar[List[str]] = ["acting_user_id", "comment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +91,7 @@ class CreateRequestCommentRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "acting_user_id": obj.get("acting_user_id"),
             "comment": obj.get("comment")
         })
         # store additional fields in additional_properties

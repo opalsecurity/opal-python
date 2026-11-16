@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class ApiAccessLevelEnum(str, Enum):
     """
-    The access level of an API token.
+    The access level of an API token. AGENT_HOOKS tokens are made only by the Claude Code hook kit's browser sign-in and can only report agent activity; they cannot be created through this API.
     """
 
     """
@@ -29,6 +29,7 @@ class ApiAccessLevelEnum(str, Enum):
     """
     READ_ONLY = 'READ_ONLY'
     FULL_ACCESS = 'FULL_ACCESS'
+    AGENT_HOOKS = 'AGENT_HOOKS'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

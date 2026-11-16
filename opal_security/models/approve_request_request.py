@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from opal_security.models.request_approval_enum import RequestApprovalEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +29,11 @@ class ApproveRequestRequest(BaseModel):
     """
     ApproveRequestRequest
     """ # noqa: E501
+    acting_user_id: Optional[UUID] = Field(default=None, description="Approve as this Opal user instead of the caller. Only for service users an admin has allowed to act for users, in organizations with the feature enabled. The user must be active in the identity provider and be a reviewer on the request's current stage and not the request's target; the decision counts as theirs. Requests that require MFA to approve, and ADMIN level, are rejected.")
     level: RequestApprovalEnum
     comment: Optional[StrictStr] = Field(default=None, description="Optional comment for the approval")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["level", "comment"]
+    __properties: ClassVar[List[str]] = ["acting_user_id", "level", "comment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +93,7 @@ class ApproveRequestRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "acting_user_id": obj.get("acting_user_id"),
             "level": obj.get("level"),
             "comment": obj.get("comment")
         })
