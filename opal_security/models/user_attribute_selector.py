@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class UserAttributeSelector(BaseModel):
     UserAttributeSelector
     """ # noqa: E501
     attribute: StrictStr
-    values: List[StrictStr]
+    values: List[StrictStr] = Field(description="Values to match; a user matches if their attribute equals any of them. For HR_IDP_STATUS, use HrIdpStatus values, or UNSET for users with no IDP status (shown as \"Inactive\"). UNSET must be the last value.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["attribute", "values"]
 

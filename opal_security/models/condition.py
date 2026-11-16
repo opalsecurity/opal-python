@@ -30,8 +30,9 @@ class Condition(BaseModel):
     """ # noqa: E501
     group_ids: Optional[List[UUID]] = Field(default=None, description="The list of group IDs to match.")
     role_remote_ids: Optional[List[StrictStr]] = Field(default=None, description="The list of role remote IDs to match.")
+    opal_script_id: Optional[UUID] = Field(default=None, description="The ID of a `REQUEST_CONFIGURATION_CONDITION` OpalScript that decides whether this request configuration applies. Cannot be combined with `group_ids` or `role_remote_ids`.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_ids", "role_remote_ids"]
+    __properties: ClassVar[List[str]] = ["group_ids", "role_remote_ids", "opal_script_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +93,8 @@ class Condition(BaseModel):
 
         _obj = cls.model_validate({
             "group_ids": obj.get("group_ids"),
-            "role_remote_ids": obj.get("role_remote_ids")
+            "role_remote_ids": obj.get("role_remote_ids"),
+            "opal_script_id": obj.get("opal_script_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

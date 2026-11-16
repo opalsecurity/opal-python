@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**acting_user_id** | **UUID** | Approve as this Opal user instead of the caller. Only for service users an admin has allowed to act for users, in organizations with the feature enabled. The user must be active in the identity provider and be a reviewer on the request&#39;s current stage and not the request&#39;s target; the decision counts as theirs. Requests that require MFA to approve, and ADMIN level, are rejected. | [optional] 
 **level** | [**RequestApprovalEnum**](RequestApprovalEnum.md) |  | 
 **comment** | **str** | Optional comment for the approval | [optional] 
 

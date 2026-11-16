@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
 from opal_security.models.rule_disjunction import RuleDisjunction
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +28,7 @@ class RuleConjunction(BaseModel):
     """
     RuleConjunction
     """ # noqa: E501
-    clauses: Annotated[List[RuleDisjunction], Field(min_length=1)]
+    clauses: List[RuleDisjunction] = Field(description="Empty only when the access rule has `uses_opal_query` set.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["clauses"]
 

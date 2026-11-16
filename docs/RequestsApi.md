@@ -5,13 +5,17 @@ All URIs are relative to *https://api.opal.dev/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**approve_request**](RequestsApi.md#approve_request) | **POST** /requests/{id}/approve | 
+[**cancel_request**](RequestsApi.md#cancel_request) | **POST** /requests/{id}/cancel | Cancel request
 [**create_request**](RequestsApi.md#create_request) | **POST** /requests | 
 [**create_request_comment**](RequestsApi.md#create_request_comment) | **POST** /requests/{id}/comments | 
 [**deny_request**](RequestsApi.md#deny_request) | **POST** /requests/{id}/deny | 
+[**escalate_request**](RequestsApi.md#escalate_request) | **POST** /requests/{id}/escalate | Escalate request to skip-manager
 [**get_request**](RequestsApi.md#get_request) | **GET** /requests/{id} | Get request by ID
 [**get_request_comments**](RequestsApi.md#get_request_comments) | **GET** /requests/{id}/comments | 
 [**get_requests**](RequestsApi.md#get_requests) | **GET** /requests | Get requests
 [**get_requests_relay**](RequestsApi.md#get_requests_relay) | **GET** /requests/relay | Get requests via Relay
+[**remind_request**](RequestsApi.md#remind_request) | **POST** /requests/{id}/remind | Send request reminder
+[**remind_request_reviewer**](RequestsApi.md#remind_request_reviewer) | **POST** /requests/{id}/reviewers/{reviewer_id}/remind | Send reminder to a reviewer
 
 
 # **approve_request**
@@ -91,6 +95,93 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Request successfully approved |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cancel_request**
+> Request cancel_request(id, cancel_request_request=cancel_request_request)
+
+Cancel request
+
+Cancels a pending access request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.cancel_request_request import CancelRequestRequest
+from opal_security.models.request import Request
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to cancel.
+    cancel_request_request = opal_security.CancelRequestRequest() # CancelRequestRequest |  (optional)
+
+    try:
+        # Cancel request
+        api_response = api_instance.cancel_request(id, cancel_request_request=cancel_request_request)
+        print("The response of RequestsApi->cancel_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->cancel_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request to cancel. | 
+ **cancel_request_request** | [**CancelRequestRequest**](CancelRequestRequest.md)|  | [optional] 
+
+### Return type
+
+[**Request**](Request.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The canceled request. |  -  |
+**400** | The request body is invalid, or &#x60;acting_user_id&#x60; names a system or service user, or a user who is not active in the identity provider. |  -  |
+**403** | The authenticated user cannot cancel this request, or is not allowed to act for users. |  -  |
+**404** | The request, or the user named by &#x60;acting_user_id&#x60;, was not found. |  -  |
+**409** | The request has already been actioned. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -332,6 +423,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **escalate_request**
+> EscalateRequest200Response escalate_request(id)
+
+Escalate request to skip-manager
+
+Escalates a pending access request to the target user's skip-level manager.
+Only the request's requester may call this endpoint.
+
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.escalate_request200_response import EscalateRequest200Response
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request to escalate.
+
+    try:
+        # Escalate request to skip-manager
+        api_response = api_instance.escalate_request(id)
+        print("The response of RequestsApi->escalate_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->escalate_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request to escalate. | 
+
+### Return type
+
+[**EscalateRequest200Response**](EscalateRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The request was escalated, or was already approved or denied. |  -  |
+**400** | Unknown JSON fields in the request body, the request does not require manager approval, or the target user has no manager / skip-manager set.  |  -  |
+**403** | The authenticated user cannot escalate this request. |  -  |
+**404** | The request was not found. |  -  |
+**409** | The request has already been escalated, or the manager has already approved.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_request**
 > Request get_request(id)
 
@@ -490,7 +667,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_requests**
-> RequestList get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, resource_id=resource_id, group_id=group_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+> RequestList get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, resource_id=resource_id, group_id=group_id, app_id=app_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
 
 Get requests
 
@@ -534,13 +711,14 @@ with opal_security.ApiClient(configuration) as api_client:
     target_user_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by their target user ID. (optional)
     resource_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by the resource ID that was requested. (optional)
     group_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by the group ID that was requested. (optional)
+    app_id = UUID('37cb7e41-12ba-46da-92ff-030abe0450b1') # UUID | Filter requests by the ID of the app that a requested resource or group belongs to. Returns an empty page if the app does not exist or has no requests visible to the caller. (optional)
     cursor = 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw' # str | The pagination cursor value. (optional)
     page_size = 200 # int | Number of results to return per page. Default is 200. (optional)
     show_pending_only = True # bool | Boolean toggle for if it should only show pending requests. (optional)
 
     try:
         # Get requests
-        api_response = api_instance.get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, resource_id=resource_id, group_id=group_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
+        api_response = api_instance.get_requests(start_date_filter=start_date_filter, end_date_filter=end_date_filter, requester_id=requester_id, target_user_id=target_user_id, resource_id=resource_id, group_id=group_id, app_id=app_id, cursor=cursor, page_size=page_size, show_pending_only=show_pending_only)
         print("The response of RequestsApi->get_requests:\n")
         pprint(api_response)
     except Exception as e:
@@ -560,6 +738,7 @@ Name | Type | Description  | Notes
  **target_user_id** | **UUID**| Filter requests by their target user ID. | [optional] 
  **resource_id** | **UUID**| Filter requests by the resource ID that was requested. | [optional] 
  **group_id** | **UUID**| Filter requests by the group ID that was requested. | [optional] 
+ **app_id** | **UUID**| Filter requests by the ID of the app that a requested resource or group belongs to. Returns an empty page if the app does not exist or has no requests visible to the caller. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
  **page_size** | **int**| Number of results to return per page. Default is 200. | [optional] 
  **show_pending_only** | **bool**| Boolean toggle for if it should only show pending requests. | [optional] 
@@ -675,6 +854,174 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A paginated list of requests using Relay-style cursor pagination. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remind_request**
+> EscalateRequest200Response remind_request(id)
+
+Send request reminder
+
+Sends a reminder to all pending reviewers of the request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.escalate_request200_response import EscalateRequest200Response
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request whose reviewers should be reminded.
+
+    try:
+        # Send request reminder
+        api_response = api_instance.remind_request(id)
+        print("The response of RequestsApi->remind_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->remind_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request whose reviewers should be reminded. | 
+
+### Return type
+
+[**EscalateRequest200Response**](EscalateRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The reminder was sent, or the request was already resolved. |  -  |
+**400** | Unknown JSON fields in the request body. |  -  |
+**404** | The request was not found. |  -  |
+**429** | The reviewer reminder cooldown has not elapsed. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remind_request_reviewer**
+> EscalateRequest200Response remind_request_reviewer(id, reviewer_id)
+
+Send reminder to a reviewer
+
+Sends a reminder to one pending reviewer of the request.
+
+### Example
+
+* Bearer Authentication (BearerAuth):
+
+```python
+import opal_security
+from opal_security.models.escalate_request200_response import EscalateRequest200Response
+from opal_security.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.opal.dev/v1
+# See configuration.py for a list of all supported configuration parameters.
+import opal_security as opal
+
+configuration = opal.Configuration(
+    host = "https://api.opal.dev/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: BearerAuth
+configuration = opal.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with opal_security.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opal_security.RequestsApi(api_client)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the request whose reviewer should be reminded.
+    reviewer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The ID of the pending reviewer to remind.
+
+    try:
+        # Send reminder to a reviewer
+        api_response = api_instance.remind_request_reviewer(id, reviewer_id)
+        print("The response of RequestsApi->remind_request_reviewer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RequestsApi->remind_request_reviewer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **UUID**| The ID of the request whose reviewer should be reminded. | 
+ **reviewer_id** | **UUID**| The ID of the pending reviewer to remind. | 
+
+### Return type
+
+[**EscalateRequest200Response**](EscalateRequest200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The reminder was sent, or the request was already resolved. |  -  |
+**400** | Unknown JSON fields, or the user is not a pending reviewer of the request. |  -  |
+**404** | The request was not found. |  -  |
+**429** | The reviewer reminder cooldown has not elapsed. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

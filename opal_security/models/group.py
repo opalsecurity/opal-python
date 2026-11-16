@@ -49,22 +49,26 @@ class Group(BaseModel):
     require_manager_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the group require manager approval.")
     require_support_ticket: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not access requests to the group require an access ticket.")
     require_mfa_to_approve: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for reviewers to approve requests for this group.")
+    requires_forfeit_reason: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not a reason is required when forfeiting access to this group.")
     require_mfa_to_request: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to require MFA for requesting access to this group.")
     auto_approval: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to automatically approve requests to this group.")
     request_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated request template.")
     configuration_template_id: Optional[UUID] = Field(default=None, description="The ID of the associated configuration template.")
     group_binding_id: Optional[UUID] = Field(default=None, description="The ID of the associated group binding.")
-    is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this group.")
+    is_requestable: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not to allow access requests to this group. Deprecated in favor of `request_configurations`.")
     request_configurations: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of request configurations for this group.")
     request_configuration_list: Optional[List[RequestConfiguration]] = Field(default=None, description="A list of request configurations for this group. Deprecated in favor of `request_configurations`.")
     metadata: Optional[StrictStr] = Field(default=None, description="JSON metadata about the remote group. Only set for items linked to remote systems. See [this guide](https://docs.opal.dev/reference/end-system-objects) for details.")
     remote_info: Optional[GroupRemoteInfo] = None
     custom_request_notification: Optional[Annotated[str, Field(strict=True, max_length=800)]] = Field(default=None, description="Custom request notification sent to the requester when the request is approved.")
+    max_direct_users_allowed: Optional[StrictInt] = Field(default=None, description="The maximum number of direct users allowed for this group at once. Set to null to remove the limit.")
     risk_sensitivity: Optional[RiskSensitivityEnum] = Field(default=None, description="The risk sensitivity level for the group. When an override is set, this field will match that.")
     risk_sensitivity_override: Optional[RiskSensitivityEnum] = None
+    match_remote_name: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the group's name is synced from the end system. When true, the name is overwritten with the remote name on each sync. Defaults to false.")
+    match_remote_description: Optional[StrictBool] = Field(default=None, description="A bool representing whether or not the group's description is synced from the end system. When true, the description is overwritten with the remote description on each sync. Defaults to false.")
     last_successful_sync: Optional[SyncTask] = Field(default=None, description="Information about the last successful sync of this group.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "risk_sensitivity", "risk_sensitivity_override", "last_successful_sync"]
+    __properties: ClassVar[List[str]] = ["group_id", "app_id", "name", "description", "admin_owner_id", "group_leader_user_ids", "remote_id", "remote_name", "group_type", "max_duration", "recommended_duration", "extensions_duration_in_minutes", "require_manager_approval", "require_support_ticket", "require_mfa_to_approve", "requires_forfeit_reason", "require_mfa_to_request", "auto_approval", "request_template_id", "configuration_template_id", "group_binding_id", "is_requestable", "request_configurations", "request_configuration_list", "metadata", "remote_info", "custom_request_notification", "max_direct_users_allowed", "risk_sensitivity", "risk_sensitivity_override", "match_remote_name", "match_remote_description", "last_successful_sync"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -163,6 +167,7 @@ class Group(BaseModel):
             "require_manager_approval": obj.get("require_manager_approval"),
             "require_support_ticket": obj.get("require_support_ticket"),
             "require_mfa_to_approve": obj.get("require_mfa_to_approve"),
+            "requires_forfeit_reason": obj.get("requires_forfeit_reason"),
             "require_mfa_to_request": obj.get("require_mfa_to_request"),
             "auto_approval": obj.get("auto_approval"),
             "request_template_id": obj.get("request_template_id"),
@@ -174,8 +179,11 @@ class Group(BaseModel):
             "metadata": obj.get("metadata"),
             "remote_info": GroupRemoteInfo.from_dict(obj["remote_info"]) if obj.get("remote_info") is not None else None,
             "custom_request_notification": obj.get("custom_request_notification"),
+            "max_direct_users_allowed": obj.get("max_direct_users_allowed"),
             "risk_sensitivity": obj.get("risk_sensitivity"),
             "risk_sensitivity_override": obj.get("risk_sensitivity_override"),
+            "match_remote_name": obj.get("match_remote_name"),
+            "match_remote_description": obj.get("match_remote_description"),
             "last_successful_sync": SyncTask.from_dict(obj["last_successful_sync"]) if obj.get("last_successful_sync") is not None else None
         })
         # store additional fields in additional_properties

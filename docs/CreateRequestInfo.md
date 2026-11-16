@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **groups** | [**List[CreateRequestInfoGroupsInner]**](CreateRequestInfoGroupsInner.md) |  | 
 **target_user_id** | **UUID** | The ID of the user to be granted access. Should not be specified if target_group_id is specified. | [optional] 
 **target_group_id** | **UUID** | The ID of the group the request is for.  Should not be specified if target_user_id is specified. | [optional] 
+**initiated_by_user_id** | **UUID** | The ID of the user who asked for this access, for callers filing a request on someone else&#39;s behalf. Opal records this claim as given and does not verify it, so it never affects authorization, reviewer routing, or who may cancel the request; the authenticated caller remains the requester. Must be a user of your organization. Only accepted from a service user for which an Opal admin has enabled \&quot;Let this service user record who asked for access\&quot; under Settings on the service user&#39;s page; any other caller receives a 403 when this field is set. | [optional] 
 **reason** | **str** |  | 
 **support_ticket** | [**CreateRequestInfoSupportTicket**](CreateRequestInfoSupportTicket.md) |  | [optional] 
 **duration_minutes** | **int** | The duration of the request in minutes. -1 represents an indefinite duration | 

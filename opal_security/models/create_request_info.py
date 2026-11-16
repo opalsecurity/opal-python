@@ -37,12 +37,13 @@ class CreateRequestInfo(BaseModel):
     groups: List[CreateRequestInfoGroupsInner]
     target_user_id: Optional[UUID] = Field(default=None, description="The ID of the user to be granted access. Should not be specified if target_group_id is specified.")
     target_group_id: Optional[UUID] = Field(default=None, description="The ID of the group the request is for.  Should not be specified if target_user_id is specified.")
+    initiated_by_user_id: Optional[UUID] = Field(default=None, description="The ID of the user who asked for this access, for callers filing a request on someone else's behalf. Opal records this claim as given and does not verify it, so it never affects authorization, reviewer routing, or who may cancel the request; the authenticated caller remains the requester. Must be a user of your organization. Only accepted from a service user for which an Opal admin has enabled \"Let this service user record who asked for access\" under Settings on the service user's page; any other caller receives a 403 when this field is set.")
     reason: StrictStr
     support_ticket: Optional[CreateRequestInfoSupportTicket] = None
     duration_minutes: Annotated[int, Field(strict=True, ge=-1)] = Field(description="The duration of the request in minutes. -1 represents an indefinite duration")
     custom_metadata: Optional[List[CreateRequestInfoCustomMetadataInner]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["resources", "groups", "target_user_id", "target_group_id", "reason", "support_ticket", "duration_minutes", "custom_metadata"]
+    __properties: ClassVar[List[str]] = ["resources", "groups", "target_user_id", "target_group_id", "initiated_by_user_id", "reason", "support_ticket", "duration_minutes", "custom_metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,6 +131,7 @@ class CreateRequestInfo(BaseModel):
             "groups": [CreateRequestInfoGroupsInner.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None,
             "target_user_id": obj.get("target_user_id"),
             "target_group_id": obj.get("target_group_id"),
+            "initiated_by_user_id": obj.get("initiated_by_user_id"),
             "reason": obj.get("reason"),
             "support_ticket": CreateRequestInfoSupportTicket.from_dict(obj["support_ticket"]) if obj.get("support_ticket") is not None else None,
             "duration_minutes": obj.get("duration_minutes"),

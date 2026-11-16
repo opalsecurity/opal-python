@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field, StrictBool, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
@@ -25,8 +25,11 @@ from opal_security.models.add_group_resource_request import AddGroupResourceRequ
 from opal_security.models.add_group_user_request import AddGroupUserRequest
 from opal_security.models.create_group_info import CreateGroupInfo
 from opal_security.models.group import Group
+from opal_security.models.group_access_level_list import GroupAccessLevelList
+from opal_security.models.group_configuration_template import GroupConfigurationTemplate
 from opal_security.models.group_containing_group import GroupContainingGroup
 from opal_security.models.group_containing_group_list import GroupContainingGroupList
+from opal_security.models.group_member_group_list import GroupMemberGroupList
 from opal_security.models.group_resource import GroupResource
 from opal_security.models.group_resource_list import GroupResourceList
 from opal_security.models.group_type_enum import GroupTypeEnum
@@ -34,6 +37,7 @@ from opal_security.models.group_user import GroupUser
 from opal_security.models.group_user_list import GroupUserList
 from opal_security.models.message_channel_id_list import MessageChannelIDList
 from opal_security.models.message_channel_list import MessageChannelList
+from opal_security.models.name_match_type import NameMatchType
 from opal_security.models.on_call_schedule_id_list import OnCallScheduleIDList
 from opal_security.models.on_call_schedule_list import OnCallScheduleList
 from opal_security.models.paginated_groups_list import PaginatedGroupsList
@@ -679,7 +683,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
-        duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
+        duration_minutes: Annotated[Optional[Annotated[int, Field(le=153722867, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_user_request: Optional[AddGroupUserRequest] = None,
         _request_timeout: Union[
@@ -762,7 +766,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
-        duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
+        duration_minutes: Annotated[Optional[Annotated[int, Field(le=153722867, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_user_request: Optional[AddGroupUserRequest] = None,
         _request_timeout: Union[
@@ -845,7 +849,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         user_id: Annotated[UUID, Field(description="The ID of the user to add.")],
-        duration_minutes: Annotated[Optional[Annotated[int, Field(le=525960, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
+        duration_minutes: Annotated[Optional[Annotated[int, Field(le=153722867, strict=True)]], Field(description="The duration for which the group can be accessed (in minutes). Use 0 to set to indefinite.")] = None,
         access_level_remote_id: Annotated[Optional[StrictStr], Field(description="The remote ID of the access level to grant to this user. If omitted, the default access level remote ID value (empty string) is used.")] = None,
         add_group_user_request: Optional[AddGroupUserRequest] = None,
         _request_timeout: Union[
@@ -2088,6 +2092,537 @@ class GroupsApi:
 
 
     @validate_call
+    def get_group_access_levels(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose access levels to return.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GroupAccessLevelList:
+        """Get group access levels
+
+        Returns the list of access levels defined for the group. Groups that only offer default (unnamed) access return an empty list.
+
+        :param group_id: The ID of the group whose access levels to return. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_access_levels_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupAccessLevelList",
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_group_access_levels_with_http_info(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose access levels to return.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GroupAccessLevelList]:
+        """Get group access levels
+
+        Returns the list of access levels defined for the group. Groups that only offer default (unnamed) access return an empty list.
+
+        :param group_id: The ID of the group whose access levels to return. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_access_levels_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupAccessLevelList",
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_group_access_levels_without_preload_content(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose access levels to return.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get group access levels
+
+        Returns the list of access levels defined for the group. Groups that only offer default (unnamed) access return an empty list.
+
+        :param group_id: The ID of the group whose access levels to return. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_access_levels_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupAccessLevelList",
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_group_access_levels_serialize(
+        self,
+        group_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if group_id is not None:
+            _path_params['group_id'] = group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/groups/{group_id}/access_levels',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_group_configuration_template(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose configuration template link is being read.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GroupConfigurationTemplate:
+        """Get the ID of the configuration template linked to a group
+
+        Returns the ID of the configuration template that the group is currently linked to. The response body is `{\"configuration_template_id\": \"<uuid>\" | null}`:    * `<uuid>` is the ID of the configuration template the group is linked to.   * `null` means the group is not linked to any configuration template     and uses its own private configuration.  This endpoint only exposes the link between a group and a configuration template — it does not return the template's own fields (name, description, request configurations, visibility, etc.). To read those, call `GET /configuration-templates/{configuration_template_id}` with the ID returned here. 
+
+        :param group_id: The ID of the group whose configuration template link is being read. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_configuration_template_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupConfigurationTemplate",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_group_configuration_template_with_http_info(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose configuration template link is being read.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GroupConfigurationTemplate]:
+        """Get the ID of the configuration template linked to a group
+
+        Returns the ID of the configuration template that the group is currently linked to. The response body is `{\"configuration_template_id\": \"<uuid>\" | null}`:    * `<uuid>` is the ID of the configuration template the group is linked to.   * `null` means the group is not linked to any configuration template     and uses its own private configuration.  This endpoint only exposes the link between a group and a configuration template — it does not return the template's own fields (name, description, request configurations, visibility, etc.). To read those, call `GET /configuration-templates/{configuration_template_id}` with the ID returned here. 
+
+        :param group_id: The ID of the group whose configuration template link is being read. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_configuration_template_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupConfigurationTemplate",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_group_configuration_template_without_preload_content(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose configuration template link is being read.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the ID of the configuration template linked to a group
+
+        Returns the ID of the configuration template that the group is currently linked to. The response body is `{\"configuration_template_id\": \"<uuid>\" | null}`:    * `<uuid>` is the ID of the configuration template the group is linked to.   * `null` means the group is not linked to any configuration template     and uses its own private configuration.  This endpoint only exposes the link between a group and a configuration template — it does not return the template's own fields (name, description, request configurations, visibility, etc.). To read those, call `GET /configuration-templates/{configuration_template_id}` with the ID returned here. 
+
+        :param group_id: The ID of the group whose configuration template link is being read. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_configuration_template_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupConfigurationTemplate",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_group_configuration_template_serialize(
+        self,
+        group_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if group_id is not None:
+            _path_params['group_id'] = group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/groups/{group_id}/configuration-template',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_group_containing_group(
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
@@ -2626,6 +3161,273 @@ class GroupsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/groups/{group_id}/containing-groups',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_group_groups(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GroupMemberGroupList:
+        """Get member groups
+
+        Gets the list of groups that are nested directly in the group (its member groups).
+
+        :param group_id: The ID of the group. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_groups_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupMemberGroupList",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_group_groups_with_http_info(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GroupMemberGroupList]:
+        """Get member groups
+
+        Gets the list of groups that are nested directly in the group (its member groups).
+
+        :param group_id: The ID of the group. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_groups_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupMemberGroupList",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_group_groups_without_preload_content(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get member groups
+
+        Gets the list of groups that are nested directly in the group (its member groups).
+
+        :param group_id: The ID of the group. (required)
+        :type group_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_group_groups_serialize(
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupMemberGroupList",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_group_groups_serialize(
+        self,
+        group_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if group_id is not None:
+            _path_params['group_id'] = group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/groups/{group_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4218,7 +5020,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
-        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4240,7 +5042,7 @@ class GroupsApi:
         :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
-        :param page_size: Number of results to return per page. Default is 200.
+        :param page_size: Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.
         :type page_size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4293,7 +5095,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
-        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4315,7 +5117,7 @@ class GroupsApi:
         :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
-        :param page_size: Number of results to return per page. Default is 200.
+        :param page_size: Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.
         :type page_size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4368,7 +5170,7 @@ class GroupsApi:
         self,
         group_id: Annotated[UUID, Field(description="The ID of the group.")],
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
-        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4390,7 +5192,7 @@ class GroupsApi:
         :type group_id: UUID
         :param cursor: The pagination cursor value.
         :type cursor: str
-        :param page_size: Number of results to return per page. Default is 200.
+        :param page_size: Number of results to return per page, up to 1000. When set (or when a cursor is provided), the response contains a single page of results and a `next` cursor; the default page size is 200. When both page_size and cursor are omitted, the entire group membership is returned in one response with no `next` cursor. For large groups, prefer setting page_size and following `next`.
         :type page_size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4563,6 +5365,7 @@ class GroupsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "VisibilityInfo",
+            '403': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4630,6 +5433,7 @@ class GroupsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "VisibilityInfo",
+            '403': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4697,6 +5501,7 @@ class GroupsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "VisibilityInfo",
+            '403': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4774,10 +5579,13 @@ class GroupsApi:
         self,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
-        group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
+        group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by. Required when remote_id is provided.")] = None,
         group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
-        group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
+        group_name: Annotated[Optional[StrictStr], Field(description="Filter groups by name. Matches against both `name` and `remote_name`. Matching is case-insensitive. Use `group_name_match` to choose the match type; when omitted, CONTAINS (substring) is used.")] = None,
+        group_name_match: Annotated[Optional[NameMatchType], Field(description="How to apply `group_name`. Requires `group_name` to be set. Defaults to CONTAINS when `group_name` is provided without this parameter.")] = None,
+        remote_id: Annotated[Optional[StrictStr], Field(description="Filter groups by their remote id. Returns groups whose remote id matches the provided value exactly. Requires group_type_filter. Remote ids are only unique within a connection, so groups from different connections can share a remote id and more than one group may be returned. Unmanaged groups are not returned.")] = None,
         tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only groups that have any of these tags applied.")] = None,
+        requestable: Annotated[Optional[StrictBool], Field(description="If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4799,14 +5607,20 @@ class GroupsApi:
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
         :type page_size: int
-        :param group_type_filter: The group type to filter by.
+        :param group_type_filter: The group type to filter by. Required when remote_id is provided.
         :type group_type_filter: GroupTypeEnum
         :param group_ids: The group ids to filter by.
         :type group_ids: List[UUID]
-        :param group_name: Group name.
+        :param group_name: Filter groups by name. Matches against both `name` and `remote_name`. Matching is case-insensitive. Use `group_name_match` to choose the match type; when omitted, CONTAINS (substring) is used.
         :type group_name: str
+        :param group_name_match: How to apply `group_name`. Requires `group_name` to be set. Defaults to CONTAINS when `group_name` is provided without this parameter.
+        :type group_name_match: NameMatchType
+        :param remote_id: Filter groups by their remote id. Returns groups whose remote id matches the provided value exactly. Requires group_type_filter. Remote ids are only unique within a connection, so groups from different connections can share a remote id and more than one group may be returned. Unmanaged groups are not returned.
+        :type remote_id: str
         :param tag_ids: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
         :type tag_ids: List[UUID]
+        :param requestable: If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group.
+        :type requestable: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4835,7 +5649,10 @@ class GroupsApi:
             group_type_filter=group_type_filter,
             group_ids=group_ids,
             group_name=group_name,
+            group_name_match=group_name_match,
+            remote_id=remote_id,
             tag_ids=tag_ids,
+            requestable=requestable,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4861,10 +5678,13 @@ class GroupsApi:
         self,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
-        group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
+        group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by. Required when remote_id is provided.")] = None,
         group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
-        group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
+        group_name: Annotated[Optional[StrictStr], Field(description="Filter groups by name. Matches against both `name` and `remote_name`. Matching is case-insensitive. Use `group_name_match` to choose the match type; when omitted, CONTAINS (substring) is used.")] = None,
+        group_name_match: Annotated[Optional[NameMatchType], Field(description="How to apply `group_name`. Requires `group_name` to be set. Defaults to CONTAINS when `group_name` is provided without this parameter.")] = None,
+        remote_id: Annotated[Optional[StrictStr], Field(description="Filter groups by their remote id. Returns groups whose remote id matches the provided value exactly. Requires group_type_filter. Remote ids are only unique within a connection, so groups from different connections can share a remote id and more than one group may be returned. Unmanaged groups are not returned.")] = None,
         tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only groups that have any of these tags applied.")] = None,
+        requestable: Annotated[Optional[StrictBool], Field(description="If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4886,14 +5706,20 @@ class GroupsApi:
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
         :type page_size: int
-        :param group_type_filter: The group type to filter by.
+        :param group_type_filter: The group type to filter by. Required when remote_id is provided.
         :type group_type_filter: GroupTypeEnum
         :param group_ids: The group ids to filter by.
         :type group_ids: List[UUID]
-        :param group_name: Group name.
+        :param group_name: Filter groups by name. Matches against both `name` and `remote_name`. Matching is case-insensitive. Use `group_name_match` to choose the match type; when omitted, CONTAINS (substring) is used.
         :type group_name: str
+        :param group_name_match: How to apply `group_name`. Requires `group_name` to be set. Defaults to CONTAINS when `group_name` is provided without this parameter.
+        :type group_name_match: NameMatchType
+        :param remote_id: Filter groups by their remote id. Returns groups whose remote id matches the provided value exactly. Requires group_type_filter. Remote ids are only unique within a connection, so groups from different connections can share a remote id and more than one group may be returned. Unmanaged groups are not returned.
+        :type remote_id: str
         :param tag_ids: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
         :type tag_ids: List[UUID]
+        :param requestable: If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group.
+        :type requestable: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4922,7 +5748,10 @@ class GroupsApi:
             group_type_filter=group_type_filter,
             group_ids=group_ids,
             group_name=group_name,
+            group_name_match=group_name_match,
+            remote_id=remote_id,
             tag_ids=tag_ids,
+            requestable=requestable,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4948,10 +5777,13 @@ class GroupsApi:
         self,
         cursor: Annotated[Optional[StrictStr], Field(description="The pagination cursor value.")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Number of results to return per page. Default is 200.")] = None,
-        group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by.")] = None,
+        group_type_filter: Annotated[Optional[GroupTypeEnum], Field(description="The group type to filter by. Required when remote_id is provided.")] = None,
         group_ids: Annotated[Optional[List[UUID]], Field(description="The group ids to filter by.")] = None,
-        group_name: Annotated[Optional[StrictStr], Field(description="Group name.")] = None,
+        group_name: Annotated[Optional[StrictStr], Field(description="Filter groups by name. Matches against both `name` and `remote_name`. Matching is case-insensitive. Use `group_name_match` to choose the match type; when omitted, CONTAINS (substring) is used.")] = None,
+        group_name_match: Annotated[Optional[NameMatchType], Field(description="How to apply `group_name`. Requires `group_name` to be set. Defaults to CONTAINS when `group_name` is provided without this parameter.")] = None,
+        remote_id: Annotated[Optional[StrictStr], Field(description="Filter groups by their remote id. Returns groups whose remote id matches the provided value exactly. Requires group_type_filter. Remote ids are only unique within a connection, so groups from different connections can share a remote id and more than one group may be returned. Unmanaged groups are not returned.")] = None,
         tag_ids: Annotated[Optional[List[UUID]], Field(description="The IDs of the tags to filter by. Returns only groups that have any of these tags applied.")] = None,
+        requestable: Annotated[Optional[StrictBool], Field(description="If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4973,14 +5805,20 @@ class GroupsApi:
         :type cursor: str
         :param page_size: Number of results to return per page. Default is 200.
         :type page_size: int
-        :param group_type_filter: The group type to filter by.
+        :param group_type_filter: The group type to filter by. Required when remote_id is provided.
         :type group_type_filter: GroupTypeEnum
         :param group_ids: The group ids to filter by.
         :type group_ids: List[UUID]
-        :param group_name: Group name.
+        :param group_name: Filter groups by name. Matches against both `name` and `remote_name`. Matching is case-insensitive. Use `group_name_match` to choose the match type; when omitted, CONTAINS (substring) is used.
         :type group_name: str
+        :param group_name_match: How to apply `group_name`. Requires `group_name` to be set. Defaults to CONTAINS when `group_name` is provided without this parameter.
+        :type group_name_match: NameMatchType
+        :param remote_id: Filter groups by their remote id. Returns groups whose remote id matches the provided value exactly. Requires group_type_filter. Remote ids are only unique within a connection, so groups from different connections can share a remote id and more than one group may be returned. Unmanaged groups are not returned.
+        :type remote_id: str
         :param tag_ids: The IDs of the tags to filter by. Returns only groups that have any of these tags applied.
         :type tag_ids: List[UUID]
+        :param requestable: If true, only return groups that allow access requests. Does not check whether the caller is permitted to request the group.
+        :type requestable: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5009,7 +5847,10 @@ class GroupsApi:
             group_type_filter=group_type_filter,
             group_ids=group_ids,
             group_name=group_name,
+            group_name_match=group_name_match,
+            remote_id=remote_id,
             tag_ids=tag_ids,
+            requestable=requestable,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5033,7 +5874,10 @@ class GroupsApi:
         group_type_filter,
         group_ids,
         group_name,
+        group_name_match,
+        remote_id,
         tag_ids,
+        requestable,
         _request_auth,
         _content_type,
         _headers,
@@ -5078,9 +5922,21 @@ class GroupsApi:
             
             _query_params.append(('group_name', group_name))
             
+        if group_name_match is not None:
+            
+            _query_params.append(('group_name_match', group_name_match.value))
+            
+        if remote_id is not None:
+            
+            _query_params.append(('remote_id', remote_id))
+            
         if tag_ids is not None:
             
             _query_params.append(('tag_ids', tag_ids))
+            
+        if requestable is not None:
+            
+            _query_params.append(('requestable', requestable))
             
         # process the header parameters
         # process the form parameters
@@ -7418,6 +8274,304 @@ class GroupsApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/groups/{group_id}/visibility',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_group_configuration_template(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose configuration template link is being set.")],
+        group_configuration_template: GroupConfigurationTemplate,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GroupConfigurationTemplate:
+        """Set the ID of the configuration template linked to a group
+
+        Attaches, repoints, or detaches the configuration template linked to a group. This endpoint only manages the link (by ID) between a group and an existing configuration template — it does not create, modify, or delete the template itself. To manage a template's own fields (name, description, request configurations, visibility, etc.), use the `/configuration-templates` endpoints.  The request body is `{\"configuration_template_id\": \"<uuid>\" | null}`:    * A `<uuid>` value links the group to the configuration template with     that ID. If the group was previously linked to a different     template, the group is repointed in place.   * `null` detaches the group from its current configuration template.     The template is deep-copied into a new private configuration with     the same settings so the group's current behaviour is preserved,     and the group is repointed at the fork.  The `configuration_template_id` field is required. Sending `{}` or any body in which the field is omitted is rejected with `400`.  The call is idempotent: if the request body matches the group's current link, no changes are made and no audit events are emitted.  This endpoint is the preferred, Terraform-friendly surface for linking and unlinking configuration templates on groups. The equivalent `configuration_template_id` field on `PUT /groups` remains available but is deprecated for this purpose. 
+
+        :param group_id: The ID of the group whose configuration template link is being set. (required)
+        :type group_id: UUID
+        :param group_configuration_template: (required)
+        :type group_configuration_template: GroupConfigurationTemplate
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_group_configuration_template_serialize(
+            group_id=group_id,
+            group_configuration_template=group_configuration_template,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupConfigurationTemplate",
+            '400': None,
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_group_configuration_template_with_http_info(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose configuration template link is being set.")],
+        group_configuration_template: GroupConfigurationTemplate,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GroupConfigurationTemplate]:
+        """Set the ID of the configuration template linked to a group
+
+        Attaches, repoints, or detaches the configuration template linked to a group. This endpoint only manages the link (by ID) between a group and an existing configuration template — it does not create, modify, or delete the template itself. To manage a template's own fields (name, description, request configurations, visibility, etc.), use the `/configuration-templates` endpoints.  The request body is `{\"configuration_template_id\": \"<uuid>\" | null}`:    * A `<uuid>` value links the group to the configuration template with     that ID. If the group was previously linked to a different     template, the group is repointed in place.   * `null` detaches the group from its current configuration template.     The template is deep-copied into a new private configuration with     the same settings so the group's current behaviour is preserved,     and the group is repointed at the fork.  The `configuration_template_id` field is required. Sending `{}` or any body in which the field is omitted is rejected with `400`.  The call is idempotent: if the request body matches the group's current link, no changes are made and no audit events are emitted.  This endpoint is the preferred, Terraform-friendly surface for linking and unlinking configuration templates on groups. The equivalent `configuration_template_id` field on `PUT /groups` remains available but is deprecated for this purpose. 
+
+        :param group_id: The ID of the group whose configuration template link is being set. (required)
+        :type group_id: UUID
+        :param group_configuration_template: (required)
+        :type group_configuration_template: GroupConfigurationTemplate
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_group_configuration_template_serialize(
+            group_id=group_id,
+            group_configuration_template=group_configuration_template,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupConfigurationTemplate",
+            '400': None,
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_group_configuration_template_without_preload_content(
+        self,
+        group_id: Annotated[UUID, Field(description="The ID of the group whose configuration template link is being set.")],
+        group_configuration_template: GroupConfigurationTemplate,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Set the ID of the configuration template linked to a group
+
+        Attaches, repoints, or detaches the configuration template linked to a group. This endpoint only manages the link (by ID) between a group and an existing configuration template — it does not create, modify, or delete the template itself. To manage a template's own fields (name, description, request configurations, visibility, etc.), use the `/configuration-templates` endpoints.  The request body is `{\"configuration_template_id\": \"<uuid>\" | null}`:    * A `<uuid>` value links the group to the configuration template with     that ID. If the group was previously linked to a different     template, the group is repointed in place.   * `null` detaches the group from its current configuration template.     The template is deep-copied into a new private configuration with     the same settings so the group's current behaviour is preserved,     and the group is repointed at the fork.  The `configuration_template_id` field is required. Sending `{}` or any body in which the field is omitted is rejected with `400`.  The call is idempotent: if the request body matches the group's current link, no changes are made and no audit events are emitted.  This endpoint is the preferred, Terraform-friendly surface for linking and unlinking configuration templates on groups. The equivalent `configuration_template_id` field on `PUT /groups` remains available but is deprecated for this purpose. 
+
+        :param group_id: The ID of the group whose configuration template link is being set. (required)
+        :type group_id: UUID
+        :param group_configuration_template: (required)
+        :type group_configuration_template: GroupConfigurationTemplate
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_group_configuration_template_serialize(
+            group_id=group_id,
+            group_configuration_template=group_configuration_template,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GroupConfigurationTemplate",
+            '400': None,
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_group_configuration_template_serialize(
+        self,
+        group_id,
+        group_configuration_template,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if group_id is not None:
+            _path_params['group_id'] = group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if group_configuration_template is not None:
+            _body_params = group_configuration_template
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/groups/{group_id}/configuration-template',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
